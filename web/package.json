@@ -10,6 +10,13 @@
     "type": "git",
     "url": "https://github.com/antonsoo/errorbars"
   },
+  "keywords": [
+    "llm-evals",
+    "statistics",
+    "power-analysis",
+    "confidence-intervals",
+    "sample-size-calculator"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",

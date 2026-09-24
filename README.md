@@ -172,7 +172,7 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 - Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
   statistically direct approach — it can produce a model in more than one group, unlike a
   minimal-letters heuristic (e.g. R's `multcompView`).
-- 75 Python tests, 602 TypeScript tests (cross-checking the JS formulas against Python-generated
+- 81 Python tests, 602 TypeScript tests (cross-checking the JS formulas against Python-generated
   vectors), all passing on this box (14 vCPU WSL2 Linux, 48 GB RAM; Python 3.12.3, Node 26.7.0)
   as of 2026-09-24.
 

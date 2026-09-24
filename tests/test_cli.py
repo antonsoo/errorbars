@@ -82,3 +82,31 @@ def test_cli_power_rejects_both_delta_and_n() -> None:
 def test_cli_missing_file_reports_error() -> None:
     result = run_cli("summarize", "/nonexistent/path.csv", "--json")
     assert result.returncode != 0
+
+
+@pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")
+@pytest.mark.parametrize("ci_method", ["clt", "wilson", "bootstrap"])
+def test_cli_summarize_ci_methods(ci_method: str) -> None:
+    result = run_cli(
+        "summarize", str(DATA), "--model", "tuned-70b", "--ci", ci_method, "--json"
+    )
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["method"] == ci_method
+
+
+@pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")
+def test_cli_summarize_wilson_rejects_continuous_scores(tmp_path) -> None:
+    p = tmp_path / "continuous.csv"
+    p.write_text("question_id,model,score\nq1,m,0.3\nq2,m,0.7\nq3,m,0.5\n")
+    result = run_cli("summarize", str(p), "--ci", "wilson", "--json")
+    assert result.returncode != 0
+    assert "binary" in result.stderr.lower()
+
+
+def test_cli_unrecognized_extension_reports_error(tmp_path) -> None:
+    p = tmp_path / "data.txt"
+    p.write_text("question_id,model,score\nq1,m,1\n")
+    result = run_cli("summarize", str(p), "--json")
+    assert result.returncode != 0
+    assert "extension" in result.stderr.lower()

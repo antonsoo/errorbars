@@ -44,3 +44,15 @@ def test_forest_plot_svg_escapes_model_names() -> None:
     svg = forest_plot_svg(lb)
     assert "<script>" not in svg
     assert "&lt;script&gt;" in svg
+
+
+def test_forest_plot_matplotlib_returns_figure_with_one_row_per_model() -> None:
+    matplotlib = __import__("matplotlib")
+    matplotlib.use("Agg")  # headless backend for CI
+    from errorbars.plot import forest_plot_matplotlib
+
+    lb = _sample_leaderboard()
+    fig = forest_plot_matplotlib(lb, title="Test Leaderboard")
+    ax = fig.axes[0]
+    assert ax.get_title() == "Test Leaderboard"
+    assert len(ax.get_yticklabels()) == len(lb.entries)

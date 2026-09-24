@@ -2,7 +2,6 @@
 
 **Error bars for LLM evals. Know whether model B is actually better, or you're reading noise.**
 
-[![CI](https://github.com/antonsoo/errorbars/actions/workflows/ci.yml/badge.svg)](https://github.com/antonsoo/errorbars/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/live%20demo-calculator-2454a6)](https://antonsoo.github.io/errorbars/)
 
@@ -64,7 +63,7 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   scripting.
 - **Web calculator** — a static "how many eval questions do I need?" power calculator
   ([live demo](https://antonsoo.github.io/errorbars/)), whose TypeScript formulas are checked
-  against the Python ones on every commit.
+  against the Python ones by the test suite.
 - Typed Python ≥3.10, `numpy` the only runtime dependency; `pandas` and `matplotlib` are optional
   extras; `scipy`/`statsmodels` are test-only oracles, never imported at runtime.
 

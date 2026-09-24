@@ -1,0 +1,7606 @@
+{
+  "questionsNeeded": [
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 32966,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 49448,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 98896,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 16483,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 24724,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 49448,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 8242,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 12362,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 24724,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 23076,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 34614,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 69228,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 11538,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 17307,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 34614,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 5769,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 8654,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 17307,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 13187,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 19780,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 39559,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 6594,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 9890,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 19780,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 3297,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 4945,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 9890,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 44132,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 66197,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 132394,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 22066,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 33099,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 66197,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 11033,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 16550,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 33099,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 30892,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 46338,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 92676,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 15446,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 23169,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 46338,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 7723,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 11585,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 23169,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 17653,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 26479,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 52958,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 8827,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 13240,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 26479,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 4414,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 6620,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 13240,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 25967,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 38951,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 77901,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 12984,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 19476,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 38951,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 6492,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 9738,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 19476,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 18177,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 27266,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 54531,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 9089,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 13633,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 27266,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 4545,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 6817,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 13633,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 10387,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 15581,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 31161,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 5194,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 7791,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 15581,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 2597,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 3896,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 7791,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 35969,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 53953,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 107905,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 17985,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 26977,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 53953,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 8993,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 13489,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 26977,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 25178,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 37767,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 75534,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 12589,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 18884,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 37767,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 6295,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 9442,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 18884,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 14388,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 21581,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 43162,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 7194,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 10791,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 21581,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 3597,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 5396,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.01,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 10791,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 3663,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 5495,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 10989,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1832,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2748,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 5495,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 916,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1374,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2748,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 2564,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 3846,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 7692,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1282,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1923,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3846,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 641,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 962,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1923,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1466,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2198,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 4396,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 733,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1099,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2198,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 367,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 550,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1099,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 4904,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 7356,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 14711,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 2452,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 3678,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 7356,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1226,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1839,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3678,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 3433,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 5149,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 10298,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1717,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2575,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 5149,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 859,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1288,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2575,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1962,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2943,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 5885,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 981,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1472,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2943,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 491,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 736,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1472,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 2886,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 4328,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 8656,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1443,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2164,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 4328,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 722,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1082,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2164,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 2020,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 3030,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 6059,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1010,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1515,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3030,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 505,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 758,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1515,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1155,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1732,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3463,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 578,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 866,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1732,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 289,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 433,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 866,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 3997,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 5995,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 11990,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1999,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2998,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 5995,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1000,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1499,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2998,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 2798,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 4197,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 8393,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1399,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2099,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 4197,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 700,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1050,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2099,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1599,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2398,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 4796,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 800,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1199,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2398,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 400,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 600,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.03,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1199,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1319,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1978,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3956,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 660,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 989,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1978,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 330,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 495,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 989,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 924,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1385,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2770,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 462,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 693,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1385,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 231,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 347,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 693,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 528,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 792,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1583,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 264,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 396,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 792,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 132,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 198,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 396,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1766,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2648,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 5296,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 883,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1324,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2648,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 442,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 662,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1324,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1236,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1854,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3708,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 618,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 927,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1854,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 309,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 464,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 927,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 707,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1060,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2119,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 354,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 530,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1060,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 177,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 265,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 530,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1039,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1559,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3117,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 520,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 780,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1559,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 260,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 390,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 780,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 728,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1091,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2182,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 364,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 546,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1091,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 182,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 273,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 546,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 416,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 624,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1247,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 208,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 312,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 624,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 104,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 156,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 312,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1439,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 2159,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 4317,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 720,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1080,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 2159,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 360,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 540,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1080,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 1008,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 1511,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 3022,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 504,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 756,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1511,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 252,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 378,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 756,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 576,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 864,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1727,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 288,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 432,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 864,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 144,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 216,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.05,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 432,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 330,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 495,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 989,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 165,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 248,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 495,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 83,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 124,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 248,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 231,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 347,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 693,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 116,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 174,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 347,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 58,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 87,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 174,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 132,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 198,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 396,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 66,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 99,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 198,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 33,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 50,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 99,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 442,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 662,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 1324,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 221,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 331,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 662,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 111,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 166,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 331,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 309,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 464,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 927,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 155,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 232,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 464,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 78,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 116,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 232,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 177,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 265,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 530,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 89,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 133,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 265,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 45,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 67,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 133,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 260,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 390,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 780,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 130,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 195,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 390,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 65,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 98,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 195,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 182,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 273,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 546,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 91,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 137,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 273,
+      "perQuestionVariance": 0.105
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 46,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 69,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 137,
+      "perQuestionVariance": 0.0525
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 104,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "nQuestions": 156,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "nQuestions": 312,
+      "perQuestionVariance": 0.21
+    },
+    {
+      "inputs": {
+        "baseline": 0.3,
+        "delta": 0.1,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "nQuestions": 52,
+      "perQuestionVariance": 0.105
+    }
+  ],
+  "minimumDetectableEffect": [
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.25676952655744084
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.31447716078087207
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.4447378658328937
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1815634734308257
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.22236893291644685
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.31447716078087207
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.12838476327872042
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.15723858039043603
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.22236893291644685
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.2148287989026905
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2631104696832852
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.372094394628457
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1519069004982536
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1860471973142285
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2631104696832852
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.10741439945134525
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1315552348416426
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.1860471973142285
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1623953075289213
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1988928200341063
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.28127692355086437
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.11483082318657507
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.14063846177543218
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.1988928200341063
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.08119765376446066
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.09944641001705315
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.14063846177543218
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.29708980749278696
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.3638592180695053
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.5145746409883639
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.2100742174995556
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.25728732049418196
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3638592180695053
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.14854490374639348
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.18192960903475264
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.25728732049418196
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.24856316621991853
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.3044264630447003
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.43052403278308693
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.17576070038730338
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.21526201639154346
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3044264630447003
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.12428158310995926
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.15221323152235014
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.21526201639154346
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1878960922596329
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.23012477534950626
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.32544557833733345
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1328626009952396
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.16272278916866673
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.23012477534950626
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.09394804612981646
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.11506238767475313
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.16272278916866673
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.22788918523915525
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2791061108672632
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.39471564732969233
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.16114198824168394
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.19735782366484617
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2791061108672632
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.11394459261957762
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1395530554336316
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.19735782366484617
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1906657717690205
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.23351692612402708
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3302428039682752
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.134821060158041
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1651214019841376
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.23351692612402708
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.09533288588451025
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.11675846306201354
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.1651214019841376
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.14412977589515086
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.17652220384240508
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.24964009473391735
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.10191514190635857
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.12482004736695868
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.17652220384240508
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.07206488794757543
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.08826110192120254
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.12482004736695868
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.26820946617450137
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.3284881681558964
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.46455242248516254
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.18965273231041382
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.23227621124258127
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3284881681558964
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.13410473308725068
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1642440840779482
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.23227621124258127
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.22440013908624853
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.27483291948544214
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.38867244212290514
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.15867486004709078
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.19433622106145257
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.27483291948544214
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.11220006954312427
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.13741645974272107
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.19433622106145257
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.16963056062586243
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.20775415915780507
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.29380874952038644
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.11994691971502311
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.14690437476019322
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.20775415915780507
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.08481528031293122
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.10387707957890253
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.3,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.14690437476019322
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.2801585218112968
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.34312271276503437
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.48524879395055953
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.19810199057996725
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.24262439697527977
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.34312271276503437
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1400792609056484
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.17156135638251718
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.24262439697527977
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.23439743629238696
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2870770579664376
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.40598826882230327
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.16574401669508856
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.20299413441115163
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2870770579664376
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.11719871814619348
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1435385289832188
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.20299413441115163
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1771878069659319
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.21700985785464796
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3068982841467007
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.12529069984918342
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.15344914207335034
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.21700985785464796
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.08859390348296595
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.10850492892732398
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.15344914207335034
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.3241515550084655
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.3970029545502266
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.5614469626271199
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.2292097626786501
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.28072348131355995
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3970029545502266
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.16207577750423274
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1985014772751133
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.28072348131355995
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.27120464861444454
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.33215650248809897
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.46974023064908227
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.19177064612458852
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.23487011532454113
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.33215650248809897
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.13560232430722227
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.16607825124404949
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.23487011532454113
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.20501144418242234
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2510867148390048
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.35509023745702645
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.14496498240223823
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.17754511872851322
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2510867148390048
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.10250572209121117
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1255433574195024
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.05,
+        "power": 0.9,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.17754511872851322
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.24864748605243858
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.3045297333271358
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.4306700790170974
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.17582032351266683
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2153350395085487
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3045297333271358
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.12432374302621929
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1522648666635679
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2153350395085487
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.20803341227826444
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2547878547658964
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.3603244397378771
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.14710183653533754
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.18016221986893854
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2547878547658964
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.10401670613913222
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1273939273829482
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.3,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.18016221986893854
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.15725847808013102
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.19260151451148713
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2723796739557436
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.1111985362495367
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.1361898369778718
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.19260151451148713
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.07862923904006551
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.09630075725574357
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.8,
+        "rho": 0.6,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.1361898369778718
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.29264051924960727
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.358409975112328
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.5068682476936578
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.20692809561134967
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.2534341238468289
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 2,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.358409975112328
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.14632025962480363
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.179204987556164
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.0,
+        "samplesPerQuestion": 4,
+        "clusterDeff": 3.0
+      },
+      "mde": 0.2534341238468289
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.0
+      },
+      "mde": 0.24484062460032202
+    },
+    {
+      "inputs": {
+        "n": 50,
+        "baseline": 0.5,
+        "alpha": 0.1,
+        "power": 0.9,
+        "rho": 0.3,
+        "samplesPerQuestion": 1,
+        "clusterDeff": 1.5
+      },
+      "mde": 0.29986729928755773
+    }
+  ]
+}

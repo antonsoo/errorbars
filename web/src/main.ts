@@ -191,8 +191,40 @@ function update(): void {
     .join("");
 }
 
+function initThemeToggle(): void {
+  const button = document.getElementById("theme-toggle");
+  if (!button) return;
+
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  let stored: string | null = null;
+  try {
+    stored = localStorage.getItem("errorbars-theme");
+  } catch {
+    // localStorage unavailable (private browsing, etc.) — fall back to system preference.
+  }
+  let isDark = stored ? stored === "dark" : prefersDark;
+
+  const apply = () => {
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    button.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+    button.textContent = isDark ? "☀" : "☾";
+  };
+  apply();
+
+  button.addEventListener("click", () => {
+    isDark = !isDark;
+    apply();
+    try {
+      localStorage.setItem("errorbars-theme", isDark ? "dark" : "light");
+    } catch {
+      // ignore: theme just won't persist across visits
+    }
+  });
+}
+
 const controlsEl = document.getElementById("controls");
 if (controlsEl) {
   buildControls(controlsEl);
   update();
 }
+initThemeToggle();

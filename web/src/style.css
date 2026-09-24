@@ -120,6 +120,13 @@ code {
   margin-bottom: 36px;
 }
 
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -131,6 +138,27 @@ code {
 
 .eyebrow a {
   color: var(--ink-muted);
+}
+
+.theme-toggle {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-raised);
+  border: 1px solid var(--grid);
+  border-radius: 50%;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--grid-strong);
 }
 
 h1 {

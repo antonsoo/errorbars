@@ -35,6 +35,16 @@ dependencies = ["numpy>=1.24"]
 pandas = ["pandas>=1.5"]
 plot = ["matplotlib>=3.7"]
 cli = ["rich>=13.0"]
+inspect = [
+  "inspect-ai>=0.3.268",
+  # inspect-ai's own dependency ranges resolve to broken prereleases of
+  # these two as of 2026-09-24 (httpx 1.0.dev6 dropped the httpcore backend
+  # inspect-ai still imports; agent-client-protocol 1.0.0rc2 dropped the
+  # `acp.helpers` module inspect-ai still imports). Pin to the last stable
+  # versions that actually import.
+  "httpx>=0.27,<1.0",
+  "agent-client-protocol>=0.12,<1.0",
+]
 all = ["errorbars[pandas,plot,cli]"]
 
 [project.scripts]
@@ -59,6 +69,13 @@ dev = [
   "pandas>=1.5",
   "matplotlib>=3.7",
   "rich>=13.0",
+  "inspect-ai>=0.3.268",
+  # Pinned below their latest (as of 2026-09-24): inspect-ai's declared
+  # ranges resolve to prerelease versions of these two (httpx 1.0.dev6,
+  # agent-client-protocol 1.0.0rc2) that are broken against this inspect-ai
+  # release. Pin to the last stable versions that work.
+  "httpx<1.0",
+  "agent-client-protocol==0.12.1",
 ]
 
 [tool.ruff]

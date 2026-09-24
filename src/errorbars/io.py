@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-__all__ = ["EvalData", "ColumnMap", "load_csv", "load_jsonl", "load_dataframe"]
+__all__ = ["EvalData", "ColumnMap", "load_csv", "load_jsonl", "load_dataframe", "write_csv"]
 
 
 @dataclass(frozen=True)
@@ -148,3 +148,33 @@ def load_dataframe(df: Any, columns: ColumnMap | None = None) -> EvalData:
     columns = columns or ColumnMap()
     records = df.to_dict(orient="records")
     return _from_records(records, columns)
+
+
+def write_csv(data: EvalData, path: str | Path) -> None:
+    """Write an ``EvalData`` back out as a canonical long-format CSV.
+
+    Used by ``errorbars import`` to turn an adapter's output into a file
+    ``summarize``/``compare``/``leaderboard`` can load directly. Only
+    includes ``cluster_id`` / ``sample`` columns when the data actually has
+    them.
+    """
+    fieldnames = ["question_id", "model", "score"]
+    if data.cluster_id:
+        fieldnames.append("cluster_id")
+    if data.sample:
+        fieldnames.append("sample")
+
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for i in range(len(data)):
+            row: dict[str, Any] = {
+                "question_id": data.question_id[i],
+                "model": data.model[i],
+                "score": data.score[i],
+            }
+            if data.cluster_id:
+                row["cluster_id"] = data.cluster_id[i]
+            if data.sample:
+                row["sample"] = data.sample[i]
+            writer.writerow(row)

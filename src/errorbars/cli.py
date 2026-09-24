@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from errorbars.compare import paired_compare
-from errorbars.io import ColumnMap, EvalData, load_csv, load_jsonl
+from errorbars.io import ColumnMap, EvalData, load_csv, load_jsonl, write_csv
 from errorbars.leaderboard import build_leaderboard
 from errorbars.plot import forest_plot_svg
 from errorbars.power import minimum_detectable_effect, questions_needed
@@ -302,6 +302,28 @@ def cmd_power(args: argparse.Namespace) -> None:
         console.print(f"[bold green]Minimum detectable effect at n={args.n}: {mde:.4f}[/bold green]")
 
 
+def cmd_import(args: argparse.Namespace) -> None:
+    if args.adapter == "lm-eval":
+        if not args.model:
+            raise SystemExit("error: --model is required for the lm-eval adapter")
+        from errorbars.adapters.lm_eval import load_lm_eval_samples
+
+        data = load_lm_eval_samples(args.file, model=args.model, metric=args.metric)
+    elif args.adapter == "inspect":
+        try:
+            from errorbars.adapters.inspect_ai import load_inspect_log
+        except ImportError as exc:
+            raise SystemExit(f"error: {exc}") from exc
+
+        data = load_inspect_log(args.file, scorer=args.scorer)
+    else:  # pragma: no cover - argparse `choices` already prevents this
+        raise SystemExit(f"error: unknown adapter {args.adapter!r}")
+
+    write_csv(data, args.output)
+    n_models = len(data.models())
+    print(f"wrote {len(data)} rows ({n_models} model{'s' if n_models != 1 else ''}) to {args.output}")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="errorbars", description="Error bars for LLM evals.")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -351,6 +373,23 @@ def build_parser() -> argparse.ArgumentParser:
     p_pow.add_argument("--cluster-deff", type=float, default=1.0, help="cluster design effect (>=1)")
     p_pow.add_argument("--json", action="store_true")
     p_pow.set_defaults(func=cmd_power)
+
+    p_imp = sub.add_parser(
+        "import", help="convert an lm-evaluation-harness or Inspect AI log to the canonical CSV"
+    )
+    p_imp.add_argument("adapter", choices=["lm-eval", "inspect"])
+    p_imp.add_argument("file", help="lm-eval samples_*.jsonl file, or an Inspect .eval/.json log")
+    p_imp.add_argument("-o", "--output", required=True, help="path to write the canonical CSV to")
+    p_imp.add_argument(
+        "--model", default=None, help="model name to record (lm-eval adapter only; required for it)"
+    )
+    p_imp.add_argument(
+        "--metric", default=None, help="lm-eval metric to use as the score (default: first available)"
+    )
+    p_imp.add_argument(
+        "--scorer", default=None, help="Inspect scorer to use (default: the only one, if unambiguous)"
+    )
+    p_imp.set_defaults(func=cmd_import)
 
     return parser
 

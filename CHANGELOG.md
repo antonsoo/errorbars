@@ -18,7 +18,11 @@ Initial release.
 - `power`: questions needed for a target effect/power, and minimum
   detectable effect for a given n, accounting for pairing correlation,
   repeated sampling, and cluster design effect.
-- CLI (`errorbars summarize|compare|leaderboard|power`) with `rich` tables
-  and `--json` output.
+- CLI (`errorbars summarize|compare|leaderboard|power|import`) with `rich`
+  tables and `--json` output.
+- Adapters: `errorbars import lm-eval|inspect` converts
+  lm-evaluation-harness `--log_samples` JSONL or an Inspect AI `.eval` log
+  into the canonical format, verified against real output from lm-eval
+  0.4.13 and inspect-ai 0.3.268.
 - Web calculator (Vite + TypeScript) mirroring the Python power formulas,
   with shared JSON test vectors.

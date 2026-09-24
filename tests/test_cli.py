@@ -9,6 +9,8 @@ import pytest
 
 REPO_ROOT = Path(__file__).parent.parent
 DATA = REPO_ROOT / "examples" / "data" / "reading_comprehension.csv"
+LMEVAL_FIXTURE = REPO_ROOT / "tests" / "fixtures" / "samples_copa_2026-09-24T03-04-37.941131.jsonl"
+INSPECT_FIXTURE = REPO_ROOT / "tests" / "fixtures" / "inspect_tiny_qa.eval"
 
 
 def run_cli(*args: str) -> subprocess.CompletedProcess:
@@ -110,3 +112,49 @@ def test_cli_unrecognized_extension_reports_error(tmp_path) -> None:
     result = run_cli("summarize", str(p), "--json")
     assert result.returncode != 0
     assert "extension" in result.stderr.lower()
+
+
+def test_cli_import_lm_eval(tmp_path) -> None:
+    out = tmp_path / "converted.csv"
+    result = run_cli("import", "lm-eval", str(LMEVAL_FIXTURE), "--model", "dummy-copa", "-o", str(out))
+    assert result.returncode == 0, result.stderr
+    assert "wrote 20 rows" in result.stdout
+    rows = out.read_text().strip().splitlines()
+    assert rows[0] == "question_id,model,score"
+    assert len(rows) == 21
+    assert rows[1] == "copa-0,dummy-copa,0.0"
+
+    # The converted CSV should be directly usable by the rest of the CLI.
+    summarize = run_cli("summarize", str(out), "--json")
+    assert summarize.returncode == 0, summarize.stderr
+    payload = json.loads(summarize.stdout)
+    assert payload["n"] == 20
+
+
+def test_cli_import_lm_eval_requires_model() -> None:
+    result = run_cli("import", "lm-eval", str(LMEVAL_FIXTURE), "-o", "/dev/null")
+    assert result.returncode != 0
+    assert "--model" in result.stderr
+
+
+def test_cli_import_lm_eval_custom_metric(tmp_path) -> None:
+    arc = REPO_ROOT / "tests" / "fixtures" / "samples_arc_easy_2026-09-24T03-05-32.831346.jsonl"
+    out = tmp_path / "converted.csv"
+    result = run_cli("import", "lm-eval", str(arc), "--model", "m", "--metric", "acc_norm", "-o", str(out))
+    assert result.returncode == 0, result.stderr
+    assert "wrote 5 rows" in result.stdout
+
+
+def test_cli_import_inspect(tmp_path) -> None:
+    out = tmp_path / "converted.csv"
+    result = run_cli("import", "inspect", str(INSPECT_FIXTURE), "-o", str(out))
+    assert result.returncode == 0, result.stderr
+    assert "wrote 5 rows" in result.stdout
+    rows = out.read_text().strip().splitlines()
+    assert rows[0] == "question_id,model,score,sample"
+    assert len(rows) == 6
+
+
+def test_cli_import_unknown_adapter_rejected() -> None:
+    result = run_cli("import", "not-a-real-adapter", str(LMEVAL_FIXTURE), "-o", "/dev/null")
+    assert result.returncode != 0

@@ -59,8 +59,10 @@ errorbars leaderboard examples/data/reading_comprehension.csv
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect.
-- **CLI** — `errorbars summarize|compare|leaderboard|power`, `rich` tables by default, `--json` for
-  scripting.
+- **CLI** — `errorbars summarize|compare|leaderboard|power|import`, `rich` tables by default,
+  `--json` for scripting.
+- **Adapters** — `errorbars import lm-eval|inspect` converts lm-evaluation-harness `--log_samples`
+  output or an Inspect AI `.eval` log into the canonical format (see below).
 - **Web calculator** — a static "how many eval questions do I need?" power calculator
   ([live demo](https://antonsoo.github.io/errorbars/)), whose TypeScript formulas are checked
   against the Python ones by the test suite.
@@ -135,10 +137,33 @@ Column names are configurable (`--question-col`, `--cluster-col`, etc., or `Colu
 Scores can be binary (0/1) or continuous. `cluster_id` groups correlated questions (e.g. several
 questions per reading passage); `sample` marks repeated generations of the same question.
 
-There are no adapters for lm-evaluation-harness or Inspect AI log formats in this release — their
-exact JSON schemas need verification against the current tool versions to get right, and getting a
-data-provenance detail wrong is worse than not shipping it. Point either tool's `--log_samples`
-output at a short `jq`/`pandas` reshape into the format above; it's a handful of lines.
+### Importing from lm-evaluation-harness or Inspect AI
+
+`errorbars import` converts either tool's own log format into the canonical CSV above:
+
+```bash
+# lm-evaluation-harness: lm_eval run --model <...> --tasks <...> --log_samples --output_path <dir>
+errorbars import lm-eval runs/<dir>/samples_<task>_<timestamp>.jsonl \
+  --model my-model-name -o converted.csv
+
+# Inspect AI: inspect eval <task> --model <...>  (writes a .eval log by default)
+errorbars import inspect logs/<run>.eval -o converted.csv
+```
+
+`--metric` (lm-eval) picks which computed metric to use as the score when a task reports more than
+one (e.g. `acc` vs. `acc_norm`); it defaults to the first one. `--scorer` (Inspect) does the same
+for tasks with multiple scorers. Inspect epochs (`--epochs N`, repeated sampling of the same input)
+land in the `sample` column automatically.
+
+Both adapters were built and tested against real, unedited output — not from memory: **lm-eval
+0.4.13** (`lm_eval run --model dummy --tasks copa --limit 20 --log_samples ...`, plus a
+multi-metric `arc_easy` run) and **inspect-ai 0.3.268** (a 5-sample task through the built-in
+`mockllm/model` provider). The exact log files are committed as test fixtures
+(`tests/fixtures/samples_*.jsonl`, `tests/fixtures/inspect_tiny_qa.eval`) and re-parsed in
+`tests/test_adapters.py` on every run. The Inspect adapter reads logs with Inspect's own
+`inspect_ai.log.read_eval_log` and `inspect_ai.scorer.value_to_float` rather than hand-parsing its
+binary `.eval` format, and needs the `inspect` extra: `pip install errorbars[inspect]`. The lm-eval
+adapter has no extra dependency — `--log_samples` is already plain JSONL.
 
 ## How it works
 
@@ -173,7 +198,7 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 - Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
   statistically direct approach — it can produce a model in more than one group, unlike a
   minimal-letters heuristic (e.g. R's `multcompView`).
-- 81 Python tests, 602 TypeScript tests (cross-checking the JS formulas against Python-generated
+- 98 Python tests, 602 TypeScript tests (cross-checking the JS formulas against Python-generated
   vectors), all passing on this box (14 vCPU WSL2 Linux, 48 GB RAM; Python 3.12.3, Node 26.7.0)
   as of 2026-09-24.
 

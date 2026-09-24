@@ -94,11 +94,14 @@ rank  model         mean    95% CI              group
 4     baseline-7b   0.4700  [0.4007, 0.5393]    c
 ```
 
-**The apparent win is not statistically significant.** `tuned-70b` and
-`baseline-70b` are not distinguishable at α=0.05 once you pair on shared
-questions and Holm-correct across all pairwise comparisons on the board.
-The 7-point gap you'd report from the raw means alone is within noise at
-this sample size.
+**The apparent win is not statistically significant.** It already wasn't
+once it had a proper error bar: the unclustered paired test in Step 2 gave
+p = 0.11. Accounting for the fact that these are 40 passages of 5
+questions each, and Holm-correcting across all 6 pairwise comparisons on
+the board, pushes that further to p = 0.30. `tuned-70b` and `baseline-70b`
+are not distinguishable at α=0.05 either way — a naive leaderboard that
+just ranks by bare accuracy would still have shipped the 7-point gap as a
+win.
 
 ## Step 4: how many questions *would* settle it?
 

@@ -19,10 +19,12 @@ and this package turns it into a one-liner.
 ## Why this exists
 
 Run `errorbars leaderboard` on a synthetic benchmark (below) and one apparent 7-point win —
-`tuned-70b` over `baseline-70b`, 0.690 vs. 0.620 — turns out to be indistinguishable from noise
-once you pair on shared questions and account for the fact that questions come 5-to-a-passage. The
-naive leaderboard would have shipped that as a result. The full walkthrough, with every number
-copied from a real command, is in [`examples/README.md`](examples/README.md).
+`tuned-70b` over `baseline-70b`, 0.690 vs. 0.620 — is not statistically significant once it has a
+proper error bar: the paired test already gives p = 0.11. Accounting for the fact that questions
+come 5-to-a-passage, and Holm-correcting across all 6 pairwise comparisons on the board, pushes
+that to p = 0.30. A naive leaderboard that ranks by bare accuracy would still have shipped the gap
+as a win. The full walkthrough, with every number copied from a real command, is in
+[`examples/README.md`](examples/README.md).
 
 ## Quickstart
 

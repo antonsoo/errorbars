@@ -7,7 +7,9 @@
 
 LLM eval results get reported as bare accuracies — "model B scored 71.2%, up from 69.7%" — with
 no error bar, no significance test, and no accounting for the fact that the questions came in
-correlated groups. On a 200-question benchmark, a 1.5-point gain is very often noise. Evan Miller's
+correlated groups. On a 500-question benchmark, a 1.5-point gain is very often noise: at a 50%
+baseline you'd need roughly a 9-point gap to reliably detect anything at 80% power, α=0.05
+(`errorbars power --n 500 --baseline 0.5` → minimum detectable effect ≈ 8.9 points). Evan Miller's
 "[Adding Error Bars to Evals: A Statistical Approach to Language Model
 Evaluations](https://arxiv.org/abs/2411.00640)" (arXiv:2411.00640, 2024) lays out the right
 practice — CLT and clustered standard errors, variance reduction through pairing, power analysis —

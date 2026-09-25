@@ -51,7 +51,7 @@ all = ["errorbars[pandas,plot,cli]"]
 errorbars = "errorbars.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/antonsoo/errorbars"
+Homepage = "https://antonsoo.github.io/errorbars/"
 Repository = "https://github.com/antonsoo/errorbars"
 Issues = "https://github.com/antonsoo/errorbars/issues"
 

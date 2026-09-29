@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/live%20demo-calculator-2454a6)](https://antonsoo.github.io/errorbars/)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-workbench-ffd21e)](https://huggingface.co/spaces/antonsoloviev/errorbars)
 
 LLM eval results get reported as bare accuracies — "model B scored 71.2%, up from 69.7%" — with
 no error bar, no significance test, and no accounting for the fact that the questions came in

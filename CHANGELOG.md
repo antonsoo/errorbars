@@ -17,6 +17,8 @@ All notable changes to this project are documented in this file.
   incomplete beta function. On the bundled example the headline pair's paired
   p moves from 0.1116 to 0.1131, its clustered p from 0.1154 to 0.1235, and
   its Holm-adjusted p from 0.298 to 0.322; groups are unchanged.
+  With a single cluster, where the clustered SE falls back to the plain one,
+  the clustered test keeps the n - 1 reference too.
 
 - A non-finite score (`nan`, `inf`) was accepted and propagated into every
   mean, CI and p-value; on a leaderboard the NaN model sorted to rank 1.

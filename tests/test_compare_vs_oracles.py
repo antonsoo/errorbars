@@ -102,3 +102,15 @@ def test_clustered_comparison_uses_t_with_clusters_minus_one_dof() -> None:
     assert comp.p_value_clustered == pytest.approx(2 * sp_stats.t.sf(abs(t_stat), 11), rel=1e-7)
     t_crit = sp_stats.t.ppf(0.975, 11)
     assert comp.ci_high_clustered == pytest.approx(comp.mean_diff + t_crit * comp.se_clustered, rel=1e-7)
+
+
+def test_single_cluster_falls_back_to_the_unclustered_reference() -> None:
+    # One cluster can't be clustered on: the SE falls back to the plain SE, and so does the t reference.
+    rng = np.random.default_rng(7)
+    a = rng.normal(0.6, 0.2, size=30)
+    b = a - 0.05 + rng.normal(0, 0.1, size=30)
+    plain = paired_compare(a, b)
+    clustered = paired_compare(a, b, clusters=np.zeros(30, dtype=int))
+    assert clustered.se_clustered == pytest.approx(plain.se_paired)
+    assert clustered.p_value_clustered == pytest.approx(plain.p_value)
+    assert clustered.ci_high_clustered == pytest.approx(plain.ci_high)

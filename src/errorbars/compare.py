@@ -109,7 +109,9 @@ def paired_compare(
     if clusters is not None:
         cluster_arr = np.asarray(clusters)
         se_clustered = cluster_robust_se(diff, cluster_arr)
-        dof_c = max(len(set(cluster_arr.tolist())) - 1, 1)
+        n_clusters = len(set(cluster_arr.tolist()))
+        # With a single cluster cluster_robust_se falls back to the plain SE, so its reference is n - 1.
+        dof_c = n_clusters - 1 if n_clusters > 1 else n - 1
         t_crit_c = t_for_confidence(confidence, dof_c)
         ci_low_c = mean_diff - t_crit_c * se_clustered
         ci_high_c = mean_diff + t_crit_c * se_clustered

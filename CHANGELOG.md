@@ -2,6 +2,27 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.1] - 2026-09-30
+
+### Fixed
+
+- A non-finite score (`nan`, `inf`) was accepted and propagated into every
+  mean, CI and p-value; on a leaderboard the NaN model sorted to rank 1.
+  Loading now fails with the row number.
+- A repeated (model, question, sample) row was counted as another question,
+  inflating n and shrinking standard errors. Loading now fails with both row
+  numbers and says to give repeated generations distinct `sample` values.
+- `power` answered "2 questions" for a baseline of 0 or 1 (where p(1-p) = 0)
+  and accepted targets above 100% (`--baseline 0.98 --delta 0.05`). The
+  baseline must be strictly between 0 and 1, baseline + delta can't exceed
+  1, and a continuous-metric variance must be positive; the web calculator's
+  effect-size slider is capped at 1 - baseline to match.
+- `compare`/`summarize` with an unknown model name said "fewer than 2 shared
+  question_ids" or "no rows"; they now name the missing model and list the
+  models in the file.
+- Install hints for the optional extras named `errorbars` on PyPI, where it
+  isn't published; they now name the dependency or the Git URL.
+
 ## [0.1.0] - 2026-09-24
 
 Initial release.

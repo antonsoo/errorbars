@@ -11,7 +11,7 @@ converts score values with its own ``inspect_ai.scorer.value_to_float``
 partial/no-answer string codes -> 1.0/0.0/0.5/0.0, numbers and bools pass
 through) rather than hand-parsing the ``.eval`` file, which is a versioned
 binary/zip format not meant to be read directly. Requires the ``inspect``
-extra: ``pip install errorbars[inspect]``.
+extra: ``pip install "errorbars[inspect] @ git+https://github.com/antonsoo/errorbars"``.
 """
 
 from __future__ import annotations
@@ -41,7 +41,7 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
         from inspect_ai.scorer import value_to_float
     except ImportError as exc:  # pragma: no cover - exercised only without the extra
         raise ImportError(
-            "load_inspect_log requires inspect-ai: pip install errorbars[inspect]"
+            "load_inspect_log requires inspect-ai (the 'inspect' extra): pip install inspect-ai"
         ) from exc
 
     log = read_eval_log(str(path))

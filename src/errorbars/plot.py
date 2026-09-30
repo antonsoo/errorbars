@@ -119,7 +119,9 @@ def forest_plot_matplotlib(leaderboard: Leaderboard, title: str | None = None) -
     try:
         import matplotlib.pyplot as plt
     except ImportError as exc:  # pragma: no cover
-        raise ImportError("forest_plot_matplotlib requires matplotlib: pip install errorbars[plot]") from exc
+        raise ImportError(
+            "forest_plot_matplotlib requires matplotlib (the 'plot' extra): pip install matplotlib"
+        ) from exc
 
     entries = leaderboard.entries
     fig, ax = plt.subplots(figsize=(7, 0.6 * len(entries) + 1.2))

@@ -165,7 +165,8 @@ multi-metric `arc_easy` run) and **inspect-ai 0.3.268** (a 5-sample task through
 (`tests/fixtures/samples_*.jsonl`, `tests/fixtures/inspect_tiny_qa.eval`) and re-parsed in
 `tests/test_adapters.py` on every run. The Inspect adapter reads logs with Inspect's own
 `inspect_ai.log.read_eval_log` and `inspect_ai.scorer.value_to_float` rather than hand-parsing its
-binary `.eval` format, and needs the `inspect` extra: `pip install errorbars[inspect]`. The lm-eval
+binary `.eval` format, and needs the `inspect` extra:
+`pip install "errorbars[inspect] @ git+https://github.com/antonsoo/errorbars"`. The lm-eval
 adapter has no extra dependency — `--log_samples` is already plain JSONL.
 
 ## How it works

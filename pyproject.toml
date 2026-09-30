@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "errorbars"
-version = "0.1.0"
+version = "0.1.1"
 description = "Error bars for LLM evals: standard errors, clustering, paired comparisons, leaderboards, and power analysis."
 readme = "README.md"
 license = "MIT"

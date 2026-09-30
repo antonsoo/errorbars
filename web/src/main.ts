@@ -120,6 +120,7 @@ function buildControls(container: HTMLElement): void {
     input.addEventListener("input", () => {
       state[cfg.id] = Number(input.value);
       value.textContent = cfg.format(state[cfg.id]!);
+      if (cfg.id === "baseline") syncDeltaLimit();
       update();
     });
 
@@ -130,6 +131,21 @@ function buildControls(container: HTMLElement): void {
 
     wrap.append(head, input, caption);
     container.appendChild(wrap);
+  }
+}
+
+/** An accuracy can't pass 100%, so the largest detectable gap is 1 - baseline: the delta slider
+ * follows the baseline instead of offering impossible targets like 95% + 20 points. */
+function syncDeltaLimit(): void {
+  const cfg = SLIDERS.find((s) => s.id === "delta")!;
+  const input = document.getElementById("delta") as HTMLInputElement | null;
+  if (!input) return;
+  const limit = Math.min(cfg.max, Math.round((1 - state.baseline!) * 1000) / 1000);
+  input.max = String(limit);
+  if (state.delta! > limit) {
+    state.delta = limit;
+    input.value = String(limit);
+    document.getElementById("delta-value")!.textContent = cfg.format(limit);
   }
 }
 

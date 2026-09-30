@@ -90,3 +90,20 @@ def test_questions_needed_rejects_bad_inputs() -> None:
         questions_needed(delta=0.05, baseline_accuracy=0.5, rho=1.5)
     with pytest.raises(ValueError):
         questions_needed(delta=0.05, baseline_accuracy=0.5, cluster_design_effect=0.5)
+
+
+@pytest.mark.parametrize("baseline", [0.0, 1.0, -0.1, 1.2])
+def test_baseline_must_be_strictly_inside_zero_one(baseline: float) -> None:
+    # p(1-p) = 0 at either end would make any gap look free to detect ("2 questions needed").
+    with pytest.raises(ValueError, match="strictly between 0 and 1"):
+        questions_needed(0.05, baseline_accuracy=baseline)
+
+
+def test_a_target_accuracy_above_one_is_rejected() -> None:
+    with pytest.raises(ValueError, match="an accuracy can't exceed 1"):
+        questions_needed(0.05, baseline_accuracy=0.98)
+
+
+def test_variance_must_be_positive() -> None:
+    with pytest.raises(ValueError, match="variance must be positive"):
+        questions_needed(0.05, variance=0.0)

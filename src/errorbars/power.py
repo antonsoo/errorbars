@@ -46,6 +46,11 @@ def per_question_variance(
         raise ValueError("pass exactly one of baseline_accuracy or variance")
     if samples_per_question < 1:
         raise ValueError("samples_per_question must be >= 1")
+    if baseline_accuracy is not None and not 0.0 < baseline_accuracy < 1.0:
+        # p(1-p) is 0 at either end, which would make any gap look free to detect.
+        raise ValueError(f"baseline_accuracy must be strictly between 0 and 1, got {baseline_accuracy}")
+    if variance is not None and not variance > 0:
+        raise ValueError(f"variance must be positive, got {variance}")
     v = baseline_accuracy * (1 - baseline_accuracy) if baseline_accuracy is not None else variance
     return v / samples_per_question  # type: ignore[operator]
 
@@ -102,6 +107,10 @@ def questions_needed(
     if cluster_design_effect < 1.0:
         raise ValueError("cluster_design_effect must be >= 1")
     v = per_question_variance(baseline_accuracy, variance, samples_per_question)
+    if baseline_accuracy is not None and baseline_accuracy + delta > 1.0:
+        raise ValueError(
+            f"baseline_accuracy + delta = {baseline_accuracy + delta:.3g}: an accuracy can't exceed 1"
+        )
     z_a = z_for_confidence(1 - alpha)
     z_b = _z_beta(power)
     n = ((z_a + z_b) ** 2) * 2 * v * (1 - rho) * cluster_design_effect / (delta**2)

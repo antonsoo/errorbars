@@ -29,6 +29,12 @@ export function perQuestionVariance({
   if (samplesPerQuestion < 1) {
     throw new Error("samplesPerQuestion must be >= 1");
   }
+  if (baselineAccuracy !== undefined && !(baselineAccuracy > 0 && baselineAccuracy < 1)) {
+    throw new Error(`baselineAccuracy must be strictly between 0 and 1, got ${baselineAccuracy}`);
+  }
+  if (variance !== undefined && !(variance > 0)) {
+    throw new Error(`variance must be positive, got ${variance}`);
+  }
   const v =
     baselineAccuracy !== undefined ? baselineAccuracy * (1 - baselineAccuracy) : (variance as number);
   return v / samplesPerQuestion;
@@ -77,6 +83,9 @@ export function questionsNeeded(delta: number, inputs: PowerInputs): PowerResult
   if (clusterDesignEffect < 1) throw new Error("clusterDesignEffect must be >= 1");
 
   const v = perQuestionVariance({ ...inputs, samplesPerQuestion });
+  if (inputs.baselineAccuracy !== undefined && inputs.baselineAccuracy + delta > 1) {
+    throw new Error(`baselineAccuracy + delta = ${(inputs.baselineAccuracy + delta).toPrecision(3)}: an accuracy can't exceed 1`);
+  }
   const zA = zForConfidence(1 - alpha);
   const zB = zBeta(power);
   const n = ((zA + zB) ** 2 * 2 * v * (1 - rho) * clusterDesignEffect) / delta ** 2;

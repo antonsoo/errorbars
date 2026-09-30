@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -76,13 +77,18 @@ class EvalData:
         return out
 
 
-def _coerce_score(raw: Any) -> float:
+def _coerce_score(raw: Any, row: int) -> float:
     if isinstance(raw, bool):
         return float(raw)
     try:
-        return float(raw)
+        value = float(raw)
     except (TypeError, ValueError) as exc:
-        raise ValueError(f"could not parse score value {raw!r} as a number") from exc
+        raise ValueError(f"row {row}: could not parse score value {raw!r} as a number") from exc
+    # A NaN would propagate into every mean, CI and p-value (and sort to the top of a leaderboard);
+    # a missing or failed grade has to be decided on explicitly, not averaged in as "not a number".
+    if not math.isfinite(value):
+        raise ValueError(f"row {row}: score {raw!r} is not a finite number")
+    return value
 
 
 def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> EvalData:
@@ -93,6 +99,7 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     sample: list[str] | None = [] if columns.sample else None
 
     n = 0
+    seen: dict[tuple[str, str, str], int] = {}
     for row in records:
         n += 1
         if columns.question_id not in row:
@@ -103,11 +110,21 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
             raise ValueError(f"missing required column '{columns.score}' in row {n}")
         question_id.append(str(row[columns.question_id]))
         model.append(str(row[columns.model]))
-        score.append(_coerce_score(row[columns.score]))
+        score.append(_coerce_score(row[columns.score], n))
         if cluster_id is not None and columns.cluster_id is not None:
             cluster_id.append(str(row.get(columns.cluster_id, question_id[-1])))
-        if sample is not None and columns.sample is not None:
-            sample.append(str(row.get(columns.sample, "0")))
+        sample_id = str(row.get(columns.sample, "0")) if columns.sample is not None else "0"
+        if sample is not None:
+            sample.append(sample_id)
+        # The same (model, question, sample) twice would be counted as two questions, inflating n and
+        # shrinking every standard error. Repeated generations need distinct sample ids.
+        key = (model[-1], question_id[-1], sample_id)
+        if key in seen:
+            raise ValueError(
+                f"row {n}: model {key[0]!r} already has a score for question {key[1]!r} (row {seen[key]}); "
+                f"give repeated generations distinct values in a '{columns.sample or 'sample'}' column"
+            )
+        seen[key] = n
 
     if n == 0:
         raise ValueError("no rows found in input data")

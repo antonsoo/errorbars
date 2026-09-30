@@ -24,6 +24,14 @@ except ImportError:  # pragma: no cover
     _HAS_RICH = False
 
 
+def _require_models(data: EvalData, *names: str) -> None:
+    known = data.models()
+    for name in names:
+        if name not in known:
+            listed = ", ".join(repr(m) for m in known[:10]) + (", ..." if len(known) > 10 else "")
+            raise SystemExit(f"error: no model {name!r} in the data (models: {listed})")
+
+
 def _load(path: str, columns: ColumnMap) -> EvalData:
     p = Path(path)
     if p.suffix.lower() in (".jsonl", ".ndjson"):
@@ -63,6 +71,8 @@ def _console() -> Console:
 
 def cmd_summarize(args: argparse.Namespace) -> None:
     data = _load(args.file, _columns_from(args))
+    if args.model:
+        _require_models(data, args.model)
     sub = data.filter_model(args.model) if args.model else data
     if not sub.score:
         raise SystemExit(f"error: no rows for model {args.model!r}" if args.model else "error: empty data")
@@ -149,6 +159,7 @@ def cmd_summarize(args: argparse.Namespace) -> None:
 def cmd_compare(args: argparse.Namespace) -> None:
     columns = _columns_from(args)
     data = _load(args.file, columns)
+    _require_models(data, args.model_a, args.model_b)
     a = data.filter_model(args.model_a).scores_by_question()
     b = data.filter_model(args.model_b).scores_by_question()
     common = sorted(set(a) & set(b))

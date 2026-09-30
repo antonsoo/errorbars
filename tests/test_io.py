@@ -83,3 +83,28 @@ def test_scores_by_question_averages_repeated_samples() -> None:
     )
     result = data.scores_by_question()
     assert result == {"q1": 0.5, "q2": 1.0}
+
+
+@pytest.mark.parametrize("bad", ["nan", "NaN", "inf", "-inf"])
+def test_non_finite_scores_are_rejected_with_their_row(tmp_path, bad: str) -> None:
+    # A NaN used to flow into every mean and p-value, and sorted to the top of the leaderboard.
+    p = tmp_path / "data.csv"
+    p.write_text(f"question_id,model,score\nq1,a,1\nq2,a,{bad}\n")
+    with pytest.raises(ValueError, match=rf"row 2: score '{bad}' is not a finite number"):
+        load_csv(p)
+
+
+def test_duplicate_model_question_rows_are_rejected(tmp_path) -> None:
+    # Counting the same question twice inflates n and shrinks every standard error.
+    p = tmp_path / "data.csv"
+    p.write_text("question_id,model,score\nq1,a,1\nq2,a,0\nq1,a,1\n")
+    with pytest.raises(ValueError, match=r"row 3: model 'a' already has a score for question 'q1' \(row 1\)"):
+        load_csv(p)
+
+
+def test_repeated_generations_with_distinct_sample_ids_load(tmp_path) -> None:
+    p = tmp_path / "data.csv"
+    p.write_text("question_id,model,score,sample\nq1,a,1,0\nq1,a,0,1\nq1,b,1,0\n")
+    data = load_csv(p)
+    assert len(data) == 3
+    assert data.filter_model("a").scores_by_question() == {"q1": 0.5}

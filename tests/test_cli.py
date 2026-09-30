@@ -158,3 +158,12 @@ def test_cli_import_inspect(tmp_path) -> None:
 def test_cli_import_unknown_adapter_rejected() -> None:
     result = run_cli("import", "not-a-real-adapter", str(LMEVAL_FIXTURE), "-o", "/dev/null")
     assert result.returncode != 0
+
+
+@pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")
+def test_cli_names_an_unknown_model_instead_of_blaming_the_overlap() -> None:
+    result = run_cli("compare", str(DATA), "--model-a", "tuned-70b", "--model-b", "nope")
+    assert result.returncode != 0
+    assert "no model 'nope' in the data (models: " in result.stderr
+    result = run_cli("summarize", str(DATA), "--model", "nope")
+    assert "no model 'nope' in the data" in result.stderr

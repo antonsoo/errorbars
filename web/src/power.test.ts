@@ -55,3 +55,19 @@ describe("invNormalCdf / zForConfidence sanity checks", () => {
     expect(() => invNormalCdf(-0.1)).toThrow();
   });
 });
+
+describe("input validation matches the Python package", () => {
+  it("rejects a baseline at or outside 0 and 1", () => {
+    for (const baselineAccuracy of [0, 1, -0.1, 1.2]) {
+      expect(() => questionsNeeded(0.05, { baselineAccuracy })).toThrow(/strictly between 0 and 1/);
+    }
+  });
+
+  it("rejects a target accuracy above 1", () => {
+    expect(() => questionsNeeded(0.05, { baselineAccuracy: 0.98 })).toThrow(/can't exceed 1/);
+  });
+
+  it("rejects a non-positive variance", () => {
+    expect(() => questionsNeeded(0.05, { variance: 0 })).toThrow(/variance must be positive/);
+  });
+});

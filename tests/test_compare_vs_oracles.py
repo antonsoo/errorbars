@@ -10,10 +10,9 @@ from statsmodels.stats.contingency_tables import mcnemar as sm_mcnemar
 from errorbars.compare import mcnemar_exact, paired_compare
 
 
-@pytest.mark.parametrize("seed", [0, 1, 5, 11])
-def test_paired_ttest_matches_scipy(seed: int) -> None:
+@pytest.mark.parametrize(("seed", "n"), [(0, 80), (1, 80), (5, 80), (11, 80), (2, 8), (3, 15)])
+def test_paired_ttest_matches_scipy(seed: int, n: int) -> None:
     rng = np.random.default_rng(seed)
-    n = 80
     a = rng.normal(0.7, 0.2, size=n)
     b = a + rng.normal(0.05, 0.15, size=n)  # correlated with a, shifted
     comp = paired_compare(a, b)
@@ -25,9 +24,11 @@ def test_paired_ttest_matches_scipy(seed: int) -> None:
     assert comp.se_paired == pytest.approx(se)
 
     t_scipy, p_scipy = sp_stats.ttest_rel(a, b)
-    # We use the normal approximation (documented), scipy's ttest_rel uses the
-    # t-distribution; they should be very close at n=80 (df=79).
-    assert comp.p_value == pytest.approx(p_scipy, abs=5e-3)
+    # Student t with n - 1 degrees of freedom, like ttest_rel, at any n.
+    assert comp.p_value == pytest.approx(p_scipy, rel=1e-7)
+    t_crit = sp_stats.t.ppf(0.975, n - 1)
+    assert comp.ci_low == pytest.approx(mean - t_crit * se, rel=1e-7)
+    assert comp.ci_high == pytest.approx(mean + t_crit * se, rel=1e-7)
 
     r_scipy = sp_stats.pearsonr(a, b).statistic
     assert comp.correlation == pytest.approx(r_scipy, abs=1e-9)
@@ -87,3 +88,17 @@ def test_paired_compare_with_clusters_matches_cluster_robust_se() -> None:
     comp = paired_compare(a, b, clusters=clusters)
     expected_se = cluster_robust_se(a - b, clusters)
     assert comp.se_clustered == pytest.approx(expected_se)
+
+
+def test_clustered_comparison_uses_t_with_clusters_minus_one_dof() -> None:
+    rng = np.random.default_rng(4)
+    clusters = np.repeat(np.arange(12), 5)  # 12 clusters of 5 questions
+    shared = np.repeat(rng.normal(0, 0.3, size=12), 5)
+    a = 0.6 + shared + rng.normal(0, 0.2, size=60)
+    b = a - 0.08 + rng.normal(0, 0.2, size=60)
+    comp = paired_compare(a, b, clusters=clusters)
+    assert comp.se_clustered is not None and comp.p_value_clustered is not None
+    t_stat = comp.mean_diff / comp.se_clustered
+    assert comp.p_value_clustered == pytest.approx(2 * sp_stats.t.sf(abs(t_stat), 11), rel=1e-7)
+    t_crit = sp_stats.t.ppf(0.975, 11)
+    assert comp.ci_high_clustered == pytest.approx(comp.mean_diff + t_crit * comp.se_clustered, rel=1e-7)

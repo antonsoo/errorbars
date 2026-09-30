@@ -97,7 +97,7 @@ errorbars summarize examples/data/reading_comprehension.csv --model tuned-70b
 │ ICC           │           0.0710 │
 │ design effect │            1.284 │
 │ clustered SE  │           0.0372 │
-│ clustered CI  │ [0.6171, 0.7629] │
+│ clustered CI  │ [0.6148, 0.7652] │
 └───────────────┴──────────────────┘
 ```
 
@@ -109,8 +109,8 @@ errorbars compare examples/data/reading_comprehension.csv \
 ```
 mean diff (A - B)                 0.0700
 paired SE                         0.0440
-95% CI                  [-0.0162, 0.1562]
-p-value                           0.1116
+95% CI                  [-0.0167, 0.1567]
+p-value                           0.1131
 correlation(A, B)                 0.1434
 variance reduction from pairing     14.3%
 McNemar exact p-value             0.1405
@@ -172,7 +172,8 @@ adapter has no extra dependency — `--log_samples` is already plain JSONL.
 ## How it works
 
 Every statistic is implemented from scratch on `numpy` + the standard library
-(`statistics.NormalDist` for the normal quantile function) — no scipy or statsmodels at runtime.
+(`statistics.NormalDist` for normal quantiles; Student-t tails from a continued-fraction incomplete
+beta function) — no scipy or statsmodels at runtime.
 Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 
 1. CLT and Wilson confidence intervals for a mean
@@ -188,13 +189,16 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 
 - Cluster-robust SE matches `statsmodels`' `OLS(..., cov_type="cluster")` to 1e-9 on both balanced
   and unbalanced cluster sizes; Wilson intervals match `statsmodels.stats.proportion_confint` to
-  1e-9; the paired t-test and McNemar's exact test are cross-checked against `scipy`/`statsmodels`.
+  1e-9; the paired t-test matches `scipy.stats.ttest_rel` to 1e-7 at any n, and McNemar's exact
+  test is cross-checked against `statsmodels`.
   See `tests/test_stats_vs_oracles.py` and `tests/test_compare_vs_oracles.py`.
 - Monte Carlo coverage tests (`tests/test_coverage_montecarlo.py`) confirm nominal 95% CIs cover
   the true parameter close to 95% of the time — for CLT, Wilson, bootstrap, and cluster-robust
   intervals — with a tolerance sized to the trial count so it won't flake.
-- The paired-comparison p-value uses the normal approximation, not the exact t-distribution;
-  matches `scipy.stats.ttest_rel` closely once n ≳ 30, and is somewhat conservative below that.
+- Paired comparisons use Student's t with n − 1 degrees of freedom, like `scipy.stats.ttest_rel`,
+  and clustered SEs use t with G − 1 for G clusters (Cameron & Miller 2015), computed without
+  scipy. With few clusters that interval is honest but wide; the per-model `clt` interval stays
+  normal-based, which is only right once n is in the dozens.
 - The power formula's samples-per-question adjustment assumes all single-sample variance is
   decoding noise (see `docs/formulas.md` §11 for why, and the caveat on when this is optimistic).
   It's a planning tool for before you run the eval; for a post-hoc measurement with the true

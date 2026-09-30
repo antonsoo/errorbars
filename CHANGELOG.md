@@ -6,6 +6,18 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- The paired test's p-value and CI used the normal distribution, and the
+  README called that "somewhat conservative" for small n; it is the opposite
+  (at 8 degrees of freedom, a statistic of 2.2 gave p = 0.028 instead of
+  0.059). Paired comparisons now use Student's t with n - 1 degrees of freedom
+  and match `scipy.stats.ttest_rel` to 1e-7, and clustered SEs (the clustered
+  CI in `summarize`, the clustered paired CI and p-value, and so the
+  leaderboard's Holm-corrected tests) use t with G - 1 degrees of freedom for
+  G clusters. No scipy at runtime: the t tail comes from a continued-fraction
+  incomplete beta function. On the bundled example the headline pair's paired
+  p moves from 0.1116 to 0.1131, its clustered p from 0.1154 to 0.1235, and
+  its Holm-adjusted p from 0.298 to 0.322; groups are unchanged.
+
 - A non-finite score (`nan`, `inf`) was accepted and propagated into every
   mean, CI and p-value; on a leaderboard the NaN model sorted to rank 1.
   Loading now fails with the row number.

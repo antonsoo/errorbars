@@ -7,6 +7,7 @@ only as test-time oracles. See ``docs/formulas.md`` for derivations.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from statistics import NormalDist
 
@@ -25,6 +26,9 @@ __all__ = [
     "design_effect",
     "within_between_variance",
     "is_binary",
+    "t_two_sided_p",
+    "t_for_confidence",
+    "regularized_incomplete_beta",
 ]
 
 _NORMAL = NormalDist()
@@ -35,6 +39,76 @@ def z_for_confidence(confidence: float) -> float:
     if not 0.0 < confidence < 1.0:
         raise ValueError(f"confidence must be in (0, 1), got {confidence}")
     return _NORMAL.inv_cdf(0.5 + confidence / 2.0)
+
+
+def _beta_continued_fraction(a: float, b: float, x: float) -> float:
+    """Continued fraction for the incomplete beta function, evaluated with the
+    modified Lentz method (Numerical Recipes, 3rd ed., section 6.4)."""
+    tiny = 1e-300
+    qab, qap, qam = a + b, a + 1.0, a - 1.0
+    c, d = 1.0, 1.0 - qab * x / qap
+    d = 1.0 / (d if abs(d) > tiny else tiny)
+    h = d
+    for m in range(1, 1000):
+        m2 = 2 * m
+        even = m * (b - m) * x / ((qam + m2) * (a + m2))
+        odd = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        for aa in (even, odd):
+            d = 1.0 + aa * d
+            d = 1.0 / (d if abs(d) > tiny else tiny)
+            c = 1.0 + aa / c
+            c = c if abs(c) > tiny else tiny
+            h *= d * c
+        if abs(d * c - 1.0) < 1e-15:
+            break
+    return h
+
+
+def regularized_incomplete_beta(a: float, b: float, x: float) -> float:
+    """I_x(a, b), the regularized incomplete beta function, for a, b > 0."""
+    if x <= 0.0:
+        return 0.0
+    if x >= 1.0:
+        return 1.0
+    log_front = (
+        math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b) + a * math.log(x) + b * math.log1p(-x)
+    )
+    front = math.exp(log_front)
+    # The continued fraction converges fast for x < (a + 1) / (a + b + 2); use the
+    # symmetry I_x(a, b) = 1 - I_{1-x}(b, a) on the other side.
+    if x < (a + 1.0) / (a + b + 2.0):
+        return front * _beta_continued_fraction(a, b, x) / a
+    return 1.0 - front * _beta_continued_fraction(b, a, 1.0 - x) / b
+
+
+def t_two_sided_p(t_stat: float, dof: float) -> float:
+    """Two-sided p-value of a Student-t statistic with `dof` degrees of
+    freedom: P(|T| >= |t|) = I_{dof/(dof+t^2)}(dof/2, 1/2)."""
+    if dof <= 0:
+        raise ValueError("degrees of freedom must be positive")
+    if math.isinf(t_stat):
+        return 0.0
+    return regularized_incomplete_beta(dof / 2.0, 0.5, dof / (dof + t_stat * t_stat))
+
+
+def t_for_confidence(confidence: float, dof: float) -> float:
+    """Two-sided Student-t critical value, e.g. 2.0227 for 95% with 39 degrees
+    of freedom (1.96 as dof grows). Found by bisection on `t_two_sided_p`."""
+    if not 0.0 < confidence < 1.0:
+        raise ValueError(f"confidence must be in (0, 1), got {confidence}")
+    alpha = 1.0 - confidence
+    lo, hi = 0.0, max(10.0, z_for_confidence(confidence) * 4)
+    while t_two_sided_p(hi, dof) > alpha:
+        hi *= 2.0
+    for _ in range(200):
+        mid = (lo + hi) / 2.0
+        if t_two_sided_p(mid, dof) > alpha:
+            lo = mid
+        else:
+            hi = mid
+        if hi - lo < 1e-12:
+            break
+    return (lo + hi) / 2.0
 
 
 def is_binary(values: ArrayLike) -> bool:

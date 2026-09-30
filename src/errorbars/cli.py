@@ -94,18 +94,24 @@ def cmd_summarize(args: argparse.Namespace) -> None:
 
     cluster_info = None
     if sub.cluster_id and len(set(sub.cluster_id)) > 1:
-        from errorbars.stats import cluster_robust_se, design_effect, intraclass_correlation
+        from errorbars.stats import (
+            cluster_robust_se,
+            design_effect,
+            intraclass_correlation,
+            t_for_confidence,
+        )
 
+        n_clusters = len(set(sub.cluster_id))
         icc = intraclass_correlation(scores, sub.cluster_id)
-        avg_size = len(scores) / len(set(sub.cluster_id))
+        avg_size = len(scores) / n_clusters
         deff = design_effect(icc, avg_size)
         se_c = cluster_robust_se(scores, sub.cluster_id)
-        z = est.ci_high - est.mean
-        z_ratio = z / est.se if est.se else 0.0
+        # A clustered mean has G - 1 degrees of freedom, not n - 1.
+        t_crit = t_for_confidence(est.confidence, n_clusters - 1)
         cluster_info = {
             "clustered_se": se_c,
-            "clustered_ci_low": est.mean - z_ratio * se_c,
-            "clustered_ci_high": est.mean + z_ratio * se_c,
+            "clustered_ci_low": est.mean - t_crit * se_c,
+            "clustered_ci_high": est.mean + t_crit * se_c,
             "icc": icc,
             "design_effect": deff,
             "n_clusters": len(set(sub.cluster_id)),

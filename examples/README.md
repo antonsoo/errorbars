@@ -49,8 +49,8 @@ $ errorbars compare examples/data/reading_comprehension.csv \
 |---|---|
 | mean diff (A - B) | 0.0700 |
 | paired SE | 0.0440 |
-| 95% CI | [-0.0162, 0.1562] |
-| p-value | 0.1116 |
+| 95% CI | [-0.0167, 0.1567] |
+| p-value | 0.1131 |
 | correlation(A, B) | 0.1434 |
 | unpaired SE (for reference) | 0.0475 |
 | variance reduction from pairing | 14.3% |
@@ -77,11 +77,11 @@ The pairwise entry for this pair:
 
 ```json
 {"model_a": "tuned-70b", "model_b": "baseline-70b", "mean_diff": 0.07,
- "p_value": 0.1116, "p_holm": 0.2982}
+ "p_value": 0.1131, "p_holm": 0.3223}
 ```
 
-`p_holm` (0.298 — the cluster-robust p-value, Holm-corrected across all 6
-pairwise comparisons on the leaderboard) is *larger* than the naive 0.112:
+`p_holm` (0.322 — the cluster-robust p-value, Holm-corrected across all 6
+pairwise comparisons on the leaderboard) is *larger* than the naive 0.113:
 clustering and the multiple-comparison correction both push against
 significance here. The leaderboard's own grouping output says the same
 thing directly — `tuned-70b` and `baseline-70b` share a group letter:
@@ -98,7 +98,7 @@ rank  model         mean    95% CI              group
 once it had a proper error bar: the unclustered paired test in Step 2 gave
 p = 0.11. Accounting for the fact that these are 40 passages of 5
 questions each, and Holm-correcting across all 6 pairwise comparisons on
-the board, pushes that further to p = 0.30. `tuned-70b` and `baseline-70b`
+the board, pushes that further to p = 0.32. `tuned-70b` and `baseline-70b`
 are not distinguishable at α=0.05 either way — a naive leaderboard that
 just ranks by bare accuracy would still have shipped the 7-point gap as a
 win.

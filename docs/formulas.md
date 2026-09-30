@@ -60,7 +60,12 @@ with its default small-sample correction $\frac{G}{G-1}\cdot\frac{n-1}{n-K}$
 (here $K=1$ parameter, the constant, so $\frac{n-1}{n-K}=1$ and only the
 $G/(G-1)$ term remains). Reference: MacKinnon & White (1985); Cameron,
 Gelbach & Miller (2011), "Robust Inference with Multiway Clustering."
-Verified to match `statsmodels` to 1e-9 for both balanced and unbalanced
+The interval uses a Student-t critical value with $G - 1$ degrees of
+freedom, $\bar y \pm t_{G-1,\,\alpha/2}\,\mathrm{SE}$: the estimate rests on
+$G$ cluster sums, not $n$ questions, and a normal critical value over-states
+precision when $G$ is small (Cameron & Miller 2015, "A Practitioner's Guide
+to Cluster-Robust Inference"). With 40 clusters that is 2.023 rather than
+1.960. Verified to match `statsmodels` to 1e-9 for both balanced and unbalanced
 cluster sizes (`tests/test_stats_vs_oracles.py`), and its 95% CI is shown
 by simulation to cover the true mean close to 95% of the time on clustered
 data where the naive (non-clustered) interval would under-cover
@@ -106,10 +111,15 @@ Recovery of known simulated components is checked in
 
 For two models scored on the *same* questions, the difference
 $d_i = a_i - b_i$ has mean $\bar d$ and SE $s_d/\sqrt n$ — a paired t-test.
-`errorbars` reports the two-sided p-value from the normal approximation
-$Z = \bar d / \mathrm{SE}(\bar d)$ (matches `scipy.stats.ttest_rel`'s
-t-distribution p-value closely once $n \gtrsim 30$; for very small $n$ the
-t-distribution is more exact, but we avoid a scipy runtime dependency).
+`errorbars` reports the two-sided p-value of $T = \bar d / \mathrm{SE}(\bar d)$
+under Student's t with $n - 1$ degrees of freedom, and the interval
+$\bar d \pm t_{n-1,\,\alpha/2}\,\mathrm{SE}$, matching `scipy.stats.ttest_rel`
+to 1e-7 at every $n$ (`tests/test_compare_vs_oracles.py`). The t tail comes
+from the regularized incomplete beta function, $P(|T| \ge t) =
+I_{\nu/(\nu+t^2)}(\nu/2, 1/2)$, evaluated by continued fraction, so there is
+still no scipy at runtime. (The normal approximation this replaced was
+anti-conservative for small $n$: at 8 degrees of freedom, $T = 2.2$ is
+$p = 0.028$ under the normal but $0.059$ under t.)
 
 **Why pairing helps.** For two *independent* samples of size $n$,
 $\mathrm{Var}(\bar a - \bar b) = \frac{\sigma_a^2 + \sigma_b^2}{n}$. For a
@@ -121,7 +131,8 @@ as `variance_reduction` $= 1 - \mathrm{SE}_\text{paired}^2 /
 \mathrm{SE}_\text{unpaired}^2$.
 
 When `clusters` are supplied, the same cluster-robust SE from §4 is applied
-to the difference series $d_i$, giving a clustered paired SE/CI/p-value —
+to the difference series $d_i$, giving a clustered paired SE/CI/p-value on
+t with $G - 1$ degrees of freedom —
 this is what `leaderboard` uses for significance when cluster data is
 available, since ignoring clustering here has the same under-coverage
 problem as for a single mean.

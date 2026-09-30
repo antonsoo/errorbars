@@ -4,17 +4,14 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from statistics import NormalDist
 from typing import Any
 
 import numpy as np
 from numpy.typing import ArrayLike
 
-from errorbars.stats import cluster_robust_se, is_binary, z_for_confidence
+from errorbars.stats import cluster_robust_se, is_binary, t_for_confidence, t_two_sided_p
 
 __all__ = ["PairedComparison", "paired_compare", "McNemarResult", "mcnemar_exact"]
-
-_NORMAL = NormalDist()
 
 
 @dataclass(frozen=True)
@@ -72,12 +69,15 @@ def paired_compare(
 ) -> PairedComparison:
     """Paired difference test: mean(A) - mean(B) over the same questions.
 
-    Reports the standard paired t-test SE/CI/p-value, the correlation
-    between the two models' per-question scores, and how much pairing
-    shrank the SE relative to an unpaired (independent two-sample) SE at
-    the same n. When ``clusters`` is given, also reports a cluster-robust
-    paired SE/CI (see ``errorbars.stats.cluster_robust_se``). When both
-    score vectors are binary, also runs McNemar's exact test.
+    Reports the standard paired t-test SE/CI/p-value (Student t, n - 1
+    degrees of freedom), the correlation between the two models'
+    per-question scores, and how much pairing shrank the SE relative to an
+    unpaired (independent two-sample) SE at the same n. When ``clusters`` is
+    given, also reports a cluster-robust paired SE/CI/p-value (see
+    ``errorbars.stats.cluster_robust_se``) on t with G - 1 degrees of
+    freedom for G clusters, the usual reference for a clustered mean (Cameron
+    & Miller 2015). When both score vectors are binary, also runs McNemar's
+    exact test.
     """
     a = np.asarray(scores_a, dtype=float)
     b = np.asarray(scores_b, dtype=float)
@@ -91,14 +91,10 @@ def paired_compare(
     mean_diff = float(diff.mean())
     sd_diff = float(diff.std(ddof=1))
     se_paired = sd_diff / math.sqrt(n)
-    z = z_for_confidence(confidence)
-    ci_low, ci_high = mean_diff - z * se_paired, mean_diff + z * se_paired
-
-    # two-sided p-value from the (large-sample) z statistic; for n<30 a
-    # t-distribution is more exact, but we avoid a scipy runtime dependency
-    # and instead use the normal approximation with a documented caveat.
+    t_crit = t_for_confidence(confidence, n - 1)
+    ci_low, ci_high = mean_diff - t_crit * se_paired, mean_diff + t_crit * se_paired
     t_stat = mean_diff / se_paired if se_paired > 0 else 0.0
-    p_value = 2 * (1 - _NORMAL.cdf(abs(t_stat)))
+    p_value = t_two_sided_p(t_stat, n - 1) if se_paired > 0 else 1.0
 
     var_a, var_b = float(a.var(ddof=1)), float(b.var(ddof=1))
     corr = float(np.corrcoef(a, b)[0, 1]) if var_a > 0 and var_b > 0 else 0.0
@@ -111,11 +107,14 @@ def paired_compare(
     ci_high_c: float | None = None
     p_value_c: float | None = None
     if clusters is not None:
-        se_clustered = cluster_robust_se(diff, np.asarray(clusters))
-        ci_low_c = mean_diff - z * se_clustered
-        ci_high_c = mean_diff + z * se_clustered
+        cluster_arr = np.asarray(clusters)
+        se_clustered = cluster_robust_se(diff, cluster_arr)
+        dof_c = max(len(set(cluster_arr.tolist())) - 1, 1)
+        t_crit_c = t_for_confidence(confidence, dof_c)
+        ci_low_c = mean_diff - t_crit_c * se_clustered
+        ci_high_c = mean_diff + t_crit_c * se_clustered
         t_stat_c = mean_diff / se_clustered if se_clustered > 0 else 0.0
-        p_value_c = float(2 * (1 - _NORMAL.cdf(abs(t_stat_c))))
+        p_value_c = float(t_two_sided_p(t_stat_c, dof_c)) if se_clustered > 0 else 1.0
 
     scores_list_a: list[float] = a.tolist()
     scores_list_b: list[float] = b.tolist()

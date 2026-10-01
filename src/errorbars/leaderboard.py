@@ -66,6 +66,8 @@ class PairwiseResult:
             "model_b": self.model_b,
             "mean_diff": self.comparison.mean_diff,
             "p_value": self.comparison.p_value,
+            # The Holm correction is applied to this one when the questions are clustered.
+            "p_value_clustered": self.comparison.p_value_clustered,
             "p_holm": self.p_holm,
         }
 
@@ -127,6 +129,8 @@ def build_leaderboard(
     models = data.models()
     if len(models) < 2:
         raise ValueError("leaderboard needs at least 2 models")
+    if not 0.0 < alpha < 1.0:
+        raise ValueError(f"alpha must be in (0, 1), got {alpha}")
 
     per_model_scores: dict[str, list[float]] = {m: data.filter_model(m).score for m in models}
 

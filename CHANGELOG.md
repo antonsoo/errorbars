@@ -2,6 +2,47 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.3] - 2026-10-01
+
+### Fixed
+
+- `import lm-eval` on a task with several filters counted every question once
+  per filter. `gsm8k_cot_self_consistency` scores each question under
+  `score-first`, `maj@8` and `maj@64`, so 4 questions were imported as 12 and
+  every standard error shrank accordingly. The adapter now asks which filter to
+  use (`--filter maj@8`, or `filter_name=` in Python) and refuses a second
+  record for the same `doc_id`. Checked against a real three-filter log from
+  lm-eval 0.4.13, committed as a fixture.
+- `import inspect` read a scorer that returns several named values as a score
+  of 0 for every sample (that is what Inspect's own conversion does with a
+  dict). It is an error now. A score that isn't a finite number is rejected by
+  both adapters, as it already was when loading a CSV.
+- A missing or unreadable file printed a Python traceback. It is one line:
+  `error: results.csv: No such file or directory`. A file Inspect can't parse
+  is named, and so is a JSONL line that isn't an object (it was a
+  `TypeError`).
+- A CSV row with too few cells produced a model named `None`; one with too
+  many (an unquoted comma in a value) was read with its cells shifted. Both
+  are rejected with their row number.
+- `leaderboard --alpha` and `summarize --ci bootstrap --confidence` accepted
+  any number, including `nan` and values outside 0 to 1. `power --n` accepted
+  a correlation outside -1 to 1 (reported as "math domain error") and a design
+  effect below 1, which `power --delta` already refused. Infinite or `nan`
+  arguments are refused throughout.
+- Scores too large to square (beyond 1e100) overflowed into `inf` and `nan`
+  results, or an `OverflowError`. They are rejected when loading.
+
+### Added
+
+- `leaderboard --json` reports `p_value_clustered` for each pair. With
+  clustered questions the Holm correction is applied to that p-value, and the
+  output only showed the unclustered one, so `p_holm` could not be checked
+  against it.
+- A seeded fuzz test runs 1,200 generated datasets and argument sets through
+  the command line: each ends in a result that satisfies the basic invariants
+  (intervals in order, p-values in 0 to 1, strict JSON) or in a one-line
+  error.
+
 ## [0.1.2] - 2026-10-01
 
 ### Added

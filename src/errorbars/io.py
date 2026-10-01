@@ -77,6 +77,9 @@ class EvalData:
         return out
 
 
+_MAX_SCORE = 1e100
+
+
 def _coerce_score(raw: Any, row: int) -> float:
     if isinstance(raw, bool):
         return float(raw)
@@ -88,7 +91,18 @@ def _coerce_score(raw: Any, row: int) -> float:
     # a missing or failed grade has to be decided on explicitly, not averaged in as "not a number".
     if not math.isfinite(value):
         raise ValueError(f"row {row}: score {raw!r} is not a finite number")
+    # Variances square the scores: beyond this they overflow to infinity.
+    if abs(value) > _MAX_SCORE:
+        raise ValueError(f"row {row}: score {raw!r} is too large to analyze (limit {_MAX_SCORE:g})")
     return value
+
+
+def _label(row: Any, column: str, n: int) -> str:
+    value = row[column]
+    # csv.DictReader fills the cells a short row lacks with None.
+    if value is None:
+        raise ValueError(f"row {n}: no value for column '{column}' (the row has too few fields)")
+    return str(value)
 
 
 def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> EvalData:
@@ -102,14 +116,21 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     seen: dict[tuple[str, str, str], int] = {}
     for row in records:
         n += 1
+        if not isinstance(row, dict):
+            raise ValueError(f"row {n}: expected a record with named fields, got {type(row).__name__}")
+        # csv.DictReader collects the cells beyond the header under the key None.
+        if None in row:
+            raise ValueError(
+                f"row {n}: more fields than the header has columns (an unquoted comma in a value?)"
+            )
         if columns.question_id not in row:
             raise ValueError(f"missing required column '{columns.question_id}' in row {n}")
         if columns.model not in row:
             raise ValueError(f"missing required column '{columns.model}' in row {n}")
         if columns.score not in row:
             raise ValueError(f"missing required column '{columns.score}' in row {n}")
-        question_id.append(str(row[columns.question_id]))
-        model.append(str(row[columns.model]))
+        question_id.append(_label(row, columns.question_id, n))
+        model.append(_label(row, columns.model, n))
         score.append(_coerce_score(row[columns.score], n))
         if cluster_id is not None and columns.cluster_id is not None:
             cluster_id.append(str(row.get(columns.cluster_id, question_id[-1])))
@@ -152,9 +173,14 @@ def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
             if not line:
                 continue
             try:
-                records.append(json.loads(line))
+                record = json.loads(line)
             except json.JSONDecodeError as exc:
                 raise ValueError(f"{path}:{lineno}: invalid JSON: {exc}") from exc
+            if not isinstance(record, dict):
+                raise ValueError(
+                    f"{path}:{lineno}: expected a JSON object per line, got {type(record).__name__}"
+                )
+            records.append(record)
     if not records:
         raise ValueError(f"{path}: no records found")
     return _from_records(records, columns)

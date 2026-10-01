@@ -108,3 +108,35 @@ def test_repeated_generations_with_distinct_sample_ids_load(tmp_path) -> None:
     data = load_csv(p)
     assert len(data) == 3
     assert data.filter_model("a").scores_by_question() == {"q1": 0.5}
+
+
+@pytest.mark.parametrize("line", ["[1, 2]", "5", "null", '"q1"'])
+def test_jsonl_line_that_is_not_an_object_is_reported_with_its_line(tmp_path, line: str) -> None:
+    p = tmp_path / "data.jsonl"
+    p.write_text(f'{{"question_id": "q1", "model": "a", "score": 1}}\n{line}\n')
+    with pytest.raises(ValueError, match=r"data\.jsonl:2: expected a JSON object per line"):
+        load_jsonl(p)
+
+
+def test_csv_row_with_too_few_fields_is_rejected(tmp_path) -> None:
+    # The missing cell used to become a model called "None".
+    p = tmp_path / "data.csv"
+    p.write_text("score,question_id,model\n1,q1,a\n0,q2\n")
+    with pytest.raises(ValueError, match=r"row 2: no value for column 'model'"):
+        load_csv(p)
+
+
+def test_csv_row_with_too_many_fields_is_rejected(tmp_path) -> None:
+    # An unquoted comma shifts every later cell one column to the right.
+    p = tmp_path / "data.csv"
+    p.write_text("question_id,model,score\nq1,a,1\nwhat is 1,5 + 1,a,0\n")
+    with pytest.raises(ValueError, match=r"row 2: more fields than the header has columns"):
+        load_csv(p)
+
+
+def test_scores_too_large_to_square_are_rejected(tmp_path) -> None:
+    p = tmp_path / "data.csv"
+    p.write_text("question_id,model,score\nq1,a,1\nq2,a,1e308\n")
+    with pytest.raises(ValueError, match=r"row 2: score '1e308' is too large to analyze"):
+        load_csv(p)
+

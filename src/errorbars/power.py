@@ -49,8 +49,8 @@ def per_question_variance(
     if baseline_accuracy is not None and not 0.0 < baseline_accuracy < 1.0:
         # p(1-p) is 0 at either end, which would make any gap look free to detect.
         raise ValueError(f"baseline_accuracy must be strictly between 0 and 1, got {baseline_accuracy}")
-    if variance is not None and not variance > 0:
-        raise ValueError(f"variance must be positive, got {variance}")
+    if variance is not None and not (variance > 0 and math.isfinite(variance)):
+        raise ValueError(f"variance must be a positive, finite number, got {variance}")
     v = baseline_accuracy * (1 - baseline_accuracy) if baseline_accuracy is not None else variance
     return v / samples_per_question  # type: ignore[operator]
 
@@ -85,6 +85,19 @@ def _z_beta(power: float) -> float:
     return _NORMAL.inv_cdf(power)  # one-sided: z such that Phi(z) = power
 
 
+def _z_alpha(alpha: float) -> float:
+    if not 0.0 < alpha < 1.0:
+        raise ValueError(f"alpha must be in (0, 1), got {alpha}")
+    return z_for_confidence(1 - alpha)
+
+
+def _check_design(rho: float, cluster_design_effect: float) -> None:
+    if not -1.0 <= rho <= 1.0:
+        raise ValueError(f"rho must be in [-1, 1], got {rho}")
+    if not (cluster_design_effect >= 1.0 and math.isfinite(cluster_design_effect)):
+        raise ValueError(f"cluster_design_effect must be a finite number >= 1, got {cluster_design_effect}")
+
+
 def questions_needed(
     delta: float,
     baseline_accuracy: float | None = None,
@@ -100,18 +113,15 @@ def questions_needed(
     ``n = (z_{a/2} + z_b)^2 * 2*V*(1-rho) * deff / delta^2`` where V is the
     per-question variance (see ``per_question_variance``).
     """
-    if delta <= 0:
-        raise ValueError("delta must be positive")
-    if not -1.0 <= rho <= 1.0:
-        raise ValueError("rho must be in [-1, 1]")
-    if cluster_design_effect < 1.0:
-        raise ValueError("cluster_design_effect must be >= 1")
+    if not (delta > 0 and math.isfinite(delta)):
+        raise ValueError(f"delta must be a positive, finite number, got {delta}")
+    _check_design(rho, cluster_design_effect)
     v = per_question_variance(baseline_accuracy, variance, samples_per_question)
     if baseline_accuracy is not None and baseline_accuracy + delta > 1.0:
         raise ValueError(
             f"baseline_accuracy + delta = {baseline_accuracy + delta:.3g}: an accuracy can't exceed 1"
         )
-    z_a = z_for_confidence(1 - alpha)
+    z_a = _z_alpha(alpha)
     z_b = _z_beta(power)
     n = ((z_a + z_b) ** 2) * 2 * v * (1 - rho) * cluster_design_effect / (delta**2)
     n_int = max(2, math.ceil(n))
@@ -131,7 +141,8 @@ def minimum_detectable_effect(
     """Smallest paired difference detectable with a given n, alpha, power."""
     if n_questions < 2:
         raise ValueError("n_questions must be >= 2")
+    _check_design(rho, cluster_design_effect)
     v = per_question_variance(baseline_accuracy, variance, samples_per_question)
-    z_a = z_for_confidence(1 - alpha)
+    z_a = _z_alpha(alpha)
     z_b = _z_beta(power)
     return (z_a + z_b) * math.sqrt(2 * v * (1 - rho) * cluster_design_effect / n_questions)

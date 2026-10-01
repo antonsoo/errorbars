@@ -155,15 +155,19 @@ errorbars import inspect logs/<run>.eval -o converted.csv
 ```
 
 `--metric` (lm-eval) picks which computed metric to use as the score when a task reports more than
-one (e.g. `acc` vs. `acc_norm`); it defaults to the first one. `--scorer` (Inspect) does the same
-for tasks with multiple scorers. Inspect epochs (`--epochs N`, repeated sampling of the same input)
-land in the `sample` column automatically.
+one (e.g. `acc` vs. `acc_norm`); it defaults to the first one. `--filter` (lm-eval) picks one filter
+for a task that scores every question under several: `gsm8k_cot_self_consistency` logs each question
+three times (`score-first`, `maj@8`, `maj@64`), and reading those as three times the questions would
+shrink every error bar, so the import stops and asks. `--scorer` (Inspect) picks one scorer for
+tasks with more than one. Inspect epochs (`--epochs N`, repeated sampling of the same input) land in
+the `sample` column automatically.
 
 Both adapters were built and tested against real, unedited output — not from memory: **lm-eval
 0.4.13** (`lm_eval run --model dummy --tasks copa --limit 20 --log_samples ...`, plus a
-multi-metric `arc_easy` run) and **inspect-ai 0.3.268** (a 5-sample task through the built-in
-`mockllm/model` provider). The exact log files are committed as test fixtures
-(`tests/fixtures/samples_*.jsonl`, `tests/fixtures/inspect_tiny_qa.eval`) and re-parsed in
+multi-metric `arc_easy` run and a three-filter `gsm8k_cot_self_consistency` run) and **inspect-ai
+0.3.268** (small tasks through the built-in `mockllm/model` provider: single epoch, two epochs, and
+a scorer with named values). The exact log files are committed as test fixtures
+(`tests/fixtures/samples_*.jsonl`, `tests/fixtures/inspect_*.eval`) and re-parsed in
 `tests/test_adapters.py` on every run. The Inspect adapter reads logs with Inspect's own
 `inspect_ai.log.read_eval_log` and `inspect_ai.scorer.value_to_float` rather than hand-parsing its
 binary `.eval` format, and needs the `inspect` extra:
@@ -207,7 +211,7 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 - Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
   statistically direct approach — it can produce a model in more than one group, unlike a
   minimal-letters heuristic (e.g. R's `multcompView`).
-- 168 Python tests, 605 TypeScript tests (cross-checking the JS formulas against Python-generated
+- 222 Python tests, 605 TypeScript tests (cross-checking the JS formulas against Python-generated
   vectors), all passing on this box (14 vCPU WSL2 Linux, 48 GB RAM; Python 3.12.3, Node 26.7.0)
   as of 2026-10-01.
 

@@ -11,6 +11,12 @@ REPO_ROOT = Path(__file__).parent.parent
 DATA = REPO_ROOT / "examples" / "data" / "reading_comprehension.csv"
 LMEVAL_FIXTURE = REPO_ROOT / "tests" / "fixtures" / "samples_copa_2026-09-24T03-04-37.941131.jsonl"
 INSPECT_FIXTURE = REPO_ROOT / "tests" / "fixtures" / "inspect_tiny_qa.eval"
+GSM8K_FILTERS = (
+    REPO_ROOT
+    / "tests"
+    / "fixtures"
+    / "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl"
+)
 
 
 def run_cli(*args: str) -> subprocess.CompletedProcess:
@@ -84,6 +90,20 @@ def test_cli_power_rejects_both_delta_and_n() -> None:
 def test_cli_missing_file_reports_error() -> None:
     result = run_cli("summarize", "/nonexistent/path.csv", "--json")
     assert result.returncode != 0
+    assert result.stderr.strip() == "error: /nonexistent/path.csv: No such file or directory"
+
+
+def test_cli_import_lm_eval_filter(tmp_path) -> None:
+    out = tmp_path / "out.csv"
+    refused = run_cli("import", "lm-eval", str(GSM8K_FILTERS), "--model", "m", "-o", str(out))
+    assert refused.returncode != 0
+    assert "--filter on the command line" in refused.stderr
+    assert not out.exists()
+    result = run_cli(
+        "import", "lm-eval", str(GSM8K_FILTERS), "--model", "m", "--filter", "maj@64", "-o", str(out)
+    )
+    assert result.returncode == 0, result.stderr
+    assert result.stdout.startswith("wrote 4 rows (1 model)")
 
 
 @pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")

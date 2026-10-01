@@ -326,7 +326,7 @@ def cmd_import(args: argparse.Namespace) -> None:
             raise SystemExit("error: --model is required for the lm-eval adapter")
         from errorbars.adapters.lm_eval import load_lm_eval_samples
 
-        data = load_lm_eval_samples(args.file, model=args.model, metric=args.metric)
+        data = load_lm_eval_samples(args.file, model=args.model, metric=args.metric, filter_name=args.filter)
     elif args.adapter == "inspect":
         try:
             from errorbars.adapters.inspect_ai import load_inspect_log
@@ -406,6 +406,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--metric", default=None, help="lm-eval metric to use as the score (default: first available)"
     )
     p_imp.add_argument(
+        "--filter",
+        default=None,
+        help="lm-eval filter to use, for a task that scores each question under several (e.g. maj@8)",
+    )
+    p_imp.add_argument(
         "--scorer", default=None, help="Inspect scorer to use (default: the only one, if unambiguous)"
     )
     p_imp.set_defaults(func=cmd_import)
@@ -418,8 +423,14 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     try:
         args.func(args)
+    except UnicodeDecodeError as exc:
+        raise SystemExit(f"error: the input is not UTF-8 text ({exc})") from exc
     except ValueError as exc:
         raise SystemExit(f"error: {exc}") from exc
+    except OSError as exc:
+        # A missing or unreadable file is the user's to fix: name it, without a traceback.
+        where = f"{exc.filename}: " if exc.filename else ""
+        raise SystemExit(f"error: {where}{exc.strerror or exc}") from exc
 
 
 if __name__ == "__main__":

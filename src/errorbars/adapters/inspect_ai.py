@@ -16,6 +16,7 @@ extra: ``pip install "errorbars[inspect]"``.
 
 from __future__ import annotations
 
+import math
 from pathlib import Path
 
 from errorbars.io import EvalData
@@ -44,7 +45,15 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
             "load_inspect_log requires inspect-ai (the 'inspect' extra): pip install inspect-ai"
         ) from exc
 
-    log = read_eval_log(str(path))
+    try:
+        log = read_eval_log(str(path))
+    except OSError:
+        raise
+    except Exception as exc:
+        # Inspect reports a file it can't parse in its own terms ("EOCD not found", a list of
+        # missing fields); say which file, and that the problem is its format.
+        reason = str(exc).strip().splitlines()[0] if str(exc).strip() else type(exc).__name__
+        raise ValueError(f"{path}: not a log Inspect can read ({reason})") from exc
     if not log.samples:
         raise ValueError(f"{path}: log has no samples (status={log.status!r})")
 
@@ -72,9 +81,20 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
                 f"{path}: sample {s.id!r} has multiple scorers {list(s.scores)}; "
                 "pass `scorer=...` to pick one"
             )
+        value = s.scores[key].value
+        # value_to_float turns anything it can't read into 0.0. A scorer with several named
+        # values has no single score to read, so say so instead of reporting a mean of 0.
+        if isinstance(value, (dict, list)):
+            raise ValueError(
+                f"{path}: sample {s.id!r}: scorer {key!r} returns {type(value).__name__} values "
+                f"({value!r}), not one score per sample"
+            )
+        number = float(to_float(value))
+        if not math.isfinite(number):
+            raise ValueError(f"{path}: sample {s.id!r}: score {value!r} is not a finite number")
         question_id.append(str(s.id))
         model_col.append(model)
-        score.append(float(to_float(s.scores[key].value)))
+        score.append(number)
         sample_col.append(str(s.epoch))
 
     if not question_id:

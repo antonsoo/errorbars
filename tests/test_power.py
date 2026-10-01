@@ -105,5 +105,40 @@ def test_a_target_accuracy_above_one_is_rejected() -> None:
 
 
 def test_variance_must_be_positive() -> None:
-    with pytest.raises(ValueError, match="variance must be positive"):
+    with pytest.raises(ValueError, match="variance must be a positive"):
         questions_needed(0.05, variance=0.0)
+
+
+@pytest.mark.parametrize(
+    ("kwargs", "message"),
+    [
+        ({"delta": float("nan"), "variance": 0.2}, "delta must be a positive, finite number"),
+        ({"delta": float("inf"), "variance": 0.2}, "delta must be a positive, finite number"),
+        ({"delta": 0.05, "variance": float("inf")}, "variance must be a positive, finite number"),
+        ({"delta": 0.05, "variance": 0.2, "alpha": 0.0}, "alpha must be in"),
+        ({"delta": 0.05, "variance": 0.2, "alpha": float("nan")}, "alpha must be in"),
+        ({"delta": 0.05, "variance": 0.2, "rho": float("nan")}, "rho must be in"),
+        ({"delta": 0.05, "variance": 0.2, "cluster_design_effect": float("nan")}, "cluster_design_effect"),
+        ({"delta": 0.05, "variance": 0.2, "cluster_design_effect": float("inf")}, "cluster_design_effect"),
+    ],
+)
+def test_questions_needed_rejects_arguments_with_no_answer(kwargs: dict, message: str) -> None:
+    with pytest.raises(ValueError, match=message):
+        questions_needed(**kwargs)
+
+
+@pytest.mark.parametrize(
+    ("kwargs", "message"),
+    [
+        ({"rho": 2.0}, "rho must be in"),
+        ({"rho": float("nan")}, "rho must be in"),
+        ({"cluster_design_effect": 0.5}, "cluster_design_effect"),
+        ({"cluster_design_effect": float("nan")}, "cluster_design_effect"),
+        ({"alpha": 1.0}, "alpha must be in"),
+    ],
+)
+def test_mde_checks_the_design_the_way_questions_needed_does(kwargs: dict, message: str) -> None:
+    # rho=2 used to surface as "math domain error", and a design effect below 1 was accepted.
+    with pytest.raises(ValueError, match=message):
+        minimum_detectable_effect(200, variance=0.2, **kwargs)
+

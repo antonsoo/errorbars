@@ -195,6 +195,8 @@ def bootstrap_ci(
     n = arr.size
     if n < 2:
         raise ValueError("need at least 2 observations to bootstrap")
+    if not 0.0 < confidence < 1.0:
+        raise ValueError(f"confidence must be in (0, 1), got {confidence}")
     rng = np.random.default_rng(seed)
     idx = rng.integers(0, n, size=(n_boot, n))
     boot_means = arr[idx].mean(axis=1)

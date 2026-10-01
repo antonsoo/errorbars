@@ -71,3 +71,38 @@ def test_build_leaderboard_requires_two_models() -> None:
     data = EvalData(["q1", "q2"], ["only-model", "only-model"], [1.0, 0.0])
     with pytest.raises(ValueError):
         build_leaderboard(data)
+
+
+def _clustered_board() -> EvalData:
+    rng = np.random.default_rng(3)
+    question_id, model, score, cluster = [], [], [], []
+    for q in range(60):
+        base = rng.random()
+        for name, lift in (("a", 0.0), ("b", 0.1), ("c", 0.2)):
+            question_id.append(f"q{q}")
+            model.append(name)
+            score.append(float(rng.random() < 0.3 + lift + 0.3 * base))
+            cluster.append(f"passage-{q // 5}")
+    return EvalData(question_id, model, score, cluster_id=cluster)
+
+
+def test_pairwise_rows_carry_the_p_value_the_holm_correction_used() -> None:
+    board = build_leaderboard(_clustered_board())
+    rows = [pr.as_dict() for pr in board.pairwise]
+    assert all(row["p_value_clustered"] is not None for row in rows)
+    assert [row["p_holm"] for row in rows] == pytest.approx(
+        holm_correction([row["p_value_clustered"] for row in rows])
+    )
+
+
+def test_unclustered_pairwise_rows_have_no_clustered_p_value() -> None:
+    data = _clustered_board()
+    data.cluster_id = None
+    assert all(pr.as_dict()["p_value_clustered"] is None for pr in build_leaderboard(data).pairwise)
+
+
+@pytest.mark.parametrize("alpha", [0.0, 1.0, -0.1, 2.0, float("nan")])
+def test_alpha_outside_zero_to_one_is_rejected(alpha: float) -> None:
+    with pytest.raises(ValueError, match="alpha must be in"):
+        build_leaderboard(_clustered_board(), alpha=alpha)
+

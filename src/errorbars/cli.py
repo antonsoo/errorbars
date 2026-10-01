@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from errorbars import __version__
 from errorbars.compare import paired_compare
 from errorbars.io import ColumnMap, EvalData, load_csv, load_jsonl, write_csv
 from errorbars.leaderboard import build_leaderboard
@@ -343,6 +344,7 @@ def cmd_import(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="errorbars", description="Error bars for LLM evals.")
+    parser.add_argument("--version", action="version", version=f"errorbars {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_sum = sub.add_parser("summarize", help="mean, SE, and CI for one model")

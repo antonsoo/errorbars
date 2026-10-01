@@ -11,7 +11,7 @@ converts score values with its own ``inspect_ai.scorer.value_to_float``
 partial/no-answer string codes -> 1.0/0.0/0.5/0.0, numbers and bools pass
 through) rather than hand-parsing the ``.eval`` file, which is a versioned
 binary/zip format not meant to be read directly. Requires the ``inspect``
-extra: ``pip install "errorbars[inspect] @ git+https://github.com/antonsoo/errorbars"``.
+extra: ``pip install "errorbars[inspect]"``.
 """
 
 from __future__ import annotations

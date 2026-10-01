@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.2] - 2026-10-01
+
+### Added
+
+- Published to PyPI: `pip install "errorbars[cli]"`. The README's images and
+  links are rewritten to absolute URLs at build time so they work on the
+  project page.
+- `errorbars --version`.
+- `py.typed`, so type checkers use the package's annotations (the `Typing ::
+  Typed` classifier was already declared).
+
 ## [0.1.1] - 2026-09-30
 
 ### Fixed

@@ -31,7 +31,7 @@ as a win. The full walkthrough, with every number copied from a real command, is
 ## Quickstart
 
 ```bash
-pip install "errorbars[cli] @ git+https://github.com/antonsoo/errorbars"
+pip install "errorbars[cli]"
 errorbars power --delta 0.03 --baseline 0.5
 ```
 
@@ -166,7 +166,7 @@ multi-metric `arc_easy` run) and **inspect-ai 0.3.268** (a 5-sample task through
 `tests/test_adapters.py` on every run. The Inspect adapter reads logs with Inspect's own
 `inspect_ai.log.read_eval_log` and `inspect_ai.scorer.value_to_float` rather than hand-parsing its
 binary `.eval` format, and needs the `inspect` extra:
-`pip install "errorbars[inspect] @ git+https://github.com/antonsoo/errorbars"`. The lm-eval
+`pip install "errorbars[inspect]"`. The lm-eval
 adapter has no extra dependency — `--log_samples` is already plain JSONL.
 
 ## How it works
@@ -206,9 +206,9 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 - Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
   statistically direct approach — it can produce a model in more than one group, unlike a
   minimal-letters heuristic (e.g. R's `multcompView`).
-- 167 Python tests, 605 TypeScript tests (cross-checking the JS formulas against Python-generated
+- 168 Python tests, 605 TypeScript tests (cross-checking the JS formulas against Python-generated
   vectors), all passing on this box (14 vCPU WSL2 Linux, 48 GB RAM; Python 3.12.3, Node 26.7.0)
-  as of 2026-09-30.
+  as of 2026-10-01.
 
 ## Web calculator
 

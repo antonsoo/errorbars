@@ -167,3 +167,11 @@ def test_cli_names_an_unknown_model_instead_of_blaming_the_overlap() -> None:
     assert "no model 'nope' in the data (models: " in result.stderr
     result = run_cli("summarize", str(DATA), "--model", "nope")
     assert "no model 'nope' in the data" in result.stderr
+
+
+def test_cli_version_matches_the_package() -> None:
+    import errorbars
+
+    result = run_cli("--version")
+    assert result.returncode == 0
+    assert result.stdout.strip() == f"errorbars {errorbars.__version__}"

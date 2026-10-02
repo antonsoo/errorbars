@@ -10,7 +10,7 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["vite.config.ts", "vitest.config.ts"],
+          allowDefaultProject: ["vite.config.ts", "vite.csp.ts", "vitest.config.ts"],
         },
         tsconfigRootDir: import.meta.dirname,
       },

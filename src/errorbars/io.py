@@ -11,6 +11,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -166,6 +167,14 @@ def _label(row: Any, column: str, n: int) -> str:
     return str(value)
 
 
+def _names(row: dict[str, Any]) -> str:
+    """A row's field names for an error message: the first ten, each cut to a readable length."""
+    names = [str(name) for name in row]
+    shown = [name if len(name) <= 40 else name[:39] + "\u2026" for name in names[:10]]
+    more = f", and {len(names) - 10} more" if len(names) > 10 else ""
+    return (", ".join(shown) + more) or "no fields"
+
+
 def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> EvalData:
     question_id: list[str] = []
     model: list[str] = []
@@ -184,12 +193,11 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
             raise ValueError(
                 f"row {n}: more fields than the header has columns (an unquoted comma in a value?)"
             )
-        if columns.question_id not in row:
-            raise ValueError(f"missing required column '{columns.question_id}' in row {n}")
-        if columns.model not in row:
-            raise ValueError(f"missing required column '{columns.model}' in row {n}")
-        if columns.score not in row:
-            raise ValueError(f"missing required column '{columns.score}' in row {n}")
+        for required in (columns.question_id, columns.model, columns.score):
+            if required not in row:
+                raise ValueError(
+                    f"missing required column '{required}' in row {n} (it has: {_names(row)})"
+                )
         question_id.append(_label(row, columns.question_id, n))
         model.append(_label(row, columns.model, n))
         score.append(_coerce_score(row[columns.score], n))
@@ -214,21 +222,60 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     return EvalData(question_id, model, score, cluster_id, sample, columns)
 
 
+def _delimiter(header: str, columns: ColumnMap) -> str:
+    """The delimiter the header was written with.
+
+    A spreadsheet saves "CSV" with the list separator of its locale: a semicolon wherever the
+    decimal mark is a comma (most of Europe), sometimes a tab. The header settles it: the
+    delimiter is the one that splits it into the columns being looked for.
+    """
+    wanted = {columns.question_id, columns.model, columns.score}
+    for delimiter in (",", ";", "\t"):
+        names = {name.strip() for name in next(csv.reader([header], delimiter=delimiter), [])}
+        if wanted <= names:
+            return delimiter
+    return ","
+
+
+_DECIMAL_COMMA = re.compile(r"[+-]?\d+,\d+(?:[eE][+-]?\d+)?")
+
+
+def _decimal_commas(records: Iterable[dict[str, Any]], score: str) -> Iterable[dict[str, Any]]:
+    """Scores written ``0,75`` in a file whose delimiter is not the comma."""
+    for row in records:
+        value = row.get(score)
+        if isinstance(value, str) and _DECIMAL_COMMA.fullmatch(value.strip()):
+            row[score] = value.strip().replace(",", ".")
+        yield row
+
+
 def load_csv(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
-    """Load per-item scores from a CSV file."""
+    """Load per-item scores from a CSV file.
+
+    Read as a spreadsheet writes it too: with a byte-order mark ("CSV UTF-8" in Excel), with
+    semicolons or tabs between the fields, and with decimal commas when the delimiter is not
+    the comma.
+    """
     columns = columns or ColumnMap()
-    with open(path, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        header = f.readline()
+        f.seek(0)
+        delimiter = _delimiter(header, columns)
+        reader = csv.DictReader(f, delimiter=delimiter)
         if reader.fieldnames is None:
             raise ValueError(f"{path}: empty or headerless CSV")
-        return _from_records(reader, columns)
+        reader.fieldnames = [name.strip() for name in reader.fieldnames]
+        records: Iterable[dict[str, Any]] = reader
+        if delimiter != ",":
+            records = _decimal_commas(reader, columns.score)
+        return _from_records(records, columns)
 
 
 def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
     """Load per-item scores from a JSON Lines file (one record per line)."""
     columns = columns or ColumnMap()
     records: list[dict[str, Any]] = []
-    with open(path, encoding="utf-8") as f:
+    with open(path, encoding="utf-8-sig") as f:
         for lineno, line in enumerate(f, start=1):
             line = line.strip()
             if not line:

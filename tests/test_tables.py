@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import os
 import random
 import subprocess
 import sys
@@ -36,7 +37,9 @@ def scores(tmp_path_factory: pytest.TempPathFactory) -> Path:
     return path
 
 
-def run_cli(*args: str, hide_rich: bool = False) -> subprocess.CompletedProcess[str]:
+def run_cli(
+    *args: str, hide_rich: bool = False, pipe_encoding: str | None = None
+) -> subprocess.CompletedProcess[str]:
     # `sys.modules["rich"] = None` makes `import rich` fail the way it does when the package
     # isn't installed, which is what `pip install errorbars` (no extra) gives.
     hide = "sys.modules['rich'] = None; " if hide_rich else ""
@@ -44,8 +47,16 @@ def run_cli(*args: str, hide_rich: bool = False) -> subprocess.CompletedProcess[
         f"import sys; {hide}from errorbars.cli import main; "
         "sys.argv = ['errorbars', *sys.argv[1:]]; main()"
     )
+    env = {k: v for k, v in os.environ.items() if k not in ("PYTHONIOENCODING", "PYTHONUTF8")}
+    if pipe_encoding:
+        # What Python on Windows gives a redirected stdout: the system's code page.
+        env["PYTHONIOENCODING"] = pipe_encoding
     return subprocess.run(
-        [sys.executable, "-c", code, *args], capture_output=True, text=True, cwd=REPO_ROOT
+        [sys.executable, "-c", code, *args],
+        capture_output=True,
+        encoding="utf-8",
+        cwd=REPO_ROOT,
+        env=env,
     )
 
 
@@ -130,3 +141,24 @@ def test_rich_folds_names_in_a_narrow_terminal(capsys: pytest.CaptureFixture[str
     assert len(first_cells) > 1
     assert "".join(first_cells) == LONG_A  # the name is folded over several lines, not cut
     assert "\u2026" not in out
+
+
+@pytest.mark.parametrize("hide_rich", [False, True], ids=["rich", "plain"])
+def test_a_pipe_carries_any_model_name(tmp_path: Path, hide_rich: bool) -> None:
+    # A redirected stdout on Windows is cp1252, which has no Chinese: the table commands
+    # stopped with "'charmap' codec can't encode characters". A pipe gets UTF-8.
+    names = {"\u901a\u4e49\u5343\u95ee-72B": 0.7, "Llama-3.1-8B": 0.5}
+    rng = random.Random(3)
+    path = tmp_path / "scores.csv"
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["question_id", "model", "score"])
+        for q in range(80):
+            for model, p in names.items():
+                writer.writerow([f"q{q}", model, int(rng.random() < p)])
+    result = run_cli("leaderboard", str(path), hide_rich=hide_rich, pipe_encoding="cp1252")
+    assert result.returncode == 0, result.stderr
+    assert result.stdout.count("\u901a\u4e49\u5343\u95ee-72B") == 2
+    missing = run_cli("summarize", str(path), "--model", "\u6a21\u578b", pipe_encoding="cp1252")
+    assert missing.returncode != 0
+    assert "no model '\u6a21\u578b' in the data" in missing.stderr

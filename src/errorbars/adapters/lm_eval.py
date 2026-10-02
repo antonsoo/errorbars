@@ -91,7 +91,7 @@ def infer_model_name(path: str | Path) -> str | None:
             candidates = others
     for candidate in candidates:
         try:
-            with open(candidate, encoding="utf-8") as f:
+            with open(candidate, encoding="utf-8-sig") as f:
                 results = json.load(f)
         except (OSError, ValueError):
             continue
@@ -137,7 +137,7 @@ def load_lm_eval_samples(
 
     records: list[tuple[int, dict[str, object]]] = []
     filters: dict[str, None] = {}  # in order of first appearance
-    with open(path, encoding="utf-8") as f:
+    with open(path, encoding="utf-8-sig") as f:
         for lineno, raw_line in enumerate(f, start=1):
             line = raw_line.strip()
             if not line:

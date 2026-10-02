@@ -2,6 +2,27 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.2] - 2026-10-02
+
+Files and pipes as Windows and spreadsheets make them.
+
+### Fixed
+
+- A CSV saved from a spreadsheet. Excel's "CSV UTF-8" starts with a byte-order
+  mark, which became part of the first column's name: "missing required column
+  'question_id' in row 1" for a file that has it. A spreadsheet in a locale
+  whose decimal mark is the comma writes semicolons between the fields and
+  `0,75` for a score, which failed the same way. The mark is skipped, the
+  delimiter (comma, semicolon or tab) is the one that splits the header into
+  the required columns, and decimal commas are read when the delimiter is not
+  the comma.
+- That error now lists the columns the file does have.
+- Output written to a pipe or a file is UTF-8. Before 3.15, Python on Windows
+  gives a redirected stdout the system's code page, so
+  `errorbars leaderboard scores.csv > table.txt` with a model name outside it
+  stopped with "'charmap' codec can't encode characters". (Reproduced on Linux
+  by giving the pipe cp1252 with `PYTHONIOENCODING`; the test does the same.)
+
 ## [0.2.1] - 2026-10-02
 
 What the table commands print, checked the way their output is read: after `pip install

@@ -1,0 +1,43 @@
+{
+  "results": {
+    "copa": {
+      "name": "copa",
+      "alias": "copa",
+      "sample_len": 20,
+      "acc,none": 0.8,
+      "acc_stderr,none": 0.0917662935482247
+    }
+  },
+  "n-samples": {
+    "copa": {
+      "original": 100,
+      "effective": 20
+    }
+  },
+  "config": {
+    "model": "hf",
+    "model_args": {
+      "pretrained": "hf-internal-testing/tiny-random-gpt2"
+    },
+    "model_num_parameters": 111968,
+    "model_dtype": "torch.float32",
+    "model_revision": "main",
+    "model_sha": "71034c5d8bde858ff824298bdedc65515b97d2b9",
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": "cpu",
+    "use_cache": null,
+    "limit": 20.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "lm_eval_version": "0.4.13",
+  "model_source": "hf",
+  "model_name": "hf-internal-testing/tiny-random-gpt2",
+  "model_name_sanitized": "hf-internal-testing__tiny-random-gpt2",
+  "date": 1790921740.5439
+}

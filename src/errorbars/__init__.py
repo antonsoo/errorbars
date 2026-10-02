@@ -1,5 +1,6 @@
 """errorbars: statistical rigor for LLM eval results."""
 
+from errorbars.inputs import load_inputs
 from errorbars.stats import (
     ClusterDiagnostics,
     MeanEstimate,
@@ -12,10 +13,11 @@ from errorbars.stats import (
     within_between_variance,
 )
 
-__version__ = "0.1.3"
+__version__ = "0.2.0"
 
 __all__ = [
     "__version__",
+    "load_inputs",
     "MeanEstimate",
     "ClusterDiagnostics",
     "mean_ci_clt",

@@ -1,4 +1,4 @@
-"""Command-line interface: ``errorbars summarize|compare|leaderboard|power``."""
+"""Command-line interface: ``errorbars summarize|compare|leaderboard|power|import``."""
 
 from __future__ import annotations
 
@@ -10,7 +10,8 @@ from typing import Any
 
 from errorbars import __version__
 from errorbars.compare import paired_compare
-from errorbars.io import ColumnMap, EvalData, load_csv, load_jsonl, write_csv
+from errorbars.inputs import load_inputs
+from errorbars.io import ColumnMap, EvalData, write_csv
 from errorbars.leaderboard import build_leaderboard
 from errorbars.plot import forest_plot_svg
 from errorbars.power import minimum_detectable_effect, questions_needed
@@ -33,21 +34,52 @@ def _require_models(data: EvalData, *names: str) -> None:
             raise SystemExit(f"error: no model {name!r} in the data (models: {listed})")
 
 
-def _load(path: str, columns: ColumnMap) -> EvalData:
-    p = Path(path)
-    if p.suffix.lower() in (".jsonl", ".ndjson"):
-        return load_jsonl(p, columns)
-    if p.suffix.lower() == ".csv":
-        return load_csv(p, columns)
-    raise SystemExit(f"error: unrecognized file extension {p.suffix!r} (use .csv or .jsonl)")
+def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
+    """The data a command was pointed at: every FILE, read as what it is and put together."""
+    try:
+        loaded = load_inputs(
+            args.file,
+            _columns_from(args),
+            model=model,
+            metric=args.metric,
+            filter_name=args.filter,
+            scorer=args.scorer,
+        )
+    except ImportError as exc:
+        raise SystemExit(f"error: {exc}") from exc
+    for note in loaded.notes:
+        print(f"note: {note}", file=sys.stderr)
+    return loaded.data
 
 
-def _column_args(sp: argparse.ArgumentParser) -> None:
+_FILE_HELP = (
+    "one or more files or directories: errorbars CSV/JSONL, lm-eval samples_*.jsonl, "
+    "Inspect .eval logs. NAME=PATH names a harness log's model"
+)
+
+
+def _input_args(sp: argparse.ArgumentParser) -> None:
+    sp.add_argument("file", nargs="+", metavar="FILE", help=_FILE_HELP)
     sp.add_argument("--question-col", default="question_id")
     sp.add_argument("--model-col", default="model")
     sp.add_argument("--score-col", default="score")
     sp.add_argument("--cluster-col", default="cluster_id")
     sp.add_argument("--sample-col", default="sample")
+    _harness_args(sp)
+
+
+def _harness_args(sp: argparse.ArgumentParser) -> None:
+    sp.add_argument(
+        "--metric", default=None, help="lm-eval metric to use as the score (default: first available)"
+    )
+    sp.add_argument(
+        "--filter",
+        default=None,
+        help="lm-eval filter to use, for a task that scores each question under several (e.g. maj@8)",
+    )
+    sp.add_argument(
+        "--scorer", default=None, help="Inspect scorer to use (default: the only one, if unambiguous)"
+    )
 
 
 def _columns_from(args: argparse.Namespace) -> ColumnMap:
@@ -70,10 +102,26 @@ def _console() -> Console:
     return Console()
 
 
+def _has_clusters(data: EvalData) -> bool:
+    """True when the data groups questions: some cluster id that isn't its question's own id,
+    which is what a file without a cluster column is filled with."""
+    if not data.cluster_id:
+        return False
+    return any(c != q for c, q in zip(data.cluster_id, data.question_id, strict=True))
+
+
 def cmd_summarize(args: argparse.Namespace) -> None:
-    data = _load(args.file, _columns_from(args))
+    data = _load(args)
     if args.model:
         _require_models(data, args.model)
+    elif len(data.models()) > 1:
+        # Pooled, four models' answers to 200 questions would be summarized as 800 questions.
+        models = data.models()
+        listed = ", ".join(repr(m) for m in models[:10]) + (", ..." if len(models) > 10 else "")
+        raise SystemExit(
+            f"error: the data has {len(models)} models ({listed}); summarize one with --model, "
+            "or rank them all with `errorbars leaderboard`"
+        )
     sub = data.filter_model(args.model) if args.model else data
     if not sub.score:
         raise SystemExit(f"error: no rows for model {args.model!r}" if args.model else "error: empty data")
@@ -90,11 +138,12 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         est = mean_ci_clt(scores, confidence=args.confidence)
 
     result: dict[str, Any] = est.as_dict()
-    result["model"] = args.model or "(all)"
+    models = sub.models()
+    result["model"] = args.model or (models[0] if len(models) == 1 else "(all)")
     result["is_binary"] = binary
 
     cluster_info = None
-    if sub.cluster_id and len(set(sub.cluster_id)) > 1:
+    if _has_clusters(sub) and sub.cluster_id and len(set(sub.cluster_id)) > 1:
         from errorbars.stats import (
             cluster_robust_se,
             design_effect,
@@ -163,15 +212,36 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         console.print(wt)
 
 
+def _models_to_compare(data: EvalData, model_a: str | None, model_b: str | None) -> tuple[str, str]:
+    """The two models of a comparison: the ones named, or the only two there are, in the
+    order the input gave them."""
+    if model_a is None and model_b is None:
+        models = data.models()
+        if len(models) == 2:
+            return models[0], models[1]
+        listed = ", ".join(repr(m) for m in models[:10]) + (", ..." if len(models) > 10 else "")
+        raise SystemExit(
+            f"error: the data has {len(models)} model{'s' if len(models) != 1 else ''} ({listed}); "
+            "a comparison needs two (pick them with --model-a and --model-b)"
+        )
+    if model_a is None or model_b is None:
+        raise SystemExit("error: pass both --model-a and --model-b, or neither when there are two models")
+    _require_models(data, model_a, model_b)
+    return model_a, model_b
+
+
 def cmd_compare(args: argparse.Namespace) -> None:
-    columns = _columns_from(args)
-    data = _load(args.file, columns)
-    _require_models(data, args.model_a, args.model_b)
+    data = _load(args)
+    args.model_a, args.model_b = _models_to_compare(data, args.model_a, args.model_b)
     a = data.filter_model(args.model_a).scores_by_question()
     b = data.filter_model(args.model_b).scores_by_question()
     common = sorted(set(a) & set(b))
+    only_a, only_b = len(set(a) - set(b)), len(set(b) - set(a))
     if len(common) < 2:
-        raise SystemExit("error: fewer than 2 shared question_ids between the two models")
+        raise SystemExit(
+            "error: fewer than 2 shared question_ids between the two models "
+            f"({len(a)} questions for {args.model_a!r}, {len(b)} for {args.model_b!r}, {len(common)} in both)"
+        )
     sa = [a[q] for q in common]
     sb = [b[q] for q in common]
     clusters = None
@@ -181,7 +251,15 @@ def cmd_compare(args: argparse.Namespace) -> None:
     comp = paired_compare(sa, sb, clusters=clusters, confidence=args.confidence)
 
     if args.json:
-        _print_json(comp.as_dict())
+        _print_json(
+            {
+                "model_a": args.model_a,
+                "model_b": args.model_b,
+                **comp.as_dict(),
+                "n_only_a": only_a,
+                "n_only_b": only_b,
+            }
+        )
         return
 
     console = _console()
@@ -189,6 +267,9 @@ def cmd_compare(args: argparse.Namespace) -> None:
     table.add_column("metric")
     table.add_column("value", justify="right")
     table.add_row("n (shared questions)", str(comp.n))
+    if only_a or only_b:
+        # The two runs did not cover the same questions (a different --limit, a crashed run).
+        table.add_row("questions left out (only A / only B)", f"{only_a} / {only_b}")
     table.add_row(f"mean({args.model_a})", f"{comp.mean_a:.4f}")
     table.add_row(f"mean({args.model_b})", f"{comp.mean_b:.4f}")
     table.add_row("mean diff (A - B)", f"{comp.mean_diff:.4f}")
@@ -213,8 +294,9 @@ def cmd_compare(args: argparse.Namespace) -> None:
 
 
 def cmd_leaderboard(args: argparse.Namespace) -> None:
-    data = _load(args.file, _columns_from(args))
+    data = _load(args)
     lb = build_leaderboard(data, confidence=args.confidence, alpha=args.alpha)
+    question_sets = {frozenset(data.filter_model(m).question_id) for m in data.models()}
 
     if args.plot:
         svg = forest_plot_svg(lb, title=args.plot_title)
@@ -274,6 +356,11 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         "[dim]'p (used, Holm)' is the cluster-robust paired p-value (when clusters are "
         "present) after Holm correction across all pairs; otherwise the unclustered paired p-value.[/dim]"
     )
+    if len(question_sets) > 1:
+        console.print(
+            "[yellow]The models were not scored on the same questions. Each mean is over that "
+            "model's own questions; each paired test uses the questions its two models share.[/yellow]"
+        )
 
 
 def cmd_power(args: argparse.Namespace) -> None:
@@ -321,21 +408,11 @@ def cmd_power(args: argparse.Namespace) -> None:
 
 
 def cmd_import(args: argparse.Namespace) -> None:
-    if args.adapter == "lm-eval":
-        if not args.model:
-            raise SystemExit("error: --model is required for the lm-eval adapter")
-        from errorbars.adapters.lm_eval import load_lm_eval_samples
-
-        data = load_lm_eval_samples(args.file, model=args.model, metric=args.metric, filter_name=args.filter)
-    elif args.adapter == "inspect":
-        try:
-            from errorbars.adapters.inspect_ai import load_inspect_log
-        except ImportError as exc:
-            raise SystemExit(f"error: {exc}") from exc
-
-        data = load_inspect_log(args.file, scorer=args.scorer)
-    else:  # pragma: no cover - argparse `choices` already prevents this
-        raise SystemExit(f"error: unknown adapter {args.adapter!r}")
+    # The adapter word is kept for the commands people already have; what each file is, is
+    # read from the file.
+    args.question_col, args.model_col, args.score_col = "question_id", "model", "score"
+    args.cluster_col, args.sample_col = "cluster_id", "sample"
+    data = _load(args, model=args.model)
 
     write_csv(data, args.output)
     n_models = len(data.models())
@@ -348,32 +425,31 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_sum = sub.add_parser("summarize", help="mean, SE, and CI for one model")
-    p_sum.add_argument("file")
     p_sum.add_argument("--model", default=None, help="filter to this model (default: use all rows)")
     p_sum.add_argument("--confidence", type=float, default=0.95)
     p_sum.add_argument("--ci", choices=["auto", "clt", "wilson", "bootstrap"], default="auto")
     p_sum.add_argument("--seed", type=int, default=0, help="bootstrap RNG seed")
     p_sum.add_argument("--json", action="store_true")
-    _column_args(p_sum)
+    _input_args(p_sum)
     p_sum.set_defaults(func=cmd_summarize)
 
     p_cmp = sub.add_parser("compare", help="paired comparison of two models")
-    p_cmp.add_argument("file")
-    p_cmp.add_argument("--model-a", required=True)
-    p_cmp.add_argument("--model-b", required=True)
+    p_cmp.add_argument(
+        "--model-a", default=None, help="default: the first of the two models in the input"
+    )
+    p_cmp.add_argument("--model-b", default=None, help="default: the second")
     p_cmp.add_argument("--confidence", type=float, default=0.95)
     p_cmp.add_argument("--json", action="store_true")
-    _column_args(p_cmp)
+    _input_args(p_cmp)
     p_cmp.set_defaults(func=cmd_compare)
 
     p_lb = sub.add_parser("leaderboard", help="rank all models with pairwise tests")
-    p_lb.add_argument("file")
     p_lb.add_argument("--confidence", type=float, default=0.95)
     p_lb.add_argument("--alpha", type=float, default=0.05)
     p_lb.add_argument("--plot", default=None, help="write an SVG forest plot to this path")
     p_lb.add_argument("--plot-title", default=None)
     p_lb.add_argument("--json", action="store_true")
-    _column_args(p_lb)
+    _input_args(p_lb)
     p_lb.set_defaults(func=cmd_leaderboard)
 
     p_pow = sub.add_parser("power", help="sample-size / minimum-detectable-effect planning")
@@ -397,22 +473,14 @@ def build_parser() -> argparse.ArgumentParser:
         "import", help="convert an lm-evaluation-harness or Inspect AI log to the canonical CSV"
     )
     p_imp.add_argument("adapter", choices=["lm-eval", "inspect"])
-    p_imp.add_argument("file", help="lm-eval samples_*.jsonl file, or an Inspect .eval/.json log")
+    p_imp.add_argument("file", nargs="+", metavar="FILE", help=_FILE_HELP)
     p_imp.add_argument("-o", "--output", required=True, help="path to write the canonical CSV to")
     p_imp.add_argument(
-        "--model", default=None, help="model name to record (lm-eval adapter only; required for it)"
-    )
-    p_imp.add_argument(
-        "--metric", default=None, help="lm-eval metric to use as the score (default: first available)"
-    )
-    p_imp.add_argument(
-        "--filter",
+        "--model",
         default=None,
-        help="lm-eval filter to use, for a task that scores each question under several (e.g. maj@8)",
+        help="model name for every log given (default: the one each log names; NAME=PATH names one)",
     )
-    p_imp.add_argument(
-        "--scorer", default=None, help="Inspect scorer to use (default: the only one, if unambiguous)"
-    )
+    _harness_args(p_imp)
     p_imp.set_defaults(func=cmd_import)
 
     return parser

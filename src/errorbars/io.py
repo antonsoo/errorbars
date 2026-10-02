@@ -16,7 +16,15 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-__all__ = ["EvalData", "ColumnMap", "load_csv", "load_jsonl", "load_dataframe", "write_csv"]
+__all__ = [
+    "EvalData",
+    "ColumnMap",
+    "concat",
+    "load_csv",
+    "load_jsonl",
+    "load_dataframe",
+    "write_csv",
+]
 
 
 @dataclass(frozen=True)
@@ -75,6 +83,59 @@ class EvalData:
         for qid, c in zip(self.question_id, self.cluster_id, strict=True):
             out.setdefault(qid, c)
         return out
+
+
+def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
+    """Put several sources' rows together: one log per model, or one per task.
+
+    ``parts`` pairs each source's name (a path, used in error messages) with its data. A
+    source without cluster ids or sample ids gets what a file without those columns gets:
+    each question its own cluster, sample ``"0"``.
+
+    The same (model, question, sample) in two sources is an error, as it is within one file:
+    counted twice, it would inflate n and shrink every standard error. It happens when a run
+    is given twice, or when two runs of one model are given without telling them apart.
+    """
+    parts = list(parts)
+    if not parts:
+        raise ValueError("no data to combine")
+    if len(parts) == 1:
+        return parts[0][1]
+    any_clusters = any(data.cluster_id for _, data in parts)
+    any_samples = any(data.sample for _, data in parts)
+
+    question_id: list[str] = []
+    model: list[str] = []
+    score: list[float] = []
+    cluster_id: list[str] = []
+    sample: list[str] = []
+    seen: dict[tuple[str, str, str], str] = {}
+    for source, data in parts:
+        samples = data.sample or ["0"] * len(data)
+        for m, q, smp in zip(data.model, data.question_id, samples, strict=True):
+            key = (m, q, smp)
+            if key in seen:
+                raise ValueError(
+                    f"{source}: model {m!r} already has a score for question {q!r} (from "
+                    f"{seen[key]}). Either the same run is given twice, or these are two runs "
+                    "of one model, which need different model names (NAME=PATH names a "
+                    "harness log's model)"
+                )
+            seen[key] = source
+        question_id.extend(data.question_id)
+        model.extend(data.model)
+        score.extend(data.score)
+        cluster_id.extend(data.cluster_id or data.question_id)
+        sample.extend(samples)
+
+    return EvalData(
+        question_id,
+        model,
+        score,
+        cluster_id if any_clusters else None,
+        sample if any_samples else None,
+        parts[0][1].columns,
+    )
 
 
 _MAX_SCORE = 1e100

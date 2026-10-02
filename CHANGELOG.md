@@ -2,6 +2,47 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.0] - 2026-10-01
+
+A harness writes one log per model, and every command took exactly one file. Asking whether
+model B beats model A, starting from real lm-eval output, was two `import` runs, a
+hand-made concatenation of two CSVs, and then `compare`.
+
+### Added
+
+- `summarize`, `compare` and `leaderboard` take one or more files or directories and read
+  each as what it is: errorbars' CSV/JSONL, an lm-evaluation-harness `samples_*.jsonl`, or
+  an Inspect AI `.eval` log. `errorbars compare out/model-a out/model-b` is the whole
+  comparison; `errorbars leaderboard out` ranks every model under an lm-eval output
+  directory. Checked against the output directory of two real lm-eval 0.4.13 runs
+  (`--model hf`, two tiny models, COPA), committed as a fixture: the means are the
+  accuracies lm-eval reported.
+- The model of an lm-eval samples file is read from the `results_<timestamp>.json` lm-eval
+  writes beside it (`model_name`), so `--model` is no longer required. A samples file moved
+  away from its results file has to be named, as `NAME=PATH`; the same form tells two runs of
+  one model apart (`greedy=a.eval sampled=b.eval`).
+- A directory with several runs of one task (lm-eval adds a timestamped file on every
+  re-run) uses the latest and says so on stderr.
+- The same model, question and sample in two inputs is refused and both files are named.
+- `compare` with exactly two models in the input needs no `--model-a`/`--model-b`. Its
+  output says how many questions only one of the two models answered (`n_only_a`,
+  `n_only_b` in `--json`), and `leaderboard` says when the models were not scored on the same
+  questions.
+- `import` takes several logs and directories and writes one CSV. `--metric`, `--filter`
+  and `--scorer` are available on every command that reads logs.
+- Python: `errorbars.load_inputs`, `errorbars.io.concat`,
+  `errorbars.adapters.lm_eval.infer_model_name`.
+
+### Fixed
+
+- `summarize` on a file without a `cluster_id` column printed clustering diagnostics anyway,
+  with every question as its own cluster: for 4 questions, "n clusters 4" and a "clustered
+  CI" of [-0.05, 1.55]. Diagnostics now need a cluster that groups questions.
+- `summarize` without `--model` on a file with several models pooled them: the example
+  benchmark's 4 models x 200 questions were summarized as one sample of n = 800 (SE 0.017,
+  where each model's is 0.033 to 0.035). It now asks which model, or points to `leaderboard`.
+  With one model in the data, the summary is titled with its name instead of `(all)`.
+
 ## [0.1.3] - 2026-10-01
 
 ### Fixed

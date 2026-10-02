@@ -65,8 +65,11 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   and cluster design effect.
 - **CLI** — `errorbars summarize|compare|leaderboard|power|import`, `rich` tables by default,
   `--json` for scripting.
-- **Adapters** — `errorbars import lm-eval|inspect` converts lm-evaluation-harness `--log_samples`
-  output or an Inspect AI `.eval` log into the canonical format (see below).
+- **Reads what harnesses write** — a harness leaves one log per model, so every command takes
+  one or more files or directories and reads each as what it is: lm-evaluation-harness
+  `--log_samples` output, Inspect AI `.eval` logs, or the CSV/JSONL format below.
+  `errorbars compare out/model-a out/model-b` is the whole comparison (see
+  [below](#reading-lm-evaluation-harness-and-inspect-ai-logs)).
 - **Web calculator** — a static "how many eval questions do I need?" power calculator
   ([live demo](https://antonsoo.github.io/errorbars/)), whose TypeScript formulas are checked
   against the Python ones by the test suite.
@@ -141,34 +144,71 @@ Column names are configurable (`--question-col`, `--cluster-col`, etc., or `Colu
 Scores can be binary (0/1) or continuous. `cluster_id` groups correlated questions (e.g. several
 questions per reading passage); `sample` marks repeated generations of the same question.
 
-### Importing from lm-evaluation-harness or Inspect AI
+Every command takes several files (`errorbars leaderboard model-a.csv model-b.csv ...`) and puts
+their rows together. The same model, question and sample in two files is refused, as it is within
+one file: counted twice it would inflate n and shrink every error bar.
 
-`errorbars import` converts either tool's own log format into the canonical CSV above:
+### Reading lm-evaluation-harness and Inspect AI logs
+
+A harness writes one log per model and per task, so "is B better than A" starts from two files.
+`summarize`, `compare` and `leaderboard` read them as they are:
 
 ```bash
-# lm-evaluation-harness: lm_eval run --model <...> --tasks <...> --log_samples --output_path <dir>
-errorbars import lm-eval runs/<dir>/samples_<task>_<timestamp>.jsonl \
-  --model my-model-name -o converted.csv
-
-# Inspect AI: inspect eval <task> --model <...>  (writes a .eval log by default)
-errorbars import inspect logs/<run>.eval -o converted.csv
+# lm-evaluation-harness: lm_eval run --model hf --model_args pretrained=<model> --tasks copa \
+#                          --log_samples --output_path out      (one directory per model)
+errorbars compare out/sshleifer__tiny-gpt2 out/hf-internal-testing__tiny-random-gpt2
 ```
+
+```
+│ n (shared questions)                                  │                20 │
+│ mean(sshleifer/tiny-gpt2)                             │            0.6000 │
+│ mean(hf-internal-testing/tiny-random-gpt2)            │            0.8000 │
+│ mean diff (A - B)                                     │           -0.2000 │
+│ paired SE                                             │            0.1376 │
+│ 95% CI                                                │ [-0.4881, 0.0881] │
+│ p-value                                               │            0.1625 │
+│ McNemar discordant (A wrong/B right, A right/B wrong) │             6 / 2 │
+```
+
+That is a real run, committed under `tests/fixtures/lm_eval_output/` (two tiny models, 20 COPA
+questions). lm-eval's own table says 0.6 ± 0.11 and 0.8 ± 0.09; the paired test on the same 20
+answers gives p = 0.16, so the 20-point gap is not evidence yet. (Rows trimmed; the command prints
+a few more.)
+
+```bash
+errorbars leaderboard out                       # every model under the output directory
+errorbars compare logs/run-a.eval logs/run-b.eval           # Inspect AI logs
+errorbars compare greedy=logs/a.eval sampled=logs/b.eval    # two runs of one model, told apart
+errorbars import lm-eval out -o all.csv         # or write the canonical CSV once and keep it
+```
+
+- **lm-eval**: a `samples_<task>_<timestamp>.jsonl` file, a model's directory, or the whole
+  `--output_path`. The samples file does not name its model; lm-eval writes it beside a
+  `results_<timestamp>.json` that does, and that is where the name comes from. A samples file
+  moved away from it has to be named: `my-model=path/to/samples_copa_....jsonl`. When a directory
+  holds several runs of a task, the latest is used and a note says so. Question ids are
+  `<task>-<doc_id>`, so several tasks of one model add up to one benchmark.
+- **Inspect AI**: `.eval` (or `.json`) logs; the model is the one in the log. Epochs (`--epochs N`,
+  repeated sampling of the same input) land in the `sample` column automatically.
+- With exactly two models in the input, `compare` needs no `--model-a`/`--model-b`: A is the first
+  one given. When the two were not scored on the same questions (a different `--limit`, a run
+  that crashed), the comparison uses the shared ones and reports how many were left out.
 
 `--metric` (lm-eval) picks which computed metric to use as the score when a task reports more than
 one (e.g. `acc` vs. `acc_norm`); it defaults to the first one. `--filter` (lm-eval) picks one filter
 for a task that scores every question under several: `gsm8k_cot_self_consistency` logs each question
 three times (`score-first`, `maj@8`, `maj@64`), and reading those as three times the questions would
 shrink every error bar, so the import stops and asks. `--scorer` (Inspect) picks one scorer for
-tasks with more than one. Inspect epochs (`--epochs N`, repeated sampling of the same input) land in
-the `sample` column automatically.
+tasks with more than one.
 
 Both adapters were built and tested against real, unedited output — not from memory: **lm-eval
-0.4.13** (`lm_eval run --model dummy --tasks copa --limit 20 --log_samples ...`, plus a
-multi-metric `arc_easy` run and a three-filter `gsm8k_cot_self_consistency` run) and **inspect-ai
-0.3.268** (small tasks through the built-in `mockllm/model` provider: single epoch, two epochs, and
-a scorer with named values). The exact log files are committed as test fixtures
-(`tests/fixtures/samples_*.jsonl`, `tests/fixtures/inspect_*.eval`) and re-parsed in
-`tests/test_adapters.py` on every run. The Inspect adapter reads logs with Inspect's own
+0.4.13** (`lm_eval run --model dummy --tasks copa --limit 20 --log_samples ...`, a multi-metric
+`arc_easy` run, a three-filter `gsm8k_cot_self_consistency` run, and the two-model output directory
+above) and **inspect-ai 0.3.268** (small tasks through the built-in `mockllm/model` provider: single
+epoch, two epochs, and a scorer with named values). The exact log files are committed as test
+fixtures (`tests/fixtures/samples_*.jsonl`, `tests/fixtures/lm_eval_output/`,
+`tests/fixtures/inspect_*.eval`) and re-parsed in `tests/test_adapters.py` and
+`tests/test_inputs.py` on every run. The Inspect adapter reads logs with Inspect's own
 `inspect_ai.log.read_eval_log` and `inspect_ai.scorer.value_to_float` rather than hand-parsing its
 binary `.eval` format, and needs the `inspect` extra:
 `pip install "errorbars[inspect]"`. The lm-eval

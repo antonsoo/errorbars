@@ -1,0 +1,43 @@
+{
+  "results": {
+    "copa": {
+      "name": "copa",
+      "alias": "copa",
+      "sample_len": 20,
+      "acc,none": 0.6,
+      "acc_stderr,none": 0.11239029738980327
+    }
+  },
+  "n-samples": {
+    "copa": {
+      "original": 100,
+      "effective": 20
+    }
+  },
+  "config": {
+    "model": "hf",
+    "model_args": {
+      "pretrained": "sshleifer/tiny-gpt2"
+    },
+    "model_num_parameters": 102714,
+    "model_dtype": "torch.float32",
+    "model_revision": "main",
+    "model_sha": "5f91d94bd9cd7190a9f3216ff93cd1dd95f2c7be",
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": "cpu",
+    "use_cache": null,
+    "limit": 20.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "lm_eval_version": "0.4.13",
+  "model_source": "hf",
+  "model_name": "sshleifer/tiny-gpt2",
+  "model_name_sanitized": "sshleifer__tiny-gpt2",
+  "date": 1790921714.0712206
+}

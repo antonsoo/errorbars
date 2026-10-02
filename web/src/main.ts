@@ -1,3 +1,4 @@
+import "./fonts/fonts.css";
 import "./style.css";
 import { questionsNeeded, designEffect, type PowerInputs } from "./power.ts";
 import { buildCurve, renderChart } from "./chart.ts";

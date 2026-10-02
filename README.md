@@ -85,26 +85,23 @@ errorbars summarize examples/data/reading_comprehension.csv --model tuned-70b
 ```
 
 ```
-    summarize: tuned-70b
-┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
-┃ metric ┃            value ┃
-┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
-│ n      │              200 │
-│ mean   │           0.6900 │
-│ SE     │           0.0328 │
-│ 95% CI │ [0.6257, 0.7543] │
-│ method │              clt │
-└────────┴──────────────────┘
-       clustering diagnostics
-┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
-┃ metric        ┃            value ┃
-┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
-│ n clusters    │               40 │
-│ ICC           │           0.0710 │
-│ design effect │            1.284 │
-│ clustered SE  │           0.0372 │
-│ clustered CI  │ [0.6148, 0.7652] │
-└───────────────┴──────────────────┘
+summarize: tuned-70b
+metric             value
+------  ----------------
+n                    200
+mean              0.6900
+SE                0.0328
+95% CI  [0.6257, 0.7543]
+method               clt
+
+clustering diagnostics
+metric                    value
+-------------  ----------------
+n clusters                   40
+ICC                      0.0710
+design effect             1.284
+clustered SE             0.0372
+clustered CI   [0.6148, 0.7652]
 ```
 
 ```bash
@@ -162,14 +159,21 @@ errorbars compare out/sshleifer__tiny-gpt2 out/hf-internal-testing__tiny-random-
 ```
 
 ```
-│ n (shared questions)                                  │                20 │
-│ mean(sshleifer/tiny-gpt2)                             │            0.6000 │
-│ mean(hf-internal-testing/tiny-random-gpt2)            │            0.8000 │
-│ mean diff (A - B)                                     │           -0.2000 │
-│ paired SE                                             │            0.1376 │
-│ 95% CI                                                │ [-0.4881, 0.0881] │
-│ p-value                                               │            0.1625 │
-│ McNemar discordant (A wrong/B right, A right/B wrong) │             6 / 2 │
+compare: sshleifer/tiny-gpt2 vs hf-internal-testing/tiny-random-gpt2
+metric                                                             value
+-----------------------------------------------------  -----------------
+n (shared questions)                                                  20
+mean(sshleifer/tiny-gpt2)                                         0.6000
+mean(hf-internal-testing/tiny-random-gpt2)                        0.8000
+mean diff (A - B)                                                -0.2000
+paired SE                                                         0.1376
+95% CI                                                 [-0.4881, 0.0881]
+p-value                                                           0.1625
+correlation(A, B)                                                 0.1021
+unpaired SE (for reference)                                       0.1451
+variance reduction from pairing                                    10.0%
+McNemar discordant (A wrong/B right, A right/B wrong)              6 / 2
+McNemar exact p-value                                             0.2891
 ```
 
 That is a real run, committed under `tests/fixtures/lm_eval_output/` (two tiny models, 20 COPA

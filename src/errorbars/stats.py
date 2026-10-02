@@ -10,9 +10,10 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from statistics import NormalDist
+from typing import Any
 
 import numpy as np
-from numpy.typing import ArrayLike
+from numpy.typing import ArrayLike, NDArray
 
 __all__ = [
     "MeanEstimate",
@@ -225,7 +226,7 @@ class ClusterDiagnostics:
         }
 
 
-def _group_by(values: np.ndarray, clusters: np.ndarray) -> list[np.ndarray]:
+def _group_by(values: NDArray[np.float64], clusters: NDArray[Any]) -> list[NDArray[np.float64]]:
     order = np.argsort(clusters, kind="stable")
     values_sorted = values[order]
     clusters_sorted = clusters[order]

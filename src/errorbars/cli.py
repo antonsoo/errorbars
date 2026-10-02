@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from errorbars import __version__
+from errorbars._tables import Output, Table
 from errorbars.compare import paired_compare
 from errorbars.inputs import load_inputs
 from errorbars.io import ColumnMap, EvalData, write_csv
@@ -16,14 +17,6 @@ from errorbars.leaderboard import build_leaderboard
 from errorbars.plot import forest_plot_svg
 from errorbars.power import minimum_detectable_effect, questions_needed
 from errorbars.stats import bootstrap_ci, is_binary, mean_ci_clt, wilson_ci
-
-try:
-    from rich.console import Console
-    from rich.table import Table
-
-    _HAS_RICH = True
-except ImportError:  # pragma: no cover
-    _HAS_RICH = False
 
 
 def _require_models(data: EvalData, *names: str) -> None:
@@ -94,12 +87,6 @@ def _columns_from(args: argparse.Namespace) -> ColumnMap:
 
 def _print_json(obj: Any) -> None:
     print(json.dumps(obj, indent=2, default=str))
-
-
-def _console() -> Console:
-    if not _HAS_RICH:
-        raise SystemExit("error: rich is required for table output; install errorbars[cli] or use --json")
-    return Console()
 
 
 def _has_clusters(data: EvalData) -> bool:
@@ -180,8 +167,8 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         _print_json(result)
         return
 
-    console = _console()
-    table = Table(title=f"summarize: {result['model']}", show_header=True, header_style="bold cyan")
+    out = Output()
+    table = Table(title=f"summarize: {result['model']}")
     table.add_column("metric")
     table.add_column("value", justify="right")
     table.add_row("n", str(est.n))
@@ -189,7 +176,7 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     table.add_row("SE", f"{est.se:.4f}")
     table.add_row(f"{int(args.confidence * 100)}% CI", f"[{est.ci_low:.4f}, {est.ci_high:.4f}]")
     table.add_row("method", est.method)
-    console.print(table)
+    out.table(table)
     if cluster_info:
         ct = Table(title="clustering diagnostics", header_style="bold magenta")
         ct.add_column("metric")
@@ -202,14 +189,14 @@ def cmd_summarize(args: argparse.Namespace) -> None:
             "clustered CI",
             f"[{cluster_info['clustered_ci_low']:.4f}, {cluster_info['clustered_ci_high']:.4f}]",
         )
-        console.print(ct)
+        out.table(ct)
     if within_between:
         wt = Table(title="within/between-question variance", header_style="bold magenta")
         wt.add_column("component")
         wt.add_column("variance", justify="right")
         wt.add_row("within-question (sampling noise)", f"{within_between['var_within']:.4f}")
         wt.add_row("between-question (item difficulty)", f"{within_between['var_between']:.4f}")
-        console.print(wt)
+        out.table(wt)
 
 
 def _models_to_compare(data: EvalData, model_a: str | None, model_b: str | None) -> tuple[str, str]:
@@ -262,8 +249,8 @@ def cmd_compare(args: argparse.Namespace) -> None:
         )
         return
 
-    console = _console()
-    table = Table(title=f"compare: {args.model_a} vs {args.model_b}", header_style="bold cyan")
+    out = Output()
+    table = Table(title=f"compare: {args.model_a} vs {args.model_b}")
     table.add_column("metric")
     table.add_column("value", justify="right")
     table.add_row("n (shared questions)", str(comp.n))
@@ -290,7 +277,7 @@ def cmd_compare(args: argparse.Namespace) -> None:
             f"{comp.mcnemar.n01} / {comp.mcnemar.n10}",
         )
         table.add_row("McNemar exact p-value", f"{comp.mcnemar.p_value:.4g}")
-    console.print(table)
+    out.table(table)
 
 
 def cmd_leaderboard(args: argparse.Namespace) -> None:
@@ -306,8 +293,8 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         _print_json(lb.as_dict())
         return
 
-    console = _console()
-    table = Table(title="leaderboard", header_style="bold cyan")
+    out = Output()
+    table = Table(title="leaderboard")
     table.add_column("rank", justify="right")
     table.add_column("model")
     table.add_column("mean", justify="right")
@@ -328,10 +315,11 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             str(e.n),
             letter_of.get(e.model, ""),
         )
-    console.print(table)
-    console.print(
-        "[dim]Models sharing a group letter are not statistically distinguishable "
-        f"(Holm-corrected paired test, alpha={args.alpha}).[/dim]"
+    out.table(table)
+    out.note(
+        "Models sharing a group letter are not statistically distinguishable "
+        f"(Holm-corrected paired test, alpha={args.alpha}).",
+        style="dim",
     )
 
     pt = Table(title="pairwise paired tests (Holm-corrected)", header_style="bold magenta")
@@ -351,15 +339,17 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             f"{pr.p_holm:.4g}",
             sig,
         )
-    console.print(pt)
-    console.print(
-        "[dim]'p (used, Holm)' is the cluster-robust paired p-value (when clusters are "
-        "present) after Holm correction across all pairs; otherwise the unclustered paired p-value.[/dim]"
+    out.table(pt)
+    out.note(
+        "'p (used, Holm)' is the cluster-robust paired p-value (when clusters are "
+        "present) after Holm correction across all pairs; otherwise the unclustered paired p-value.",
+        style="dim",
     )
     if len(question_sets) > 1:
-        console.print(
-            "[yellow]The models were not scored on the same questions. Each mean is over that "
-            "model's own questions; each paired test uses the questions its two models share.[/yellow]"
+        out.note(
+            "The models were not scored on the same questions. Each mean is over that "
+            "model's own questions; each paired test uses the questions its two models share.",
+            style="yellow",
         )
 
 
@@ -385,8 +375,8 @@ def cmd_power(args: argparse.Namespace) -> None:
         if args.json:
             _print_json(payload)
             return
-        console = _console()
-        table = Table(title="power: questions needed", header_style="bold cyan")
+        out = Output()
+        table = Table(title="power: questions needed")
         table.add_column("input")
         table.add_column("value", justify="right")
         table.add_row("delta", f"{args.delta}")
@@ -395,16 +385,16 @@ def cmd_power(args: argparse.Namespace) -> None:
         table.add_row("rho (paired correlation)", f"{args.rho}")
         table.add_row("samples/question", str(args.samples_per_question))
         table.add_row("cluster design effect", f"{args.cluster_deff}")
-        console.print(table)
-        console.print(f"[bold green]Questions needed: {result.n_questions}[/bold green]")
+        out.table(table)
+        out.note(f"Questions needed: {result.n_questions}", style="bold green")
     else:
         mde = minimum_detectable_effect(n_questions=args.n, **kwargs)
         payload = {"n_questions": args.n, "mde": mde, **{k: v for k, v in kwargs.items()}}
         if args.json:
             _print_json(payload)
             return
-        console = _console()
-        console.print(f"[bold green]Minimum detectable effect at n={args.n}: {mde:.4f}[/bold green]")
+        out = Output()
+        out.note(f"Minimum detectable effect at n={args.n}: {mde:.4f}", style="bold green")
 
 
 def cmd_import(args: argparse.Namespace) -> None:

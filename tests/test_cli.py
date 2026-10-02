@@ -166,6 +166,7 @@ def test_cli_import_lm_eval_custom_metric(tmp_path) -> None:
 
 
 def test_cli_import_inspect(tmp_path) -> None:
+    pytest.importorskip("inspect_ai")
     out = tmp_path / "converted.csv"
     result = run_cli("import", "inspect", str(INSPECT_FIXTURE), "-o", str(out))
     assert result.returncode == 0, result.stderr

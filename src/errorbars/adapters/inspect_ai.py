@@ -42,7 +42,8 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
         from inspect_ai.scorer import value_to_float
     except ImportError as exc:  # pragma: no cover - exercised only without the extra
         raise ImportError(
-            "load_inspect_log requires inspect-ai (the 'inspect' extra): pip install inspect-ai"
+            "reading an Inspect log needs inspect-ai, which the 'inspect' extra installs: "
+            'pip install "errorbars[inspect]"'
         ) from exc
 
     try:

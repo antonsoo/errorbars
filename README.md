@@ -32,7 +32,7 @@ as a win. The full walkthrough, with every number copied from a real command, is
 ## Quickstart
 
 ```bash
-pip install "errorbars[cli]"
+pip install errorbars
 errorbars power --delta 0.03 --baseline 0.5
 ```
 
@@ -63,8 +63,10 @@ errorbars leaderboard examples/data/reading_comprehension.csv
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect.
-- **CLI** — `errorbars summarize|compare|leaderboard|power|import`, `rich` tables by default,
-  `--json` for scripting.
+- **CLI** — `errorbars summarize|compare|leaderboard|power|import`. Tables are plain aligned text
+  on a bare install (numpy is the only dependency) and `rich` tables with
+  `pip install "errorbars[cli]"`; either way a model name is printed whole, and a table written to
+  a pipe is as wide as it needs to be. `--json` for scripting.
 - **Reads what harnesses write** — a harness leaves one log per model, so every command takes
   one or more files or directories and reads each as what it is: lm-evaluation-harness
   `--log_samples` output, Inspect AI `.eval` logs, or the CSV/JSONL format below.

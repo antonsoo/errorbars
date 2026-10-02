@@ -2,6 +2,31 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.1] - 2026-10-02
+
+What the table commands print, checked the way their output is read: after `pip install
+errorbars`, in a CI log, and with the model names harnesses produce.
+
+### Fixed
+
+- `pip install errorbars` gives a working command line. `rich` is an extra, and without it
+  `summarize`, `compare`, `leaderboard` and `power` stopped with "rich is required for table
+  output". They print the same rows as aligned plain text now; `errorbars[cli]` still gives the
+  `rich` tables.
+- Model names are printed whole. Written to a pipe (a CI log, a file), tables were laid out 80
+  columns wide and every cell cut to fit: lm-eval's `meta-llama__Llama-3.1-8B-Instruct` and
+  `meta-llama__Llama-3.1-70B-Instruct` were both `meta-llam…` in the pairwise table, and the
+  column headings were cut too. A pipe gets the table at its full width; a terminal too narrow
+  for it folds the names onto more lines and keeps the numbers on one.
+- Model names are printed as they are. `rich` read `[q4_k_m]` in a name as style markup and
+  dropped it, and a name holding something like `[/b]` ended the command with a `MarkupError`
+  traceback. Nothing from the data is parsed as markup or as an emoji code any more.
+- The message for a missing `inspect-ai` names the extra (`pip install "errorbars[inspect]"`),
+  which also carries the pins inspect-ai needs to import.
+- The strict type check passes on Python 3.10 (an array annotation was only complete on the
+  numpy releases that need 3.11), and the test for importing an Inspect log is skipped without
+  inspect-ai, like the rest.
+
 ## [0.2.0] - 2026-10-01
 
 A harness writes one log per model, and every command took exactly one file. Asking whether

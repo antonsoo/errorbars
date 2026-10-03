@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+### Maintenance
+
+- The uv lock now resolves stable Pydantic 2.13.5 and wrapt 2.5.0 instead of
+  beta/release-candidate versions selected by a permissive local resolver setting.
+  The project explicitly prefers stable releases. The narrow-terminal regression now
+  supplies its own terminal environment so it also runs in noninteractive shells.
+
 ## [0.2.4] - 2026-10-03
 
 ### Security

@@ -128,7 +128,15 @@ def test_rich_folds_names_in_a_narrow_terminal(capsys: pytest.CaptureFixture[str
 
     class Narrow(Output):
         def _console(self, width: int | None = None) -> Console:
-            return Console(markup=False, width=40, force_terminal=True, color_system=None)
+            # Rich snapshots the terminal environment at import time. In a dumb
+            # terminal it ignores width and uses 80 columns, even with force_terminal.
+            return Console(
+                markup=False,
+                width=40,
+                force_terminal=True,
+                color_system=None,
+                _environ={"TERM": "xterm-256color"},
+            )
 
     table = Table(title="leaderboard")
     table.add_column("model")

@@ -2,9 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
-## Unreleased
+## [0.2.3] - 2026-10-03
 
-The web demo only; the package is unchanged.
+### Compatibility
+
+- Python 3.13 and 3.14 are tested and declared. CI runs the suite on 3.14
+  as well, and the package's classifiers list both versions. The code is
+  unchanged: with the newest release of every dependency, the tests pass on
+  3.14 and on 3.15's release candidate.
+
+The rest of this release is in the web demo; the package is otherwise
+unchanged.
 
 ### Changed
 

@@ -32,7 +32,7 @@ include = ["/src", "/docs/*.md", "/README.md", "/CHANGELOG.md", "/LICENSE*", "/p
 
 [project]
 name = "errorbars"
-version = "0.2.2"
+version = "0.2.3"
 description = "Error bars for LLM evals: standard errors, clustering, paired comparisons, leaderboards, and power analysis."
 dynamic = ["readme"]
 license = "MIT"

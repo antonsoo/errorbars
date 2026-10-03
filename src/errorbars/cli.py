@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from errorbars import __version__
-from errorbars._tables import Output, Table
+from errorbars._tables import Output, Table, visible
 from errorbars.compare import paired_compare
 from errorbars.inputs import load_inputs
 from errorbars.io import ColumnMap, EvalData, write_csv
@@ -41,7 +41,7 @@ def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
     except ImportError as exc:
         raise SystemExit(f"error: {exc}") from exc
     for note in loaded.notes:
-        print(f"note: {note}", file=sys.stderr)
+        print(f"note: {visible(note)}", file=sys.stderr)
     return loaded.data
 
 
@@ -497,6 +497,16 @@ def main(argv: list[str] | None = None) -> None:
     parser = build_parser()
     args = parser.parse_args(argv)
     _text_streams()
+    try:
+        _run(args)
+    except SystemExit as exc:
+        # The messages quote models, files and values from the data.
+        if isinstance(exc.code, str):
+            raise SystemExit(visible(exc.code)) from exc.__cause__
+        raise
+
+
+def _run(args: argparse.Namespace) -> None:
     try:
         args.func(args)
     except UnicodeDecodeError as exc:

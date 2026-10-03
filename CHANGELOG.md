@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.4] - 2026-10-03
+
+### Security
+
+- A model name or question id holding a terminal escape sequence was printed as it came: the
+  tables and the errors that list models sent it to the terminal, which obeys it (clears the
+  screen, retitles the window, hides the rest of the line). Each control character in text
+  from the data is now written as a visible escape: `m\x1b]0;title\x07`. `--json` already
+  escaped them.
+
 ## [0.2.3] - 2026-10-03
 
 ### Compatibility

@@ -162,3 +162,31 @@ def test_a_pipe_carries_any_model_name(tmp_path: Path, hide_rich: bool) -> None:
     missing = run_cli("summarize", str(path), "--model", "\u6a21\u578b", pipe_encoding="cp1252")
     assert missing.returncode != 0
     assert "no model '\u6a21\u578b' in the data" in missing.stderr
+
+
+@pytest.mark.parametrize("hide_rich", [False, True], ids=["rich", "plain"])
+def test_an_escape_sequence_in_a_name_is_shown_not_run(tmp_path: Path, hide_rich: bool) -> None:
+    # A model name holding a terminal escape sequence (this one retitles the window) was sent
+    # to the terminal as it was, in the tables and in errors that list the models.
+    osc = "\x1b]0;pwned\x07"
+    path = tmp_path / "scores.csv"
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["question_id", "model", "score"])
+        for q in range(40):
+            writer.writerow([f"q{q}", f"m{osc}", q % 2])
+            writer.writerow([f"q{q}", "other", (q // 2) % 2])
+    result = run_cli("leaderboard", str(path), hide_rich=hide_rich)
+    assert result.returncode == 0, result.stderr
+    assert "\x1b]" not in result.stdout and "\x07" not in result.stdout
+    assert "m\\x1b]0;pwned\\x07" in result.stdout
+    missing = run_cli("summarize", str(path), "--model", "nope", hide_rich=hide_rich)
+    assert missing.returncode != 0
+    assert "\x1b" not in missing.stderr and "m\\x1b]0;pwned\\x07" in missing.stderr
+
+
+def test_visible_leaves_text_and_escapes_controls() -> None:
+    from errorbars._tables import visible
+
+    assert visible("plain\ttext\nline") == "plain\ttext\nline"
+    assert visible("a\x1bb\x9bc\x00") == "a\\x1bb\\x9bc\\x00"

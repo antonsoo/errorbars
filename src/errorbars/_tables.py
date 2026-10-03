@@ -12,10 +12,14 @@ terminal follows three rules, each of which the first version of this broke:
   columns wide and cuts each cell to fit, which left two models of one organisation with the
   same visible name. A pipe gets the table at its full width, and a terminal too narrow for
   it gets the long cells folded onto more lines.
+- A name is printed as text. A control character in one (the ESC that starts a terminal escape
+  sequence) is written as a visible escape, ``\\x1b``, instead of being sent to the terminal,
+  where it could clear the screen, retitle the window or hide the rest of the line.
 """
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -27,11 +31,31 @@ try:
 except ImportError:  # pragma: no cover - exercised by the test that hides rich
     HAS_RICH = False
 
-__all__ = ["HAS_RICH", "Output", "Table"]
+__all__ = ["HAS_RICH", "Output", "Table", "visible"]
 
 Justify = Literal["left", "right"]
 
 _UNBOUNDED = 100_000
+
+_CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")
+
+
+def visible(text: str) -> str:
+    """``text`` with each control character (bar tab and line breaks) written as ``\\xNN``.
+
+    Model names, question ids and the values in an error come from the data, and a terminal
+    obeys the escape sequences in what it is given.
+    """
+    return _CONTROL.sub(lambda m: f"\\x{ord(m.group()):02x}", text)
+
+
+def _visible_table(table: Table) -> Table:
+    return Table(
+        title=visible(table.title),
+        header_style=table.header_style,
+        columns=[(visible(header), justify) for header, justify in table.columns],
+        rows=[tuple(visible(cell) for cell in row) for row in table.rows],
+    )
 
 
 @dataclass
@@ -82,6 +106,7 @@ class Output:
         return Console(markup=False, emoji=False, highlight=False, width=width)
 
     def table(self, table: Table) -> None:
+        table = _visible_table(table)
         if not self._rich:
             if not self._first:
                 print()
@@ -106,6 +131,7 @@ class Output:
         self._first = False
 
     def note(self, text: str, style: str | None = None) -> None:
+        text = visible(text)
         if self._rich:
             self._console().print(text, style=style)
         else:

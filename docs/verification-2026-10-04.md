@@ -1,8 +1,9 @@
 # Evaluation planner verification - 2026-10-04
 
 The planner and numeric changes in `3c7611a`, `19101c1`, and `e063acf` were
-verified from a separate clean checkout. Changes remain local; no package
-publication, source push, or site deployment was performed for this update.
+verified from a separate clean checkout. The completed source and website
+were subsequently pushed and checked on GitHub Pages. No package publication
+was performed for this update.
 
 ## Completed work
 
@@ -132,5 +133,25 @@ not persisted between visits. See [planning.md](planning.md) for these limits.
 
 Browser verification covered Chromium and Firefox, not Safari or mobile device
 hardware. The build command is `npm run build --prefix web`; deployment input
-would be `web/dist/`. Hosted behavior was not checked because this update was
-not deployed.
+is `web/dist/`.
+
+## Hosted release verification
+
+The source implementation through `f2ce8e5` was pushed to `main`. Pages
+commit `7a448bf` follows the existing `gh-pages` history without rewriting
+it. The published site is [Errorbars](https://antonsoo.github.io/errorbars/).
+
+| Check | Result |
+| --- | --- |
+| Hosted SHA-256 comparison | All 56 files matched the verified clean build |
+| Hosted workflows | All 26 production workflows passed in Chromium and Firefox |
+| Hosted accessibility | 16 scans across light/dark, desktop/phone, questions/budget modes; zero violations |
+| Hosted page errors / CSP / off-origin requests | Zero in those workflows |
+| Bundled third-party license and notice | Both matched their verified build files |
+
+The browser configuration now accepts a hosted base URL, so this check is
+reproducible without editing the test suite:
+
+```sh
+ERRORBARS_BASE_URL=https://antonsoo.github.io/errorbars/ npm run test:browser --prefix web
+```

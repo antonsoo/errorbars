@@ -3,11 +3,12 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
 
 async function boot(page) {
+  const siteOrigin = new URL(test.info().project.use.baseURL).origin;
   const errors = [];
   const external = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('request', request => {
-    if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== 'http://127.0.0.1:4197') external.push(request.url());
+    if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== siteOrigin) external.push(request.url());
   });
   await page.addInitScript(() => {
     window.cspViolations = [];

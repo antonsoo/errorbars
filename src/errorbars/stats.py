@@ -9,11 +9,14 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from numbers import Integral
 from statistics import NormalDist
 from typing import Any
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
+
+from errorbars._validation import group_vector, sample_sd, score_vector
 
 __all__ = [
     "MeanEstimate",
@@ -71,9 +74,7 @@ def regularized_incomplete_beta(a: float, b: float, x: float) -> float:
         return 0.0
     if x >= 1.0:
         return 1.0
-    log_front = (
-        math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b) + a * math.log(x) + b * math.log1p(-x)
-    )
+    log_front = math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b) + a * math.log(x) + b * math.log1p(-x)
     front = math.exp(log_front)
     # The continued fraction converges fast for x < (a + 1) / (a + b + 2); use the
     # symmetry I_x(a, b) = 1 - I_{1-x}(b, a) on the other side.
@@ -113,11 +114,11 @@ def t_for_confidence(confidence: float, dof: float) -> float:
 
 
 def is_binary(values: ArrayLike) -> bool:
-    """True if every value is (close to) 0 or 1."""
+    """True if every value is exactly 0 or 1; grades near an endpoint stay continuous."""
     arr = np.asarray(values, dtype=float)
     if arr.size == 0:
         return False
-    return bool(np.all((np.isclose(arr, 0.0)) | (np.isclose(arr, 1.0))))
+    return bool(np.all((arr == 0.0) | (arr == 1.0)))
 
 
 @dataclass(frozen=True)
@@ -151,12 +152,12 @@ def mean_ci_clt(values: ArrayLike, confidence: float = 0.95) -> MeanEstimate:
     the default estimator for continuous scores and for binary scores when
     n is reasonably large (see ``wilson_ci`` for the small-n binary case).
     """
-    arr = np.asarray(values, dtype=float)
+    arr = score_vector(values)
     n = arr.size
     if n < 2:
         raise ValueError("need at least 2 observations for a CLT interval")
     mean = float(arr.mean())
-    se = float(arr.std(ddof=1) / np.sqrt(n))
+    se = sample_sd(arr) / math.sqrt(n)
     z = z_for_confidence(confidence)
     return MeanEstimate(mean, se, mean - z * se, mean + z * se, confidence, "clt", n)
 
@@ -192,19 +193,27 @@ def bootstrap_ci(
     seed: int | None = 0,
 ) -> MeanEstimate:
     """Percentile bootstrap confidence interval for the mean."""
-    arr = np.asarray(values, dtype=float)
+    arr = score_vector(values)
     n = arr.size
     if n < 2:
         raise ValueError("need at least 2 observations to bootstrap")
     if not 0.0 < confidence < 1.0:
         raise ValueError(f"confidence must be in (0, 1), got {confidence}")
+    if isinstance(n_boot, bool) or not isinstance(n_boot, Integral) or n_boot < 2:
+        raise ValueError("n_boot must be an integer of at least 2 resamples")
     rng = np.random.default_rng(seed)
-    idx = rng.integers(0, n, size=(n_boot, n))
-    boot_means = arr[idx].mean(axis=1)
+    # Preserve all resample means while limiting temporary indices and indexed scores.
+    # Generator state carries between batches, so batching preserves the seeded stream.
+    batch_size = max(1, 250_000 // n)
+    boot_means = np.empty(n_boot)
+    for start in range(0, n_boot, batch_size):
+        stop = min(n_boot, start + batch_size)
+        idx = rng.integers(0, n, size=(stop - start, n))
+        boot_means[start:stop] = arr[idx].mean(axis=1)
     alpha = 1 - confidence
     lo, hi = np.quantile(boot_means, [alpha / 2, 1 - alpha / 2])
     mean = float(arr.mean())
-    se = float(boot_means.std(ddof=1))
+    se = sample_sd(boot_means)
     return MeanEstimate(mean, se, float(lo), float(hi), confidence, "bootstrap", n)
 
 
@@ -227,12 +236,11 @@ class ClusterDiagnostics:
 
 
 def _group_by(values: NDArray[np.float64], clusters: NDArray[Any]) -> list[NDArray[np.float64]]:
-    order = np.argsort(clusters, kind="stable")
-    values_sorted = values[order]
-    clusters_sorted = clusters[order]
-    # np.diff doesn't support string/object dtypes; compare neighbors directly.
-    boundaries = np.flatnonzero(clusters_sorted[1:] != clusters_sorted[:-1]) + 1
-    return np.split(values_sorted, boundaries)
+    # Identifiers are categorical: mixed scalar types need neither coercion nor sorting.
+    indices: dict[Any, list[int]] = {}
+    for i, cluster in enumerate(clusters):
+        indices.setdefault(cluster, []).append(i)
+    return [values[index] for index in indices.values()]
 
 
 def intraclass_correlation(values: ArrayLike, clusters: ArrayLike) -> float:
@@ -244,8 +252,11 @@ def intraclass_correlation(values: ArrayLike, clusters: ArrayLike) -> float:
     Returns 0.0 (no clustering signal) if there is only one cluster or all
     clusters are singletons.
     """
-    arr = np.asarray(values, dtype=float)
-    clu = np.asarray(clusters)
+    arr = score_vector(values)
+    clu = group_vector(clusters, arr.size)
+    scale = float(np.max(np.abs(arr))) if arr.size else 0.0
+    if scale:
+        arr = arr / scale
     groups = _group_by(arr, clu)
     g = len(groups)
     n = arr.size
@@ -283,27 +294,27 @@ def cluster_robust_se(values: ArrayLike, clusters: ArrayLike) -> float:
     default small-sample correction ``G/(G-1) * (N-1)/(N-K)``). See
     MacKinnon & White (1985) and Cameron, Gelbach & Miller (2011).
     """
-    arr = np.asarray(values, dtype=float)
-    clu = np.asarray(clusters)
+    arr = score_vector(values)
+    clu = group_vector(clusters, arr.size)
     n = arr.size
-    mean = arr.mean()
-    resid = arr - mean
+    if n < 2:
+        raise ValueError("need at least 2 observations for a clustered SE")
+    scale = float(np.max(np.abs(arr)))
+    scaled = arr / scale if scale else arr
+    resid = scaled - scaled.mean()
     groups = _group_by(resid, clu)
     g = len(groups)
     meat = sum(float(grp.sum()) ** 2 for grp in groups)
     if g <= 1:
-        # Falls back to the (unbiased) heteroskedasticity-robust / CLT SE.
-        return float(np.sqrt((resid**2).sum() / (n * (n - 1))))
+        raise ValueError("need at least 2 independent clusters; one cluster cannot estimate a clustered SE")
     # Small-sample correction G/(G-1) * (N-1)/(N-K), with K=1 (the constant),
     # so (N-1)/(N-K) = 1 and only the cluster-count term survives.
     correction = g / (g - 1)
     variance = (meat / n**2) * correction
-    return float(np.sqrt(max(variance, 0.0)))
+    return float(np.sqrt(max(variance, 0.0))) * scale
 
 
-def within_between_variance(
-    values: ArrayLike, question_ids: ArrayLike
-) -> tuple[float, float]:
+def within_between_variance(values: ArrayLike, question_ids: ArrayLike) -> tuple[float, float]:
     """Decompose variance across repeated samples per question.
 
     Returns ``(var_within, var_between)`` where ``var_within`` is the mean
@@ -313,8 +324,11 @@ def within_between_variance(
     random-effects moment estimator: ``var_between = max(0, MSB - MSW) /
     k0`` with the same unequal-group correction as ``intraclass_correlation``.
     """
-    arr = np.asarray(values, dtype=float)
-    qid = np.asarray(question_ids)
+    arr = score_vector(values)
+    qid = group_vector(question_ids, arr.size, "question_ids")
+    scale = float(np.max(np.abs(arr))) if arr.size else 0.0
+    if scale:
+        arr = arr / scale
     groups = _group_by(arr, qid)
     q = len(groups)
     n = arr.size
@@ -322,11 +336,18 @@ def within_between_variance(
     within_dof = sum(len(grp) - 1 for grp in groups if len(grp) > 1)
     var_within = float(sum(within_terms) / within_dof) if within_dof > 0 else 0.0
     if q <= 1:
-        return var_within, 0.0
+        return _variance_units(var_within, scale), 0.0
     grand_mean = arr.mean()
     ssb = sum(len(grp) * (grp.mean() - grand_mean) ** 2 for grp in groups)
     msb = ssb / (q - 1)
     sizes = np.array([len(grp) for grp in groups], dtype=float)
     k0 = (n - (sizes**2).sum() / n) / (q - 1) if q > 1 else 1.0
     var_between = float(max(0.0, (msb - var_within) / k0)) if k0 > 0 else max(0.0, msb)
-    return var_within, var_between
+    return _variance_units(var_within, scale), _variance_units(var_between, scale)
+
+
+def _variance_units(variance: float, scale: float) -> float:
+    restored = variance * scale * scale
+    if variance > 0 and restored == 0:
+        raise ValueError("variance components are too small to represent; rescale the score units")
+    return restored

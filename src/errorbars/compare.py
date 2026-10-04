@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 import numpy as np
 from numpy.typing import ArrayLike
 
+from errorbars._validation import group_vector, sample_sd, score_vector
 from errorbars.stats import cluster_robust_se, is_binary, t_for_confidence, t_two_sided_p
 
 __all__ = ["PairedComparison", "paired_compare", "McNemarResult", "mcnemar_exact"]
@@ -35,6 +36,7 @@ class PairedComparison:
     ci_high_clustered: float | None = None
     p_value_clustered: float | None = None
     mcnemar: McNemarResult | None = None
+    warnings: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {
@@ -50,6 +52,7 @@ class PairedComparison:
             "variance_reduction": self.variance_reduction,
             "n": self.n,
             "confidence": self.confidence,
+            "warnings": self.warnings,
         }
         if self.se_clustered is not None:
             d["se_clustered"] = self.se_clustered
@@ -79,8 +82,8 @@ def paired_compare(
     & Miller 2015). When both score vectors are binary, also runs McNemar's
     exact test.
     """
-    a = np.asarray(scores_a, dtype=float)
-    b = np.asarray(scores_b, dtype=float)
+    a = score_vector(scores_a, "scores_a")
+    b = score_vector(scores_b, "scores_b")
     if a.shape != b.shape:
         raise ValueError("scores_a and scores_b must have the same length (paired)")
     n = a.size
@@ -89,34 +92,40 @@ def paired_compare(
 
     diff = a - b
     mean_diff = float(diff.mean())
-    sd_diff = float(diff.std(ddof=1))
+    sd_diff = sample_sd(diff)
     se_paired = sd_diff / math.sqrt(n)
     t_crit = t_for_confidence(confidence, n - 1)
     ci_low, ci_high = mean_diff - t_crit * se_paired, mean_diff + t_crit * se_paired
-    t_stat = mean_diff / se_paired if se_paired > 0 else 0.0
-    p_value = t_two_sided_p(t_stat, n - 1) if se_paired > 0 else 1.0
+    p_value = _difference_p(mean_diff, se_paired, n - 1)
+    notes = []
+    if se_paired == 0:
+        notes.append(
+            "Paired differences have zero estimated variance. The t-test uses p=0 for a "
+            "nonzero difference and p=1 for identical scores by convention; a point interval "
+            "does not establish population certainty. Use the exact McNemar result for binary pairs."
+        )
 
-    var_a, var_b = float(a.var(ddof=1)), float(b.var(ddof=1))
-    corr = float(np.corrcoef(a, b)[0, 1]) if var_a > 0 and var_b > 0 else 0.0
-    var_unpaired = var_a + var_b
-    se_unpaired = math.sqrt(var_unpaired / n)
-    variance_reduction = 1.0 - (se_paired**2 / se_unpaired**2) if se_unpaired > 0 else 0.0
+    sd_a, sd_b = sample_sd(a), sample_sd(b)
+    scale_a, scale_b = float(np.max(np.abs(a))), float(np.max(np.abs(b)))
+    corr = float(np.corrcoef(a / scale_a, b / scale_b)[0, 1]) if sd_a > 0 and sd_b > 0 else 0.0
+    se_unpaired = math.hypot(sd_a, sd_b) / math.sqrt(n)
+    variance_reduction = 1.0 - (se_paired / se_unpaired) ** 2 if se_unpaired > 0 else 0.0
 
     se_clustered: float | None = None
     ci_low_c: float | None = None
     ci_high_c: float | None = None
     p_value_c: float | None = None
     if clusters is not None:
-        cluster_arr = np.asarray(clusters)
+        cluster_arr = group_vector(clusters, n)
         se_clustered = cluster_robust_se(diff, cluster_arr)
         n_clusters = len(set(cluster_arr.tolist()))
-        # With a single cluster cluster_robust_se falls back to the plain SE, so its reference is n - 1.
-        dof_c = n_clusters - 1 if n_clusters > 1 else n - 1
+        dof_c = n_clusters - 1
         t_crit_c = t_for_confidence(confidence, dof_c)
         ci_low_c = mean_diff - t_crit_c * se_clustered
         ci_high_c = mean_diff + t_crit_c * se_clustered
-        t_stat_c = mean_diff / se_clustered if se_clustered > 0 else 0.0
-        p_value_c = float(t_two_sided_p(t_stat_c, dof_c)) if se_clustered > 0 else 1.0
+        p_value_c = _difference_p(mean_diff, se_clustered, dof_c)
+        if se_clustered == 0:
+            notes.append("Cluster sums have zero estimated variance; the clustered t-test is degenerate.")
 
     scores_list_a: list[float] = a.tolist()
     scores_list_b: list[float] = b.tolist()
@@ -140,7 +149,14 @@ def paired_compare(
         ci_high_clustered=ci_high_c,
         p_value_clustered=p_value_c,
         mcnemar=mcnemar,
+        warnings=notes,
     )
+
+
+def _difference_p(mean: float, se: float, dof: int) -> float:
+    if se == 0:
+        return 0.0 if mean != 0 else 1.0
+    return t_two_sided_p(mean / se, dof)
 
 
 @dataclass(frozen=True)
@@ -164,8 +180,12 @@ def mcnemar_exact(scores_a: ArrayLike, scores_b: ArrayLike) -> McNemarResult:
     small. Matches ``statsmodels.stats.contingency_tables.mcnemar(...,
     exact=True)``.
     """
-    a = np.asarray(scores_a)
-    b = np.asarray(scores_b)
+    a = score_vector(scores_a, "scores_a")
+    b = score_vector(scores_b, "scores_b")
+    if a.shape != b.shape:
+        raise ValueError("scores_a and scores_b must have the same length (paired)")
+    if not a.size or not is_binary(a) or not is_binary(b):
+        raise ValueError("McNemar requires nonempty paired binary (exactly 0/1) scores")
     n01 = int(np.sum((a == 0) & (b == 1)))
     n10 = int(np.sum((a == 1) & (b == 0)))
     total = n01 + n10

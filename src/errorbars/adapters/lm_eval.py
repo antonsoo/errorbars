@@ -43,7 +43,7 @@ import json
 import re
 from pathlib import Path
 
-from errorbars.io import EvalData, _coerce_score
+from errorbars.io import EvalData, _coerce_score, _identifier, _unique_fields
 
 __all__ = ["load_lm_eval_samples", "infer_model_name", "samples_file_parts", "looks_like_samples"]
 
@@ -92,7 +92,7 @@ def infer_model_name(path: str | Path) -> str | None:
     for candidate in candidates:
         try:
             with open(candidate, encoding="utf-8-sig") as f:
-                results = json.load(f)
+                results = json.load(f, object_pairs_hook=_unique_fields)
         except (OSError, ValueError):
             continue
         name = results.get("model_name") if isinstance(results, dict) else None
@@ -143,8 +143,8 @@ def load_lm_eval_samples(
             if not line:
                 continue
             try:
-                rec = json.loads(line)
-            except json.JSONDecodeError as exc:
+                rec = json.loads(line, object_pairs_hook=_unique_fields)
+            except ValueError as exc:
                 raise ValueError(f"{path}:{lineno}: invalid JSON: {exc}") from exc
             if not isinstance(rec, dict):
                 raise ValueError(
@@ -180,7 +180,12 @@ def load_lm_eval_samples(
                 f"{path}:{lineno}: metric {key!r} not present on this record (available: {metrics})"
             )
 
-        qid = str(rec.get("doc_id", lineno - 1))
+        if "doc_id" not in rec:
+            raise ValueError(f"{path}:{lineno}: record has no doc_id; row order cannot identify a question")
+        try:
+            qid = _identifier(rec["doc_id"], "doc_id", lineno)
+        except ValueError as exc:
+            raise ValueError(f"{path}:{lineno}: {exc}") from exc
         if task_name:
             qid = f"{task_name}-{qid}"
         # The same question twice would count as two questions and shrink every standard error.
@@ -197,4 +202,6 @@ def load_lm_eval_samples(
         except ValueError as exc:
             raise ValueError(f"{path}: metric {key!r}, {str(exc).replace('row', 'line', 1)}") from exc
 
-    return EvalData(question_id=question_id, model=model_col, score=score)
+    data = EvalData(question_id=question_id, model=model_col, score=score)
+    data.validate()
+    return data

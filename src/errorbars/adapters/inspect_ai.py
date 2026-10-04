@@ -16,10 +16,9 @@ extra: ``pip install "errorbars[inspect]"``.
 
 from __future__ import annotations
 
-import math
 from pathlib import Path
 
-from errorbars.io import EvalData
+from errorbars.io import EvalData, _coerce_score, _identifier
 
 __all__ = ["load_inspect_log"]
 
@@ -39,7 +38,7 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     """
     try:
         from inspect_ai.log import read_eval_log
-        from inspect_ai.scorer import value_to_float
+        from inspect_ai.scorer import CORRECT, INCORRECT, NOANSWER, PARTIAL, value_to_float
     except ImportError as exc:  # pragma: no cover - exercised only without the extra
         raise ImportError(
             "reading an Inspect log needs inspect-ai, which the 'inspect' extra installs: "
@@ -68,7 +67,7 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
 
     for s in log.samples:
         if not s.scores:
-            continue
+            raise ValueError(f"{path}: sample {s.id!r}: no scored result; this log is incomplete")
         if scorer is not None:
             if scorer not in s.scores:
                 raise ValueError(
@@ -90,10 +89,17 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
                 f"{path}: sample {s.id!r}: scorer {key!r} returns {type(value).__name__} values "
                 f"({value!r}), not one score per sample"
             )
-        number = float(to_float(value))
-        if not math.isfinite(number):
-            raise ValueError(f"{path}: sample {s.id!r}: score {value!r} is not a finite number")
-        question_id.append(str(s.id))
+        # Inspect's fallback is zero even for None or an unrecognized string. Only pass
+        # supported codes/numbers to that converter; an unknown grade is not a wrong answer.
+        codes = (CORRECT, INCORRECT, PARTIAL, NOANSWER)
+        boolean_text = isinstance(value, str) and value.lower() in ("yes", "no", "true", "false")
+        try:
+            if value not in codes and not boolean_text:
+                _coerce_score(value, 1)
+            number = _coerce_score(to_float(value), 1)
+        except ValueError as exc:
+            raise ValueError(f"{path}: sample {s.id!r}: unsupported or nonfinite grade {value!r}") from exc
+        question_id.append(_identifier(s.id, "question_id", len(question_id) + 1))
         model_col.append(model)
         score.append(number)
         sample_col.append(str(s.epoch))
@@ -101,4 +107,6 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     if not question_id:
         raise ValueError(f"{path}: no scored samples found")
 
-    return EvalData(question_id=question_id, model=model_col, score=score, sample=sample_col)
+    data = EvalData(question_id=question_id, model=model_col, score=score, sample=sample_col)
+    data.validate()
+    return data

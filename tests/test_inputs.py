@@ -263,7 +263,7 @@ class TestSummarizeClusters:
 
 
 class TestConcat:
-    def test_a_source_without_clusters_or_samples_is_filled_like_a_file_without_the_columns(self) -> None:
+    def test_missing_clusters_are_resolved_from_shared_questions_and_samples_default_to_zero(self) -> None:
         plain = EvalData(question_id=["q1", "q2"], model=["a", "a"], score=[1.0, 0.0])
         rich = EvalData(
             question_id=["q1", "q2"],
@@ -273,7 +273,7 @@ class TestConcat:
             sample=["1", "2"],
         )
         both = concat([("plain", plain), ("rich", rich)])
-        assert both.cluster_id == ["q1", "q2", "p1", "p1"]
+        assert both.cluster_id == ["p1", "p1", "p1", "p1"]
         assert both.sample == ["0", "0", "1", "2"]
         neither = concat([("x", plain), ("y", EvalData(["q1"], ["c"], [1.0]))])
         assert neither.cluster_id is None and neither.sample is None

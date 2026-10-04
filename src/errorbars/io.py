@@ -14,6 +14,7 @@ import math
 import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
+from numbers import Real
 from pathlib import Path
 from typing import Any
 
@@ -72,6 +73,9 @@ class EvalData:
 
     def scores_by_question(self) -> dict[str, float]:
         """Mean score per question_id (collapses repeated samples)."""
+        self.validate()
+        if len(self.models()) > 1:
+            raise ValueError("select one model before averaging scores by question")
         totals: dict[str, list[float]] = {}
         for qid, s in zip(self.question_id, self.score, strict=True):
             totals.setdefault(qid, []).append(s)
@@ -82,16 +86,55 @@ class EvalData:
             return {}
         out: dict[str, str] = {}
         for qid, c in zip(self.question_id, self.cluster_id, strict=True):
-            out.setdefault(qid, c)
+            if qid in out and out[qid] != c:
+                raise ValueError(f"question {qid!r}: conflicting cluster assignments {out[qid]!r} and {c!r}")
+            out[qid] = c
         return out
+
+    def validate(self) -> None:
+        """Validate normalized rows, including adapter and directly constructed datasets."""
+        n = len(self)
+        fields = {
+            "question_id": self.question_id,
+            "model": self.model,
+            "cluster_id": self.cluster_id,
+            "sample": self.sample,
+        }
+        for name, values in fields.items():
+            if values is None:
+                if name in ("question_id", "model"):
+                    raise ValueError(f"{name} must have one identifier per score")
+                continue
+            if len(values) != n:
+                raise ValueError(f"{name} must have one identifier per score")
+            for row, value in enumerate(values, 1):
+                if not isinstance(value, str) or not value.strip():
+                    raise ValueError(f"row {row}: {name} must be a nonempty string identifier")
+        for row, score in enumerate(self.score, 1):
+            if not isinstance(score, Real):
+                raise ValueError(f"row {row}: normalized score must be numeric")
+            _coerce_score(score, row)
+        seen: dict[tuple[str, str, str], int] = {}
+        for row, (model, qid, sample) in enumerate(
+            zip(self.model, self.question_id, self.sample or ["0"] * n, strict=True), 1
+        ):
+            key = (model, qid, sample)
+            if key in seen:
+                raise ValueError(
+                    f"row {row}: already has a score for model {model!r}, question {qid!r}, "
+                    f"sample {sample!r} (row {seen[key]})"
+                )
+            seen[key] = row
+        self.cluster_by_question()
 
 
 def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
     """Put several sources' rows together: one log per model, or one per task.
 
     ``parts`` pairs each source's name (a path, used in error messages) with its data. A
-    source without cluster ids or sample ids gets what a file without those columns gets:
-    each question its own cluster, sample ``"0"``.
+    Missing cluster metadata is resolved only from another source's assignment for the
+    same question. A question without such an assignment is an error when combining
+    clustered sources. A missing sample column defaults to sample ``"0"``.
 
     The same (model, question, sample) in two sources is an error, as it is within one file:
     counted twice, it would inflate n and shrink every standard error. It happens when a run
@@ -100,6 +143,21 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
     parts = list(parts)
     if not parts:
         raise ValueError("no data to combine")
+    cluster_map: dict[str, str] = {}
+    cluster_source: dict[str, str] = {}
+    for source, data in parts:
+        try:
+            data.validate()
+        except ValueError as exc:
+            raise ValueError(f"{source}: {exc}") from exc
+        for qid, cluster in data.cluster_by_question().items():
+            if qid in cluster_map and cluster_map[qid] != cluster:
+                raise ValueError(
+                    f"{source}: question {qid!r}: conflicting cluster assignments "
+                    f"{cluster_map[qid]!r} (from {cluster_source[qid]}) and {cluster!r}"
+                )
+            cluster_map[qid] = cluster
+            cluster_source[qid] = source
     if len(parts) == 1:
         return parts[0][1]
     any_clusters = any(data.cluster_id for _, data in parts)
@@ -126,7 +184,14 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
         question_id.extend(data.question_id)
         model.extend(data.model)
         score.extend(data.score)
-        cluster_id.extend(data.cluster_id or data.question_id)
+        if any_clusters:
+            for qid in data.question_id:
+                if qid not in cluster_map:
+                    raise ValueError(
+                        f"{source}: no cluster assignment for question {qid!r}; "
+                        "supply cluster metadata for every question"
+                    )
+                cluster_id.append(cluster_map[qid])
         sample.extend(samples)
 
     return EvalData(
@@ -147,7 +212,7 @@ def _coerce_score(raw: Any, row: int) -> float:
         return float(raw)
     try:
         value = float(raw)
-    except (TypeError, ValueError) as exc:
+    except (TypeError, ValueError, OverflowError) as exc:
         raise ValueError(f"row {row}: could not parse score value {raw!r} as a number") from exc
     # A NaN would propagate into every mean, CI and p-value (and sort to the top of a leaderboard);
     # a missing or failed grade has to be decided on explicitly, not averaged in as "not a number".
@@ -161,10 +226,29 @@ def _coerce_score(raw: Any, row: int) -> float:
 
 def _label(row: Any, column: str, n: int) -> str:
     value = row[column]
-    # csv.DictReader fills the cells a short row lacks with None.
     if value is None:
-        raise ValueError(f"row {n}: no value for column '{column}' (the row has too few fields)")
-    return str(value)
+        raise ValueError(f"row {n}: no value for column '{column}'")
+    return _identifier(value, column, n)
+
+
+def _identifier(value: Any, column: str, row: int) -> str:
+    if isinstance(value, bool) or not isinstance(value, (str, int, float)):
+        raise ValueError(f"row {row}: {column!r} must be a nonempty scalar identifier")
+    if isinstance(value, float) and not math.isfinite(value):
+        raise ValueError(f"row {row}: {column!r} must be a finite identifier")
+    label = str(value)
+    if not label.strip():
+        raise ValueError(f"row {row}: {column!r} must be a nonempty identifier")
+    return label
+
+
+def _unique_fields(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    record: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in record:
+            raise ValueError(f"duplicate JSON field {key!r}")
+        record[key] = value
+    return record
 
 
 def _names(row: dict[str, Any]) -> str:
@@ -179,8 +263,9 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     question_id: list[str] = []
     model: list[str] = []
     score: list[float] = []
-    cluster_id: list[str] | None = [] if columns.cluster_id else None
-    sample: list[str] | None = [] if columns.sample else None
+    cluster_map: dict[str, str] = {}
+    sample: list[str] = []
+    has_samples = False
 
     n = 0
     seen: dict[tuple[str, str, str], int] = {}
@@ -195,17 +280,24 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
             )
         for required in (columns.question_id, columns.model, columns.score):
             if required not in row:
-                raise ValueError(
-                    f"missing required column '{required}' in row {n} (it has: {_names(row)})"
-                )
+                raise ValueError(f"missing required column '{required}' in row {n} (it has: {_names(row)})")
         question_id.append(_label(row, columns.question_id, n))
         model.append(_label(row, columns.model, n))
         score.append(_coerce_score(row[columns.score], n))
-        if cluster_id is not None and columns.cluster_id is not None:
-            cluster_id.append(str(row.get(columns.cluster_id, question_id[-1])))
-        sample_id = str(row.get(columns.sample, "0")) if columns.sample is not None else "0"
-        if sample is not None:
-            sample.append(sample_id)
+        if columns.cluster_id is not None and columns.cluster_id in row:
+            cluster = _identifier(row[columns.cluster_id], columns.cluster_id, n)
+            qid = question_id[-1]
+            if qid in cluster_map and cluster_map[qid] != cluster:
+                raise ValueError(
+                    f"row {n}: question {qid!r}: conflicting cluster assignments "
+                    f"{cluster_map[qid]!r} and {cluster!r}"
+                )
+            cluster_map[qid] = cluster
+        sample_id = "0"
+        if columns.sample is not None and columns.sample in row:
+            has_samples = True
+            sample_id = _identifier(row[columns.sample], columns.sample, n)
+        sample.append(sample_id)
         # The same (model, question, sample) twice would be counted as two questions, inflating n and
         # shrinking every standard error. Repeated generations need distinct sample ids.
         key = (model[-1], question_id[-1], sample_id)
@@ -219,7 +311,16 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     if n == 0:
         raise ValueError("no rows found in input data")
 
-    return EvalData(question_id, model, score, cluster_id, sample, columns)
+    cluster_id = None
+    if cluster_map:
+        for row_number, qid in enumerate(question_id, 1):
+            if qid not in cluster_map:
+                raise ValueError(
+                    f"row {row_number}: no cluster assignment for question {qid!r}; "
+                    "supply cluster metadata for every question"
+                )
+        cluster_id = [cluster_map[qid] for qid in question_id]
+    return EvalData(question_id, model, score, cluster_id, sample if has_samples else None, columns)
 
 
 def _delimiter(header: str, columns: ColumnMap) -> str:
@@ -265,6 +366,11 @@ def load_csv(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
         if reader.fieldnames is None:
             raise ValueError(f"{path}: empty or headerless CSV")
         reader.fieldnames = [name.strip() for name in reader.fieldnames]
+        seen_headers: set[str] = set()
+        for name in reader.fieldnames:
+            if name in seen_headers:
+                raise ValueError(f"{path}: duplicate CSV column {name!r}")
+            seen_headers.add(name)
         records: Iterable[dict[str, Any]] = reader
         if delimiter != ",":
             records = _decimal_commas(reader, columns.score)
@@ -281,8 +387,8 @@ def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
             if not line:
                 continue
             try:
-                record = json.loads(line)
-            except json.JSONDecodeError as exc:
+                record = json.loads(line, object_pairs_hook=_unique_fields)
+            except ValueError as exc:
                 raise ValueError(f"{path}:{lineno}: invalid JSON: {exc}") from exc
             if not isinstance(record, dict):
                 raise ValueError(

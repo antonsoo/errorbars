@@ -32,6 +32,7 @@ def _rows(rng: random.Random) -> tuple[list[dict[str, Any]], list[str]]:
     kind = rng.choice(["binary"] * 8 + ["graded"] * 6 + ["constant", "constant", "huge", "tiny", "junk"])
     samples = rng.choice([1, 1, 1, 2, 3])
     cluster_size = rng.choice([1, 2, 3, 7])
+    with_clusters = rng.random() < 0.6
     rows: list[dict[str, Any]] = []
     for q in range(rng.choice([1, 2, 3, 5, 20, 20, 60, 60])):
         for model in models:
@@ -41,10 +42,11 @@ def _rows(rng: random.Random) -> tuple[list[dict[str, Any]], list[str]]:
                 row: dict[str, Any] = {
                     "question_id": f"q{q}" if q % 2 else q,
                     "model": model,
-                    "score": rng.choice(_SCORES[kind]) if kind != "graded" or rng.random() < 0.5
+                    "score": rng.choice(_SCORES[kind])
+                    if kind != "graded" or rng.random() < 0.5
                     else round(rng.random(), 3),
                 }
-                if rng.random() < 0.6:
+                if with_clusters:
                     row["cluster_id"] = f"c{q // cluster_size}"
                 if samples > 1:
                     row["sample"] = sample
@@ -55,7 +57,8 @@ def _rows(rng: random.Random) -> tuple[list[dict[str, Any]], list[str]]:
 def _write(rng: random.Random, rows: list[dict[str, Any]], directory: Path) -> Path:
     damaged = rng.randrange(len(rows)) if rows and rng.random() < 0.12 else -1  # one bad row at most
     if rng.random() < 0.5:
-        columns = ["question_id", "model", "score", "cluster_id", "sample"]
+        columns = ["question_id", "model", "score"]
+        columns.extend(name for name in ("cluster_id", "sample") if any(name in row for row in rows))
         if rng.random() < 0.05:
             columns.remove(rng.choice(columns))
         lines = [",".join(columns)]
@@ -159,7 +162,7 @@ def _check(value: Any, where: str = "") -> None:
 @pytest.mark.parametrize("block", range(8))
 def test_any_input_gives_a_result_or_a_one_line_error(tmp_path: Path, block: int) -> None:
     answered = 0
-    for seed in range(block * 150, (block + 1) * 150):
+    for seed in range(block * 200, (block + 1) * 200):
         rng = random.Random(seed)
         rows, models = _rows(rng)
         argv = _command(rng, _write(rng, rows, tmp_path), models)

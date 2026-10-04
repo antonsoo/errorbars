@@ -423,3 +423,28 @@ def test_dimensionless_icc_does_not_disappear_with_tiny_score_units(scale: float
 def test_unrepresentable_variance_components_do_not_become_zero(groups) -> None:
     with pytest.raises(ValueError, match="too small.*rescale"):
         within_between_variance(np.array([1.0, 2.0, 3.0, 4.0]) * 1e-200, groups)
+
+
+@pytest.mark.parametrize(
+    "a,b,expected_reduction", [([1, 1], [0, 0], None), ([1, 1], [0, 1], 0.0), ([0, 1], [0, 0], 0.0)]
+)
+def test_undefined_correlation_is_not_zero(a, b, expected_reduction) -> None:
+    result = paired_compare(a, b)
+    assert result.correlation is None
+    assert result.variance_reduction == expected_reduction
+    assert result.as_dict()["correlation"] is None
+    assert any("Correlation" in note for note in result.warnings)
+    assert result.mcnemar is not None
+
+
+def test_unavailable_pairing_fields_survive_cli_and_strict_json(tmp_path: Path) -> None:
+    path = tmp_path / "constant.csv"
+    path.write_text("question_id,model,score\nq1,a,1\nq2,a,1\nq1,b,0\nq2,b,0\n")
+    text = run_cli("compare", str(path))
+    assert text.returncode == 0, text.stderr
+    assert text.stdout.count("unavailable") >= 2
+    raw = run_cli("compare", str(path), "--json")
+    assert raw.returncode == 0, raw.stderr
+    report = json.loads(raw.stdout)
+    assert report["correlation"] is report["variance_reduction"] is None
+    assert report["p_value"] == 0.0 and "mcnemar" in report

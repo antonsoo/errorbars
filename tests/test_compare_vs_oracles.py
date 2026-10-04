@@ -41,8 +41,8 @@ def test_paired_compare_variance_reduction_positive_for_correlated_scores() -> N
     a = shared + rng.normal(0, 0.3, size=n)
     b = shared + rng.normal(0, 0.3, size=n)
     comp = paired_compare(a, b)
-    assert comp.correlation > 0.8
-    assert comp.variance_reduction > 0.7
+    assert comp.correlation is not None and comp.correlation > 0.8
+    assert comp.variance_reduction is not None and comp.variance_reduction > 0.7
     assert comp.se_paired < comp.se_unpaired
 
 

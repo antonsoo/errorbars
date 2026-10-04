@@ -281,9 +281,14 @@ def cmd_compare(args: argparse.Namespace) -> None:
     table.add_row("paired SE", f"{comp.se_paired:.4f}")
     table.add_row(f"{int(args.confidence * 100)}% CI", f"[{comp.ci_low:.4f}, {comp.ci_high:.4f}]")
     table.add_row("p-value", f"{comp.p_value:.4g}")
-    table.add_row("correlation(A, B)", f"{comp.correlation:.4f}")
+    table.add_row(
+        "correlation(A, B)", f"{comp.correlation:.4f}" if comp.correlation is not None else "unavailable"
+    )
     table.add_row("unpaired SE (for reference)", f"{comp.se_unpaired:.4f}")
-    table.add_row("variance reduction from pairing", f"{comp.variance_reduction:.1%}")
+    table.add_row(
+        "variance reduction from pairing",
+        f"{comp.variance_reduction:.1%}" if comp.variance_reduction is not None else "unavailable",
+    )
     if comp.se_clustered is not None:
         table.add_row("clustered paired SE", f"{comp.se_clustered:.4f}")
         table.add_row("clustered CI", f"[{comp.ci_low_clustered:.4f}, {comp.ci_high_clustered:.4f}]")

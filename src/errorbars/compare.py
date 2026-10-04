@@ -26,9 +26,9 @@ class PairedComparison:
     ci_low: float
     ci_high: float
     p_value: float
-    correlation: float
+    correlation: float | None
     se_unpaired: float
-    variance_reduction: float
+    variance_reduction: float | None
     n: int
     confidence: float
     se_clustered: float | None = None
@@ -81,6 +81,10 @@ def paired_compare(
     freedom for G clusters, the usual reference for a clustered mean (Cameron
     & Miller 2015). When both score vectors are binary, also runs McNemar's
     exact test.
+
+    ``correlation`` is unavailable (None) when either vector is constant;
+    ``variance_reduction`` is unavailable when both are constant. Warnings
+    explain unavailable diagnostics and zero-variance t-test conventions.
     """
     a = score_vector(scores_a, "scores_a")
     b = score_vector(scores_b, "scores_b")
@@ -107,9 +111,13 @@ def paired_compare(
 
     sd_a, sd_b = sample_sd(a), sample_sd(b)
     scale_a, scale_b = float(np.max(np.abs(a))), float(np.max(np.abs(b)))
-    corr = float(np.corrcoef(a / scale_a, b / scale_b)[0, 1]) if sd_a > 0 and sd_b > 0 else 0.0
+    corr = float(np.corrcoef(a / scale_a, b / scale_b)[0, 1]) if sd_a > 0 and sd_b > 0 else None
+    if corr is None:
+        notes.append("Correlation is unavailable because at least one score vector is constant.")
     se_unpaired = math.hypot(sd_a, sd_b) / math.sqrt(n)
-    variance_reduction = 1.0 - (se_paired / se_unpaired) ** 2 if se_unpaired > 0 else 0.0
+    variance_reduction = 1.0 - (se_paired / se_unpaired) ** 2 if se_unpaired > 0 else None
+    if variance_reduction is None:
+        notes.append("Variance reduction is unavailable because both score vectors are constant.")
 
     se_clustered: float | None = None
     ci_low_c: float | None = None
@@ -141,7 +149,7 @@ def paired_compare(
         p_value=float(p_value),
         correlation=corr,
         se_unpaired=se_unpaired,
-        variance_reduction=float(variance_reduction),
+        variance_reduction=variance_reduction,
         n=n,
         confidence=confidence,
         se_clustered=se_clustered,

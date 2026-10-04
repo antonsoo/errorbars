@@ -71,3 +71,40 @@ describe("input validation matches the Python package", () => {
     expect(() => questionsNeeded(0.05, { variance: 0 })).toThrow(/variance must be positive/);
   });
 });
+
+describe("both directions enforce the same finite planning domain", () => {
+  for (const inputs of [
+    { baselineAccuracy: 0.5, rho: NaN },
+    { baselineAccuracy: 0.5, rho: 2 },
+    { baselineAccuracy: 0.5, clusterDesignEffect: 0.1 },
+    { baselineAccuracy: 0.5, clusterDesignEffect: Infinity },
+    { baselineAccuracy: 0.5, alpha: NaN },
+    { baselineAccuracy: 0.5, power: NaN },
+    { baselineAccuracy: 0.5, power: 0.001 },
+    { baselineAccuracy: 0.5, samplesPerQuestion: Infinity },
+    { baselineAccuracy: 0.5, samplesPerQuestion: 1.5 },
+    { variance: Infinity },
+    { variance: NaN },
+  ]) {
+    it(`rejects ${JSON.stringify(inputs)}`, () => {
+      expect(() => questionsNeeded(0.03, inputs)).toThrow();
+      expect(() => minimumDetectableEffect(500, inputs)).toThrow();
+    });
+  }
+  it("rejects NaN and infinite deltas and noninteger budgets", () => {
+    for (const delta of [NaN, Infinity, -Infinity, 1e-200]) {
+      expect(() => questionsNeeded(delta, { baselineAccuracy: 0.5 })).toThrow();
+    }
+    for (const n of [NaN, Infinity, 2.5, 2 ** 53, 1]) {
+      expect(() => minimumDetectableEffect(n, { baselineAccuracy: 0.5 })).toThrow();
+    }
+  });
+  it("rejects NaN quantiles", () => {
+    expect(() => invNormalCdf(NaN)).toThrow();
+    expect(() => zForConfidence(NaN)).toThrow();
+  });
+  it("preserves representable extreme calculations", () => {
+    expect(minimumDetectableEffect(500, { baselineAccuracy: 0.5, alpha: 1e-30 })).toBeGreaterThan(0.3);
+    expect(Number.isFinite(minimumDetectableEffect(100, { variance: 1e308 }))).toBe(true);
+  });
+});

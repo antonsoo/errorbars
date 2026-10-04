@@ -203,3 +203,21 @@ $p(1-p)$ is genuine item-difficulty variance (§6), which extra samples of
 the *same* questions cannot reduce. Treat the $k>1$ case as an optimistic
 planning assumption; for a **post-hoc** measurement with the true
 within/between split, use `summarize` with a `sample` column instead.
+
+**Input and numeric domain.** Both planning directions require finite inputs.
+Question and repeated-sample counts must be integral and between their minimum
+(2 questions or 1 sample) and `2**53 - 1`, so saved plans remain exactly
+representable in the browser. The sum of the two normal quantiles must be
+positive; very low power requests at or below the positive-effect approximation's
+boundary are rejected rather than returning a negative detectable difference.
+An unrepresentable question count or effect raises a validation error.
+The two-sided critical value uses the lower tail `-Phi^-1(alpha/2)` to avoid
+rounding `1 - alpha` to 1 for small significance levels.
+
+The browser restricts power to 50%-99.9% and alpha to 0.1%-20%. Its exact
+editors, inverse budget mode, sensitivity calculation, and saved-plan units
+are documented in [Evaluation planning](planning.md). A budget's mathematical
+MDE can exceed `1 - baseline_accuracy`; this is retained and labelled as an
+unachievable improvement rather than clipped into a plausible-looking result.
+The warning thresholds of 30 questions or groups are prompts to check the
+approximation, not guarantees of validity above those thresholds.

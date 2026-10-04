@@ -29,7 +29,7 @@ const P_HIGH = 1 - P_LOW;
 
 /** Inverse standard normal CDF: returns z such that Phi(z) = p, for p in (0, 1). */
 export function invNormalCdf(p: number): number {
-  if (p <= 0 || p >= 1) {
+  if (!(p > 0 && p < 1)) {
     throw new RangeError(`invNormalCdf: p must be in (0, 1), got ${p}`);
   }
   let q: number, r: number;
@@ -58,7 +58,7 @@ export function invNormalCdf(p: number): number {
 
 /** z_{alpha/2}: two-sided critical value, e.g. ~1.96 for confidence=0.95. */
 export function zForConfidence(confidence: number): number {
-  if (confidence <= 0 || confidence >= 1) {
+  if (!(confidence > 0 && confidence < 1)) {
     throw new RangeError(`zForConfidence: confidence must be in (0, 1), got ${confidence}`);
   }
   return invNormalCdf(0.5 + confidence / 2);

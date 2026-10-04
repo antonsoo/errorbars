@@ -8,7 +8,13 @@
  * derivation and the modeling caveats.
  */
 
-import { invNormalCdf, zForConfidence } from "./normal.ts";
+import { invNormalCdf } from "./normal.ts";
+
+function checkCount(value: number, name: string, minimum: number): void {
+  if (!Number.isSafeInteger(value) || value < minimum) {
+    throw new Error(`${name} must be an integer from ${minimum} to ${Number.MAX_SAFE_INTEGER}`);
+  }
+}
 
 export interface VarianceInputs {
   /** Binary metric: baseline accuracy p, giving per-sample variance p(1-p). */
@@ -26,25 +32,42 @@ export function perQuestionVariance({
   if ((baselineAccuracy !== undefined) === (variance !== undefined)) {
     throw new Error("pass exactly one of baselineAccuracy or variance");
   }
-  if (samplesPerQuestion < 1) {
-    throw new Error("samplesPerQuestion must be >= 1");
-  }
+  checkCount(samplesPerQuestion, "samplesPerQuestion", 1);
   if (baselineAccuracy !== undefined && !(baselineAccuracy > 0 && baselineAccuracy < 1)) {
     throw new Error(`baselineAccuracy must be strictly between 0 and 1, got ${baselineAccuracy}`);
   }
-  if (variance !== undefined && !(variance > 0)) {
-    throw new Error(`variance must be positive, got ${variance}`);
+  if (variance !== undefined && !(variance > 0 && Number.isFinite(variance))) {
+    throw new Error(`variance must be positive and finite, got ${variance}`);
   }
   const v =
     baselineAccuracy !== undefined ? baselineAccuracy * (1 - baselineAccuracy) : (variance as number);
-  return v / samplesPerQuestion;
+  const result = v / samplesPerQuestion;
+  if (result <= 0) throw new Error("per-question variance is too small to represent");
+  return result;
 }
 
-function zBeta(power: number): number {
-  if (power <= 0 || power >= 1) {
+function zSum(alpha: number, power: number): number {
+  if (!(alpha > 0 && alpha < 1)) throw new Error(`alpha must be in (0, 1), got ${alpha}`);
+  if (alpha / 2 === 0) throw new Error("alpha is too small to represent its two-sided tail");
+  if (!(power > 0 && power < 1)) {
     throw new Error(`power must be in (0, 1), got ${power}`);
   }
-  return invNormalCdf(power);
+  const result = -invNormalCdf(alpha / 2) + invNormalCdf(power);
+  if (result <= 0) {
+    throw new Error("power is too low for this positive-effect approximation at the given alpha");
+  }
+  return result;
+}
+
+function checkDesign(rho: number, deff: number): void {
+  if (!(rho >= -1 && rho <= 1)) throw new Error("rho must be in [-1, 1]");
+  if (!(deff >= 1 && Number.isFinite(deff))) {
+    throw new Error("clusterDesignEffect must be a finite number >= 1");
+  }
+}
+
+function differenceSd(v: number, rho: number, deff: number): number {
+  return Math.sqrt(v) * Math.sqrt(2 * (1 - rho)) * Math.sqrt(deff);
 }
 
 export interface PowerInputs extends VarianceInputs {
@@ -78,18 +101,19 @@ export function questionsNeeded(delta: number, inputs: PowerInputs): PowerResult
     samplesPerQuestion = 1,
     clusterDesignEffect = 1,
   } = inputs;
-  if (delta <= 0) throw new Error("delta must be positive");
-  if (rho < -1 || rho > 1) throw new Error("rho must be in [-1, 1]");
-  if (clusterDesignEffect < 1) throw new Error("clusterDesignEffect must be >= 1");
+  if (!(delta > 0 && Number.isFinite(delta))) throw new Error("delta must be positive and finite");
+  checkDesign(rho, clusterDesignEffect);
 
   const v = perQuestionVariance({ ...inputs, samplesPerQuestion });
   if (inputs.baselineAccuracy !== undefined && inputs.baselineAccuracy + delta > 1) {
     throw new Error(`baselineAccuracy + delta = ${(inputs.baselineAccuracy + delta).toPrecision(3)}: an accuracy can't exceed 1`);
   }
-  const zA = zForConfidence(1 - alpha);
-  const zB = zBeta(power);
-  const n = ((zA + zB) ** 2 * 2 * v * (1 - rho) * clusterDesignEffect) / delta ** 2;
-  const nInt = Math.max(2, Math.ceil(n));
+  const z = zSum(alpha, power);
+  const rootN = differenceSd(v, rho, clusterDesignEffect) / delta * z;
+  const nInt = Math.max(2, Math.ceil(rootN * rootN));
+  if (!Number.isSafeInteger(nInt)) {
+    throw new Error("required question count exceeds the exactly representable planning range");
+  }
   return {
     nQuestions: nInt,
     delta,
@@ -111,14 +135,24 @@ export function minimumDetectableEffect(nQuestions: number, inputs: PowerInputs)
     samplesPerQuestion = 1,
     clusterDesignEffect = 1,
   } = inputs;
-  if (nQuestions < 2) throw new Error("nQuestions must be >= 2");
+  checkCount(nQuestions, "nQuestions", 2);
+  checkDesign(rho, clusterDesignEffect);
   const v = perQuestionVariance({ ...inputs, samplesPerQuestion });
-  const zA = zForConfidence(1 - alpha);
-  const zB = zBeta(power);
-  return (zA + zB) * Math.sqrt((2 * v * (1 - rho) * clusterDesignEffect) / nQuestions);
+  const z = zSum(alpha, power);
+  const result = differenceSd(v, rho, clusterDesignEffect) / Math.sqrt(nQuestions) * z;
+  if (!Number.isFinite(result) || (result === 0 && rho !== 1)) {
+    throw new Error("minimum detectable effect is outside the representable planning range");
+  }
+  return result;
 }
 
 /** Kish's design effect: 1 + (avgClusterSize - 1) * icc. */
 export function designEffect(icc: number, avgClusterSize: number): number {
-  return 1 + (avgClusterSize - 1) * icc;
+  if (!(icc >= 0 && icc <= 1)) throw new Error("icc must be in [0, 1]");
+  if (!(Number.isFinite(avgClusterSize) && avgClusterSize >= 1)) {
+    throw new Error("avgClusterSize must be finite and >= 1");
+  }
+  const result = 1 + (avgClusterSize - 1) * icc;
+  checkDesign(0, result);
+  return result;
 }

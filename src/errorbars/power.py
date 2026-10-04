@@ -24,11 +24,15 @@ from dataclasses import dataclass
 from statistics import NormalDist
 from typing import Any
 
-from errorbars.stats import z_for_confidence
-
 __all__ = ["PowerResult", "questions_needed", "minimum_detectable_effect", "per_question_variance"]
 
 _NORMAL = NormalDist()
+_MAX_COUNT = 2**53 - 1  # Keep plans exactly representable in the browser as well as Python.
+
+
+def _check_count(value: int, name: str, minimum: int) -> None:
+    if isinstance(value, bool) or not minimum <= value <= _MAX_COUNT or int(value) != value:
+        raise ValueError(f"{name} must be an integer from {minimum} to {_MAX_COUNT}")
 
 
 def per_question_variance(
@@ -44,15 +48,17 @@ def per_question_variance(
     """
     if (baseline_accuracy is None) == (variance is None):
         raise ValueError("pass exactly one of baseline_accuracy or variance")
-    if samples_per_question < 1:
-        raise ValueError("samples_per_question must be >= 1")
+    _check_count(samples_per_question, "samples_per_question", 1)
     if baseline_accuracy is not None and not 0.0 < baseline_accuracy < 1.0:
         # p(1-p) is 0 at either end, which would make any gap look free to detect.
         raise ValueError(f"baseline_accuracy must be strictly between 0 and 1, got {baseline_accuracy}")
     if variance is not None and not (variance > 0 and math.isfinite(variance)):
         raise ValueError(f"variance must be a positive, finite number, got {variance}")
     v = baseline_accuracy * (1 - baseline_accuracy) if baseline_accuracy is not None else variance
-    return v / samples_per_question  # type: ignore[operator]
+    result = v / samples_per_question  # type: ignore[operator]
+    if result <= 0:
+        raise ValueError("per-question variance is too small to represent")
+    return result
 
 
 @dataclass(frozen=True)
@@ -88,7 +94,21 @@ def _z_beta(power: float) -> float:
 def _z_alpha(alpha: float) -> float:
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
-    return z_for_confidence(1 - alpha)
+    if alpha / 2 == 0:
+        raise ValueError("alpha is too small to represent its two-sided tail")
+    return -_NORMAL.inv_cdf(alpha / 2)
+
+
+def _z_sum(alpha: float, power: float) -> float:
+    result = _z_alpha(alpha) + _z_beta(power)
+    if result <= 0:
+        raise ValueError("power is too low for this positive-effect approximation at the given alpha")
+    return result
+
+
+def _difference_sd(v: float, rho: float, cluster_design_effect: float) -> float:
+    # Take roots before multiplying: finite factors can overflow or underflow as a variance.
+    return math.sqrt(v) * math.sqrt(2 * (1 - rho)) * math.sqrt(cluster_design_effect)
 
 
 def _check_design(rho: float, cluster_design_effect: float) -> None:
@@ -121,10 +141,12 @@ def questions_needed(
         raise ValueError(
             f"baseline_accuracy + delta = {baseline_accuracy + delta:.3g}: an accuracy can't exceed 1"
         )
-    z_a = _z_alpha(alpha)
-    z_b = _z_beta(power)
-    n = ((z_a + z_b) ** 2) * 2 * v * (1 - rho) * cluster_design_effect / (delta**2)
-    n_int = max(2, math.ceil(n))
+    z = _z_sum(alpha, power)
+    root_n = _difference_sd(v, rho, cluster_design_effect) / delta * z
+    if not math.isfinite(root_n) or root_n > math.sqrt(_MAX_COUNT):
+        raise ValueError("required question count exceeds the exactly representable planning range")
+    n_int = max(2, math.ceil(root_n * root_n))
+    _check_count(n_int, "required question count", 2)
     return PowerResult(n_int, delta, alpha, power, rho, samples_per_question, cluster_design_effect, v)
 
 
@@ -139,10 +161,11 @@ def minimum_detectable_effect(
     cluster_design_effect: float = 1.0,
 ) -> float:
     """Smallest paired difference detectable with a given n, alpha, power."""
-    if n_questions < 2:
-        raise ValueError("n_questions must be >= 2")
+    _check_count(n_questions, "n_questions", 2)
     _check_design(rho, cluster_design_effect)
     v = per_question_variance(baseline_accuracy, variance, samples_per_question)
-    z_a = _z_alpha(alpha)
-    z_b = _z_beta(power)
-    return (z_a + z_b) * math.sqrt(2 * v * (1 - rho) * cluster_design_effect / n_questions)
+    z = _z_sum(alpha, power)
+    result = _difference_sd(v, rho, cluster_design_effect) / math.sqrt(n_questions) * z
+    if not math.isfinite(result) or (result == 0 and rho != 1):
+        raise ValueError("minimum detectable effect is outside the representable planning range")
+    return result

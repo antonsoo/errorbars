@@ -12,10 +12,7 @@ DATA = REPO_ROOT / "examples" / "data" / "reading_comprehension.csv"
 LMEVAL_FIXTURE = REPO_ROOT / "tests" / "fixtures" / "samples_copa_2026-09-24T03-04-37.941131.jsonl"
 INSPECT_FIXTURE = REPO_ROOT / "tests" / "fixtures" / "inspect_tiny_qa.eval"
 GSM8K_FILTERS = (
-    REPO_ROOT
-    / "tests"
-    / "fixtures"
-    / "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl"
+    REPO_ROOT / "tests" / "fixtures" / "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl"
 )
 
 
@@ -40,9 +37,7 @@ def test_cli_summarize_json() -> None:
 
 @pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")
 def test_cli_compare_json() -> None:
-    result = run_cli(
-        "compare", str(DATA), "--model-a", "tuned-70b", "--model-b", "baseline-70b", "--json"
-    )
+    result = run_cli("compare", str(DATA), "--model-a", "tuned-70b", "--model-b", "baseline-70b", "--json")
     assert result.returncode == 0, result.stderr
     payload = json.loads(result.stdout)
     assert "p_value" in payload
@@ -109,9 +104,7 @@ def test_cli_import_lm_eval_filter(tmp_path) -> None:
 @pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")
 @pytest.mark.parametrize("ci_method", ["clt", "wilson", "bootstrap"])
 def test_cli_summarize_ci_methods(ci_method: str) -> None:
-    result = run_cli(
-        "summarize", str(DATA), "--model", "tuned-70b", "--ci", ci_method, "--json"
-    )
+    result = run_cli("summarize", str(DATA), "--model", "tuned-70b", "--ci", ci_method, "--json")
     assert result.returncode == 0, result.stderr
     payload = json.loads(result.stdout)
     assert payload["method"] == ci_method
@@ -196,3 +189,19 @@ def test_cli_version_matches_the_package() -> None:
     result = run_cli("--version")
     assert result.returncode == 0
     assert result.stdout.strip() == f"errorbars {errorbars.__version__}"
+
+
+@pytest.mark.parametrize(
+    "args",
+    [
+        ["--delta", "1e-200"],
+        ["--n", "500", "--power", "0.001"],
+        ["--n", "9007199254740992"],
+    ],
+)
+def test_unrepresentable_power_plan_is_a_user_error(args: list[str]) -> None:
+    result = run_cli("power", "--baseline", "0.5", "--json", *args)
+    assert result.returncode != 0
+    assert "Traceback" not in result.stderr
+    assert "error" in result.stderr.lower()
+    assert not result.stdout

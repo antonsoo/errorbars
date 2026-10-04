@@ -45,8 +45,7 @@ def test_questions_needed_achieves_target_power_by_simulation(
         result.n_questions, variance, rho, delta, alpha=0.05, trials=3000, seed=42
     )
     assert abs(empirical_power - target_power) < 0.05, (
-        f"n={result.n_questions} gave empirical power {empirical_power:.3f}, "
-        f"target was {target_power}"
+        f"n={result.n_questions} gave empirical power {empirical_power:.3f}, target was {target_power}"
     )
 
 
@@ -142,3 +141,78 @@ def test_mde_checks_the_design_the_way_questions_needed_does(kwargs: dict, messa
     with pytest.raises(ValueError, match=message):
         minimum_detectable_effect(200, variance=0.2, **kwargs)
 
+
+@pytest.mark.parametrize("count", [True, 2.5, float("nan"), float("inf"), 2**53, -1, 0])
+def test_planning_counts_are_finite_exact_integers(count: int) -> None:
+    with pytest.raises(ValueError, match="integer"):
+        minimum_detectable_effect(count, baseline_accuracy=0.5)
+    with pytest.raises(ValueError, match="integer"):
+        questions_needed(0.03, baseline_accuracy=0.5, samples_per_question=count)
+
+
+def test_low_power_cannot_produce_a_negative_detectable_effect() -> None:
+    for operation in [
+        lambda: minimum_detectable_effect(500, baseline_accuracy=0.5, power=0.001),
+        lambda: questions_needed(0.03, baseline_accuracy=0.5, power=0.001),
+    ]:
+        with pytest.raises(ValueError, match="power is too low"):
+            operation()
+
+
+def test_unrepresentable_question_count_has_an_actionable_error() -> None:
+    with pytest.raises(ValueError, match="representable planning range"):
+        questions_needed(1e-200, baseline_accuracy=0.5)
+
+
+def test_tiny_alpha_uses_the_lower_tail_without_subtraction_cancellation() -> None:
+    from scipy.stats import norm
+
+    expected = (norm.isf(1e-30 / 2) + norm.ppf(0.8)) * (0.5 / 500) ** 0.5
+    assert minimum_detectable_effect(500, baseline_accuracy=0.5, alpha=1e-30) == pytest.approx(expected)
+
+
+def test_large_finite_variance_does_not_overflow_before_taking_its_root() -> None:
+    mde = minimum_detectable_effect(100, variance=1e308)
+    assert mde == pytest.approx((_NORMAL.inv_cdf(0.975) + _NORMAL.inv_cdf(0.8)) * (2**0.5) * 1e153)
+
+
+@pytest.mark.parametrize("n", [2, 500, 10_000_000])
+@pytest.mark.parametrize("baseline,rho,deff", [(0.001, -0.95, 1), (0.5, 0.3, 2.9), (0.999, 0.95, 1000)])
+def test_mde_against_independent_scipy_quantiles(n: int, baseline: float, rho: float, deff: float) -> None:
+    from scipy.stats import norm
+
+    expected = (norm.isf(0.01 / 2) + norm.ppf(0.99)) * (
+        2 * baseline * (1 - baseline) * (1 - rho) * deff / n
+    ) ** 0.5
+    actual = minimum_detectable_effect(
+        n, baseline_accuracy=baseline, rho=rho, cluster_design_effect=deff, alpha=0.01, power=0.99
+    )
+    assert actual == pytest.approx(expected, rel=1e-13)
+
+
+def test_committed_web_vectors_match_the_current_python_formulas() -> None:
+    import json
+    from pathlib import Path
+
+    vectors = json.loads((Path(__file__).parents[1] / "web/test-vectors.json").read_text())
+    for section, cases in vectors.items():
+        for case in cases:
+            source = case["inputs"]
+            kwargs = dict(
+                baseline_accuracy=source["baseline"],
+                alpha=source["alpha"],
+                power=source["power"],
+                rho=source["rho"],
+                samples_per_question=source["samplesPerQuestion"],
+                cluster_design_effect=source["clusterDeff"],
+            )
+            if section == "questionsNeeded":
+                result = questions_needed(source["delta"], **kwargs)
+                assert result.n_questions == case["nQuestions"], case
+                assert result.per_question_variance == pytest.approx(case["perQuestionVariance"], rel=1e-12)
+            else:
+                result_mde = minimum_detectable_effect(source["n"], **kwargs)
+                assert result_mde == pytest.approx(case["mde"], rel=1e-12), case
+    # Guard against truncating the beginning of a Cartesian product again.
+    assert len({c["inputs"]["baseline"] for c in vectors["questionsNeeded"]}) >= 5
+    assert len({c["inputs"]["n"] for c in vectors["minimumDetectableEffect"]}) == 7

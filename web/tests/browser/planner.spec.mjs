@@ -200,6 +200,8 @@ test('extreme supported plans retain finite results and fit a narrow screen', as
     await page.locator(`#${key}`).fill(value);
   }
   const p = await downloadPlan(page);
+  // Independently calculated with Python NormalDist using these exact inputs.
+  expect(p.result.nQuestions).toBe(3_969_623_374_926);
   expect(Number.isSafeInteger(p.result.nQuestions)).toBe(true);
   expect(Number.isFinite(p.result.minimumDetectableEffect)).toBe(true);
   expect(p.result.minimumDetectableEffect).toBeLessThanOrEqual(0.0001);

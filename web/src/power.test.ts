@@ -33,10 +33,8 @@ describe("minimumDetectableEffect matches Python errorbars.power.minimum_detecta
         samplesPerQuestion,
         clusterDesignEffect: clusterDeff,
       });
-      // Python side reports full float precision; a relative tolerance of
-      // 1e-6 comfortably exceeds Acklam's ~1.15e-9 probit approximation
-      // error compounded through the formula.
-      expect(mde).toBeCloseTo(vec.mde, 6);
+      // Formula outputs agree within floating-point arithmetic noise.
+      expect(Math.abs(mde - vec.mde)).toBeLessThanOrEqual(Math.abs(vec.mde) * 1e-14);
     });
   }
 });
@@ -107,4 +105,13 @@ describe("both directions enforce the same finite planning domain", () => {
     expect(minimumDetectableEffect(500, { baselineAccuracy: 0.5, alpha: 1e-30 })).toBeGreaterThan(0.3);
     expect(Number.isFinite(minimumDetectableEffect(100, { variance: 1e308 }))).toBe(true);
   });
+});
+
+
+describe("AS241 agrees with independent SciPy ndtri quantiles", () => {
+  for (const { p, z } of vectors.normalQuantiles) {
+    it(`p=${p}`, () => {
+      expect(Math.abs(invNormalCdf(p) - z)).toBeLessThanOrEqual(Math.max(1, Math.abs(z)) * 1e-14);
+    });
+  }
 });

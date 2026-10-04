@@ -1,7 +1,7 @@
 /**
  * Statistical power formulas for paired LLM eval comparisons.
  *
- * This is a line-for-line port of `src/errorbars/power.py` in the Python
+ * This is a formula port of `src/errorbars/power.py` in the Python
  * package — same variable names, same derivation, same defaults — kept in
  * sync by comparing against Python-generated vectors in
  * `src/power.test.ts`. See `docs/formulas.md` §11 in the main repo for the

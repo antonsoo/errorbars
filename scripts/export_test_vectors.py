@@ -14,6 +14,8 @@ import json
 import random
 from pathlib import Path
 
+from scipy.special import ndtri
+
 from errorbars.power import minimum_detectable_effect, questions_needed
 
 OUT_PATH = Path(__file__).parent.parent / "web" / "test-vectors.json"
@@ -23,7 +25,7 @@ def main() -> None:
     vectors = []
 
     baselines = [0.001, 0.3, 0.5, 0.7, 0.9, 0.999]
-    deltas = [0.01, 0.03, 0.05, 0.1]
+    deltas = [0.0001, 0.001, 0.01, 0.03, 0.05, 0.1, 0.5]
     alphas = [0.001, 0.05, 0.1, 0.2]
     powers = [0.5, 0.8, 0.9, 0.999]
     rhos = [-0.95, 0.0, 0.3, 0.6, 0.95]
@@ -93,7 +95,38 @@ def main() -> None:
             }
         )
 
-    payload = {"questionsNeeded": vectors, "minimumDetectableEffect": mde_vectors}
+    probabilities = [
+        5e-324,
+        1e-300,
+        1e-30,
+        1e-12,
+        1e-8,
+        0.0005,
+        0.001,
+        0.01,
+        0.02425,
+        0.025,
+        0.075,
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        0.8,
+        0.9,
+        0.925,
+        0.975,
+        0.99,
+        0.999,
+        1 - 1e-8,
+        1 - 1e-12,
+        1 - 2**-53,
+    ]
+    quantiles = [{"p": p, "z": float(ndtri(p))} for p in probabilities]
+    payload = {
+        "questionsNeeded": vectors,
+        "minimumDetectableEffect": mde_vectors,
+        "normalQuantiles": quantiles,
+    }
     OUT_PATH.write_text(json.dumps(payload, indent=2))
     print(f"wrote {len(vectors)} questions-needed vectors and {len(mde_vectors)} MDE vectors to {OUT_PATH}")
 

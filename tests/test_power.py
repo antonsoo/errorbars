@@ -195,7 +195,10 @@ def test_committed_web_vectors_match_the_current_python_formulas() -> None:
     from pathlib import Path
 
     vectors = json.loads((Path(__file__).parents[1] / "web/test-vectors.json").read_text())
-    for section, cases in vectors.items():
+    for case in vectors["normalQuantiles"]:
+        assert _NORMAL.inv_cdf(case["p"]) == pytest.approx(case["z"], rel=1e-14, abs=1e-14)
+    for section in ["questionsNeeded", "minimumDetectableEffect"]:
+        cases = vectors[section]
         for case in cases:
             source = case["inputs"]
             kwargs = dict(
@@ -214,5 +217,5 @@ def test_committed_web_vectors_match_the_current_python_formulas() -> None:
                 result_mde = minimum_detectable_effect(source["n"], **kwargs)
                 assert result_mde == pytest.approx(case["mde"], rel=1e-12), case
     # Guard against truncating the beginning of a Cartesian product again.
-    assert len({c["inputs"]["baseline"] for c in vectors["questionsNeeded"]}) >= 5
+    assert len({c["inputs"]["baseline"] for c in vectors["questionsNeeded"]}) == 6
     assert len({c["inputs"]["n"] for c in vectors["minimumDetectableEffect"]}) == 7

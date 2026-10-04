@@ -42,6 +42,7 @@ def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
         raise SystemExit(f"error: {exc}") from exc
     for note in loaded.notes:
         print(f"note: {visible(note)}", file=sys.stderr)
+    loaded.data.validate()
     return loaded.data
 
 
@@ -86,15 +87,14 @@ def _columns_from(args: argparse.Namespace) -> ColumnMap:
 
 
 def _print_json(obj: Any) -> None:
-    print(json.dumps(obj, indent=2, default=str))
+    print(json.dumps(obj, indent=2, default=str, allow_nan=False))
 
 
 def _has_clusters(data: EvalData) -> bool:
-    """True when the data groups questions: some cluster id that isn't its question's own id,
-    which is what a file without a cluster column is filled with."""
+    """True when an explicit assignment puts multiple questions in one cluster."""
     if not data.cluster_id:
         return False
-    return any(c != q for c, q in zip(data.cluster_id, data.question_id, strict=True))
+    return len(set(data.cluster_id)) < len(set(data.question_id))
 
 
 def cmd_summarize(args: argparse.Namespace) -> None:
@@ -113,11 +113,17 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     if not sub.score:
         raise SystemExit(f"error: no rows for model {args.model!r}" if args.model else "error: empty data")
 
-    scores = sub.score
+    question_scores = sub.scores_by_question()
+    scores = list(question_scores.values())
+    repeated = len(sub) > len(scores)
     binary = is_binary(scores)
+    if repeated and len(scores) < 2:
+        raise ValueError("need at least 2 distinct questions for repeated-generation inference")
+    if repeated and args.ci == "wilson":
+        raise ValueError("--ci wilson cannot treat repeated-generation question averages as binary trials")
     if args.ci == "bootstrap":
         est = bootstrap_ci(scores, confidence=args.confidence, seed=args.seed)
-    elif args.ci == "wilson" or (args.ci == "auto" and binary and len(scores) < 30):
+    elif args.ci == "wilson" or (args.ci == "auto" and binary and not repeated and len(scores) < 30):
         if not binary:
             raise SystemExit("error: --ci wilson requires binary (0/1) scores")
         est = wilson_ci(int(round(sum(scores))), len(scores), confidence=args.confidence)
@@ -128,9 +134,12 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     models = sub.models()
     result["model"] = args.model or (models[0] if len(models) == 1 else "(all)")
     result["is_binary"] = binary
+    result["analysis_unit"] = "question"
+    result["n_questions"] = len(scores)
+    result["n_observations"] = len(sub)
 
     cluster_info = None
-    if _has_clusters(sub) and sub.cluster_id and len(set(sub.cluster_id)) > 1:
+    if _has_clusters(sub) and sub.cluster_id:
         from errorbars.stats import (
             cluster_robust_se,
             design_effect,
@@ -138,11 +147,13 @@ def cmd_summarize(args: argparse.Namespace) -> None:
             t_for_confidence,
         )
 
-        n_clusters = len(set(sub.cluster_id))
-        icc = intraclass_correlation(scores, sub.cluster_id)
+        cmap = sub.cluster_by_question()
+        clusters = [cmap[qid] for qid in question_scores]
+        n_clusters = len(set(clusters))
+        se_c = cluster_robust_se(scores, clusters)
+        icc = intraclass_correlation(scores, clusters)
         avg_size = len(scores) / n_clusters
         deff = design_effect(icc, avg_size)
-        se_c = cluster_robust_se(scores, sub.cluster_id)
         # A clustered mean has G - 1 degrees of freedom, not n - 1.
         t_crit = t_for_confidence(est.confidence, n_clusters - 1)
         cluster_info = {
@@ -151,15 +162,15 @@ def cmd_summarize(args: argparse.Namespace) -> None:
             "clustered_ci_high": est.mean + t_crit * se_c,
             "icc": icc,
             "design_effect": deff,
-            "n_clusters": len(set(sub.cluster_id)),
+            "n_clusters": n_clusters,
         }
         result["clustered"] = cluster_info
 
     within_between = None
-    if sub.sample and len(set(sub.sample)) > 1:
+    if repeated:
         from errorbars.stats import within_between_variance
 
-        var_w, var_b = within_between_variance(scores, sub.question_id)
+        var_w, var_b = within_between_variance(sub.score, sub.question_id)
         within_between = {"var_within": var_w, "var_between": var_b}
         result["within_between"] = within_between
 
@@ -172,11 +183,15 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     table.add_column("metric")
     table.add_column("value", justify="right")
     table.add_row("n", str(est.n))
+    if repeated:
+        table.add_row("observations (generations)", str(len(sub)))
     table.add_row("mean", f"{est.mean:.4f}")
     table.add_row("SE", f"{est.se:.4f}")
     table.add_row(f"{int(args.confidence * 100)}% CI", f"[{est.ci_low:.4f}, {est.ci_high:.4f}]")
     table.add_row("method", est.method)
     out.table(table)
+    if repeated:
+        out.note("Each question has equal weight; generations are averaged within a question.", style="dim")
     if cluster_info:
         ct = Table(title="clustering diagnostics", header_style="bold magenta")
         ct.add_column("metric")
@@ -233,8 +248,8 @@ def cmd_compare(args: argparse.Namespace) -> None:
     sb = [b[q] for q in common]
     clusters = None
     cmap = data.cluster_by_question()
-    if cmap and any(cmap.get(q) != q for q in common):
-        clusters = [cmap.get(q, q) for q in common]
+    if cmap and len({cmap[q] for q in common}) < len(common):
+        clusters = [cmap[q] for q in common]
     comp = paired_compare(sa, sb, clusters=clusters, confidence=args.confidence)
 
     if args.json:
@@ -245,6 +260,9 @@ def cmd_compare(args: argparse.Namespace) -> None:
                 **comp.as_dict(),
                 "n_only_a": only_a,
                 "n_only_b": only_b,
+                "analysis_unit": "question",
+                "n_observations_a": len(data.filter_model(args.model_a)),
+                "n_observations_b": len(data.filter_model(args.model_b)),
             }
         )
         return
@@ -268,9 +286,7 @@ def cmd_compare(args: argparse.Namespace) -> None:
     table.add_row("variance reduction from pairing", f"{comp.variance_reduction:.1%}")
     if comp.se_clustered is not None:
         table.add_row("clustered paired SE", f"{comp.se_clustered:.4f}")
-        table.add_row(
-            "clustered CI", f"[{comp.ci_low_clustered:.4f}, {comp.ci_high_clustered:.4f}]"
-        )
+        table.add_row("clustered CI", f"[{comp.ci_low_clustered:.4f}, {comp.ci_high_clustered:.4f}]")
     if comp.mcnemar is not None:
         table.add_row(
             "McNemar discordant (A wrong/B right, A right/B wrong)",
@@ -278,6 +294,8 @@ def cmd_compare(args: argparse.Namespace) -> None:
         )
         table.add_row("McNemar exact p-value", f"{comp.mcnemar.p_value:.4g}")
     out.table(table)
+    for note in comp.warnings:
+        out.note(note, style="yellow")
 
 
 def cmd_leaderboard(args: argparse.Namespace) -> None:
@@ -300,6 +318,9 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     table.add_column("mean", justify="right")
     table.add_column(f"{int(args.confidence * 100)}% CI", justify="right")
     table.add_column("n", justify="right")
+    has_repeats = any(e.n_observations != e.n for e in lb.entries)
+    if has_repeats:
+        table.add_column("observations", justify="right")
     table.add_column("group")
     letter_of: dict[str, str] = {}
     for i, group in enumerate(lb.groups):
@@ -307,15 +328,23 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         for m in group:
             letter_of[m] = letter_of.get(m, "") + letter
     for rank, e in enumerate(lb.entries, start=1):
-        table.add_row(
+        cells = [
             str(rank),
             e.model,
             f"{e.mean:.4f}",
             f"[{e.ci_low:.4f}, {e.ci_high:.4f}]",
             str(e.n),
-            letter_of.get(e.model, ""),
-        )
+        ]
+        if has_repeats:
+            cells.append(str(e.n_observations))
+        cells.append(letter_of.get(e.model, ""))
+        table.add_row(*cells)
     out.table(table)
+    if has_repeats:
+        out.note(
+            "n counts questions, each weighted equally; observations counts retained generations.",
+            style="dim",
+        )
     out.note(
         "Models sharing a group letter are not statistically distinguishable "
         f"(Holm-corrected paired test, alpha={args.alpha}).",
@@ -340,6 +369,8 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             sig,
         )
     out.table(pt)
+    for note in dict.fromkeys(note for pr in lb.pairwise for note in pr.comparison.warnings):
+        out.note(note, style="yellow")
     out.note(
         "'p (used, Holm)' is the cluster-robust paired p-value (when clusters are "
         "present) after Holm correction across all pairs; otherwise the unclustered paired p-value.",
@@ -424,9 +455,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_sum.set_defaults(func=cmd_summarize)
 
     p_cmp = sub.add_parser("compare", help="paired comparison of two models")
-    p_cmp.add_argument(
-        "--model-a", default=None, help="default: the first of the two models in the input"
-    )
+    p_cmp.add_argument("--model-a", default=None, help="default: the first of the two models in the input")
     p_cmp.add_argument("--model-b", default=None, help="default: the second")
     p_cmp.add_argument("--confidence", type=float, default=0.95)
     p_cmp.add_argument("--json", action="store_true")

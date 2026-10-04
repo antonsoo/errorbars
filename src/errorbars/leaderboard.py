@@ -40,6 +40,11 @@ class LeaderboardEntry:
     ci_high: float
     n: int
     method: str
+    n_observations: int = 0
+
+    def __post_init__(self) -> None:
+        if self.n_observations == 0:
+            object.__setattr__(self, "n_observations", self.n)
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -50,6 +55,8 @@ class LeaderboardEntry:
             "ci_high": self.ci_high,
             "n": self.n,
             "method": self.method,
+            "n_observations": self.n_observations,
+            "analysis_unit": "question",
         }
 
 
@@ -69,6 +76,8 @@ class PairwiseResult:
             # The Holm correction is applied to this one when the questions are clustered.
             "p_value_clustered": self.comparison.p_value_clustered,
             "p_holm": self.p_holm,
+            "n_shared": self.comparison.n,
+            "warnings": self.comparison.warnings,
         }
 
 
@@ -126,25 +135,35 @@ def build_leaderboard(
     questions, per-model CIs use the Wilson interval instead of the CLT
     interval (see ``errorbars.stats.wilson_ci``).
     """
+    data.validate()
     models = data.models()
     if len(models) < 2:
         raise ValueError("leaderboard needs at least 2 models")
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
 
-    per_model_scores: dict[str, list[float]] = {m: data.filter_model(m).score for m in models}
+    qmap = {m: data.filter_model(m).scores_by_question() for m in models}
+    n_observations = {m: len(data.filter_model(m)) for m in models}
 
     entries: list[LeaderboardEntry] = []
     for m in models:
-        scores = per_model_scores[m]
-        est = _summarize_mean(scores, confidence, use_wilson_below_n)
-        entries.append(LeaderboardEntry(m, est.mean, est.se, est.ci_low, est.ci_high, est.n, est.method))
+        scores = list(qmap[m].values())
+        repeated = n_observations[m] > len(scores)
+        if repeated and len(scores) < 2:
+            raise ValueError(
+                f"model {m!r}: need at least 2 distinct questions for repeated-generation inference"
+            )
+        est = _summarize_mean(scores, confidence, 0 if repeated else use_wilson_below_n)
+        entries.append(
+            LeaderboardEntry(
+                m, est.mean, est.se, est.ci_low, est.ci_high, est.n, est.method, n_observations[m]
+            )
+        )
     entries.sort(key=lambda e: e.mean, reverse=True)
     order = [e.model for e in entries]
 
     # Align questions for paired tests: use the intersection of question_ids
     # common to both models, sorted for determinism.
-    qmap = {m: data.filter_model(m).scores_by_question() for m in models}
     cluster_of_q = data.cluster_by_question()
 
     pairwise: list[PairwiseResult] = []

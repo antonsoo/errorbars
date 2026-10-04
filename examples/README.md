@@ -57,7 +57,7 @@ $ errorbars compare examples/data/reading_comprehension.csv \
 | McNemar discordant (A wrong/B right, A right/B wrong) | 32 / 46 |
 | McNemar exact p-value | 0.1405 |
 
-Pairing already shrinks the SE by 14% and the 95% CI now crosses zero.
+Pairing already shrinks the variance by 14% and the 95% CI now crosses zero.
 McNemar's exact test on the same discordant pairs agrees: p = 0.14.
 
 ## Step 3: account for clustering

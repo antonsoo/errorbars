@@ -4,6 +4,34 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Fixed
+
+- Both power-planning directions now validate finite parameters and exact integer
+  counts consistently. Invalid design effects, negative detectable gaps, infinite
+  samples, and unrepresentable counts produce validation errors. Small alpha values
+  avoid subtraction cancellation, and variance roots avoid premature overflow.
+- Browser curves no longer contain decorative scatter that could be mistaken for
+  measurements. The minimum question count stays inside the plot, axis labels keep
+  their size on phones, and edits do not restart an animation.
+- Small-gap plans use a higher precision AS241 inverse-normal approximation; the
+  previous approximation could shift very large required counts by hundreds of
+  questions relative to Python. Independent SciPy quantiles cover all three
+  approximation regions, including extreme tails.
+- Shared formula vectors now sample the full parameter grid instead of truncating
+  it to one baseline and one question count. Python checks that they remain current;
+  independent SciPy quantile checks exercise additional boundary cases.
+
+### Added
+
+- Fixed-budget planning, precise numeric editors, reset and recovery, a computed
+  budget table, and a comparison with zero pairing correlation.
+- JSON planning artifacts with explicit assumptions, units and warnings, plus a
+  reproducible Python CLI command. Invalid drafts cannot export a stale result.
+- Mobile result navigation, small-sample/group caveats, and explicit warnings when
+  a mathematical detectable gap exceeds the available accuracy improvement.
+- Production Chromium and Firefox workflows covering editing, keyboard use,
+  downloads, accessibility, responsive charts, offline use, and blocked storage.
+
 ### Maintenance
 
 - The uv lock now resolves stable Pydantic 2.13.5 and wrapt 2.5.0 instead of

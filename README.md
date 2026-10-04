@@ -72,9 +72,10 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   `--log_samples` output, Inspect AI `.eval` logs, or the CSV/JSONL format below.
   `errorbars compare out/model-a out/model-b` is the whole comparison (see
   [below](#reading-lm-evaluation-harness-and-inspect-ai-logs)).
-- **Web calculator** — a static "how many eval questions do I need?" power calculator
-  ([live demo](https://antonsoo.github.io/errorbars/)), whose TypeScript formulas are checked
-  against the Python ones by the test suite.
+- **Web calculator** — plan the questions needed for an accuracy improvement or the gap a
+  fixed budget can detect. Exact editors, a computed budget table, pairing sensitivity,
+  explicit assumptions, JSON plans, and reproducible CLI commands. The TypeScript formulas
+  are checked against Python-generated vectors. [Planning guide](docs/planning.md).
 - Typed Python ≥3.10, `numpy` the only runtime dependency; `pandas` and `matplotlib` are optional
   extras; `scipy`/`statsmodels` are test-only oracles, never imported at runtime.
 
@@ -257,9 +258,8 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 - Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
   statistically direct approach — it can produce a model in more than one group, unlike a
   minimal-letters heuristic (e.g. R's `multcompView`).
-- 222 Python tests, 605 TypeScript tests (cross-checking the JS formulas against Python-generated
-  vectors), all passing on this box (14 vCPU WSL2 Linux, 48 GB RAM; Python 3.12.3, Node 26.7.0)
-  as of 2026-10-01.
+- [Verification evidence](docs/verification-2026-10-04.md) records the current planning
+  checks, supported environments, browser coverage, and limits of the audit.
 
 ## Web calculator
 
@@ -267,9 +267,21 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 ([live demo](https://antonsoo.github.io/errorbars/)). Its power formulas
 (`web/src/power.ts`, `web/src/normal.ts`) are a direct port of `src/errorbars/power.py`; Python
 generates JSON test vectors (`scripts/export_test_vectors.py` → `web/test-vectors.json`) that the
-TypeScript test suite checks against, so the two implementations can't silently drift apart.
+TypeScript test suite checks against. The Python suite also checks that the committed
+vectors match the current implementation.
 
-![Power calculator](docs/assets/calculator-hero.png)
+Choose **Questions needed** or **Gap my budget can detect**. Number fields keep exact
+inputs; invalid edits disable results and downloads until corrected. The chart and table
+contain calculated values only, and a comparison at correlation zero exposes how much the
+answer depends on pairing. Small question/group counts and gaps beyond 100% accuracy carry
+explicit warnings. The normal approximation remains a planning estimate.
+
+**Download plan (JSON)** retains inputs, units, results, assumptions and a complete
+`errorbars power` command. Calculations and downloads stay local and work offline after
+load; only the theme is persisted. See [Evaluation planning](docs/planning.md) for the
+artifact schema, browser input ranges, and statistical limitations.
+
+![Evaluation planner with exact inputs, computed curve and budget table](docs/assets/calculator-hero.png)
 
 ## Development
 
@@ -303,7 +315,8 @@ library, closed form, or Monte Carlo simulation) — see `tests/` for the patter
 
 ## License
 
-[MIT](LICENSE) © 2026 Anton Soloviev
+[MIT](LICENSE) © 2026 Anton Soloviev. The browser quantile adaptation and local
+fonts retain their upstream licenses; see [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ---
 

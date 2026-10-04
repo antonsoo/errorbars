@@ -16,10 +16,12 @@ Regenerate the synthetic example data with `python examples/generate_synthetic.p
 
 ```bash
 cd web
-npm install
+npm ci
 npm run dev      # local dev server
 npm test         # vitest, checks against Python-generated test vectors
 npm run build
+npx playwright install chromium firefox  # first setup only
+npm run test:browser  # production build, both browser engines
 ```
 
 If you change a formula in `src/errorbars/power.py`, regenerate the shared

@@ -44,6 +44,13 @@ Percentile bootstrap: resample $n$ scores with replacement $B$ times
 $[\alpha/2, 1-\alpha/2]$ empirical quantiles of the resample means. Useful
 as a model-free cross-check, and for statistics with no closed-form SE.
 
+Resampling is batched with at most 250,000 temporary indices per batch when a single
+resample fits that budget; larger inputs still require one complete resample. All $B$
+means are retained for the percentile calculation, so working memory is $O(n+B)$ rather
+than $O(nB)$. The random generator's state continues across batches, preserving the
+same seeded draws and percentile result. The configured resample count must be an
+integer of at least two, since one draw cannot estimate a bootstrap standard error.
+
 ## 4. Cluster-robust standard error
 
 When questions are grouped (e.g. several questions per reading passage),
@@ -107,6 +114,14 @@ paper's central point about where to spend a fixed compute budget.
 Recovery of known simulated components is checked in
 `tests/test_within_between.py`.
 
+The CLI and leaderboard average repeated generations within each question, then apply
+mean/paired estimators to the question averages. This gives each question weight $1/n$,
+even with unequal generation counts. `n` is the number of distinct questions and
+`n_observations` preserves the number of draws. Within/between decomposition continues to
+use the raw draws; clustered SE uses one averaged score and one cluster assignment per
+question. Wilson is reserved for one binary observation per question. More draws can
+reduce sampling noise, but they do not create more independently sampled questions.
+
 ## 7. Paired comparison
 
 For two models scored on the *same* questions, the difference
@@ -120,6 +135,25 @@ I_{\nu/(\nu+t^2)}(\nu/2, 1/2)$, evaluated by continued fraction, so there is
 still no scipy at runtime. (The normal approximation this replaced was
 anti-conservative for small $n$: at 8 degrees of freedom, $T = 2.2$ is
 $p = 0.028$ under the normal but $0.059$ under t.)
+
+For exactly constant differences the variance estimate is zero: a nonzero difference
+uses the $|T|\to\infty$, p=0 limit (also returned by SciPy), while identical scores use
+p=1 by explicit convention (SciPy returns NaN for 0/0). Warnings accompany either
+case; a collapsed interval is not evidence of population certainty. For binary pairs,
+the exact McNemar result is retained separately. These conventions also apply to
+zero cluster-sum variance. A single cluster is rejected because the CR1 correction
+$G/(G-1)$ cannot be estimated; it is not replaced with an independent-observation SE.
+
+Score vectors and group identifiers must be finite, one-dimensional and aligned.
+Binary means exactly 0 or 1. SEs, correlation and paired variance reduction are computed
+on rescaled scores before restoring their units; directly squaring scores near
+$10^{-200}$ would underflow, changing the test result when only the score units changed.
+
+Pearson correlation is undefined when either vector has zero variance. Likewise,
+`variance_reduction` is undefined when both vectors are constant, since the unpaired
+variance denominator is zero. These fields return `None`/JSON null with warnings, and the
+CLI shows `unavailable`. They are not assigned a fabricated zero; ordinary mean/difference
+and test outputs remain available under the zero-variance conventions above.
 
 **Why pairing helps.** For two *independent* samples of size $n$,
 $\mathrm{Var}(\bar a - \bar b) = \frac{\sigma_a^2 + \sigma_b^2}{n}$. For a

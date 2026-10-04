@@ -6,6 +6,28 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Summary and leaderboard means now give each question equal weight after averaging its
+  repeated generations. Counts and SEs use distinct questions; retained observation counts
+  remain available in JSON and repeated-generation tables. Wilson cannot count repeated
+  question averages as independent binary trials.
+- Constant nonzero paired differences use the p=0 t-test limit instead of p=1, with explicit
+  degeneracy warnings. Score units are scaled before SE/correlation calculations to avoid
+  tiny continuous scores underflowing to false zero variance. Matrix/nonfinite inputs,
+  invalid group lengths, approximate binary grades in McNemar, and a single independent
+  cluster are rejected at the relevant statistical entry points.
+- Undefined pairing correlation and variance reduction are exported as JSON null and shown
+  as unavailable in the CLI, with explanatory warnings. Callers must handle nullable values
+  for constant score vectors instead of interpreting the old fabricated zero as a measurement.
+- Input parsing rejects duplicate normalized CSV columns, duplicate JSON fields, missing or
+  structured identifiers, and conflicting cluster assignments. Combining sources propagates
+  known assignments to the same question and refuses to invent groups for unknown questions.
+- Inspect imports refuse missing or unsupported scalar grades and unscored samples, which
+  previously became zero scores or silently disappeared. lm-eval imports require document
+  IDs and reject duplicate score fields, preserving question identity and original grades.
+- Percentile bootstrap resampling now batches temporary indices and indexed scores, while
+  retaining every resample mean and the same seeded percentile result. Invalid resample
+  counts are rejected rather than producing undefined SEs or allocation errors.
+
 - Both power-planning directions now validate finite parameters and exact integer
   counts consistently. Invalid design effects, negative detectable gaps, infinite
   samples, and unrepresentable counts produce validation errors. Small alpha values
@@ -33,6 +55,9 @@ All notable changes to this project are documented in this file.
   downloads, accessibility, responsive charts, offline use, and blocked storage.
 
 ### Maintenance
+
+- Browser lint tooling now uses supported ESLint 10 with its compatible TypeScript plugin.
+  Fresh Node 24 checks pass and all production files match the browser-tested build.
 
 - The uv lock now resolves stable Pydantic 2.13.5 and wrapt 2.5.0 instead of
   beta/release-candidate versions selected by a permissive local resolver setting.

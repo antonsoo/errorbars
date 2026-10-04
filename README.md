@@ -144,6 +144,18 @@ Column names are configurable (`--question-col`, `--cluster-col`, etc., or `Colu
 Scores can be binary (0/1) or continuous. `cluster_id` groups correlated questions (e.g. several
 questions per reading passage); `sample` marks repeated generations of the same question.
 
+Each question has equal weight in summaries, leaderboard means, and paired comparisons.
+Repeated generations are averaged within a question first. `n` counts questions; JSON also
+retains `n_observations`, and tables show the generation count when repetitions are present.
+For example, ten successful generations of q1 and one failed generation of q2 have a question
+mean of **0.5**, rather than a draw-weighted **10/11**. The runnable synthetic example is in
+[the repeated-generation walkthrough](examples/README.md#unequal-repeated-generations).
+
+Identifiers must be nonempty scalar values. Duplicate CSV columns or JSON fields, explicit
+missing sample/cluster labels, and contradictory cluster assignments are rejected. A question's
+cluster is shared across models. When combining files, missing cluster metadata can be resolved
+from another file for the same question; every other question needs an explicit assignment.
+
 Every command takes several files (`errorbars leaderboard model-a.csv model-b.csv ...`) and puts
 their rows together. The same model, question and sample in two files is refused, as it is within
 one file: counted twice it would inflate n and shrink every error bar.
@@ -221,6 +233,12 @@ binary `.eval` format, and needs the `inspect` extra:
 `pip install "errorbars[inspect]"`. The lm-eval
 adapter has no extra dependency — `--log_samples` is already plain JSONL.
 
+Inspect imports refuse unscored samples, missing grades and unrecognized grade strings.
+Valid `C`/`I`/`P`/`N`, boolean representations and finite numeric scores keep Inspect's
+conversion semantics. Recover or explicitly select the intended evaluation cohort before
+importing an incomplete log. lm-eval records require a valid `doc_id`; row order is never
+used to fabricate question identity.
+
 ## How it works
 
 Every statistic is implemented from scratch on `numpy` + the standard library
@@ -251,6 +269,18 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
   and clustered SEs use t with G − 1 for G clusters (Cameron & Miller 2015), computed without
   scipy. With few clusters that interval is honest but wide; the per-model `clt` interval stays
   normal-based, which is only right once n is in the dozens.
+- Repeated-generation intervals use the distribution of question averages; Wilson is reserved
+  for single binary observations per question. CLT and percentile bootstrap estimates remain
+  approximate, especially with very few questions. Within/between decomposition retains the
+  original draws. One independent cluster cannot estimate a cluster-robust SE and is rejected.
+- Zero-variance paired differences carry explicit warnings: nonzero differences use the
+  t-test's p=0 limit, while identical scores use p=1 by convention. Point intervals do not
+  establish certainty about the population. Exact McNemar results remain available for binary
+  pairs; scores merely near 0 or 1 remain continuous. Nonzero score units are rescaled before
+  variance calculations to avoid underflow in SEs and paired tests.
+- Pairing diagnostics preserve unavailable values: `correlation` is `null` when either
+  vector is constant, and `variance_reduction` is `null` when both are constant. The CLI
+  prints `unavailable`; downstream code must check for `None` before formatting these fields.
 - The power formula's samples-per-question adjustment assumes all single-sample variance is
   decoding noise (see `docs/formulas.md` §11 for why, and the caveat on when this is optimistic).
   It's a planning tool for before you run the eval; for a post-hoc measurement with the true
@@ -260,6 +290,8 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
   minimal-letters heuristic (e.g. R's `multcompView`).
 - [Verification evidence](docs/verification-2026-10-04.md) records the current planning
   checks, supported environments, browser coverage, and limits of the audit.
+- [Data-integrity verification](docs/data-integrity-2026-10-04.md) records the subsequent
+  repeated-generation, paired-test and metadata audit. Those changes are local and unreleased.
 
 ## Web calculator
 

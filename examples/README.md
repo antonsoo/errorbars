@@ -1,5 +1,31 @@
 # Walkthrough: a leaderboard win that evaporates
 
+## Unequal repeated generations
+
+`examples/data/unequal_repetitions.csv` is a tiny **synthetic counterexample**, not a
+decision-quality benchmark. `sampled` has ten successful draws for q1 and one failed draw
+for q2; `steady` has one score of 0.7 for each question.
+
+```sh
+errorbars leaderboard examples/data/unequal_repetitions.csv
+errorbars summarize examples/data/unequal_repetitions.csv --model sampled --json
+```
+
+| Model | Question mean | Questions | Observations |
+| --- | --- | --- | --- |
+| steady | 0.7 | 2 | 2 |
+| sampled | 0.5 | 2 | 11 |
+
+Counting draws would give `sampled` 10/11 and incorrectly rank it first. Averaging within
+each question gives `(1 + 0)/2 = 0.5`, consistent with the paired comparison. JSON preserves
+both counts and the analysis unit. The question SE is 0.5; two questions are far too few
+to rely on the CLT interval, which extends beyond the accuracy range. More generations of
+those same two questions do not create a larger independently sampled benchmark.
+
+![Real CLI output for the synthetic repeated-generation counterexample](../docs/assets/repeated-generations-terminal.png)
+
+## Clustered benchmark walkthrough
+
 This walkthrough uses `examples/data/reading_comprehension.csv`, a
 **synthetic** (simulated, not real) reading-comprehension benchmark:
 40 passages, 5 questions per passage (200 questions total), 4 synthetic
@@ -138,7 +164,12 @@ $ errorbars summarize examples/data/repeated_sampling.csv --model tuned-7b
 | within-question (sampling noise) | 0.2181 |
 | between-question (item difficulty) | 0.0304 |
 
-Most of the variance here (88%) is decoding noise, not item difficulty —
-in this synthetic setup, sampling more generations per question would
-tighten the estimate faster than adding more questions (see
-`docs/formulas.md` §6 for the formula and why).
+Most of the per-draw variance here (88%) is decoding noise. The summary still has
+**60 questions**, **240 observations**, mean **0.5542** and SE **0.0376**: the four
+generations are averaged within each question before the mean interval is computed.
+More generations of a fixed question set reduce its sampling-noise contribution.
+With a fixed generation budget $B=nk$, however, the variance model is
+$\sigma^2_{\rm between}k/B + \sigma^2_{\rm within}/B$, which favors more questions
+when the between-question component is positive and new questions cost the same.
+Question availability or extra setup costs can change that choice; a large within-noise
+fraction alone does not establish which use of a fixed budget is better.

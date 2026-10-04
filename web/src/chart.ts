@@ -5,19 +5,6 @@ export interface ChartPoint {
   mde: number;
 }
 
-/** Mulberry32: tiny deterministic PRNG so the "noise" scatter is stable
- * across re-renders of the same inputs (no jitter on every slider tick). */
-function mulberry32(seed: number): () => number {
-  let a = seed;
-  return () => {
-    a |= 0;
-    a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 export function buildCurve(inputs: PowerInputs, nMin: number, nMax: number, points = 60): ChartPoint[] {
   const logMin = Math.log10(nMin);
   const logMax = Math.log10(nMax);
@@ -27,7 +14,7 @@ export function buildCurve(inputs: PowerInputs, nMin: number, nMax: number, poin
     const n = Math.round(10 ** logN);
     out.push({ n, mde: minimumDetectableEffect(Math.max(2, n), inputs) });
   }
-  return out;
+  return out.filter((p, i) => i === 0 || p.n !== out[i - 1]!.n);
 }
 
 interface RenderOptions {
@@ -58,24 +45,6 @@ export function renderChart(container: HTMLElement, curve: ChartPoint[], opts: R
     .map((p, i) => `${i === 0 ? "M" : "L"} ${xScale(p.n).toFixed(2)} ${yScale(p.mde).toFixed(2)}`)
     .join(" ");
 
-  // Decorative "noise resolving into signal" scatter: points near the curve,
-  // jittered more at small n (high variance) and less at large n — the
-  // page's own thesis, drawn.
-  const rand = mulberry32(Math.round(nMin * 7 + nMax * 13 + curve[0]!.mde * 100000));
-  const noisePoints: string[] = [];
-  for (let i = 0; i < 90; i++) {
-    const t = rand();
-    const idx = Math.min(curve.length - 1, Math.floor(t * curve.length));
-    const { n, mde: baseMde } = curve[idx]!;
-    const jitterScale = (1 - t) * 0.55 + 0.03; // more jitter at small n
-    const jitter = (rand() - 0.5) * 2 * baseMde * jitterScale;
-    const mdeJittered = Math.max(0.0005, baseMde + jitter);
-    if (mdeJittered > mdeMax) continue;
-    noisePoints.push(
-      `<circle class="chart-noise-point" cx="${xScale(n).toFixed(2)}" cy="${yScale(mdeJittered).toFixed(2)}" r="1.6"/>`,
-    );
-  }
-
   // gridlines + y-axis ticks (MDE, as accuracy points)
   const yTicks = 4;
   const yGridLines: string[] = [];
@@ -105,9 +74,8 @@ export function renderChart(container: HTMLElement, curve: ChartPoint[], opts: R
   const currentY = yScale(opts.current.mde);
 
   container.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Minimum detectable effect versus number of questions, on a log scale x-axis">
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Computed minimum detectable effect versus question count. Current plan: ${opts.current.n} questions, ${(opts.current.mde * 100).toFixed(3)} percentage points. Question count uses a logarithmic scale; exact values follow in a table.">
       ${yGridLines.join("")}
-      ${noisePoints.join("")}
       <path class="chart-curve" d="${pathD}"/>
       <line x1="${currentX.toFixed(2)}" y1="${MARGIN.top}" x2="${currentX.toFixed(2)}" y2="${height - MARGIN.bottom}" stroke="var(--noise)" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
       <circle class="chart-marker" cx="${currentX.toFixed(2)}" cy="${currentY.toFixed(2)}" r="5.5"/>

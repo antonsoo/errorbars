@@ -1,247 +1,240 @@
 import "./fonts/fonts.css";
 import "./style.css";
-import { questionsNeeded, designEffect, type PowerInputs } from "./power.ts";
+import { minimumDetectableEffect } from "./power.ts";
 import { buildCurve, renderChart } from "./chart.ts";
-import { invNormalCdf, zForConfidence } from "./normal.ts";
+import { ASSUMPTIONS, defaults, FIELDS, isActive, plan, PlanInputError, type Field, type Plan, type PlanMode } from "./planner.ts";
 
-interface SliderConfig {
-  id: string;
-  label: string;
-  caption: string;
-  min: number;
-  max: number;
-  step: number;
-  default: number;
-  format: (v: number) => string;
-}
+const byId = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
+const number = (n: number): string => n.toLocaleString("en-US", { maximumFractionDigits: 3 });
+const points = (n: number): string => `${number(n * 100)} points`;
+let values = defaults();
+let mode: PlanMode = "questions";
+let currentPlan: Plan | null = null;
+let chartWidth = 0;
 
-const SLIDERS: SliderConfig[] = [
-  {
-    id: "baseline",
-    label: "Baseline accuracy",
-    caption: "Roughly where your models score. Sets the per-question variance.",
-    min: 0.1,
-    max: 0.95,
-    step: 0.01,
-    default: 0.5,
-    format: (v) => `${Math.round(v * 100)}%`,
-  },
-  {
-    id: "delta",
-    label: "Effect size (δ)",
-    caption: "The accuracy gap you want to be able to detect.",
-    min: 0.005,
-    max: 0.2,
-    step: 0.001,
-    default: 0.03,
-    format: (v) => `${(v * 100).toFixed(1)} pt`,
-  },
-  {
-    id: "rho",
-    label: "Correlation (ρ)",
-    caption: "How correlated the two models' per-question scores are.",
-    min: 0,
-    max: 0.95,
-    step: 0.01,
-    default: 0.3,
-    format: (v) => v.toFixed(2),
-  },
-  {
-    id: "clusterSize",
-    label: "Cluster size",
-    caption: "Questions per group (e.g. per reading passage). 1 = no clustering.",
-    min: 1,
-    max: 20,
-    step: 1,
-    default: 1,
-    format: (v) => `${v} q/cluster`,
-  },
-  {
-    id: "icc",
-    label: "Intraclass correlation (ICC)",
-    caption: "How much questions in the same cluster resemble each other.",
-    min: 0,
-    max: 0.9,
-    step: 0.01,
-    default: 0,
-    format: (v) => v.toFixed(2),
-  },
-  {
-    id: "alpha",
-    label: "Significance level (α)",
-    caption: "False-positive rate you're willing to accept.",
-    min: 0.01,
-    max: 0.2,
-    step: 0.01,
-    default: 0.05,
-    format: (v) => v.toFixed(2),
-  },
-  {
-    id: "power",
-    label: "Power (1 − β)",
-    caption: "Chance of detecting the effect, if it's real.",
-    min: 0.5,
-    max: 0.99,
-    step: 0.01,
-    default: 0.8,
-    format: (v) => `${Math.round(v * 100)}%`,
-  },
-];
-
-const state: Record<string, number> = Object.fromEntries(SLIDERS.map((s) => [s.id, s.default]));
-
-function buildControls(container: HTMLElement): void {
-  for (const cfg of SLIDERS) {
+function buildControls(): void {
+  for (const cfg of FIELDS) {
     const wrap = document.createElement("div");
     wrap.className = "control";
-
+    wrap.id = `${cfg.key}-control`;
     const head = document.createElement("div");
     head.className = "control-head";
-
     const label = document.createElement("label");
     label.className = "control-label";
-    label.htmlFor = cfg.id;
+    label.htmlFor = cfg.key;
     label.textContent = cfg.label;
-
-    const value = document.createElement("span");
-    value.className = "control-value";
-    value.id = `${cfg.id}-value`;
-    value.textContent = cfg.format(cfg.default);
-
-    head.append(label, value);
-
     const input = document.createElement("input");
-    input.type = "range";
-    input.id = cfg.id;
+    input.type = "number";
+    input.id = cfg.key;
     input.min = String(cfg.min);
     input.max = String(cfg.max);
-    input.step = String(cfg.step);
-    input.value = String(cfg.default);
-    input.setAttribute("aria-describedby", `${cfg.id}-caption`);
-    input.addEventListener("input", () => {
-      state[cfg.id] = Number(input.value);
-      value.textContent = cfg.format(state[cfg.id]!);
-      if (cfg.id === "baseline") syncDeltaLimit();
-      update();
-    });
-
+    input.step = cfg.integer ? "1" : "any";
+    input.value = String(cfg.initial);
+    input.setAttribute("aria-describedby", `${cfg.key}-caption input-error`);
     const caption = document.createElement("p");
     caption.className = "control-caption";
-    caption.id = `${cfg.id}-caption`;
+    caption.id = `${cfg.key}-caption`;
     caption.textContent = cfg.caption;
-
-    wrap.append(head, input, caption);
-    container.appendChild(wrap);
+    head.append(label, input);
+    wrap.append(head);
+    // A linear billion-question slider would be unusable; budget uses the exact editor only.
+    if (cfg.key !== "budget") {
+      const range = document.createElement("input");
+      range.type = "range";
+      range.id = `${cfg.key}-range`;
+      range.min = String(cfg.min);
+      range.max = String(cfg.max);
+      range.step = String(cfg.step);
+      range.value = input.value;
+      range.setAttribute("aria-label", `Adjust ${cfg.label.toLowerCase()}`);
+      range.setAttribute("aria-describedby", caption.id);
+      range.setAttribute("aria-valuetext", `${input.value} ${cfg.label.includes("%") ? "percent" : cfg.key === "delta" ? "percentage points" : ""}`);
+      range.addEventListener("input", () => {
+        input.value = range.value;
+        edit(cfg.key, input.valueAsNumber);
+      });
+      wrap.append(range);
+    }
+    input.addEventListener("input", () => edit(cfg.key, input.valueAsNumber));
+    wrap.append(caption);
+    byId("controls").append(wrap);
   }
 }
 
-/** An accuracy can't pass 100%, so the largest detectable gap is 1 - baseline: the delta slider
- * follows the baseline instead of offering impossible targets like 95% + 20 points. */
-function syncDeltaLimit(): void {
-  const cfg = SLIDERS.find((s) => s.id === "delta")!;
-  const input = document.getElementById("delta") as HTMLInputElement | null;
-  if (!input) return;
-  const limit = Math.min(cfg.max, Math.round((1 - state.baseline!) * 1000) / 1000);
-  input.max = String(limit);
-  if (state.delta! > limit) {
-    state.delta = limit;
-    input.value = String(limit);
-    document.getElementById("delta-value")!.textContent = cfg.format(limit);
+function edit(key: Field, value: number): void {
+  values[key] = value;
+  const range = byId<HTMLInputElement>(`${key}-range`);
+  if (range && Number.isFinite(value)) {
+    range.value = String(value);
+    // The number editor can be more precise than the slider's step. Announce the actual slider value.
+    range.setAttribute("aria-valuetext", `${range.value} ${key === "baseline" || key === "alpha" || key === "power" ? "percent" : key === "delta" ? "percentage points" : ""}`);
   }
-}
-
-function currentInputs(): PowerInputs {
-  const deff = designEffect(state.icc!, state.clusterSize!);
-  return {
-    baselineAccuracy: state.baseline!,
-    alpha: state.alpha!,
-    power: state.power!,
-    rho: state.rho!,
-    clusterDesignEffect: deff,
-  };
-}
-
-function pct(v: number): string {
-  return `${Math.round(v * 100)}%`;
-}
-
-function formatN(n: number): string {
-  return n.toLocaleString("en-US");
+  update();
 }
 
 function update(): void {
-  const inputs = currentInputs();
-  const result = questionsNeeded(state.delta!, inputs);
-  const deff = inputs.clusterDesignEffect ?? 1;
-
-  const nEl = document.getElementById("result-n")!;
-  nEl.textContent = formatN(result.nQuestions);
-
-  const sentenceEl = document.getElementById("result-sentence")!;
-  const clusterClause =
-    state.clusterSize! > 1 && state.icc! > 0
-      ? ` Clustering (${state.clusterSize} questions/group, ICC=${state.icc!.toFixed(2)}) inflates that by ${deff.toFixed(2)}×.`
-      : "";
-  sentenceEl.innerHTML =
-    `With a baseline accuracy of ${pct(state.baseline!)} and a paired correlation of ${state.rho!.toFixed(2)}, ` +
-    `you need <strong>${formatN(result.nQuestions)} questions</strong> to detect a ${(state.delta! * 100).toFixed(1)}-point ` +
-    `gap with ${pct(state.power!)} power at α=${state.alpha!.toFixed(2)}.` +
-    clusterClause;
-
-  const chartContainer = document.getElementById("chart")!;
-  const nMin = 8;
-  const nMax = Math.max(200, result.nQuestions * 4);
-  const curve = buildCurve(inputs, nMin, nMax);
-  renderChart(chartContainer, curve, { current: { n: result.nQuestions, mde: state.delta! } });
-
-  const zAlpha = zForConfidence(1 - inputs.alpha!);
-  const zBeta = invNormalCdf(inputs.power!);
-  const detailStrip = document.getElementById("detail-strip")!;
-  const details: [string, string][] = [
-    ["z(α/2)", zAlpha.toFixed(3)],
-    ["z(β)", zBeta.toFixed(3)],
-    ["per-question variance", result.perQuestionVariance.toFixed(4)],
-    ["design effect", deff.toFixed(3)],
-  ];
-  detailStrip.innerHTML = details
-    .map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`)
-    .join("");
+  for (const cfg of FIELDS) {
+    const active = isActive(cfg.key, mode);
+    byId(`${cfg.key}-control`).hidden = !active;
+    byId<HTMLInputElement>(cfg.key).disabled = !active;
+    byId(cfg.key).removeAttribute("aria-invalid");
+  }
+  byId("action-status").textContent = "";
+  try {
+    const result = plan(mode, values);
+    render(result);
+    currentPlan = result;
+    byId("input-error").hidden = true;
+    byId("plan-output").hidden = false;
+    byId<HTMLAnchorElement>("mobile-result").href = "#plan-output";
+    byId("mobile-result").textContent = mode === "questions"
+      ? `View plan: ${number(result.result.nQuestions)} questions per model`
+      : `View plan: ${points(result.result.minimumDetectableEffect)} detectable gap`;
+    byId<HTMLButtonElement>("download-plan").disabled = false;
+  } catch (error) {
+    currentPlan = null;
+    const message = error instanceof Error ? error.message : "Unable to calculate this plan. Check the inputs.";
+    byId("input-error").textContent = message;
+    byId("input-error").hidden = false;
+    if (error instanceof PlanInputError) byId(error.field).setAttribute("aria-invalid", "true");
+    byId("plan-output").hidden = true;
+    byId("result-status").textContent = "Plan unavailable. Correct the highlighted input.";
+    byId<HTMLAnchorElement>("mobile-result").href = error instanceof PlanInputError ? `#${error.field}` : "#input-error";
+    byId("mobile-result").textContent = error instanceof PlanInputError
+      ? `Fix input: ${FIELDS.find(f => f.key === error.field)!.label}`
+      : "Check inputs to calculate a plan";
+    byId<HTMLButtonElement>("download-plan").disabled = true;
+  }
 }
 
-function initThemeToggle(): void {
-  const button = document.getElementById("theme-toggle");
-  if (!button) return;
-
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  let stored: string | null = null;
-  try {
-    stored = localStorage.getItem("errorbars-theme");
-  } catch {
-    // localStorage unavailable (private browsing, etc.) — fall back to system preference.
-  }
-  let isDark = stored ? stored === "dark" : prefersDark;
-
-  const apply = () => {
-    document.documentElement.dataset.theme = isDark ? "dark" : "light";
-    button.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
-    button.textContent = isDark ? "☀" : "☾";
-  };
-  apply();
-
-  button.addEventListener("click", () => {
-    isDark = !isDark;
-    apply();
-    try {
-      localStorage.setItem("errorbars-theme", isDark ? "dark" : "light");
-    } catch {
-      // ignore: theme just won't persist across visits
+function render(p: Plan): void {
+  const { nQuestions: n, minimumDetectableEffect: mde } = p.result;
+  byId("result-label").textContent = mode === "questions" ? "Questions per model" : "Detectable gap in percentage points";
+  byId("result-n").textContent = mode === "questions" ? number(n) : number(mde * 100);
+  const sentence = mode === "questions"
+    ? `Answer the same ${number(n)} questions with each model to plan for a ${number(values.delta)}-point improvement at ${number(values.power)}% power.`
+    : `With ${number(n)} shared questions, the estimated detectable gap is ${points(mde)} at ${number(values.power)}% power.`;
+  byId("result-sentence").textContent = sentence;
+  byId("result-status").textContent = `${sentence}${p.warnings.length ? ` ${p.warnings.join(" ")}` : ""}`;
+  const warnings = byId("plan-warnings");
+  warnings.replaceChildren(...p.warnings.map(warning => {
+    const item = document.createElement("p");
+    item.textContent = warning;
+    return item;
+  }));
+  warnings.hidden = !p.warnings.length;
+  byId("result-work").textContent = `${number(p.result.modelAnswers)} model answers in total. One answer per model per question.`;
+  byId("pairing-sensitivity").textContent = mode === "questions"
+    ? `If the paired correlation were 0, the same gap would need ${number(p.sensitivity.nQuestions)} questions per model. All other assumptions stay fixed.`
+    : `If the paired correlation were 0, this budget's detectable gap would be ${points(p.sensitivity.minimumDetectableEffect)}. All other assumptions stay fixed.`;
+  drawChart(p);
+  byId("chart-caption").textContent = `The curve and marker are calculated from your assumptions. Gaps above ${points(p.result.maximumImprovement)} exceed the distance from this baseline to 100% accuracy.`;
+  const rows = [...new Set([Math.max(2, Math.floor(n / 2)), n, n * 2, n * 4])];
+  byId("budget-rows").replaceChildren(...rows.map(budget => {
+    const row = document.createElement("tr");
+    if (budget === n) row.className = "current-budget";
+    const gap = minimumDetectableEffect(budget, p.inputs);
+    for (const text of [number(budget) + (budget === n ? " (current)" : ""), points(gap), gap <= p.result.maximumImprovement ? "Within range" : "Exceeds 100% accuracy"]) {
+      const cell = document.createElement("td");
+      cell.textContent = text;
+      row.append(cell);
     }
+    return row;
+  }));
+  const details: [string, string][] = [
+    ["Variance p(1-p)", number(p.result.perQuestionVariance)],
+    ["Design effect", number(p.inputs.clusterDesignEffect)],
+    ["Approximate groups", number(p.result.approximateGroups)],
+    ["Two-sided alpha", `${number(p.inputs.alpha * 100)}%`],
+  ];
+  byId("detail-strip").replaceChildren(...details.map(([label, value]) => {
+    const wrap = document.createElement("div");
+    const dt = document.createElement("dt");
+    dt.textContent = label;
+    const dd = document.createElement("dd");
+    dd.textContent = value;
+    wrap.append(dt, dd);
+    return wrap;
+  }));
+  byId<HTMLTextAreaElement>("cli-command").value = p.cliCommand;
+}
+
+function drawChart(p: Plan): void {
+  const container = byId("chart");
+  chartWidth = Math.max(280, Math.round(container.clientWidth) || 350);
+  const n = p.result.nQuestions;
+  const curve = buildCurve(p.inputs, Math.max(2, Math.floor(n / 16)), Math.max(20, n * 4));
+  renderChart(container, curve, {
+    width: chartWidth,
+    height: chartWidth < 400 ? 230 : 280,
+    current: { n, mde: p.result.minimumDetectableEffect },
   });
 }
 
-const controlsEl = document.getElementById("controls");
-if (controlsEl) {
-  buildControls(controlsEl);
-  update();
+function initTheme(): void {
+  let stored: string | null = null;
+  try { stored = localStorage.getItem("errorbars-theme"); } catch { /* Theme remains session-only. */ }
+  let dark = stored === "dark" || (stored !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const button = byId<HTMLButtonElement>("theme-toggle");
+  function apply(): void {
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+    button.textContent = dark ? "☀" : "☾";
+  }
+  apply();
+  button.addEventListener("click", () => {
+    dark = !dark;
+    apply();
+    try { localStorage.setItem("errorbars-theme", dark ? "dark" : "light"); } catch { /* Optional preference. */ }
+  });
 }
-initThemeToggle();
+
+buildControls();
+for (const input of document.querySelectorAll<HTMLInputElement>('input[name="mode"]')) {
+  input.addEventListener("change", () => {
+    mode = input.value === "budget" ? "budget" : "questions";
+    update();
+  });
+}
+byId("reset-plan").addEventListener("click", () => {
+  values = defaults();
+  mode = "questions";
+  byId<HTMLInputElement>("mode-questions").checked = true;
+  for (const cfg of FIELDS) {
+    byId<HTMLInputElement>(cfg.key).value = String(values[cfg.key]);
+    const range = byId<HTMLInputElement>(`${cfg.key}-range`);
+    if (range) {
+      range.value = String(values[cfg.key]);
+      range.removeAttribute("aria-valuetext");
+    }
+  }
+  update();
+  byId("action-status").textContent = "Default plan restored.";
+});
+byId("download-plan").addEventListener("click", () => {
+  if (!currentPlan) return;
+  const url = URL.createObjectURL(new Blob([JSON.stringify({ ...currentPlan, generatedAt: new Date().toISOString() }, null, 2) + "\n"], { type: "application/json" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "errorbars-plan.json";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+byId("select-command").addEventListener("click", () => {
+  const input = byId<HTMLTextAreaElement>("cli-command");
+  input.focus();
+  input.select();
+  byId("action-status").textContent = "Command selected. Copy it with your usual keyboard shortcut.";
+});
+byId("assumptions").replaceChildren(...ASSUMPTIONS.map(text => {
+  const li = document.createElement("li");
+  li.textContent = text;
+  return li;
+}));
+initTheme();
+update();
+
+new ResizeObserver(() => {
+  const width = byId("chart").clientWidth;
+  if (currentPlan && width > 0 && Math.max(280, Math.round(width)) !== chartWidth) drawChart(currentPlan);
+}).observe(byId("chart"));

@@ -24,6 +24,7 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/antonsoo/errorbars/main/docs/assets/og.png" />
   </head>
   <body>
+    <a class="skip-link" href="#calculator">Skip to calculator</a>
     <div class="page">
       <header class="masthead">
         <div class="masthead-top">
@@ -36,47 +37,71 @@
         </div>
         <h1>How many eval questions do I need?</h1>
         <p class="abstract">
-          A 1.5-point gain on a 500-question benchmark is often noise. This calculator answers the
-          question <em>before</em> you run the eval: given a baseline accuracy, the effect size you
-          care about, how correlated your models' answers are, and how your questions are clustered,
-          how many questions does it take to tell signal from noise? The same formulas back the
-          <code>errorbars power</code> command in the
-          <a href="https://github.com/antonsoo/errorbars">Python package</a> — move a slider here and
-          you're looking at exactly what that command would print.
+          Plan a paired evaluation before spending on model calls. Find the questions needed
+          for an accuracy improvement, or the gap your existing benchmark can detect.
+          Enter exact assumptions, compare budgets, and save a plan you can reproduce with
+          <code>errorbars power</code>. Calculations stay in your browser.
         </p>
       </header>
 
       <main>
-        <section class="calculator" aria-labelledby="figure-label">
-          <p id="figure-label" class="figure-label">Figure 1 — paired power calculator</p>
-
+        <section id="calculator" class="calculator" aria-labelledby="figure-label" tabindex="-1">
+          <h2 id="figure-label" class="figure-label">Plan one comparison</h2>
+          <fieldset class="mode-switch">
+            <legend>What do you want to find?</legend>
+            <label><input type="radio" id="mode-questions" name="mode" value="questions" checked /> Questions needed</label>
+            <label><input type="radio" name="mode" value="budget" /> Gap my budget can detect</label>
+          </fieldset>
+          <div class="plan-actions">
+            <button type="button" id="download-plan">Download plan (JSON)</button>
+            <button type="button" id="reset-plan">Reset plan</button>
+          </div>
+          <p id="action-status" class="action-status" role="status"></p>
+          <p id="input-error" class="input-error" role="alert" hidden></p>
+          <p id="result-status" class="sr-only" role="status" aria-atomic="true"></p>
           <div class="calculator-grid">
             <div class="controls" id="controls"></div>
-
-            <div class="output">
+            <div class="output" id="plan-output" tabindex="-1">
               <div class="result-card">
-                <p class="result-eyebrow">questions needed</p>
+                <p class="result-eyebrow" id="result-label">Questions per model</p>
                 <p class="result-number" id="result-n">—</p>
                 <p class="result-sentence" id="result-sentence"></p>
+                <p class="result-work" id="result-work"></p>
+                <p class="estimate-note">Normal-approximation estimate. Check assumptions below.</p>
+                <div id="plan-warnings" class="plan-warnings" hidden></div>
               </div>
-
               <div class="chart-card">
                 <div class="chart-head">
-                  <p class="chart-title">Minimum detectable effect vs. sample size</p>
-                  <p class="chart-caption">
-                    Every point on the curve is the smallest gap you could reliably detect at that
-                    many questions. The marker is your current effect size.
-                  </p>
+                  <h3 class="chart-title">What more questions buy you</h3>
+                  <p class="chart-caption" id="chart-caption"></p>
                 </div>
                 <div id="chart" class="chart"></div>
+                <table class="budget-table">
+                  <caption>Calculated budgets with the same assumptions</caption>
+                  <thead><tr><th scope="col">Questions per model</th><th scope="col">Detectable gap</th><th scope="col">Improvement range</th></tr></thead>
+                  <tbody id="budget-rows"></tbody>
+                </table>
               </div>
-
+              <aside class="sensitivity" aria-labelledby="sensitivity-title">
+                <h3 id="sensitivity-title">How much does pairing matter?</h3>
+                <p id="pairing-sensitivity"></p>
+              </aside>
               <dl class="detail-strip" id="detail-strip" aria-label="Intermediate values used in the calculation"></dl>
+              <details class="reproduce">
+                <summary>Reproduce this plan</summary>
+                <label for="cli-command">Python CLI command</label>
+                <textarea id="cli-command" readonly rows="5" spellcheck="false"></textarea>
+                <button type="button" id="select-command">Select command</button>
+                <p>The JSON download records all inputs, units, results, warnings and assumptions. No evaluation data is included.</p>
+              </details>
             </div>
           </div>
+          <a id="mobile-result" class="mobile-result" href="#plan-output">View plan</a>
         </section>
 
         <section class="notes">
+          <h2>Assumptions to check before running the eval</h2>
+          <ul id="assumptions" class="assumptions"></ul>
           <h2>Reading the numbers</h2>
           <dl>
             <div>
@@ -105,7 +130,7 @@
           </dl>
           <p class="formula-link">
             Full derivations: <a href="https://github.com/antonsoo/errorbars/blob/main/docs/formulas.md">docs/formulas.md §11</a>.
-            This page's TypeScript implementation is checked against the Python one on every commit —
+            The test suite checks this page's TypeScript implementation against Python-generated vectors —
             see <a href="https://github.com/antonsoo/errorbars/blob/main/web/src/power.test.ts">web/src/power.test.ts</a>.
           </p>
         </section>

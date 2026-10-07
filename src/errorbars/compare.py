@@ -200,7 +200,15 @@ def mcnemar_exact(scores_a: ArrayLike, scores_b: ArrayLike) -> McNemarResult:
     if total == 0:
         return McNemarResult(n01, n10, 1.0)
     k = min(n01, n10)
+    if 2 * k >= total - 1:
+        return McNemarResult(n01, n10, 1.0)
     # two-sided exact binomial test, p=0.5: sum both tails via symmetry
-    tail = sum(math.comb(total, i) for i in range(0, k + 1)) / (2**total)
+    # Adjacent coefficients obey C(n,i)=C(n,i-1)*(n-i+1)/i. Keep the
+    # numerator exact, without rebuilding thousands of factorial ratios.
+    coefficient = numerator = 1
+    for i in range(1, k + 1):
+        coefficient = coefficient * (total - i + 1) // i
+        numerator += coefficient
+    tail = numerator / (2**total)
     p_value = min(1.0, 2 * tail)
     return McNemarResult(n01, n10, float(p_value))

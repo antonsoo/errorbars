@@ -1,0 +1,27 @@
+[
+  {
+    "path": "examples/reports/copa-comparison.html",
+    "bytes": 184395,
+    "sha256": "de0d595c0f74b5855e612577619208e5ead6ef64ad557e524a701467ad3f8efe"
+  },
+  {
+    "path": "docs/assets/comparison-evidence.png",
+    "bytes": 74035,
+    "sha256": "44749c2a183d37ca28f7301d84f1ccd203ed899932dcae812fa6b07bec543436"
+  },
+  {
+    "path": "docs/assets/comparison-firefox-evidence.png",
+    "bytes": 111289,
+    "sha256": "5c929305d42d865c7c445794dbd3bd3d25c592083422186caab0a4aefb35566d"
+  },
+  {
+    "path": "docs/assets/comparison-mobile-dark.png",
+    "bytes": 36902,
+    "sha256": "b079955c0cfd731b2b592cba8f2b4614954a1849b26b24c4a0d49487fa279ece"
+  },
+  {
+    "path": "docs/assets/comparison-overview.png",
+    "bytes": 108035,
+    "sha256": "418e6c4d14e55e98b0aaeaa7a1cf5c09e821ce9e85ed0cb90b108dc0d9016a5c"
+  }
+]

@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Known question-content conflicts now stop paired comparisons and leaderboards even when
+  question IDs match. Native lm-eval imports fingerprint the document and target; canonical
+  inputs can carry `question_hash`. Matching, partial and unavailable checks remain distinct.
+  Prompt arguments and responses do not enter question identity.
+- Exact McNemar tails reuse adjacent integer binomial coefficients. Large binary comparisons
+  retain the exact result without rebuilding each coefficient independently.
+
 - Summary and leaderboard means now give each question equal weight after averaging its
   repeated generations. Counts and SEs use distinct questions; retained observation counts
   remain available in JSON and repeated-generation tables. Wilson cannot count repeated
@@ -44,6 +51,15 @@ All notable changes to this project are documented in this file.
   independent SciPy quantile checks exercise additional boundary cases.
 
 ### Added
+
+- `compare --html PATH`: a self-contained offline comparison report with a complete shared,
+  unmatched and conflicting question ledger; per-generation evidence; source records; cluster
+  deletion sensitivity; and full JSON / filtered CSV downloads. Searching and filtering do not
+  change inference. Reports with insufficient overlap or conflicting identity remain inspectable
+  while the CLI exits with an inference error.
+- Score provenance from CSV physical line ranges, JSONL/lm-eval lines, and Inspect sample records.
+  HTML uses basenames and source numbers, retains original numeric data in JSON, and contains no
+  raw prompts/completions. Script/style hashes and a restrictive CSP keep it offline.
 
 - Fixed-budget planning, precise numeric editors, reset and recovery, a computed
   budget table, and a comparison with zero pairing correlation.

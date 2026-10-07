@@ -1,0 +1,14 @@
+[
+  {
+    "browser": "chromium",
+    "version": "153.0.8010.12",
+    "errors": [],
+    "networkRequests": []
+  },
+  {
+    "browser": "firefox",
+    "version": "155.0",
+    "errors": [],
+    "networkRequests": []
+  }
+]

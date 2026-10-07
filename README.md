@@ -19,6 +19,15 @@ and this package turns it into a one-liner.
 
 ![errorbars leaderboard on a synthetic clustered benchmark](docs/assets/leaderboard-terminal.png)
 
+The source checkout can also open a comparison at the question level:
+**`errorbars compare ... --html comparison.html`** produces one offline file with
+shared and missing questions, individual generations, source records and cluster
+sensitivity. Native lm-eval imports check question content before pairing reused
+IDs. These additions are **unreleased**; install this checkout to use them.
+[Comparison walkthrough](docs/comparison-reports.md).
+
+![Inspecting a lower-scoring question in two real retained COPA runs, with each score linked to its original log record](docs/assets/comparison-evidence.png)
+
 ## Why this exists
 
 Run `errorbars leaderboard` on a synthetic benchmark (below) and one apparent 7-point win —
@@ -57,6 +66,10 @@ errorbars leaderboard examples/data/reading_comprehension.csv
 - **`compare`** — paired mean difference, SE, CI, p-value; the correlation between the two models'
   per-question scores and how much pairing shrank the SE vs. an unpaired comparison; a
   cluster-robust paired SE/p-value when clusters are present; exact McNemar test for binary scores.
+- **Comparison evidence (source checkout)** — `compare --html report.html` opens a complete
+  question ledger with both run means, observed generations and source line/record locations.
+  Find lower scores and missing questions, inspect which passages drive the result, and download
+  complete JSON or filtered CSV. One file, including fonts; no server or upload.
 - **`leaderboard`** — every model with its CI, Holm-corrected pairwise paired tests, and groups of
   statistically indistinguishable models (maximal cliques of the "not significantly different"
   graph); a forest plot (SVG, no dependency; matplotlib if installed).
@@ -136,9 +149,9 @@ the reasoning behind each step are in [`examples/README.md`](examples/README.md)
 
 Long-format CSV or JSONL, one row per observation:
 
-| question_id | cluster_id (optional) | model | score | sample (optional) |
-|---|---|---|---|---|
-| q1 | passage-003 | tuned-70b | 1 | |
+| question_id | cluster_id (optional) | model | score | sample (optional) | question_hash (optional) |
+|---|---|---|---|---|---|
+| q1 | passage-003 | tuned-70b | 1 | | |
 
 Column names are configurable (`--question-col`, `--cluster-col`, etc., or `ColumnMap` in Python).
 Scores can be binary (0/1) or continuous. `cluster_id` groups correlated questions (e.g. several
@@ -159,6 +172,13 @@ from another file for the same question; every other question needs an explicit 
 Every command takes several files (`errorbars leaderboard model-a.csv model-b.csv ...`) and puts
 their rows together. The same model, question and sample in two files is refused, as it is within
 one file: counted twice it would inflate n and shrink every error bar.
+
+In the source checkout, optional `question_hash` signatures are retained through canonical
+CSV/JSONL import/export (`--question-hash-col` maps another column name). Known conflicting
+signatures for a shared ID stop paired comparisons and leaderboards; conflicting repeated
+samples within one model are refused before averaging. Missing signatures stay unchecked.
+Use the same signature scheme in both runs; a signature is an assertion about question
+content, not proof that the scoring rules match.
 
 ### Reading lm-evaluation-harness and Inspect AI logs
 
@@ -238,6 +258,13 @@ Valid `C`/`I`/`P`/`N`, boolean representations and finite numeric scores keep In
 conversion semantics. Recover or explicitly select the intended evaluation cohort before
 importing an incomplete log. lm-eval records require a valid `doc_id`; row order is never
 used to fabricate question identity.
+
+The source lm-eval adapter also computes a versioned SHA-256 signature from each logged
+document and target. It ignores prompt arguments and responses so prompt variants remain
+comparable. It computes the signature from the contents, rather than trusting the stored
+`doc_hash`. Empty/missing documents or null/missing targets leave identity unchecked.
+Inspect logs do not supply this signature automatically: a task's input may itself be the
+prompt variation being evaluated. [Identity scope and recovery](docs/comparison-reports.md#question-identity).
 
 ## How it works
 

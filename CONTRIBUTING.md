@@ -28,6 +28,24 @@ If you change a formula in `src/errorbars/power.py`, regenerate the shared
 test vectors (`python scripts/export_test_vectors.py`) so the TypeScript
 implementation is checked against the same numbers.
 
+## Standalone comparison reports
+
+The Python package renders reports from `src/errorbars/report_assets/`. It embeds
+the local fonts and their licenses, JSON evidence and a dependency-free script.
+Editing a template or script requires no frontend build. Keep imported labels as
+text, the CSP hashes exact, and the evidence download complete when views are paged.
+
+```sh
+uv sync --locked --group dev --extra all
+npm ci --prefix web
+npm run test:reports --prefix web
+```
+
+This generates real-capture and synthetic reports, then opens the actual files
+offline in Chromium and Firefox. It uses the root `.venv` by default. To check an
+installed wheel, set `ERRORBARS_REPORT_PYTHON` to that environment's Python executable.
+The CI workflow installs a built wheel with NumPy only before these browser checks.
+
 ## Guidelines
 
 - Keep the core statistics dependency-free (numpy only); scipy/statsmodels

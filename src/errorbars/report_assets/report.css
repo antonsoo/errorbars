@@ -168,7 +168,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--grid);
   .inspector td.source-cell { min-width: 110px; font-size: .74rem; }
 }
 @media print {
-  :root, :root[data-theme] { --paper: #fff; --surface: #fff; --ink: #14181c; --muted: #545c66; --signal: #2454a6; --noise: #9a511c; --grid: #bdc1c6; --signal-soft: #e4ecf8; --noise-soft: #f4e9d9; color-scheme: light; }
+  :root, :root:not([data-theme]), :root[data-theme] { --paper: #fff; --surface: #fff; --ink: #14181c; --muted: #545c66; --signal: #2454a6; --noise: #9a511c; --grid: #bdc1c6; --signal-soft: #e4ecf8; --noise-soft: #f4e9d9; color-scheme: light; }
   .page { max-width: none; padding: 0; }
   .interactive, .skip-link, .pagination, .close-inspector, .inspect-pages { display: none !important; }
   .overview { display: block; }

@@ -187,8 +187,19 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 375, height: 850
     await page.emulateMedia({ media: 'print' });
     await expect(page.getByRole('button', { name: 'Download evidence (JSON)' })).toBeHidden();
     await expect(page.locator('#effect-value')).toBeVisible();
+    expect(await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 255, 255)');
     const notice = await page.locator('#print-note').evaluate(el => getComputedStyle(el, '::after').content);
     expect(notice).toContain('current pages only');
     await clean();
   });
 }
+
+test('printing follows the paper palette when dark mode comes only from the system', async ({ page, context }) => {
+  await page.emulateMedia({ colorScheme: 'dark' });
+  const clean = await open(page, context, 'copa');
+  await expect(page.getByRole('button', { name: 'Use light theme' })).toBeVisible();
+  expect(await page.locator('html').getAttribute('data-theme')).toBeNull();
+  await page.emulateMedia({ media: 'print' });
+  expect(await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 255, 255)');
+  await clean();
+});

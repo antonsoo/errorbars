@@ -25,7 +25,8 @@
     "test": "vitest run",
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "test:reports": "playwright test --config playwright.reports.config.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

@@ -92,3 +92,17 @@ jobs:
 
       - name: Test production browser workflows
         run: npm run test:browser
+
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.12"
+
+      - name: Install report generator from a wheel
+        working-directory: .
+        run: |
+          uv build --wheel
+          uv venv .report-venv
+          uv pip install --python .report-venv dist/*.whl
+
+      - name: Test standalone offline comparison reports
+        run: ERRORBARS_REPORT_PYTHON="$GITHUB_WORKSPACE/.report-venv/bin/python" npm run test:reports

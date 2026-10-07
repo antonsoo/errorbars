@@ -21,6 +21,7 @@ npm-debug.log*
 *.swp
 web/*.tsbuildinfo
 .venv-minimums/
+.report-venv/
 
 web/test-results/
 web/playwright-report/

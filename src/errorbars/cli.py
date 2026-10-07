@@ -10,12 +10,12 @@ from typing import Any
 
 from errorbars import __version__
 from errorbars._tables import Output, Table, visible
-from errorbars.compare import paired_compare
 from errorbars.inputs import load_inputs
 from errorbars.io import ColumnMap, EvalData, write_csv
 from errorbars.leaderboard import build_leaderboard
 from errorbars.plot import forest_plot_svg
 from errorbars.power import minimum_detectable_effect, questions_needed
+from errorbars.review import review_comparison
 from errorbars.stats import bootstrap_ci, is_binary, mean_ci_clt, wilson_ci
 
 
@@ -59,6 +59,7 @@ def _input_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument("--score-col", default="score")
     sp.add_argument("--cluster-col", default="cluster_id")
     sp.add_argument("--sample-col", default="sample")
+    sp.add_argument("--question-hash-col", default="question_hash")
     _harness_args(sp)
 
 
@@ -83,6 +84,7 @@ def _columns_from(args: argparse.Namespace) -> ColumnMap:
         score=args.score_col,
         cluster_id=args.cluster_col,
         sample=args.sample_col,
+        question_hash=args.question_hash_col,
     )
 
 
@@ -235,22 +237,18 @@ def _models_to_compare(data: EvalData, model_a: str | None, model_b: str | None)
 def cmd_compare(args: argparse.Namespace) -> None:
     data = _load(args)
     args.model_a, args.model_b = _models_to_compare(data, args.model_a, args.model_b)
-    a = data.filter_model(args.model_a).scores_by_question()
-    b = data.filter_model(args.model_b).scores_by_question()
-    common = sorted(set(a) & set(b))
-    only_a, only_b = len(set(a) - set(b)), len(set(b) - set(a))
-    if len(common) < 2:
-        raise SystemExit(
-            "error: fewer than 2 shared question_ids between the two models "
-            f"({len(a)} questions for {args.model_a!r}, {len(b)} for {args.model_b!r}, {len(common)} in both)"
-        )
-    sa = [a[q] for q in common]
-    sb = [b[q] for q in common]
-    clusters = None
-    cmap = data.cluster_by_question()
-    if cmap and len({cmap[q] for q in common}) < len(common):
-        clusters = [cmap[q] for q in common]
-    comp = paired_compare(sa, sb, clusters=clusters, confidence=args.confidence)
+    review = review_comparison(data, args.model_a, args.model_b, confidence=args.confidence)
+    if args.html:
+        if Path(args.html).suffix.lower() not in (".html", ".htm"):
+            raise ValueError("--html output must end in .html or .htm")
+        from errorbars.report import write_comparison_html
+
+        write_comparison_html(review, args.html)
+        print(f"wrote comparison evidence to {visible(args.html)}", file=sys.stderr)
+    if review.comparison is None:
+        raise ValueError(review.unavailable_reason)
+    comp = review.comparison
+    only_a, only_b = review.cohort["n_only_a"], review.cohort["n_only_b"]
 
     if args.json:
         _print_json(
@@ -263,6 +261,10 @@ def cmd_compare(args: argparse.Namespace) -> None:
                 "analysis_unit": "question",
                 "n_observations_a": len(data.filter_model(args.model_a)),
                 "n_observations_b": len(data.filter_model(args.model_b)),
+                "question_identity": {
+                    status: review.cohort[f"n_identity_{status}"]
+                    for status in ("matching", "partial", "unavailable", "conflicting")
+                },
             }
         )
         return
@@ -299,6 +301,13 @@ def cmd_compare(args: argparse.Namespace) -> None:
         )
         table.add_row("McNemar exact p-value", f"{comp.mcnemar.p_value:.4g}")
     out.table(table)
+    out.note(
+        f"Question content checks: {review.cohort['n_identity_matching']} matching, "
+        f"{review.cohort['n_identity_partial']} partially checked, "
+        f"{review.cohort['n_identity_unavailable']} unchecked shared ids. "
+        "Matching signatures do not check scoring-rule equivalence.",
+        style="dim",
+    )
     for note in comp.warnings:
         out.note(note, style="yellow")
 
@@ -438,6 +447,7 @@ def cmd_import(args: argparse.Namespace) -> None:
     # read from the file.
     args.question_col, args.model_col, args.score_col = "question_id", "model", "score"
     args.cluster_col, args.sample_col = "cluster_id", "sample"
+    args.question_hash_col = "question_hash"
     data = _load(args, model=args.model)
 
     write_csv(data, args.output)
@@ -464,6 +474,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_cmp.add_argument("--model-b", default=None, help="default: the second")
     p_cmp.add_argument("--confidence", type=float, default=0.95)
     p_cmp.add_argument("--json", action="store_true")
+    p_cmp.add_argument(
+        "--html", default=None, metavar="PATH", help="write a standalone comparison evidence report"
+    )
     _input_args(p_cmp)
     p_cmp.set_defaults(func=cmd_compare)
 

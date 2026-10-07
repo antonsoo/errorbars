@@ -133,9 +133,9 @@ def test_cli_import_lm_eval(tmp_path) -> None:
     assert result.returncode == 0, result.stderr
     assert "wrote 20 rows" in result.stdout
     rows = out.read_text().strip().splitlines()
-    assert rows[0] == "question_id,model,score"
+    assert rows[0] == "question_id,model,score,question_hash"
     assert len(rows) == 21
-    assert rows[1] == "copa-0,dummy-copa,0.0"
+    assert rows[1].startswith("copa-0,dummy-copa,0.0,lm-eval-doc-target-v1:")
 
     # The converted CSV should be directly usable by the rest of the CLI.
     summarize = run_cli("summarize", str(out), "--json")

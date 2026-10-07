@@ -39,11 +39,12 @@ three times the questions, so one filter has to be chosen.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from pathlib import Path
 
-from errorbars.io import EvalData, _coerce_score, _identifier, _unique_fields
+from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier, _unique_fields
 
 __all__ = ["load_lm_eval_samples", "infer_model_name", "samples_file_parts", "looks_like_samples"]
 
@@ -167,8 +168,10 @@ def load_lm_eval_samples(
     model_col: list[str] = []
     score: list[float] = []
     first_line: dict[str, int] = {}
+    sources: list[RecordSource | None] = []
+    question_hash: list[str | None] = []
 
-    for lineno, rec in records:
+    for record, (lineno, rec) in enumerate(records, 1):
         if filter_name is not None and str(rec.get("filter", "none")) != filter_name:
             continue
         metrics = rec.get("metrics")
@@ -197,11 +200,25 @@ def load_lm_eval_samples(
         first_line[qid] = lineno
         question_id.append(qid)
         model_col.append(model)
+        sources.append(RecordSource(str(path), record, lineno, lineno, key, str(rec.get("filter", "none"))))
+        signature = None
+        if isinstance(rec.get("doc"), dict) and rec["doc"] and rec.get("target") is not None:
+            # Prompt arguments and model responses intentionally do not enter identity:
+            # comparing prompt variants on the same questions is a valid experiment.
+            content = json.dumps(
+                {"doc": rec["doc"], "target": rec["target"]}, sort_keys=True,
+                ensure_ascii=True, separators=(",", ":"), allow_nan=False,
+            )
+            signature = "lm-eval-doc-target-v1:" + hashlib.sha256(content.encode("ascii")).hexdigest()
+        question_hash.append(signature)
         try:
             score.append(_coerce_score(rec[key], lineno))
         except ValueError as exc:
             raise ValueError(f"{path}: metric {key!r}, {str(exc).replace('row', 'line', 1)}") from exc
 
-    data = EvalData(question_id=question_id, model=model_col, score=score)
+    data = EvalData(
+        question_id=question_id, model=model_col, score=score, sources=sources,
+        question_hash=question_hash if any(question_hash) else None,
+    )
     data.validate()
     return data

@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from errorbars.io import EvalData, _coerce_score, _identifier
+from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier
 
 __all__ = ["load_inspect_log"]
 
@@ -64,8 +64,9 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     model_col: list[str] = []
     score: list[float] = []
     sample_col: list[str] = []
+    sources: list[RecordSource | None] = []
 
-    for s in log.samples:
+    for record, s in enumerate(log.samples, 1):
         if not s.scores:
             raise ValueError(f"{path}: sample {s.id!r}: no scored result; this log is incomplete")
         if scorer is not None:
@@ -103,10 +104,11 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
         model_col.append(model)
         score.append(number)
         sample_col.append(str(s.epoch))
+        sources.append(RecordSource(str(path), record, metric=key))
 
     if not question_id:
         raise ValueError(f"{path}: no scored samples found")
 
-    data = EvalData(question_id=question_id, model=model_col, score=score, sample=sample_col)
+    data = EvalData(question_id=question_id, model=model_col, score=score, sample=sample_col, sources=sources)
     data.validate()
     return data

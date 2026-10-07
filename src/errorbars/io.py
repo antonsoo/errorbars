@@ -20,6 +20,7 @@ from typing import Any
 
 __all__ = [
     "EvalData",
+    "RecordSource",
     "ColumnMap",
     "concat",
     "load_csv",
@@ -27,6 +28,23 @@ __all__ = [
     "load_dataframe",
     "write_csv",
 ]
+
+
+@dataclass(frozen=True)
+class RecordSource:
+    """Location of an observed score, without retaining prompts or responses.
+
+    ``record`` is one-based (excluding a CSV header); line numbers are physical,
+    inclusive file lines. Inspect logs use record order plus the sample id and
+    epoch already present in EvalData. Sources are not part of question identity.
+    """
+
+    path: str
+    record: int
+    line_start: int | None = None
+    line_end: int | None = None
+    metric: str | None = None
+    filter: str | None = None
 
 
 @dataclass(frozen=True)
@@ -38,6 +56,7 @@ class ColumnMap:
     score: str = "score"
     cluster_id: str | None = "cluster_id"
     sample: str | None = "sample"
+    question_hash: str | None = "question_hash"
 
 
 @dataclass
@@ -50,6 +69,8 @@ class EvalData:
     cluster_id: list[str] | None = None
     sample: list[str] | None = None
     columns: ColumnMap = field(default_factory=ColumnMap)
+    sources: list[RecordSource | None] | None = None
+    question_hash: list[str | None] | None = None
 
     def __len__(self) -> int:
         return len(self.score)
@@ -69,6 +90,8 @@ class EvalData:
             cluster_id=[self.cluster_id[i] for i in idx] if self.cluster_id else None,
             sample=[self.sample[i] for i in idx] if self.sample else None,
             columns=self.columns,
+            sources=[self.sources[i] for i in idx] if self.sources is not None else None,
+            question_hash=[self.question_hash[i] for i in idx] if self.question_hash is not None else None,
         )
 
     def scores_by_question(self) -> dict[str, float]:
@@ -91,9 +114,24 @@ class EvalData:
             out[qid] = c
         return out
 
+    def hashes_by_question(self, model: str) -> dict[str, str]:
+        """Known content signatures for one model; absence is not an agreement."""
+        if self.question_hash is None:
+            return {}
+        return {
+            q: h for q, m, h in zip(self.question_id, self.model, self.question_hash, strict=True)
+            if m == model and h is not None
+        }
+
+    def pairing_conflicts(self, model_a: str, model_b: str) -> list[str]:
+        a, b = self.hashes_by_question(model_a), self.hashes_by_question(model_b)
+        return sorted(q for q in a.keys() & b.keys() if a[q] != b[q])
+
     def validate(self) -> None:
         """Validate normalized rows, including adapter and directly constructed datasets."""
         n = len(self)
+        if self.sources is not None and len(self.sources) != n:
+            raise ValueError("sources must have one location per score")
         fields = {
             "question_id": self.question_id,
             "model": self.model,
@@ -114,6 +152,22 @@ class EvalData:
             if not isinstance(score, Real):
                 raise ValueError(f"row {row}: normalized score must be numeric")
             _coerce_score(score, row)
+        if self.question_hash is not None:
+            if len(self.question_hash) != n:
+                raise ValueError("question_hash must have one signature or None per score")
+            known: dict[tuple[str, str], str] = {}
+            for i, signature in enumerate(self.question_hash):
+                if signature is None:
+                    continue
+                if not isinstance(signature, str) or not signature.strip():
+                    raise ValueError(f"row {i + 1}: question_hash must be a nonempty string or None")
+                signature_key = (self.model[i], self.question_id[i])
+                if signature_key in known and known[signature_key] != signature:
+                    raise ValueError(
+                        f"model {signature_key[0]!r}, question {signature_key[1]!r}: "
+                        "conflicting question content across samples"
+                    )
+                known[signature_key] = signature
         seen: dict[tuple[str, str, str], int] = {}
         for row, (model, qid, sample) in enumerate(
             zip(self.model, self.question_id, self.sample or ["0"] * n, strict=True), 1
@@ -162,12 +216,16 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
         return parts[0][1]
     any_clusters = any(data.cluster_id for _, data in parts)
     any_samples = any(data.sample for _, data in parts)
+    any_sources = any(data.sources is not None for _, data in parts)
+    any_hashes = any(data.question_hash is not None for _, data in parts)
 
     question_id: list[str] = []
     model: list[str] = []
     score: list[float] = []
     cluster_id: list[str] = []
     sample: list[str] = []
+    sources: list[RecordSource | None] = []
+    question_hash: list[str | None] = []
     seen: dict[tuple[str, str, str], str] = {}
     for source, data in parts:
         samples = data.sample or ["0"] * len(data)
@@ -193,15 +251,21 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
                     )
                 cluster_id.append(cluster_map[qid])
         sample.extend(samples)
+        sources.extend(data.sources if data.sources is not None else [None] * len(data))
+        question_hash.extend(data.question_hash if data.question_hash is not None else [None] * len(data))
 
-    return EvalData(
+    result = EvalData(
         question_id,
         model,
         score,
         cluster_id if any_clusters else None,
         sample if any_samples else None,
         parts[0][1].columns,
+        sources if any_sources else None,
+        question_hash if any_hashes else None,
     )
+    result.validate()
+    return result
 
 
 _MAX_SCORE = 1e100
@@ -266,6 +330,8 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     cluster_map: dict[str, str] = {}
     sample: list[str] = []
     has_samples = False
+    hashes: list[str | None] = []
+    has_hashes = False
 
     n = 0
     seen: dict[tuple[str, str, str], int] = {}
@@ -298,6 +364,12 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
             has_samples = True
             sample_id = _identifier(row[columns.sample], columns.sample, n)
         sample.append(sample_id)
+        signature = row.get(columns.question_hash) if columns.question_hash else None
+        if signature is not None and signature != "":
+            has_hashes = True
+            hashes.append(_identifier(signature, columns.question_hash or "question_hash", n))
+        else:
+            hashes.append(None)
         # The same (model, question, sample) twice would be counted as two questions, inflating n and
         # shrinking every standard error. Repeated generations need distinct sample ids.
         key = (model[-1], question_id[-1], sample_id)
@@ -320,7 +392,12 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
                     "supply cluster metadata for every question"
                 )
         cluster_id = [cluster_map[qid] for qid in question_id]
-    return EvalData(question_id, model, score, cluster_id, sample if has_samples else None, columns)
+    result = EvalData(
+        question_id, model, score, cluster_id, sample if has_samples else None, columns,
+        question_hash=hashes if has_hashes else None,
+    )
+    result.validate()
+    return result
 
 
 def _delimiter(header: str, columns: ColumnMap) -> str:
@@ -374,13 +451,25 @@ def load_csv(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
         records: Iterable[dict[str, Any]] = reader
         if delimiter != ",":
             records = _decimal_commas(reader, columns.score)
-        return _from_records(records, columns)
+        sources: list[RecordSource | None] = []
+
+        def located() -> Iterable[dict[str, Any]]:
+            start = reader.line_num + 1
+            for record, row in enumerate(records, 1):
+                sources.append(RecordSource(str(path), record, start, reader.line_num, columns.score))
+                yield row
+                start = reader.line_num + 1
+
+        data = _from_records(located(), columns)
+        data.sources = sources
+        return data
 
 
 def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
     """Load per-item scores from a JSON Lines file (one record per line)."""
     columns = columns or ColumnMap()
     records: list[dict[str, Any]] = []
+    sources: list[RecordSource | None] = []
     with open(path, encoding="utf-8-sig") as f:
         for lineno, line in enumerate(f, start=1):
             line = line.strip()
@@ -395,9 +484,12 @@ def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
                     f"{path}:{lineno}: expected a JSON object per line, got {type(record).__name__}"
                 )
             records.append(record)
+            sources.append(RecordSource(str(path), len(records), lineno, lineno, columns.score))
     if not records:
         raise ValueError(f"{path}: no records found")
-    return _from_records(records, columns)
+    data = _from_records(records, columns)
+    data.sources = sources
+    return data
 
 
 def load_dataframe(df: Any, columns: ColumnMap | None = None) -> EvalData:
@@ -420,6 +512,8 @@ def write_csv(data: EvalData, path: str | Path) -> None:
         fieldnames.append("cluster_id")
     if data.sample:
         fieldnames.append("sample")
+    if data.question_hash is not None:
+        fieldnames.append("question_hash")
 
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -434,4 +528,6 @@ def write_csv(data: EvalData, path: str | Path) -> None:
                 row["cluster_id"] = data.cluster_id[i]
             if data.sample:
                 row["sample"] = data.sample[i]
+            if data.question_hash is not None:
+                row["question_hash"] = data.question_hash[i]
             writer.writerow(row)

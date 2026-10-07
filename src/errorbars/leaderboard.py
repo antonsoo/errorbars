@@ -170,6 +170,12 @@ def build_leaderboard(
     raw_p: list[float] = []
     pair_keys: list[tuple[str, str]] = []
     for a, b in combinations(order, 2):
+        conflicts = data.pairing_conflicts(a, b)
+        if conflicts:
+            raise ValueError(
+                f"{a!r} vs {b!r}: conflicting question content for {len(conflicts)} shared ids "
+                f"(including {conflicts[0]!r}); inspect the source records before pairing"
+            )
         common = sorted(set(qmap[a]) & set(qmap[b]))
         if len(common) < 2:
             continue

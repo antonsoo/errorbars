@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="$csp">
+  <meta name="referrer" content="no-referrer">
+  <title>$title</title>
+  <style>$css</style>
+</head>
+<body>
+  <a class="skip-link" href="#questions">Skip to question ledger</a>
+  <main class="page">
+    <header class="masthead">
+      <div class="brand-row"><div class="brand">errorbars <span>/ comparison record</span></div>
+        <div class="actions interactive">
+          <button id="theme" type="button" aria-label="Use dark theme">Dark theme</button>
+          <button id="download-json" type="button">Download evidence (JSON)</button>
+        </div>
+      </div>
+      <h1>The questions behind the score.</h1>
+      <p class="intro">One paired estimate, with every included and excluded question open for inspection.</p>
+      <div class="model-pair"><p><b class="model-letter">A</b><span>$model_a</span></p>
+        <p><b class="model-letter secondary">B</b><span>$model_b</span></p></div>
+      <p class="caption">All differences are <strong>A &minus; B</strong>, in the original score units. Higher scores are not necessarily better.</p>
+    </header>
+
+    <div class="overview">
+      <section class="estimate" aria-labelledby="estimate-heading">
+        <p class="eyebrow">$n_shared shared question ids</p>
+        <h2 id="estimate-heading">Shared-question estimate</h2>
+        <p class="effect"><span id="effect-value">$effect</span><span class="effect-unit">score difference</span></p>
+        <p id="inference-description">$inference</p>
+        <div id="interval-chart" class="chart"></div>
+        $interval_table
+        <p class="caption">The interval measures uncertainty in the mean difference, not the range of individual scores.</p>
+      </section>
+      <section class="cohort" aria-labelledby="cohort-heading">
+        <p class="eyebrow">Coverage before conclusions</p>
+        <h2 id="cohort-heading">Which questions count?</h2>
+        <table class="cohort-table">
+          <caption class="sr-only">Questions and observations in each model's cohort</caption>
+          <thead><tr><th scope="col">Cohort</th><th scope="col">A</th><th scope="col">B</th></tr></thead>
+          <tbody>$cohort_rows</tbody>
+        </table>
+        <p class="coverage-note">$coverage_note</p>
+        <p id="identity-note" class="caption">$identity_note</p>
+        <div class="interactive cohort-actions">
+          <button id="show-shared" type="button">Inspect shared questions</button>
+          <button id="show-missing" type="button">Inspect excluded questions</button>
+        </div>
+        <p class="caption">Each question has equal weight. Repeated generations are averaged within that question first.</p>
+      </section>
+    </div>
+
+    <section class="distribution" aria-labelledby="distribution-heading">
+      <div><h2 id="distribution-heading">How individual questions changed</h2>
+        <p class="caption">Observed question averages. These are counts, not significance tests.</p></div>
+      <div id="outcome-counts" class="outcome-counts"></div>
+      <div id="difference-chart" class="chart"></div>
+    </section>
+
+    <section id="questions" class="ledger-section" aria-labelledby="questions-heading" tabindex="-1">
+      <div class="section-heading"><div><p class="eyebrow">The complete question ledger</p>
+        <h2 id="questions-heading">Inspect the evidence</h2></div>
+        <button id="download-csv" class="interactive" type="button">Download shown questions (CSV)</button>
+      </div>
+      <p class="caption">Filters change the rows below; the comparison above always uses the full shared cohort.</p>
+      <p class="caption narrow-hint">Open a question to inspect the A and B scores.</p>
+      <noscript><p class="notice">Enable JavaScript to search the complete embedded question ledger and download the evidence. The estimate and cohort above do not require it.</p></noscript>
+      <div class="filters interactive">
+        <label>Search question or cluster<input id="search" type="search" placeholder="Question id or passage" autocomplete="off"></label>
+        <label>Show questions<select id="presence">
+          <option value="all">All questions</option><option value="shared">Shared questions</option>
+          <option value="a_higher">A higher</option><option value="b_higher">B higher</option>
+          <option value="equal">Equal scores</option><option value="excluded">Excluded questions</option>
+          <option value="only_a">Only in A</option><option value="only_b">Only in B</option>
+          <option value="conflicting">Conflicting question content</option>
+        </select></label>
+        <label>Sort by<select id="sort"><option value="magnitude">Largest difference first</option>
+          <option value="ascending">A - B: low to high</option><option value="descending">A - B: high to low</option>
+          <option value="question">Question id</option></select></label>
+        <button id="reset-filters" type="button">Reset filters</button>
+      </div>
+      <p id="cluster-filter" class="interactive" hidden></p>
+      <div class="evidence-layout">
+        <div class="ledger">
+          <p id="row-status" class="caption" role="status" aria-live="polite"></p>
+          <div class="table-scroll" role="region" aria-label="Question scores" tabindex="0">
+            <table id="question-table"><caption class="sr-only">Question averages and paired differences</caption>
+              <thead><tr><th scope="col">Question / cluster</th><th scope="col">A score</th><th scope="col">B score</th>
+                <th scope="col">A &minus; B</th><th scope="col">Coverage</th></tr></thead>
+              <tbody id="question-rows"></tbody>
+            </table>
+          </div>
+          <p id="no-questions" hidden>No questions match. Reset the filters to see the complete ledger.</p>
+          <div class="pagination interactive"><button id="previous" type="button">Previous questions</button>
+            <span id="page-number" class="caption"></span><button id="next" type="button">Next questions</button></div>
+        </div>
+        <aside id="inspector" class="inspector" aria-labelledby="inspector-heading">
+          <h3 id="inspector-heading" tabindex="-1">Select a question</h3>
+          <p class="caption">Open a question id to see every observed generation and its source record.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="cluster-section" class="cluster-section" aria-labelledby="cluster-heading" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Sensitivity, not another test</p>
+        <h2 id="cluster-heading">Does one cluster drive the difference?</h2></div></div>
+      <p>Remove one cluster at a time and keep equal weight for each remaining question.
+        This is a descriptive check on concentration; it does not select a new winning cohort or recompute a p-value.</p>
+      <div class="table-scroll" role="region" aria-label="Cluster sensitivity" tabindex="0">
+        <table><caption class="sr-only">Leave-one-cluster-out mean differences</caption>
+          <thead><tr><th scope="col">Omitted cluster</th><th scope="col">Shared questions</th><th scope="col">Within-cluster A &minus; B</th>
+            <th scope="col">A &minus; B without it</th><th scope="col">Shift from full estimate</th></tr></thead>
+          <tbody id="cluster-rows"></tbody></table>
+      </div>
+      <div class="pagination interactive"><button id="cluster-previous" type="button">Previous clusters</button>
+        <span id="cluster-status" class="caption" role="status"></span><button id="cluster-next" type="button">Next clusters</button></div>
+    </section>
+
+    <section class="method" aria-labelledby="method-heading">
+      <h2 id="method-heading">Read this comparison with its assumptions</h2>
+      <ul>$warnings</ul>
+      <details><summary>Source files and report contents</summary>
+        <ol id="source-list">$sources</ol>
+        <p>Record numbers are one-based, excluding CSV headers. Line ranges are physical file lines;
+          CSV ranges may include blank separators. Inspect logs use record order, sample id and epoch.</p>
+        <p>This file includes model, question and cluster identifiers, scores, sample labels and source filenames.
+          It does not include raw prompts, completions or full source paths. Files with the same name have distinct source numbers.
+          A source location identifies an imported record; it is not a content checksum.</p>
+        <p>Native lm-eval imports fingerprint the logged document and target using a versioned SHA-256 signature.
+          Prompts and responses do not enter that signature. Canonical inputs may provide a question_hash column.
+          A missing signature is unchecked; a partial check means some repeated observations lack a signature.
+          Conflicting signatures block inference across the whole cohort and remain in the ledger.</p>
+        <p>JSON retains every question and observation, including rows not currently shown.
+          CSV contains all questions matching the current filters, across all pages. Text cells beginning with spreadsheet
+          formula characters are prefixed with an apostrophe in CSV; JSON preserves original identifiers.</p>
+        <p>Display precision is limited; exports retain the stored numeric values. No data is sent over the network.</p>
+      </details>
+    </section>
+    <footer><span>errorbars $version &middot; comparison evidence v1</span>
+      <span id="print-note">Self-contained &middot; works offline</span></footer>
+  </main>
+  <script type="application/json" id="report-data">$data</script>
+  <script>$script</script>
+</body>
+</html>

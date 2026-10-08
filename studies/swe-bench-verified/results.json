@@ -1,0 +1,1536 @@
+{
+ "source": {
+  "repository": "https://github.com/SWE-bench/experiments",
+  "commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+  "path": "evaluation/verified",
+  "note": "Derived from the per-task outcome lists that each submission publishes. Bit i of 'resolved' (most significant first) is instances[i]."
+ },
+ "submissions": {
+  "analysed": 173,
+  "excluded_contradictory": [
+   {
+    "id": "20250720_mini-v0.0.0-claude-3-7-sonnet-20250219",
+    "reported": 52.8,
+    "per_task_file": 10.2
+   },
+   {
+    "id": "20260226_mini-v2.0.0_gemini-3-pro-high",
+    "reported": 69.6,
+    "per_task_file": 0.0
+   }
+  ],
+  "incomplete_runs": [
+   {
+    "id": "20260901_mini-v2.4.2_gemini-3-5-flash",
+    "tasks_reported": 441
+   }
+  ],
+  "checked_by_swe_bench": 53,
+  "at_or_above_strong": 78,
+  "strong_threshold": 60.0
+ },
+ "single_score": {
+  "wilson_half_width_at_leader": 3.55
+ },
+ "records": {
+  "rows": [
+   {
+    "id": "20231010_rag_claude2",
+    "name": "RAG + Claude 2",
+    "date": "2023-10-10",
+    "checked": true,
+    "score": 4.4,
+    "ci": [
+     2.92,
+     6.57
+    ]
+   },
+   {
+    "id": "20240402_sweagent_gpt4",
+    "name": "SWE-agent + GPT 4 (1106)",
+    "date": "2024-04-02",
+    "checked": true,
+    "score": 22.4,
+    "ci": [
+     18.96,
+     26.26
+    ],
+    "previous": 4.4,
+    "gain": 18.0,
+    "p_task": 9.649853456365497e-20,
+    "p_mcnemar": 8.079958819833451e-21,
+    "p_repo": 0.001112287188502699,
+    "significant": true
+   },
+   {
+    "id": "20240509_amazon-q-developer-agent-20240430-dev",
+    "name": "Amazon Q Developer Agent (v20240430-dev)",
+    "date": "2024-05-09",
+    "checked": false,
+    "score": 25.6,
+    "ci": [
+     21.97,
+     29.6
+    ],
+    "previous": 22.4,
+    "gain": 3.2,
+    "p_task": 0.12027891726877626,
+    "p_mcnemar": 0.14478233933005016,
+    "p_repo": 0.13953263394440243,
+    "significant": false
+   },
+   {
+    "id": "20240612_MASAI_gpt4o",
+    "name": "MASAI + GPT 4o (2024-06-12)",
+    "date": "2024-06-12",
+    "checked": false,
+    "score": 32.6,
+    "ci": [
+     28.64,
+     36.83
+    ],
+    "previous": 25.6,
+    "gain": 7.0,
+    "p_task": 0.0006785912530236717,
+    "p_mcnemar": 0.0009231579958033544,
+    "p_repo": 0.03380872958861837,
+    "significant": true
+   },
+   {
+    "id": "20240617_factory_code_droid",
+    "name": "Factory Code Droid",
+    "date": "2024-06-17",
+    "checked": false,
+    "score": 37.0,
+    "ci": [
+     32.88,
+     41.32
+    ],
+    "previous": 32.6,
+    "gain": 4.4,
+    "p_task": 0.03412986371194078,
+    "p_mcnemar": 0.04280722079922561,
+    "p_repo": 0.11251081538648265,
+    "significant": true
+   },
+   {
+    "id": "20240628_autocoderover-v20240620",
+    "name": "AutoCodeRover (v20240620) + GPT 4o (2024-05-13)",
+    "date": "2024-06-28",
+    "checked": false,
+    "score": 38.4,
+    "ci": [
+     34.24,
+     42.74
+    ],
+    "previous": 37.0,
+    "gain": 1.4,
+    "p_task": 0.49507201795257016,
+    "p_mcnemar": 0.5583942911655908,
+    "p_repo": 0.6963185244906566,
+    "significant": false
+   },
+   {
+    "id": "20240721_amazon-q-developer-agent-20240719-dev",
+    "name": "Amazon Q Developer Agent (v20240719-dev)",
+    "date": "2024-07-21",
+    "checked": false,
+    "score": 38.8,
+    "ci": [
+     34.63,
+     43.14
+    ],
+    "previous": 38.4,
+    "gain": 0.4,
+    "p_task": 0.847613113333215,
+    "p_mcnemar": 0.9234010375945975,
+    "p_repo": 0.9005497504620157,
+    "significant": false
+   },
+   {
+    "id": "20240820_honeycomb",
+    "name": "Honeycomb",
+    "date": "2024-08-20",
+    "checked": false,
+    "score": 40.6,
+    "ci": [
+     36.38,
+     44.96
+    ],
+    "previous": 38.8,
+    "gain": 1.8,
+    "p_task": 0.38030718341389225,
+    "p_mcnemar": 0.43511449489230064,
+    "p_repo": 0.26738336357010295,
+    "significant": false
+   },
+   {
+    "id": "20240824_gru",
+    "name": "Gru(2024-08-24)",
+    "date": "2024-08-24",
+    "checked": false,
+    "score": 45.2,
+    "ci": [
+     40.89,
+     49.58
+    ],
+    "previous": 40.6,
+    "gain": 4.6,
+    "p_task": 0.03486310702029549,
+    "p_mcnemar": 0.04326826257460874,
+    "p_repo": 0.12179788062018877,
+    "significant": true
+   },
+   {
+    "id": "20240924_solver",
+    "name": "Solver (2024-09-12)",
+    "date": "2024-09-24",
+    "checked": false,
+    "score": 45.4,
+    "ci": [
+     41.09,
+     49.78
+    ],
+    "previous": 45.2,
+    "gain": 0.2,
+    "p_task": 0.916636299357596,
+    "p_mcnemar": 1.0,
+    "p_repo": 0.9263113576420997,
+    "significant": false
+   },
+   {
+    "id": "20241022_tools_claude-3-5-sonnet-updated",
+    "name": "Tools + Claude 3.5 Sonnet (2024-10-22)",
+    "date": "2024-10-22",
+    "checked": false,
+    "score": 49.0,
+    "ci": [
+     44.64,
+     53.37
+    ],
+    "previous": 45.4,
+    "gain": 3.6,
+    "p_task": 0.06897887732652504,
+    "p_mcnemar": 0.08541058911280434,
+    "p_repo": 0.059300966805695285,
+    "significant": false
+   },
+   {
+    "id": "20241028_solver",
+    "name": "Solver (2024-10-28)",
+    "date": "2024-10-28",
+    "checked": false,
+    "score": 50.0,
+    "ci": [
+     45.63,
+     54.37
+    ],
+    "previous": 49.0,
+    "gain": 1.0,
+    "p_task": 0.6324728375513702,
+    "p_mcnemar": 0.701811182064683,
+    "p_repo": 0.619975040876246,
+    "significant": false
+   },
+   {
+    "id": "20241029_OpenHands-CodeAct-2.1-sonnet-20241022",
+    "name": "OpenHands + CodeAct v2.1 (claude-3-5-sonnet-20241022)",
+    "date": "2024-10-29",
+    "checked": true,
+    "score": 53.0,
+    "ci": [
+     48.62,
+     57.34
+    ],
+    "previous": 50.0,
+    "gain": 3.0,
+    "p_task": 0.1239306976247142,
+    "p_mcnemar": 0.1505180638902296,
+    "p_repo": 0.11029168098933967,
+    "significant": false
+   },
+   {
+    "id": "20241108_devlo",
+    "name": "devlo",
+    "date": "2024-11-08",
+    "checked": false,
+    "score": 54.2,
+    "ci": [
+     49.82,
+     58.52
+    ],
+    "previous": 53.0,
+    "gain": 1.2,
+    "p_task": 0.5132333996522168,
+    "p_mcnemar": 0.5856467947212246,
+    "p_repo": 0.3370722510769705,
+    "significant": false
+   },
+   {
+    "id": "20241202_amazon-q-developer-agent-20241202-dev",
+    "name": "Amazon Q Developer Agent (v20241202-dev)",
+    "date": "2024-12-02",
+    "checked": false,
+    "score": 55.0,
+    "ci": [
+     50.62,
+     59.31
+    ],
+    "previous": 54.2,
+    "gain": 0.8,
+    "p_task": 0.6629656897545858,
+    "p_mcnemar": 0.7436441861052041,
+    "p_repo": 0.7184927336906055,
+    "significant": false
+   },
+   {
+    "id": "20241208_gru",
+    "name": "Gru(2024-12-08)",
+    "date": "2024-12-08",
+    "checked": false,
+    "score": 57.0,
+    "ci": [
+     52.62,
+     61.27
+    ],
+    "previous": 55.0,
+    "gain": 2.0,
+    "p_task": 0.3129018877323063,
+    "p_mcnemar": 0.36335418766405314,
+    "p_repo": 0.46499913877924026,
+    "significant": false
+   },
+   {
+    "id": "20241213_devlo",
+    "name": "devlo",
+    "date": "2024-12-13",
+    "checked": false,
+    "score": 58.2,
+    "ci": [
+     53.83,
+     62.44
+    ],
+    "previous": 57.0,
+    "gain": 1.2,
+    "p_task": 0.5132333996522168,
+    "p_mcnemar": 0.5856467947212246,
+    "p_repo": 0.6150552963530973,
+    "significant": false
+   },
+   {
+    "id": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "name": "CodeStory Midwit Agent + swe-search",
+    "date": "2024-12-21",
+    "checked": false,
+    "score": 62.2,
+    "ci": [
+     57.87,
+     66.34
+    ],
+    "previous": 58.2,
+    "gain": 4.0,
+    "p_task": 0.03488228654257707,
+    "p_mcnemar": 0.04459752462791594,
+    "p_repo": 0.32488067083817196,
+    "significant": true
+   },
+   {
+    "id": "20250110_blackboxai_agent_v1.1",
+    "name": "Blackbox AI Agent",
+    "date": "2025-01-10",
+    "checked": false,
+    "score": 62.8,
+    "ci": [
+     58.48,
+     66.92
+    ],
+    "previous": 62.2,
+    "gain": 0.6,
+    "p_task": 0.7585799440461672,
+    "p_mcnemar": 0.8375560707290739,
+    "p_repo": 0.7822286173393775,
+    "significant": false
+   },
+   {
+    "id": "20250117_wandb_programmer_o1_crosscheck5",
+    "name": "W&B Programmer O1 crosscheck5",
+    "date": "2025-01-17",
+    "checked": false,
+    "score": 64.6,
+    "ci": [
+     60.31,
+     68.67
+    ],
+    "previous": 62.8,
+    "gain": 1.8,
+    "p_task": 0.3662360207188292,
+    "p_mcnemar": 0.42152334361577004,
+    "p_repo": 0.42543521593113964,
+    "significant": false
+   },
+   {
+    "id": "20250316_augment_agent_v0",
+    "name": "Augment Agent v0",
+    "date": "2025-03-16",
+    "checked": false,
+    "score": 65.4,
+    "ci": [
+     61.13,
+     69.44
+    ],
+    "previous": 64.6,
+    "gain": 0.8,
+    "p_task": 0.6702534580237516,
+    "p_mcnemar": 0.7493290032022806,
+    "p_repo": 0.6330921745700451,
+    "significant": false
+   },
+   {
+    "id": "20250415_openhands",
+    "name": "OpenHands",
+    "date": "2025-04-15",
+    "checked": true,
+    "score": 65.8,
+    "ci": [
+     61.54,
+     69.82
+    ],
+    "previous": 65.4,
+    "gain": 0.4,
+    "p_task": 0.8188087283573233,
+    "p_mcnemar": 0.9087769252754921,
+    "p_repo": 0.8548511162507987,
+    "significant": false
+   },
+   {
+    "id": "20250430_zencoder_ai",
+    "name": "Zencoder (2025-04-30)",
+    "date": "2025-04-30",
+    "checked": null,
+    "score": 70.0,
+    "ci": [
+     65.84,
+     73.85
+    ],
+    "previous": 65.8,
+    "gain": 4.2,
+    "p_task": 0.01799288984000926,
+    "p_mcnemar": 0.023819792858001267,
+    "p_repo": 0.07081500052483189,
+    "significant": true
+   },
+   {
+    "id": "20250515_Refact_Agent",
+    "name": "Refact.ai Agent",
+    "date": "2025-05-15",
+    "checked": false,
+    "score": 70.4,
+    "ci": [
+     66.26,
+     74.23
+    ],
+    "previous": 70.0,
+    "gain": 0.4,
+    "p_task": 0.796545858416374,
+    "p_mcnemar": 0.8974218269914305,
+    "p_repo": 0.9024269506065644,
+    "significant": false
+   },
+   {
+    "id": "20250519_trae",
+    "name": "TRAE",
+    "date": "2025-05-19",
+    "checked": false,
+    "score": 70.6,
+    "ci": [
+     66.46,
+     74.42
+    ],
+    "previous": 70.4,
+    "gain": 0.2,
+    "p_task": 0.8982710354415175,
+    "p_mcnemar": 1.0,
+    "p_repo": 0.8761647442443664,
+    "significant": false
+   },
+   {
+    "id": "20250522_tools_claude-4-opus",
+    "name": "Tools + Claude 4 Opus (2025-05-22)",
+    "date": "2025-05-22",
+    "checked": false,
+    "score": 73.2,
+    "ci": [
+     69.15,
+     76.89
+    ],
+    "previous": 70.6,
+    "gain": 2.6,
+    "p_task": 0.13347177176340985,
+    "p_mcnemar": 0.1654279417242567,
+    "p_repo": 0.27252079999231693,
+    "significant": false
+   },
+   {
+    "id": "20250603_Refact_Agent_claude-4-sonnet",
+    "name": "Refact.ai Agent + Claude 4 Sonnet + o4-mini",
+    "date": "2025-06-03",
+    "checked": false,
+    "score": 74.4,
+    "ci": [
+     70.4,
+     78.03
+    ],
+    "previous": 73.2,
+    "gain": 1.2,
+    "p_task": 0.47384002234802725,
+    "p_mcnemar": 0.5504125118224712,
+    "p_repo": 0.6532260927366109,
+    "significant": false
+   },
+   {
+    "id": "20250612_trae",
+    "name": "TRAE + Claude Sonnet 4 + Opus 4 + Sonnet 3.7 + Gemini 2.5 Pro",
+    "date": "2025-06-12",
+    "checked": false,
+    "score": 75.2,
+    "ci": [
+     71.23,
+     78.78
+    ],
+    "previous": 74.4,
+    "gain": 0.8,
+    "p_task": 0.5934823257273332,
+    "p_mcnemar": 0.6888797607233396,
+    "p_repo": 0.7335478512472627,
+    "significant": false
+   },
+   {
+    "id": "20250804_epam-ai-run-claude-4-sonnet",
+    "name": "EPAM AI/Run Developer Agent v20250719 + Claude 4 Sonnet",
+    "date": "2025-08-04",
+    "checked": false,
+    "score": 76.8,
+    "ci": [
+     72.9,
+     80.29
+    ],
+    "previous": 75.2,
+    "gain": 1.6,
+    "p_task": 0.2583090117877278,
+    "p_mcnemar": 0.3222363203575469,
+    "p_repo": 0.37923659414062405,
+    "significant": false
+   },
+   {
+    "id": "20250928_trae_doubao_seed_code",
+    "name": "TRAE + Doubao-Seed-Code",
+    "date": "2025-09-28",
+    "checked": false,
+    "score": 78.8,
+    "ci": [
+     75.0,
+     82.16
+    ],
+    "previous": 76.8,
+    "gain": 2.0,
+    "p_task": 0.21162820084686695,
+    "p_mcnemar": 0.2604354765766535,
+    "p_repo": 0.430861227053278,
+    "significant": false
+   },
+   {
+    "id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+    "name": "Sonar Foundation Agent + Claude 4.5 Opus",
+    "date": "2025-12-05",
+    "checked": false,
+    "score": 79.2,
+    "ci": [
+     75.43,
+     82.53
+    ],
+    "previous": 78.8,
+    "gain": 0.4,
+    "p_task": 0.8028714980026425,
+    "p_mcnemar": 0.9006532462520331,
+    "p_repo": 0.8837820978924507,
+    "significant": false
+   }
+  ],
+  "new_records": 30,
+  "significant_task_level": 6,
+  "significant_mcnemar": 6,
+  "significant_repo_level": 2
+ },
+ "gaps": {
+  "pairs": 3003,
+  "bins": [
+   {
+    "low": 0,
+    "high": 1,
+    "pairs": 300,
+    "task_level": 0.0,
+    "repo_level": 0.0,
+    "repo_level_cr1": 0.0
+   },
+   {
+    "low": 1,
+    "high": 2,
+    "pairs": 296,
+    "task_level": 0.0,
+    "repo_level": 0.0,
+    "repo_level_cr1": 1.69
+   },
+   {
+    "low": 2,
+    "high": 3,
+    "pairs": 278,
+    "task_level": 0.36,
+    "repo_level": 1.8,
+    "repo_level_cr1": 9.35
+   },
+   {
+    "low": 3,
+    "high": 4,
+    "pairs": 267,
+    "task_level": 54.31,
+    "repo_level": 14.23,
+    "repo_level_cr1": 43.07
+   },
+   {
+    "low": 4,
+    "high": 5,
+    "pairs": 287,
+    "task_level": 99.3,
+    "repo_level": 26.48,
+    "repo_level_cr1": 67.94
+   },
+   {
+    "low": 5,
+    "high": 6,
+    "pairs": 262,
+    "task_level": 100.0,
+    "repo_level": 46.95,
+    "repo_level_cr1": 84.73
+   },
+   {
+    "low": 6,
+    "high": 7,
+    "pairs": 211,
+    "task_level": 100.0,
+    "repo_level": 59.72,
+    "repo_level_cr1": 90.52
+   },
+   {
+    "low": 7,
+    "high": 8,
+    "pairs": 179,
+    "task_level": 100.0,
+    "repo_level": 77.09,
+    "repo_level_cr1": 94.97
+   },
+   {
+    "low": 8,
+    "high": 9,
+    "pairs": 179,
+    "task_level": 100.0,
+    "repo_level": 86.59,
+    "repo_level_cr1": 98.32
+   },
+   {
+    "low": 9,
+    "high": 10,
+    "pairs": 159,
+    "task_level": 100.0,
+    "repo_level": 86.79,
+    "repo_level_cr1": 96.86
+   },
+   {
+    "low": 10,
+    "high": 100,
+    "pairs": 585,
+    "task_level": 100.0,
+    "repo_level": 94.36,
+    "repo_level_cr1": 98.97
+   }
+  ],
+  "smallest_significant_gap": 2.8000000000000003,
+  "largest_non_significant_gap": 4.2,
+  "paired_se_points": {
+   "median": 1.762922514344622,
+   "p05": 1.4977337589924489,
+   "p95": 2.090117983333609
+  },
+  "median_correlation": 0.6278185257430908,
+  "repo_se_over_task_se": {
+   "median": 1.0458595013679937,
+   "p05": 0.5996558925233375,
+   "p95": 2.2041701576676216
+  }
+ },
+ "leader": {
+  "id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+  "name": "Sonar Foundation Agent + Claude 4.5 Opus",
+  "versus": [
+   {
+    "rank": 2,
+    "id": "20251215_livesweagent_claude-opus-4-5",
+    "name": "live-SWE-agent + Claude 4.5 Opus medium (20251101)",
+    "score": 79.2,
+    "gap": 0.0,
+    "ci": [
+     -2.36,
+     2.36
+    ],
+    "p_task": 1.0,
+    "p_mcnemar": 1.0,
+    "ci_repo": [
+     -2.82,
+     2.82
+    ],
+    "p_repo": 1.0,
+    "discordant": [
+     18,
+     18
+    ]
+   },
+   {
+    "rank": 3,
+    "id": "20250928_trae_doubao_seed_code",
+    "name": "TRAE + Doubao-Seed-Code",
+    "score": 78.8,
+    "gap": 0.4,
+    "ci": [
+     -2.75,
+     3.55
+    ],
+    "p_task": 0.8028714980026425,
+    "p_mcnemar": 0.9006532462520331,
+    "ci_repo": [
+     -7.24,
+     8.04
+    ],
+    "p_repo": 0.8837820978924507,
+    "discordant": [
+     33,
+     31
+    ]
+   },
+   {
+    "rank": 4,
+    "id": "20251127_openhands_claude-opus-4-5",
+    "name": "OpenHands + Claude Opus 4.5",
+    "score": 77.6,
+    "gap": 1.6,
+    "ci": [
+     -0.76,
+     3.96
+    ],
+    "p_task": 0.18269001246019234,
+    "p_mcnemar": 0.2429849540349096,
+    "ci_repo": [
+     -0.71,
+     3.91
+    ],
+    "p_repo": 0.11913698292996604,
+    "discordant": [
+     22,
+     14
+    ]
+   },
+   {
+    "rank": 5,
+    "id": "20251120_livesweagent_gemini-3-pro-preview",
+    "name": "live-SWE-agent + Gemini 3 Pro Preview (2025-11-18)",
+    "score": 77.4,
+    "gap": 1.8,
+    "ci": [
+     -0.95,
+     4.55
+    ],
+    "p_task": 0.19884548968485005,
+    "p_mcnemar": 0.2528697301676033,
+    "ci_repo": [
+     -2.76,
+     6.36
+    ],
+    "p_repo": 0.31261198224955844,
+    "discordant": [
+     29,
+     20
+    ]
+   },
+   {
+    "rank": 6,
+    "id": "20250804_epam-ai-run-claude-4-sonnet",
+    "name": "EPAM AI/Run Developer Agent v20250719 + Claude 4 Sonnet",
+    "score": 76.8,
+    "gap": 2.4,
+    "ci": [
+     -0.64,
+     5.44
+    ],
+    "p_task": 0.12144673827879882,
+    "p_mcnemar": 0.1550019040032606,
+    "ci_repo": [
+     -0.92,
+     5.72
+    ],
+    "p_repo": 0.10858643735918679,
+    "discordant": [
+     36,
+     24
+    ]
+   },
+   {
+    "rank": 7,
+    "id": "20250902_atlassian-rovo-dev",
+    "name": "Atlassian Rovo Dev (2025-09-02)",
+    "score": 76.8,
+    "gap": 2.4,
+    "ci": [
+     -0.48,
+     5.28
+    ],
+    "p_task": 0.10252727484854363,
+    "p_mcnemar": 0.13367423536410528,
+    "ci_repo": [
+     -1.94,
+     6.74
+    ],
+    "p_repo": 0.185557325290203,
+    "discordant": [
+     33,
+     21
+    ]
+   },
+   {
+    "rank": 8,
+    "id": "20260217_mini-v2.0.0_claude-4-5-opus-high",
+    "name": "Claude 4.5 Opus (high)",
+    "score": 76.8,
+    "gap": 2.4,
+    "ci": [
+     -0.2,
+     5.0
+    ],
+    "p_task": 0.07040134175221743,
+    "p_mcnemar": 0.09614175442061423,
+    "ci_repo": [
+     -2.57,
+     7.37
+    ],
+    "p_repo": 0.233488555279109,
+    "discordant": [
+     28,
+     16
+    ]
+   },
+   {
+    "rank": 9,
+    "id": "20250819_ACoder",
+    "name": "ACoder",
+    "score": 76.4,
+    "gap": 2.8,
+    "ci": [
+     -0.43,
+     6.03
+    ],
+    "p_task": 0.08957338337199627,
+    "p_mcnemar": 0.11425430684992328,
+    "ci_repo": [
+     -1.17,
+     6.77
+    ],
+    "p_repo": 0.11474723588981897,
+    "discordant": [
+     41,
+     27
+    ]
+   },
+   {
+    "rank": 10,
+    "id": "20260217_mini-v2.0.0_gemini-3-flash-high",
+    "name": "Gemini 3 Flash (high)",
+    "score": 75.8,
+    "gap": 3.4,
+    "ci": [
+     0.34,
+     6.46
+    ],
+    "p_task": 0.029366159331858623,
+    "p_mcnemar": 0.03961701489849968,
+    "ci_repo": [
+     0.14,
+     6.66
+    ],
+    "p_repo": 0.044812203532133874,
+    "discordant": [
+     39,
+     22
+    ]
+   },
+   {
+    "rank": 11,
+    "id": "20260217_mini-v2.0.0_minimax-2-5-high",
+    "name": "MiniMax M2.5 (high)",
+    "score": 75.8,
+    "gap": 3.4,
+    "ci": [
+     0.29,
+     6.51
+    ],
+    "p_task": 0.03207179792508534,
+    "p_mcnemar": 0.04295654552438921,
+    "ci_repo": [
+     -1.27,
+     8.07
+    ],
+    "p_repo": 0.10702882092326987,
+    "discordant": [
+     40,
+     23
+    ]
+   },
+   {
+    "rank": 12,
+    "id": "20250901_warp",
+    "name": "Warp",
+    "score": 75.6,
+    "gap": 3.6,
+    "ci": [
+     0.62,
+     6.58
+    ],
+    "p_task": 0.017952256316829663,
+    "p_mcnemar": 0.024746035842440797,
+    "ci_repo": [
+     -0.95,
+     8.15
+    ],
+    "p_repo": 0.08901998640187497,
+    "discordant": [
+     38,
+     20
+    ]
+   },
+   {
+    "rank": 13,
+    "id": "20260217_mini-v2.0.0_claude-4-6-opus",
+    "name": "Claude 4.6 Opus",
+    "score": 75.6,
+    "gap": 3.6,
+    "ci": [
+     0.95,
+     6.25
+    ],
+    "p_task": 0.007828509184837055,
+    "p_mcnemar": 0.011351591436778108,
+    "ci_repo": [
+     -0.76,
+     7.96
+    ],
+    "p_repo": 0.08042525361547366,
+    "discordant": [
+     32,
+     14
+    ]
+   },
+   {
+    "rank": 14,
+    "id": "20250612_trae",
+    "name": "TRAE + Claude Sonnet 4 + Opus 4 + Sonnet 3.7 + Gemini 2.5 Pro",
+    "score": 75.2,
+    "gap": 4.0,
+    "ci": [
+     0.92,
+     7.08
+    ],
+    "p_task": 0.010945604905527168,
+    "p_mcnemar": 0.015134080997447081,
+    "ci_repo": [
+     0.91,
+     7.09
+    ],
+    "p_repo": 0.02480085139911435,
+    "discordant": [
+     41,
+     21
+    ]
+   },
+   {
+    "rank": 15,
+    "id": "20250731_harness_ai",
+    "name": "Harness AI",
+    "score": 74.8,
+    "gap": 4.4,
+    "ci": [
+     1.38,
+     7.42
+    ],
+    "p_task": 0.0044068767897478475,
+    "p_mcnemar": 0.0062176026593266705,
+    "ci_repo": [
+     1.48,
+     7.32
+    ],
+    "p_repo": 0.015986052924392938,
+    "discordant": [
+     41,
+     19
+    ]
+   },
+   {
+    "rank": 16,
+    "id": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+    "name": "Sonar Foundation Agent + Claude 4.5 Sonnet",
+    "score": 74.8,
+    "gap": 4.4,
+    "ci": [
+     1.76,
+     7.04
+    ],
+    "p_task": 0.0011295646242727739,
+    "p_mcnemar": 0.0016414913408482334,
+    "ci_repo": [
+     1.19,
+     7.61
+    ],
+    "p_repo": 0.021057812942151956,
+    "discordant": [
+     34,
+     12
+    ]
+   },
+   {
+    "rank": 17,
+    "id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+    "name": "Lingxi-v1.5_claude-4-sonnet-20250514",
+    "score": 74.6,
+    "gap": 4.6,
+    "ci": [
+     1.61,
+     7.59
+    ],
+    "p_task": 0.002669913415864667,
+    "p_mcnemar": 0.0037937056353716074,
+    "ci_repo": [
+     1.49,
+     7.71
+    ],
+    "p_repo": 0.016795801646288844,
+    "discordant": [
+     41,
+     18
+    ]
+   },
+   {
+    "rank": 18,
+    "id": "20250915_JoyCode",
+    "name": "JoyCode + Claude 4 Sonnet + GPT-4.1",
+    "score": 74.6,
+    "gap": 4.6,
+    "ci": [
+     1.31,
+     7.89
+    ],
+    "p_task": 0.006224037404012176,
+    "p_mcnemar": 0.008554538502693427,
+    "ci_repo": [
+     1.32,
+     7.88
+    ],
+    "p_repo": 0.019660034593629385,
+    "discordant": [
+     47,
+     24
+    ]
+   },
+   {
+    "rank": 19,
+    "id": "20250603_Refact_Agent_claude-4-sonnet",
+    "name": "Refact.ai Agent + Claude 4 Sonnet + o4-mini",
+    "score": 74.4,
+    "gap": 4.8,
+    "ci": [
+     1.49,
+     8.11
+    ],
+    "p_task": 0.004574261174945867,
+    "p_mcnemar": 0.006309827313666047,
+    "ci_repo": [
+     0.03,
+     9.57
+    ],
+    "p_repo": 0.04916237340920028,
+    "discordant": [
+     48,
+     24
+    ]
+   },
+   {
+    "rank": 20,
+    "id": "20251015_Prometheus_v1.2.1_gpt5",
+    "name": "Prometheus-v1.2.1 + GPT-5",
+    "score": 74.4,
+    "gap": 4.8,
+    "ci": [
+     1.63,
+     7.97
+    ],
+    "p_task": 0.0030489526615119734,
+    "p_mcnemar": 0.004272405031651673,
+    "ci_repo": [
+     0.35,
+     9.25
+    ],
+    "p_repo": 0.040953184032972476,
+    "discordant": [
+     45,
+     21
+    ]
+   },
+   {
+    "rank": 21,
+    "id": "20251124_mini-v1.16.0_claude-opus-4-5-20251101",
+    "name": "Claude 4.5 Opus (20251101) (medium)",
+    "score": 74.4,
+    "gap": 4.8,
+    "ci": [
+     2.05,
+     7.55
+    ],
+    "p_task": 0.0006525170380184148,
+    "p_mcnemar": 0.000936222910851825,
+    "ci_repo": [
+     1.06,
+     8.54
+    ],
+    "p_repo": 0.02542300181576819,
+    "discordant": [
+     37,
+     13
+    ]
+   },
+   {
+    "rank": 22,
+    "id": "20251118_mini-v1.15.0_gemini-3-pro-preview-20251118",
+    "name": "Gemini 3 Pro Preview (2025-11-18)",
+    "score": 74.2,
+    "gap": 5.0,
+    "ci": [
+     2.06,
+     7.94
+    ],
+    "p_task": 0.0008851067099144863,
+    "p_mcnemar": 0.0012635594724354632,
+    "ci_repo": [
+     2.41,
+     7.59
+    ],
+    "p_repo": 0.007544490158798706,
+    "discordant": [
+     41,
+     16
+    ]
+   },
+   {
+    "rank": 23,
+    "id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+    "name": "Salesforce AI Research SAGE (OpenHands)",
+    "score": 73.8,
+    "gap": 5.4,
+    "ci": [
+     2.17,
+     8.63
+    ],
+    "p_task": 0.0011028369437187011,
+    "p_mcnemar": 0.0015503169494868645,
+    "ci_repo": [
+     1.2,
+     9.6
+    ],
+    "p_repo": 0.025228144569380762,
+    "discordant": [
+     48,
+     21
+    ]
+   },
+   {
+    "rank": 24,
+    "id": "20250522_tools_claude-4-opus",
+    "name": "Tools + Claude 4 Opus (2025-05-22)",
+    "score": 73.2,
+    "gap": 6.0,
+    "ci": [
+     2.8,
+     9.2
+    ],
+    "p_task": 0.00025521595310297994,
+    "p_mcnemar": 0.0003579552716131653,
+    "ci_repo": [
+     1.22,
+     10.78
+    ],
+    "p_repo": 0.027061471951501624,
+    "discordant": [
+     49,
+     19
+    ]
+   },
+   {
+    "rank": 25,
+    "id": "20251021_SalesforceAIResearch_SAGE_bash_only",
+    "name": "Salesforce AI Research SAGE (bash-only)",
+    "score": 73.0,
+    "gap": 6.2,
+    "ci": [
+     2.93,
+     9.47
+    ],
+    "p_task": 0.00021667433066894113,
+    "p_mcnemar": 0.00030316341355849296,
+    "ci_repo": [
+     0.01,
+     12.39
+    ],
+    "p_repo": 0.049861158270901665,
+    "discordant": [
+     51,
+     20
+    ]
+   }
+  ]
+ },
+ "top20": {
+  "pairs": 190,
+  "significant_unadjusted": 32,
+  "significant_holm": 0
+ },
+ "adjacent_ranks_top50": {
+  "pairs": 49,
+  "significant": 0
+ },
+ "controlled": {
+  "entries": [
+   {
+    "name": "Claude 4.5 Opus (high)",
+    "score": 76.8,
+    "ci": [
+     73.1,
+     80.5
+    ],
+    "groups": "a"
+   },
+   {
+    "name": "Gemini 3 Flash (high)",
+    "score": 75.8,
+    "ci": [
+     72.04,
+     79.56
+    ],
+    "groups": "abc"
+   },
+   {
+    "name": "MiniMax M2.5 (high)",
+    "score": 75.8,
+    "ci": [
+     72.04,
+     79.56
+    ],
+    "groups": "ac"
+   },
+   {
+    "name": "Claude 4.6 Opus",
+    "score": 75.6,
+    "ci": [
+     71.83,
+     79.37
+    ],
+    "groups": "abc"
+   },
+   {
+    "name": "GLM 5 (high)",
+    "score": 72.8,
+    "ci": [
+     68.9,
+     76.7
+    ],
+    "groups": "abcd"
+   },
+   {
+    "name": "GPT 5.2 (high)",
+    "score": 72.8,
+    "ci": [
+     68.9,
+     76.7
+    ],
+    "groups": "abcd"
+   },
+   {
+    "name": "Claude 4.5 Sonnet (high)",
+    "score": 71.4,
+    "ci": [
+     67.44,
+     75.36
+    ],
+    "groups": "bcd"
+   },
+   {
+    "name": "Kimi K2.5 (high)",
+    "score": 70.8,
+    "ci": [
+     66.81,
+     74.79
+    ],
+    "groups": "bde"
+   },
+   {
+    "name": "DeepSeek V3.2 (high)",
+    "score": 70.0,
+    "ci": [
+     65.98,
+     74.02
+    ],
+    "groups": "de"
+   },
+   {
+    "name": "Claude 4.5 Haiku (high)",
+    "score": 66.6,
+    "ci": [
+     62.46,
+     70.74
+    ],
+    "groups": "e"
+   },
+   {
+    "name": "GPT 5 mini",
+    "score": 56.2,
+    "ci": [
+     51.85,
+     60.55
+    ],
+    "groups": "f"
+   }
+  ],
+  "pairs": 55,
+  "significant_unadjusted": 34,
+  "significant_holm": 24,
+  "groups": [
+   [
+    "Claude 4.5 Opus (high)",
+    "Gemini 3 Flash (high)",
+    "MiniMax M2.5 (high)",
+    "Claude 4.6 Opus",
+    "GLM 5 (high)",
+    "GPT 5.2 (high)"
+   ],
+   [
+    "Gemini 3 Flash (high)",
+    "Claude 4.6 Opus",
+    "GLM 5 (high)",
+    "GPT 5.2 (high)",
+    "Claude 4.5 Sonnet (high)",
+    "Kimi K2.5 (high)"
+   ],
+   [
+    "Gemini 3 Flash (high)",
+    "MiniMax M2.5 (high)",
+    "Claude 4.6 Opus",
+    "GLM 5 (high)",
+    "GPT 5.2 (high)",
+    "Claude 4.5 Sonnet (high)"
+   ],
+   [
+    "GLM 5 (high)",
+    "GPT 5.2 (high)",
+    "Claude 4.5 Sonnet (high)",
+    "Kimi K2.5 (high)",
+    "DeepSeek V3.2 (high)"
+   ],
+   [
+    "Kimi K2.5 (high)",
+    "DeepSeek V3.2 (high)",
+    "Claude 4.5 Haiku (high)"
+   ],
+   [
+    "GPT 5 mini"
+   ]
+  ]
+ },
+ "repositories": {
+  "sizes": {
+   "django/django": 231,
+   "sympy/sympy": 75,
+   "sphinx-doc/sphinx": 44,
+   "matplotlib/matplotlib": 34,
+   "scikit-learn/scikit-learn": 32,
+   "astropy/astropy": 22,
+   "pydata/xarray": 22,
+   "pytest-dev/pytest": 19,
+   "pylint-dev/pylint": 10,
+   "psf/requests": 8,
+   "mwaskom/seaborn": 2,
+   "pallets/flask": 1
+  },
+  "largest_share": 46.2,
+  "degrees_of_freedom": 3.330800316130594,
+  "critical_value": 3.0109022516776918,
+  "icc": {
+   "median": 0.04311292796679231,
+   "p05": 0.012905103423884446,
+   "p95": 0.07737327947759803
+  },
+  "repo_se_over_binomial_se": {
+   "median": 1.4844395197155822,
+   "p05": 1.008361024398491,
+   "p95": 2.1518532215965522
+  },
+  "leader": {
+   "score": 79.2,
+   "wilson": [
+    75.43,
+    82.53
+   ],
+   "repo_clustered": [
+    70.03,
+    88.37
+   ],
+   "by_repo": {
+    "django/django": 82.68,
+    "sympy/sympy": 77.33,
+    "sphinx-doc/sphinx": 68.18,
+    "matplotlib/matplotlib": 79.41,
+    "scikit-learn/scikit-learn": 93.75,
+    "astropy/astropy": 54.55,
+    "pydata/xarray": 86.36,
+    "pytest-dev/pytest": 94.74,
+    "pylint-dev/pylint": 40.0,
+    "psf/requests": 62.5,
+    "mwaskom/seaborn": 50.0,
+    "pallets/flask": 100.0
+   }
+  }
+ },
+ "saturation": {
+  "never_solved_by_anyone": 26,
+  "top": 20,
+  "solved_by_all_top": 254,
+  "solved_by_none_top": 36,
+  "contested_top": 210
+ },
+ "same_model_reruns": [
+  {
+   "a": "20240820_epam-ai-run-gpt-4o",
+   "b": "20241016_epam-ai-run-gpt-4o",
+   "score_a": 24.0,
+   "score_b": 27.0,
+   "tasks_that_differ": 79
+  },
+  {
+   "a": "20241023_emergent",
+   "b": "20241223_emergent",
+   "score_a": 46.6,
+   "score_b": 57.2,
+   "tasks_that_differ": 107
+  },
+  {
+   "a": "20241029_epam-ai-run-claude-3-5-sonnet",
+   "b": "20241212_epam-ai-run-claude-3-5-sonnet",
+   "score_a": 39.6,
+   "score_b": 55.4,
+   "tasks_that_differ": 119
+  },
+  {
+   "a": "20241029_epam-ai-run-claude-3-5-sonnet",
+   "b": "20250228_epam-ai-run-claude-3-5-sonnet",
+   "score_a": 39.6,
+   "score_b": 62.8,
+   "tasks_that_differ": 138
+  },
+  {
+   "a": "20241212_epam-ai-run-claude-3-5-sonnet",
+   "b": "20250228_epam-ai-run-claude-3-5-sonnet",
+   "score_a": 55.4,
+   "score_b": 62.8,
+   "tasks_that_differ": 65
+  },
+  {
+   "a": "20241128_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor_20241128",
+   "b": "20250306_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor",
+   "score_a": 30.2,
+   "score_b": 32.8,
+   "tasks_that_differ": 13
+  },
+  {
+   "a": "20250616_Skywork-SWE-32B",
+   "b": "20250616_Skywork-SWE-32B+TTS_Bo8",
+   "score_a": 38.0,
+   "score_b": 47.0,
+   "tasks_that_differ": 103
+  },
+  {
+   "a": "20250807_mini-v1.7.0_gpt-5-mini",
+   "b": "20260217_mini-v2.0.0_gpt-5-mini",
+   "score_a": 59.8,
+   "score_b": 56.2,
+   "tasks_that_differ": 84
+  },
+  {
+   "a": "20250901_entroPO_R2E_QwenCoder30BA3B",
+   "b": "20250901_entroPO_R2E_QwenCoder30BA3B_tts",
+   "score_a": 52.2,
+   "score_b": 60.4,
+   "tasks_that_differ": 91
+  },
+  {
+   "a": "20250929_mini-v1.13.3_sonnet-4-5-20250929",
+   "b": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+   "score_a": 70.6,
+   "score_b": 71.4,
+   "tasks_that_differ": 64
+  },
+  {
+   "a": "20251021_SalesforceAIResearch_SAGE_bash_only",
+   "b": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+   "score_a": 73.0,
+   "score_b": 73.8,
+   "tasks_that_differ": 72
+  },
+  {
+   "a": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11",
+   "b": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high",
+   "score_a": 69.0,
+   "score_b": 71.8,
+   "tasks_that_differ": 54
+  }
+ ],
+ "false_positive_rates": {
+  "replications": 20000,
+  "rows": [
+   {
+    "repo_effect_sd": 0.0,
+    "task": 5.08,
+    "cr1": 9.69,
+    "cr2": 3.0
+   },
+   {
+    "repo_effect_sd": 0.02,
+    "task": 9.05,
+    "cr1": 11.46,
+    "cr2": 3.63
+   },
+   {
+    "repo_effect_sd": 0.04,
+    "task": 21.59,
+    "cr1": 13.9,
+    "cr2": 4.41
+   },
+   {
+    "repo_effect_sd": 0.08,
+    "task": 45.3,
+    "cr1": 16.61,
+    "cr2": 5.25
+   }
+  ]
+ }
+}

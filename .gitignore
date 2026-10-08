@@ -25,3 +25,6 @@ web/*.tsbuildinfo
 
 web/test-results/
 web/playwright-report/
+
+# Downloads made by studies/*/fetch.py
+studies/*/cache/

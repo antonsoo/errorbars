@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title>How big a gap has to be before a paired test can see it</title>
+<rect width="880" height="400" fill="#1a1a19"/>
+<text x="24.0" y="30.0" font-size="16" font-weight="600" fill="#ffffff" text-anchor="start">How big a gap has to be before a paired test can see it</text>
+<text x="24.0" y="50.0" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Share of pairs of submissions (both at or above 60%) that differ at the 5% level, by their gap.</text>
+<circle cx="29.0" cy="74.0" r="4.5" fill="#3987e5"/>
+<text x="40.0" y="78.0" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">tasks as the sample (paired t-test)</text>
+<circle cx="297.0" cy="74.0" r="4.5" fill="#d95926"/>
+<text x="308.0" y="78.0" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">repositories as the sample (clustered, 3.3 degrees of freedom)</text>
+<line x1="56.0" y1="342.0" x2="730.0" y2="342.0" stroke="#2c2c2a" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="346.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">0%</text>
+<line x1="56.0" y1="282.5" x2="730.0" y2="282.5" stroke="#2c2c2a" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="286.5" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">25%</text>
+<line x1="56.0" y1="223.0" x2="730.0" y2="223.0" stroke="#2c2c2a" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="227.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">50%</text>
+<line x1="56.0" y1="163.5" x2="730.0" y2="163.5" stroke="#2c2c2a" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="167.5" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">75%</text>
+<line x1="56.0" y1="104.0" x2="730.0" y2="104.0" stroke="#2c2c2a" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="108.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">100%</text>
+<line x1="56.0" y1="342.0" x2="730.0" y2="342.0" stroke="#383835" stroke-width="1" stroke-linecap="round"/>
+<text x="89.7" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">0–1</text>
+<text x="157.1" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">1–2</text>
+<text x="224.5" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">2–3</text>
+<text x="291.9" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">3–4</text>
+<text x="359.3" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">4–5</text>
+<text x="426.7" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">5–6</text>
+<text x="494.1" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">6–7</text>
+<text x="561.5" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">7–8</text>
+<text x="628.9" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">8–9</text>
+<text x="696.3" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">9–10</text>
+<text x="393.0" y="384.0" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">gap between two submissions, in points</text>
+<path d="M89.7,342.0 L157.1,342.0 L224.5,337.7 L291.9,308.1 L359.3,279.0 L426.7,230.3 L494.1,199.9 L561.5,158.5 L628.9,135.9 L696.3,135.4" fill="none" stroke="#d95926" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="89.7" cy="342.0" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 0–1 points: 0.0% of 300 pairs (repositories)</title></circle>
+<circle cx="157.1" cy="342.0" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 1–2 points: 0.0% of 296 pairs (repositories)</title></circle>
+<circle cx="224.5" cy="337.7" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 2–3 points: 1.8% of 278 pairs (repositories)</title></circle>
+<circle cx="291.9" cy="308.1" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 3–4 points: 14.2% of 267 pairs (repositories)</title></circle>
+<circle cx="359.3" cy="279.0" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 4–5 points: 26.5% of 287 pairs (repositories)</title></circle>
+<circle cx="426.7" cy="230.3" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 5–6 points: 47.0% of 262 pairs (repositories)</title></circle>
+<circle cx="494.1" cy="199.9" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 6–7 points: 59.7% of 211 pairs (repositories)</title></circle>
+<circle cx="561.5" cy="158.5" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 7–8 points: 77.1% of 179 pairs (repositories)</title></circle>
+<circle cx="628.9" cy="135.9" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 8–9 points: 86.6% of 179 pairs (repositories)</title></circle>
+<circle cx="696.3" cy="135.4" r="4" fill="#d95926" stroke="#1a1a19" stroke-width="2"><title>gap 9–10 points: 86.8% of 159 pairs (repositories)</title></circle>
+<text x="708.3" y="139.4" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">repositories: 87%</text>
+<path d="M89.7,342.0 L157.1,342.0 L224.5,341.1 L291.9,212.7 L359.3,105.7 L426.7,104.0 L494.1,104.0 L561.5,104.0 L628.9,104.0 L696.3,104.0" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="89.7" cy="342.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 0–1 points: 0.0% of 300 pairs (tasks)</title></circle>
+<circle cx="157.1" cy="342.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 1–2 points: 0.0% of 296 pairs (tasks)</title></circle>
+<circle cx="224.5" cy="341.1" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 2–3 points: 0.4% of 278 pairs (tasks)</title></circle>
+<circle cx="291.9" cy="212.7" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 3–4 points: 54.3% of 267 pairs (tasks)</title></circle>
+<circle cx="359.3" cy="105.7" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 4–5 points: 99.3% of 287 pairs (tasks)</title></circle>
+<circle cx="426.7" cy="104.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 5–6 points: 100.0% of 262 pairs (tasks)</title></circle>
+<circle cx="494.1" cy="104.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 6–7 points: 100.0% of 211 pairs (tasks)</title></circle>
+<circle cx="561.5" cy="104.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 7–8 points: 100.0% of 179 pairs (tasks)</title></circle>
+<circle cx="628.9" cy="104.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 8–9 points: 100.0% of 179 pairs (tasks)</title></circle>
+<circle cx="696.3" cy="104.0" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"><title>gap 9–10 points: 100.0% of 159 pairs (tasks)</title></circle>
+<text x="708.3" y="108.0" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">tasks: 100%</text>
+</svg>

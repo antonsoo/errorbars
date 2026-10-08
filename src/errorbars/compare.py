@@ -10,9 +10,19 @@ import numpy as np
 from numpy.typing import ArrayLike
 
 from errorbars._validation import group_vector, sample_sd, score_vector
-from errorbars.stats import cluster_robust_se, is_binary, t_for_confidence, t_two_sided_p
+from errorbars.stats import (
+    cluster_degrees_of_freedom,
+    cluster_robust_se,
+    is_binary,
+    t_for_confidence,
+    t_two_sided_p,
+)
 
 __all__ = ["PairedComparison", "paired_compare", "McNemarResult", "mcnemar_exact"]
+
+# Below this many effective degrees of freedom a 95% t interval is more than 13%
+# wider than a normal one, and a reader should know why.
+FEW_CLUSTER_DOF = 10.0
 
 
 @dataclass(frozen=True)
@@ -35,6 +45,8 @@ class PairedComparison:
     ci_low_clustered: float | None = None
     ci_high_clustered: float | None = None
     p_value_clustered: float | None = None
+    dof_clustered: float | None = None
+    n_clusters: int | None = None
     mcnemar: McNemarResult | None = None
     warnings: list[str] = field(default_factory=list)
 
@@ -59,6 +71,8 @@ class PairedComparison:
             d["ci_low_clustered"] = self.ci_low_clustered
             d["ci_high_clustered"] = self.ci_high_clustered
             d["p_value_clustered"] = self.p_value_clustered
+            d["dof_clustered"] = self.dof_clustered
+            d["n_clusters"] = self.n_clusters
         if self.mcnemar is not None:
             d["mcnemar"] = self.mcnemar.as_dict()
         return d
@@ -76,11 +90,13 @@ def paired_compare(
     degrees of freedom), the correlation between the two models'
     per-question scores, and how much pairing shrank the SE relative to an
     unpaired (independent two-sample) SE at the same n. When ``clusters`` is
-    given, also reports a cluster-robust paired SE/CI/p-value (see
-    ``errorbars.stats.cluster_robust_se``) on t with G - 1 degrees of
-    freedom for G clusters, the usual reference for a clustered mean (Cameron
-    & Miller 2015). When both score vectors are binary, also runs McNemar's
-    exact test.
+    given, also reports a cluster-robust paired SE/CI/p-value: the
+    bias-reduced CR2 estimator on t with Satterthwaite degrees of freedom
+    (``errorbars.stats.cluster_robust_se``, ``cluster_degrees_of_freedom``).
+    With equal cluster sizes that is the classic CR1 estimator on t(G - 1)
+    (Cameron & Miller 2015); with unequal sizes it has fewer degrees of
+    freedom and keeps its error rate, where CR1 does not. When both score
+    vectors are binary, also runs McNemar's exact test.
 
     ``correlation`` is unavailable (None) when either vector is constant;
     ``variance_reduction`` is unavailable when both are constant. Warnings
@@ -123,17 +139,28 @@ def paired_compare(
     ci_low_c: float | None = None
     ci_high_c: float | None = None
     p_value_c: float | None = None
+    dof_c: float | None = None
+    n_clusters: int | None = None
     if clusters is not None:
         cluster_arr = group_vector(clusters, n)
         se_clustered = cluster_robust_se(diff, cluster_arr)
-        n_clusters = len(set(cluster_arr.tolist()))
-        dof_c = n_clusters - 1
+        sizes: dict[Any, int] = {}
+        for cluster in cluster_arr.tolist():
+            sizes[cluster] = sizes.get(cluster, 0) + 1
+        n_clusters = len(sizes)
+        dof_c = cluster_degrees_of_freedom(cluster_arr)
         t_crit_c = t_for_confidence(confidence, dof_c)
         ci_low_c = mean_diff - t_crit_c * se_clustered
         ci_high_c = mean_diff + t_crit_c * se_clustered
         p_value_c = _difference_p(mean_diff, se_clustered, dof_c)
         if se_clustered == 0:
             notes.append("Cluster sums have zero estimated variance; the clustered t-test is degenerate.")
+        if dof_c < FEW_CLUSTER_DOF:
+            notes.append(
+                f"Clustered inference rests on {dof_c:.1f} effective degrees of freedom: "
+                f"{n_clusters} clusters, the largest holding {max(sizes.values()) / n:.0%} of the "
+                "questions. Its interval is wide because few independent clusters carry the estimate."
+            )
 
     scores_list_a: list[float] = a.tolist()
     scores_list_b: list[float] = b.tolist()
@@ -156,12 +183,14 @@ def paired_compare(
         ci_low_clustered=ci_low_c,
         ci_high_clustered=ci_high_c,
         p_value_clustered=p_value_c,
+        dof_clustered=dof_c,
+        n_clusters=n_clusters,
         mcnemar=mcnemar,
         warnings=notes,
     )
 
 
-def _difference_p(mean: float, se: float, dof: int) -> float:
+def _difference_p(mean: float, se: float, dof: float) -> float:
     if se == 0:
         return 0.0 if mean != 0 else 1.0
     return t_two_sided_p(mean / se, dof)

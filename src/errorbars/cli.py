@@ -16,7 +16,7 @@ from errorbars.leaderboard import build_leaderboard
 from errorbars.plot import forest_plot_svg
 from errorbars.power import minimum_detectable_effect, questions_needed
 from errorbars.review import review_comparison
-from errorbars.stats import bootstrap_ci, is_binary, mean_ci_clt, wilson_ci
+from errorbars.stats import bootstrap_ci, is_binary, mean_ci_clt, prefer_wilson, wilson_ci
 
 
 def _require_models(data: EvalData, *names: str) -> None:
@@ -125,7 +125,12 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         raise ValueError("--ci wilson cannot treat repeated-generation question averages as binary trials")
     if args.ci == "bootstrap":
         est = bootstrap_ci(scores, confidence=args.confidence, seed=args.seed)
-    elif args.ci == "wilson" or (args.ci == "auto" and binary and not repeated and len(scores) < 30):
+    elif args.ci == "wilson" or (
+        args.ci == "auto"
+        and binary
+        and not repeated
+        and prefer_wilson(int(round(sum(scores))), len(scores))
+    ):
         if not binary:
             raise SystemExit("error: --ci wilson requires binary (0/1) scores")
         est = wilson_ci(int(round(sum(scores))), len(scores), confidence=args.confidence)
@@ -143,6 +148,7 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     cluster_info = None
     if _has_clusters(sub) and sub.cluster_id:
         from errorbars.stats import (
+            cluster_degrees_of_freedom,
             cluster_robust_se,
             design_effect,
             intraclass_correlation,
@@ -156,12 +162,15 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         icc = intraclass_correlation(scores, clusters)
         avg_size = len(scores) / n_clusters
         deff = design_effect(icc, avg_size)
-        # A clustered mean has G - 1 degrees of freedom, not n - 1.
-        t_crit = t_for_confidence(est.confidence, n_clusters - 1)
+        # A clustered mean rests on the clusters, not the questions: G - 1 degrees
+        # of freedom when they are the same size, fewer when a few dominate.
+        dof_c = cluster_degrees_of_freedom(clusters)
+        t_crit = t_for_confidence(est.confidence, dof_c)
         cluster_info = {
             "clustered_se": se_c,
             "clustered_ci_low": est.mean - t_crit * se_c,
             "clustered_ci_high": est.mean + t_crit * se_c,
+            "clustered_dof": dof_c,
             "icc": icc,
             "design_effect": deff,
             "n_clusters": n_clusters,
@@ -206,6 +215,7 @@ def cmd_summarize(args: argparse.Namespace) -> None:
             "clustered CI",
             f"[{cluster_info['clustered_ci_low']:.4f}, {cluster_info['clustered_ci_high']:.4f}]",
         )
+        ct.add_row("degrees of freedom", f"{cluster_info['clustered_dof']:.1f}")
         out.table(ct)
     if within_between:
         wt = Table(title="within/between-question variance", header_style="bold magenta")
@@ -294,6 +304,10 @@ def cmd_compare(args: argparse.Namespace) -> None:
     if comp.se_clustered is not None:
         table.add_row("clustered paired SE", f"{comp.se_clustered:.4f}")
         table.add_row("clustered CI", f"[{comp.ci_low_clustered:.4f}, {comp.ci_high_clustered:.4f}]")
+        table.add_row("clustered p-value", f"{comp.p_value_clustered:.4g}")
+        table.add_row(
+            "clusters (degrees of freedom)", f"{comp.n_clusters} ({comp.dof_clustered:.1f})"
+        )
     if comp.mcnemar is not None:
         table.add_row(
             "McNemar discordant (A wrong/B right, A right/B wrong)",
@@ -310,6 +324,10 @@ def cmd_compare(args: argparse.Namespace) -> None:
     )
     for note in comp.warnings:
         out.note(note, style="yellow")
+
+
+# A 12-model board has 66 pairs; past that the full pairwise table is unreadable in a terminal.
+_MAX_PAIR_ROWS = 66
 
 
 def cmd_leaderboard(args: argparse.Namespace) -> None:
@@ -335,12 +353,26 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     has_repeats = any(e.n_observations != e.n for e in lb.entries)
     if has_repeats:
         table.add_column("observations", justify="right")
-    table.add_column("group")
+    # One letter per group reads well for a handful of groups. A long board has
+    # dozens of overlapping ones (119 for 175 SWE-bench Verified submissions), so
+    # there each model gets the span of ranks it cannot be told apart from.
+    lettered = len(lb.groups) <= 26
+    table.add_column("group" if lettered else "tied with ranks")
+    rank_of = {e.model: rank for rank, e in enumerate(lb.entries, start=1)}
     letter_of: dict[str, str] = {}
-    for i, group in enumerate(lb.groups):
-        letter = chr(ord("a") + i)
-        for m in group:
-            letter_of[m] = letter_of.get(m, "") + letter
+    if lettered:
+        for i, group in enumerate(lb.groups):
+            letter = chr(ord("a") + i)
+            for m in group:
+                letter_of[m] = letter_of.get(m, "") + letter
+    else:
+        span: dict[str, tuple[int, int]] = {}
+        for group in lb.groups:
+            low, high = min(rank_of[m] for m in group), max(rank_of[m] for m in group)
+            for m in group:
+                known = span.get(m, (low, high))
+                span[m] = (min(known[0], low), max(known[1], high))
+        letter_of = {m: f"{low}-{high}" for m, (low, high) in span.items()}
     for rank, e in enumerate(lb.entries, start=1):
         cells = [
             str(rank),
@@ -359,20 +391,33 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             "n counts questions, each weighted equally; observations counts retained generations.",
             style="dim",
         )
-    out.note(
-        "Models sharing a group letter are not statistically distinguishable "
-        f"(Holm-corrected paired test, alpha={args.alpha}).",
-        style="dim",
-    )
+    if lettered:
+        out.note(
+            "Models sharing a group letter are not statistically distinguishable "
+            f"(Holm-corrected paired test, alpha={args.alpha}).",
+            style="dim",
+        )
+    else:
+        out.note(
+            "'tied with ranks' is the span of ranks a model is not statistically distinguishable "
+            f"from (Holm-corrected paired test, alpha={args.alpha}); the {len(lb.groups)} "
+            "overlapping groups are in --json.",
+            style="dim",
+        )
 
-    pt = Table(title="pairwise paired tests (Holm-corrected)", header_style="bold magenta")
+    shown = lb.pairwise
+    title = "pairwise paired tests (Holm-corrected)"
+    if len(lb.pairwise) > _MAX_PAIR_ROWS and not args.all_pairs:
+        shown = [pr for pr in lb.pairwise if abs(rank_of[pr.model_a] - rank_of[pr.model_b]) == 1]
+        title = f"pairwise paired tests, adjacent ranks (Holm-corrected over all {len(lb.pairwise)} pairs)"
+    pt = Table(title=title, header_style="bold magenta")
     pt.add_column("A")
     pt.add_column("B")
     pt.add_column("mean diff", justify="right")
     pt.add_column("p (unclustered)", justify="right")
     pt.add_column("p (used, Holm)", justify="right")
     pt.add_column("significant?")
-    for pr in lb.pairwise:
+    for pr in shown:
         sig = "yes" if pr.p_holm < args.alpha else "no"
         pt.add_row(
             pr.model_a,
@@ -383,6 +428,12 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             sig,
         )
     out.table(pt)
+    if len(shown) < len(lb.pairwise):
+        out.note(
+            f"Showing {len(shown)} adjacent-rank pairs of {len(lb.pairwise)}. "
+            "--all-pairs prints every pair; --json always has them.",
+            style="dim",
+        )
     for note in dict.fromkeys(note for pr in lb.pairwise for note in pr.comparison.warnings):
         out.note(note, style="yellow")
     out.note(
@@ -486,6 +537,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_lb.add_argument("--plot", default=None, help="write an SVG forest plot to this path")
     p_lb.add_argument("--plot-title", default=None)
     p_lb.add_argument("--json", action="store_true")
+    p_lb.add_argument(
+        "--all-pairs",
+        action="store_true",
+        help=f"print every pairwise test (default: adjacent ranks only past {_MAX_PAIR_ROWS} pairs)",
+    )
     _input_args(p_lb)
     p_lb.set_defaults(func=cmd_leaderboard)
 

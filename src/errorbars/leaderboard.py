@@ -8,7 +8,7 @@ from typing import Any
 
 from errorbars.compare import PairedComparison, paired_compare
 from errorbars.io import EvalData
-from errorbars.stats import MeanEstimate, is_binary, mean_ci_clt, wilson_ci
+from errorbars.stats import MeanEstimate, is_binary, mean_ci_clt, prefer_wilson, wilson_ci
 
 __all__ = ["LeaderboardEntry", "PairwiseResult", "Leaderboard", "build_leaderboard", "holm_correction"]
 
@@ -98,26 +98,36 @@ class Leaderboard:
 
 
 def _maximal_cliques(nodes: list[str], edges: set[frozenset[str]]) -> list[list[str]]:
-    """Bron-Kerbosch without pivoting; fine for leaderboard-sized graphs."""
+    """Bron-Kerbosch with pivoting (Tomita, Tanaka & Takahashi 2006).
 
-    def neighbors(v: str) -> set[str]:
-        return {u for u in nodes if u != v and frozenset((u, v)) in edges}
+    A leaderboard whose top entries are tied is close to one big clique, the
+    worst case for the unpivoted algorithm: it took a minute for 28 real
+    SWE-bench Verified submissions and did not finish for 47. Branching only
+    on candidates outside the pivot's neighbourhood visits each maximal clique
+    about once. Iterative, so a large tied group cannot exhaust the stack.
+    """
+    order = {v: i for i, v in enumerate(nodes)}
+    adj: dict[str, set[str]] = {v: set() for v in nodes}
+    for edge in edges:
+        u, v = tuple(edge)
+        adj[u].add(v)
+        adj[v].add(u)
 
-    adj = {v: neighbors(v) for v in nodes}
     cliques: list[set[str]] = []
-
-    def bron_kerbosch(r: set[str], p: set[str], x: set[str]) -> None:
-        if not p and not x:
-            cliques.append(r)
-            return
-        for v in list(p):
-            bron_kerbosch(r | {v}, p & adj[v], x & adj[v])
+    stack: list[tuple[set[str], set[str], set[str]]] = [(set(), set(nodes), set())]
+    while stack:
+        r, p, x = stack.pop()
+        if not p:
+            if not x:
+                cliques.append(r)
+            continue
+        pivot = max(p | x, key=lambda u: (len(p & adj[u]), -order[u]))
+        for v in sorted(p - adj[pivot], key=order.__getitem__):
+            stack.append((r | {v}, p & adj[v], x & adj[v]))
             p = p - {v}
             x = x | {v}
 
-    bron_kerbosch(set(), set(nodes), set())
     # sort each clique by the leaderboard's original node order for stable display
-    order = {v: i for i, v in enumerate(nodes)}
     cliques_sorted = [sorted(c, key=lambda v: order[v]) for c in cliques]
     cliques_sorted.sort(key=lambda c: (order[c[0]], -len(c)))
     return cliques_sorted
@@ -132,8 +142,9 @@ def build_leaderboard(
     """Build a leaderboard: per-model CIs, Holm-corrected pairwise tests, groups.
 
     ``use_wilson_below_n``: for binary scores with fewer than this many
-    questions, per-model CIs use the Wilson interval instead of the CLT
-    interval (see ``errorbars.stats.wilson_ci``).
+    questions, or fewer than 10 successes or failures, per-model CIs use the
+    Wilson interval instead of the CLT interval (see
+    ``errorbars.stats.prefer_wilson``).
     """
     data.validate()
     models = data.models()
@@ -153,7 +164,7 @@ def build_leaderboard(
             raise ValueError(
                 f"model {m!r}: need at least 2 distinct questions for repeated-generation inference"
             )
-        est = _summarize_mean(scores, confidence, 0 if repeated else use_wilson_below_n)
+        est = _summarize_mean(scores, confidence, None if repeated else use_wilson_below_n)
         entries.append(
             LeaderboardEntry(
                 m, est.mean, est.se, est.ci_low, est.ci_high, est.n, est.method, n_observations[m]
@@ -202,9 +213,14 @@ def build_leaderboard(
     return Leaderboard(entries=entries, pairwise=pairwise, groups=groups, alpha=alpha)
 
 
-def _summarize_mean(scores: list[float], confidence: float, use_wilson_below_n: int) -> MeanEstimate:
+def _summarize_mean(
+    scores: list[float], confidence: float, use_wilson_below_n: int | None
+) -> MeanEstimate:
+    """``use_wilson_below_n`` is None for averages of repeated generations, which are
+    not binary trials even when every average happens to be 0 or 1."""
     n = len(scores)
-    if is_binary(scores) and n < use_wilson_below_n:
+    if use_wilson_below_n is not None and is_binary(scores):
         successes = int(round(sum(scores)))
-        return wilson_ci(successes, n, confidence)
+        if prefer_wilson(successes, n, below_n=use_wilson_below_n):
+            return wilson_ci(successes, n, confidence)
     return mean_ci_clt(scores, confidence)

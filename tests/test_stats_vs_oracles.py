@@ -36,7 +36,7 @@ def _make_clustered(seed: int, n_clusters: int = 20, min_size: int = 2, max_size
 @pytest.mark.parametrize("seed", [0, 1, 7, 42, 123])
 def test_cluster_robust_se_matches_statsmodels_ols(seed: int) -> None:
     values, clusters = _make_clustered(seed)
-    ours = cluster_robust_se(values, clusters)
+    ours = cluster_robust_se(values, clusters, kind="CR1")
 
     X = np.ones((len(values), 1))
     model = sm.OLS(values, X).fit(cov_type="cluster", cov_kwds={"groups": clusters})
@@ -48,7 +48,7 @@ def test_cluster_robust_se_matches_statsmodels_ols(seed: int) -> None:
 @pytest.mark.parametrize("seed", [0, 1, 7])
 def test_cluster_robust_se_unbalanced_clusters(seed: int) -> None:
     values, clusters = _make_clustered(seed, n_clusters=8, min_size=1, max_size=15)
-    ours = cluster_robust_se(values, clusters)
+    ours = cluster_robust_se(values, clusters, kind="CR1")
     X = np.ones((len(values), 1))
     model = sm.OLS(values, X).fit(cov_type="cluster", cov_kwds={"groups": clusters})
     assert ours == pytest.approx(float(model.bse[0]), rel=1e-9)

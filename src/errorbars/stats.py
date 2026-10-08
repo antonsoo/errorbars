@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from functools import lru_cache
 from numbers import Integral
 from statistics import NormalDist
 from typing import Any
@@ -24,8 +25,10 @@ __all__ = [
     "z_for_confidence",
     "mean_ci_clt",
     "wilson_ci",
+    "prefer_wilson",
     "bootstrap_ci",
     "cluster_robust_se",
+    "cluster_degrees_of_freedom",
     "intraclass_correlation",
     "design_effect",
     "within_between_variance",
@@ -93,9 +96,12 @@ def t_two_sided_p(t_stat: float, dof: float) -> float:
     return regularized_incomplete_beta(dof / 2.0, 0.5, dof / (dof + t_stat * t_stat))
 
 
+@lru_cache(maxsize=4096)
 def t_for_confidence(confidence: float, dof: float) -> float:
     """Two-sided Student-t critical value, e.g. 2.0227 for 95% with 39 degrees
-    of freedom (1.96 as dof grows). Found by bisection on `t_two_sided_p`."""
+    of freedom (1.96 as dof grows). Found by bisection on `t_two_sided_p`.
+
+    Cached: a leaderboard asks for the same critical value once per pair of models."""
     if not 0.0 < confidence < 1.0:
         raise ValueError(f"confidence must be in (0, 1), got {confidence}")
     alpha = 1.0 - confidence
@@ -184,6 +190,17 @@ def wilson_ci(successes: int, n: int, confidence: float = 0.95) -> MeanEstimate:
     return MeanEstimate(
         p_hat, se, float(center - half_width), float(center + half_width), confidence, "wilson", n
     )
+
+
+def prefer_wilson(successes: int, n: int, below_n: int = 30, min_count: int = 10) -> bool:
+    """Whether a binary mean should get the Wilson interval instead of the CLT one.
+
+    True for fewer than ``below_n`` questions, or fewer than ``min_count``
+    successes or failures (the n*p >= 10 rule of thumb). There the CLT interval
+    under-covers and can leave [0, 1]: 2 of 500 gives [-0.0015, 0.0095], and
+    0 of 500 gives a zero-width interval at 0.
+    """
+    return n < below_n or min(successes, n - successes) < min_count
 
 
 def bootstrap_ci(
@@ -286,14 +303,26 @@ def design_effect(icc: float, avg_cluster_size: float) -> float:
     return 1.0 + (avg_cluster_size - 1.0) * icc
 
 
-def cluster_robust_se(values: ArrayLike, clusters: ArrayLike) -> float:
+def cluster_robust_se(values: ArrayLike, clusters: ArrayLike, kind: str = "CR2") -> float:
     """Cluster-robust SE of the sample mean.
 
-    Equivalent to fitting OLS of ``values`` on a constant with
-    ``cov_type="cluster"`` in statsmodels (CR1 sandwich estimator with the
-    default small-sample correction ``G/(G-1) * (N-1)/(N-K)``). See
-    MacKinnon & White (1985) and Cameron, Gelbach & Miller (2011).
+    With S_g the summed residual of cluster g, n_g its size and N the total:
+
+    - ``kind="CR2"`` (default): Var = sum_g S_g^2 / (1 - n_g/N) / N^2, the
+      bias-reduced estimator of Bell & McCaffrey (2002). It is unbiased when
+      the questions are in fact independent, whatever the cluster sizes, and
+      is meant to be read against a t distribution with
+      ``cluster_degrees_of_freedom`` degrees of freedom.
+    - ``kind="CR1"``: Var = G/(G-1) * sum_g S_g^2 / N^2, the classic sandwich
+      that statsmodels (``cov_type="cluster"``) and Stata report. With equal
+      cluster sizes the two are identical. With unequal sizes CR1 is biased
+      downward (a cluster holding 46% of the questions has its residual sum
+      shrunk by fitting the mean it dominates), and the usual t(G - 1)
+      reference then rejects a true null about twice as often as claimed;
+      see ``docs/formulas.md`` section 4.
     """
+    if kind not in ("CR1", "CR2"):
+        raise ValueError(f"kind must be 'CR1' or 'CR2', got {kind!r}")
     arr = score_vector(values)
     clu = group_vector(clusters, arr.size)
     n = arr.size
@@ -304,14 +333,47 @@ def cluster_robust_se(values: ArrayLike, clusters: ArrayLike) -> float:
     resid = scaled - scaled.mean()
     groups = _group_by(resid, clu)
     g = len(groups)
-    meat = sum(float(grp.sum()) ** 2 for grp in groups)
     if g <= 1:
         raise ValueError("need at least 2 independent clusters; one cluster cannot estimate a clustered SE")
-    # Small-sample correction G/(G-1) * (N-1)/(N-K), with K=1 (the constant),
-    # so (N-1)/(N-K) = 1 and only the cluster-count term survives.
-    correction = g / (g - 1)
-    variance = (meat / n**2) * correction
+    if kind == "CR1":
+        # Small-sample correction G/(G-1) * (N-1)/(N-K), with K=1 (the constant),
+        # so (N-1)/(N-K) = 1 and only the cluster-count term survives.
+        meat = sum(float(grp.sum()) ** 2 for grp in groups) * g / (g - 1)
+    else:
+        # (I - H_gg)^(-1/2) applied to a cluster's residuals scales their sum by
+        # 1/sqrt(1 - n_g/N): the hat matrix of a mean is 11'/N.
+        meat = sum(float(grp.sum()) ** 2 / (1.0 - len(grp) / n) for grp in groups)
+    variance = meat / n**2
     return float(np.sqrt(max(variance, 0.0))) * scale
+
+
+def cluster_degrees_of_freedom(clusters: ArrayLike) -> float:
+    """Satterthwaite degrees of freedom for the CR2 clustered mean.
+
+    The CR2 variance estimate is a quadratic form in the scores; matching its
+    first two moments to a scaled chi-square (Bell & McCaffrey 2002; Imbens &
+    Kolesar 2016; Pustejovsky & Tipton 2018) gives, for a mean and
+    independent-question working model,
+
+        dof = N^2 / ( sum n_g^2 + [ (sum c_g n_g^2)^2 - sum c_g^2 n_g^4 ] / N^2 ),
+        c_g = 1 / (1 - n_g/N).
+
+    Equal cluster sizes give exactly G - 1. Unequal sizes give fewer: the 12
+    repositories of SWE-bench Verified, one of which holds 231 of the 500
+    tasks, give 3.3. It depends only on the cluster sizes, not on the scores.
+    """
+    raw = np.asarray(clusters, dtype=object)
+    clu = group_vector(raw, raw.shape[0] if raw.ndim else 0)
+    counts: dict[Any, int] = {}
+    for cluster in clu:
+        counts[cluster] = counts.get(cluster, 0) + 1
+    if len(counts) <= 1:
+        raise ValueError("need at least 2 independent clusters; one cluster cannot estimate a clustered SE")
+    sizes = np.array(list(counts.values()), dtype=float)
+    n = float(sizes.sum())
+    c = 1.0 / (1.0 - sizes / n)
+    cross = float((c * sizes**2).sum()) ** 2 - float((c**2 * sizes**4).sum())
+    return n**2 / (float((sizes**2).sum()) + cross / n**2)
 
 
 def within_between_variance(values: ArrayLike, question_ids: ArrayLike) -> tuple[float, float]:

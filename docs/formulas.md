@@ -30,8 +30,10 @@ nominal coverage at small $n$:
 $$\frac{\hat p + \frac{z^2}{2n} \pm z\sqrt{\frac{\hat p(1-\hat p)}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}.$$
 
 `errorbars` uses Wilson by default for binary scores with $n < 30$
-(`leaderboard.build_leaderboard`'s `use_wilson_below_n`), and CLT
-otherwise; you can force either with `--ci`. Verified against
+(`leaderboard.build_leaderboard`'s `use_wilson_below_n`) or with fewer than
+10 successes or failures, where the CLT interval can leave $[0,1]$ at any $n$
+(2 correct of 500 gives $[-0.0015, 0.0095]$), and CLT otherwise; you can
+force either with `--ci`. Verified against
 `statsmodels.stats.proportion.proportion_confint(method="wilson")` to
 1e-9 (`tests/test_stats_vs_oracles.py`) and by Monte Carlo coverage
 (`tests/test_coverage_montecarlo.py`) which also shows the Wald interval
@@ -53,29 +55,66 @@ integer of at least two, since one draw cannot estimate a bootstrap standard err
 
 ## 4. Cluster-robust standard error
 
-When questions are grouped (e.g. several questions per reading passage),
-scores within a cluster are correlated, so treating all $n$ questions as
-independent understates the true SE. The standard fix is the CR1 cluster
-sandwich estimator (as if regressing $y$ on a constant with cluster-robust
-covariance): let $e_i = y_i - \bar{y}$ and let $u_g = \sum_{i \in g} e_i$
-be the summed residual in cluster $g$ (of $G$ clusters). Then
+When questions are grouped (several questions per reading passage, several
+tasks per repository), scores within a cluster are correlated, so treating all
+$n$ questions as independent understates the true SE. Let $e_i = y_i - \bar{y}$,
+let $u_g = \sum_{i \in g} e_i$ be the summed residual in cluster $g$ (of $G$
+clusters), and let $n_g$ be its size.
 
-$$\widehat{\mathrm{Var}}(\bar y) = \frac{G}{G-1}\cdot\frac{1}{n^2}\sum_{g=1}^{G} u_g^2,$$
+**The estimator.** `errorbars` uses the bias-reduced CR2 sandwich estimator of
+Bell & McCaffrey (2002), which for a mean is
 
-which is exactly `statsmodels`' `OLS(y, const).fit(cov_type="cluster")`
-with its default small-sample correction $\frac{G}{G-1}\cdot\frac{n-1}{n-K}$
-(here $K=1$ parameter, the constant, so $\frac{n-1}{n-K}=1$ and only the
-$G/(G-1)$ term remains). Reference: MacKinnon & White (1985); Cameron,
-Gelbach & Miller (2011), "Robust Inference with Multiway Clustering."
-The interval uses a Student-t critical value with $G - 1$ degrees of
-freedom, $\bar y \pm t_{G-1,\,\alpha/2}\,\mathrm{SE}$: the estimate rests on
-$G$ cluster sums, not $n$ questions, and a normal critical value over-states
-precision when $G$ is small (Cameron & Miller 2015, "A Practitioner's Guide
-to Cluster-Robust Inference"). With 40 clusters that is 2.023 rather than
-1.960. Verified to match `statsmodels` to 1e-9 for both balanced and unbalanced
-cluster sizes (`tests/test_stats_vs_oracles.py`), and its 95% CI is shown
-by simulation to cover the true mean close to 95% of the time on clustered
-data where the naive (non-clustered) interval would under-cover
+$$\widehat{\mathrm{Var}}(\bar y) = \frac{1}{n^2}\sum_{g=1}^{G} \frac{u_g^2}{1 - n_g/n}.$$
+
+The general CR2 form multiplies each cluster's residuals by
+$(I - H_{gg})^{-1/2}$, where $H$ is the hat matrix. For a mean $H = \mathbf{1}\mathbf{1}'/n$,
+so that adjustment scales a cluster's residual *sum* by $(1 - n_g/n)^{-1/2}$.
+It undoes a mechanical bias: residuals sum to zero over the whole sample, so a
+cluster that holds much of the data has its own sum pulled toward zero by the
+mean it dominates. With independent questions
+$E[u_g^2] = \sigma^2 n_g (1 - n_g/n)$, and dividing by $1 - n_g/n$ makes the
+estimator unbiased whatever the cluster sizes.
+
+**Its reference distribution.** The estimate is a quadratic form in the scores,
+$\sum_g (a_g' y)^2$. Matching its first two moments to a scaled chi-square
+(Satterthwaite) gives degrees of freedom $(\sum \lambda_j)^2 / \sum \lambda_j^2$
+for the eigenvalues $\lambda_j$ of the Gram matrix of the $a_g$ (Bell &
+McCaffrey 2002; Imbens & Kolesár 2016; Pustejovsky & Tipton 2018). For a mean,
+with independent equal-variance questions as the working model, that matrix has
+entries $\sqrt{c_g c_h}\,(n_g \delta_{gh} - n_g n_h / n)$ with
+$c_g = 1/(1 - n_g/n)$, and the degrees of freedom reduce to
+
+$$\nu = \frac{n^2}{\sum_g n_g^2 + \dfrac{\bigl(\sum_g c_g n_g^2\bigr)^2 - \sum_g c_g^2 n_g^4}{n^2}}.$$
+
+The interval is $\bar y \pm t_{\nu,\,\alpha/2}\,\mathrm{SE}$. $\nu$ depends only on the
+cluster sizes. Equal sizes give exactly $G - 1$ (40 clusters: a critical value
+of 2.023 rather than 1.960). Unequal sizes give fewer: SWE-bench Verified's 12
+repositories, one of which holds 231 of the 500 tasks, give $\nu = 3.33$ and a
+critical value of 3.01. `summarize` and `compare` print $\nu$, and `compare`
+adds a note when it is below 10.
+
+**Why not the usual estimator.** Most packages report CR1,
+
+$$\widehat{\mathrm{Var}}_{\mathrm{CR1}}(\bar y) = \frac{G}{G-1}\cdot\frac{1}{n^2}\sum_{g=1}^{G} u_g^2,$$
+
+read against $t_{G-1}$ (`statsmodels`' `OLS(y, const).fit(cov_type="cluster")`;
+MacKinnon & White 1985; Cameron & Miller 2015). With equal cluster sizes CR1 and
+CR2 are the same number and $\nu = G - 1$, so nothing changes. With unequal
+sizes CR1 is biased downward (by 19% on the SWE-bench Verified sizes, when
+questions are independent) and $G - 1$ overstates how much the estimate rests
+on. Simulated on those sizes with no true difference, a nominal 5% test rejects
+9.7% of the time with CR1 and 3.0% with CR2 and $\nu$; with a 4-point spread of
+true per-repository differences, 13.9% and 4.4%
+(`studies/swe-bench-verified/analyze.py`, 20,000 draws each;
+`tests/test_few_clusters.py` holds a smaller version of the same check).
+`errorbars` used CR1 through version 0.2.4. `cluster_robust_se(..., kind="CR1")`
+still computes it, for comparison with other software.
+
+**Checks.** The closed forms above agree to 1e-9 with the general matrix
+definitions evaluated independently (`tests/oracles.py`) on random unequal
+clusters; CR1 matches `statsmodels` to 1e-9 (`tests/test_stats_vs_oracles.py`);
+and the 95% interval covers the true mean close to 95% of the time on clustered
+data where the unclustered interval under-covers
 (`tests/test_coverage_montecarlo.py`).
 
 ## 5. Intraclass correlation (ICC) and design effect
@@ -141,8 +180,9 @@ uses the $|T|\to\infty$, p=0 limit (also returned by SciPy), while identical sco
 p=1 by explicit convention (SciPy returns NaN for 0/0). Warnings accompany either
 case; a collapsed interval is not evidence of population certainty. For binary pairs,
 the exact McNemar result is retained separately. These conventions also apply to
-zero cluster-sum variance. A single cluster is rejected because the CR1 correction
-$G/(G-1)$ cannot be estimated; it is not replaced with an independent-observation SE.
+zero cluster-sum variance. A single cluster is rejected because it carries no
+information about variation between clusters; it is not replaced with an
+independent-observation SE.
 
 Score vectors and group identifiers must be finite, one-dimensional and aligned.
 Binary means exactly 0 or 1. SEs, correlation and paired variance reduction are computed
@@ -166,10 +206,13 @@ as `variance_reduction` $= 1 - \mathrm{SE}_\text{paired}^2 /
 
 When `clusters` are supplied, the same cluster-robust SE from §4 is applied
 to the difference series $d_i$, giving a clustered paired SE/CI/p-value on
-t with $G - 1$ degrees of freedom —
+t with the degrees of freedom $\nu$ of §4 —
 this is what `leaderboard` uses for significance when cluster data is
 available, since ignoring clustering here has the same under-coverage
-problem as for a single mean.
+problem as for a single mean. The two tests answer different questions:
+the unclustered one is about more questions like these from the same
+clusters, the clustered one about new clusters. With few or very unequal
+clusters the second has little to work with and says so through $\nu$.
 
 ## 8. McNemar's exact test
 

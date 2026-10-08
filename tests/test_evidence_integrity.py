@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from oracles import cr2_mean_oracle
 from scipy import stats as sp_stats
 from statsmodels.api import OLS
 from test_cli import run_cli
@@ -121,7 +122,7 @@ def test_clustered_se_rejects_missing_or_invalid_independent_groups(groups) -> N
         cluster_robust_se([0.1, 0.3, 0.7, 0.8], groups)
 
 
-def test_question_mean_clustered_interval_matches_independent_ols(tmp_path: Path) -> None:
+def test_question_mean_clustered_interval_matches_independent_matrix_calculation(tmp_path: Path) -> None:
     # Unequal draws per question, then unequal questions per passage.
     path = tmp_path / "clustered.csv"
     lines = ["question_id,model,score,sample,cluster_id"]
@@ -134,12 +135,12 @@ def test_question_mean_clustered_interval_matches_independent_ols(tmp_path: Path
     result = run_cli("summarize", str(path), "--json")
     assert result.returncode == 0, result.stderr
     report = json.loads(result.stdout)
-    oracle = OLS(scores, np.ones((6, 1))).fit(cov_type="cluster", cov_kwds={"groups": clusters})
-    expected_se = oracle.bse[0]
+    expected_se, expected_dof = cr2_mean_oracle(scores, clusters)
     assert report["mean"] == pytest.approx(np.mean(scores))
     assert report["clustered"]["clustered_se"] == pytest.approx(expected_se)
+    assert report["clustered"]["clustered_dof"] == pytest.approx(expected_dof)
     assert report["clustered"]["clustered_ci_high"] == pytest.approx(
-        np.mean(scores) + sp_stats.t.ppf(0.975, 2) * expected_se
+        np.mean(scores) + sp_stats.t.ppf(0.975, expected_dof) * expected_se
     )
 
 

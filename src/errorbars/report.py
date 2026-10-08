@@ -86,7 +86,10 @@ def comparison_html(review: ComparisonReview) -> str:
         if lo is not None and hi is not None and lo <= 0 <= hi:
             inference += " The interval includes zero; it does not establish a difference or equivalence."
         if clustered:
-            inference += f" Based on {c['n_clusters']} independent clusters."
+            inference += (
+                f" Based on {c['n_clusters']} independent clusters "
+                f"({comp.dof_clustered:.1f} effective degrees of freedom)."
+            )
         rows: list[tuple[str, float | None, float | None, float | None]] = [
             ("Paired (unclustered)", comp.ci_low, comp.ci_high, comp.p_value)
         ]

@@ -4,7 +4,39 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Added
+
+- `studies/swe-bench-verified/`: the package run over the per-task results of 173 public
+  SWE-bench Verified submissions, with the scripts that fetch the data at a pinned commit and
+  reproduce every number and figure. `to_csv.py` writes any submissions, or a run of your own,
+  in the format `errorbars compare` reads.
+- `cluster_degrees_of_freedom`, and `cluster_robust_se(..., kind="CR1")` for the classic
+  estimator. `summarize` and `compare` print the clustered degrees of freedom; `compare` prints
+  the clustered p-value and explains the result when fewer than 10 effective degrees of
+  freedom carry it. JSON gains `clustered_dof`, `dof_clustered` and `n_clusters`.
+
+### Changed
+
+- **Clustered intervals and tests use the bias-reduced CR2 estimator with Satterthwaite
+  degrees of freedom** in place of CR1 on t(G − 1). With clusters of equal size the numbers
+  are unchanged. With unequal sizes the old test rejected a true null too often: 9.7% to 16.6%
+  for a nominal 5% test on SWE-bench Verified's repository sizes, against 3.0% to 5.2% now.
+  Clustered intervals on unequal clusters are wider than before, and `leaderboard` groups
+  built from them are larger.
+
 ### Fixed
+
+- A binary score near 0 or 1 got a CLT interval that left [0, 1] (2 correct of 500:
+  [-0.0015, 0.0095]; 0 of 500: a zero-width interval). `summarize` and `leaderboard` now use
+  the Wilson interval whenever there are fewer than 10 successes or failures, not only below
+  30 questions.
+- `leaderboard` printed every pair and one letter per group: 15,000 lines for 175 models, and
+  group labels that ran past `z`. Past 66 pairs the table shows adjacent ranks (`--all-pairs`
+  for the rest; `--json` is unchanged), and past 26 groups each model shows the span of ranks
+  it cannot be told apart from.
+- `leaderboard` grouped indistinguishable models by enumerating cliques without pivoting.
+  A board of 28 near-tied real submissions took 66 seconds and one of 47 did not finish. It
+  now pivots: under a second for 47, about ten seconds for 175 models (15,225 pairs).
 
 - Known question-content conflicts now stop paired comparisons and leaderboards even when
   question IDs match. Native lm-eval imports fingerprint the document and target; canonical

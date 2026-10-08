@@ -28,6 +28,27 @@ IDs. These additions are **unreleased**; install this checkout to use them.
 
 ![Inspecting a lower-scoring question in two real retained COPA runs, with each score linked to its original log record](docs/assets/comparison-evidence.png)
 
+## On a real leaderboard
+
+[**SWE-bench Verified, with error bars**](studies/swe-bench-verified/README.md) runs this package
+over the per-task results of all 173 usable public submissions. The short version:
+
+- A gap under 3 points between two strong submissions is noise: 1 of 874 such pairs differs at
+  the 5% level. The leader (79.2%) cannot be told apart from ranks 2 to 9.
+- The top score went up 30 times in two years. Six of those new records were significantly
+  above the record they replaced.
+- The 500 tasks come from 12 repositories and 231 are Django. For a claim about other
+  codebases the benchmark has about 3.3 effective degrees of freedom.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="studies/swe-bench-verified/figures/leader-dark.svg">
+  <img src="studies/swe-bench-verified/figures/leader-light.svg" alt="The SWE-bench Verified leader's paired advantage over each of ranks 2 to 25, with 95% intervals. The intervals for ranks 2 to 9 include zero." width="820">
+</picture>
+
+Running it there also showed that this package's own clustered test was wrong for that
+benchmark, and too slow for a board of that size. Both are fixed in this checkout
+(**unreleased**; see the [changelog](CHANGELOG.md)).
+
 ## Why this exists
 
 Run `errorbars leaderboard` on a synthetic benchmark (below) and one apparent 7-point win —
@@ -60,12 +81,14 @@ errorbars leaderboard examples/data/reading_comprehension.csv
 
 ## Features
 
-- **`summarize`** — mean, SE, and 95% CI (CLT by default, Wilson for small-n binary scores,
-  bootstrap on request); clustered SE with design effect and ICC when a `cluster_id` column is
-  present; within/between-question variance decomposition when a `sample` column is present.
+- **`summarize`** — mean, SE, and 95% CI (CLT by default, Wilson for binary scores with few
+  questions or a score near 0 or 1, bootstrap on request); clustered SE with its effective degrees of freedom, design effect and
+  ICC when a `cluster_id` column is present; within/between-question variance decomposition
+  when a `sample` column is present.
 - **`compare`** — paired mean difference, SE, CI, p-value; the correlation between the two models'
   per-question scores and how much pairing shrank the SE vs. an unpaired comparison; a
-  cluster-robust paired SE/p-value when clusters are present; exact McNemar test for binary scores.
+  cluster-robust paired SE/CI/p-value when clusters are present, which stays valid when the
+  clusters are few or very unequal in size; exact McNemar test for binary scores.
 - **Comparison evidence (source checkout)** — `compare --html report.html` opens a complete
   question ledger with both run means, observed generations and source line/record locations.
   Find lower scores and missing questions, inspect which passages drive the result, and download
@@ -109,13 +132,14 @@ SE                0.0328
 method               clt
 
 clustering diagnostics
-metric                    value
--------------  ----------------
-n clusters                   40
-ICC                      0.0710
-design effect             1.284
-clustered SE             0.0372
-clustered CI   [0.6148, 0.7652]
+metric                         value
+------------------  ----------------
+n clusters                        40
+ICC                           0.0710
+design effect                  1.284
+clustered SE                  0.0372
+clustered CI        [0.6148, 0.7652]
+degrees of freedom              39.0
 ```
 
 ```bash
@@ -274,8 +298,8 @@ beta function) — no scipy or statsmodels at runtime.
 Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 
 1. CLT and Wilson confidence intervals for a mean
-2. Cluster-robust standard errors (the CR1 sandwich estimator, matching
-   `statsmodels`' `cov_type="cluster"`)
+2. Cluster-robust standard errors: the bias-reduced CR2 sandwich estimator with Satterthwaite
+   degrees of freedom, and why the usual CR1 on t(G − 1) is not used
 3. Intraclass correlation and Kish's design effect
 4. Within/between-question variance decomposition for repeated sampling
 5. Paired comparisons, variance reduction from pairing, and exact McNemar
@@ -284,18 +308,25 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 
 ## Accuracy and limitations
 
-- Cluster-robust SE matches `statsmodels`' `OLS(..., cov_type="cluster")` to 1e-9 on both balanced
-  and unbalanced cluster sizes; Wilson intervals match `statsmodels.stats.proportion_confint` to
-  1e-9; the paired t-test matches `scipy.stats.ttest_rel` to 1e-7 at any n, and McNemar's exact
-  test is cross-checked against `statsmodels`.
-  See `tests/test_stats_vs_oracles.py` and `tests/test_compare_vs_oracles.py`.
+- The cluster-robust SE and its degrees of freedom match the general matrix definitions,
+  evaluated independently, to 1e-9 on unequal cluster sizes (`tests/test_few_clusters.py`); the
+  classic CR1 estimator, still available as `kind="CR1"`, matches `statsmodels`'
+  `OLS(..., cov_type="cluster")` to 1e-9. Wilson intervals match
+  `statsmodels.stats.proportion_confint` to 1e-9; the paired t-test matches
+  `scipy.stats.ttest_rel` to 1e-7 at any n, and McNemar's exact test is cross-checked against
+  `statsmodels`. See `tests/test_stats_vs_oracles.py` and `tests/test_compare_vs_oracles.py`.
 - Monte Carlo coverage tests (`tests/test_coverage_montecarlo.py`) confirm nominal 95% CIs cover
   the true parameter close to 95% of the time — for CLT, Wilson, bootstrap, and cluster-robust
   intervals — with a tolerance sized to the trial count so it won't flake.
-- Paired comparisons use Student's t with n − 1 degrees of freedom, like `scipy.stats.ttest_rel`,
-  and clustered SEs use t with G − 1 for G clusters (Cameron & Miller 2015), computed without
-  scipy. With few clusters that interval is honest but wide; the per-model `clt` interval stays
-  normal-based, which is only right once n is in the dozens.
+- Paired comparisons use Student's t with n − 1 degrees of freedom, like `scipy.stats.ttest_rel`.
+  Clustered SEs use t with Satterthwaite degrees of freedom: G − 1 for G clusters of equal
+  size, fewer when sizes differ (3.3 for SWE-bench Verified's 12 repositories). The usual
+  CR1 estimator on t(G − 1) rejects a true null two to three times too often on those sizes; this
+  one stays at or below the stated rate, and is conservative (3.0% for a 5% test) when there is
+  in fact no clustering. The unclustered and clustered tests answer different questions (more
+  questions from the same clusters; new clusters), and with few clusters the second can say
+  very little. The per-model `clt` interval stays normal-based, which is only right once n is
+  in the dozens.
 - Repeated-generation intervals use the distribution of question averages; Wilson is reserved
   for single binary observations per question. CLT and percentile bootstrap estimates remain
   approximate, especially with very few questions. Within/between decomposition retains the

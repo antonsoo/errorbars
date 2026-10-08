@@ -9,18 +9,22 @@ and reports what the leaderboard's differences are worth.
 
 **What comes out**
 
-- **A gap under 3 points is noise.** Among the 78 submissions scoring 60% or
-  more, 1 of the 874 pairs less than 3 points apart differs at the 5% level.
-  Between 3 and 4 points it is a coin flip (54%); above 4.2 points every pair
-  differs.
-- **The top of the board is one group.** The leader (79.2%) is not
-  distinguishable from ranks 2 to 9 (down to 76.4%). None of the 49 adjacent
-  pairs in the top 50 differ. Of the 190 pairs in the top 20, 32 differ before
-  correcting for the number of comparisons and none after.
+- **A gap under 3 points is below what this benchmark can detect.** Among the 78
+  submissions scoring 60% or more, 1 of the 874 pairs less than 3 points apart
+  differs at the 5% level. The paired standard error of a gap is 1.8 points at
+  the median (1.5 to 2.1 for nine pairs in ten), so a gap needs to be about 3 to 4
+  points to show. Between 3 and 4 points 54% of pairs differ; above 4.2 points
+  every pair does. The 3,003 pairs share 78 submissions and are not independent.
+- **The top of the board is one group.** Two submissions tie for the lead at
+  79.2%. The leader is not distinguishable from ranks 2 to 9 (down to 76.4%);
+  rank 2 is the tie. Of the leader's 24 comparisons with ranks 2 to 25, 16 differ
+  before correcting for the number of comparisons and 7 after (Holm; ranks 16, 17
+  and 21 to 25). None of the 49 adjacent pairs in the top 50 differ. Of the 190
+  pairs in the top 20, 32 differ before correcting and none after.
 - **Most new records were not distinguishable from the record they replaced.**
   The top score went up 30 times between October 2023 and December 2025. Six of
   those steps were significant.
-- **For claims about other codebases, the benchmark is about 3 data points.**
+- **For claims about other codebases, the benchmark is a handful of data points.**
   Its 500 tasks come from 12 repositories and 231 of them are Django. Treating
   repositories as the sample leaves 3.3 effective degrees of freedom; the
   leader's interval widens from 75.4–82.5 to 70.0–88.4.
@@ -31,7 +35,7 @@ on the leaderboard are not among them.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="figures/leader-dark.svg">
-  <img src="figures/leader-light.svg" alt="The leader's paired advantage over each of ranks 2 to 25, with 95% intervals. The intervals for ranks 2 to 9 include zero; from rank 10 down they do not." width="880">
+  <img src="figures/leader-light.svg" alt="The leader's paired advantage over each of ranks 2 to 25, with 95% intervals. Without correction for the 24 comparisons, the intervals for ranks 2 to 9 include zero and from rank 10 down they do not; with Holm's correction 7 of the 24 differ." width="880">
 </picture>
 
 ## Data
@@ -45,7 +49,7 @@ SWE-bench/experiments (`40f164d`, 3 September 2026) and packs them into
 |---|---|
 | Submission directories under `evaluation/verified` | 182 |
 | Without a per-task outcome file | 7 |
-| Per-task file contradicts the submission's stated score | 2 |
+| Per-task file contradicts the submission's stated score (41 of the 175 state one) | 2 |
 | **Analysed** | **173** |
 | of which marked as checked by the SWE-bench team | 53 |
 
@@ -53,7 +57,8 @@ The two contradictions are worth knowing about if you use this repository
 yourself: `20260226_mini-v2.0.0_gemini-3-pro-high` states 69.6% and its
 `per_instance_details.json` marks all 500 tasks unresolved;
 `20250720_mini-v0.0.0-claude-3-7-sonnet-20250219` states 52.8% and its file
-resolves 51 tasks (10.2%). Both are left out. One run
+resolves 51 tasks (10.2%). Both are left out. The other 134 submissions state no score in their metadata, so
+their per-task files could not be checked this way. One run
 (`20260901_mini-v2.4.2_gemini-3-5-flash`) reports 441 of the 500 tasks; the
 other 59 count as unresolved, as on the leaderboard.
 
@@ -62,8 +67,8 @@ point, five tasks. All tests are two-sided at 5%.
 
 ## One score
 
-A score of 79.2% on 500 tasks has a 95% interval of 75.4% to 82.5% (Wilson), 3.6
-points either side, before anything else is considered. That interval answers
+A score of 79.2% on 500 tasks has a 95% interval of 75.4% to 82.5% (Wilson), 3.8
+points below and 3.3 above, before anything else is considered. That interval answers
 "what would this system score on another 500 tasks like these?".
 
 ## Two scores
@@ -97,9 +102,10 @@ All 3,003 pairs among the 78 submissions at 60% or above:
 | 10 or more | 585 | 100.0% | 94.4% |
 
 The smallest gap that was significant is 2.8 points; the largest that was not is
-4.2. These are single comparisons. Someone reading a leaderboard is making many
-at once, and a correction for that (Holm) raises the bar further: it is why none
-of the top 20's 190 pairs survive.
+4.2. These are single comparisons, each at 5%, and they are not independent: the 3,003
+pairs are made from 78 submissions, and several come from the same group. Someone
+reading a leaderboard is making many comparisons at once, and a correction for that
+(Holm) raises the bar further: it is why none of the top 20's 190 pairs survive.
 
 Two submissions with the same agent and the same model show how much of this is
 the run rather than the system. Claude 4.5 Sonnet under mini-SWE-agent 1.13.3
@@ -123,10 +129,11 @@ was compared with the one it replaced, on the same 500 tasks:
 - 6 of 30 were significantly higher (paired t-test; the exact McNemar test agrees
   on all six): +18.0, +7.0, +4.4, +4.6, +4.0 and +4.2 points.
 - The other 24 gained 0.2 to 3.6 points, a median of 1.2.
-- No step since April 2025 has been significant. The eight records after 70.0%
-  (70.4, 70.6, 73.2, 74.4, 75.2, 76.8, 78.8, 79.2) are each indistinguishable from
+- No step after the 30 April 2025 record (70.0%) has been significant. The eight records after it
+  (70.4, 70.6, 73.2, 74.4, 75.2, 76.8, 78.8, 79.2) are each not significantly above
   the one before, and together they add 9.2 points, which is not in doubt
-  (p < 0.0001 for 79.2 against 70.0).
+  (p < 0.0001 for 79.2 against 70.0). Four of the six significant steps have
+  p between 0.018 and 0.035 with no correction for 30 tests.
 
 Dates are each submission's own. The benchmark was published in August 2024 and
 earlier systems were scored on it afterwards, so the first few "records" are
@@ -137,7 +144,10 @@ may differ.
 
 Most leaderboard entries differ in model, scaffold, prompts and number of
 attempts at once. One batch does not: eleven models run under mini-SWE-agent
-2.0.0, the benchmark's own bash-only setup, all dated 17 February 2026. This is
+2.0.0, the benchmark's own bash-only setup, all dated 17 February 2026. The
+repository lists 13 mini-SWE-agent 2.0.0 entries; one has no outcome file
+(`gpt-5-2-codex`) and one is the Gemini 3 Pro entry excluded above, which leaves
+these 11. This is
 the table
 `errorbars leaderboard` prints for it. Models that share a letter are not
 distinguishable after Holm correction over all 55 pairs (24 pairs differ after
@@ -211,7 +221,8 @@ biased down by about 19% here, and 11 degrees of freedom is far too many. The
 task-level test is exact when repositories do not matter and badly wrong when
 they do. `errorbars` now uses the bias-reduced CR2 estimator with Satterthwaite
 degrees of freedom (Bell & McCaffrey 2002; Imbens & Kolesár 2016; Pustejovsky &
-Tipton 2018), which stays at or below 5% in every row, reduces to the old
+Tipton 2018), which rejects 3.0% to 5.2% of true nulls (the 5.2% is 1.3 Monte Carlo standard
+errors above 5%; the standard error is 0.15 points), reduces to the old
 calculation exactly when clusters are the same size, and prints the effective
 degrees of freedom so a reader can see when they are few. The derivation is in
 [`docs/formulas.md`](../../docs/formulas.md#4-cluster-robust-standard-error).
@@ -231,11 +242,13 @@ pairs).
 - **Not significant is not equal.** A gap inside the noise may be real. The
   claim is that this benchmark, at this size, cannot show it.
 - **Most entries are self-reported.** 53 of the 173 are marked as checked by the
-  SWE-bench team. No record holder since April 2025 is among them.
+  SWE-bench team. None of the nine record holders from 30 April 2025 on is among them.
 - **Nothing about what the tasks measure.** Contamination, over-fitting to a
   public test set and whether resolved tasks generalise are separate questions
   that per-task pass/fail data cannot answer. The repository also carries reports
-  of runs that searched git history for the fix; 14 analysed submissions have one.
+  listing trajectories that ran git-history commands such as `git log -p`; 14
+  analysed submissions have a report and 10 of them list at least one trajectory.
+  The reports match command patterns and do not show that a run looked for the fix.
 - **The repository-level numbers are an approximation with very little to work
   with.** Twelve clusters, one dominant, is close to the least a clustered method
   can be asked to handle. The Satterthwaite reference is conservative here (3.0%

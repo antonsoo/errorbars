@@ -33,8 +33,11 @@ IDs. These additions are **unreleased**; install this checkout to use them.
 [**SWE-bench Verified, with error bars**](studies/swe-bench-verified/README.md) runs this package
 over the per-task results of all 173 usable public submissions. The short version:
 
-- A gap under 3 points between two strong submissions is noise: 1 of 874 such pairs differs at
-  the 5% level. The leader (79.2%) cannot be told apart from ranks 2 to 9.
+- Among the 78 submissions scoring 60% or more, a gap under 3 points is below what the
+  benchmark can detect (paired standard error about 1.8 points): 1 of 874 such pairs differs
+  at the 5% level. Two submissions tie for the lead at 79.2%, and the leader cannot be told
+  apart from ranks 2 to 9; only 7 of its 24 comparisons with ranks 2 to 25 differ after
+  Holm's correction.
 - The top score went up 30 times in two years. Six of those new records were significantly
   above the record they replaced.
 - The 500 tasks come from 12 repositories and 231 are Django. For a claim about other
@@ -42,7 +45,7 @@ over the per-task results of all 173 usable public submissions. The short versio
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="studies/swe-bench-verified/figures/leader-dark.svg">
-  <img src="studies/swe-bench-verified/figures/leader-light.svg" alt="The SWE-bench Verified leader's paired advantage over each of ranks 2 to 25, with 95% intervals. The intervals for ranks 2 to 9 include zero." width="820">
+  <img src="studies/swe-bench-verified/figures/leader-light.svg" alt="The SWE-bench Verified leader's paired advantage over each of ranks 2 to 25, with 95% intervals. Without correction for the 24 comparisons, the intervals for ranks 2 to 9 include zero." width="820">
 </picture>
 
 The source checkout also has a page that runs the same paired test in the browser for any two
@@ -328,7 +331,7 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
   Clustered SEs use t with Satterthwaite degrees of freedom: G − 1 for G clusters of equal
   size, fewer when sizes differ (3.3 for SWE-bench Verified's 12 repositories). The usual
   CR1 estimator on t(G − 1) rejects a true null two to three times too often on those sizes; this
-  one stays at or below the stated rate, and is conservative (3.0% for a 5% test) when there is
+  one rejects 3.0% to 5.2% of true nulls on those sizes, and is conservative (3.0% for a 5% test) when there is
   in fact no clustering. The unclustered and clustered tests answer different questions (more
   questions from the same clusters; new clusters), and with few clusters the second can say
   very little. The per-model `clt` interval stays normal-based, which is only right once n is

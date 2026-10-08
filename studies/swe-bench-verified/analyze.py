@@ -196,6 +196,18 @@ def leader_versus_rest(
     return rows
 
 
+def leader_holm(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """The leader against each of the next 24 ranks, with and without Holm's correction."""
+    raw = [r["p_task"] for r in rows]
+    adjusted = holm_correction(raw)
+    return {
+        "comparisons": len(rows),
+        "significant_unadjusted": sum(p < ALPHA for p in raw),
+        "significant_holm": sum(p < ALPHA for p in adjusted),
+        "ranks_significant_holm": [r["rank"] for r, p in zip(rows, adjusted, strict=True) if p < ALPHA],
+    }
+
+
 def controlled_batch(
     instances: list[str], subs: list[dict[str, Any]], matrix: Floats, members: list[int]
 ) -> dict[str, Any]:
@@ -338,7 +350,14 @@ def false_positive_rates(repo: NDArray[Any], reps: int, seed: int = 20261007) ->
             for key, critical in crit.items():
                 rejected[key] += int((np.abs(mean) > critical * se[key]).sum())
             done += batch
-        out.append({"repo_effect_sd": spread, **{k: _pct(v / reps) for k, v in rejected.items()}})
+        out.append(
+            {
+                "repo_effect_sd": spread,
+                **{k: _pct(v / reps) for k, v in rejected.items()},
+                # Binomial standard error of a rate near 5%, in points.
+                "monte_carlo_se": round(100 * math.sqrt(0.05 * 0.95 / reps), 2),
+            }
+        )
     return out
 
 
@@ -352,7 +371,10 @@ def main() -> None:
     score = matrix.mean(axis=1)
     order = sorted(range(len(subs)), key=lambda k: (-score[k], subs[k]["id"]))
     strong = [k for k in order if score[k] >= STRONG]
-    source = json.loads(args.data.read_text())["source"]
+    raw = json.loads(args.data.read_text())
+    source = raw["source"]
+    batch_all = [s["id"] for s in raw["submissions"] if CONTROLLED_BATCH in s["id"]]
+    batch_all += [name for name in raw["without_outcomes"] if CONTROLLED_BATCH in name]
 
     records = record_progression(subs, matrix, repo)
     strong_pairs = pair_table(matrix, repo, strong)
@@ -373,6 +395,11 @@ def main() -> None:
             "checked_by_swe_bench": sum(s["checked"] is True for s in subs),
             "at_or_above_strong": len(strong),
             "strong_threshold": _pct(STRONG),
+            "in_data_file": len(raw["submissions"]),
+            "with_stated_score": sum(s.get("reported") is not None for s in raw["submissions"]),
+            "tied_at_top": int((score == score.max()).sum()),
+            "with_git_history_report": sum("git_history_flags" in s for s in subs),
+            "with_git_history_flags": sum(s.get("git_history_flags", 0) > 0 for s in subs),
         },
         "single_score": {
             "wilson_half_width_at_leader": round(
@@ -380,7 +407,13 @@ def main() -> None:
                     wilson_ci(int(matrix[order[0]].sum()), len(instances))
                 ),
                 2,
-            )
+            ),
+            "wilson_below_at_leader": _pct(
+                float(score[order[0]]) - wilson_ci(int(matrix[order[0]].sum()), len(instances)).ci_low
+            ),
+            "wilson_above_at_leader": _pct(
+                wilson_ci(int(matrix[order[0]].sum()), len(instances)).ci_high - float(score[order[0]])
+            ),
         },
         "records": {
             "rows": records,
@@ -390,14 +423,23 @@ def main() -> None:
             "significant_repo_level": sum(r.get("p_repo", 1.0) < ALPHA for r in records),
         },
         "gaps": gaps_and_significance(strong_pairs),
-        "leader": {"id": subs[order[0]]["id"], "name": subs[order[0]]["name"], "versus": leader_rows},
+        "leader": {
+            "id": subs[order[0]]["id"],
+            "name": subs[order[0]]["name"],
+            "versus": leader_rows,
+            "holm": leader_holm(leader_rows),
+        },
         "top20": {
             "pairs": len(top20_p),
             "significant_unadjusted": sum(p < ALPHA for p in top20_p),
             "significant_holm": sum(p < ALPHA for p in holm_correction(top20_p)),
         },
         "adjacent_ranks_top50": {"pairs": len(adjacent), "significant": sum(p < ALPHA for p in adjacent)},
-        "controlled": controlled_batch(instances, subs, matrix, batch),
+        "controlled": {
+            **controlled_batch(instances, subs, matrix, batch),
+            "directories_in_batch": len(batch_all),
+            "analysed": len(batch),
+        },
         "repositories": repositories(repo, matrix, order, strong),
         "saturation": saturation(matrix, order, top=20),
         "same_model_reruns": same_model_reruns(subs, matrix),

@@ -109,7 +109,7 @@ def records(rows: list[dict[str, Any]], theme: str) -> str:
         78,
         [
             ("accent", f"significantly above the record it replaced ({significant})"),
-            ("muted", f"within noise of it ({len(rows) - 1 - significant})"),
+            ("muted", f"not significant ({len(rows) - 1 - significant})"),
         ],
     )
     left, right, top, bottom = 56, WIDTH - 28, 100, 440 - 40
@@ -236,13 +236,13 @@ def leader(name: str, score: float, rows: list[dict[str, Any]], theme: str) -> s
         height,
         theme,
         "How far down the leaderboard before the leader is clearly ahead",
-        f"{_clip(name, 60)} ({score:.1f}%) minus each following rank: paired difference, 95% interval.",
+        f"{_clip(name, 44)} ({score:.1f}%) minus each following rank: paired 95% interval, unadjusted.",
     )
     svg.legend(
         78,
         [
             ("muted", f"not distinguishable from the leader ({len(rows) - ahead})"),
-            ("accent", f"leader significantly ahead ({ahead})"),
+            ("accent", f"leader ahead, unadjusted ({ahead})"),
         ],
     )
     left, right = 392, WIDTH - 28

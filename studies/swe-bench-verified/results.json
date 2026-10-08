@@ -27,10 +27,17 @@
   ],
   "checked_by_swe_bench": 53,
   "at_or_above_strong": 78,
-  "strong_threshold": 60.0
+  "strong_threshold": 60.0,
+  "in_data_file": 175,
+  "with_stated_score": 41,
+  "tied_at_top": 2,
+  "with_git_history_report": 14,
+  "with_git_history_flags": 10
  },
  "single_score": {
-  "wilson_half_width_at_leader": 3.55
+  "wilson_half_width_at_leader": 3.55,
+  "wilson_below_at_leader": 3.77,
+  "wilson_above_at_leader": 3.33
  },
  "records": {
   "rows": [
@@ -1199,7 +1206,21 @@
      20
     ]
    }
-  ]
+  ],
+  "holm": {
+   "comparisons": 24,
+   "significant_unadjusted": 16,
+   "significant_holm": 7,
+   "ranks_significant_holm": [
+    16,
+    17,
+    21,
+    22,
+    23,
+    24,
+    25
+   ]
+  }
  },
  "top20": {
   "pairs": 190,
@@ -1355,7 +1376,9 @@
    [
     "GPT 5 mini"
    ]
-  ]
+  ],
+  "directories_in_batch": 13,
+  "analysed": 11
  },
  "repositories": {
   "sizes": {
@@ -1364,8 +1387,8 @@
    "sphinx-doc/sphinx": 44,
    "matplotlib/matplotlib": 34,
    "scikit-learn/scikit-learn": 32,
-   "astropy/astropy": 22,
    "pydata/xarray": 22,
+   "astropy/astropy": 22,
    "pytest-dev/pytest": 19,
    "pylint-dev/pylint": 10,
    "psf/requests": 8,
@@ -1401,8 +1424,8 @@
     "sphinx-doc/sphinx": 68.18,
     "matplotlib/matplotlib": 79.41,
     "scikit-learn/scikit-learn": 93.75,
-    "astropy/astropy": 54.55,
     "pydata/xarray": 86.36,
+    "astropy/astropy": 54.55,
     "pytest-dev/pytest": 94.74,
     "pylint-dev/pylint": 40.0,
     "psf/requests": 62.5,
@@ -1511,25 +1534,29 @@
     "repo_effect_sd": 0.0,
     "task": 5.08,
     "cr1": 9.69,
-    "cr2": 3.0
+    "cr2": 3.0,
+    "monte_carlo_se": 0.15
    },
    {
     "repo_effect_sd": 0.02,
     "task": 9.05,
     "cr1": 11.46,
-    "cr2": 3.63
+    "cr2": 3.63,
+    "monte_carlo_se": 0.15
    },
    {
     "repo_effect_sd": 0.04,
     "task": 21.59,
     "cr1": 13.9,
-    "cr2": 4.41
+    "cr2": 4.41,
+    "monte_carlo_se": 0.15
    },
    {
     "repo_effect_sd": 0.08,
     "task": 45.3,
     "cr1": 16.61,
-    "cr2": 5.25
+    "cr2": 5.25,
+    "monte_carlo_se": 0.15
    }
   ]
  }

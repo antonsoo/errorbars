@@ -2,6 +2,7 @@ import "./fonts/fonts.css";
 import "./style.css";
 import { minimumDetectableEffect } from "./power.ts";
 import { buildCurve, renderChart } from "./chart.ts";
+import { initTheme } from "./theme.ts";
 import { ASSUMPTIONS, defaults, FIELDS, isActive, plan, PlanInputError, type Field, type Plan, type PlanMode } from "./planner.ts";
 
 const byId = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
@@ -171,24 +172,6 @@ function drawChart(p: Plan): void {
   });
 }
 
-function initTheme(): void {
-  let stored: string | null = null;
-  try { stored = localStorage.getItem("errorbars-theme"); } catch { /* Theme remains session-only. */ }
-  let dark = stored === "dark" || (stored !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  const button = byId<HTMLButtonElement>("theme-toggle");
-  function apply(): void {
-    document.documentElement.dataset.theme = dark ? "dark" : "light";
-    button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-    button.textContent = dark ? "☀" : "☾";
-  }
-  apply();
-  button.addEventListener("click", () => {
-    dark = !dark;
-    apply();
-    try { localStorage.setItem("errorbars-theme", dark ? "dark" : "light"); } catch { /* Optional preference. */ }
-  });
-}
-
 buildControls();
 for (const input of document.querySelectorAll<HTMLInputElement>('input[name="mode"]')) {
   input.addEventListener("change", () => {
@@ -231,7 +214,7 @@ byId("assumptions").replaceChildren(...ASSUMPTIONS.map(text => {
   li.textContent = text;
   return li;
 }));
-initTheme();
+initTheme(byId<HTMLButtonElement>("theme-toggle"));
 update();
 
 new ResizeObserver(() => {

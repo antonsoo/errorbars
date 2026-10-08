@@ -45,6 +45,12 @@ over the per-task results of all 173 usable public submissions. The short versio
   <img src="studies/swe-bench-verified/figures/leader-light.svg" alt="The SWE-bench Verified leader's paired advantage over each of ranks 2 to 25, with 95% intervals. The intervals for ranks 2 to 9 include zero." width="820">
 </picture>
 
+The source checkout also has a page that runs the same paired test in the browser for any two
+of those submissions, or for a run of your own pasted in as a list of resolved task ids
+(`web/swe-bench.html`; its statistics are checked against this package on real pairs).
+
+![The comparison page: Claude 4.5 Opus and GPT 5.2 under the same scaffold, 4.0 points apart. The verdict reads "Different on tasks like these", with one interval that excludes zero and a wider repository-level interval that includes it, and the 500 tasks drawn as squares by repository](docs/assets/swe-bench-page.png)
+
 Running it there also showed that this package's own clustered test was wrong for that
 benchmark, and too slow for a board of that size. Both are fixed in this checkout
 (**unreleased**; see the [changelog](CHANGELOG.md)).

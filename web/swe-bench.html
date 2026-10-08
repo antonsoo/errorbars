@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>errorbars · is the gap between two SWE-bench Verified scores real?</title>
+    <meta
+      name="description"
+      content="Pick two SWE-bench Verified submissions, or paste a run of your own, and see whether the difference between them is more than noise: a paired test on the 500 tasks, and what 12 repositories can support."
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%224%22 fill=%22%232454A6%22/><path d=%22M6 17 L6 12 M12 17 L12 7 M18 17 L18 10%22 stroke=%22white%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/></svg>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Officina, open-source tools by Anton Soloviev" />
+    <meta property="og:title" content="Is the gap between two SWE-bench Verified scores real?" />
+    <meta property="og:description" content="A paired test on the 500 tasks for any two of 173 public submissions, or a run of your own. A gap under 3 points is noise." />
+    <meta property="og:url" content="https://antonsoo.github.io/errorbars/swe-bench.html" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/antonsoo/errorbars/main/docs/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip-link" href="#compare">Skip to the comparison</a>
+    <div class="page">
+      <header class="masthead">
+        <div class="masthead-top">
+          <p class="eyebrow">
+            <a href="https://github.com/antonsoo/errorbars">errorbars</a> — SWE-bench Verified, with error bars
+          </p>
+          <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark theme">
+            <span aria-hidden="true">☾</span>
+          </button>
+        </div>
+        <h1>Is the gap between two SWE-bench scores real?</h1>
+        <p class="abstract">
+          Every SWE-bench Verified submission publishes which of the 500 tasks it resolved, so a
+          difference between two scores can be tested instead of read off a leaderboard. Pick two
+          of the <em><span id="submission-count"></span> public submissions</em>, or paste a run of
+          your own. Nothing you paste leaves this page.
+        </p>
+        <nav class="page-nav" aria-label="errorbars pages">
+          <a href="./">Plan an evaluation</a>
+          <a href="swe-bench.html" aria-current="page">SWE-bench Verified</a>
+          <a href="https://github.com/antonsoo/errorbars/tree/main/studies/swe-bench-verified">The full study</a>
+        </nav>
+      </header>
+
+      <main>
+        <section id="compare" class="compare" aria-labelledby="compare-label" tabindex="-1">
+          <h2 id="compare-label" class="figure-label">Compare two submissions</h2>
+          <div class="pickers">
+            <div class="picker">
+              <label for="pick-a"><span class="swatch swatch-a" aria-hidden="true"></span>A</label>
+              <select id="pick-a"></select>
+            </div>
+            <button type="button" id="swap" class="swap" aria-label="Swap A and B">⇄</button>
+            <div class="picker">
+              <label for="pick-b"><span class="swatch swatch-b" aria-hidden="true"></span>B</label>
+              <select id="pick-b"></select>
+            </div>
+          </div>
+
+          <details class="own-run" id="own-run">
+            <summary>Use a run of my own as A</summary>
+            <div class="own-run-body">
+              <label for="own-name">Name</label>
+              <input id="own-name" type="text" value="My run" maxlength="60" autocomplete="off" />
+              <label for="own-ids">Resolved task ids, one per line, or the report the SWE-bench harness writes</label>
+              <textarea id="own-ids" rows="5" spellcheck="false" autocomplete="off" placeholder="django__django-11099&#10;sympy__sympy-20590&#10;…"></textarea>
+              <div class="own-run-actions">
+                <button type="button" id="own-apply">Compare this run</button>
+                <button type="button" id="own-clear" hidden>Remove it</button>
+              </div>
+              <p id="own-status" class="own-status" role="status"></p>
+            </div>
+          </details>
+
+          <div class="verdict" aria-live="polite">
+            <p id="verdict" class="verdict-line"></p>
+            <p id="verdict-detail" class="verdict-detail"></p>
+          </div>
+
+          <figure class="interval-figure">
+            <svg id="interval-chart" role="img" aria-labelledby="interval-title"></svg>
+            <figcaption>
+              95% intervals for A minus B. An interval that crosses zero means the data are
+              compatible with no difference. One comparison at a time: among twenty pairs with
+              no real difference, about one will look different by chance.
+            </figcaption>
+          </figure>
+
+          <table class="result-table" id="result-table">
+            <caption class="sr-only">The comparison in numbers</caption>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section class="tasks" aria-labelledby="tasks-label">
+          <h2 id="tasks-label" class="figure-label">The 500 tasks, by repository</h2>
+          <ul class="legend">
+            <li><span class="cell cell-both" aria-hidden="true"></span>both resolved</li>
+            <li><span class="cell cell-a" aria-hidden="true"></span>only A</li>
+            <li><span class="cell cell-b" aria-hidden="true"></span>only B</li>
+            <li><span class="cell cell-none" aria-hidden="true"></span>neither</li>
+          </ul>
+          <div id="task-grid" class="task-grid"></div>
+          <details class="discordant">
+            <summary id="discordant-summary"></summary>
+            <div id="discordant-list" class="discordant-list"></div>
+          </details>
+        </section>
+
+        <section class="board" aria-labelledby="board-label">
+          <h2 id="board-label">Across the whole board</h2>
+          <div id="board-figures"></div>
+        </section>
+
+        <section class="notes" aria-labelledby="notes-label">
+          <h2 id="notes-label">How to read this</h2>
+          <dl>
+            <div>
+              <dt>Why a paired test</dt>
+              <dd>
+                Both systems ran the same 500 tasks, and what one finds hard the other mostly does
+                too. Only the tasks where they differ carry information about which is better, so
+                the test works on those, and is far sharper than comparing two intervals.
+              </dd>
+            </div>
+            <div>
+              <dt>Tasks as the sample</dt>
+              <dd>
+                Answers: would A beat B on another 500 tasks like these, from the same
+                repositories in the same mix? A paired t-test, with the exact McNemar test on
+                the discordant tasks beside it.
+              </dd>
+            </div>
+            <div>
+              <dt>Repositories as the sample</dt>
+              <dd>
+                Answers: would A beat B on other codebases? The 500 tasks come from 12
+                repositories and 231 are Django, which leaves about 3.3 effective degrees of
+                freedom. The interval is wide because there is that little to go on.
+              </dd>
+            </div>
+            <div>
+              <dt>Not different is not equal</dt>
+              <dd>
+                A gap inside the noise may still be real. What the test says is that this
+                benchmark, at this size, cannot show it.
+              </dd>
+            </div>
+          </dl>
+          <p class="formula-link">
+            Data: per-task outcomes from
+            <a href="https://github.com/SWE-bench/experiments">SWE-bench/experiments</a> at commit
+            <code id="commit"></code>. Two submissions whose per-task file contradicts their stated
+            score are left out. This page's statistics are checked against the Python package on
+            real pairs — see
+            <a href="https://github.com/antonsoo/errorbars/blob/main/web/src/paired.test.ts">web/src/paired.test.ts</a>
+            and <a href="https://github.com/antonsoo/errorbars/blob/main/docs/formulas.md">docs/formulas.md</a>.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          Part of <a href="https://github.com/antonsoo/errorbars">errorbars</a>, an MIT-licensed
+          implementation of Evan Miller, "Adding Error Bars to Evals: A Statistical Approach to
+          Language Model Evaluations" (arXiv:2411.00640, 2024). Not affiliated with SWE-bench.
+          <a href="https://github.com/antonsoo/errorbars/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices</a>.
+        </p>
+      </footer>
+    </div>
+    <script type="module" src="/src/swebench.ts"></script>
+  </body>
+</html>

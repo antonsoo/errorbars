@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { contentSecurityPolicy } from "./vite.csp.ts";
 
@@ -21,5 +22,13 @@ export default defineConfig({
   ],
   build: {
     target: "es2022",
+    rollupOptions: {
+      input: {
+        index: fileURLToPath(new URL("index.html", import.meta.url)),
+        "swe-bench": fileURLToPath(new URL("swe-bench.html", import.meta.url)),
+      },
+    },
   },
+  // The SWE-bench page reads the study's data and figures from ../studies.
+  server: { fs: { allow: [".."] } },
 });

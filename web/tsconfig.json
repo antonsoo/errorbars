@@ -20,5 +20,5 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true
   },
-  "include": ["src", "test-vectors.json"]
+  "include": ["src", "test-vectors.json", "paired-vectors.json", "../studies/swe-bench-verified/data/outcomes.json"]
 }

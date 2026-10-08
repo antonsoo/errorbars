@@ -10,6 +10,10 @@ All notable changes to this project are documented in this file.
   SWE-bench Verified submissions, with the scripts that fetch the data at a pinned commit and
   reproduce every number and figure. `to_csv.py` writes any submissions, or a run of your own,
   in the format `errorbars compare` reads.
+- A second page on the site, `swe-bench.html`: pick any two of the 173 submissions, or paste a
+  run of your own, and get the paired test, the repository-level test and a map of the 500
+  tasks by repository. The TypeScript port of the comparison is tested against vectors this
+  package computes on real pairs (`scripts/export_paired_vectors.py`).
 - `cluster_degrees_of_freedom`, and `cluster_robust_se(..., kind="CR1")` for the classic
   estimator. `summarize` and `compare` print the clustered degrees of freedom; `compare` prints
   the clustered p-value and explains the result when fewer than 10 effective degrees of

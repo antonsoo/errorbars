@@ -224,6 +224,11 @@ binomial tail at or below $\min(b,c)$ and doubles it (McNemar 1947).
 Verified against `statsmodels.stats.contingency_tables.mcnemar(exact=True)`
 to 1e-9.
 
+The leaderboard uses exact McNemar for one binary observation per shared question,
+unless explicit grouping requires clustered inference. Continuous scores and question
+means from repeated generations retain paired t. Selection precedes correction and does
+not depend on which test has the smaller p-value. See [test selection](leaderboard-tests.md).
+
 ## 9. Holm-Bonferroni correction
 
 Controls the family-wise error rate across $m$ pairwise tests without
@@ -236,10 +241,9 @@ against `statsmodels.stats.multitest.multipletests(method="holm")`.
 
 Build a graph where models are nodes and an edge connects two models whose
 Holm-adjusted pairwise p-value is $\ge \alpha$ (not significantly
-different). The maximal cliques of this graph (Bron–Kerbosch, no pivoting
-— the leaderboard sizes this targets are small enough that this is fast)
-are the groups reported: every model in a clique is pairwise
-indistinguishable from every other model in that clique. This is the
+different). The maximal cliques of this graph (iterative Bron–Kerbosch with
+pivoting) are the groups reported: no pair within a group is separated by
+the selected tests at this threshold. This is not a test of equivalence. This is the
 standard "compact letter display" idea (cf. `multcompView` in R), applied
 directly rather than via a minimal-letters heuristic, so a model can
 legitimately belong to more than one group.

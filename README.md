@@ -105,9 +105,12 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   question ledger with both run means, observed generations and source line/record locations.
   Find lower scores and missing questions, inspect which passages drive the result, and download
   complete JSON or filtered CSV. One file, including fonts; no server or upload.
-- **`leaderboard`** — every model with its CI, Holm-corrected pairwise paired tests, and groups of
-  statistically indistinguishable models (maximal cliques of the "not significantly different"
-  graph); a forest plot (SVG, no dependency; matplotlib if installed).
+- **`leaderboard`** — every model with its CI and groups formed from Holm-corrected
+  pairwise tests. This checkout selects exact McNemar for one binary score per shared
+  question, clustered t for grouped questions, and paired t for continuous or repeated
+  scores. The table and JSON name the selected test; a shared group does not establish
+  equivalence. [Counterexample, exact checks, and public-data audit](docs/leaderboard-tests.md).
+  Forest plots use SVG without dependencies, or matplotlib when installed.
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect.

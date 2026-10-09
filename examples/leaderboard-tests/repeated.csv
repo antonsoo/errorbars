@@ -1,0 +1,9 @@
+question_id,model,score,sample
+q1,candidate,1,0
+q1,candidate,1,1
+q2,candidate,1,0
+q2,candidate,1,1
+q1,baseline,0,0
+q1,baseline,0,1
+q2,baseline,0,0
+q2,baseline,0,1

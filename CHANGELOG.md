@@ -21,6 +21,13 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- `leaderboard` selects exact McNemar for one binary observation per shared question,
+  retaining clustered t when questions are grouped and paired t for continuous or repeated
+  scores. Holm uses the selected tests as one family. This avoids treating two binary wins
+  as p=0 merely because paired differences have zero variance. Output names the method;
+  JSON adds `test`, `p_value_used`, and `mcnemar`, while `p_value` retains its paired-t meaning.
+  [Controlled example and audit of 173 public submissions](docs/leaderboard-tests.md).
+
 - **Clustered intervals and tests use the bias-reduced CR2 estimator with Satterthwaite
   degrees of freedom** in place of CR1 on t(G − 1). With clusters of equal size the numbers
   are unchanged. With unequal sizes the old test rejected a true null too often: 9.7% to 16.6%

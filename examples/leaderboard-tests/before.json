@@ -1,0 +1,51 @@
+{
+  "entries": [
+    {
+      "model": "candidate",
+      "mean": 1.0,
+      "se": 0.4899909961350134,
+      "ci_low": 0.3423802275066532,
+      "ci_high": 1.0,
+      "n": 2,
+      "method": "wilson",
+      "n_observations": 2,
+      "analysis_unit": "question"
+    },
+    {
+      "model": "baseline",
+      "mean": 0.0,
+      "se": 0.4899909961350134,
+      "ci_low": 0.0,
+      "ci_high": 0.6576197724933468,
+      "n": 2,
+      "method": "wilson",
+      "n_observations": 2,
+      "analysis_unit": "question"
+    }
+  ],
+  "pairwise": [
+    {
+      "model_a": "candidate",
+      "model_b": "baseline",
+      "mean_diff": 1.0,
+      "p_value": 0.0,
+      "p_value_clustered": null,
+      "p_holm": 0.0,
+      "n_shared": 2,
+      "warnings": [
+        "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+        "Correlation is unavailable because at least one score vector is constant.",
+        "Variance reduction is unavailable because both score vectors are constant."
+      ]
+    }
+  ],
+  "groups": [
+    [
+      "candidate"
+    ],
+    [
+      "baseline"
+    ]
+  ],
+  "alpha": 0.05
+}

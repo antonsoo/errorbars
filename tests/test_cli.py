@@ -165,8 +165,12 @@ def test_cli_import_inspect(tmp_path) -> None:
     assert result.returncode == 0, result.stderr
     assert "wrote 5 rows" in result.stdout
     rows = out.read_text().strip().splitlines()
-    assert rows[0] == "question_id,model,score,sample"
+    assert rows[0] == "question_id,model,score,sample,question_hash"
     assert len(rows) == 6
+    from errorbars.adapters.inspect_ai import load_inspect_log
+    from errorbars.io import load_csv
+
+    assert load_csv(out).question_hash == load_inspect_log(INSPECT_FIXTURE).question_hash
 
 
 def test_cli_import_unknown_adapter_rejected() -> None:

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from errorbars.adapters._inspect_integrity import check_complete, question_signature
 from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier
 
 __all__ = ["load_inspect_log"]
@@ -35,6 +36,11 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     Repeated ``--epochs`` sampling of the same input is captured in the
     ``sample`` column (Inspect's per-sample ``epoch`` number), so
     ``errorbars summarize`` can decompose within/between-question variance.
+
+    Only complete, successful recorded cohorts are accepted. Self-contained
+    text inputs/choices/targets receive exact content signatures, excluding
+    generated message IDs and solver conversations. Changed dataset inputs
+    conservatively block pairing; unsupported input kinds stay unchecked.
     """
     try:
         from inspect_ai.log import read_eval_log
@@ -54,8 +60,8 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
         # missing fields); say which file, and that the problem is its format.
         reason = str(exc).strip().splitlines()[0] if str(exc).strip() else type(exc).__name__
         raise ValueError(f"{path}: not a log Inspect can read ({reason})") from exc
-    if not log.samples:
-        raise ValueError(f"{path}: log has no samples (status={log.status!r})")
+    check_complete(log, path)
+    assert log.samples is not None  # Checked by check_complete.
 
     model = str(log.eval.model)
     to_float = value_to_float()
@@ -65,6 +71,8 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     score: list[float] = []
     sample_col: list[str] = []
     sources: list[RecordSource | None] = []
+    signatures: list[str | None] = []
+    selected_scorer = scorer
 
     for record, s in enumerate(log.samples, 1):
         if not s.scores:
@@ -81,6 +89,13 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
             raise ValueError(
                 f"{path}: sample {s.id!r} has multiple scorers {list(s.scores)}; "
                 "pass `scorer=...` to pick one"
+            )
+        if selected_scorer is None:
+            selected_scorer = key
+        elif key != selected_scorer:
+            raise ValueError(
+                f"{path}: sample {s.id!r}: scorer changed from {selected_scorer!r} to {key!r}; "
+                "select one scorer present on every sample with scorer=... (--scorer)"
             )
         value = s.scores[key].value
         # value_to_float turns anything it can't read into 0.0. A scorer with several named
@@ -105,10 +120,14 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
         score.append(number)
         sample_col.append(str(s.epoch))
         sources.append(RecordSource(str(path), record, metric=key))
+        signatures.append(question_signature(s))
 
     if not question_id:
         raise ValueError(f"{path}: no scored samples found")
 
-    data = EvalData(question_id=question_id, model=model_col, score=score, sample=sample_col, sources=sources)
+    data = EvalData(
+        question_id=question_id, model=model_col, score=score, sample=sample_col, sources=sources,
+        question_hash=signatures if any(signatures) else None,
+    )
     data.validate()
     return data

@@ -414,7 +414,8 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     pt.add_column("A")
     pt.add_column("B")
     pt.add_column("mean diff", justify="right")
-    pt.add_column("p (unclustered)", justify="right")
+    pt.add_column("test")
+    pt.add_column("p (used)", justify="right")
     pt.add_column("p (used, Holm)", justify="right")
     pt.add_column("significant?")
     for pr in shown:
@@ -423,7 +424,8 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             pr.model_a,
             pr.model_b,
             f"{pr.comparison.mean_diff:+.4f}",
-            f"{pr.comparison.p_value:.4g}",
+            {"paired_t": "paired t", "clustered_t": "clustered t", "mcnemar_exact": "McNemar exact"}[pr.test],
+            f"{pr.p_value_used:.4g}",
             f"{pr.p_holm:.4g}",
             sig,
         )
@@ -437,8 +439,9 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     for note in dict.fromkeys(note for pr in lb.pairwise for note in pr.comparison.warnings):
         out.note(note, style="yellow")
     out.note(
-        "'p (used, Holm)' is the cluster-robust paired p-value (when clusters are "
-        "present) after Holm correction across all pairs; otherwise the unclustered paired p-value.",
+        "'p (used, Holm)' adjusts the selected tests across all pairs: clustered t for "
+        "dependent questions, exact McNemar for one binary score per shared question, "
+        "paired t for continuous scores or repeated-generation means. Groups do not establish equivalence.",
         style="dim",
     )
     if len(question_sets) > 1:

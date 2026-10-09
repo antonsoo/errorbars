@@ -106,3 +106,95 @@ def test_alpha_outside_zero_to_one_is_rejected(alpha: float) -> None:
     with pytest.raises(ValueError, match="alpha must be in"):
         build_leaderboard(_clustered_board(), alpha=alpha)
 
+
+def test_two_binary_wins_do_not_establish_a_winner() -> None:
+    data = EvalData(["q1", "q2"] * 2, ["candidate"] * 2 + ["baseline"] * 2, [1.0, 1.0, 0.0, 0.0])
+    board = build_leaderboard(data)
+    (pair,) = board.pairwise
+    assert pair.comparison.p_value == 0  # Retained paired-t diagnostic, not selected.
+    assert pair.test == "mcnemar_exact"
+    assert pair.p_value_used == pair.p_holm == 0.5
+    assert board.groups == [["candidate", "baseline"]]
+    row = pair.as_dict()
+    assert row["test"] == "mcnemar_exact"
+    assert row["p_value_used"] == 0.5
+    assert row["mcnemar"] == {"n01": 0, "n10": 2, "p_value": 0.5}
+
+
+def test_exact_binary_board_matches_oracle_for_every_small_discordant_table() -> None:
+    import math
+
+    from statsmodels.stats.contingency_tables import mcnemar
+
+    for discordants in range(21):
+        rejection_probability = 0.0
+        for n01 in range(discordants + 1):
+            n10 = discordants - n01
+            # Add concordant pairs: the exact result must only use discordants.
+            a = [0.0] * n01 + [1.0] * n10 + [1.0, 0.0]
+            b = [1.0] * n01 + [0.0] * n10 + [1.0, 0.0]
+            questions = [f"q{i}" for i in range(len(a))]
+            board = build_leaderboard(EvalData(questions * 2, ["a"] * len(a) + ["b"] * len(b), a + b))
+            (pair,) = board.pairwise
+            expected = mcnemar([[1, n01], [n10, 1]], exact=True).pvalue
+            assert pair.test == "mcnemar_exact"
+            assert pair.p_holm == pytest.approx(expected, abs=1e-14)
+            if pair.p_holm < 0.05:
+                rejection_probability += math.comb(discordants, n01) / 2**discordants
+        assert rejection_probability <= 0.05
+
+
+def test_cluster_dependence_takes_precedence_over_binary_outcomes() -> None:
+    board = build_leaderboard(_clustered_board())
+    assert all(pair.test == "clustered_t" for pair in board.pairwise)
+    assert all(pair.p_value_used == pair.comparison.p_value_clustered for pair in board.pairwise)
+
+
+def test_singleton_cluster_labels_still_allow_exact_binary_pairing() -> None:
+    data = EvalData(["q1", "q2"] * 2, ["a"] * 2 + ["b"] * 2, [1.0, 1.0, 0.0, 0.0], ["c1", "c2"] * 2)
+    (pair,) = build_leaderboard(data).pairwise
+    assert pair.test == "mcnemar_exact"
+    assert pair.p_holm == 0.5
+
+
+def test_repeated_generation_means_do_not_become_binary_trials() -> None:
+    # Observed means happen to be exactly 0/1; each still averages two draws.
+    data = EvalData(
+        ["q1", "q1", "q2", "q2"] * 2,
+        ["a"] * 4 + ["b"] * 4,
+        [1.0] * 4 + [0.0] * 4,
+        sample=["0", "1", "0", "1"] * 2,
+    )
+    (pair,) = build_leaderboard(data).pairwise
+    assert pair.test == "paired_t"
+    assert pair.p_value_used == pair.comparison.p_value
+    assert pair.comparison.warnings  # Degeneracy remains explicit.
+
+
+def test_unmatched_repeated_generations_do_not_change_the_shared_test() -> None:
+    data = EvalData(
+        ["q1", "q2", "q3", "q3", "q1", "q2"],
+        ["a"] * 4 + ["b"] * 2,
+        [1.0] * 4 + [0.0] * 2,
+        sample=["0", "0", "0", "1", "0", "0"],
+    )
+    (pair,) = build_leaderboard(data).pairwise
+    assert pair.test == "mcnemar_exact"
+    assert pair.p_holm == 0.5
+
+
+def test_mixed_score_board_has_one_holm_family() -> None:
+    scores = {
+        "binary-a": [1.0, 1.0, 1.0, 1.0, 0.0, 1.0],
+        "binary-b": [0.0, 0.0, 1.0, 0.0, 0.0, 1.0],
+        "continuous": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
+    }
+    data = EvalData(
+        [f"q{i}" for _ in scores for i in range(6)],
+        [m for m in scores for _ in range(6)],
+        [v for values in scores.values() for v in values],
+    )
+    pairs = build_leaderboard(data).pairwise
+    assert sorted(p.test for p in pairs) == ["mcnemar_exact", "paired_t", "paired_t"]
+    _, expected, _, _ = multipletests([p.p_value_used for p in pairs], method="holm")
+    assert [p.p_holm for p in pairs] == pytest.approx(expected)

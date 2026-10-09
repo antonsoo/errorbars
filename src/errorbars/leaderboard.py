@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import dataclass
 from itertools import combinations
-from typing import Any
+from typing import Any, Literal
 
 from errorbars.compare import PairedComparison, paired_compare
 from errorbars.io import EvalData
@@ -66,6 +67,18 @@ class PairwiseResult:
     model_b: str
     comparison: PairedComparison
     p_holm: float
+    test: Literal["paired_t", "clustered_t", "mcnemar_exact"] = "paired_t"
+
+    @property
+    def p_value_used(self) -> float:
+        """Raw p-value selected before the board-wide Holm correction."""
+        if self.test == "clustered_t":
+            assert self.comparison.p_value_clustered is not None
+            return self.comparison.p_value_clustered
+        if self.test == "mcnemar_exact":
+            assert self.comparison.mcnemar is not None
+            return self.comparison.mcnemar.p_value
+        return self.comparison.p_value
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -73,8 +86,10 @@ class PairwiseResult:
             "model_b": self.model_b,
             "mean_diff": self.comparison.mean_diff,
             "p_value": self.comparison.p_value,
-            # The Holm correction is applied to this one when the questions are clustered.
             "p_value_clustered": self.comparison.p_value_clustered,
+            "mcnemar": self.comparison.mcnemar.as_dict() if self.comparison.mcnemar else None,
+            "test": self.test,
+            "p_value_used": self.p_value_used,
             "p_holm": self.p_holm,
             "n_shared": self.comparison.n,
             "warnings": self.comparison.warnings,
@@ -145,6 +160,13 @@ def build_leaderboard(
     questions, or fewer than 10 successes or failures, per-model CIs use the
     Wilson interval instead of the CLT interval (see
     ``errorbars.stats.prefer_wilson``).
+
+    Pairwise grouping uses clustered t when multiple shared questions belong to a
+    cluster, exact McNemar for one binary observation per shared question
+    without such clusters, and paired t for continuous or repeated-generation
+    question means. The method is selected from the data structure, never
+    from whichever test gives the smaller p-value. Holm is applied once to
+    all selected raw p-values, including boards with mixed score types.
     """
     data.validate()
     models = data.models()
@@ -154,6 +176,7 @@ def build_leaderboard(
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
 
     qmap = {m: data.filter_model(m).scores_by_question() for m in models}
+    counts = {m: Counter(data.filter_model(m).question_id) for m in models}
     n_observations = {m: len(data.filter_model(m)) for m in models}
 
     entries: list[LeaderboardEntry] = []
@@ -179,7 +202,6 @@ def build_leaderboard(
 
     pairwise: list[PairwiseResult] = []
     raw_p: list[float] = []
-    pair_keys: list[tuple[str, str]] = []
     for a, b in combinations(order, 2):
         conflicts = data.pairing_conflicts(a, b)
         if conflicts:
@@ -195,16 +217,21 @@ def build_leaderboard(
         clusters = [cluster_of_q[q] for q in common] if cluster_of_q else None
         has_real_clusters = clusters is not None and len(set(clusters)) < len(clusters)
         comp = paired_compare(sa, sb, clusters=clusters if has_real_clusters else None, confidence=confidence)
-        pair_keys.append((a, b))
-        # Prefer the cluster-robust p-value when clusters are present: it is
-        # the honest one when questions are correlated within a cluster.
-        raw_p.append(comp.p_value_clustered if comp.p_value_clustered is not None else comp.p_value)
-        pairwise.append(PairwiseResult(a, b, comp, p_holm=raw_p[-1]))  # placeholder, fixed below
+        test: Literal["paired_t", "clustered_t", "mcnemar_exact"] = "paired_t"
+        if comp.p_value_clustered is not None:
+            test = "clustered_t"
+        elif comp.mcnemar is not None and all(counts[m][q] == 1 for m in (a, b) for q in common):
+            # A question mean of 0 or 1 is not a Bernoulli observation when it
+            # averages several generations. Unmatched repeats do not enter this pair.
+            test = "mcnemar_exact"
+        result = PairwiseResult(a, b, comp, p_holm=1.0, test=test)
+        raw_p.append(result.p_value_used)
+        pairwise.append(result)
 
     adjusted = holm_correction(raw_p) if raw_p else []
     pairwise = [
-        PairwiseResult(a, b, pr.comparison, p_holm)
-        for (a, b), pr, p_holm in zip(pair_keys, pairwise, adjusted, strict=True)
+        PairwiseResult(pr.model_a, pr.model_b, pr.comparison, p_holm, pr.test)
+        for pr, p_holm in zip(pairwise, adjusted, strict=True)
     ]
 
     edges = {frozenset((pr.model_a, pr.model_b)) for pr in pairwise if pr.p_holm >= alpha}
@@ -213,9 +240,7 @@ def build_leaderboard(
     return Leaderboard(entries=entries, pairwise=pairwise, groups=groups, alpha=alpha)
 
 
-def _summarize_mean(
-    scores: list[float], confidence: float, use_wilson_below_n: int | None
-) -> MeanEstimate:
+def _summarize_mean(scores: list[float], confidence: float, use_wilson_below_n: int | None) -> MeanEstimate:
     """``use_wilson_below_n`` is None for averages of repeated generations, which are
     not binary trials even when every average happens to be 0 or 1."""
     n = len(scores)

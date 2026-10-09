@@ -209,3 +209,19 @@ def test_unrepresentable_power_plan_is_a_user_error(args: list[str]) -> None:
     assert "Traceback" not in result.stderr
     assert "error" in result.stderr.lower()
     assert not result.stdout
+
+
+def test_binary_leaderboard_exposes_the_test_used_for_grouping(tmp_path: Path) -> None:
+    path = tmp_path / "two-questions.csv"
+    path.write_text("question_id,model,score\nq1,A,1\nq2,A,1\nq1,B,0\nq2,B,0\n")
+    result = run_cli("leaderboard", str(path), "--json")
+    assert result.returncode == 0, result.stderr
+    report = json.loads(result.stdout)
+    assert report["groups"] == [["A", "B"]]
+    (pair,) = report["pairwise"]
+    assert pair["test"] == "mcnemar_exact"
+    assert pair["p_value_used"] == pair["p_holm"] == 0.5
+    text = run_cli("leaderboard", str(path))
+    assert text.returncode == 0
+    assert "McNemar exact" in text.stdout
+    assert "Groups do not establish equivalence" in " ".join(text.stdout.split())

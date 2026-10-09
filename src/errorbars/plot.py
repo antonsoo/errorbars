@@ -19,6 +19,13 @@ __all__ = ["forest_plot_svg", "forest_plot_matplotlib"]
 _FONT = "system-ui, -apple-system, 'Segoe UI', sans-serif"
 
 
+def _interval_caption(leaderboard: Leaderboard) -> str:
+    names = {"clustered_cr2": "CR2 with clusters", "wilson": "Wilson", "clt": "CLT"}
+    levels = ", ".join(sorted({f"{100 * e.confidence:g}%" for e in leaderboard.entries}))
+    methods = ", ".join(sorted({names.get(e.method, e.method) for e in leaderboard.entries}))
+    return f"{levels} marginal CIs: {methods}"
+
+
 def forest_plot_svg(
     leaderboard: Leaderboard,
     width: int = 640,
@@ -28,7 +35,7 @@ def forest_plot_svg(
     """Render a forest plot (mean + CI per model) as a standalone SVG string."""
     entries = leaderboard.entries
     n = len(entries)
-    margin_left, margin_right, margin_top, margin_bottom = 160, 40, 50 if title else 20, 30
+    margin_left, margin_right, margin_top, margin_bottom = 160, 40, 50 if title else 20, 52
     plot_h = n * row_height
     height = margin_top + plot_h + margin_bottom
     plot_w = width - margin_left - margin_right
@@ -106,6 +113,10 @@ def forest_plot_svg(
         f'<line x1="{margin_left}" y1="{margin_top + plot_h}" x2="{margin_left + plot_w}" '
         f'y2="{margin_top + plot_h}" stroke="#9ca3af" stroke-width="1"/>'
     )
+    parts.append(
+        f'<text x="{width / 2}" y="{height - 9}" text-anchor="middle" font-size="10" '
+        f'fill="#374151">{_escape(_interval_caption(leaderboard))}</text>'
+    )
     parts.append("</svg>")
     return "\n".join(parts)
 
@@ -132,7 +143,7 @@ def forest_plot_matplotlib(leaderboard: Leaderboard, title: str | None = None) -
     ax.errorbar(means, ys, xerr=[los, his], fmt="o", color="#1d4ed8", ecolor="#2563eb", capsize=4)
     ax.set_yticks(ys)
     ax.set_yticklabels([e.model for e in entries])
-    ax.set_xlabel("mean score")
+    ax.set_xlabel(f"mean score\n{_interval_caption(leaderboard)}")
     if title:
         ax.set_title(title)
     ax.grid(axis="x", color="#e5e7eb", linewidth=0.8)

@@ -3,13 +3,22 @@
 from __future__ import annotations
 
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from itertools import combinations
 from typing import Any, Literal
 
-from errorbars.compare import PairedComparison, paired_compare
+from errorbars.compare import FEW_CLUSTER_DOF, PairedComparison, paired_compare
 from errorbars.io import EvalData
-from errorbars.stats import MeanEstimate, is_binary, mean_ci_clt, prefer_wilson, wilson_ci
+from errorbars.stats import (
+    MeanEstimate,
+    cluster_degrees_of_freedom,
+    cluster_robust_se,
+    is_binary,
+    mean_ci_clt,
+    prefer_wilson,
+    t_for_confidence,
+    wilson_ci,
+)
 
 __all__ = ["LeaderboardEntry", "PairwiseResult", "Leaderboard", "build_leaderboard", "holm_correction"]
 
@@ -42,6 +51,11 @@ class LeaderboardEntry:
     n: int
     method: str
     n_observations: int = 0
+    confidence: float = 0.95
+    n_clusters: int | None = None
+    dof_clustered: float | None = None
+    unclustered: MeanEstimate | None = None
+    warnings: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if self.n_observations == 0:
@@ -58,6 +72,11 @@ class LeaderboardEntry:
             "method": self.method,
             "n_observations": self.n_observations,
             "analysis_unit": "question",
+            "confidence": self.confidence,
+            "n_clusters": self.n_clusters,
+            "dof_clustered": self.dof_clustered,
+            "unclustered": self.unclustered.as_dict() if self.unclustered else None,
+            "warnings": self.warnings,
         }
 
 
@@ -159,7 +178,10 @@ def build_leaderboard(
     ``use_wilson_below_n``: for binary scores with fewer than this many
     questions, or fewer than 10 successes or failures, per-model CIs use the
     Wilson interval instead of the CLT interval (see
-    ``errorbars.stats.prefer_wilson``).
+    ``errorbars.stats.prefer_wilson``). With multi-question clusters, the
+    displayed interval instead uses CR2 and Student t with effective degrees
+    of freedom; the unclustered estimate is retained as a diagnostic. Means
+    always weight questions equally, even with unequal numbers of generations.
 
     Pairwise grouping uses clustered t when multiple shared questions belong to a
     cluster, exact McNemar for one binary observation per shared question
@@ -178,6 +200,7 @@ def build_leaderboard(
     qmap = {m: data.filter_model(m).scores_by_question() for m in models}
     counts = {m: Counter(data.filter_model(m).question_id) for m in models}
     n_observations = {m: len(data.filter_model(m)) for m in models}
+    cluster_of_q = data.cluster_by_question()
 
     entries: list[LeaderboardEntry] = []
     for m in models:
@@ -188,9 +211,46 @@ def build_leaderboard(
                 f"model {m!r}: need at least 2 distinct questions for repeated-generation inference"
             )
         est = _summarize_mean(scores, confidence, None if repeated else use_wilson_below_n)
+        unclustered = None
+        n_clusters, dof = None, None
+        notes = []
+        clusters = [cluster_of_q[q] for q in qmap[m]] if cluster_of_q else None
+        if clusters is not None and len(set(clusters)) < len(clusters):
+            n_clusters = len(set(clusters))
+            if n_clusters < 2:
+                raise ValueError(f"model {m!r}: need at least 2 independent clusters for an interval")
+            unclustered = est
+            se = cluster_robust_se(scores, clusters)
+            dof = cluster_degrees_of_freedom(clusters)
+            half_width = t_for_confidence(confidence, dof) * se
+            est = MeanEstimate(
+                est.mean, se, est.mean - half_width, est.mean + half_width, confidence, "clustered_cr2", est.n
+            )
+            if dof < FEW_CLUSTER_DOF:
+                notes.append(
+                    f"The interval uses {n_clusters} clusters and {dof:.1f} effective "
+                    "degrees of freedom; few independent clusters limit precision."
+                )
+            if se == 0:
+                notes.append(
+                    "Cluster residual sums have zero estimated variance; "
+                    "a point interval does not establish population certainty."
+                )
         entries.append(
             LeaderboardEntry(
-                m, est.mean, est.se, est.ci_low, est.ci_high, est.n, est.method, n_observations[m]
+                m,
+                est.mean,
+                est.se,
+                est.ci_low,
+                est.ci_high,
+                est.n,
+                est.method,
+                n_observations[m],
+                confidence=confidence,
+                n_clusters=n_clusters,
+                dof_clustered=dof,
+                unclustered=unclustered,
+                warnings=notes,
             )
         )
     entries.sort(key=lambda e: e.mean, reverse=True)
@@ -198,8 +258,6 @@ def build_leaderboard(
 
     # Align questions for paired tests: use the intersection of question_ids
     # common to both models, sorted for determinism.
-    cluster_of_q = data.cluster_by_question()
-
     pairwise: list[PairwiseResult] = []
     raw_p: list[float] = []
     for a, b in combinations(order, 2):

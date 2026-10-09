@@ -349,6 +349,7 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     table.add_column("model")
     table.add_column("mean", justify="right")
     table.add_column(f"{int(args.confidence * 100)}% CI", justify="right")
+    table.add_column("interval basis")
     table.add_column("n", justify="right")
     has_repeats = any(e.n_observations != e.n for e in lb.entries)
     if has_repeats:
@@ -379,6 +380,8 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             e.model,
             f"{e.mean:.4f}",
             f"[{e.ci_low:.4f}, {e.ci_high:.4f}]",
+            f"CR2: {e.n_clusters} clusters, df={e.dof_clustered:.1f}"
+            if e.n_clusters is not None else e.method.upper(),
             str(e.n),
         ]
         if has_repeats:
@@ -386,6 +389,20 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         cells.append(letter_of.get(e.model, ""))
         table.add_row(*cells)
     out.table(table)
+    if any(e.n_clusters is not None for e in lb.entries):
+        out.note(
+            "Grouped-question intervals use CR2 standard errors and Student t with effective "
+            "degrees of freedom. Each question keeps equal weight; intervals are marginal, "
+            "not adjusted across models. Unclustered diagnostics remain in --json.",
+            style="dim",
+        )
+    interval_notes: dict[str, list[str]] = {}
+    for entry in lb.entries:
+        for note in entry.warnings:
+            interval_notes.setdefault(note, []).append(entry.model)
+    for note, models in interval_notes.items():
+        affected = ", ".join(models) if len(models) <= 3 else f"{len(models)} models"
+        out.note(f"Intervals for {affected}: {note}", style="yellow")
     if has_repeats:
         out.note(
             "n counts questions, each weighted equally; observations counts retained generations.",

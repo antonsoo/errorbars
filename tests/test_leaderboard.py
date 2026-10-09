@@ -198,3 +198,73 @@ def test_mixed_score_board_has_one_holm_family() -> None:
     assert sorted(p.test for p in pairs) == ["mcnemar_exact", "paired_t", "paired_t"]
     _, expected, _, _ = multipletests([p.p_value_used for p in pairs], method="holm")
     assert [p.p_holm for p in pairs] == pytest.approx(expected)
+
+
+@pytest.mark.parametrize("sizes", [[4, 4, 4, 4], [12, 4, 2, 1]])
+@pytest.mark.parametrize("confidence", [0.9, 0.95, 0.99])
+def test_displayed_clustered_intervals_match_independent_matrix_oracle(
+    sizes: list[int],
+    confidence: float,
+) -> None:
+    from oracles import cr2_mean_oracle
+    from scipy.stats import t
+
+    rng = np.random.default_rng(73)
+    clusters = [str(c) for c in np.repeat(np.arange(len(sizes)), sizes)]
+    n = len(clusters)
+    a = rng.normal(0.5, 0.1, n).tolist()
+    b = rng.normal(0.4, 0.2, n).tolist()
+    data = EvalData([f"q{i}" for i in range(n)] * 2, ["a"] * n + ["b"] * n, a + b, clusters * 2)
+    board = build_leaderboard(data, confidence=confidence)
+    for entry in board.entries:
+        values = a if entry.model == "a" else b
+        se, dof = cr2_mean_oracle(values, clusters)
+        half = t.ppf((1 + confidence) / 2, dof) * se
+        assert entry.method == "clustered_cr2"
+        assert entry.confidence == confidence
+        assert entry.n_clusters == len(sizes)
+        assert entry.se == pytest.approx(se, rel=1e-10)
+        assert entry.dof_clustered == pytest.approx(dof, rel=1e-10)
+        assert entry.ci_low == pytest.approx(entry.mean - half, abs=1e-10)
+        assert entry.ci_high == pytest.approx(entry.mean + half, abs=1e-10)
+        assert entry.unclustered is not None
+        assert entry.unclustered.mean == entry.mean
+        assert entry.as_dict()["unclustered"]["method"] == "clt"
+        assert entry.warnings  # Fewer than ten effective degrees of freedom.
+
+
+def test_cluster_intervals_count_questions_instead_of_generations() -> None:
+    from oracles import cr2_mean_oracle
+
+    questions, models, scores, clusters, samples = [], [], [], [], []
+    means = {"a": [0.2, 0.8, 0.6], "b": [0.1, 0.4, 0.3]}
+    for model in means:
+        for question, repeats in enumerate([1, 3, 7]):
+            for sample in range(repeats):
+                questions.append(f"q{question}")
+                models.append(model)
+                scores.append(means[model][question])
+                clusters.append("c1" if question < 2 else "c2")
+                samples.append(str(sample))
+    board = build_leaderboard(EvalData(questions, models, scores, clusters, samples))
+    for entry in board.entries:
+        se, dof = cr2_mean_oracle(means[entry.model], ["c1", "c1", "c2"])
+        assert entry.mean == pytest.approx(np.mean(means[entry.model]))
+        assert entry.n == 3 and entry.n_observations == 11
+        assert entry.n_clusters == 2
+        assert entry.se == pytest.approx(se)
+        assert entry.dof_clustered == pytest.approx(dof)
+
+
+def test_one_group_cannot_silently_fall_back_to_an_iid_interval() -> None:
+    data = EvalData(["q1", "q2"] * 2, ["a"] * 2 + ["b"] * 2, [1.0, 0.0, 0.0, 1.0], ["one-passage"] * 4)
+    with pytest.raises(ValueError, match="model 'a'.*at least 2 independent clusters"):
+        build_leaderboard(data)
+
+
+def test_singleton_clusters_preserve_existing_intervals() -> None:
+    data = EvalData(["q1", "q2"] * 2, ["a"] * 2 + ["b"] * 2, [1.0, 1.0, 0.0, 0.0])
+    before = build_leaderboard(data)
+    data.cluster_id = ["c1", "c2"] * 2
+    assert build_leaderboard(data).entries == before.entries
+    assert all(e.method == "wilson" and e.unclustered is None for e in before.entries)

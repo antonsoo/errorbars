@@ -225,3 +225,21 @@ def test_binary_leaderboard_exposes_the_test_used_for_grouping(tmp_path: Path) -
     assert text.returncode == 0
     assert "McNemar exact" in text.stdout
     assert "Groups do not establish equivalence" in " ".join(text.stdout.split())
+
+
+def test_leaderboard_interval_matches_single_model_summary() -> None:
+    board_result = run_cli("leaderboard", str(DATA), "--json")
+    assert board_result.returncode == 0, board_result.stderr
+    board = json.loads(board_result.stdout)
+    for entry in board["entries"]:
+        summary = run_cli("summarize", str(DATA), "--model", entry["model"], "--json")
+        assert summary.returncode == 0, summary.stderr
+        clustered = json.loads(summary.stdout)["clustered"]
+        assert entry["ci_low"] == pytest.approx(clustered["clustered_ci_low"])
+        assert entry["ci_high"] == pytest.approx(clustered["clustered_ci_high"])
+        assert entry["se"] == pytest.approx(clustered["clustered_se"])
+        assert entry["dof_clustered"] == pytest.approx(clustered["clustered_dof"])
+        assert entry["method"] == "clustered_cr2"
+    rendered = run_cli("leaderboard", str(DATA))
+    assert "interval basis" in rendered.stdout
+    assert "CR2: 40 clusters, df=39.0" in rendered.stdout

@@ -1,0 +1,98 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "solver-variant",
+    "shared": 24,
+    "matching": 24,
+    "conflicting": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "different-questions",
+    "shared": 24,
+    "matching": 0,
+    "conflicting": 24
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "selected-epochs",
+    "shared": 3,
+    "matching": 3,
+    "conflicting": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "solver-variant",
+    "shared": 24,
+    "matching": 24,
+    "conflicting": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "different-questions",
+    "shared": 24,
+    "matching": 0,
+    "conflicting": 24
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "selected-epochs",
+    "shared": 3,
+    "matching": 3,
+    "conflicting": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "solver-variant",
+    "shared": 24,
+    "matching": 24,
+    "conflicting": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "different-questions",
+    "shared": 24,
+    "matching": 0,
+    "conflicting": 24
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "selected-epochs",
+    "shared": 3,
+    "matching": 3,
+    "conflicting": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "solver-variant",
+    "shared": 24,
+    "matching": 24,
+    "conflicting": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "different-questions",
+    "shared": 24,
+    "matching": 0,
+    "conflicting": 24
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "selected-epochs",
+    "shared": 3,
+    "matching": 3,
+    "conflicting": 0
+  }
+]

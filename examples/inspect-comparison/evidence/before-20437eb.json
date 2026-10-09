@@ -1,0 +1,207 @@
+{
+  "synthetic": true,
+  "comparisons": {
+    "solver-variant": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 1.0,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 1.0,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.6666666666666666,
+        "n_clusters": null,
+        "n_identity_matching": 0,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 24
+      },
+      "comparison": {
+        "mean_a": 1.0,
+        "mean_b": 0.3333333333333333,
+        "mean_diff": 0.6666666666666666,
+        "se_paired": 0.09829463743659811,
+        "ci_low": 0.4633287168700888,
+        "ci_high": 0.8700046164632445,
+        "p_value": 6.444485482269906e-07,
+        "correlation": null,
+        "se_unpaired": 0.09829463743659811,
+        "variance_reduction": 0.0,
+        "n": 24,
+        "confidence": 0.95,
+        "warnings": [
+          "Correlation is unavailable because at least one score vector is constant."
+        ],
+        "mcnemar": {
+          "n01": 0,
+          "n10": 16,
+          "p_value": 3.0517578125e-05
+        }
+      },
+      "unavailable_reason": null
+    },
+    "different-questions": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 1.0,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 1.0,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.6666666666666666,
+        "n_clusters": null,
+        "n_identity_matching": 0,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 24
+      },
+      "comparison": {
+        "mean_a": 1.0,
+        "mean_b": 0.3333333333333333,
+        "mean_diff": 0.6666666666666666,
+        "se_paired": 0.09829463743659811,
+        "ci_low": 0.4633287168700888,
+        "ci_high": 0.8700046164632445,
+        "p_value": 6.444485482269906e-07,
+        "correlation": null,
+        "se_unpaired": 0.09829463743659811,
+        "variance_reduction": 0.0,
+        "n": 24,
+        "confidence": 0.95,
+        "warnings": [
+          "Correlation is unavailable because at least one score vector is constant."
+        ],
+        "mcnemar": {
+          "n01": 0,
+          "n10": 16,
+          "p_value": 3.0517578125e-05
+        }
+      },
+      "unavailable_reason": null
+    },
+    "limited": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 12,
+        "n_shared": 12,
+        "n_only_a": 12,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 12,
+        "n_shared_observations_a": 12,
+        "n_shared_observations_b": 12,
+        "mean_all_a": 1.0,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 1.0,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.6666666666666666,
+        "n_clusters": null,
+        "n_identity_matching": 0,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 12
+      },
+      "comparison": {
+        "mean_a": 1.0,
+        "mean_b": 0.3333333333333333,
+        "mean_diff": 0.6666666666666666,
+        "se_paired": 0.1421338109037403,
+        "ci_low": 0.3538322581202295,
+        "ci_high": 0.9795010752131037,
+        "p_value": 0.000660313524671201,
+        "correlation": null,
+        "se_unpaired": 0.1421338109037403,
+        "variance_reduction": 0.0,
+        "n": 12,
+        "confidence": 0.95,
+        "warnings": [
+          "Correlation is unavailable because at least one score vector is constant."
+        ],
+        "mcnemar": {
+          "n01": 0,
+          "n10": 8,
+          "p_value": 0.0078125
+        }
+      },
+      "unavailable_reason": null
+    },
+    "selected-epochs": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 3,
+        "n_shared": 3,
+        "n_only_a": 21,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 6,
+        "n_shared_observations_a": 3,
+        "n_shared_observations_b": 6,
+        "mean_all_a": 1.0,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 1.0,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.6666666666666666,
+        "n_clusters": null,
+        "n_identity_matching": 0,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 3
+      },
+      "comparison": {
+        "mean_a": 1.0,
+        "mean_b": 0.3333333333333333,
+        "mean_diff": 0.6666666666666666,
+        "se_paired": 0.33333333333333337,
+        "ci_low": -0.7675509099164516,
+        "ci_high": 2.100884243249785,
+        "p_value": 0.1835034190722737,
+        "correlation": null,
+        "se_unpaired": 0.33333333333333337,
+        "variance_reduction": 0.0,
+        "n": 3,
+        "confidence": 0.95,
+        "warnings": [
+          "Correlation is unavailable because at least one score vector is constant."
+        ],
+        "mcnemar": {
+          "n01": 0,
+          "n10": 2,
+          "p_value": 0.5
+        }
+      },
+      "unavailable_reason": null
+    }
+  },
+  "damaged_logs": {
+    "missing-records": {
+      "imported": 8,
+      "error": null
+    },
+    "cancelled": {
+      "imported": 24,
+      "error": null
+    },
+    "failed-samples": {
+      "imported": 24,
+      "error": null
+    },
+    "mixed-scorers": {
+      "imported": 24,
+      "error": null
+    }
+  }
+}

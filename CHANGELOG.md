@@ -21,6 +21,13 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Leaderboard model intervals now honor supplied multi-question clusters, using CR2
+  standard errors and effective-degree-of-freedom t critical values just like `summarize`.
+  Tables and forest plots name their interval basis. JSON retains the unclustered estimate,
+  confidence level, cluster count, degrees of freedom, and limitations. One cluster cannot
+  silently yield an independent-question interval. Repeated generations keep equal question
+  weighting. [Actual before/after intervals](docs/leaderboard-tests.md#confidence-intervals-also-honor-supplied-clusters).
+
 - `leaderboard` selects exact McNemar for one binary observation per shared question,
   retaining clustered t when questions are grouped and paired t for continuous or repeated
   scores. Holm uses the selected tests as one family. This avoids treating two binary wins

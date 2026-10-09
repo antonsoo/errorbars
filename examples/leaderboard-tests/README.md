@@ -29,3 +29,8 @@ counts independently using only Python's standard library. Add
 `workflows.json` retains the reports and input hashes.
 
 [Decision rules and public-data audit](../../docs/leaderboard-tests.md).
+
+The clustered example additionally has `intervals-before.json` and
+`intervals-after.json`: the same model means, with displayed intervals now
+using the supplied passage clusters. `workflows.json` includes these interval
+results and verifies agreement with the separate `summarize` command.

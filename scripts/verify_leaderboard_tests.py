@@ -65,6 +65,25 @@ def main() -> None:
         if name == "two_questions":
             assert pairs[0]["p_holm"] == 0.5
             assert report["groups"] == [["candidate", "baseline"]]
+        if name == "clustered":
+            for entry in report["entries"]:
+                summary = subprocess.run(
+                    [*command, "summarize", str(path), "--model", entry["model"], "--json"],
+                    capture_output=True,
+                    text=True,
+                    check=True,
+                )
+                grouped = json.loads(summary.stdout)["clustered"]
+                assert entry["method"] == "clustered_cr2"
+                assert entry["n_clusters"] == 40
+                for field, key in (
+                    ("se", "clustered_se"),
+                    ("ci_low", "clustered_ci_low"),
+                    ("ci_high", "clustered_ci_high"),
+                    ("dof_clustered", "clustered_dof"),
+                ):
+                    assert math.isclose(entry[field], grouped[key], rel_tol=1e-12, abs_tol=1e-14)
+                assert entry["unclustered"]["mean"] == entry["mean"]
         if name == "repeated":
             assert pairs[0]["warnings"]  # Degenerate t diagnostic remains explicit.
         if name == "lm_eval_copa":

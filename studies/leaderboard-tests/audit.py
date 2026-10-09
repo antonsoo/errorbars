@@ -89,7 +89,15 @@ def main() -> None:
     for name, data in scenarios.items():
         before = legacy.build_leaderboard(data)
         after = build_leaderboard(data)
-        assert [asdict(e) for e in before.entries] == [asdict(e) for e in after.entries]
+        interval_changes = []
+        for old_entry, new_entry in zip(before.entries, after.entries, strict=True):
+            for field in ("model", "mean", "n", "n_observations"):
+                assert getattr(old_entry, field) == getattr(new_entry, field)
+            if new_entry.n_clusters is None:
+                for field in ("se", "ci_low", "ci_high", "method"):
+                    assert getattr(old_entry, field) == getattr(new_entry, field)
+            else:
+                interval_changes.append({"before": asdict(old_entry), "after": new_entry.as_dict()})
         expected = multipletests([p.p_value_used for p in after.pairwise], method="holm")[1]
         assert all(
             math.isclose(p.p_holm, target, abs_tol=1e-13)
@@ -109,6 +117,7 @@ def main() -> None:
             "before_significant": sum(p.p_holm < 0.05 for p in before.pairwise),
             "after_significant": sum(p.p_holm < 0.05 for p in after.pairwise),
             "changed_decisions": changed,
+            "interval_changes": interval_changes,
             "methods": sorted({p.test for p in after.pairwise}),
         }
         if name == "swe_repository_clustered":
@@ -119,7 +128,11 @@ def main() -> None:
             results[name]["after"] = after.as_dict()
         print(
             name,
-            {k: v for k, v in results[name].items() if k not in ("changed_decisions", "before", "after")},
+            {
+                k: v
+                for k, v in results[name].items()
+                if k not in ("changed_decisions", "interval_changes", "before", "after")
+            },
             "changed",
             len(changed),
             flush=True,

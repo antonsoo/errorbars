@@ -9,7 +9,12 @@
       "n": 2,
       "method": "wilson",
       "n_observations": 2,
-      "analysis_unit": "question"
+      "analysis_unit": "question",
+      "confidence": 0.95,
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": []
     },
     {
       "model": "baseline",
@@ -20,7 +25,12 @@
       "n": 2,
       "method": "wilson",
       "n_observations": 2,
-      "analysis_unit": "question"
+      "analysis_unit": "question",
+      "confidence": 0.95,
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": []
     }
   ],
   "pairwise": [

@@ -20,7 +20,12 @@
           "n": 2,
           "method": "wilson",
           "n_observations": 2,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
         },
         {
           "model": "baseline",
@@ -31,7 +36,12 @@
           "n": 2,
           "method": "wilson",
           "n_observations": 2,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
         }
       ],
       "pairwise": [
@@ -76,7 +86,12 @@
           "n": 2,
           "method": "clt",
           "n_observations": 4,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
         },
         {
           "model": "baseline",
@@ -87,7 +102,12 @@
           "n": 2,
           "method": "clt",
           "n_observations": 4,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
         }
       ],
       "pairwise": [
@@ -128,46 +148,98 @@
         {
           "model": "tuned-70b",
           "mean": 0.69,
-          "se": 0.0327852767543496,
-          "ci_low": 0.6257420383382966,
-          "ci_high": 0.7542579616617033,
+          "se": 0.0371759503180656,
+          "ci_low": 0.6148045428479165,
+          "ci_high": 0.7651954571520834,
           "n": 200,
-          "method": "clt",
+          "method": "clustered_cr2",
           "n_observations": 200,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": 40,
+          "dof_clustered": 39.0,
+          "unclustered": {
+            "mean": 0.69,
+            "se": 0.0327852767543496,
+            "ci_low": 0.6257420383382966,
+            "ci_high": 0.7542579616617033,
+            "confidence": 0.95,
+            "method": "clt",
+            "n": 200
+          },
+          "warnings": []
         },
         {
           "model": "baseline-70b",
           "mean": 0.62,
-          "se": 0.03440813273035824,
-          "ci_low": 0.552561299073224,
-          "ci_high": 0.687438700926776,
+          "se": 0.041012818508989135,
+          "ci_low": 0.5370437443967583,
+          "ci_high": 0.7029562556032417,
           "n": 200,
-          "method": "clt",
+          "method": "clustered_cr2",
           "n_observations": 200,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": 40,
+          "dof_clustered": 39.0,
+          "unclustered": {
+            "mean": 0.62,
+            "se": 0.03440813273035824,
+            "ci_low": 0.552561299073224,
+            "ci_high": 0.687438700926776,
+            "confidence": 0.95,
+            "method": "clt",
+            "n": 200
+          },
+          "warnings": []
         },
         {
           "model": "tuned-7b",
           "mean": 0.535,
-          "se": 0.035357115664894155,
-          "ci_low": 0.4657013266995905,
-          "ci_high": 0.6042986733004095,
+          "se": 0.05083280789976449,
+          "ci_low": 0.43218094102118115,
+          "ci_high": 0.6378190589788189,
           "n": 200,
-          "method": "clt",
+          "method": "clustered_cr2",
           "n_observations": 200,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": 40,
+          "dof_clustered": 39.0,
+          "unclustered": {
+            "mean": 0.535,
+            "se": 0.035357115664894155,
+            "ci_low": 0.4657013266995905,
+            "ci_high": 0.6042986733004095,
+            "confidence": 0.95,
+            "method": "clt",
+            "n": 200
+          },
+          "warnings": []
         },
         {
           "model": "baseline-7b",
           "mean": 0.47,
-          "se": 0.03538020341900042,
-          "ci_low": 0.40065607553305826,
-          "ci_high": 0.5393439244669417,
+          "se": 0.03758750474320573,
+          "ci_low": 0.39397209544908474,
+          "ci_high": 0.5460279045509152,
           "n": 200,
-          "method": "clt",
+          "method": "clustered_cr2",
           "n_observations": 200,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": 40,
+          "dof_clustered": 39.0,
+          "unclustered": {
+            "mean": 0.47,
+            "se": 0.03538020341900042,
+            "ci_low": 0.40065607553305826,
+            "ci_high": 0.5393439244669417,
+            "confidence": 0.95,
+            "method": "clt",
+            "n": 200
+          },
+          "warnings": []
         }
       ],
       "pairwise": [
@@ -301,7 +373,12 @@
           "n": 20,
           "method": "wilson",
           "n_observations": 20,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
         },
         {
           "model": "sshleifer/tiny-gpt2",
@@ -312,7 +389,12 @@
           "n": 20,
           "method": "wilson",
           "n_observations": 20,
-          "analysis_unit": "question"
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
         }
       ],
       "pairwise": [

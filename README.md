@@ -110,7 +110,10 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   question, clustered t for grouped questions, and paired t for continuous or repeated
   scores. The table and JSON name the selected test; a shared group does not establish
   equivalence. [Counterexample, exact checks, and public-data audit](docs/leaderboard-tests.md).
-  Forest plots use SVG without dependencies, or matplotlib when installed.
+  Supplied clusters also determine the displayed model confidence intervals;
+  the old independent-question estimate remains a labelled JSON diagnostic.
+  Forest plots name the interval method and use SVG without dependencies,
+  or matplotlib when installed.
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect.

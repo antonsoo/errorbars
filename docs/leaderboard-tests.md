@@ -1,4 +1,4 @@
-# A binary leaderboard must use its binary test
+# Leaderboard tests and intervals must match the observations
 
 With two shared binary questions, candidate=[1,1] and baseline=[0,0], the
 leaderboard used to print p=0 and separate the models into different groups.
@@ -26,8 +26,52 @@ The terminal table names the selected test and prints both its raw and
 adjusted p-value. JSON adds `test`, `p_value_used`, and `mcnemar`; the existing
 `p_value` continues to mean the unclustered paired-t diagnostic for compatibility.
 Consumers should use `p_value_used` for the selected raw test and `p_holm` for
-grouping. `compare` still exposes its existing diagnostics. No estimator or
-question weighting changed in this repair.
+grouping. `compare` still exposes its existing diagnostics. Question weighting
+is unchanged: every question has equal weight after averaging its generations.
+
+## Confidence intervals also honor supplied clusters
+
+A separate inconsistency appeared in the same workflow: pairwise tests used
+clusters, but displayed means and forest plots silently used independent-question
+intervals. The leaderboard now selects CR2 standard errors and Student-t
+critical values with effective degrees of freedom for each model with grouped
+questions, matching `summarize` on the same data.
+
+On the existing **synthetic** reading-comprehension example, each model has
+200 questions grouped into 40 passages:
+
+| Model | Previous independent-question 95% CI | Current clustered 95% CI |
+|---|---|---|
+| tuned-70b | [0.62574, 0.75426] | [0.61480, 0.76520] |
+| baseline-70b | [0.55256, 0.68744] | [0.53704, 0.70296] |
+| tuned-7b | [0.46570, 0.60430] | [0.43218, 0.63782] |
+| baseline-7b | [0.40066, 0.53934] | [0.39397, 0.54603] |
+
+For tuned-7b the interval is 48% wider. This is a measured effect on this
+example, not a claim that clustering always widens an interval.
+
+![Actual CLI forest plot using the supplied passage clusters](assets/leaderboard-clustered.svg)
+
+The table names its interval basis. JSON entries retain the confidence level,
+`n_clusters`, `dof_clustered`, `method="clustered_cr2"`, and the prior
+`unclustered` estimate as a labelled diagnostic. Plots name their interval
+methods and confidence level. These are marginal intervals, not simultaneous
+intervals or pairwise-difference intervals.
+
+Fewer than two independent clusters cannot estimate grouped uncertainty:
+the command refuses that model's interval instead of falling back to an
+independent-question interval. Few effective degrees of freedom and zero
+cluster variance remain explicit warnings. Repeated generations are averaged
+before clustering; seven generations of one question do not give that question
+seven times the weight. Singleton cluster labels preserve the existing CLT or
+Wilson interval selection.
+
+The mean, SE, degrees of freedom, and endpoints are checked against a separate
+dense-matrix regression calculation (`tests/oracles.py`) and SciPy's Student-t
+quantiles for equal and unequal cluster sizes at 90%, 95%, and 99% confidence.
+The CLI replay separately compares each model's interval with `summarize`.
+[Before](../examples/leaderboard-tests/intervals-before.json) and
+[after](../examples/leaderboard-tests/intervals-after.json) retain the full output.
 
 ## Independent checks
 
@@ -78,7 +122,8 @@ In the task-independent analysis, 64 pairs cease to be significant and one
 becomes significant after the changed raw values pass through Holm. The
 exact result is not uniformly larger than the t approximation. The number
 of maximal groups remains 117, though pair edges change. Repository-clustered
-p-values and groups are **exactly unchanged**. This is a regression check of
+p-values and groups are **exactly unchanged**; all 173 displayed model
+intervals now use those supplied repository clusters too. This is a check of
 the selection policy, not evidence that SWE-bench tasks are independent.
 The repository grouping is preserved by the study's default CSV exporter.
 
@@ -90,7 +135,7 @@ the exact tail independently of Errorbars' adapter.
 
 The [retained audit](../studies/leaderboard-tests/results.json) contains input
 and code hashes, exclusions, exact null probabilities, every changed pair,
-and the native COPA before/after report. Reproduce from a development install:
+the changed clustered intervals, and the native COPA before/after report. Reproduce from a development install:
 
 ```bash
 uv run python scripts/verify_leaderboard_tests.py --out /tmp/leaderboard-workflows.json

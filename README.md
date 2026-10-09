@@ -22,8 +22,11 @@ and this package turns it into a one-liner.
 The source checkout can also open a comparison at the question level:
 **`errorbars compare ... --html comparison.html`** produces one offline file with
 shared and missing questions, individual generations, source records and cluster
-sensitivity. Native lm-eval imports check question content before pairing reused
-IDs. These additions are **unreleased**; install this checkout to use them.
+sensitivity. Native lm-eval and text-only Inspect imports check recorded question
+content before pairing reused IDs. Inspect imports also reject incomplete runs;
+the [retained example](examples/inspect-comparison/README.md) shows a meaningless
+paired result (p = 0.000000644) replaced by 24 content conflicts. These additions
+are **unreleased**; install this checkout to use them.
 [Comparison walkthrough](docs/comparison-reports.md).
 
 ![Inspecting a lower-scoring question in two real retained COPA runs, with each score linked to its original log record](docs/assets/comparison-evidence.png)
@@ -261,10 +264,11 @@ errorbars import lm-eval out -o all.csv         # or write the canonical CSV onc
   holds several runs of a task, the latest is used and a note says so. Question ids are
   `<task>-<doc_id>`, so several tasks of one model add up to one benchmark.
 - **Inspect AI**: `.eval` (or `.json`) logs; the model is the one in the log. Epochs (`--epochs N`,
-  repeated sampling of the same input) land in the `sample` column automatically.
+  repeated sampling of the same input) land in the `sample` column automatically. In this
+  checkout, imports require a successful run with all planned samples completed and recorded.
 - With exactly two models in the input, `compare` needs no `--model-a`/`--model-b`: A is the first
-  one given. When the two were not scored on the same questions (a different `--limit`, a run
-  that crashed), the comparison uses the shared ones and reports how many were left out.
+  one given. When the two cover different selected questions (such as different `--limit`
+  values), the comparison uses the shared ones and reports how many were left out.
 
 `--metric` (lm-eval) picks which computed metric to use as the score when a task reports more than
 one (e.g. `acc` vs. `acc_norm`); it defaults to the first one. `--filter` (lm-eval) picks one filter
@@ -287,17 +291,24 @@ binary `.eval` format, and needs the `inspect` extra:
 adapter has no extra dependency — `--log_samples` is already plain JSONL.
 
 Inspect imports refuse unscored samples, missing grades and unrecognized grade strings.
+The source checkout also checks status, planned/completed/recorded counts, selected IDs,
+epochs and invalidations. Cancelled, failed, drained or incompletely recorded evaluations
+cannot quietly become smaller successful datasets. A completed `--limit` or `--sample-id`
+selection is accepted. One scorer must be present across the entire imported log.
 Valid `C`/`I`/`P`/`N`, boolean representations and finite numeric scores keep Inspect's
-conversion semantics. Recover or explicitly select the intended evaluation cohort before
-importing an incomplete log. lm-eval records require a valid `doc_id`; row order is never
+conversion semantics. Finish or retry an incomplete evaluation before importing its log.
+lm-eval records require a valid `doc_id`; row order is never
 used to fabricate question identity.
 
 The source lm-eval adapter also computes a versioned SHA-256 signature from each logged
 document and target. It ignores prompt arguments and responses so prompt variants remain
 comparable. It computes the signature from the contents, rather than trusting the stored
 `doc_hash`. Empty/missing documents or null/missing targets leave identity unchecked.
-Inspect logs do not supply this signature automatically: a task's input may itself be the
-prompt variation being evaluated. [Identity scope and recovery](docs/comparison-reports.md#question-identity).
+Text-only Inspect samples are signed from the logged dataset input, ordered choices and
+targets. Solver messages and generated message IDs are excluded, preserving ordinary solver
+prompt experiments. Changing the dataset input itself triggers a conservative conflict;
+multimodal or externally backed samples remain unchecked. Signatures survive CSV imports.
+[Identity scope and recovery](docs/comparison-reports.md#question-identity).
 
 ## How it works
 

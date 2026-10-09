@@ -119,12 +119,36 @@ An absent/empty document or absent/null target leaves the signature unavailable.
 | Conflicting | Known signatures differ; inference is withheld for the entire comparison |
 
 CSV/JSONL can supply `question_hash`; `--question-hash-col` maps another column.
-`errorbars import lm-eval ...` preserves native signatures in the canonical CSV.
+`errorbars import lm-eval ...` and `errorbars import inspect ...` preserve native
+signatures in the canonical CSV.
 Blank or absent hashes remain unknown; they never inherit another model's hash.
 Different known hashes across generations of a single model/question are refused
-before averaging. Inspect logs do not get automatic content hashes: their input
-may itself be the prompt experiment, and there is no universal separate document
-identity to assume.
+before averaging.
+
+Text-only Inspect logs now compute `inspect-text-sample-v1:` plus the SHA-256 of
+canonical JSON containing the original logged `input`, ordered `choices` and
+`target`. A scalar target is normalized to a one-element list. Text messages
+retain roles, order and text blocks; generated message IDs, source annotations
+and message metadata are excluded. A string content block and a one-element
+text-block list normalize alike. Retained local text attachments are resolved
+before hashing; dangling references leave identity unavailable. No network
+resource is fetched.
+
+Inspect stores dataset input separately from the solver's conversation. Solver
+messages, system-prompt changes applied by a solver, responses and scores do not
+enter the signature. The [controlled Inspect example](../examples/inspect-comparison/README.md)
+records both a valid solver variant and a different dataset with reused IDs.
+
+This changes the native import policy for Inspect experiments that rewrite the
+dataset input itself: these now conflict even if the author intended two prompt
+wordings for the same underlying question. Exact input equality cannot establish
+semantic equivalence. Review the mapping outside Errorbars and supply canonical
+CSV with independently reviewed question IDs/signatures for that experiment.
+Omitting signatures leaves an explicitly unchecked pairing.
+
+Media, tool histories, sandbox/file/setup-backed samples, empty inputs or targets,
+and unsupported message fields do not receive a signature. Other metadata,
+external environments and grader settings are not verified by text signatures.
 
 On a conflict, inspect the two source records, confirm the dataset version,
 reference answer and ID assignment, then correct the inputs or explicitly choose
@@ -132,6 +156,14 @@ the intended common cohort outside this report. Renumber genuinely different
 questions so they cannot masquerade as a pair. There is no silent conflict-dropping
 or ignore-conflicts switch. Equal hashes do not establish compatible scorers,
 filters, dataset representativeness or trustworthy user-supplied signatures.
+
+Native Inspect imports additionally require a successful, complete recorded
+cohort: planned, completed and recorded sample counts must agree, each question
+must have its planned epochs, and the recorded IDs must match `sample_ids` when
+that selection is available. Invalidated or errored samples are refused even if
+they have scores. The planned count describes the selected run, so intentional
+limits and ID selections remain valid. This does not reconstruct questions
+omitted from both selected runs, nor make an early-stopped sample representative.
 
 ## Evidence, privacy and display limits
 

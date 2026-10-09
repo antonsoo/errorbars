@@ -30,6 +30,14 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Inspect imports now refuse cancelled/failed runs, incomplete sample counts,
+  invalidations, invalid epoch coverage and changing automatic scorer selection.
+  Completed limits and selected-ID runs remain supported. Recorded text inputs,
+  choices and targets receive content signatures: reused IDs with changed
+  questions no longer produce paired inference. Solver-prompt experiments remain
+  comparable; rewriting dataset input itself now requires an independently
+  reviewed identity mapping. Multimodal/external inputs remain explicitly
+  unchecked. [Retained captures and before/after replay](examples/inspect-comparison/README.md).
 - A binary score near 0 or 1 got a CLT interval that left [0, 1] (2 correct of 500:
   [-0.0015, 0.0095]; 0 of 500: a zero-width interval). `summarize` and `leaderboard` now use
   the Wilson interval whenever there are fewer than 10 successes or failures, not only below

@@ -157,3 +157,30 @@ Continuous and repeated-generation t inference retains its assumptions and
 zero-variance warnings. The change does not turn marginal intervals into
 simultaneous intervals, and different model means can still cover different
 question sets. All changes here are local and unreleased.
+
+## Local verification
+
+A fresh locked development installation from a clean checkout passed ruff,
+mypy, and 501 checks, including the independent matrix and exact-test oracles.
+The package built as a wheel from its source distribution. The four native
+and controlled CLI workflows also passed in isolated wheel installations:
+Python 3.10.21 with NumPy 1.24.0, and Python 3.14.7 with NumPy 2.5.3.
+Both installations use the bare NumPy-only package; terminal output does not
+require the optional Rich dependency.
+
+Commands used for the clean development verification:
+
+```bash
+uv sync --locked --group dev --extra all
+uv run ruff check .
+uv run mypy src/errorbars
+uv run pytest -q
+uv build
+uv run python scripts/verify_leaderboard_tests.py --out /tmp/leaderboard-workflows.json
+```
+
+The native CLI generated the retained terminal image and clustered SVG. Both
+were opened and inspected; a separate Matplotlib export was also inspected.
+The terminal retains full model names and shows interval and test selection;
+the plot identifies its marginal confidence level and clustered method. No
+website, registry package, or repository was published.

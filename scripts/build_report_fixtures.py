@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 from errorbars.inputs import load_inputs
-from errorbars.io import EvalData, load_csv
+from errorbars.io import EvalData, ScoringRule, load_csv
 from errorbars.report import write_comparison_html
 from errorbars.review import review_comparison
 
@@ -56,6 +56,12 @@ def build(output: Path) -> None:
     changed.write_text("\n".join(json.dumps(row) for row in rows) + "\n")
     conflict = load_inputs([f"original={source}", f"changed={changed}"]).data
     write_comparison_html(review_comparison(conflict, "original", "changed"), output / "conflict.html")
+    scoring_conflict = EvalData(
+        ["q1", "q2"] * 2, ["A", "A", "B", "B"], [0, 1, 1, 1],
+        question_hash=["same-q1", "same-q2"] * 2,
+        scoring=[ScoringRule("inspect:match", "exact")] * 2 + [ScoringRule("inspect:match", "any")] * 2,
+    )
+    write_comparison_html(review_comparison(scoring_conflict, "A", "B"), output / "scoring-conflict.html")
     missing = EvalData(["a", "b", "x", "y"], ["A", "A", "B", "B"], [1, 0, 0, 1])
     write_comparison_html(review_comparison(missing, "A", "B"), output / "missing.html")
 

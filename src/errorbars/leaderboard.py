@@ -9,6 +9,7 @@ from typing import Any
 
 from errorbars.compare import FEW_CLUSTER_DOF, PairedComparison, PairedTest, paired_compare, select_inference
 from errorbars.io import EvalData
+from errorbars.scoring import compare_scoring
 from errorbars.stats import (
     MeanEstimate,
     cluster_degrees_of_freedom,
@@ -313,12 +314,25 @@ def build_leaderboard(
     pairwise: list[PairwiseResult] = []
     untested_pairs: list[UntestedPair] = []
     raw_p: list[float] = []
+    # Group declarations once; rescanning every observation for every model pair
+    # makes this check cubic in the number of models.
+    scoring = data.scoring_by_model() if data.scoring is not None else {}
     for a, b in combinations(order, 2):
         conflicts = data.pairing_conflicts(a, b)
         if conflicts:
             raise ValueError(
                 f"{a!r} vs {b!r}: conflicting question content for {len(conflicts)} shared ids "
                 f"(including {conflicts[0]!r}); inspect the source records before pairing"
+            )
+        scoring_conflicts = [
+            q for q, state in compare_scoring(scoring.get(a, {}), scoring.get(b, {})).items()
+            if state == "conflicting"
+        ]
+        if scoring_conflicts:
+            raise ValueError(
+                f"{a!r} vs {b!r}: conflicting scoring rules for {len(scoring_conflicts)} shared ids "
+                f"(including {scoring_conflicts[0]!r}); re-score both runs under the same "
+                "scorer and parameters before ranking"
             )
         common = sorted(set(qmap[a]) & set(qmap[b]))
         if len(common) < 2:
@@ -346,6 +360,12 @@ def build_leaderboard(
     groups = _maximal_cliques(order, edges)
 
     warnings = []
+    if data.scoring is not None:
+        warnings.append(
+            "Scoring checks reject conflicting recorded names or configurations on shared questions. "
+            "Missing declarations remain unchecked; matching declarations do not verify scorer code "
+            "or unrecorded settings."
+        )
     if len({frozenset(qmap[m]) for m in models}) > 1:
         warnings.append(
             "The models were not scored on the same questions. Each mean is over that "

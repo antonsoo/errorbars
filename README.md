@@ -226,6 +226,14 @@ samples within one model are refused before averaging. Missing signatures stay u
 Use the same signature scheme in both runs; a signature is an assertion about question
 content, not proof that the scoring rules match.
 
+The source checkout also preserves optional `scorer` and `scorer_config` columns.
+Known differences in scoring declarations block comparison and ranking, including
+after CSV conversion. A [recorded Inspect counterexample](examples/inspect-scoring/README.md)
+previously reported a 33.3-point improvement on **identical answers** when only
+the grader changed. Missing declarations stay unchecked; matching declarations
+do not verify scorer implementations or unrecorded settings.
+See [scoring declarations](docs/comparison-reports.md#scoring-declarations).
+
 ### Reading lm-evaluation-harness and Inspect AI logs
 
 A harness writes one log per model and per task, so "is B better than A" starts from two files.

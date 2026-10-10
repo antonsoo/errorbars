@@ -1,0 +1,564 @@
+{
+  "synthetic": true,
+  "version": "0.2.4",
+  "implementation_sha256": {
+    "__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+    "_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+    "_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+    "adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+    "adapters/_inspect_integrity.py": "d00422a87979e4edc9c6ef12c431f23bc4d7ef1521d1ff2600768835dc98afc6",
+    "adapters/inspect_ai.py": "6d4f03477ddd5d627dcf5a02637f2114e7c2ca55ecfa7179180ed6cc57ace0dd",
+    "adapters/lm_eval.py": "30b13b08559c90ec4ee91aa0b8c55c325ab566bd071d5788d2281d891b21923c",
+    "cli.py": "864347edd19e5a1b3945d28d0803c909c8f285a8ab76f63824df986aa5802ae3",
+    "compare.py": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+    "inputs.py": "6527e9d1b2395e98e45e62596b12be025fc416928e15d7c514e6aabbb6b48a06",
+    "io.py": "ab4df04f0cabd347368a65d629720b49ea006c8bd3110587174bd3ada1e25243",
+    "leaderboard.py": "3108c9c19daebc2c300a522ed1febda16d0a742ff2ad0dca885d2aad2cc25cb6",
+    "plot.py": "96ee5736a7a86bc4b50eb3fbb09f69f2c9988be284fa0d1c04667858808bf17c",
+    "power.py": "2c3ba44ae8040d2dc1f6037c6beb75e272a60da0399921b4a7aad353d279a41d",
+    "report.py": "dd776a20d87eda9e59943a333d689e65678bfaa03c4d3349632e02199753707f",
+    "report_assets/report.css": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+    "report_assets/report.js": "657ecba053c507489ab776e29eb269f01761ea760f0eb2c9e6cafdacda4d2631",
+    "report_assets/template.html": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+    "review.py": "1a82ebb71e869e6adee53134b4c4f39f60723dbff92183585348898e8746d71b",
+    "scoring.py": "8f9808c11a3b81e57a949ee380632c9446a0e10eb627cd5e2bd3ebd9567cc31b",
+    "stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+  },
+  "inputs": {
+    "exact": "c5ba83764493c7ebed763a49efa4aa110eab3254beec2818ccc4a28aef4036c6",
+    "anywhere": "14f4feb19c18a005ab6efbb23fc8a15d1ab9cd13fbca5df28aeb89d2f2a80deb",
+    "includes": "5b87deb285adfc438ec9712b9e75508137863f86996690bf710bcbca4758beda",
+    "exact-repeat": "55f98314307d9107312ec210e8366e509613c7d02082a966b46be3c83461655b",
+    "improved-exact": "15880fdfd76eada6a2d1865375a08296bbebe5d50cdac8760f5e331e2c42efd6"
+  },
+  "comparisons": {
+    "anywhere": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": null,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 0,
+        "n_scoring_conflicting": 24,
+        "n_scoring_unavailable": 0
+      },
+      "comparison": null,
+      "inference": null,
+      "unavailable_reason": "conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before comparing",
+      "identical_responses": true,
+      "leaderboard": {
+        "ranked": false,
+        "reason": "'B' vs 'A': conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before ranking"
+      },
+      "cli": [
+        {
+          "exit": 1,
+          "stdout": null,
+          "stderr": "error: conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before comparing"
+        },
+        {
+          "exit": 1,
+          "stdout": null,
+          "stderr": "error: conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before comparing"
+        }
+      ],
+      "csv_cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": null,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 0,
+        "n_scoring_conflicting": 24,
+        "n_scoring_unavailable": 0
+      },
+      "csv_inference_available": false
+    },
+    "includes": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": null,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 0,
+        "n_scoring_conflicting": 24,
+        "n_scoring_unavailable": 0
+      },
+      "comparison": null,
+      "inference": null,
+      "unavailable_reason": "conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before comparing",
+      "identical_responses": true,
+      "leaderboard": {
+        "ranked": false,
+        "reason": "'B' vs 'A': conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before ranking"
+      },
+      "cli": [
+        {
+          "exit": 1,
+          "stdout": null,
+          "stderr": "error: conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before comparing"
+        },
+        {
+          "exit": 1,
+          "stdout": null,
+          "stderr": "error: conflicting scoring rules for 24 shared ids (including 'q01'); re-score both runs under the same scorer and parameters before comparing"
+        }
+      ],
+      "csv_cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": null,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 0,
+        "n_scoring_conflicting": 24,
+        "n_scoring_unavailable": 0
+      },
+      "csv_inference_available": false
+    },
+    "exact-repeat": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.0,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "comparison": {
+        "mean_a": 0.3333333333333333,
+        "mean_b": 0.3333333333333333,
+        "mean_diff": 0.0,
+        "se_paired": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "p_value": 1.0,
+        "correlation": 0.9999999999999999,
+        "se_unpaired": 0.1390096093713832,
+        "variance_reduction": 1.0,
+        "n": 24,
+        "confidence": 0.95,
+        "warnings": [
+          "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs."
+        ],
+        "mcnemar": {
+          "n01": 0,
+          "n10": 0,
+          "p_value": 1.0
+        }
+      },
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 1.0,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "unavailable_reason": null,
+      "identical_responses": true,
+      "leaderboard": {
+        "ranked": true,
+        "models": [
+          "A",
+          "B"
+        ]
+      },
+      "cli": [
+        {
+          "exit": 0,
+          "stdout": {
+            "model_a": "A",
+            "model_b": "B",
+            "mean_a": 0.3333333333333333,
+            "mean_b": 0.3333333333333333,
+            "mean_diff": 0.0,
+            "se_paired": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "p_value": 1.0,
+            "correlation": 0.9999999999999999,
+            "se_unpaired": 0.1390096093713832,
+            "variance_reduction": 1.0,
+            "n": 24,
+            "confidence": 0.95,
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs."
+            ],
+            "mcnemar": {
+              "n01": 0,
+              "n10": 0,
+              "p_value": 1.0
+            },
+            "inference": {
+              "test": "mcnemar_exact",
+              "p_value": 1.0,
+              "ci_low": null,
+              "ci_high": null,
+              "confidence": null,
+              "mcnemar_applicable": true
+            },
+            "n_only_a": 0,
+            "n_only_b": 0,
+            "analysis_unit": "question",
+            "n_observations_a": 24,
+            "n_observations_b": 24,
+            "question_identity": {
+              "matching": 24,
+              "partial": 0,
+              "unavailable": 0,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 24,
+              "unavailable": 0,
+              "conflicting": 0
+            }
+          },
+          "stderr": ""
+        },
+        {
+          "exit": 0,
+          "stdout": {
+            "model_a": "A",
+            "model_b": "B",
+            "mean_a": 0.3333333333333333,
+            "mean_b": 0.3333333333333333,
+            "mean_diff": 0.0,
+            "se_paired": 0.0,
+            "ci_low": 0.0,
+            "ci_high": 0.0,
+            "p_value": 1.0,
+            "correlation": 0.9999999999999999,
+            "se_unpaired": 0.1390096093713832,
+            "variance_reduction": 1.0,
+            "n": 24,
+            "confidence": 0.95,
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs."
+            ],
+            "mcnemar": {
+              "n01": 0,
+              "n10": 0,
+              "p_value": 1.0
+            },
+            "inference": {
+              "test": "mcnemar_exact",
+              "p_value": 1.0,
+              "ci_low": null,
+              "ci_high": null,
+              "confidence": null,
+              "mcnemar_applicable": true
+            },
+            "n_only_a": 0,
+            "n_only_b": 0,
+            "analysis_unit": "question",
+            "n_observations_a": 24,
+            "n_observations_b": 24,
+            "question_identity": {
+              "matching": 24,
+              "partial": 0,
+              "unavailable": 0,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 24,
+              "unavailable": 0,
+              "conflicting": 0
+            }
+          },
+          "stderr": ""
+        }
+      ],
+      "csv_cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.0,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "csv_inference_available": true
+    },
+    "improved-exact": {
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": -0.3333333333333333,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "comparison": {
+        "mean_a": 0.3333333333333333,
+        "mean_b": 0.6666666666666666,
+        "mean_diff": -0.3333333333333333,
+        "se_paired": 0.09829463743659811,
+        "ci_low": -0.5366712831299111,
+        "ci_high": -0.12999538353675552,
+        "p_value": 0.0025117111678496567,
+        "correlation": 0.5,
+        "se_unpaired": 0.1390096093713832,
+        "variance_reduction": 0.5000000000000001,
+        "n": 24,
+        "confidence": 0.95,
+        "warnings": [],
+        "mcnemar": {
+          "n01": 8,
+          "n10": 0,
+          "p_value": 0.0078125
+        }
+      },
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 0.0078125,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "unavailable_reason": null,
+      "identical_responses": false,
+      "leaderboard": {
+        "ranked": true,
+        "models": [
+          "B",
+          "A"
+        ]
+      },
+      "cli": [
+        {
+          "exit": 0,
+          "stdout": {
+            "model_a": "A",
+            "model_b": "B",
+            "mean_a": 0.3333333333333333,
+            "mean_b": 0.6666666666666666,
+            "mean_diff": -0.3333333333333333,
+            "se_paired": 0.09829463743659811,
+            "ci_low": -0.5366712831299111,
+            "ci_high": -0.12999538353675552,
+            "p_value": 0.0025117111678496567,
+            "correlation": 0.5,
+            "se_unpaired": 0.1390096093713832,
+            "variance_reduction": 0.5000000000000001,
+            "n": 24,
+            "confidence": 0.95,
+            "warnings": [],
+            "mcnemar": {
+              "n01": 8,
+              "n10": 0,
+              "p_value": 0.0078125
+            },
+            "inference": {
+              "test": "mcnemar_exact",
+              "p_value": 0.0078125,
+              "ci_low": null,
+              "ci_high": null,
+              "confidence": null,
+              "mcnemar_applicable": true
+            },
+            "n_only_a": 0,
+            "n_only_b": 0,
+            "analysis_unit": "question",
+            "n_observations_a": 24,
+            "n_observations_b": 24,
+            "question_identity": {
+              "matching": 24,
+              "partial": 0,
+              "unavailable": 0,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 24,
+              "unavailable": 0,
+              "conflicting": 0
+            }
+          },
+          "stderr": ""
+        },
+        {
+          "exit": 0,
+          "stdout": {
+            "model_a": "A",
+            "model_b": "B",
+            "mean_a": 0.3333333333333333,
+            "mean_b": 0.6666666666666666,
+            "mean_diff": -0.3333333333333333,
+            "se_paired": 0.09829463743659811,
+            "ci_low": -0.5366712831299111,
+            "ci_high": -0.12999538353675552,
+            "p_value": 0.0025117111678496567,
+            "correlation": 0.5,
+            "se_unpaired": 0.1390096093713832,
+            "variance_reduction": 0.5000000000000001,
+            "n": 24,
+            "confidence": 0.95,
+            "warnings": [],
+            "mcnemar": {
+              "n01": 8,
+              "n10": 0,
+              "p_value": 0.0078125
+            },
+            "inference": {
+              "test": "mcnemar_exact",
+              "p_value": 0.0078125,
+              "ci_low": null,
+              "ci_high": null,
+              "confidence": null,
+              "mcnemar_applicable": true
+            },
+            "n_only_a": 0,
+            "n_only_b": 0,
+            "analysis_unit": "question",
+            "n_observations_a": 24,
+            "n_observations_b": 24,
+            "question_identity": {
+              "matching": 24,
+              "partial": 0,
+              "unavailable": 0,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 24,
+              "unavailable": 0,
+              "conflicting": 0
+            }
+          },
+          "stderr": ""
+        }
+      ],
+      "csv_cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": -0.3333333333333333,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "csv_inference_available": true
+    }
+  }
+}

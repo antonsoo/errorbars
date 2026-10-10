@@ -150,6 +150,37 @@ test('conflicting content is inspectable while the paired result is withheld', a
   await clean();
 });
 
+test('scorer conflicts retain matching questions and export the changed grading evidence', async ({ page, context }) => {
+  const clean = await open(page, context, 'scoring-conflict');
+  await expect(page.locator('#effect-value')).toHaveText('unavailable');
+  await expect(page.locator('#inference-description')).toContainText('conflicting scoring rules');
+  await expect(page.locator('#identity-note')).toContainText('2 matching');
+  await expect(page.locator('#scoring-note')).toContainText('2 conflicting');
+  await page.getByLabel('Show questions').selectOption('conflicting');
+  await expect(page.locator('#question-rows tr')).toHaveCount(2);
+  await page.getByRole('button', { name: 'Inspect question q1', exact: true }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#inspector-heading')).toBeFocused();
+  await expect(page.locator('#inspector')).toContainText('Conflicting scoring rules');
+  await expect(page.locator('#inspector')).toContainText('Question identity: matching');
+  await expect(page.locator('#inspector')).not.toContainText('Conflicting question content');
+  await page.getByRole('region', { name: 'A observed generations' })
+    .getByText('Scorer configuration fingerprint', { exact: true }).click();
+  await expect(page.getByRole('region', { name: 'A observed generations' })).toContainText('exact');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.comparison).toBeNull(); expect(data.inference).toBeNull();
+  expect(data.cohort.n_identity_matching).toBe(2);
+  expect(data.cohort.n_scoring_conflicting).toBe(2);
+  const q = data.questions.find(q => q.question_id === 'q1');
+  expect(q.scoring).toBe('conflicting'); expect(q.difference).toBeNull();
+  expect(q.observations_a[0].scorer).toBe('inspect:match');
+  expect(q.observations_a[0].scorer_config).not.toBe(q.observations_b[0].scorer_config);
+  const csv = (await download(page, 'Download shown questions (CSV)')).text;
+  expect(csv).toContain('"scoring"');
+  expect(csv).toContain('"q1","","conflicting","matching","conflicting"');
+  await clean();
+});
+
 test('hostile identifiers stay text, controls stay visible, CSV is inert and JSON preserves evidence', async ({ page, context }) => {
   const clean = await open(page, context, 'hostile');
   expect(await page.evaluate(() => window.pwned)).toBeUndefined();
@@ -174,7 +205,7 @@ test('hostile identifiers stay text, controls stay visible, CSV is inert and JSO
 test('an empty intersection keeps observations and never invents a zero difference', async ({ page, context }) => {
   const clean = await open(page, context, 'missing');
   await expect(page.locator('#effect-value')).toHaveText('unavailable');
-  await expect(page.locator('#difference-chart')).toContainText('No shared questions');
+  await expect(page.locator('#difference-chart')).toContainText('No comparable question differences');
   await page.getByRole('button', { name: 'Inspect shared questions', exact: true }).click();
   await expect(page.locator('#no-questions')).toBeVisible();
   const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);

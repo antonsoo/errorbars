@@ -156,6 +156,11 @@ def comparison_html(review: ComparisonReview) -> str:
         f"{c['n_identity_unavailable']} unchecked, {c['n_identity_conflicting']} conflicting shared ids. "
         "Matching signatures check supplied question content, not scoring-rule equivalence."
     )
+    scoring_note = (
+        f"Scoring declarations: {c['n_scoring_matching']} matching, "
+        f"{c['n_scoring_unavailable']} unchecked, {c['n_scoring_conflicting']} conflicting shared questions. "
+        "Matching declarations do not verify scorer implementations or unrecorded settings."
+    )
     payload = json.dumps(review.as_dict(), ensure_ascii=True, allow_nan=False, separators=(",", ":"))
     # JSON is inert script data, but the HTML parser still recognizes </script>.
     payload = payload.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
@@ -165,8 +170,12 @@ def comparison_html(review: ComparisonReview) -> str:
         model_a=_text(review.model_a), model_b=_text(review.model_b),
         n_shared=c["n_shared"], effect=_number(c["mean_difference"], signed=True),
         inference=inference, interval_table=interval_table, cohort_rows="".join(cohort_rows),
+        interval_note=(
+            '<p class="caption">The interval measures uncertainty in the mean difference, '
+            "not the range of individual scores.</p>" if comp is not None else ""
+        ),
         coverage_note=coverage_note, warnings="".join(f"<li>{_text(w)}</li>" for w in review.warnings),
-        identity_note=identity_note,
+        identity_note=identity_note, scoring_note=scoring_note,
         sources="".join(f"<li>{_text(name)}</li>" for name in review.sources)
         or "<li>Source locations were not provided.</li>", version=_text(__version__),
     )

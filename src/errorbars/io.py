@@ -18,9 +18,12 @@ from numbers import Real
 from pathlib import Path
 from typing import Any
 
+from errorbars.scoring import ScoringRule, compare_scoring
+
 __all__ = [
     "EvalData",
     "RecordSource",
+    "ScoringRule",
     "ColumnMap",
     "concat",
     "load_csv",
@@ -57,6 +60,8 @@ class ColumnMap:
     cluster_id: str | None = "cluster_id"
     sample: str | None = "sample"
     question_hash: str | None = "question_hash"
+    scorer: str | None = "scorer"
+    scorer_config: str | None = "scorer_config"
 
 
 @dataclass
@@ -71,6 +76,7 @@ class EvalData:
     columns: ColumnMap = field(default_factory=ColumnMap)
     sources: list[RecordSource | None] | None = None
     question_hash: list[str | None] | None = None
+    scoring: list[ScoringRule | None] | None = None
 
     def __len__(self) -> int:
         return len(self.score)
@@ -92,6 +98,7 @@ class EvalData:
             columns=self.columns,
             sources=[self.sources[i] for i in idx] if self.sources is not None else None,
             question_hash=[self.question_hash[i] for i in idx] if self.question_hash is not None else None,
+            scoring=[self.scoring[i] for i in idx] if self.scoring is not None else None,
         )
 
     def scores_by_question(self) -> dict[str, float]:
@@ -127,6 +134,29 @@ class EvalData:
         a, b = self.hashes_by_question(model_a), self.hashes_by_question(model_b)
         return sorted(q for q in a.keys() & b.keys() if a[q] != b[q])
 
+    def scoring_by_model(self) -> dict[str, dict[str, tuple[ScoringRule | None, bool]]]:
+        """Retain all known declarations; an unknown repeat cannot erase a conflict."""
+        groups: dict[str, dict[str, tuple[ScoringRule | None, bool]]] = {}
+        for i, (model, question) in enumerate(zip(self.model, self.question_id, strict=True)):
+            rule = self.scoring[i] if self.scoring is not None else None
+            questions = groups.setdefault(model, {})
+            previous, complete = questions.get(question, (None, True))
+            if previous is not None and rule is not None and previous.conflicts_with(rule):
+                raise ValueError(
+                    f"model {model!r}, question {question!r}: conflicting scoring rules across samples; "
+                    "re-score these observations under one rule before averaging"
+                )
+            known = (
+                previous if previous is not None and previous.config_hash is not None else rule or previous
+            )
+            questions[question] = (known, complete and rule is not None and rule.config_hash is not None)
+        return groups
+
+    def scoring_states(self, model_a: str, model_b: str) -> dict[str, str]:
+        """Compatibility of recorded scoring declarations for shared questions."""
+        groups = self.scoring_by_model()
+        return compare_scoring(groups.get(model_a, {}), groups.get(model_b, {}))
+
     def validate(self) -> None:
         """Validate normalized rows, including adapter and directly constructed datasets."""
         n = len(self)
@@ -152,6 +182,22 @@ class EvalData:
             if not isinstance(score, Real):
                 raise ValueError(f"row {row}: normalized score must be numeric")
             _coerce_score(score, row)
+        if self.scoring is not None:
+            if len(self.scoring) != n:
+                raise ValueError("scoring must have one ScoringRule or None per score")
+            for row, rule in enumerate(self.scoring, 1):
+                if rule is None:
+                    continue
+                if (
+                    not isinstance(rule, ScoringRule)
+                    or not isinstance(rule.name, str) or not rule.name.strip()
+                ):
+                    raise ValueError(f"row {row}: scoring must be a ScoringRule with a nonempty name or None")
+                if rule.config_hash is not None and (
+                    not isinstance(rule.config_hash, str) or not rule.config_hash.strip()
+                ):
+                    raise ValueError(f"row {row}: scorer_config must be a nonempty string or None")
+            self.scoring_by_model()
         if self.question_hash is not None:
             if len(self.question_hash) != n:
                 raise ValueError("question_hash must have one signature or None per score")
@@ -218,6 +264,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
     any_samples = any(data.sample for _, data in parts)
     any_sources = any(data.sources is not None for _, data in parts)
     any_hashes = any(data.question_hash is not None for _, data in parts)
+    any_scoring = any(data.scoring is not None for _, data in parts)
 
     question_id: list[str] = []
     model: list[str] = []
@@ -226,6 +273,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
     sample: list[str] = []
     sources: list[RecordSource | None] = []
     question_hash: list[str | None] = []
+    scoring: list[ScoringRule | None] = []
     seen: dict[tuple[str, str, str], str] = {}
     for source, data in parts:
         samples = data.sample or ["0"] * len(data)
@@ -253,6 +301,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
         sample.extend(samples)
         sources.extend(data.sources if data.sources is not None else [None] * len(data))
         question_hash.extend(data.question_hash if data.question_hash is not None else [None] * len(data))
+        scoring.extend(data.scoring if data.scoring is not None else [None] * len(data))
 
     result = EvalData(
         question_id,
@@ -263,6 +312,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
         parts[0][1].columns,
         sources if any_sources else None,
         question_hash if any_hashes else None,
+        scoring if any_scoring else None,
     )
     result.validate()
     return result
@@ -332,6 +382,7 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     has_samples = False
     hashes: list[str | None] = []
     has_hashes = False
+    scoring: list[ScoringRule | None] = []
 
     n = 0
     seen: dict[tuple[str, str, str], int] = {}
@@ -370,6 +421,21 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
             hashes.append(_identifier(signature, columns.question_hash or "question_hash", n))
         else:
             hashes.append(None)
+        scorer = row.get(columns.scorer) if columns.scorer else None
+        config = row.get(columns.scorer_config) if columns.scorer_config else None
+        if config is not None and config != "":
+            if not isinstance(config, str) or not config.strip():
+                raise ValueError(f"row {n}: scorer_config must be a nonempty string or null")
+            if scorer is None or scorer == "":
+                raise ValueError(f"row {n}: scorer_config requires a scorer name")
+        else:
+            config = None
+        if scorer is not None and scorer != "":
+            if not isinstance(scorer, str) or not scorer.strip():
+                raise ValueError(f"row {n}: scorer must be a nonempty string or null")
+            scoring.append(ScoringRule(scorer, config))
+        else:
+            scoring.append(None)
         # The same (model, question, sample) twice would be counted as two questions, inflating n and
         # shrinking every standard error. Repeated generations need distinct sample ids.
         key = (model[-1], question_id[-1], sample_id)
@@ -395,6 +461,7 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     result = EvalData(
         question_id, model, score, cluster_id, sample if has_samples else None, columns,
         question_hash=hashes if has_hashes else None,
+        scoring=scoring if any(scoring) else None,
     )
     result.validate()
     return result
@@ -507,6 +574,7 @@ def write_csv(data: EvalData, path: str | Path) -> None:
     includes ``cluster_id`` / ``sample`` columns when the data actually has
     them.
     """
+    data.validate()
     fieldnames = ["question_id", "model", "score"]
     if data.cluster_id:
         fieldnames.append("cluster_id")
@@ -514,6 +582,8 @@ def write_csv(data: EvalData, path: str | Path) -> None:
         fieldnames.append("sample")
     if data.question_hash is not None:
         fieldnames.append("question_hash")
+    if data.scoring is not None:
+        fieldnames.extend(("scorer", "scorer_config"))
 
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -530,4 +600,8 @@ def write_csv(data: EvalData, path: str | Path) -> None:
                 row["sample"] = data.sample[i]
             if data.question_hash is not None:
                 row["question_hash"] = data.question_hash[i]
+            if data.scoring is not None:
+                rule = data.scoring[i]
+                row["scorer"] = rule.name if rule is not None else None
+                row["scorer_config"] = rule.config_hash if rule is not None else None
             writer.writerow(row)

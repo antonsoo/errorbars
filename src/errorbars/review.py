@@ -28,6 +28,8 @@ class Observation:
     metric: str | None
     filter: str | None
     question_hash: str | None
+    scorer: str | None = None
+    scorer_config: str | None = None
 
 
 @dataclass(frozen=True)
@@ -41,6 +43,7 @@ class Question:
     observations_a: list[Observation]
     observations_b: list[Observation]
     identity: str
+    scoring: str = "unavailable"
 
 
 @dataclass(frozen=True)
@@ -168,11 +171,23 @@ def review_comparison(
     clustered = cluster_ids is not None and len(set(cluster_ids)) < len(common)
     conflicts = data.pairing_conflicts(model_a, model_b)
     conflict_ids = set(conflicts)
+    scoring_states = (
+        data.scoring_states(model_a, model_b) if data.scoring is not None
+        else dict.fromkeys(common, "unavailable")
+    )
+    scoring_conflicts = [q for q, state in scoring_states.items() if state == "conflicting"]
+    incompatible = conflict_ids | set(scoring_conflicts)
     problem = None
     if conflicts:
         problem = (
             f"conflicting question content for {len(conflicts)} shared ids "
             f"(including {conflicts[0]!r}); inspect the source records before pairing"
+        )
+    elif scoring_conflicts:
+        problem = (
+            f"conflicting scoring rules for {len(scoring_conflicts)} shared ids "
+            f"(including {scoring_conflicts[0]!r}); re-score both runs under the same "
+            "scorer and parameters before comparing"
         )
     elif len(common) < 2:
         problem = (
@@ -195,12 +210,14 @@ def review_comparison(
         for i, (qid, score) in enumerate(zip(part.question_id, part.score, strict=True)):
             source = part.sources[i] if part.sources is not None else None
             source_id = source_ids.setdefault(source.path, len(source_ids)) if source else None
+            rule = part.scoring[i] if part.scoring is not None else None
             result.setdefault(qid, []).append(Observation(
                 float(score), part.sample[i] if part.sample is not None else None, source_id,
                 source.record if source else None, source.line_start if source else None,
                 source.line_end if source else None, source.metric if source else None,
                 source.filter if source else None,
                 part.question_hash[i] if part.question_hash is not None else None,
+                rule.name if rule else None, rule.config_hash if rule else None,
             ))
         return result
 
@@ -222,15 +239,17 @@ def review_comparison(
             identity = "matching" if all(
                 o.question_hash is not None for o in obs_a[qid] + obs_b[qid]
             ) else "partial"
+        if qid in incompatible:
+            presence = "conflicting"
         if mean_a is not None and mean_b is not None:
             identity_counts[identity] += 1
         paired_difference = (
-            mean_a - mean_b if mean_a is not None and mean_b is not None and qid not in conflict_ids else None
+            mean_a - mean_b if mean_a is not None and mean_b is not None and qid not in incompatible else None
         )
         questions.append(Question(
             qid, cmap.get(qid), presence, mean_a, mean_b,
             paired_difference,
-            obs_a.get(qid, []), obs_b.get(qid, []), identity,
+            obs_a.get(qid, []), obs_b.get(qid, []), identity, scoring_states.get(qid, "unavailable"),
         ))
     shared_a = math.fsum(scores_a[q] for q in common) / len(common) if common else None
     shared_b = math.fsum(scores_b[q] for q in common) / len(common) if common else None
@@ -244,9 +263,11 @@ def review_comparison(
         "mean_all_a": math.fsum(scores_a.values()) / len(scores_a),
         "mean_all_b": math.fsum(scores_b.values()) / len(scores_b),
         "mean_shared_a": shared_a, "mean_shared_b": shared_b,
-        "mean_difference": None if conflicts else comparison.mean_diff if comparison else difference,
+        "mean_difference": None if incompatible else comparison.mean_diff if comparison else difference,
         "n_clusters": n_clusters,
         **{f"n_identity_{key}": value for key, value in identity_counts.items()},
+        **{f"n_scoring_{state}": sum(value == state for value in scoring_states.values())
+           for state in ("matching", "conflicting", "unavailable")},
     }
     warnings = list(comparison.warnings) if comparison else [f"Inference unavailable: {problem}."]
     if cohort["n_only_a"] or cohort["n_only_b"]:
@@ -267,6 +288,14 @@ def review_comparison(
         "An interval containing zero does not establish equivalence. No multiple-comparison "
         "adjustment is applied to this single comparison.",
     ])
+    if data.scoring is not None:
+        warnings.append(
+            f"Recorded scoring rules: {cohort['n_scoring_matching']} matching, "
+            f"{cohort['n_scoring_conflicting']} conflicting, "
+            f"{cohort['n_scoring_unavailable']} unchecked shared questions. "
+            "Matching names and configuration fingerprints do not verify scorer code, "
+            "unrecorded defaults, external grader state or equivalent score units."
+        )
     return ComparisonReview(
         model_a, model_b, confidence, comparison, problem, cohort, questions,
         _sensitivity(questions, cohort["mean_difference"]),

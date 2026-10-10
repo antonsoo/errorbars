@@ -21,6 +21,14 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Comparisons and rankings reject known conflicting scorer names or recorded
+  configurations for shared questions. Inspect scorer parameters are fingerprinted
+  without exporting their raw values; lm-eval metric names survive normalized export.
+  Canonical CSV/JSONL adds optional `scorer` / `scorer_config` columns, retained in
+  Python data and offline report evidence. Missing declarations remain unchecked.
+  Repeated samples with conflicting rules are refused before averaging.
+  [Identical-answer captures and valid common-grader controls](examples/inspect-scoring/README.md).
+
 - lm-eval imports require `--metric` when selected records declare several metrics,
   validate that it is a declared score on every record, and refuse different metrics
   for shared questions across native input files. Model-name inference requires a

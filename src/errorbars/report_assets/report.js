@@ -103,7 +103,7 @@
       byId("outcome-counts").append(item);
     }
     if (!shared.length) {
-      byId("difference-chart").append(node("p", "No shared questions to plot.", "caption"));
+      byId("difference-chart").append(node("p", "No comparable question differences to plot.", "caption"));
       return;
     }
     let extent = 0;
@@ -245,11 +245,14 @@
     root.replaceChildren(button("Back to question", () => returnToQuestion(q), "close-inspector interactive"),
       node("p", "Selected question", "eyebrow"), heading);
     if (q.cluster_id !== null) root.append(node("p", `Cluster: ${q.cluster_id}`, "caption"));
-    root.append(node("p", q.presence === "conflicting"
+    root.append(node("p", q.identity === "conflicting"
       ? "Conflicting question content: this id has different known signatures. The paired result is withheld for the entire comparison."
+      : q.scoring === "conflicting"
+      ? "Conflicting scoring rules: the recorded scorer names or configurations differ. Re-score both runs under the same rule before comparing."
       : q.difference === null ? "Excluded from the paired estimate: one model has no observed score. Missing is not zero."
       : `A - B = ${number(q.difference, true)}. Each model's score is the mean of its observed draws.`, "caption"));
     root.append(node("p", `Question identity: ${q.identity}.`, "caption"));
+    root.append(node("p", `Scoring declarations: ${q.scoring ?? "unavailable"}.`, "caption"));
     for (const side of ["a", "b"]) {
       const observations = q[`observations_${side}`];
       root.append(node("h4", `${side.toUpperCase()} / ${data[`model_${side}`]}`));
@@ -275,6 +278,11 @@
         const source = node("td", sourceText(obs), "source-cell");
         if (obs.metric !== null) source.append(node("span", `Score: ${obs.metric}`, "source-meta"));
         if (obs.filter !== null) source.append(node("span", `Filter: ${obs.filter}`, "source-meta"));
+        if (obs.scorer) source.append(node("span", `Scorer: ${obs.scorer}`, "source-meta"));
+        if (obs.scorer_config) {
+          const proof = node("details"); proof.append(node("summary", "Scorer configuration fingerprint"));
+          proof.append(node("p", obs.scorer_config, "caption")); source.append(proof);
+        }
         if (obs.question_hash !== null) {
           const proof = node("details"); proof.append(node("summary", "Question signature"));
           proof.append(node("p", obs.question_hash, "caption")); source.append(proof);
@@ -336,10 +344,10 @@
     download(JSON.stringify(data, null, 2) + "\n", "application/json;charset=utf-8", "errorbars-comparison.json");
   });
   byId("download-csv").addEventListener("click", () => {
-    const header = ["question_id", "cluster_id", "presence", "identity", "model_a", "model_b", "mean_a", "mean_b",
+    const header = ["question_id", "cluster_id", "presence", "identity", "scoring", "model_a", "model_b", "mean_a", "mean_b",
       "difference_a_minus_b", "n_observations_a", "n_observations_b"];
     const lines = [header.map(csvCell).join(",")];
-    for (const q of rows) lines.push([q.question_id, q.cluster_id, q.presence, q.identity, data.model_a, data.model_b,
+    for (const q of rows) lines.push([q.question_id, q.cluster_id, q.presence, q.identity, q.scoring, data.model_a, data.model_b,
       q.mean_a, q.mean_b, q.difference, q.observations_a.length, q.observations_b.length].map(csvCell).join(","));
     download(lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8", "errorbars-questions.csv");
   });

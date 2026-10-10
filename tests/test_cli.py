@@ -133,7 +133,7 @@ def test_cli_import_lm_eval(tmp_path) -> None:
     assert result.returncode == 0, result.stderr
     assert "wrote 20 rows" in result.stdout
     rows = out.read_text().strip().splitlines()
-    assert rows[0] == "question_id,model,score,question_hash"
+    assert rows[0] == "question_id,model,score,question_hash,scorer,scorer_config"
     assert len(rows) == 21
     assert rows[1].startswith("copa-0,dummy-copa,0.0,lm-eval-doc-target-v1:")
 
@@ -165,7 +165,7 @@ def test_cli_import_inspect(tmp_path) -> None:
     assert result.returncode == 0, result.stderr
     assert "wrote 5 rows" in result.stdout
     rows = out.read_text().strip().splitlines()
-    assert rows[0] == "question_id,model,score,sample,question_hash"
+    assert rows[0] == "question_id,model,score,sample,question_hash,scorer,scorer_config"
     assert len(rows) == 6
     from errorbars.adapters.inspect_ai import load_inspect_log
     from errorbars.io import load_csv

@@ -189,6 +189,56 @@ they have scores. The planned count describes the selected run, so intentional
 limits and ID selections remain valid. This does not reconstruct questions
 omitted from both selected runs, nor make an early-stopped sample representative.
 
+## Scoring declarations
+
+Question content and scoring rules are separate evidence. Two runs can contain
+identical answers to identical questions yet receive different grades because
+the grader changed. The [retained Inspect captures](../examples/inspect-scoring/README.md)
+demonstrate a false 33.3-point improvement caused by that change alone.
+
+Native Inspect imports retain `inspect:<selected scorer>` and a versioned SHA-256
+fingerprint of the result's recorded parameters. They use the results declaration,
+including after re-scoring, rather than assuming the initial task declaration is
+current. Raw grader parameters are not exported. Missing result parameters remain
+unknown. lm-eval imports retain `lm-eval:<metric>` with unknown configuration;
+filters remain separate provenance because they can define the model-system
+variant being compared.
+
+Canonical CSV/JSONL can retain these two optional columns:
+
+| Column | Meaning | Missing value |
+| --- | --- | --- |
+| `scorer` | Namespaced scoring-rule name | Unchecked rule |
+| `scorer_config` | Fingerprint of the recorded configuration | Unchecked configuration |
+
+`--scorer-col` and `--scorer-config-col` map custom column names. `--scorer`
+continues to select an Inspect scorer. Configuration fingerprints require a
+scorer name. Blank CSV cells and absent/null JSON values remain unknown.
+`errorbars import` and `write_csv` preserve the declarations; removing these
+columns removes the check. Earlier CSV exports need re-importing from native
+logs to recover the metadata.
+
+Python callers can supply `EvalData(..., scoring=[ScoringRule(name, config_hash),
+...])` using `ScoringRule` from `errorbars.io`. One entry corresponds to one
+observation; `None` means unknown. `filter_model` and `concat` preserve it.
+`review_comparison` includes per-question `scoring` states and cohort counts
+`n_scoring_matching`, `n_scoring_conflicting` and `n_scoring_unavailable`.
+CLI comparison JSON adds the same counts under `scoring_rules`. Report observation
+records retain the name and fingerprint, and the inspector exposes both.
+
+A different known name or configuration on any shared question withholds the
+whole paired estimate and ranking. Both scores remain visible; the difference
+for that question is unavailable. Conflicting declarations within one
+model/question are refused before averaging repeated generations. Unknown
+observations cannot erase a known conflict, and cannot count as a matching check.
+
+Matching declarations establish only exact agreement of recorded labels and
+parameters. They do not check implementation versions, hidden defaults, grader
+model versions, external state, representativeness or trustworthy user-supplied
+labels. Aliases and omitted versus explicit defaults are not normalized into
+equivalence. Resolve a conflict by re-scoring both runs under one declaration.
+Numeric-only `paired_compare` cannot perform this provenance check.
+
 ## Evidence, privacy and display limits
 
 - **JSON** retains all questions and observations, source references, content

@@ -33,7 +33,7 @@
         <p id="inference-description">$inference</p>
         <div id="interval-chart" class="chart"></div>
         $interval_table
-        <p class="caption">The interval measures uncertainty in the mean difference, not the range of individual scores.</p>
+        $interval_note
       </section>
       <section class="cohort" aria-labelledby="cohort-heading">
         <p class="eyebrow">Coverage before conclusions</p>
@@ -45,6 +45,7 @@
         </table>
         <p class="coverage-note">$coverage_note</p>
         <p id="identity-note" class="caption">$identity_note</p>
+        <p id="scoring-note" class="caption">$scoring_note</p>
         <div class="interactive cohort-actions">
           <button id="show-shared" type="button">Inspect shared questions</button>
           <button id="show-missing" type="button">Inspect excluded questions</button>
@@ -75,7 +76,7 @@
           <option value="a_higher">A higher</option><option value="b_higher">B higher</option>
           <option value="equal">Equal scores</option><option value="excluded">Excluded questions</option>
           <option value="only_a">Only in A</option><option value="only_b">Only in B</option>
-          <option value="conflicting">Conflicting question content</option>
+          <option value="conflicting">Conflicting evidence</option>
         </select></label>
         <label>Sort by<select id="sort"><option value="magnitude">Largest difference first</option>
           <option value="ascending">A - B: low to high</option><option value="descending">A - B: high to low</option>
@@ -133,6 +134,9 @@
           Prompts and responses do not enter that signature. Canonical inputs may provide a question_hash column.
           A missing signature is unchecked; a partial check means some repeated observations lack a signature.
           Conflicting signatures block inference across the whole cohort and remain in the ledger.</p>
+        <p>Scoring checks compare recorded scorer names and configuration fingerprints separately from
+          question content. A known mismatch blocks comparison; missing settings remain unchecked.
+          Matching declarations do not verify scorer code, unrecorded defaults or external graders.</p>
         <p>JSON retains every question and observation, including rows not currently shown.
           CSV contains all questions matching the current filters, across all pages. Text cells beginning with spreadsheet
           formula characters are prefixed with an apostrophe in CSV; JSON preserves original identifiers.</p>

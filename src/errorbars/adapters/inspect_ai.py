@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from errorbars.adapters._inspect_integrity import check_complete, question_signature
+from errorbars.adapters._inspect_integrity import check_complete, question_signature, scoring_rule
 from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier
 
 __all__ = ["load_inspect_log"]
@@ -124,10 +124,12 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
 
     if not question_id:
         raise ValueError(f"{path}: no scored samples found")
+    assert selected_scorer is not None
 
     data = EvalData(
         question_id=question_id, model=model_col, score=score, sample=sample_col, sources=sources,
         question_hash=signatures if any(signatures) else None,
+        scoring=[scoring_rule(log, selected_scorer, path)] * len(score),
     )
     data.validate()
     return data

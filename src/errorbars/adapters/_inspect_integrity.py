@@ -13,8 +13,35 @@ from collections import Counter
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from errorbars.scoring import ScoringRule
+
 if TYPE_CHECKING:
     from inspect_ai.log import EvalLog, EvalSample
+
+
+def scoring_rule(log: EvalLog, key: str, path: str | Path) -> ScoringRule:
+    """Fingerprint the result's recorded scorer parameters, including re-scoring.
+
+    The original eval.scorers declaration may predate `inspect score`. Results
+    describe the scores being imported. Epoch reducers and aggregate metrics do
+    not change the per-sample grades we read and are deliberately excluded.
+    """
+    hashes = set()
+    assert log.results is not None  # check_complete runs before this function.
+    for result in log.results.scores:
+        if result.scorer != key or "params" not in result.model_fields_set:
+            continue
+        try:
+            canonical = json.dumps(
+                result.params, sort_keys=True, ensure_ascii=True, separators=(",", ":"),
+                allow_nan=False,
+            )
+        except (TypeError, ValueError, RecursionError) as exc:
+            raise ValueError(f"{path}: scorer {key!r}: invalid recorded parameters") from exc
+        hashes.add("inspect-params-v1:" + hashlib.sha256(canonical.encode("ascii")).hexdigest())
+    if len(hashes) > 1:
+        raise ValueError(f"{path}: scorer {key!r}: conflicting recorded parameters in Inspect results")
+    return ScoringRule("inspect:" + key, next(iter(hashes), None))
 
 
 def check_complete(log: EvalLog, path: str | Path) -> None:

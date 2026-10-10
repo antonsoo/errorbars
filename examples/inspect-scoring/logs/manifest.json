@@ -1,0 +1,1052 @@
+{
+  "inspect_ai": "0.3.268",
+  "synthetic": true,
+  "runs": {
+    "exact": {
+      "sha256": "c5ba83764493c7ebed763a49efa4aa110eab3254beec2818ccc4a28aef4036c6",
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "match",
+            "scorer": "match",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {
+              "location": "exact"
+            },
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.3333333333333333,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "match",
+          "score": "match",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "scorers": [
+        {
+          "name": "match",
+          "options": {
+            "location": "exact"
+          },
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            },
+            {
+              "name": "inspect_ai/stderr",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "observations": {
+        "q01": {
+          "output": "The answer is 2.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q02": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q03": {
+          "output": "6",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q04": {
+          "output": "The answer is 8.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q05": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q06": {
+          "output": "12",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q07": {
+          "output": "The answer is 14.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q08": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q09": {
+          "output": "18",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q10": {
+          "output": "The answer is 20.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q11": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q12": {
+          "output": "24",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q13": {
+          "output": "The answer is 26.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q14": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q15": {
+          "output": "30",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q16": {
+          "output": "The answer is 32.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q17": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q18": {
+          "output": "36",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q19": {
+          "output": "The answer is 38.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q20": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q21": {
+          "output": "42",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q22": {
+          "output": "The answer is 44.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q23": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q24": {
+          "output": "48",
+          "scores": {
+            "match": "C"
+          }
+        }
+      }
+    },
+    "anywhere": {
+      "sha256": "14f4feb19c18a005ab6efbb23fc8a15d1ab9cd13fbca5df28aeb89d2f2a80deb",
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "match",
+            "scorer": "match",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {
+              "location": "any"
+            },
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.6666666666666666,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "match",
+          "score": "match",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "scorers": [
+        {
+          "name": "match",
+          "options": {
+            "location": "any"
+          },
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            },
+            {
+              "name": "inspect_ai/stderr",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "observations": {
+        "q01": {
+          "output": "The answer is 2.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q02": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q03": {
+          "output": "6",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q04": {
+          "output": "The answer is 8.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q05": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q06": {
+          "output": "12",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q07": {
+          "output": "The answer is 14.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q08": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q09": {
+          "output": "18",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q10": {
+          "output": "The answer is 20.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q11": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q12": {
+          "output": "24",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q13": {
+          "output": "The answer is 26.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q14": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q15": {
+          "output": "30",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q16": {
+          "output": "The answer is 32.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q17": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q18": {
+          "output": "36",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q19": {
+          "output": "The answer is 38.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q20": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q21": {
+          "output": "42",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q22": {
+          "output": "The answer is 44.",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q23": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q24": {
+          "output": "48",
+          "scores": {
+            "match": "C"
+          }
+        }
+      }
+    },
+    "includes": {
+      "sha256": "5b87deb285adfc438ec9712b9e75508137863f86996690bf710bcbca4758beda",
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "includes",
+            "scorer": "includes",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.6666666666666666,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "includes",
+          "score": "includes",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "scorers": [
+        {
+          "name": "includes",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            },
+            {
+              "name": "inspect_ai/stderr",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "observations": {
+        "q01": {
+          "output": "The answer is 2.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q02": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q03": {
+          "output": "6",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q04": {
+          "output": "The answer is 8.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q05": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q06": {
+          "output": "12",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q07": {
+          "output": "The answer is 14.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q08": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q09": {
+          "output": "18",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q10": {
+          "output": "The answer is 20.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q11": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q12": {
+          "output": "24",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q13": {
+          "output": "The answer is 26.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q14": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q15": {
+          "output": "30",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q16": {
+          "output": "The answer is 32.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q17": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q18": {
+          "output": "36",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q19": {
+          "output": "The answer is 38.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q20": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q21": {
+          "output": "42",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q22": {
+          "output": "The answer is 44.",
+          "scores": {
+            "includes": "C"
+          }
+        },
+        "q23": {
+          "output": "I do not know.",
+          "scores": {
+            "includes": "I"
+          }
+        },
+        "q24": {
+          "output": "48",
+          "scores": {
+            "includes": "C"
+          }
+        }
+      }
+    },
+    "exact-repeat": {
+      "sha256": "55f98314307d9107312ec210e8366e509613c7d02082a966b46be3c83461655b",
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "match",
+            "scorer": "match",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {
+              "location": "exact"
+            },
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.3333333333333333,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "match",
+          "score": "match",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "scorers": [
+        {
+          "name": "match",
+          "options": {
+            "location": "exact"
+          },
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            },
+            {
+              "name": "inspect_ai/stderr",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "observations": {
+        "q01": {
+          "output": "The answer is 2.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q02": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q03": {
+          "output": "6",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q04": {
+          "output": "The answer is 8.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q05": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q06": {
+          "output": "12",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q07": {
+          "output": "The answer is 14.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q08": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q09": {
+          "output": "18",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q10": {
+          "output": "The answer is 20.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q11": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q12": {
+          "output": "24",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q13": {
+          "output": "The answer is 26.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q14": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q15": {
+          "output": "30",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q16": {
+          "output": "The answer is 32.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q17": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q18": {
+          "output": "36",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q19": {
+          "output": "The answer is 38.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q20": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q21": {
+          "output": "42",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q22": {
+          "output": "The answer is 44.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q23": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q24": {
+          "output": "48",
+          "scores": {
+            "match": "C"
+          }
+        }
+      }
+    },
+    "improved-exact": {
+      "sha256": "15880fdfd76eada6a2d1865375a08296bbebe5d50cdac8760f5e331e2c42efd6",
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "match",
+            "scorer": "match",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {
+              "location": "exact"
+            },
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.6666666666666666,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "match",
+          "score": "match",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "scorers": [
+        {
+          "name": "match",
+          "options": {
+            "location": "exact"
+          },
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            },
+            {
+              "name": "inspect_ai/stderr",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "observations": {
+        "q01": {
+          "output": "2",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q02": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q03": {
+          "output": "6",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q04": {
+          "output": "8",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q05": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q06": {
+          "output": "12",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q07": {
+          "output": "14",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q08": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q09": {
+          "output": "18",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q10": {
+          "output": "20",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q11": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q12": {
+          "output": "24",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q13": {
+          "output": "26",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q14": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q15": {
+          "output": "30",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q16": {
+          "output": "32",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q17": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q18": {
+          "output": "36",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q19": {
+          "output": "38",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q20": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q21": {
+          "output": "42",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q22": {
+          "output": "44",
+          "scores": {
+            "match": "C"
+          }
+        },
+        "q23": {
+          "output": "I do not know.",
+          "scores": {
+            "match": "I"
+          }
+        },
+        "q24": {
+          "output": "48",
+          "scores": {
+            "match": "C"
+          }
+        }
+      }
+    }
+  }
+}

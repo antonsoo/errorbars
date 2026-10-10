@@ -60,6 +60,8 @@ def _input_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument("--cluster-col", default="cluster_id")
     sp.add_argument("--sample-col", default="sample")
     sp.add_argument("--question-hash-col", default="question_hash")
+    sp.add_argument("--scorer-col", default="scorer", help="recorded scoring-rule name in CSV/JSONL")
+    sp.add_argument("--scorer-config-col", default="scorer_config", help="scorer configuration fingerprint")
     _harness_args(sp)
 
 
@@ -85,6 +87,8 @@ def _columns_from(args: argparse.Namespace) -> ColumnMap:
         cluster_id=args.cluster_col,
         sample=args.sample_col,
         question_hash=args.question_hash_col,
+        scorer=args.scorer_col,
+        scorer_config=args.scorer_config_col,
     )
 
 
@@ -278,6 +282,10 @@ def cmd_compare(args: argparse.Namespace) -> None:
                     status: review.cohort[f"n_identity_{status}"]
                     for status in ("matching", "partial", "unavailable", "conflicting")
                 },
+                "scoring_rules": {
+                    status: review.cohort[f"n_scoring_{status}"]
+                    for status in ("matching", "unavailable", "conflicting")
+                },
             }
         )
         return
@@ -341,6 +349,13 @@ def cmd_compare(args: argparse.Namespace) -> None:
         "Matching signatures do not check scoring-rule equivalence.",
         style="dim",
     )
+    if data.scoring is not None:
+        out.note(
+            f"Scoring declarations: {review.cohort['n_scoring_matching']} matching, "
+            f"{review.cohort['n_scoring_unavailable']} unchecked shared questions. "
+            "These checks cover recorded names/settings, not scorer code or unrecorded defaults.",
+            style="dim",
+        )
     for note in comp.warnings:
         out.note(note, style="yellow")
 
@@ -525,6 +540,7 @@ def cmd_import(args: argparse.Namespace) -> None:
     args.question_col, args.model_col, args.score_col = "question_id", "model", "score"
     args.cluster_col, args.sample_col = "cluster_id", "sample"
     args.question_hash_col = "question_hash"
+    args.scorer_col, args.scorer_config_col = "scorer", "scorer_config"
     data = _load(args, model=args.model)
 
     write_csv(data, args.output)

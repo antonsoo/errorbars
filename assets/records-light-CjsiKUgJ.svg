@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="880" height="440" role="img" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title>Every new SWE-bench Verified record, and whether it was distinguishable from the last</title>
+<rect width="880" height="440" fill="#fcfcfb"/>
+<text x="24.0" y="30.0" font-size="16" font-weight="600" fill="#0b0b0b" text-anchor="start">Every new SWE-bench Verified record, and whether it was distinguishable from the last</text>
+<text x="24.0" y="50.0" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Share of the 500 tasks resolved by each submission that raised the top score, with a 95% interval.</text>
+<circle cx="29.0" cy="74.0" r="4.5" fill="#2a78d6"/>
+<text x="40.0" y="78.0" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">significantly above the record it replaced (6)</text>
+<circle cx="367.4" cy="74.0" r="4.5" fill="#898781"/>
+<text x="378.4" y="78.0" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">not significant (24)</text>
+<line x1="56.0" y1="400.0" x2="852.0" y2="400.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="404.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">0%</text>
+<line x1="56.0" y1="333.3" x2="852.0" y2="333.3" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="337.3" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">20%</text>
+<line x1="56.0" y1="266.7" x2="852.0" y2="266.7" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="270.7" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">40%</text>
+<line x1="56.0" y1="200.0" x2="852.0" y2="200.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="204.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">60%</text>
+<line x1="56.0" y1="133.3" x2="852.0" y2="133.3" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="48.0" y="137.3" font-size="11.5" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">80%</text>
+<line x1="165.9" y1="400.0" x2="165.9" y2="405.0" stroke="#c3c2b7" stroke-width="1" stroke-linecap="round"/>
+<text x="165.9" y="420.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">Jan 2024</text>
+<line x1="329.7" y1="400.0" x2="329.7" y2="405.0" stroke="#c3c2b7" stroke-width="1" stroke-linecap="round"/>
+<text x="329.7" y="420.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">Jul 2024</text>
+<line x1="495.4" y1="400.0" x2="495.4" y2="405.0" stroke="#c3c2b7" stroke-width="1" stroke-linecap="round"/>
+<text x="495.4" y="420.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">Jan 2025</text>
+<line x1="658.4" y1="400.0" x2="658.4" y2="405.0" stroke="#c3c2b7" stroke-width="1" stroke-linecap="round"/>
+<text x="658.4" y="420.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">Jul 2025</text>
+<line x1="824.1" y1="400.0" x2="824.1" y2="405.0" stroke="#c3c2b7" stroke-width="1" stroke-linecap="round"/>
+<text x="824.1" y="420.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">Jan 2026</text>
+<line x1="56.0" y1="400.0" x2="852.0" y2="400.0" stroke="#c3c2b7" stroke-width="1" stroke-linecap="round"/>
+<path d="M91.1,385.3 H248.7 V325.3 H282.0 V314.7 H312.6 V291.3 H317.1 V276.7 H327.0 V272.0 H347.7 V270.7 H374.8 V264.7 H378.4 V249.3 H406.3 V248.7 H431.5 V236.7 H436.9 V233.3 H437.8 V223.3 H446.8 V219.3 H468.4 V216.7 H473.8 V210.0 H478.3 V206.0 H485.5 V192.7 H503.5 V190.7 H509.8 V184.7 H562.1 V182.0 H589.1 V180.7 H602.6 V166.7 H616.1 V165.3 H619.7 V164.7 H622.4 V156.0 H633.2 V152.0 H641.3 V149.3 H689.0 V144.0 H738.5 V137.3 H799.8 V136.0 H852.0" fill="none" stroke="#c3c2b7" stroke-width="2" stroke-linejoin="round"/>
+<line x1="91.1" y1="390.3" x2="91.1" y2="378.1" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="248.7" y1="336.8" x2="248.7" y2="312.5" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="282.0" y1="326.8" x2="282.0" y2="301.3" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="312.6" y1="304.5" x2="312.6" y2="277.2" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="317.1" y1="290.4" x2="317.1" y2="262.3" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="327.0" y1="285.9" x2="327.0" y2="257.5" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="347.7" y1="284.6" x2="347.7" y2="256.2" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="374.8" y1="278.7" x2="374.8" y2="250.1" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="378.4" y1="263.7" x2="378.4" y2="234.7" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="406.3" y1="263.0" x2="406.3" y2="234.1" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="431.5" y1="251.2" x2="431.5" y2="222.1" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="436.9" y1="247.9" x2="436.9" y2="218.8" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="437.8" y1="237.9" x2="437.8" y2="208.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="446.8" y1="233.9" x2="446.8" y2="204.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="468.4" y1="231.3" x2="468.4" y2="202.3" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="473.8" y1="224.6" x2="473.8" y2="195.8" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="478.3" y1="220.6" x2="478.3" y2="191.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="485.5" y1="207.1" x2="485.5" y2="178.9" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="503.5" y1="205.1" x2="503.5" y2="176.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="509.8" y1="199.0" x2="509.8" y2="171.1" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="562.1" y1="196.2" x2="562.1" y2="168.5" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="589.1" y1="194.9" x2="589.1" y2="167.3" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="602.6" y1="180.5" x2="602.6" y2="153.8" stroke="#2a78d6" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="616.1" y1="179.1" x2="616.1" y2="152.6" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="619.7" y1="178.5" x2="619.7" y2="151.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="622.4" y1="169.5" x2="622.4" y2="143.7" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="633.2" y1="165.3" x2="633.2" y2="139.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="641.3" y1="162.6" x2="641.3" y2="137.4" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="689.0" y1="157.0" x2="689.0" y2="132.4" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="738.5" y1="150.0" x2="738.5" y2="126.1" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="799.8" y1="148.6" x2="799.8" y2="124.9" stroke="#898781" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="91.1" cy="385.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2023-10-10  RAG + Claude 2: 4.4% (first entry)</title></circle>
+<circle cx="248.7" cy="325.3" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>2024-04-02  SWE-agent + GPT 4 (1106): 22.4%, +18.0 over the previous record, p = 0.000</title></circle>
+<text x="239.7" y="318.3" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="end" font-variant-numeric="tabular-nums">+18.0</text>
+<circle cx="282.0" cy="314.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-05-09  Amazon Q Developer Agent (v20240430-dev): 25.6%, +3.2 over the previous record, p = 0.120</title></circle>
+<circle cx="312.6" cy="291.3" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>2024-06-12  MASAI + GPT 4o (2024-06-12): 32.6%, +7.0 over the previous record, p = 0.001</title></circle>
+<text x="303.6" y="284.3" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="end" font-variant-numeric="tabular-nums">+7.0</text>
+<circle cx="317.1" cy="276.7" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>2024-06-17  Factory Code Droid: 37.0%, +4.4 over the previous record, p = 0.034</title></circle>
+<text x="308.1" y="269.7" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="end" font-variant-numeric="tabular-nums">+4.4</text>
+<circle cx="327.0" cy="272.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-06-28  AutoCodeRover (v20240620) + GPT 4o (2024-05-13): 38.4%, +1.4 over the previous record, p = 0.495</title></circle>
+<circle cx="347.7" cy="270.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-07-21  Amazon Q Developer Agent (v20240719-dev): 38.8%, +0.4 over the previous record, p = 0.848</title></circle>
+<circle cx="374.8" cy="264.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-08-20  Honeycomb: 40.6%, +1.8 over the previous record, p = 0.380</title></circle>
+<circle cx="378.4" cy="249.3" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>2024-08-24  Gru(2024-08-24): 45.2%, +4.6 over the previous record, p = 0.035</title></circle>
+<text x="369.4" y="242.3" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="end" font-variant-numeric="tabular-nums">+4.6</text>
+<circle cx="406.3" cy="248.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-09-24  Solver (2024-09-12): 45.4%, +0.2 over the previous record, p = 0.917</title></circle>
+<circle cx="431.5" cy="236.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-10-22  Tools + Claude 3.5 Sonnet (2024-10-22): 49.0%, +3.6 over the previous record, p = 0.069</title></circle>
+<circle cx="436.9" cy="233.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-10-28  Solver (2024-10-28): 50.0%, +1.0 over the previous record, p = 0.632</title></circle>
+<circle cx="437.8" cy="223.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-10-29  OpenHands + CodeAct v2.1 (claude-3-5-sonnet-20241022): 53.0%, +3.0 over the previous record, p = 0.124</title></circle>
+<circle cx="446.8" cy="219.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-11-08  devlo: 54.2%, +1.2 over the previous record, p = 0.513</title></circle>
+<circle cx="468.4" cy="216.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-12-02  Amazon Q Developer Agent (v20241202-dev): 55.0%, +0.8 over the previous record, p = 0.663</title></circle>
+<circle cx="473.8" cy="210.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-12-08  Gru(2024-12-08): 57.0%, +2.0 over the previous record, p = 0.313</title></circle>
+<circle cx="478.3" cy="206.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2024-12-13  devlo: 58.2%, +1.2 over the previous record, p = 0.513</title></circle>
+<circle cx="485.5" cy="192.7" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>2024-12-21  CodeStory Midwit Agent + swe-search: 62.2%, +4.0 over the previous record, p = 0.035</title></circle>
+<text x="476.5" y="185.7" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="end" font-variant-numeric="tabular-nums">+4.0</text>
+<circle cx="503.5" cy="190.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-01-10  Blackbox AI Agent: 62.8%, +0.6 over the previous record, p = 0.759</title></circle>
+<circle cx="509.8" cy="184.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-01-17  W&amp;B Programmer O1 crosscheck5: 64.6%, +1.8 over the previous record, p = 0.366</title></circle>
+<circle cx="562.1" cy="182.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-03-16  Augment Agent v0: 65.4%, +0.8 over the previous record, p = 0.670</title></circle>
+<circle cx="589.1" cy="180.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-04-15  OpenHands: 65.8%, +0.4 over the previous record, p = 0.819</title></circle>
+<circle cx="602.6" cy="166.7" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>2025-04-30  Zencoder (2025-04-30): 70.0%, +4.2 over the previous record, p = 0.018</title></circle>
+<text x="593.6" y="159.7" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="end" font-variant-numeric="tabular-nums">+4.2</text>
+<circle cx="616.1" cy="165.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-05-15  Refact.ai Agent: 70.4%, +0.4 over the previous record, p = 0.797</title></circle>
+<circle cx="619.7" cy="164.7" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-05-19  TRAE: 70.6%, +0.2 over the previous record, p = 0.898</title></circle>
+<circle cx="622.4" cy="156.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-05-22  Tools + Claude 4 Opus (2025-05-22): 73.2%, +2.6 over the previous record, p = 0.133</title></circle>
+<circle cx="633.2" cy="152.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-06-03  Refact.ai Agent + Claude 4 Sonnet + o4-mini: 74.4%, +1.2 over the previous record, p = 0.474</title></circle>
+<circle cx="641.3" cy="149.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-06-12  TRAE + Claude Sonnet 4 + Opus 4 + Sonnet 3.7 + Gemini 2.5 Pro: 75.2%, +0.8 over the previous record, p = 0.593</title></circle>
+<circle cx="689.0" cy="144.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-08-04  EPAM AI/Run Developer Agent v20250719 + Claude 4 Sonnet: 76.8%, +1.6 over the previous record, p = 0.258</title></circle>
+<circle cx="738.5" cy="137.3" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-09-28  TRAE + Doubao-Seed-Code: 78.8%, +2.0 over the previous record, p = 0.212</title></circle>
+<circle cx="799.8" cy="136.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>2025-12-05  Sonar Foundation Agent + Claude 4.5 Opus: 79.2%, +0.4 over the previous record, p = 0.803</title></circle>
+<text x="809.8" y="127.0" font-size="12.5" font-weight="600" fill="#0b0b0b" text-anchor="start" font-variant-numeric="tabular-nums">79.2%</text>
+</svg>

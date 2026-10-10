@@ -20,3 +20,7 @@ is loaded by the web page.
 
 Local font files and their license notices are under
 [`web/src/fonts/`](web/src/fonts/).
+
+The standalone comparison report also bundles the Latin Spectral, IBM Plex Sans
+and IBM Plex Mono subsets under `src/errorbars/report_assets/fonts/`, with their
+license notices. Generated HTML embeds those notices alongside the font data.

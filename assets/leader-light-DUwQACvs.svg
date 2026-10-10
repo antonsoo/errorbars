@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 692" width="880" height="692" role="img" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title>How far down the leaderboard before the leader is clearly ahead</title>
+<rect width="880" height="692" fill="#fcfcfb"/>
+<text x="24.0" y="30.0" font-size="16" font-weight="600" fill="#0b0b0b" text-anchor="start">How far down the leaderboard before the leader is clearly ahead</text>
+<text x="24.0" y="50.0" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Sonar Foundation Agent + Claude 4.5 Opus (79.2%) minus each following rank: paired 95% interval, unadjusted.</text>
+<circle cx="29.0" cy="74.0" r="4.5" fill="#898781"/>
+<text x="40.0" y="78.0" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">not distinguishable from the leader (8)</text>
+<circle cx="322.6" cy="74.0" r="4.5" fill="#2a78d6"/>
+<text x="333.6" y="78.0" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">leader ahead, unadjusted (16)</text>
+<line x1="392.0" y1="106.0" x2="392.0" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="392.0" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">−4</text>
+<line x1="449.5" y1="106.0" x2="449.5" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="449.5" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">−2</text>
+<line x1="507.0" y1="106.0" x2="507.0" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="507.0" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="564.5" y1="106.0" x2="564.5" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="564.5" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">+2</text>
+<line x1="622.0" y1="106.0" x2="622.0" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="622.0" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">+4</text>
+<line x1="679.5" y1="106.0" x2="679.5" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="679.5" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">+6</text>
+<line x1="737.0" y1="106.0" x2="737.0" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="737.0" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">+8</text>
+<line x1="794.5" y1="106.0" x2="794.5" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="794.5" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">+10</text>
+<line x1="852.0" y1="106.0" x2="852.0" y2="640.0" stroke="#e1e0d9" stroke-width="1" stroke-linecap="round"/>
+<text x="852.0" y="658.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">+12</text>
+<line x1="507.0" y1="106.0" x2="507.0" y2="640.0" stroke="#898781" stroke-width="1" stroke-linecap="round"/>
+<text x="622.0" y="680.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="middle">leader&#x27;s advantage, in points</text>
+<text x="40.0" y="127.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">2</text>
+<text x="52.0" y="127.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">live-SWE-agent + Claude 4.5 Opus medi…</text>
+<text x="376.0" y="127.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">79.2</text>
+<line x1="439.1" y1="123.0" x2="574.9" y2="123.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="507.0" cy="123.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 2  live-SWE-agent + Claude 4.5 Opus medium (20251101): leader ahead by 0.0 points [-2.4, 2.4], p = 1.000</title></circle>
+<text x="40.0" y="149.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">3</text>
+<text x="52.0" y="149.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">TRAE + Doubao-Seed-Code</text>
+<text x="376.0" y="149.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">78.8</text>
+<line x1="427.9" y1="145.0" x2="609.1" y2="145.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="518.5" cy="145.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 3  TRAE + Doubao-Seed-Code: leader ahead by 0.4 points [-2.8, 3.5], p = 0.803</title></circle>
+<text x="40.0" y="171.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">4</text>
+<text x="52.0" y="171.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">OpenHands + Claude Opus 4.5</text>
+<text x="376.0" y="171.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">77.6</text>
+<line x1="485.1" y1="167.0" x2="620.9" y2="167.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="553.0" cy="167.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 4  OpenHands + Claude Opus 4.5: leader ahead by 1.6 points [-0.8, 4.0], p = 0.183</title></circle>
+<text x="40.0" y="193.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">5</text>
+<text x="52.0" y="193.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">live-SWE-agent + Gemini 3 Pro Preview…</text>
+<text x="376.0" y="193.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">77.4</text>
+<line x1="479.7" y1="189.0" x2="637.8" y2="189.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="558.8" cy="189.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 5  live-SWE-agent + Gemini 3 Pro Preview (2025-11-18): leader ahead by 1.8 points [-0.9, 4.5], p = 0.199</title></circle>
+<text x="40.0" y="215.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">6</text>
+<text x="52.0" y="215.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">EPAM AI/Run Developer Agent v20250719…</text>
+<text x="376.0" y="215.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">76.8</text>
+<line x1="488.6" y1="211.0" x2="663.4" y2="211.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="576.0" cy="211.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 6  EPAM AI/Run Developer Agent v20250719 + Claude 4 Sonnet: leader ahead by 2.4 points [-0.6, 5.4], p = 0.121</title></circle>
+<text x="40.0" y="237.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">7</text>
+<text x="52.0" y="237.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Atlassian Rovo Dev (2025-09-02)</text>
+<text x="376.0" y="237.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">76.8</text>
+<line x1="493.2" y1="233.0" x2="658.8" y2="233.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="576.0" cy="233.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 7  Atlassian Rovo Dev (2025-09-02): leader ahead by 2.4 points [-0.5, 5.3], p = 0.103</title></circle>
+<text x="40.0" y="259.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">8</text>
+<text x="52.0" y="259.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Claude 4.5 Opus (high)</text>
+<text x="376.0" y="259.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">76.8</text>
+<line x1="501.2" y1="255.0" x2="650.8" y2="255.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="576.0" cy="255.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 8  Claude 4.5 Opus (high): leader ahead by 2.4 points [-0.2, 5.0], p = 0.070</title></circle>
+<text x="40.0" y="281.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">9</text>
+<text x="52.0" y="281.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">ACoder</text>
+<text x="376.0" y="281.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">76.4</text>
+<line x1="494.6" y1="277.0" x2="680.4" y2="277.0" stroke="#898781" stroke-width="2" stroke-linecap="round"/>
+<circle cx="587.5" cy="277.0" r="4.5" fill="#898781" stroke="#fcfcfb" stroke-width="2"><title>rank 9  ACoder: leader ahead by 2.8 points [-0.4, 6.0], p = 0.090</title></circle>
+<text x="40.0" y="303.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">10</text>
+<text x="52.0" y="303.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Gemini 3 Flash (high)</text>
+<text x="376.0" y="303.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">75.8</text>
+<line x1="516.8" y1="299.0" x2="692.7" y2="299.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="604.8" cy="299.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 10  Gemini 3 Flash (high): leader ahead by 3.4 points [0.3, 6.5], p = 0.029</title></circle>
+<text x="40.0" y="325.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">11</text>
+<text x="52.0" y="325.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">MiniMax M2.5 (high)</text>
+<text x="376.0" y="325.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">75.8</text>
+<line x1="515.3" y1="321.0" x2="694.2" y2="321.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="604.8" cy="321.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 11  MiniMax M2.5 (high): leader ahead by 3.4 points [0.3, 6.5], p = 0.032</title></circle>
+<text x="40.0" y="347.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">12</text>
+<text x="52.0" y="347.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Warp</text>
+<text x="376.0" y="347.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">75.6</text>
+<line x1="524.8" y1="343.0" x2="696.2" y2="343.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="610.5" cy="343.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 12  Warp: leader ahead by 3.6 points [0.6, 6.6], p = 0.018</title></circle>
+<text x="40.0" y="369.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">13</text>
+<text x="52.0" y="369.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Claude 4.6 Opus</text>
+<text x="376.0" y="369.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">75.6</text>
+<line x1="534.3" y1="365.0" x2="686.7" y2="365.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="610.5" cy="365.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 13  Claude 4.6 Opus: leader ahead by 3.6 points [0.9, 6.2], p = 0.008</title></circle>
+<text x="40.0" y="391.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">14</text>
+<text x="52.0" y="391.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">TRAE + Claude Sonnet 4 + Opus 4 + Son…</text>
+<text x="376.0" y="391.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">75.2</text>
+<line x1="533.5" y1="387.0" x2="710.5" y2="387.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="622.0" cy="387.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 14  TRAE + Claude Sonnet 4 + Opus 4 + Sonnet 3.7 + Gemini 2.5 Pro: leader ahead by 4.0 points [0.9, 7.1], p = 0.011</title></circle>
+<text x="40.0" y="413.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">15</text>
+<text x="52.0" y="413.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Harness AI</text>
+<text x="376.0" y="413.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.8</text>
+<line x1="546.7" y1="409.0" x2="720.3" y2="409.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="633.5" cy="409.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 15  Harness AI: leader ahead by 4.4 points [1.4, 7.4], p = 0.004</title></circle>
+<text x="40.0" y="435.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">16</text>
+<text x="52.0" y="435.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Sonar Foundation Agent + Claude 4.5 S…</text>
+<text x="376.0" y="435.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.8</text>
+<line x1="557.6" y1="431.0" x2="709.4" y2="431.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="633.5" cy="431.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 16  Sonar Foundation Agent + Claude 4.5 Sonnet: leader ahead by 4.4 points [1.8, 7.0], p = 0.001</title></circle>
+<text x="40.0" y="457.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">17</text>
+<text x="52.0" y="457.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Lingxi-v1.5_claude-4-sonnet-20250514</text>
+<text x="376.0" y="457.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.6</text>
+<line x1="553.3" y1="453.0" x2="725.2" y2="453.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="639.2" cy="453.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 17  Lingxi-v1.5_claude-4-sonnet-20250514: leader ahead by 4.6 points [1.6, 7.6], p = 0.003</title></circle>
+<text x="40.0" y="479.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">18</text>
+<text x="52.0" y="479.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">JoyCode + Claude 4 Sonnet + GPT-4.1</text>
+<text x="376.0" y="479.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.6</text>
+<line x1="544.7" y1="475.0" x2="733.8" y2="475.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="639.2" cy="475.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 18  JoyCode + Claude 4 Sonnet + GPT-4.1: leader ahead by 4.6 points [1.3, 7.9], p = 0.006</title></circle>
+<text x="40.0" y="501.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">19</text>
+<text x="52.0" y="501.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Refact.ai Agent + Claude 4 Sonnet + o…</text>
+<text x="376.0" y="501.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.4</text>
+<line x1="549.8" y1="497.0" x2="740.2" y2="497.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="645.0" cy="497.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 19  Refact.ai Agent + Claude 4 Sonnet + o4-mini: leader ahead by 4.8 points [1.5, 8.1], p = 0.005</title></circle>
+<text x="40.0" y="523.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">20</text>
+<text x="52.0" y="523.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Prometheus-v1.2.1 + GPT-5</text>
+<text x="376.0" y="523.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.4</text>
+<line x1="553.9" y1="519.0" x2="736.1" y2="519.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="645.0" cy="519.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 20  Prometheus-v1.2.1 + GPT-5: leader ahead by 4.8 points [1.6, 8.0], p = 0.003</title></circle>
+<text x="40.0" y="545.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">21</text>
+<text x="52.0" y="545.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Claude 4.5 Opus (20251101) (medium)</text>
+<text x="376.0" y="545.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.4</text>
+<line x1="565.9" y1="541.0" x2="724.1" y2="541.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="645.0" cy="541.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 21  Claude 4.5 Opus (20251101) (medium): leader ahead by 4.8 points [2.0, 7.5], p = 0.001</title></circle>
+<text x="40.0" y="567.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">22</text>
+<text x="52.0" y="567.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Gemini 3 Pro Preview (2025-11-18)</text>
+<text x="376.0" y="567.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">74.2</text>
+<line x1="566.2" y1="563.0" x2="735.3" y2="563.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="650.8" cy="563.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 22  Gemini 3 Pro Preview (2025-11-18): leader ahead by 5.0 points [2.1, 7.9], p = 0.001</title></circle>
+<text x="40.0" y="589.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">23</text>
+<text x="52.0" y="589.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Salesforce AI Research SAGE (OpenHand…</text>
+<text x="376.0" y="589.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">73.8</text>
+<line x1="569.4" y1="585.0" x2="755.1" y2="585.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="662.2" cy="585.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 23  Salesforce AI Research SAGE (OpenHands): leader ahead by 5.4 points [2.2, 8.6], p = 0.001</title></circle>
+<text x="40.0" y="611.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">24</text>
+<text x="52.0" y="611.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Tools + Claude 4 Opus (2025-05-22)</text>
+<text x="376.0" y="611.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">73.2</text>
+<line x1="587.5" y1="607.0" x2="771.5" y2="607.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="679.5" cy="607.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 24  Tools + Claude 4 Opus (2025-05-22): leader ahead by 6.0 points [2.8, 9.2], p = 0.000</title></circle>
+<text x="40.0" y="633.0" font-size="12" font-weight="400" fill="#898781" text-anchor="end" font-variant-numeric="tabular-nums">25</text>
+<text x="52.0" y="633.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">Salesforce AI Research SAGE (bash-onl…</text>
+<text x="376.0" y="633.0" font-size="12" font-weight="400" fill="#0b0b0b" text-anchor="end" font-variant-numeric="tabular-nums">73.0</text>
+<line x1="591.2" y1="629.0" x2="779.3" y2="629.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="685.2" cy="629.0" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>rank 25  Salesforce AI Research SAGE (bash-only): leader ahead by 6.2 points [2.9, 9.5], p = 0.000</title></circle>
+</svg>

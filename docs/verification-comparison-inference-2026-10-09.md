@@ -60,3 +60,14 @@ result does not establish equivalence. No new model inference was performed.
 
 GitHub Actions is disabled on this repository. Local checks above therefore
 provide the validation record; a source push is not a CI run or PyPI release.
+
+## Published source and hosted verification
+
+Source was pushed through `f36cbd4`. The byte-identical verified static build
+was committed on the existing `gh-pages` history as `70fecf1` and pushed
+normally (no force push). GitHub's live HTML serves the expected
+`swe-bench-BkK202lq.js` asset and the exact-test explanation. All 42 browser
+workflows also passed against `https://antonsoo.github.io/errorbars/`, in both
+Chromium and Firefox. This includes the actual 40-vs-24 counterexample,
+swapping/linking submissions, local pasted runs, narrow layouts and accessibility.
+GitHub Actions remained disabled; no PyPI release was made.

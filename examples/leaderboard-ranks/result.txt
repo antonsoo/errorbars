@@ -1,0 +1,22 @@
+leaderboard
+rank  model         mean            95% CI  interval basis    n  not separated: ranks  not tested: ranks
+----  ----------  ------  ----------------  --------------  ---  --------------------  -----------------
+   1  leader      0.8000  [0.7212, 0.8788]  CLT             100  2, 5                  3
+   2  wide-near   0.7500  [0.6647, 0.8353]  CLT             100  1, 4-5                3
+   3  unmatched   0.6600  [0.6404, 0.6796]  CLT               2  -                     1-2, 4-5
+   4  narrow-gap  0.6500  [0.5560, 0.7440]  CLT             100  2, 5                  3
+   5  wide-far    0.6400  [0.5454, 0.7346]  CLT             100  1-2, 4                3
+'not separated: ranks' lists only other models whose paired test has Holm-adjusted p >= 0.05. Gaps are preserved; '-' means none. Non-significance does not establish equivalence. The overlapping groups remain in --json.
+The models were not scored on the same questions. Each mean is over that model's own questions; each paired test uses the questions its two models share.
+4 model pairs have fewer than two shared questions and cannot be tested. Untested pairs establish neither a difference nor equivalence.
+
+pairwise paired tests (Holm-corrected)
+A           B           shared n  mean diff  test            p (used)  p (used, Holm)  significant?
+----------  ----------  --------  ---------  -------------  ---------  --------------  ------------
+leader      wide-near        100    +0.0500  McNemar exact     0.4996          0.9991  no
+leader      narrow-gap       100    +0.1500  McNemar exact  6.104e-05       0.0003662  yes
+leader      wide-far         100    +0.1600  McNemar exact    0.04405          0.1656  no
+wide-near   narrow-gap       100    +0.1000  McNemar exact    0.04139          0.1656  no
+wide-near   wide-far         100    +0.1100  McNemar exact     0.0266           0.133  no
+narrow-gap  wide-far         100    +0.0100  McNemar exact          1               1  no
+'p (used, Holm)' adjusts the selected tests across all pairs: clustered t for dependent questions, exact McNemar for one binary score per shared question, paired t for continuous scores or repeated-generation means. Groups do not establish equivalence.

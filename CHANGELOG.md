@@ -21,6 +21,14 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Leaderboard tables and SVGs show exact other-model rank sets instead of group
+  letters or min-max tie spans. The old spans implied 150 false directed ties on
+  the retained 173-submission SWE-bench board. JSON adds `rank_comparisons`,
+  `untested_pairs` (with shared counts and reasons), and board-level `warnings`.
+  Existing `groups`, tests and intervals are preserved. Comparisons with fewer
+  than two shared questions remain explicitly untested. SVG labels wrap within
+  the export instead of clipping. [Real-data audit](studies/leaderboard-ranks/README.md).
+
 - Repeated-answer power plans require explicit `repeat_correlation` / `--repeat-correlation`
   for more than one answer per question. Python and TypeScript preserve between-question
   variance using `V * (r + (1-r)/k)`; single-answer plans are unchanged. JSON retains the
@@ -65,8 +73,7 @@ All notable changes to this project are documented in this file.
   30 questions.
 - `leaderboard` printed every pair and one letter per group: 15,000 lines for 175 models, and
   group labels that ran past `z`. Past 66 pairs the table shows adjacent ranks (`--all-pairs`
-  for the rest; `--json` is unchanged), and past 26 groups each model shows the span of ranks
-  it cannot be told apart from.
+  for the rest). The initial rank-span shorthand is superseded by exact sets above.
 - `leaderboard` grouped indistinguishable models by enumerating cliques without pivoting.
   A board of 28 near-tied real submissions took 66 seconds and one of 47 did not finish. It
   now pivots: under a second for 47, about ten seconds for 175 models (15,225 pairs).

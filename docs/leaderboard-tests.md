@@ -29,6 +29,14 @@ Consumers should use `p_value_used` for the selected raw test and `p_holm` for
 grouping. `compare` still exposes its existing diagnostics. Question weighting
 is unchanged: every question has equal weight after averaging its generations.
 
+Current CLI and SVG output shows exact other-model rank sets, preserving
+significant and untested gaps. JSON retains the original maximal-clique `groups`
+and adds `rank_comparisons`, `untested_pairs`, and cohort warnings.
+[Public-board display audit](../studies/leaderboard-ranks/README.md) and
+[small inspectable counterexample](../examples/leaderboard-ranks/README.md).
+The earlier terminal capture above documents the test-selection repair; its
+group-letter column has since been replaced by exact ranks.
+
 ## Confidence intervals also honor supplied clusters
 
 A separate inconsistency appeared in the same workflow: pairwise tests used

@@ -1,0 +1,20 @@
+{
+  "gaps": {
+    "models": 5,
+    "tested_pairs": 6,
+    "untested_pairs": 4,
+    "svg_sha256": "9311d102dee55de5279c93dee0ad45367778a696c5578dcc9685f9c5379cbef6"
+  },
+  "task-independent": {
+    "models": 173,
+    "tested_pairs": 14878,
+    "untested_pairs": 0,
+    "svg_sha256": "d9a2b0fd568414e62ecba5d9eec2c8e2c56243d34cfc5ae704109763fc57b683"
+  },
+  "repository-clustered": {
+    "models": 173,
+    "tested_pairs": 14878,
+    "untested_pairs": 0,
+    "svg_sha256": "e133ca51f6c1183963c825c4f4d6e2c2fe2c6f34af9a902cfc0e2efa3120ffe7"
+  }
+}

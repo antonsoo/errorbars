@@ -1,0 +1,803 @@
+{
+  "baseline_revision": "6af9d9533e02e46e7e29466047005523f8b8224f",
+  "input_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "exclusions": [
+    "20250720_mini-v0.0.0-claude-3-7-sonnet-20250219",
+    "20260226_mini-v2.0.0_gemini-3-pro-high"
+  ],
+  "scenarios": {
+    "task-independent": {
+      "models": 173,
+      "questions": 500,
+      "pairs": 14878,
+      "groups": 117,
+      "baseline_cli_used_spans": true,
+      "false_directed_ties_in_baseline_cli": 150,
+      "affected_models_in_baseline_cli": 77,
+      "false_directed_ties_after": 0,
+      "unchanged_analysis_sha256": "ec4e65851ffd3a7ab86b5182ddc6f183cab3130ab0a50cd0a5c3c79f96a00e3b",
+      "rank_comparisons_sha256": "06075ba8f29450594eaaed53251c8dd6afb2edce2dd6d9aa1f08b4e7c86cea26",
+      "span_gaps": [
+        {
+          "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+          "rank": 1,
+          "old_span": "1-31",
+          "significant_ranks_in_span": [
+            28,
+            30
+          ],
+          "exact_display": "2-27, 29, 31"
+        },
+        {
+          "model": "20250928_trae_doubao_seed_code",
+          "rank": 3,
+          "old_span": "1-39",
+          "significant_ranks_in_span": [
+            32,
+            33,
+            34,
+            38
+          ],
+          "exact_display": "1-2, 4-31, 35-37, 39"
+        },
+        {
+          "model": "20251127_openhands_claude-opus-4-5",
+          "rank": 4,
+          "old_span": "1-48",
+          "significant_ranks_in_span": [
+            45,
+            47
+          ],
+          "exact_display": "1-3, 5-44, 46, 48"
+        },
+        {
+          "model": "20251120_livesweagent_gemini-3-pro-preview",
+          "rank": 5,
+          "old_span": "1-48",
+          "significant_ranks_in_span": [
+            45
+          ],
+          "exact_display": "1-4, 6-44, 46-48"
+        },
+        {
+          "model": "20260217_mini-v2.0.0_gemini-3-flash-high",
+          "rank": 10,
+          "old_span": "1-51",
+          "significant_ranks_in_span": [
+            50
+          ],
+          "exact_display": "1-9, 11-49, 51"
+        },
+        {
+          "model": "20251118_mini-v1.15.0_gemini-3-pro-preview-20251118",
+          "rank": 22,
+          "old_span": "1-55",
+          "significant_ranks_in_span": [
+            53,
+            54
+          ],
+          "exact_display": "1-21, 23-52, 55"
+        },
+        {
+          "model": "20250522_tools_claude-4-opus",
+          "rank": 24,
+          "old_span": "1-65",
+          "significant_ranks_in_span": [
+            64
+          ],
+          "exact_display": "1-23, 25-63, 65"
+        },
+        {
+          "model": "20250522_tools_claude-4-sonnet",
+          "rank": 28,
+          "old_span": "2-65",
+          "significant_ranks_in_span": [
+            63
+          ],
+          "exact_display": "2-27, 29-62, 64-65"
+        },
+        {
+          "model": "20250807_openhands_gpt5",
+          "rank": 29,
+          "old_span": "1-71",
+          "significant_ranks_in_span": [
+            68,
+            69,
+            70
+          ],
+          "exact_display": "1-28, 30-67, 71"
+        },
+        {
+          "model": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high",
+          "rank": 30,
+          "old_span": "2-71",
+          "significant_ranks_in_span": [
+            68
+          ],
+          "exact_display": "2-29, 31-67, 69-71"
+        },
+        {
+          "model": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+          "rank": 32,
+          "old_span": "4-70",
+          "significant_ranks_in_span": [
+            67,
+            68
+          ],
+          "exact_display": "4-31, 33-66, 69-70"
+        },
+        {
+          "model": "20250710_bloop",
+          "rank": 33,
+          "old_span": "4-70",
+          "significant_ranks_in_span": [
+            69
+          ],
+          "exact_display": "4-32, 34-68, 70"
+        },
+        {
+          "model": "20251014_Lingxi_kimi_k2",
+          "rank": 36,
+          "old_span": "3-71",
+          "significant_ranks_in_span": [
+            66,
+            68,
+            69
+          ],
+          "exact_display": "3-35, 37-65, 67, 70-71"
+        },
+        {
+          "model": "20250623_warp",
+          "rank": 37,
+          "old_span": "3-73",
+          "significant_ranks_in_span": [
+            69,
+            72
+          ],
+          "exact_display": "3-36, 38-68, 70-71, 73"
+        },
+        {
+          "model": "20250611_moatless_claude-4-sonnet-20250514",
+          "rank": 38,
+          "old_span": "4-71",
+          "significant_ranks_in_span": [
+            68
+          ],
+          "exact_display": "4-37, 39-67, 69-71"
+        },
+        {
+          "model": "20260217_mini-v2.0.0_kimi-k2-5-high",
+          "rank": 39,
+          "old_span": "3-73",
+          "significant_ranks_in_span": [
+            72
+          ],
+          "exact_display": "3-38, 40-71, 73"
+        },
+        {
+          "model": "20250430_zencoder_ai",
+          "rank": 46,
+          "old_span": "4-73",
+          "significant_ranks_in_span": [
+            72
+          ],
+          "exact_display": "4-45, 47-71, 73"
+        },
+        {
+          "model": "20260217_mini-v2.0.0_deepseek-3-2-high",
+          "rank": 47,
+          "old_span": "5-77",
+          "significant_ranks_in_span": [
+            74,
+            76
+          ],
+          "exact_display": "5-46, 48-73, 75, 77"
+        },
+        {
+          "model": "20250805_openhands-Qwen3-Coder-480B-A35B-Instruct",
+          "rank": 48,
+          "old_span": "4-77",
+          "significant_ranks_in_span": [
+            75,
+            76
+          ],
+          "exact_display": "4-47, 49-74, 77"
+        },
+        {
+          "model": "20250802_mini-v1.0.0_claude-4-opus-20250514",
+          "rank": 52,
+          "old_span": "12-79",
+          "significant_ranks_in_span": [
+            14,
+            15,
+            17
+          ],
+          "exact_display": "12-13, 16, 18-51, 53-79"
+        },
+        {
+          "model": "20250522_sweagent_claude-4-sonnet-20250514",
+          "rank": 53,
+          "old_span": "20-83",
+          "significant_ranks_in_span": [
+            21,
+            22
+          ],
+          "exact_display": "20, 23-52, 54-83"
+        },
+        {
+          "model": "20260217_mini-v2.0.0_claude-4-5-haiku-high",
+          "rank": 54,
+          "old_span": "20-83",
+          "significant_ranks_in_span": [
+            21,
+            22
+          ],
+          "exact_display": "20, 23-53, 55-83"
+        },
+        {
+          "model": "20250514_aime_coder",
+          "rank": 55,
+          "old_span": "20-83",
+          "significant_ranks_in_span": [
+            21
+          ],
+          "exact_display": "20, 22-54, 56-83"
+        },
+        {
+          "model": "20250316_augment_agent_v0",
+          "rank": 59,
+          "old_span": "24-88",
+          "significant_ranks_in_span": [
+            84,
+            87
+          ],
+          "exact_display": "24-58, 60-83, 85-86, 88"
+        },
+        {
+          "model": "20250405_amazon-q-developer-agent-20250405-dev",
+          "rank": 60,
+          "old_span": "24-88",
+          "significant_ranks_in_span": [
+            87
+          ],
+          "exact_display": "24-59, 61-86, 88"
+        },
+        {
+          "model": "20250716_openhands_kimi_k2",
+          "rank": 61,
+          "old_span": "24-88",
+          "significant_ranks_in_span": [
+            87
+          ],
+          "exact_display": "24-60, 62-86, 88"
+        },
+        {
+          "model": "20250726_mini-v1.0.0_claude-sonnet-4-20250514",
+          "rank": 63,
+          "old_span": "24-89",
+          "significant_ranks_in_span": [
+            28
+          ],
+          "exact_display": "24-27, 29-62, 64-89"
+        },
+        {
+          "model": "20250117_wandb_programmer_o1_crosscheck5",
+          "rank": 64,
+          "old_span": "26-92",
+          "significant_ranks_in_span": [
+            90,
+            91
+          ],
+          "exact_display": "26-63, 65-89, 92"
+        },
+        {
+          "model": "20250503_patchpilot-v1.1-o4-mini",
+          "rank": 65,
+          "old_span": "24-92",
+          "significant_ranks_in_span": [
+            25,
+            90
+          ],
+          "exact_display": "24, 26-64, 66-89, 91-92"
+        },
+        {
+          "model": "20250728_zai_glm4-5",
+          "rank": 66,
+          "old_span": "26-92",
+          "significant_ranks_in_span": [
+            28,
+            36
+          ],
+          "exact_display": "26-27, 29-35, 37-65, 67-92"
+        },
+        {
+          "model": "20250206_agentscope",
+          "rank": 67,
+          "old_span": "29-96",
+          "significant_ranks_in_span": [
+            32,
+            90,
+            93,
+            94,
+            95
+          ],
+          "exact_display": "29-31, 33-66, 68-89, 91-92, 96"
+        },
+        {
+          "model": "20251210_mini-v1.17.2_kimi-k2-thinking",
+          "rank": 68,
+          "old_span": "31-94",
+          "significant_ranks_in_span": [
+            32,
+            36,
+            38
+          ],
+          "exact_display": "31, 33-35, 37, 39-67, 69-94"
+        },
+        {
+          "model": "20250224_tools_claude-3-7-sonnet",
+          "rank": 69,
+          "old_span": "30-96",
+          "significant_ranks_in_span": [
+            33,
+            36,
+            37,
+            94
+          ],
+          "exact_display": "30-32, 34-35, 38-68, 70-93, 95-96"
+        },
+        {
+          "model": "20250110_blackboxai_agent_v1.1",
+          "rank": 70,
+          "old_span": "30-100",
+          "significant_ranks_in_span": [
+            97,
+            99
+          ],
+          "exact_display": "30-69, 71-96, 98, 100"
+        },
+        {
+          "model": "20250228_epam-ai-run-claude-3-5-sonnet",
+          "rank": 71,
+          "old_span": "29-98",
+          "significant_ranks_in_span": [
+            32,
+            33,
+            90,
+            94,
+            97
+          ],
+          "exact_display": "29-31, 34-70, 72-89, 91-93, 95-96, 98"
+        },
+        {
+          "model": "20250225_sweagent_claude-3-7-sonnet",
+          "rank": 72,
+          "old_span": "31-100",
+          "significant_ranks_in_span": [
+            32,
+            33,
+            34,
+            36,
+            37,
+            38,
+            39,
+            40,
+            42,
+            46,
+            99
+          ],
+          "exact_display": "31, 35, 41, 43-45, 47-71, 73-98, 100"
+        },
+        {
+          "model": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+          "rank": 73,
+          "old_span": "31-99",
+          "significant_ranks_in_span": [
+            32,
+            33,
+            34,
+            36,
+            38,
+            40,
+            42,
+            45
+          ],
+          "exact_display": "31, 35, 37, 39, 41, 43-44, 46-72, 74-99"
+        },
+        {
+          "model": "20250203_openhands_4x_scaled",
+          "rank": 75,
+          "old_span": "47-103",
+          "significant_ranks_in_span": [
+            48,
+            101
+          ],
+          "exact_display": "47, 49-74, 76-100, 102-103"
+        },
+        {
+          "model": "20250901_entroPO_R2E_QwenCoder30BA3B_tts",
+          "rank": 76,
+          "old_span": "49-107",
+          "significant_ranks_in_span": [
+            106
+          ],
+          "exact_display": "49-75, 77-105, 107"
+        },
+        {
+          "model": "20250110_learn_by_interact_claude3.5",
+          "rank": 77,
+          "old_span": "47-109",
+          "significant_ranks_in_span": [
+            108
+          ],
+          "exact_display": "47-76, 78-107, 109"
+        },
+        {
+          "model": "20251201_mini-v1.17.1_deepseek-v3.2-reasoner",
+          "rank": 78,
+          "old_span": "49-109",
+          "significant_ranks_in_span": [
+            108
+          ],
+          "exact_display": "49-77, 79-107, 109"
+        },
+        {
+          "model": "20241223_emergent",
+          "rank": 84,
+          "old_span": "56-111",
+          "significant_ranks_in_span": [
+            59
+          ],
+          "exact_display": "56-58, 60-83, 85-111"
+        },
+        {
+          "model": "20241212_epam-ai-run-claude-3-5-sonnet",
+          "rank": 90,
+          "old_span": "66-116",
+          "significant_ranks_in_span": [
+            67,
+            71
+          ],
+          "exact_display": "66, 68-70, 72-89, 91-116"
+        },
+        {
+          "model": "20251201_mini-v1.17.1_glm-4.6",
+          "rank": 92,
+          "old_span": "64-122",
+          "significant_ranks_in_span": [
+            121
+          ],
+          "exact_display": "64-91, 93-120, 122"
+        },
+        {
+          "model": "20241108_devlo",
+          "rank": 94,
+          "old_span": "68-124",
+          "significant_ranks_in_span": [
+            69,
+            71,
+            123
+          ],
+          "exact_display": "68, 70, 72-93, 95-122, 124"
+        },
+        {
+          "model": "20251209_mini-v1.17.2_devstral-2512",
+          "rank": 96,
+          "old_span": "67-125",
+          "significant_ranks_in_span": [
+            68
+          ],
+          "exact_display": "67, 69-95, 97-125"
+        },
+        {
+          "model": "20250120_Bracket",
+          "rank": 100,
+          "old_span": "70-126",
+          "significant_ranks_in_span": [
+            71,
+            73
+          ],
+          "exact_display": "70, 72, 74-99, 101-126"
+        },
+        {
+          "model": "20241029_OpenHands-CodeAct-2.1-sonnet-20241022",
+          "rank": 101,
+          "old_span": "74-124",
+          "significant_ranks_in_span": [
+            75
+          ],
+          "exact_display": "74, 76-100, 102-124"
+        },
+        {
+          "model": "20250901_entroPO_R2E_QwenCoder30BA3B",
+          "rank": 103,
+          "old_span": "74-128",
+          "significant_ranks_in_span": [
+            127
+          ],
+          "exact_display": "74-102, 104-126, 128"
+        },
+        {
+          "model": "20241125_enginelabs",
+          "rank": 104,
+          "old_span": "74-128",
+          "significant_ranks_in_span": [
+            75
+          ],
+          "exact_display": "74, 76-103, 105-128"
+        },
+        {
+          "model": "20250122_autocoderover-v2.1-claude-3-5-sonnet-20241022",
+          "rank": 105,
+          "old_span": "74-128",
+          "significant_ranks_in_span": [
+            75
+          ],
+          "exact_display": "74, 76-104, 106-128"
+        },
+        {
+          "model": "20250805_openhands-Qwen3-Coder-30B-A3B-Instruct",
+          "rank": 106,
+          "old_span": "74-129",
+          "significant_ranks_in_span": [
+            75,
+            76
+          ],
+          "exact_display": "74, 77-105, 107-129"
+        },
+        {
+          "model": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+          "rank": 107,
+          "old_span": "76-132",
+          "significant_ranks_in_span": [
+            131
+          ],
+          "exact_display": "76-106, 108-130, 132"
+        },
+        {
+          "model": "20241028_solver",
+          "rank": 108,
+          "old_span": "80-136",
+          "significant_ranks_in_span": [
+            134,
+            135
+          ],
+          "exact_display": "80-107, 109-133, 136"
+        },
+        {
+          "model": "20241125_marscode-agent-dev",
+          "rank": 109,
+          "old_span": "77-136",
+          "significant_ranks_in_span": [
+            79,
+            135
+          ],
+          "exact_display": "77-78, 80-108, 110-134, 136"
+        },
+        {
+          "model": "20241105_nfactorial",
+          "rank": 110,
+          "old_span": "81-137",
+          "significant_ranks_in_span": [
+            83
+          ],
+          "exact_display": "81-82, 84-109, 111-137"
+        },
+        {
+          "model": "20241022_tools_claude-3-5-sonnet-updated",
+          "rank": 111,
+          "old_span": "81-138",
+          "significant_ranks_in_span": [
+            82,
+            83
+          ],
+          "exact_display": "81, 84-110, 112-138"
+        },
+        {
+          "model": "20241025_composio_swekit",
+          "rank": 112,
+          "old_span": "81-137",
+          "significant_ranks_in_span": [
+            82,
+            83,
+            84
+          ],
+          "exact_display": "81, 85-111, 113-137"
+        },
+        {
+          "model": "20250616_Skywork-SWE-32B+TTS_Bo8",
+          "rank": 114,
+          "old_span": "88-144",
+          "significant_ranks_in_span": [
+            142
+          ],
+          "exact_display": "88-113, 115-141, 143-144"
+        },
+        {
+          "model": "20241108_autocoderover-v2.0-claude-3-5-sonnet-20241022",
+          "rank": 117,
+          "old_span": "88-144",
+          "significant_ranks_in_span": [
+            89,
+            90
+          ],
+          "exact_display": "88, 91-116, 118-144"
+        },
+        {
+          "model": "20240924_solver",
+          "rank": 119,
+          "old_span": "91-144",
+          "significant_ranks_in_span": [
+            93
+          ],
+          "exact_display": "91-92, 94-118, 120-144"
+        },
+        {
+          "model": "20240824_gru",
+          "rank": 120,
+          "old_span": "92-144",
+          "significant_ranks_in_span": [
+            93
+          ],
+          "exact_display": "92, 94-119, 121-144"
+        },
+        {
+          "model": "20251110_frogmini-14b",
+          "rank": 122,
+          "old_span": "92-145",
+          "significant_ranks_in_span": [
+            93
+          ],
+          "exact_display": "92, 94-121, 123-145"
+        },
+        {
+          "model": "20250807_mini-v1.7.0_kimi-k2-instruct",
+          "rank": 124,
+          "old_span": "94-148",
+          "significant_ranks_in_span": [
+            95
+          ],
+          "exact_display": "94, 96-123, 125-148"
+        },
+        {
+          "model": "20240920_solver",
+          "rank": 125,
+          "old_span": "96-145",
+          "significant_ranks_in_span": [
+            98,
+            99,
+            101
+          ],
+          "exact_display": "96-97, 100, 102-124, 126-145"
+        },
+        {
+          "model": "20250214_agentless_lite_o3_mini",
+          "rank": 126,
+          "old_span": "100-149",
+          "significant_ranks_in_span": [
+            101,
+            148
+          ],
+          "exact_display": "100, 102-125, 127-147, 149"
+        },
+        {
+          "model": "20250527_amazon.nova-premier-v1.0",
+          "rank": 127,
+          "old_span": "102-148",
+          "significant_ranks_in_span": [
+            103
+          ],
+          "exact_display": "102, 104-126, 128-148"
+        },
+        {
+          "model": "20241029_epam-ai-run-claude-3-5-sonnet",
+          "rank": 138,
+          "old_span": "111-151",
+          "significant_ranks_in_span": [
+            112
+          ],
+          "exact_display": "111, 113-137, 139-151"
+        },
+        {
+          "model": "20250616_Skywork-SWE-32B",
+          "rank": 142,
+          "old_span": "113-152",
+          "significant_ranks_in_span": [
+            114
+          ],
+          "exact_display": "113, 115-141, 143-152"
+        },
+        {
+          "model": "20240617_factory_code_droid",
+          "rank": 144,
+          "old_span": "113-152",
+          "significant_ranks_in_span": [
+            116
+          ],
+          "exact_display": "113-115, 117-143, 145-152"
+        },
+        {
+          "model": "20240620_sweagent_claude3.5sonnet",
+          "rank": 146,
+          "old_span": "124-161",
+          "significant_ranks_in_span": [
+            125,
+            160
+          ],
+          "exact_display": "124, 126-145, 147-159, 161"
+        },
+        {
+          "model": "20250306_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor",
+          "rank": 147,
+          "old_span": "124-161",
+          "significant_ranks_in_span": [
+            125
+          ],
+          "exact_display": "124, 126-146, 148-161"
+        },
+        {
+          "model": "20240612_MASAI_gpt4o",
+          "rank": 148,
+          "old_span": "124-161",
+          "significant_ranks_in_span": [
+            125,
+            126,
+            160
+          ],
+          "exact_display": "124, 127-147, 149-159, 161"
+        },
+        {
+          "model": "20241120_artemis_agent",
+          "rank": 149,
+          "old_span": "126-162",
+          "significant_ranks_in_span": [
+            127,
+            129,
+            131
+          ],
+          "exact_display": "126, 128, 130, 132-148, 150-162"
+        },
+        {
+          "model": "20241007_nfactorial",
+          "rank": 150,
+          "old_span": "132-161",
+          "significant_ranks_in_span": [
+            134
+          ],
+          "exact_display": "132-133, 135-149, 151-161"
+        },
+        {
+          "model": "20240728_sweagent_gpt4o",
+          "rank": 160,
+          "old_span": "147-165",
+          "significant_ranks_in_span": [
+            148
+          ],
+          "exact_display": "147, 149-159, 161-165"
+        },
+        {
+          "model": "20240402_sweagent_gpt4",
+          "rank": 162,
+          "old_span": "149-165",
+          "significant_ranks_in_span": [
+            150
+          ],
+          "exact_display": "149, 151-161, 163-165"
+        }
+      ]
+    },
+    "repository-clustered": {
+      "models": 173,
+      "questions": 500,
+      "pairs": 14878,
+      "groups": 2,
+      "baseline_cli_used_spans": false,
+      "false_directed_ties_in_baseline_cli": 0,
+      "affected_models_in_baseline_cli": 0,
+      "false_directed_ties_after": 0,
+      "unchanged_analysis_sha256": "e75a4895fa754a92b354bd1722a37ae5e8450ff033865d3b051e136f51bcb729",
+      "rank_comparisons_sha256": "3a7e9b4434ebec0dc617f23a6d02746677662eedd4c2e70e174636fcfa819ff8",
+      "span_gaps": []
+    }
+  }
+}

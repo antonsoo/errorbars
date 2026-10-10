@@ -105,15 +105,16 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   question ledger with both run means, observed generations and source line/record locations.
   Find lower scores and missing questions, inspect which passages drive the result, and download
   complete JSON or filtered CSV. One file, including fonts; no server or upload.
-- **`leaderboard`** — every model with its CI and groups formed from Holm-corrected
-  pairwise tests. This checkout selects exact McNemar for one binary score per shared
+- **`leaderboard`** — every model with its CI and exact ranks without a significant
+  Holm-corrected paired difference. Untested pairs remain explicit; rank gaps are preserved. This checkout selects exact McNemar for one binary score per shared
   question, clustered t for grouped questions, and paired t for continuous or repeated
   scores. The table and JSON name the selected test; a shared group does not establish
   equivalence. [Counterexample, exact checks, and public-data audit](docs/leaderboard-tests.md).
   Supplied clusters also determine the displayed model confidence intervals;
   the old independent-question estimate remains a labelled JSON diagnostic.
-  Forest plots name the interval method and use SVG without dependencies,
-  or matplotlib when installed.
+  [Why exact rank sets matter on 173 public submissions](studies/leaderboard-ranks/README.md).
+  Forest plots name the interval method and wrap full model names. The CLI writes
+  SVG without dependencies; Python callers can also use the matplotlib extra.
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect. Repeated-answer plans in this checkout require an explicit

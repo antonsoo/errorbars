@@ -1,0 +1,82 @@
+[
+  {
+    "engine": "chromium",
+    "name": "task-independent-before",
+    "width": 640,
+    "height": 7684,
+    "texts": 353,
+    "clipped": 228,
+    "rows": 0,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "chromium",
+    "name": "task-independent-after",
+    "width": 640,
+    "height": 8072,
+    "texts": 686,
+    "clipped": 0,
+    "rows": 173,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "chromium",
+    "name": "repository-clustered-after",
+    "width": 640,
+    "height": 8072,
+    "texts": 679,
+    "clipped": 0,
+    "rows": 173,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "chromium",
+    "name": "gaps",
+    "width": 640,
+    "height": 414,
+    "texts": 36,
+    "clipped": 0,
+    "rows": 5,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "firefox",
+    "name": "task-independent-before",
+    "width": 640,
+    "height": 7684,
+    "texts": 353,
+    "clipped": 195,
+    "rows": 0,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "firefox",
+    "name": "task-independent-after",
+    "width": 640,
+    "height": 8072,
+    "texts": 686,
+    "clipped": 0,
+    "rows": 173,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "firefox",
+    "name": "repository-clustered-after",
+    "width": 640,
+    "height": 8072,
+    "texts": 679,
+    "clipped": 0,
+    "rows": 173,
+    "overlappingRows": 0
+  },
+  {
+    "engine": "firefox",
+    "name": "gaps",
+    "width": 640,
+    "height": 414,
+    "texts": 36,
+    "clipped": 0,
+    "rows": 5,
+    "overlappingRows": 0
+  }
+]

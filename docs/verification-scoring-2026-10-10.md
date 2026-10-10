@@ -1,8 +1,8 @@
 # Scoring-rule integrity verification, 2026-10-10
 
-Implementation: local commit `5dd3bac`. Baseline: `cdc24d7`. No package,
-source branch, or site was published. Package metadata remains at 0.2.4;
-these results describe the locally built wheel, not the registry release.
+Implementation: `5dd3bac`. Baseline: `cdc24d7`. This report records validation
+completed before source publication. Package metadata remains at 0.2.4;
+these results describe the locally built wheel, not a registry release.
 
 ## User-visible defect and evidence
 

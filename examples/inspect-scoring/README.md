@@ -8,8 +8,8 @@ same 24 questions and responses. Every question-content check passed.
 The source checkout now withholds that comparison, keeps both sets of scores
 inspectable, and explains the conflicting scoring declarations. The protection
 survives `errorbars import` and canonical CSV export. It also preserves lm-eval
-metric names across separately converted files. These changes are local and
-unreleased.
+metric names across separately converted files. These changes are available
+in source; the verification below concerns a locally built package.
 
 ![An offline report shows matching questions but conflicting grading rules, withholding the apparent improvement](../../docs/assets/scoring-conflict-1440.png)
 

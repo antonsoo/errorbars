@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "simulation": {
+    "trials_per_plan": 20000,
+    "delta": 0.05,
+    "variance": 0.25,
+    "alpha": 0.05,
+    "power": 0.8,
+    "rho": 0,
+    "cluster_design_effect": 1,
+    "scenarios": [
+      {
+        "samples_per_question": 10,
+        "repeat_correlation": 0.0,
+        "target_power": 0.8,
+        "between_variance": 0.0,
+        "within_variance": 0.25,
+        "old": {
+          "n_questions": 157,
+          "model_answers": 3140,
+          "empirical_power": 0.79765,
+          "monte_carlo_se": 0.0028408139458612914,
+          "noncentral_t_power": 0.7951827657055424,
+          "rejections": 15953
+        },
+        "repaired": {
+          "n_questions": 157,
+          "model_answers": 3140,
+          "empirical_power": 0.7968,
+          "monte_carlo_se": 0.0028452571061329418,
+          "noncentral_t_power": 0.7951827657055424,
+          "rejections": 15936
+        }
+      },
+      {
+        "samples_per_question": 4,
+        "repeat_correlation": 0.3333333333333333,
+        "target_power": 0.8,
+        "between_variance": 0.08333333333333333,
+        "within_variance": 0.16666666666666669,
+        "old": {
+          "n_questions": 393,
+          "model_answers": 3144,
+          "empirical_power": 0.5089,
+          "monte_carlo_se": 0.0035349737622788657,
+          "noncentral_t_power": 0.5070625181520426,
+          "rejections": 10178
+        },
+        "repaired": {
+          "n_questions": 785,
+          "model_answers": 6280,
+          "empirical_power": 0.80195,
+          "monte_carlo_se": 0.0028180329797573337,
+          "noncentral_t_power": 0.799094424909943,
+          "rejections": 16039
+        }
+      },
+      {
+        "samples_per_question": 100,
+        "repeat_correlation": 0.8,
+        "target_power": 0.8,
+        "between_variance": 0.2,
+        "within_variance": 0.04999999999999999,
+        "old": {
+          "n_questions": 16,
+          "model_answers": 3200,
+          "empirical_power": 0.0564,
+          "monte_carlo_se": 0.0016312424712469939,
+          "noncentral_t_power": 0.06010567575772393,
+          "rejections": 1128
+        },
+        "repaired": {
+          "n_questions": 1259,
+          "model_answers": 251800,
+          "empirical_power": 0.7985,
+          "monte_carlo_se": 0.0028363510889873986,
+          "noncentral_t_power": 0.7994138667821895,
+          "rejections": 15970
+        }
+      },
+      {
+        "samples_per_question": 100,
+        "repeat_correlation": 1.0,
+        "target_power": 0.8,
+        "between_variance": 0.25,
+        "within_variance": 0.0,
+        "old": {
+          "n_questions": 16,
+          "model_answers": 3200,
+          "empirical_power": 0.0585,
+          "monte_carlo_se": 0.0016594841065825246,
+          "noncentral_t_power": 0.058095731349971286,
+          "rejections": 1170
+        },
+        "repaired": {
+          "n_questions": 1570,
+          "model_answers": 314000,
+          "empirical_power": 0.8028,
+          "monte_carlo_se": 0.002813469033062209,
+          "noncentral_t_power": 0.7995764408899606,
+          "rejections": 16056
+        }
+      }
+    ]
+  },
+  "public_outcomes": {
+    "outcomes_sha256": "4cb01359f52d30398e46bfc2970628d924379d5e8293ab08c8b43bc74d9fb6b2",
+    "datasets": [
+      {
+        "source": "GSM8K_Llama-3-8B-Instruct.json",
+        "n_questions": 127,
+        "n_outcomes": 1270000,
+        "pilot_draws_per_question": 5000,
+        "check_draws_per_question": 5000,
+        "pilot_accuracy": 0.7685889763779528,
+        "pilot_between_variance": 0.08511455831602967,
+        "pilot_within_variance": 0.0934157439361888,
+        "pilot_repeat_correlation": 0.47675132592216296,
+        "variance_by_repeat_count": [
+          {
+            "samples_per_question": 1,
+            "disjoint_blocks": 5000,
+            "observed_question_variance": 0.17784599425071868,
+            "old_independent_prediction": 0.17785996176824354,
+            "pilot_component_prediction": 0.17853030225221847,
+            "observed_over_old": 0.9999214690176137,
+            "relative_prediction_error": 0.003847756056484908
+          },
+          {
+            "samples_per_question": 2,
+            "disjoint_blocks": 2500,
+            "observed_question_variance": 0.13129558805149355,
+            "old_independent_prediction": 0.08892998088412177,
+            "pilot_component_prediction": 0.13182243028412408,
+            "observed_over_old": 1.476392851389177,
+            "relative_prediction_error": 0.004012642316845394
+          },
+          {
+            "samples_per_question": 4,
+            "disjoint_blocks": 1250,
+            "observed_question_variance": 0.10807896512935881,
+            "old_independent_prediction": 0.044464990442060884,
+            "pilot_component_prediction": 0.10846849430007686,
+            "observed_over_old": 2.430653061090583,
+            "relative_prediction_error": 0.003604116400002688
+          },
+          {
+            "samples_per_question": 10,
+            "disjoint_blocks": 500,
+            "observed_question_variance": 0.0941295938007749,
+            "old_independent_prediction": 0.017785996176824352,
+            "pilot_component_prediction": 0.09445613270964856,
+            "observed_over_old": 5.29234308075633,
+            "relative_prediction_error": 0.0034690355677595708
+          },
+          {
+            "samples_per_question": 100,
+            "disjoint_blocks": 50,
+            "observed_question_variance": 0.08571510336207973,
+            "old_independent_prediction": 0.0017785996176824354,
+            "pilot_component_prediction": 0.08604871575539155,
+            "observed_over_old": 48.19246698915233,
+            "relative_prediction_error": 0.0038921074609519213
+          }
+        ]
+      },
+      {
+        "source": "GSM8K_Llama-3-70B-Instruct.json",
+        "n_questions": 127,
+        "n_outcomes": 1270000,
+        "pilot_draws_per_question": 5000,
+        "check_draws_per_question": 5000,
+        "pilot_accuracy": 0.9302251968503937,
+        "pilot_between_variance": 0.02671980759411675,
+        "pilot_within_variance": 0.03839692505430221,
+        "pilot_repeat_correlation": 0.4103370440649023,
+        "variance_by_repeat_count": [
+          {
+            "samples_per_question": 1,
+            "disjoint_blocks": 5000,
+            "observed_question_variance": 0.06451848518935134,
+            "old_independent_prediction": 0.06490627999503996,
+            "pilot_component_prediction": 0.06511673264841895,
+            "observed_over_old": 0.994025311484216,
+            "relative_prediction_error": 0.00927249697992516
+          },
+          {
+            "samples_per_question": 2,
+            "disjoint_blocks": 2500,
+            "observed_question_variance": 0.04551977252843394,
+            "old_independent_prediction": 0.03245313999751998,
+            "pilot_component_prediction": 0.04591827012126785,
+            "observed_over_old": 1.402630763368737,
+            "relative_prediction_error": 0.008754384538828264
+          },
+          {
+            "samples_per_question": 4,
+            "disjoint_blocks": 1250,
+            "observed_question_variance": 0.036025584301962246,
+            "old_independent_prediction": 0.01622656999875999,
+            "pilot_component_prediction": 0.0363190388576923,
+            "observed_over_old": 2.2201601635290307,
+            "relative_prediction_error": 0.00814572647234102
+          },
+          {
+            "samples_per_question": 10,
+            "disjoint_blocks": 500,
+            "observed_question_variance": 0.030276490438695163,
+            "old_independent_prediction": 0.006490627999503997,
+            "pilot_component_prediction": 0.030559500099546968,
+            "observed_over_old": 4.664647310092158,
+            "relative_prediction_error": 0.009347505498527031
+          },
+          {
+            "samples_per_question": 100,
+            "disjoint_blocks": 50,
+            "observed_question_variance": 0.026885201849768784,
+            "old_independent_prediction": 0.0006490627999503996,
+            "pilot_component_prediction": 0.027103776844659772,
+            "observed_over_old": 41.421572537855056,
+            "relative_prediction_error": 0.008129936911478675
+          }
+        ]
+      }
+    ],
+    "paired_correlations_on_check_draws": [
+      {
+        "samples_per_question": 1,
+        "mean_paired_correlation": 0.2955836212861331
+      },
+      {
+        "samples_per_question": 2,
+        "mean_paired_correlation": 0.4080914393665079
+      },
+      {
+        "samples_per_question": 4,
+        "mean_paired_correlation": 0.5038275086475434
+      },
+      {
+        "samples_per_question": 10,
+        "mean_paired_correlation": 0.5868077969297173
+      },
+      {
+        "samples_per_question": 100,
+        "mean_paired_correlation": 0.6516969956379748
+      }
+    ]
+  }
+}

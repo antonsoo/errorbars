@@ -1,0 +1,98 @@
+{
+  "source_outcomes_sha256": "4cb01359f52d30398e46bfc2970628d924379d5e8293ab08c8b43bc74d9fb6b2",
+  "counterexamples": [
+    {
+      "n_questions": 16,
+      "delta": 0.05,
+      "alpha": 0.05,
+      "power": 0.8,
+      "rho": 0.0,
+      "samples_per_question": 100,
+      "cluster_design_effect": 1.0,
+      "per_question_variance": 0.0025,
+      "repeat_correlation": 0.0
+    },
+    {
+      "n_questions": 1259,
+      "delta": 0.05,
+      "alpha": 0.05,
+      "power": 0.8,
+      "rho": 0.0,
+      "samples_per_question": 100,
+      "cluster_design_effect": 1.0,
+      "per_question_variance": 0.2005,
+      "repeat_correlation": 0.8
+    },
+    {
+      "n_questions": 1570,
+      "delta": 0.05,
+      "alpha": 0.05,
+      "power": 0.8,
+      "rho": 0.0,
+      "samples_per_question": 100,
+      "cluster_design_effect": 1.0,
+      "per_question_variance": 0.25,
+      "repeat_correlation": 1.0
+    }
+  ],
+  "unknown_repeat_dependence": "refused in both planning directions with no JSON result",
+  "pilot": {
+    "source": "GSM8K_Llama-3-8B-Instruct.json",
+    "draws_per_question": 20,
+    "summary": {
+      "mean": 0.7692913385826771,
+      "se": 0.025864911358336046,
+      "ci_low": 0.7185970438570175,
+      "ci_high": 0.8199856333083366,
+      "confidence": 0.95,
+      "method": "clt",
+      "n": 127,
+      "model": "Llama-3-8B-Instruct",
+      "is_binary": false,
+      "analysis_unit": "question",
+      "n_questions": 127,
+      "n_observations": 2540,
+      "within_between": {
+        "var_within": 0.09809365934521341,
+        "var_between": 0.080057509258711
+      }
+    },
+    "repeat_correlation": 0.44937964699349997,
+    "plans": [
+      {
+        "n_questions": 1119,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samples_per_question": 1,
+        "cluster_design_effect": 1.0,
+        "per_question_variance": 0.1781511686039245,
+        "repeat_correlation": 0.44937964699349997
+      },
+      {
+        "n_questions": 565,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samples_per_question": 10,
+        "cluster_design_effect": 1.0,
+        "per_question_variance": 0.08986687519323243,
+        "repeat_correlation": 0.44937964699349997
+      },
+      {
+        "n_questions": 509,
+        "delta": 0.05,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.0,
+        "samples_per_question": 100,
+        "cluster_design_effect": 1.0,
+        "per_question_variance": 0.08103844585216322,
+        "repeat_correlation": 0.44937964699349997
+      }
+    ],
+    "scope": "Hypothetical two-model designs with this pilot variance, equal model variances and rho=0; not a power estimate for the actual 8B-versus-70B comparison."
+  }
+}

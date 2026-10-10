@@ -1,0 +1,22 @@
+{
+  "dataset": "ScalingIntelligence/monkey_business",
+  "revision": "a9f8f73bcd6948a57ed922cba4e48062ef95f553",
+  "sources": [
+    {
+      "file": "GSM8K_Llama-3-8B-Instruct.json",
+      "url": "https://huggingface.co/datasets/ScalingIntelligence/monkey_business/resolve/a9f8f73bcd6948a57ed922cba4e48062ef95f553/GSM8K_Llama-3-8B-Instruct.json",
+      "sha256": "0e334c7010a2eb39ab0aaf38cdd196da0b6219a95fd69f82d35b8f51e46ed765",
+      "bytes": 367281014
+    },
+    {
+      "file": "GSM8K_Llama-3-70B-Instruct.json",
+      "url": "https://huggingface.co/datasets/ScalingIntelligence/monkey_business/resolve/a9f8f73bcd6948a57ed922cba4e48062ef95f553/GSM8K_Llama-3-70B-Instruct.json",
+      "sha256": "22ff8a363d5a5b8ea5a6c299285d8f615ec32b9c1fe08e8253cc1a6c9c7c323f",
+      "bytes": 333467388
+    }
+  ],
+  "outcomes_sha256": "4cb01359f52d30398e46bfc2970628d924379d5e8293ab08c8b43bc74d9fb6b2",
+  "outcomes_bytes": 165985,
+  "encoding": "Each correct string preserves source sample order: 1=True, 0=False from is_corrects.",
+  "license": "MIT per the pinned dataset card; only grading labels, IDs and hashes are redistributed."
+}

@@ -91,9 +91,12 @@ analysis. The displayed group count is approximate and is not rounded into
 a recruitment recommendation. Budget mode retains an MDE beyond the possible
 improvement to 100% and flags it explicitly.
 
-The page uses one answer per model per question. The Python API's optional
-repeated-sampling factor has additional assumptions explained in the formulas
-document. Multiple model comparisons also need a separate multiplicity plan.
+The page uses one answer per model per question. Python and CLI plans with
+multiple answers now require an explicit within-question repeat correlation;
+the [repeated-answer workflow](repeated-planning.md) explains the variance floor
+and the distinct meanings of repeat and pairing correlation. The TypeScript
+formula API enforces the same rule. Multiple model comparisons also need a
+separate multiplicity plan.
 
 ## Interface direction
 

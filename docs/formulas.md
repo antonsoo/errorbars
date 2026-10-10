@@ -252,9 +252,21 @@ legitimately belong to more than one group.
 
 **Model.** A single sample of a question has variance $V_1 = p(1-p)$ for a
 binary metric at baseline accuracy $p$ (or a user-supplied `variance` for a
-continuous one). Averaging $k$ repeated samples per question reduces that
-to $V = V_1 / k$ (see caveat below). Pairing two models with per-question
-correlation $\rho$ gives $\mathrm{Var}(\text{diff}) = 2V(1-\rho)$ instead of
+continuous one). With within-question repeat correlation $r$, averaging $k$
+answers per question gives
+
+$$V = V_1\left(r + \frac{1-r}{k}\right) = B + W/k,$$
+
+where $B = rV_1$ is between-question variance and $W = (1-r)V_1$ is
+within-question variance under conditionally independent generation. The
+covariance derivation sums $k$ diagonal variances and $k(k-1)$ covariances,
+then divides by $k^2$. With $r=1$, repeating answers gives no variance reduction;
+with $r=0$, the independent-repeat model gives $V_1/k$.
+For $k>1$, `repeat_correlation` / `--repeat-correlation` is required, in [0,1].
+Omission no longer silently assumes independence. Single-answer plans are unchanged.
+
+Pairing two models with correlation $\rho$ **between their $k$-answer question
+means** gives $\mathrm{Var}(\text{diff}) = 2V(1-\rho)$ instead of
 $2V$ for an unpaired design (§7). Clustering multiplies by the design
 effect from §5: $\mathrm{Var}(\text{diff}) = 2V(1-\rho)\cdot\mathrm{DEFF}$.
 
@@ -271,19 +283,21 @@ $$\delta_{\text{MDE}} = (z_{\alpha/2} + z_\beta)\sqrt{\frac{2V(1-\rho)\cdot\math
 This is the standard normal-approximation two-sample power formula (e.g.
 Fleiss, Levin & Paik, *Statistical Methods for Rates and Proportions*, 3rd
 ed., ch. 3) generalized with the pairing and clustering factors above.
-Checked by simulation in `tests/test_power.py`: for several
-$(V, \rho, \delta)$ combinations, running the paired z-test on simulated
-correlated-normal data at the computed $n$ recovers the target power to
-within Monte Carlo error, and $n$ scales linearly in the design effect and
-inversely in samples-per-question as the formula predicts.
+Checked against covariance matrices, SciPy quantiles, and the uniform-question-
+difficulty example in [Miller (2024), section 3.1](https://arxiv.org/html/2411.00640v1#S3.SS1):
+$B=1/12$, $W=1/6$, hence $r=1/3$. The [repeated-planning study](../studies/repeated-planning/README.md)
+compares normal random-effects simulations against independent noncentral-t power,
+and checks the variance model on 2.54 million published binary outcomes.
 
-**Caveat on samples-per-question.** This planning formula assumes all
-per-sample variance is "within-question" (decoding noise), so more samples
-per question always shrinks $V$ by a factor of $k$. In reality some of
-$p(1-p)$ is genuine item-difficulty variance (§6), which extra samples of
-the *same* questions cannot reduce. Treat the $k>1$ case as an optimistic
-planning assumption; for a **post-hoc** measurement with the true
-within/between split, use `summarize` with a `sample` column instead.
+**Choosing a repeat assumption.** With a representative repeated-answer pilot,
+`summarize` exposes estimates `var_between` and `var_within` (§6). Their sum
+estimates $V_1$ and their ratio $B/(B+W)$ estimates $r$. Estimates are uncertain;
+vary them rather than treating a single pilot as known truth. The planner assumes
+the same variance and repeat correlation for both models. Negative dependence,
+adaptive repeat counts, pass@k, voting, and changes to generation settings require
+a different model. `rho` can change as $k$ changes and must describe the requested
+averages, not individual draws. Passage-level dependence remains a separate design
+effect on those averages. See the [CLI workflow and migration notes](repeated-planning.md).
 
 **Input and numeric domain.** Both planning directions require finite inputs.
 Question and repeated-sample counts must be integral and between their minimum

@@ -116,7 +116,9 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   or matplotlib when installed.
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
-  and cluster design effect.
+  and cluster design effect. Repeated-answer plans in this checkout require an explicit
+  within-question correlation and retain the variance that more answers cannot remove.
+  [Real-outcome check and budget counterexample](docs/repeated-planning.md).
 - **CLI** — `errorbars summarize|compare|leaderboard|power|import`. Tables are plain aligned text
   on a bare install (numpy is the only dependency) and `rich` tables with
   `pip install "errorbars[cli]"`; either way a model name is printed whole, and a table written to
@@ -365,10 +367,12 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
 - Pairing diagnostics preserve unavailable values: `correlation` is `null` when either
   vector is constant, and `variance_reduction` is `null` when both are constant. The CLI
   prints `unavailable`; downstream code must check for `None` before formatting these fields.
-- The power formula's samples-per-question adjustment assumes all single-sample variance is
-  decoding noise (see `docs/formulas.md` §11 for why, and the caveat on when this is optimistic).
-  It's a planning tool for before you run the eval; for a post-hoc measurement with the true
-  within/between-question split, use `summarize` on data with a `sample` column instead.
+- Repeated-answer power plans require `--repeat-correlation` when `--samples-per-question > 1`
+  in this checkout. The old independence assumption understated the variance at 100 answers
+  per question by 41-48 times in two published GSM8K runs. The [retained study](studies/repeated-planning/README.md)
+  checks variance on later draws of the same questions; it does not validate power on new questions.
+  The equal-variance normal approximation still needs defensible pilot assumptions, and pairing
+  correlation must describe the averages at the requested repeat count. This repair is unreleased.
 - Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
   statistically direct approach — it can produce a model in more than one group, unlike a
   minimal-letters heuristic (e.g. R's `multcompView`).

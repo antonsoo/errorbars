@@ -1,0 +1,15 @@
+      power: questions needed       
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ input                    ┃ value ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ delta                    │  0.05 │
+│ alpha                    │  0.05 │
+│ power                    │   0.8 │
+│ rho (paired correlation) │   0.0 │
+│ samples/question         │   100 │
+│ repeat correlation       │   0.8 │
+│ cluster design effect    │   1.0 │
+└──────────────────────────┴───────┘
+Questions needed: 1259
+Repeat correlation 0.8 preserves between-question variance. rho is the 
+correlation between the two models' averaged scores at this repeat count.

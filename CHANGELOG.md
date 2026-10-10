@@ -21,6 +21,13 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Repeated-answer power plans require explicit `repeat_correlation` / `--repeat-correlation`
+  for more than one answer per question. Python and TypeScript preserve between-question
+  variance using `V * (r + (1-r)/k)`; single-answer plans are unchanged. JSON retains the
+  supplied assumption (null if absent for one answer). Existing scripts relying on `V/k`
+  must explicitly pass 0 if that independence assumption is intended.
+  [Migration, simulations, and retained public outcomes](docs/repeated-planning.md).
+
 - Leaderboard model intervals now honor supplied multi-question clusters, using CR2
   standard errors and effective-degree-of-freedom t critical values just like `summarize`.
   Tables and forest plots name their interval basis. JSON retains the unclustered estimate,

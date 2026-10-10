@@ -111,7 +111,8 @@ class TestLmEvalOutputDirectory:
         assert result.returncode == 0, result.stderr
         assert "note: " in result.stderr and "2 runs of copa" in result.stderr
         # The older run is still there to be read when it is the one asked for.
-        assert load_inputs([older]).data.score == [0.0] * 20
+        # Its own results file is absent; the newer run cannot identify it.
+        assert load_inputs([f"tiny={older}"]).data.score == [0.0] * 20
 
     def test_a_samples_file_away_from_its_results_file_has_to_be_named(self, tmp_path: Path) -> None:
         moved = tmp_path / TINY_SAMPLES.name

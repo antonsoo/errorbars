@@ -115,6 +115,7 @@ def _expand_directory(directory: Path, notes: list[str]) -> list[Path]:
 
 def _load_one(
     path: Path,
+    kind: str,
     name: str | None,
     model: str | None,
     columns: ColumnMap,
@@ -124,7 +125,6 @@ def _load_one(
 ) -> EvalData:
     """One file. ``name`` is the NAME of a NAME=PATH given for it; ``model`` the name given
     for every harness log."""
-    kind = _kind(path)
     if kind in ("csv", "jsonl"):
         if name is not None:
             raise ValueError(
@@ -160,7 +160,7 @@ def load_inputs(
         specs: paths, or ``NAME=PATH`` strings naming a harness log's model.
         columns: column names, for files in errorbars' own format.
         model: a model name for every harness log that isn't given one as ``NAME=PATH``.
-        metric: lm-eval metric to use as the score (default: each record's first).
+        metric: lm-eval metric to use as the score (required when ambiguous).
         filter_name: lm-eval filter to use, for a task scored under several.
         scorer: Inspect scorer to use, for a task with more than one.
     """
@@ -170,11 +170,24 @@ def load_inputs(
     notes: list[str] = []
     files: list[Path] = []
     parts: list[tuple[str, EvalData]] = []
+    scoring: dict[str, tuple[str, Path]] = {}
     for spec in specs:
         name, path = split_spec(str(spec))
         paths = _expand_directory(path, notes) if path.is_dir() else [path]
         for one in paths:
-            data = _load_one(one, name, model, columns, metric, filter_name, scorer)
+            kind = _kind(one)
+            data = _load_one(one, kind, name, model, columns, metric, filter_name, scorer)
+            if kind == "lm-eval" and data.sources is not None:
+                for qid, source in zip(data.question_id, data.sources, strict=True):
+                    assert source is not None and source.metric is not None
+                    previous = scoring.get(qid)
+                    if previous is not None and previous[0] != source.metric:
+                        raise ValueError(
+                            f"{one}: question {qid!r} uses metric {source.metric!r}, "
+                            f"but {previous[1]} uses {previous[0]!r}; "
+                            "select a common metric with --metric before combining these logs"
+                        )
+                    scoring[qid] = (source.metric, one)
             files.append(one)
             parts.append((str(one), data))
     return Loaded(data=concat(parts), files=files, notes=notes)

@@ -39,12 +39,9 @@ class TestLmEvalAdapter:
         data = load_lm_eval_samples(COPA, model="m")
         assert all(qid.startswith("copa-") for qid in data.question_id)
 
-    def test_multi_metric_task_defaults_to_first_metric(self) -> None:
-        data = load_lm_eval_samples(ARC_EASY, model="m")
-        # First metric in each arc_easy record's "metrics" list is "acc".
-        default_scores = data.score
-        explicit = load_lm_eval_samples(ARC_EASY, model="m", metric="acc")
-        assert default_scores == explicit.score
+    def test_multi_metric_task_requires_a_choice(self) -> None:
+        with pytest.raises(ValueError, match=r"multiple metrics \(acc, acc_norm\).*--metric"):
+            load_lm_eval_samples(ARC_EASY, model="m")
 
     def test_multi_metric_task_explicit_metric_selection(self) -> None:
         acc = load_lm_eval_samples(ARC_EASY, model="m", metric="acc")
@@ -55,7 +52,7 @@ class TestLmEvalAdapter:
         assert all(s in (0.0, 1.0) for s in acc_norm.score)
 
     def test_unknown_metric_raises(self) -> None:
-        with pytest.raises(ValueError, match="not present"):
+        with pytest.raises(ValueError, match="not declared"):
             load_lm_eval_samples(COPA, model="m", metric="does_not_exist")
 
     def test_missing_file_raises(self, tmp_path: Path) -> None:
@@ -172,4 +169,3 @@ class TestInspectAdapter:
         p.write_text("not a log")
         with pytest.raises(ValueError, match=r"notes\.eval: not a log Inspect can read"):
             load_inspect_log(p)
-

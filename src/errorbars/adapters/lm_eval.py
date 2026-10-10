@@ -75,9 +75,9 @@ def looks_like_samples(record: object) -> bool:
 def infer_model_name(path: str | Path) -> str | None:
     """The model that wrote a samples file, from the ``results_*.json`` lm-eval put beside it.
 
-    The results file of the same run (same timestamp) is used; a directory holding exactly
-    one results file is taken at its word too. ``None`` when there is none, when several
-    could be meant, or when it names no model.
+    Only the results file of the same run (same timestamp) is used. A lone
+    sibling with another timestamp does not identify these samples. Renamed
+    samples need an explicit model name. ``None`` if identity is unavailable.
     """
     path = Path(path)
     parts = samples_file_parts(path)
@@ -86,10 +86,6 @@ def infer_model_name(path: str | Path) -> str | None:
         same_run = path.with_name(f"results_{parts[1]}.json")
         if same_run.is_file():
             candidates = [same_run]
-    if not candidates:
-        others = sorted(path.parent.glob("results_*.json"))
-        if len(others) == 1:
-            candidates = others
     for candidate in candidates:
         try:
             with open(candidate, encoding="utf-8-sig") as f:
@@ -116,8 +112,9 @@ def load_lm_eval_samples(
             ``results_*.json`` lm-eval wrote beside the samples file (see
             :func:`infer_model_name`); required when there is none.
         metric: which computed metric to use as the score, e.g. ``"acc"``
-            or ``"acc_norm"``. Defaults to the first name in each record's
-            ``metrics`` list.
+            or ``"acc_norm"``. Required when the selected filter records
+            advertise more than one metric. One declared metric is inferred
+            only if it stays the same throughout the file.
         filter_name: which filter's records to use, for a task that scores each
             question under several (e.g. ``"maj@8"``). Required when the
             file holds more than one.
@@ -132,7 +129,7 @@ def load_lm_eval_samples(
         model = infer_model_name(path)
     if model is None:
         raise ValueError(
-            f"{path}: can't tell which model wrote this (no results_*.json beside it names one); "
+            f"{path}: can't tell which model wrote this (no matching-timestamp results file names one); "
             "pass model=... (on the command line: --model NAME, or NAME=PATH)"
         )
 
@@ -170,6 +167,7 @@ def load_lm_eval_samples(
     first_line: dict[str, int] = {}
     sources: list[RecordSource | None] = []
     question_hash: list[str | None] = []
+    selected_metric = metric
 
     for record, (lineno, rec) in enumerate(records, 1):
         if filter_name is not None and str(rec.get("filter", "none")) != filter_name:
@@ -177,7 +175,24 @@ def load_lm_eval_samples(
         metrics = rec.get("metrics")
         if not isinstance(metrics, list) or not metrics:
             raise ValueError(f"{path}:{lineno}: record has no non-empty 'metrics' list")
-        key = metric or str(metrics[0])
+        if any(not isinstance(name, str) or not name.strip() for name in metrics):
+            raise ValueError(f"{path}:{lineno}: 'metrics' must contain nonempty string names")
+        if len(set(metrics)) != len(metrics):
+            raise ValueError(f"{path}:{lineno}: duplicate names in 'metrics'")
+        if metric is None and len(metrics) > 1:
+            raise ValueError(
+                f"{path}:{lineno}: multiple metrics ({', '.join(metrics)}); "
+                "choose one with metric=... (--metric on the command line)"
+            )
+        if selected_metric is None:
+            selected_metric = metrics[0]
+        key = selected_metric
+        if key not in metrics:
+            raise ValueError(
+                f"{path}:{lineno}: metric {key!r} is not declared in 'metrics' "
+                f"(available: {', '.join(metrics)}); metadata fields are not scores "
+                "and the selected metric cannot change between records"
+            )
         if key not in rec:
             raise ValueError(
                 f"{path}:{lineno}: metric {key!r} not present on this record (available: {metrics})"

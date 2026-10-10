@@ -65,7 +65,7 @@ def _input_args(sp: argparse.ArgumentParser) -> None:
 
 def _harness_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument(
-        "--metric", default=None, help="lm-eval metric to use as the score (default: first available)"
+        "--metric", default=None, help="lm-eval metric to use (required if several are available)"
     )
     sp.add_argument(
         "--filter",

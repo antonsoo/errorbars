@@ -224,10 +224,13 @@ binomial tail at or below $\min(b,c)$ and doubles it (McNemar 1947).
 Verified against `statsmodels.stats.contingency_tables.mcnemar(exact=True)`
 to 1e-9.
 
-The leaderboard uses exact McNemar for one binary observation per shared question,
+The leaderboard and standalone comparison select exact McNemar for one binary observation per shared question,
 unless explicit grouping requires clustered inference. Continuous scores and question
 means from repeated generations retain paired t. Selection precedes correction and does
-not depend on which test has the smaller p-value. See [test selection](leaderboard-tests.md).
+not depend on which test has the smaller p-value. The standalone exact test has no
+implemented exact mean-difference interval; its paired-t interval remains a labeled
+approximation. See [test selection](leaderboard-tests.md) and the
+[comparison audit](../studies/comparison-inference/README.md).
 
 ## 9. Holm-Bonferroni correction
 

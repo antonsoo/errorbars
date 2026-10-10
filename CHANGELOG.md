@@ -21,6 +21,14 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Standalone comparisons now share the leaderboard's data-based test selection.
+  CLI and HTML headline exact McNemar for single binary observations, clustered t
+  for grouped questions, and paired t for continuous or repeated means. JSON adds
+  `inference`; existing p-value and interval fields keep their diagnostic meanings.
+  No exact binary mean-difference interval is claimed. The SWE-bench browser also
+  uses its exact task test: 102 of 14,878 unadjusted pairs change decision at 5%.
+  [Counterexamples and independent replay](studies/comparison-inference/README.md).
+
 - Leaderboard tables and SVGs show exact other-model rank sets instead of group
   letters or min-max tie spans. The old spans implied 150 false directed ties on
   the retained 173-submission SWE-bench board. JSON adds `rank_comparisons`,

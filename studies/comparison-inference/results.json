@@ -1,0 +1,827 @@
+{
+  "input_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "models": 173,
+  "questions": 500,
+  "pairs": 14878,
+  "maximum_absolute_error_against_scipy": 1.4432899320127035e-15,
+  "task_decisions_changed_at_0_05": 102,
+  "changed_pairs": [
+    {
+      "model_a": "20240617_factory_code_droid",
+      "model_b": "20250306_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor",
+      "only_a": 63,
+      "only_b": 42,
+      "paired_t_p": 0.04030280540947145,
+      "exact_p": 0.05044215663996978
+    },
+    {
+      "model_a": "20240620_sweagent_claude3.5sonnet",
+      "model_b": "20250616_Skywork-SWE-32B",
+      "only_a": 51,
+      "only_b": 73,
+      "paired_t_p": 0.048091381540310126,
+      "exact_p": 0.0588758732807349
+    },
+    {
+      "model_a": "20240820_honeycomb",
+      "model_b": "20251110_frogmini-14b",
+      "only_a": 52,
+      "only_b": 74,
+      "paired_t_p": 0.04990828996046135,
+      "exact_p": 0.06093825261566016
+    },
+    {
+      "model_a": "20240918_lingma-agent_lingma-swe-gpt-72b",
+      "model_b": "20241002_lingma-agent_lingma-swe-gpt-72b",
+      "only_a": 37,
+      "only_b": 56,
+      "paired_t_p": 0.04871402554127658,
+      "exact_p": 0.06138589870445953
+    },
+    {
+      "model_a": "20240918_lingma-agent_lingma-swe-gpt-72b",
+      "model_b": "20250720_mini-v0.0.0-Llama-4-Maverick-17B-Instruct",
+      "only_a": 62,
+      "only_b": 42,
+      "paired_t_p": 0.049762472423881765,
+      "exact_p": 0.06192637987862735
+    },
+    {
+      "model_a": "20240924_solver",
+      "model_b": "20241105_nfactorial",
+      "only_a": 37,
+      "only_b": 56,
+      "paired_t_p": 0.04871402554127349,
+      "exact_p": 0.06138589870445953
+    },
+    {
+      "model_a": "20240924_solver",
+      "model_b": "20250112_ugaiforge",
+      "only_a": 55,
+      "only_b": 36,
+      "paired_t_p": 0.04629274460503725,
+      "exact_p": 0.058573528410188855
+    },
+    {
+      "model_a": "20241001_nfactorial",
+      "model_b": "20241128_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor_20241128",
+      "only_a": 47,
+      "only_b": 69,
+      "paired_t_p": 0.04096757657065285,
+      "exact_p": 0.05072955668288323
+    },
+    {
+      "model_a": "20241002_lingma-agent_lingma-swe-gpt-72b",
+      "model_b": "20250306_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor",
+      "only_a": 42,
+      "only_b": 62,
+      "paired_t_p": 0.049762472423881765,
+      "exact_p": 0.06192637987862735
+    },
+    {
+      "model_a": "20241016_composio_swekit",
+      "model_b": "20250726_mini-v1.0.0_o4-mini-2025-04-16",
+      "only_a": 47,
+      "only_b": 69,
+      "paired_t_p": 0.04096757657065285,
+      "exact_p": 0.05072955668288323
+    },
+    {
+      "model_a": "20241022_tools_claude-3-5-haiku",
+      "model_b": "20250726_mini-v1.0.0_o4-mini-2025-04-16",
+      "only_a": 49,
+      "only_b": 71,
+      "paired_t_p": 0.04449851507542784,
+      "exact_p": 0.05477979691370199
+    },
+    {
+      "model_a": "20241022_tools_claude-3-5-sonnet-updated",
+      "model_b": "20241029_OpenHands-CodeAct-2.1-sonnet-20241022",
+      "only_a": 40,
+      "only_b": 60,
+      "paired_t_p": 0.04539127795639338,
+      "exact_p": 0.05688793364098089
+    },
+    {
+      "model_a": "20241022_tools_claude-3-5-sonnet-updated",
+      "model_b": "20250120_Bracket",
+      "only_a": 46,
+      "only_b": 67,
+      "paired_t_p": 0.04810780326827752,
+      "exact_p": 0.05943072721456762
+    },
+    {
+      "model_a": "20241022_tools_claude-3-5-sonnet-updated",
+      "model_b": "20251209_mini-v1.17.2_devstral-2512",
+      "only_a": 62,
+      "only_b": 86,
+      "paired_t_p": 0.04841848130587263,
+      "exact_p": 0.05831193147429574
+    },
+    {
+      "model_a": "20241023_emergent",
+      "model_b": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+      "only_a": 43,
+      "only_b": 64,
+      "paired_t_p": 0.04222493343810661,
+      "exact_p": 0.05266778129862431
+    },
+    {
+      "model_a": "20241025_composio_swekit",
+      "model_b": "20250807_mini-v1.7.0_kimi-k2-instruct",
+      "only_a": 85,
+      "only_b": 61,
+      "paired_t_p": 0.04689993988472777,
+      "exact_p": 0.056603269970333596
+    },
+    {
+      "model_a": "20241028_agentless-1.5_gpt4o",
+      "model_b": "20250807_mini-v1.7.0_kimi-k2-instruct",
+      "only_a": 66,
+      "only_b": 91,
+      "paired_t_p": 0.04591151441630364,
+      "exact_p": 0.05509346886796192
+    },
+    {
+      "model_a": "20241028_solver",
+      "model_b": "20250528_patchpilot_Co-PatcheR",
+      "only_a": 58,
+      "only_b": 38,
+      "paired_t_p": 0.041107509354999835,
+      "exact_p": 0.05191052214883844
+    },
+    {
+      "model_a": "20241029_OpenHands-CodeAct-2.1-sonnet-20241022",
+      "model_b": "20241208_gru",
+      "only_a": 38,
+      "only_b": 58,
+      "paired_t_p": 0.041107509354999835,
+      "exact_p": 0.05191052214883844
+    },
+    {
+      "model_a": "20241105_nfactorial",
+      "model_b": "20250726_mini-v1.0.0_gemini-2.5-pro",
+      "only_a": 52,
+      "only_b": 74,
+      "paired_t_p": 0.04990828996046135,
+      "exact_p": 0.06093825261566016
+    },
+    {
+      "model_a": "20241105_nfactorial",
+      "model_b": "20251110_frogboss-32b",
+      "only_a": 50,
+      "only_b": 72,
+      "paired_t_p": 0.04628776777832038,
+      "exact_p": 0.05682268892317531
+    },
+    {
+      "model_a": "20241106_navie-2-gpt4o-sonnet",
+      "model_b": "20241125_enginelabs",
+      "only_a": 54,
+      "only_b": 77,
+      "paired_t_p": 0.04437056861760368,
+      "exact_p": 0.05417080038723309
+    },
+    {
+      "model_a": "20241106_navie-2-gpt4o-sonnet",
+      "model_b": "20250122_autocoderover-v2.1-claude-3-5-sonnet-20241022",
+      "only_a": 47,
+      "only_b": 69,
+      "paired_t_p": 0.04096757657065285,
+      "exact_p": 0.05072955668288323
+    },
+    {
+      "model_a": "20241106_navie-2-gpt4o-sonnet",
+      "model_b": "20250805_openhands-Qwen3-Coder-30B-A3B-Instruct",
+      "only_a": 48,
+      "only_b": 70,
+      "paired_t_p": 0.042724733298402914,
+      "exact_p": 0.0527483496773916
+    },
+    {
+      "model_a": "20241108_autocoderover-v2.0-claude-3-5-sonnet-20241022",
+      "model_b": "20250806_SWE-Exp_DeepSeek-V3",
+      "only_a": 64,
+      "only_b": 43,
+      "paired_t_p": 0.04222493343810661,
+      "exact_p": 0.05266778129862431
+    },
+    {
+      "model_a": "20241108_devlo",
+      "model_b": "20241125_marscode-agent-dev",
+      "only_a": 63,
+      "only_b": 42,
+      "paired_t_p": 0.04030280540947145,
+      "exact_p": 0.05044215663996978
+    },
+    {
+      "model_a": "20241108_devlo",
+      "model_b": "20250410_cortexa",
+      "only_a": 40,
+      "only_b": 60,
+      "paired_t_p": 0.04539127795639338,
+      "exact_p": 0.05688793364098089
+    },
+    {
+      "model_a": "20241125_enginelabs",
+      "model_b": "20241212_epam-ai-run-claude-3-5-sonnet",
+      "only_a": 29,
+      "only_b": 47,
+      "paired_t_p": 0.03882296643635153,
+      "exact_p": 0.050452410247217666
+    },
+    {
+      "model_a": "20241128_SWE-Fixer_Qwen2.5-7b-retriever_Qwen2.5-72b-editor_20241128",
+      "model_b": "20250807_mini-v1.7.0_gpt-5-nano",
+      "only_a": 54,
+      "only_b": 77,
+      "paired_t_p": 0.04437056861760368,
+      "exact_p": 0.05417080038723309
+    },
+    {
+      "model_a": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+      "model_b": "20241202_amazon-q-developer-agent-20241202-dev",
+      "only_a": 45,
+      "only_b": 66,
+      "paired_t_p": 0.04612893976646859,
+      "exact_p": 0.05716364524660185
+    },
+    {
+      "model_a": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+      "model_b": "20251201_mini-v1.17.1_glm-4.6",
+      "only_a": 53,
+      "only_b": 76,
+      "paired_t_p": 0.042748098944647886,
+      "exact_p": 0.05232353322391846
+    },
+    {
+      "model_a": "20241208_gru",
+      "model_b": "20250203_openhands_4x_scaled",
+      "only_a": 34,
+      "only_b": 53,
+      "paired_t_p": 0.04153031809376356,
+      "exact_p": 0.05300311301096223
+    },
+    {
+      "model_a": "20241212_epam-ai-run-claude-3-5-sonnet",
+      "model_b": "20250122_autocoderover-v2.1-claude-3-5-sonnet-20241022",
+      "only_a": 55,
+      "only_b": 36,
+      "paired_t_p": 0.04629274460503725,
+      "exact_p": 0.058573528410188855
+    },
+    {
+      "model_a": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+      "model_b": "20250415_openhands",
+      "only_a": 33,
+      "only_b": 51,
+      "paired_t_p": 0.04943602083214588,
+      "exact_p": 0.06297225703616968
+    },
+    {
+      "model_a": "20250110_blackboxai_agent_v1.1",
+      "model_b": "20250629_deepswerl_r2eagent_tts",
+      "only_a": 61,
+      "only_b": 41,
+      "paired_t_p": 0.0475669184700461,
+      "exact_p": 0.059400536903433346
+    },
+    {
+      "model_a": "20250110_blackboxai_agent_v1.1",
+      "model_b": "20260217_mini-v2.0.0_claude-4-5-haiku-high",
+      "only_a": 37,
+      "only_b": 56,
+      "paired_t_p": 0.04871402554127349,
+      "exact_p": 0.06138589870445953
+    },
+    {
+      "model_a": "20250110_learn_by_interact_claude3.5",
+      "model_b": "20250117_wandb_programmer_o1_crosscheck5",
+      "only_a": 49,
+      "only_b": 71,
+      "paired_t_p": 0.04449851507542784,
+      "exact_p": 0.05477979691370199
+    },
+    {
+      "model_a": "20250110_learn_by_interact_claude3.5",
+      "model_b": "20250503_patchpilot-v1.1-o4-mini",
+      "only_a": 51,
+      "only_b": 73,
+      "paired_t_p": 0.048091381540310126,
+      "exact_p": 0.0588758732807349
+    },
+    {
+      "model_a": "20250110_learn_by_interact_claude3.5",
+      "model_b": "20250726_mini-v1.0.0_claude-sonnet-4-20250514",
+      "only_a": 54,
+      "only_b": 77,
+      "paired_t_p": 0.04437056861760368,
+      "exact_p": 0.05417080038723309
+    },
+    {
+      "model_a": "20250117_wandb_programmer_o1_crosscheck5",
+      "model_b": "20250203_openhands_4x_scaled",
+      "only_a": 56,
+      "only_b": 37,
+      "paired_t_p": 0.04871402554127658,
+      "exact_p": 0.06138589870445953
+    },
+    {
+      "model_a": "20250118_codeshellagent_gemini_2.0_flash_experimental",
+      "model_b": "20250511_sweagent_lm_32b",
+      "only_a": 62,
+      "only_b": 42,
+      "paired_t_p": 0.049762472423881765,
+      "exact_p": 0.06192637987862735
+    },
+    {
+      "model_a": "20250206_agentscope",
+      "model_b": "20250807_mini-v1.7.0_gpt-5-mini",
+      "only_a": 49,
+      "only_b": 31,
+      "paired_t_p": 0.04405906203396837,
+      "exact_p": 0.056664426345121144
+    },
+    {
+      "model_a": "20250214_agentless_lite_o3_mini",
+      "model_b": "20250616_Skywork-SWE-32B",
+      "only_a": 71,
+      "only_b": 49,
+      "paired_t_p": 0.04449851507542784,
+      "exact_p": 0.05477979691370199
+    },
+    {
+      "model_a": "20250225_sweagent_claude-3-7-sonnet",
+      "model_b": "20250405_amazon-q-developer-agent-20250405-dev",
+      "only_a": 20,
+      "only_b": 35,
+      "paired_t_p": 0.04299959271002756,
+      "exact_p": 0.05806414679240905
+    },
+    {
+      "model_a": "20250228_epam-ai-run-claude-3-5-sonnet",
+      "model_b": "20250514_aime_coder",
+      "only_a": 31,
+      "only_b": 49,
+      "paired_t_p": 0.04405906203396837,
+      "exact_p": 0.056664426345121144
+    },
+    {
+      "model_a": "20250228_epam-ai-run-claude-3-5-sonnet",
+      "model_b": "20250522_sweagent_claude-4-sonnet-20250514",
+      "only_a": 33,
+      "only_b": 52,
+      "paired_t_p": 0.03919470162421569,
+      "exact_p": 0.050250895335291444
+    },
+    {
+      "model_a": "20250228_epam-ai-run-claude-3-5-sonnet",
+      "model_b": "20250629_deepswerl_r2eagent_tts",
+      "only_a": 62,
+      "only_b": 42,
+      "paired_t_p": 0.049762472423881765,
+      "exact_p": 0.06192637987862735
+    },
+    {
+      "model_a": "20250228_epam-ai-run-claude-3-5-sonnet",
+      "model_b": "20250726_mini-v1.0.0_o3-2025-04-16",
+      "only_a": 69,
+      "only_b": 47,
+      "paired_t_p": 0.04096757657065285,
+      "exact_p": 0.05072955668288323
+    },
+    {
+      "model_a": "20250228_epam-ai-run-claude-3-5-sonnet",
+      "model_b": "20260217_mini-v2.0.0_claude-4-5-haiku-high",
+      "only_a": 36,
+      "only_b": 55,
+      "paired_t_p": 0.04629274460503725,
+      "exact_p": 0.058573528410188855
+    },
+    {
+      "model_a": "20250405_swe-rizzo_claude37",
+      "model_b": "20251124_mini-v1.17.0_minimax-m2",
+      "only_a": 49,
+      "only_b": 71,
+      "paired_t_p": 0.04449851507542784,
+      "exact_p": 0.05477979691370199
+    },
+    {
+      "model_a": "20250410_cortexa",
+      "model_b": "20250822_mini-v1.9.1_glm-4.5",
+      "only_a": 59,
+      "only_b": 39,
+      "paired_t_p": 0.04323747040110631,
+      "exact_p": 0.054390558277088434
+    },
+    {
+      "model_a": "20250430_zencoder_ai",
+      "model_b": "20250514_aime_coder",
+      "only_a": 49,
+      "only_b": 31,
+      "paired_t_p": 0.04405906203396837,
+      "exact_p": 0.056664426345121144
+    },
+    {
+      "model_a": "20250503_patchpilot-v1.1-o4-mini",
+      "model_b": "20250901_entroPO_R2E_QwenCoder30BA3B_tts",
+      "only_a": 65,
+      "only_b": 44,
+      "paired_t_p": 0.04416749142292099,
+      "exact_p": 0.05490881777576034
+    },
+    {
+      "model_a": "20250503_patchpilot-v1.1-o4-mini",
+      "model_b": "20250930_zai_glm4-6",
+      "only_a": 32,
+      "only_b": 50,
+      "paired_t_p": 0.04673181124881958,
+      "exact_p": 0.059808338334316175
+    },
+    {
+      "model_a": "20250515_Refact_Agent",
+      "model_b": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "only_a": 27,
+      "only_b": 44,
+      "paired_t_p": 0.04352677618817422,
+      "exact_p": 0.05681467793283902
+    },
+    {
+      "model_a": "20250516_cortexa_o3",
+      "model_b": "20250726_mini-v1.0.0_claude-sonnet-4-20250514",
+      "only_a": 46,
+      "only_b": 29,
+      "paired_t_p": 0.049548934604307225,
+      "exact_p": 0.06394991646706692
+    },
+    {
+      "model_a": "20250516_cortexa_o3",
+      "model_b": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high",
+      "only_a": 31,
+      "only_b": 49,
+      "paired_t_p": 0.04405906203396837,
+      "exact_p": 0.056664426345121144
+    },
+    {
+      "model_a": "20250519_trae",
+      "model_b": "20251015_Prometheus_v1.2.1_gpt5",
+      "only_a": 35,
+      "only_b": 54,
+      "paired_t_p": 0.04389727788976136,
+      "exact_p": 0.05577832765373432
+    },
+    {
+      "model_a": "20250520_openhands_devstral_small",
+      "model_b": "20250629_deepswerl_r2eagent",
+      "only_a": 77,
+      "only_b": 54,
+      "paired_t_p": 0.04437056861760368,
+      "exact_p": 0.05417080038723309
+    },
+    {
+      "model_a": "20250522_tools_claude-4-opus",
+      "model_b": "20250805_openhands-Qwen3-Coder-480B-A35B-Instruct",
+      "only_a": 48,
+      "only_b": 30,
+      "paired_t_p": 0.04142147333977436,
+      "exact_p": 0.053544392168502264
+    },
+    {
+      "model_a": "20250522_tools_claude-4-opus",
+      "model_b": "20250819_ACoder",
+      "only_a": 23,
+      "only_b": 39,
+      "paired_t_p": 0.04203630011435177,
+      "exact_p": 0.05589722669971112
+    },
+    {
+      "model_a": "20250522_tools_claude-4-sonnet",
+      "model_b": "20250612_trae",
+      "only_a": 17,
+      "only_b": 31,
+      "paired_t_p": 0.04319375643304982,
+      "exact_p": 0.05946337525377034
+    },
+    {
+      "model_a": "20250522_tools_claude-4-sonnet",
+      "model_b": "20250901_warp",
+      "only_a": 25,
+      "only_b": 41,
+      "paired_t_p": 0.04879958650067133,
+      "exact_p": 0.06401750413722565
+    },
+    {
+      "model_a": "20250522_tools_claude-4-sonnet",
+      "model_b": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11",
+      "only_a": 45,
+      "only_b": 28,
+      "paired_t_p": 0.04651790146222004,
+      "exact_p": 0.060370037339928545
+    },
+    {
+      "model_a": "20250522_tools_claude-4-sonnet",
+      "model_b": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "only_a": 28,
+      "only_b": 45,
+      "paired_t_p": 0.04651790146222004,
+      "exact_p": 0.060370037339928545
+    },
+    {
+      "model_a": "20250524_openhands_claude_4_sonnet",
+      "model_b": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "only_a": 27,
+      "only_b": 44,
+      "paired_t_p": 0.04352677618817422,
+      "exact_p": 0.05681467793283902
+    },
+    {
+      "model_a": "20250527_amazon.nova-premier-v1.0",
+      "model_b": "20250616_Skywork-SWE-32B",
+      "only_a": 71,
+      "only_b": 49,
+      "paired_t_p": 0.04449851507542784,
+      "exact_p": 0.05477979691370199
+    },
+    {
+      "model_a": "20250528_patchpilot_Co-PatcheR",
+      "model_b": "20250806_SWE-Exp_DeepSeek-V3",
+      "only_a": 62,
+      "only_b": 42,
+      "paired_t_p": 0.049762472423881765,
+      "exact_p": 0.06192637987862735
+    },
+    {
+      "model_a": "20250603_Refact_Agent_claude-4-sonnet",
+      "model_b": "20251014_Lingxi_kimi_k2",
+      "only_a": 40,
+      "only_b": 24,
+      "paired_t_p": 0.04539127795639338,
+      "exact_p": 0.05994118956699923
+    },
+    {
+      "model_a": "20250603_Refact_Agent_claude-4-sonnet",
+      "model_b": "20251127_openhands_claude-opus-4-5",
+      "only_a": 24,
+      "only_b": 40,
+      "paired_t_p": 0.04539127795639338,
+      "exact_p": 0.05994118956699923
+    },
+    {
+      "model_a": "20250610_augment_agent_v1",
+      "model_b": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "only_a": 26,
+      "only_b": 43,
+      "paired_t_p": 0.0405808161318531,
+      "exact_p": 0.05328936381651365
+    },
+    {
+      "model_a": "20250611_moatless_claude-4-sonnet-20250514",
+      "model_b": "20251015_Prometheus_v1.2.1_gpt5",
+      "only_a": 30,
+      "only_b": 48,
+      "paired_t_p": 0.04142147333977436,
+      "exact_p": 0.053544392168502264
+    },
+    {
+      "model_a": "20250612_trae",
+      "model_b": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high",
+      "only_a": 43,
+      "only_b": 26,
+      "paired_t_p": 0.0405808161318531,
+      "exact_p": 0.05328936381651365
+    },
+    {
+      "model_a": "20250623_warp",
+      "model_b": "20251015_Prometheus_v1.2.1_gpt5",
+      "only_a": 29,
+      "only_b": 46,
+      "paired_t_p": 0.049548934604307225,
+      "exact_p": 0.06394991646706692
+    },
+    {
+      "model_a": "20250623_warp",
+      "model_b": "20251124_mini-v1.16.0_claude-opus-4-5-20251101",
+      "only_a": 27,
+      "only_b": 44,
+      "paired_t_p": 0.04352677618817422,
+      "exact_p": 0.05681467793283902
+    },
+    {
+      "model_a": "20250726_mini-v1.0.0_claude-sonnet-4-20250514",
+      "model_b": "20251124_mini-v1.17.0_minimax-m2",
+      "only_a": 56,
+      "only_b": 37,
+      "paired_t_p": 0.04871402554127658,
+      "exact_p": 0.06138589870445953
+    },
+    {
+      "model_a": "20250726_mini-v1.0.0_o3-2025-04-16",
+      "model_b": "20251209_mini-v1.17.2_devstral-2512",
+      "only_a": 75,
+      "only_b": 52,
+      "paired_t_p": 0.04113953262662839,
+      "exact_p": 0.050487005985972014
+    },
+    {
+      "model_a": "20250728_zai_glm4-5",
+      "model_b": "20250802_mini-v1.0.0_claude-4-opus-20250514",
+      "only_a": 29,
+      "only_b": 46,
+      "paired_t_p": 0.049548934604307225,
+      "exact_p": 0.06394991646706692
+    },
+    {
+      "model_a": "20250731_harness_ai",
+      "model_b": "20250807_openhands_gpt5",
+      "only_a": 35,
+      "only_b": 20,
+      "paired_t_p": 0.04299959271002756,
+      "exact_p": 0.05806414679240905
+    },
+    {
+      "model_a": "20250802_mini-v1.0.0_claude-4-opus-20250514",
+      "model_b": "20250929_Prometheus_v1.2_gpt5",
+      "only_a": 32,
+      "only_b": 50,
+      "paired_t_p": 0.04673181124881958,
+      "exact_p": 0.059808338334316175
+    },
+    {
+      "model_a": "20250802_mini-v1.0.0_claude-4-opus-20250514",
+      "model_b": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "only_a": 23,
+      "only_b": 39,
+      "paired_t_p": 0.04203630011435177,
+      "exact_p": 0.05589722669971112
+    },
+    {
+      "model_a": "20250802_mini-v1.0.0_qwen3-coder-480b-a35b-instruct",
+      "model_b": "20251201_mini-v1.17.1_deepseek-v3.2-reasoner",
+      "only_a": 53,
+      "only_b": 76,
+      "paired_t_p": 0.042748098944647886,
+      "exact_p": 0.05232353322391846
+    },
+    {
+      "model_a": "20250805_openhands-Qwen3-Coder-480B-A35B-Instruct",
+      "model_b": "20251124_mini-v1.16.0_gpt-5.1-codex",
+      "only_a": 48,
+      "only_b": 30,
+      "paired_t_p": 0.04142147333977436,
+      "exact_p": 0.053544392168502264
+    },
+    {
+      "model_a": "20250807_mini-v1.7.0_gpt-5",
+      "model_b": "20251124_mini-v1.17.0_minimax-m2",
+      "only_a": 62,
+      "only_b": 42,
+      "paired_t_p": 0.049762472423881765,
+      "exact_p": 0.06192637987862735
+    },
+    {
+      "model_a": "20250807_mini-v1.7.0_gpt-5-mini",
+      "model_b": "20260217_mini-v2.0.0_gpt-5-mini",
+      "only_a": 51,
+      "only_b": 33,
+      "paired_t_p": 0.04943602083214588,
+      "exact_p": 0.06297225703616968
+    },
+    {
+      "model_a": "20250807_openhands_gpt5",
+      "model_b": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+      "only_a": 20,
+      "only_b": 35,
+      "paired_t_p": 0.04299959271002756,
+      "exact_p": 0.05806414679240905
+    },
+    {
+      "model_a": "20250819_ACoder",
+      "model_b": "20251021_SalesforceAIResearch_SAGE_bash_only",
+      "only_a": 45,
+      "only_b": 28,
+      "paired_t_p": 0.04651790146222004,
+      "exact_p": 0.060370037339928545
+    },
+    {
+      "model_a": "20250819_ACoder",
+      "model_b": "20260217_mini-v2.0.0_glm-5-high",
+      "only_a": 48,
+      "only_b": 30,
+      "paired_t_p": 0.04142147333977436,
+      "exact_p": 0.053544392168502264
+    },
+    {
+      "model_a": "20250901_warp",
+      "model_b": "20250928_trae_doubao_seed_code",
+      "only_a": 24,
+      "only_b": 40,
+      "paired_t_p": 0.04539127795639338,
+      "exact_p": 0.05994118956699923
+    },
+    {
+      "model_a": "20250901_warp",
+      "model_b": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "only_a": 52,
+      "only_b": 33,
+      "paired_t_p": 0.03919470162421569,
+      "exact_p": 0.050250895335291444
+    },
+    {
+      "model_a": "20250902_atlassian-rovo-dev",
+      "model_b": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "only_a": 36,
+      "only_b": 21,
+      "paired_t_p": 0.04683939948185761,
+      "exact_p": 0.06273668035582848
+    },
+    {
+      "model_a": "20250924_artemis_agent_v2",
+      "model_b": "20251124_mini-v1.17.0_minimax-m2",
+      "only_a": 41,
+      "only_b": 61,
+      "paired_t_p": 0.0475669184700461,
+      "exact_p": 0.059400536903433346
+    },
+    {
+      "model_a": "20250930_zai_glm4-6",
+      "model_b": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high",
+      "only_a": 31,
+      "only_b": 49,
+      "paired_t_p": 0.04405906203396837,
+      "exact_p": 0.056664426345121144
+    },
+    {
+      "model_a": "20251014_Lingxi_kimi_k2",
+      "model_b": "20251124_mini-v1.16.0_claude-opus-4-5-20251101",
+      "only_a": 23,
+      "only_b": 39,
+      "paired_t_p": 0.04203630011435177,
+      "exact_p": 0.05589722669971112
+    },
+    {
+      "model_a": "20251015_Prometheus_v1.2.1_gpt5",
+      "model_b": "20251127_openhands_claude-opus-4-5",
+      "only_a": 24,
+      "only_b": 40,
+      "paired_t_p": 0.04539127795639338,
+      "exact_p": 0.05994118956699923
+    },
+    {
+      "model_a": "20251015_Prometheus_v1.2.1_gpt5",
+      "model_b": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "only_a": 49,
+      "only_b": 31,
+      "paired_t_p": 0.04405906203396837,
+      "exact_p": 0.056664426345121144
+    },
+    {
+      "model_a": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+      "model_b": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11-high",
+      "only_a": 36,
+      "only_b": 21,
+      "paired_t_p": 0.04683939948185761,
+      "exact_p": 0.06273668035582848
+    },
+    {
+      "model_a": "20251124_mini-v1.16.0_claude-opus-4-5-20251101",
+      "model_b": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+      "only_a": 34,
+      "only_b": 19,
+      "paired_t_p": 0.03923593305048049,
+      "exact_p": 0.053438810537711046
+    },
+    {
+      "model_a": "20251201_mini-v1.17.1_deepseek-v3.2-reasoner",
+      "model_b": "20251201_mini-v1.17.1_glm-4.6",
+      "only_a": 75,
+      "only_b": 52,
+      "paired_t_p": 0.04113953262662839,
+      "exact_p": 0.050487005985972014
+    },
+    {
+      "model_a": "20251211_mini-v1.17.2_gpt-5.2-2025-12-11",
+      "model_b": "20260217_mini-v2.0.0_glm-5-high",
+      "only_a": 33,
+      "only_b": 52,
+      "paired_t_p": 0.03919470162421569,
+      "exact_p": 0.050250895335291444
+    },
+    {
+      "model_a": "20260217_mini-v2.0.0_gemini-3-flash-high",
+      "model_b": "20260217_mini-v2.0.0_glm-5-high",
+      "only_a": 36,
+      "only_b": 21,
+      "paired_t_p": 0.04683939948185761,
+      "exact_p": 0.06273668035582848
+    },
+    {
+      "model_a": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "model_b": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "only_a": 61,
+      "only_b": 41,
+      "paired_t_p": 0.0475669184700461,
+      "exact_p": 0.059400536903433346
+    }
+  ],
+  "scope": "Single task-independent comparisons, unadjusted for browsing multiple pairs. Repository-clustered inference is a separate model and is unchanged."
+}

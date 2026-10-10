@@ -97,7 +97,8 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   questions or a score near 0 or 1, bootstrap on request); clustered SE with its effective degrees of freedom, design effect and
   ICC when a `cluster_id` column is present; within/between-question variance decomposition
   when a `sample` column is present.
-- **`compare`** — paired mean difference, SE, CI, p-value; the correlation between the two models'
+- **`compare`** — selects exact binary, clustered, or paired-t inference from the shared
+  observations and retains diagnostic SEs, intervals and p-values; the correlation between the two models'
   per-question scores and how much pairing shrank the SE vs. an unpaired comparison; a
   cluster-robust paired SE/CI/p-value when clusters are present, which stays valid when the
   clusters are few or very unequal in size; exact McNemar test for binary scores.

@@ -1,0 +1,69 @@
+{
+  "two-wins": {
+    "inference": {
+      "test": "mcnemar_exact",
+      "p_value": 0.5,
+      "ci_low": null,
+      "ci_high": null,
+      "confidence": null,
+      "mcnemar_applicable": true
+    },
+    "legacy_paired_t_p": 0.0,
+    "headline": "Exact McNemar p = 0.5000 on 2 discordant questions. No significant difference detected at alpha=0.05. Non-significance does not establish equivalence.",
+    "input_sha256": {
+      "examples/leaderboard-tests/two-questions.csv": "cc7ed3edd229205ddba67981daa4a060a2ddb91da0c9c9e669ea60b952c0c48f"
+    },
+    "html_sha256": "eca3adc83edbb2a14d9f3d936ab13542a5469a5a1bd6edddc972a5074eb13653"
+  },
+  "repeated": {
+    "inference": {
+      "test": "paired_t",
+      "p_value": 0.0,
+      "ci_low": 1.0,
+      "ci_high": 1.0,
+      "confidence": 0.95,
+      "mcnemar_applicable": false
+    },
+    "legacy_paired_t_p": 0.0,
+    "headline": "95% paired-t CI [1.0000, 1.0000]; two-sided p = 0.0000.",
+    "input_sha256": {
+      "examples/leaderboard-tests/repeated.csv": "9e7e9cb9f7ac339048d2feee7f1a9f2da4160b45389a06b895d376f463fe2b18"
+    },
+    "html_sha256": "4b5a2c661c29d2da97ad6ed6575b3490a21d7f73674addcc0b71977faf36fec7"
+  },
+  "copa": {
+    "inference": {
+      "test": "mcnemar_exact",
+      "p_value": 0.2890625,
+      "ci_low": null,
+      "ci_high": null,
+      "confidence": null,
+      "mcnemar_applicable": true
+    },
+    "legacy_paired_t_p": 0.16254999902972966,
+    "headline": "Exact McNemar p = 0.2891 on 8 discordant questions. No significant difference detected at alpha=0.05. Non-significance does not establish equivalence.",
+    "input_sha256": {
+      "tests/fixtures/lm_eval_output/hf-internal-testing__tiny-random-gpt2/results_2026-10-01T23-15-52.736695.json": "4a6f4315959b6f80aa898964f54267af0a213fa9189b296a51abdb46ed2e6229",
+      "tests/fixtures/lm_eval_output/hf-internal-testing__tiny-random-gpt2/samples_copa_2026-10-01T23-15-52.736695.jsonl": "a2941c45dbd3f80c46d1072cbd20592a0cabc43025b5476807f114532e894f47",
+      "tests/fixtures/lm_eval_output/sshleifer__tiny-gpt2/results_2026-10-01T23-15-32.942677.json": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e",
+      "tests/fixtures/lm_eval_output/sshleifer__tiny-gpt2/samples_copa_2026-10-01T23-15-32.942677.jsonl": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+    },
+    "html_sha256": "3f7fe0143340532c76b3b7accab2cfc114b4ecd7a357edb356dd3a1c76b32f8e"
+  },
+  "clustered": {
+    "inference": {
+      "test": "clustered_t",
+      "p_value": 0.1234833901479242,
+      "ci_low": -0.01993410362831162,
+      "ci_high": 0.15993410362831162,
+      "confidence": 0.95,
+      "mcnemar_applicable": true
+    },
+    "legacy_paired_t_p": 0.11314109841176279,
+    "headline": "95% cluster-robust t CI [-0.0199, 0.1599]; two-sided p = 0.1235. The interval includes zero; it does not establish a difference or equivalence. Based on 40 independent clusters (39.0 effective degrees of freedom).",
+    "input_sha256": {
+      "examples/data/reading_comprehension.csv": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+    },
+    "html_sha256": "7e4d3c81051522109407672b80995129711a9cf78b33f47f7ba8c193c4e92a02"
+  }
+}

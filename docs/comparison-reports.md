@@ -35,8 +35,9 @@ are a demonstration of investigation, not a model recommendation.
 | A: tiny-random-gpt2 mean | 0.8000 |
 | B: tiny-gpt2 mean | 0.6000 |
 | Mean A - B | +0.2000 |
-| Paired 95% interval | [-0.0881, +0.4881] |
-| Paired two-sided p-value | 0.1625 |
+| Paired-t 95% interval (diagnostic) | [-0.0881, +0.4881] |
+| Paired-t p-value (diagnostic) | 0.1625 |
+| Selected exact McNemar p-value | 0.2890625 |
 | A higher / B higher / equal | 6 / 2 / 12 |
 | Shared IDs with matching content signatures | 20 |
 
@@ -47,6 +48,29 @@ gain. Filtering these two cases does **not** rerun the test. The interval above
 still describes all 20 shared questions and still contains zero.
 
 ![Question-level evidence on the real COPA captures](assets/comparison-evidence.png)
+
+## Which test supports the headline
+
+The report and CLI select from the shared observation structure, using the
+same policy as the leaderboard:
+
+| Shared observations | Selected inference |
+|---|---|
+| Multiple questions in each of independent clusters | Clustered t (CR2) |
+| One binary observation per question, without grouped questions | Exact McNemar |
+| Continuous scores or repeated-generation question means | Paired t |
+
+CLI and report JSON add `inference` with the selected `test`, `p_value` and
+matching interval. Exact McNemar has null interval endpoints and confidence:
+an exact mean-difference interval is not implemented. Its paired-t interval is
+retained as a labeled approximation. Existing `comparison` and CLI top-level
+`p_value`/CI fields retain their paired-t diagnostic meaning for compatibility.
+Use `inference` for the selected conclusion. `mcnemar_applicable` is false when
+binary-looking means actually average repeated generations.
+
+The [two-win counterexample and real-outcome audit](../studies/comparison-inference/README.md)
+show why this matters. The earlier screenshot above documents ledger inspection;
+the current headline uses exact McNemar for these 20 single binary outcomes.
 
 ## Incomplete and repeated evaluations
 
@@ -213,7 +237,7 @@ evidence = review.as_dict()
 ```
 
 `review_comparison` can return an unavailable comparison with a complete ledger;
-check `review.comparison` before using inference. Writes replace the destination
+check `review.inference` before using its selected test and interval. Writes replace the destination
 atomically so a failed replacement leaves the previous report intact.
 
 See [verification](verification-comparison-2026-10-07.md) for the real browser

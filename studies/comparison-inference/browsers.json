@@ -1,0 +1,26 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "report": "Exact McNemar p = 0.5000 on 2 discordant questions. No significant difference detected at alpha=0.05. Non-significance does not establish equivalence.",
+    "site": "TRAE + Doubao-Seed-Code is 3.2 points ahead of Warp (78.8% against 75.6%). Exact task test: p = 0.060. Repository-clustered test: p = 0.37. Neither test detects a difference at 5%; this does not establish equivalence."
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "report": "Exact McNemar p = 0.5000 on 2 discordant questions. No significant difference detected at alpha=0.05. Non-significance does not establish equivalence.",
+    "site": "TRAE + Doubao-Seed-Code is 3.2 points ahead of Warp (78.8% against 75.6%). Exact task test: p = 0.060. Repository-clustered test: p = 0.37. Neither test detects a difference at 5%; this does not establish equivalence."
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "report": "Exact McNemar p = 0.5000 on 2 discordant questions. No significant difference detected at alpha=0.05. Non-significance does not establish equivalence.",
+    "site": "TRAE + Doubao-Seed-Code is 3.2 points ahead of Warp (78.8% against 75.6%). Exact task test: p = 0.060. Repository-clustered test: p = 0.37. Neither test detects a difference at 5%; this does not establish equivalence."
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "report": "Exact McNemar p = 0.5000 on 2 discordant questions. No significant difference detected at alpha=0.05. Non-significance does not establish equivalence.",
+    "site": "TRAE + Doubao-Seed-Code is 3.2 points ahead of Warp (78.8% against 75.6%). Exact task test: p = 0.060. Repository-clustered test: p = 0.37. Neither test detects a difference at 5%; this does not establish equivalence."
+  }
+]

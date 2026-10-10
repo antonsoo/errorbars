@@ -1,0 +1,22 @@
+compare: A vs B
+metric                                                            value
+-----------------------------------------------------  ----------------
+n (shared questions)                                                 24
+mean(A)                                                          0.0000
+mean(B)                                                          0.0000
+mean diff (A - B)                                                0.0000
+selected test                                             McNemar exact
+selected p-value                                                      1
+paired-t SE (diagnostic)                                         0.0000
+95% paired-t CI (diagnostic)                           [0.0000, 0.0000]
+paired-t p-value (diagnostic)                                         1
+correlation(A, B)                                           unavailable
+unpaired SE (for reference)                                      0.0000
+variance reduction from pairing                             unavailable
+McNemar discordant (A wrong/B right, A right/B wrong)             0 / 0
+McNemar exact p-value                                                 1
+The selected test uses one binary observation per shared question. The paired-t interval is a separate approximation, not an exact McNemar interval. No exact mean-difference interval is supplied.
+Question content checks: 24 matching, 0 partially checked, 0 unchecked shared ids. Matching signatures do not check scoring-rule equivalence.
+Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.
+Correlation is unavailable because at least one score vector is constant.
+Variance reduction is unavailable because both score vectors are constant.

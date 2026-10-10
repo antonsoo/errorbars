@@ -21,6 +21,14 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- lm-eval imports require `--metric` when selected records declare several metrics,
+  validate that it is a declared score on every record, and refuse different metrics
+  for shared questions across native input files. Model-name inference requires a
+  results file with the samples' timestamp; renamed or orphaned samples need `NAME=PATH`
+  or `--model`. This prevents metric-order changes from creating an apparent model
+  improvement and unrelated results files from relabelling a run.
+  [Actual harness capture and migration](studies/lm-eval-evidence/README.md).
+
 - Standalone comparisons now share the leaderboard's data-based test selection.
   CLI and HTML headline exact McNemar for single binary observations, clustered t
   for grouped questions, and paired t for continuous or repeated means. JSON adds

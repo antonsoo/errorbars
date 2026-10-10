@@ -270,7 +270,9 @@ errorbars import lm-eval out -o all.csv         # or write the canonical CSV onc
 - **lm-eval**: a `samples_<task>_<timestamp>.jsonl` file, a model's directory, or the whole
   `--output_path`. The samples file does not name its model; lm-eval writes it beside a
   `results_<timestamp>.json` that does, and that is where the name comes from. A samples file
-  moved away from it has to be named: `my-model=path/to/samples_copa_....jsonl`. When a directory
+  moved away from it has to be named: `my-model=path/to/samples_copa_....jsonl`. In this
+  source checkout, a renamed file or a results file with a different timestamp also needs
+  an explicit name; a nearby run cannot identify these samples. When a directory
   holds several runs of a task, the latest is used and a note says so. Question ids are
   `<task>-<doc_id>`, so several tasks of one model add up to one benchmark.
 - **Inspect AI**: `.eval` (or `.json`) logs; the model is the one in the log. Epochs (`--epochs N`,
@@ -281,7 +283,14 @@ errorbars import lm-eval out -o all.csv         # or write the canonical CSV onc
   values), the comparison uses the shared ones and reports how many were left out.
 
 `--metric` (lm-eval) picks which computed metric to use as the score when a task reports more than
-one (e.g. `acc` vs. `acc_norm`); it defaults to the first one. `--filter` (lm-eval) picks one filter
+one (e.g. `acc` vs. `acc_norm`). **The source checkout requires this choice when several
+metrics are available**; the released package defaults to the first one. The chosen metric
+must be declared on every selected record, and native logs with shared questions must use
+the same metric. Metadata such as `doc_id` cannot be selected as scores.
+In a [controlled lm-eval capture](studies/lm-eval-evidence/README.md), changing only metric
+order previously created a 100-point gap and p = 0.000000119 between identical responses.
+Explicit selection gives zero difference. These importer corrections are unreleased.
+`--filter` (lm-eval) picks one filter
 for a task that scores every question under several: `gsm8k_cot_self_consistency` logs each question
 three times (`score-first`, `maj@8`, `maj@64`), and reading those as three times the questions would
 shrink every error bar, so the import stops and asks. `--scorer` (Inspect) picks one scorer for

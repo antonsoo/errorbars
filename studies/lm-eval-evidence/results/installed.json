@@ -1,0 +1,223 @@
+{
+  "capture_check": "24 identical documents, targets, responses and score values; only metrics order differs",
+  "inputs": [
+    {
+      "path": "tests/fixtures/samples_arc_easy_2026-09-24T03-05-32.831346.jsonl",
+      "sha256": "0c12179cbb1005d26e48bdda4a836064247b78ca53ca5b5ce22553085c02e3e6"
+    },
+    {
+      "path": "tests/fixtures/lm_eval_output/sshleifer__tiny-gpt2/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+      "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+    },
+    {
+      "path": "tests/fixtures/lm_eval_output/hf-internal-testing__tiny-random-gpt2/results_2026-10-01T23-15-52.736695.json",
+      "sha256": "4a6f4315959b6f80aa898964f54267af0a213fa9189b296a51abdb46ed2e6229"
+    },
+    {
+      "path": "studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+      "sha256": "fc6e4e278a4e3f8d86c63ccd99e4afdceb5122f679eb49f46783ae01f4acb143"
+    },
+    {
+      "path": "studies/lm-eval-evidence/captures/casefold-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.616872.jsonl",
+      "sha256": "7d2d0e257ec509af04153b0546a3266bc363e266404bcc8ac77c41025d8fff65"
+    },
+    {
+      "path": "studies/lm-eval-evidence/cache/replay/a/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+      "sha256": "7f52b8926afaf682455e7f359c1278d0dadcc22f0d5997e085ec5e9b0da73448"
+    },
+    {
+      "path": "studies/lm-eval-evidence/cache/replay/b/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+      "sha256": "aeaefd8c64b376b5e4fe836f70fc7343030b4edcae6ff9724f00d91aa8b89ccd"
+    },
+    {
+      "path": "studies/lm-eval-evidence/cache/replay/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+      "sha256": "aa65de43d5f6ea3f2f4a6f30e264e7edb8b615f3444d80a970a1f9048238fb35"
+    },
+    {
+      "path": "studies/lm-eval-evidence/cache/replay/foreign/renamed.jsonl",
+      "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+    }
+  ],
+  "cases": [
+    {
+      "case": "native-order-comparison",
+      "command": [
+        "errorbars",
+        "compare",
+        "A=studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "B=studies/lm-eval-evidence/captures/casefold-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.616872.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl:1: multiple metrics (exact, casefold); choose one with metric=... (--metric on the command line)\n"
+    },
+    {
+      "case": "native-order-leaderboard",
+      "command": [
+        "errorbars",
+        "leaderboard",
+        "A=studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "B=studies/lm-eval-evidence/captures/casefold-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.616872.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl:1: multiple metrics (exact, casefold); choose one with metric=... (--metric on the command line)\n"
+    },
+    {
+      "case": "native-explicit-exact",
+      "command": [
+        "errorbars",
+        "compare",
+        "A=studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "B=studies/lm-eval-evidence/captures/casefold-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.616872.jsonl",
+        "--metric",
+        "exact",
+        "--json"
+      ],
+      "expected": "equal",
+      "matches_expected": true,
+      "exit_code": 0,
+      "stdout": "{\n  \"model_a\": \"A\",\n  \"model_b\": \"B\",\n  \"mean_a\": 0.0,\n  \"mean_b\": 0.0,\n  \"mean_diff\": 0.0,\n  \"se_paired\": 0.0,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.0,\n  \"p_value\": 1.0,\n  \"correlation\": null,\n  \"se_unpaired\": 0.0,\n  \"variance_reduction\": null,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.\",\n    \"Correlation is unavailable because at least one score vector is constant.\",\n    \"Variance reduction is unavailable because both score vectors are constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 0,\n    \"p_value\": 1.0\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 1.0,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "native-explicit-casefold",
+      "command": [
+        "errorbars",
+        "compare",
+        "A=studies/lm-eval-evidence/captures/exact-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "B=studies/lm-eval-evidence/captures/casefold-first/controlled-dummy/samples_case_control_2026-10-09T23-47-12.616872.jsonl",
+        "--metric",
+        "casefold",
+        "--json"
+      ],
+      "expected": "equal",
+      "matches_expected": true,
+      "exit_code": 0,
+      "stdout": "{\n  \"model_a\": \"A\",\n  \"model_b\": \"B\",\n  \"mean_a\": 1.0,\n  \"mean_b\": 1.0,\n  \"mean_diff\": 0.0,\n  \"se_paired\": 0.0,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.0,\n  \"p_value\": 1.0,\n  \"correlation\": null,\n  \"se_unpaired\": 0.0,\n  \"variance_reduction\": null,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.\",\n    \"Correlation is unavailable because at least one score vector is constant.\",\n    \"Variance reduction is unavailable because both score vectors are constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 0,\n    \"p_value\": 1.0\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 1.0,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "native-arc-ambiguous",
+      "command": [
+        "errorbars",
+        "summarize",
+        "arc=tests/fixtures/samples_arc_easy_2026-09-24T03-05-32.831346.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: tests/fixtures/samples_arc_easy_2026-09-24T03-05-32.831346.jsonl:1: multiple metrics (acc, acc_norm); choose one with metric=... (--metric on the command line)\n"
+    },
+    {
+      "case": "metadata-as-score",
+      "command": [
+        "errorbars",
+        "summarize",
+        "arc=tests/fixtures/samples_arc_easy_2026-09-24T03-05-32.831346.jsonl",
+        "--metric",
+        "doc_id",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: tests/fixtures/samples_arc_easy_2026-09-24T03-05-32.831346.jsonl:1: metric 'doc_id' is not declared in 'metrics' (available: acc, acc_norm); metadata fields are not scores and the selected metric cannot change between records\n"
+    },
+    {
+      "case": "matching-model-metadata",
+      "command": [
+        "errorbars",
+        "summarize",
+        "tests/fixtures/lm_eval_output/sshleifer__tiny-gpt2/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "tiny",
+      "matches_expected": true,
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"sshleifer/tiny-gpt2\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "foreign-model-metadata",
+      "command": [
+        "errorbars",
+        "summarize",
+        "studies/lm-eval-evidence/cache/replay/foreign/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: studies/lm-eval-evidence/cache/replay/foreign/samples_copa_2026-10-01T23-15-32.942677.jsonl: can't tell which model wrote this (no matching-timestamp results file names one); pass model=... (on the command line: --model NAME, or NAME=PATH)\n"
+    },
+    {
+      "case": "renamed-model-metadata",
+      "command": [
+        "errorbars",
+        "summarize",
+        "studies/lm-eval-evidence/cache/replay/foreign/renamed.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: studies/lm-eval-evidence/cache/replay/foreign/renamed.jsonl: can't tell which model wrote this (no matching-timestamp results file names one); pass model=... (on the command line: --model NAME, or NAME=PATH)\n"
+    },
+    {
+      "case": "explicit-model-name",
+      "command": [
+        "errorbars",
+        "summarize",
+        "explicit=studies/lm-eval-evidence/cache/replay/foreign/renamed.jsonl",
+        "--json"
+      ],
+      "expected": "named",
+      "matches_expected": true,
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"explicit\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "constructed-metric-switch",
+      "command": [
+        "errorbars",
+        "summarize",
+        "control=studies/lm-eval-evidence/cache/replay/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: studies/lm-eval-evidence/cache/replay/samples_case_control_2026-10-09T23-47-12.612142.jsonl:13: metric 'exact' is not declared in 'metrics' (available: casefold); metadata fields are not scores and the selected metric cannot change between records\n"
+    },
+    {
+      "case": "constructed-cross-log-mismatch",
+      "command": [
+        "errorbars",
+        "compare",
+        "A=studies/lm-eval-evidence/cache/replay/a/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "B=studies/lm-eval-evidence/cache/replay/b/samples_case_control_2026-10-09T23-47-12.612142.jsonl",
+        "--json"
+      ],
+      "expected": "reject",
+      "matches_expected": true,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: studies/lm-eval-evidence/cache/replay/b/samples_case_control_2026-10-09T23-47-12.612142.jsonl: question 'case_control-0' uses metric 'casefold', but studies/lm-eval-evidence/cache/replay/a/samples_case_control_2026-10-09T23-47-12.612142.jsonl uses 'exact'; select a common metric with --metric before combining these logs\n"
+    }
+  ],
+  "disagreements": 0
+}

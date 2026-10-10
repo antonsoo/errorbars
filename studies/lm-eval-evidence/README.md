@@ -6,7 +6,7 @@ improvement. Its lm-eval reader selected the first item in each record's
 without the caller choosing either one. It also accepted numeric metadata as
 scores and inferred model names from an unrelated results file.
 
-The source correction is local and unreleased. Native logs with several metrics
+The source correction is unreleased. Native logs with several metrics
 now require `--metric`. A selected metric must be declared on every selected
 record; it cannot switch between questions. `load_inputs` refuses different
 metric names for shared question IDs across native lm-eval logs. Automatic
@@ -113,4 +113,5 @@ The terminal screenshot was rendered from the unedited installed CLI output in
 [`lm-eval-selection.ansi`](../../docs/assets/lm-eval-selection.ansi) and visually
 checked. No web UI was changed. The existing web build command remains
 `cd web && npm run build`, producing `web/dist/`; it was not redeployed.
-No registry, GitHub branch, or hosted site was published by this work.
+These checks use the corrected source and locally built wheels, not a new PyPI
+release. They do not establish the version served by the hosted calculator.

@@ -105,7 +105,7 @@ uv run python studies/repeated-planning/figures.py
 ```
 
 The analysis needs only the committed `outcomes.json.gz`; it verifies its
-manifest hash before use. `figures.py` creates the standalone SVG and PNG
+compressed and uncompressed manifest hashes before use. `figures.py` creates the standalone SVG and PNG
 from the retained results. To regenerate the outcomes, run
 `uv run python studies/repeated-planning/fetch.py`; this downloads about
 701 MB into ignored `cache/`, verifies each source hash and rewrites the

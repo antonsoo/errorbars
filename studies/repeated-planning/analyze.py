@@ -79,7 +79,9 @@ def public_outcomes() -> dict:
     manifest = json.loads((ROOT / "manifest.json").read_text())
     packed = (ROOT / "outcomes.json.gz").read_bytes()
     assert hashlib.sha256(packed).hexdigest() == manifest["outcomes_sha256"]
-    data = json.loads(gzip.decompress(packed))
+    raw = gzip.decompress(packed)
+    assert hashlib.sha256(raw).hexdigest() == manifest["outcomes_json_sha256"]
+    data = json.loads(raw)
     assert data["schema_version"] == 1 and len(data["datasets"]) == 2
     datasets, heldout, identities = [], [], []
     for dataset in data["datasets"]:

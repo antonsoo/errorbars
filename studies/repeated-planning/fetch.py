@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import io
 import json
 import urllib.request
 from pathlib import Path
@@ -69,13 +70,21 @@ def main() -> None:
         )
         print(f"{name}: retained {len(questions)} questions x 10,000 outcomes")
     payload = {"schema_version": 1, "datasets": datasets}
-    derived = gzip.compress((json.dumps(payload, indent=2) + "\n").encode("utf-8"), mtime=0)
+    raw_outcomes = (json.dumps(payload, indent=2) + "\n").encode("utf-8")
+    buffer = io.BytesIO()
+    # gzip.compress(mtime=0) delegates its OS header byte to zlib on Python
+    # 3.11/3.12, but forces 255 on newer Python. GzipFile fixes that header
+    # across our supported runtimes and avoids embedding a local filename.
+    with gzip.GzipFile(filename="", mode="wb", fileobj=buffer, mtime=0) as out:
+        out.write(raw_outcomes)
+    derived = buffer.getvalue()
     (ROOT / "outcomes.json.gz").write_bytes(derived)
     manifest = {
         "dataset": "ScalingIntelligence/monkey_business",
         "revision": REVISION,
         "sources": sources,
         "outcomes_sha256": hashlib.sha256(derived).hexdigest(),
+        "outcomes_json_sha256": hashlib.sha256(raw_outcomes).hexdigest(),
         "outcomes_bytes": len(derived),
         "encoding": "Each correct string preserves source sample order: 1=True, 0=False from is_corrects.",
         "license": "MIT per the pinned dataset card; only grading labels, IDs and hashes are redistributed.",

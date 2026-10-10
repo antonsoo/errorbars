@@ -62,7 +62,9 @@ def main() -> None:
     packed = (source / "outcomes.json.gz").read_bytes()
     digest = hashlib.sha256(packed).hexdigest()
     assert digest == manifest["outcomes_sha256"]
-    dataset = json.loads(gzip.decompress(packed))["datasets"][0]
+    raw = gzip.decompress(packed)
+    assert hashlib.sha256(raw).hexdigest() == manifest["outcomes_json_sha256"]
+    dataset = json.loads(raw)["datasets"][0]
     groups = [[int(bit) for bit in q["correct"][:20]] for q in dataset["questions"]]
     within = statistics.mean(statistics.variance(group) for group in groups)
     between = max(0, statistics.variance(statistics.mean(group) for group in groups) - within / 20)

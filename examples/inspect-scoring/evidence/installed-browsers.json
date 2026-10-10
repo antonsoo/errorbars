@@ -1,0 +1,162 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "anywhere",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "includes",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "exact-repeat",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "name": "improved-exact",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "anywhere",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "includes",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "exact-repeat",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "name": "improved-exact",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "anywhere",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "includes",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "exact-repeat",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "name": "improved-exact",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "anywhere",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "includes",
+    "questions": 24,
+    "inferenceAvailable": false,
+    "scorerConflicts": 24,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "exact-repeat",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  },
+  {
+    "engine": "firefox",
+    "width": 375,
+    "name": "improved-exact",
+    "questions": 24,
+    "inferenceAvailable": true,
+    "scorerConflicts": 0,
+    "networkRequests": 0,
+    "pageErrors": 0
+  }
+]

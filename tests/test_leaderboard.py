@@ -225,8 +225,11 @@ def test_displayed_clustered_intervals_match_independent_matrix_oracle(
         assert entry.n_clusters == len(sizes)
         assert entry.se == pytest.approx(se, rel=1e-10)
         assert entry.dof_clustered == pytest.approx(dof, rel=1e-10)
-        assert entry.ci_low == pytest.approx(entry.mean - half, abs=1e-10)
-        assert entry.ci_high == pytest.approx(entry.mean + half, abs=1e-10)
+        # SciPy 1.11's inverse t at df=3, p=.995 differs from the closed-form
+        # CDF inverse by ~1e-8 (about 3e-10 after scaling by this fixture's SE).
+        # Keep this matrix-oracle check compatible with the supported floor.
+        assert entry.ci_low == pytest.approx(entry.mean - half, abs=1e-9)
+        assert entry.ci_high == pytest.approx(entry.mean + half, abs=1e-9)
         assert entry.unclustered is not None
         assert entry.unclustered.mean == entry.mean
         assert entry.as_dict()["unclustered"]["method"] == "clt"

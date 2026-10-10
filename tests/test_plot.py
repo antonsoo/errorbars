@@ -58,3 +58,22 @@ def test_forest_plot_matplotlib_returns_figure_with_one_row_per_model() -> None:
     ax = fig.axes[0]
     assert ax.get_title() == "Test Leaderboard"
     assert len(ax.get_yticklabels()) == len(lb.entries)
+
+
+def test_plot_preserves_rank_gaps_and_discloses_untested_pairs() -> None:
+    from pathlib import Path
+    from xml.etree import ElementTree as ET
+
+    from errorbars.inputs import load_inputs
+
+    path = Path(__file__).resolve().parents[1] / "examples/leaderboard-ranks/gaps.csv"
+    svg = forest_plot_svg(build_leaderboard(load_inputs([path]).data))
+    root = ET.fromstring(svg)
+    ns = {"s": "http://www.w3.org/2000/svg"}
+    rows = root.findall("s:g", ns)
+    assert len(rows) == 5
+    leader = [element.text for element in rows[0].findall("s:text", ns)]
+    assert "2, 5" in leader
+    assert "not tested: 3" in leader
+    assert "same questions" in svg
+    assert "equivalence" in svg

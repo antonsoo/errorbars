@@ -12,7 +12,7 @@ from errorbars import __version__
 from errorbars._tables import Output, Table, visible
 from errorbars.inputs import load_inputs
 from errorbars.io import ColumnMap, EvalData, write_csv
-from errorbars.leaderboard import build_leaderboard
+from errorbars.leaderboard import build_leaderboard, rank_ranges
 from errorbars.plot import forest_plot_svg
 from errorbars.power import minimum_detectable_effect, questions_needed
 from errorbars.review import review_comparison
@@ -333,7 +333,6 @@ _MAX_PAIR_ROWS = 66
 def cmd_leaderboard(args: argparse.Namespace) -> None:
     data = _load(args)
     lb = build_leaderboard(data, confidence=args.confidence, alpha=args.alpha)
-    question_sets = {frozenset(data.filter_model(m).question_id) for m in data.models()}
 
     if args.plot:
         svg = forest_plot_svg(lb, title=args.plot_title)
@@ -354,26 +353,12 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     has_repeats = any(e.n_observations != e.n for e in lb.entries)
     if has_repeats:
         table.add_column("observations", justify="right")
-    # One letter per group reads well for a handful of groups. A long board has
-    # dozens of overlapping ones (119 for 175 SWE-bench Verified submissions), so
-    # there each model gets the span of ranks it cannot be told apart from.
-    lettered = len(lb.groups) <= 26
-    table.add_column("group" if lettered else "tied with ranks")
+    table.add_column("not separated: ranks")
+    comparisons = lb.rank_comparisons()
+    has_untested = any(row["untested"] for row in comparisons.values())
+    if has_untested:
+        table.add_column("not tested: ranks")
     rank_of = {e.model: rank for rank, e in enumerate(lb.entries, start=1)}
-    letter_of: dict[str, str] = {}
-    if lettered:
-        for i, group in enumerate(lb.groups):
-            letter = chr(ord("a") + i)
-            for m in group:
-                letter_of[m] = letter_of.get(m, "") + letter
-    else:
-        span: dict[str, tuple[int, int]] = {}
-        for group in lb.groups:
-            low, high = min(rank_of[m] for m in group), max(rank_of[m] for m in group)
-            for m in group:
-                known = span.get(m, (low, high))
-                span[m] = (min(known[0], low), max(known[1], high))
-        letter_of = {m: f"{low}-{high}" for m, (low, high) in span.items()}
     for rank, e in enumerate(lb.entries, start=1):
         cells = [
             str(rank),
@@ -386,7 +371,9 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         ]
         if has_repeats:
             cells.append(str(e.n_observations))
-        cells.append(letter_of.get(e.model, ""))
+        cells.append(rank_ranges(comparisons[e.model]["non_significant"]))
+        if has_untested:
+            cells.append(rank_ranges(comparisons[e.model]["untested"]))
         table.add_row(*cells)
     out.table(table)
     if any(e.n_clusters is not None for e in lb.entries):
@@ -408,19 +395,14 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             "n counts questions, each weighted equally; observations counts retained generations.",
             style="dim",
         )
-    if lettered:
-        out.note(
-            "Models sharing a group letter are not statistically distinguishable "
-            f"(Holm-corrected paired test, alpha={args.alpha}).",
-            style="dim",
-        )
-    else:
-        out.note(
-            "'tied with ranks' is the span of ranks a model is not statistically distinguishable "
-            f"from (Holm-corrected paired test, alpha={args.alpha}); the {len(lb.groups)} "
-            "overlapping groups are in --json.",
-            style="dim",
-        )
+    out.note(
+        "'not separated: ranks' lists only other models whose paired test has "
+        f"Holm-adjusted p >= {args.alpha}. Gaps are preserved; '-' means none. "
+        "Non-significance does not establish equivalence. The overlapping groups remain in --json.",
+        style="dim",
+    )
+    for note in lb.warnings:
+        out.note(note, style="yellow")
 
     shown = lb.pairwise
     title = "pairwise paired tests (Holm-corrected)"
@@ -430,6 +412,7 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     pt = Table(title=title, header_style="bold magenta")
     pt.add_column("A")
     pt.add_column("B")
+    pt.add_column("shared n", justify="right")
     pt.add_column("mean diff", justify="right")
     pt.add_column("test")
     pt.add_column("p (used)", justify="right")
@@ -440,6 +423,7 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         pt.add_row(
             pr.model_a,
             pr.model_b,
+            str(pr.comparison.n),
             f"{pr.comparison.mean_diff:+.4f}",
             {"paired_t": "paired t", "clustered_t": "clustered t", "mcnemar_exact": "McNemar exact"}[pr.test],
             f"{pr.p_value_used:.4g}",
@@ -461,12 +445,6 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         "paired t for continuous scores or repeated-generation means. Groups do not establish equivalence.",
         style="dim",
     )
-    if len(question_sets) > 1:
-        out.note(
-            "The models were not scored on the same questions. Each mean is over that "
-            "model's own questions; each paired test uses the questions its two models share.",
-            style="yellow",
-        )
 
 
 def cmd_power(args: argparse.Namespace) -> None:

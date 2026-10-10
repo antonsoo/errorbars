@@ -1,15 +1,16 @@
 """Forest plots for leaderboards.
 
-A dependency-free SVG writer always works; ``forest_plot_matplotlib`` is
-used automatically by the CLI when matplotlib is installed (the ``plot``
-extra) and a raster/PDF output is requested.
+The CLI writes dependency-free SVG. Python callers can also use
+``forest_plot_matplotlib`` with the optional ``plot`` extra.
 """
 
 from __future__ import annotations
 
+from textwrap import wrap
 from typing import TYPE_CHECKING
 
-from errorbars.leaderboard import Leaderboard
+from errorbars._tables import visible
+from errorbars.leaderboard import Leaderboard, rank_ranges
 
 if TYPE_CHECKING:
     from matplotlib.figure import Figure
@@ -32,14 +33,45 @@ def forest_plot_svg(
     row_height: int = 44,
     title: str | None = None,
 ) -> str:
-    """Render a forest plot (mean + CI per model) as a standalone SVG string."""
-    entries = leaderboard.entries
-    n = len(entries)
-    margin_left, margin_right, margin_top, margin_bottom = 160, 40, 50 if title else 20, 52
-    plot_h = n * row_height
-    height = margin_top + plot_h + margin_bottom
-    plot_w = width - margin_left - margin_right
+    """Standalone forest plot with exact paired-test ranks and wrapped labels.
 
+    ``row_height`` is a minimum: long names and disjoint rank ranges expand a
+    row rather than hiding text. The point intervals remain marginal CIs.
+    """
+    if width < 480:
+        raise ValueError("forest plot width must be at least 480 pixels")
+    if row_height < 24:
+        raise ValueError("forest plot row_height must be at least 24 pixels")
+    entries = leaderboard.entries
+    margin_left, margin_right = int(width * 0.34), int(width * 0.30)
+    plot_w = width - margin_left - margin_right
+    right_x = width - margin_right + 12
+    model_chars = max(12, int((margin_left - 24) / 6.7))
+    decision_chars = max(10, int((margin_right - 22) / 6.1))
+    comparisons = leaderboard.rank_comparisons()
+    rows = []
+    title_lines = wrap(visible(title), width=int((width - 32) / 8)) if title else []
+    margin_top = 24 + len(title_lines) * 20
+    cursor = margin_top + 24
+    for rank, entry in enumerate(entries, 1):
+        names = wrap(visible(f"{rank}. {entry.model}"), width=model_chars)
+        decisions = wrap(rank_ranges(comparisons[entry.model]["non_significant"]), width=decision_chars)
+        if comparisons[entry.model]["untested"]:
+            decisions += wrap(
+                "not tested: " + rank_ranges(comparisons[entry.model]["untested"]), width=decision_chars
+            )
+        height = max(row_height, 14 * max(len(names), len(decisions)) + 16)
+        rows.append((entry, names, decisions, cursor, height))
+        cursor += height
+    axis_y = cursor
+    captions = [
+        _interval_caption(leaderboard),
+        f"Not separated: other ranks with Holm-adjusted p >= {leaderboard.alpha:g}. "
+        "Gaps are preserved; '-' means none. Non-significance does not establish equivalence.",
+        *leaderboard.warnings,
+    ]
+    caption_lines = [line for caption in captions for line in wrap(caption, width=int((width - 32) / 6.1))]
+    height = axis_y + 36 + len(caption_lines) * 14 + 12
     lo = min(e.ci_low for e in entries)
     hi = max(e.ci_high for e in entries)
     pad = (hi - lo) * 0.1 or 0.05
@@ -48,49 +80,44 @@ def forest_plot_svg(
     def x(v: float) -> float:
         return margin_left + (v - x_min) / (x_max - x_min) * plot_w
 
-    def y(i: int) -> float:
-        return margin_top + i * row_height + row_height / 2
-
-    parts: list[str] = []
-    parts.append(
+    parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-        f'viewBox="0 0 {width} {height}" font-family="{_FONT}">'
-    )
-    parts.append(f'<rect width="{width}" height="{height}" fill="#ffffff"/>')
-    if title:
+        f'viewBox="0 0 {width} {height}" font-family="{_FONT}" role="img">',
+        f'<title>{_escape(title or "Leaderboard with paired comparisons")}</title>',
+        '<desc>Models ranked by mean with marginal confidence intervals. '
+        'The right column lists exact other ranks without a significant paired difference; '
+        'this does not establish equivalence. Untested comparisons are identified separately.</desc>',
+        f'<rect width="{width}" height="{height}" fill="#ffffff"/>',
+    ]
+
+    def text(px: float, py: float, content: str, size: int = 11, anchor: str = "start") -> None:
         parts.append(
-            f'<text x="{width / 2}" y="24" text-anchor="middle" font-size="15" '
-            f'font-weight="600" fill="#111827">{_escape(title)}</text>'
+            f'<text x="{px:.1f}" y="{py:.1f}" text-anchor="{anchor}" font-size="{size}" '
+            f'font-family="monospace" fill="#374151">{_escape(content)}</text>'
         )
 
-    # gridlines + x axis ticks
-    n_ticks = 5
-    for t in range(n_ticks + 1):
-        v = x_min + (x_max - x_min) * t / n_ticks
+    for i, line in enumerate(title_lines):
+        text(width / 2, 22 + 20 * i, line, 13, "middle")
+    text(12, margin_top + 10, "Rank / model")
+    text(margin_left + plot_w / 2, margin_top + 10, "Mean / CI", 11, "middle")
+    text(right_x, margin_top + 10, "Not separated: ranks", 10)
+    for t in range(6):
+        v = x_min + (x_max - x_min) * t / 5
         gx = x(v)
         parts.append(
-            f'<line x1="{gx:.1f}" y1="{margin_top}" x2="{gx:.1f}" '
-            f'y2="{margin_top + plot_h}" stroke="#e5e7eb" stroke-width="1"/>'
+            f'<line x1="{gx:.1f}" y1="{margin_top + 24}" x2="{gx:.1f}" '
+            f'y2="{axis_y}" stroke="#e5e7eb" stroke-width="1"/>'
         )
-        parts.append(
-            f'<text x="{gx:.1f}" y="{margin_top + plot_h + 18}" text-anchor="middle" '
-            f'font-size="10" fill="#6b7280">{v:.3f}</text>'
-        )
+        text(gx, axis_y + 18, f"{v:.2f}", 9, "middle")
 
-    groups = leaderboard.groups
-    letter_of: dict[str, str] = {}
-    for i, group in enumerate(groups):
-        letter = chr(ord("a") + i)
-        for m in group:
-            letter_of[m] = letter_of.get(m, "") + letter
-
-    for i, e in enumerate(entries):
-        cy = y(i)
-        parts.append(
-            f'<text x="{margin_left - 12}" y="{cy + 4:.1f}" text-anchor="end" '
-            f'font-size="12" fill="#111827">{_escape(e.model)}</text>'
-        )
-        x_lo, x_hi, x_mean = x(e.ci_low), x(e.ci_high), x(e.mean)
+    for entry, names, decisions, top, row_h in rows:
+        cy = top + row_h / 2
+        parts.append('<g class="model-row">')
+        parts.append(f'<title>{_escape(visible(entry.model))}</title>')
+        for lines, px, size in ((names, 12, 11), (decisions, right_x, 10)):
+            for i, line in enumerate(lines):
+                text(px, cy - (len(lines) - 1) * 7 + 4 + 14 * i, line, size)
+        x_lo, x_hi, x_mean = x(entry.ci_low), x(entry.ci_high), x(entry.mean)
         parts.append(
             f'<line x1="{x_lo:.1f}" y1="{cy:.1f}" x2="{x_hi:.1f}" y2="{cy:.1f}" '
             f'stroke="#2563eb" stroke-width="2"/>'
@@ -101,22 +128,14 @@ def forest_plot_svg(
                 f'y2="{cy + 5:.1f}" stroke="#2563eb" stroke-width="2"/>'
             )
         parts.append(f'<circle cx="{x_mean:.1f}" cy="{cy:.1f}" r="4.5" fill="#1d4ed8"/>')
-        label = f"{e.mean:.3f}"
-        if letter_of.get(e.model):
-            label += f"  ({letter_of[e.model]})"
-        parts.append(
-            f'<text x="{x_hi + 10:.1f}" y="{cy + 4:.1f}" font-size="11" '
-            f'fill="#374151">{_escape(label)}</text>'
-        )
-
+        text(x_mean, cy - 9, f"{entry.mean:.3f}", 10, "middle")
+        parts.append('</g>')
     parts.append(
-        f'<line x1="{margin_left}" y1="{margin_top + plot_h}" x2="{margin_left + plot_w}" '
-        f'y2="{margin_top + plot_h}" stroke="#9ca3af" stroke-width="1"/>'
+        f'<line x1="{margin_left}" y1="{axis_y}" x2="{margin_left + plot_w}" '
+        f'y2="{axis_y}" stroke="#9ca3af" stroke-width="1"/>'
     )
-    parts.append(
-        f'<text x="{width / 2}" y="{height - 9}" text-anchor="middle" font-size="10" '
-        f'fill="#374151">{_escape(_interval_caption(leaderboard))}</text>'
-    )
+    for i, line in enumerate(caption_lines):
+        text(12, axis_y + 42 + 14 * i, line, 10)
     parts.append("</svg>")
     return "\n".join(parts)
 
@@ -143,7 +162,10 @@ def forest_plot_matplotlib(leaderboard: Leaderboard, title: str | None = None) -
     ax.errorbar(means, ys, xerr=[los, his], fmt="o", color="#1d4ed8", ecolor="#2563eb", capsize=4)
     ax.set_yticks(ys)
     ax.set_yticklabels([e.model for e in entries])
-    ax.set_xlabel(f"mean score\n{_interval_caption(leaderboard)}")
+    caption = f"mean score\n{_interval_caption(leaderboard)}"
+    for note in leaderboard.warnings:
+        caption += "\n" + "\n".join(wrap(note, width=85))
+    ax.set_xlabel(caption)
     if title:
         ax.set_title(title)
     ax.grid(axis="x", color="#e5e7eb", linewidth=0.8)

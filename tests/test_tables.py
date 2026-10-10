@@ -93,7 +93,9 @@ def test_a_plain_install_prints_tables_as_text(scores: Path) -> None:
     result = run_cli("leaderboard", str(scores), hide_rich=True)
     lines = result.stdout.splitlines()
     assert lines[0] == "leaderboard"
-    assert lines[1].split() == ["rank", "model", "mean", "95%", "CI", "interval", "basis", "n", "group"]
+    assert lines[1].split() == [
+        "rank", "model", "mean", "95%", "CI", "interval", "basis", "n", "not", "separated:", "ranks"
+    ]
     assert set(lines[2]) == {"-", " "}
     # Columns line up: every row is as long as the rule, give or take the last cell.
     assert all(len(line) <= len(lines[2]) for line in lines[3:7])

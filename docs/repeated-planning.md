@@ -125,3 +125,5 @@ Repeated draws must use the same generation settings. Adaptive sampling,
 majority vote and pass@k change the estimator; this calculation plans the
 **mean score across repeated answers**. Published correctness labels were
 not independently regraded. No new model inference was run for the study.
+
+[Clean-install, wheel and browser verification](verification-repeated-planning-2026-10-09.md).

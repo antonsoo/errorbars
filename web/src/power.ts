@@ -22,12 +22,15 @@ export interface VarianceInputs {
   /** Continuous metric: raw per-sample variance. */
   variance?: number;
   samplesPerQuestion?: number;
+  /** Correlation between draws from one model on the same question; required for repeats. */
+  repeatCorrelation?: number;
 }
 
 export function perQuestionVariance({
   baselineAccuracy,
   variance,
   samplesPerQuestion = 1,
+  repeatCorrelation,
 }: VarianceInputs): number {
   if ((baselineAccuracy !== undefined) === (variance !== undefined)) {
     throw new Error("pass exactly one of baselineAccuracy or variance");
@@ -39,9 +42,17 @@ export function perQuestionVariance({
   if (variance !== undefined && !(variance > 0 && Number.isFinite(variance))) {
     throw new Error(`variance must be positive and finite, got ${variance}`);
   }
+  if (repeatCorrelation !== undefined &&
+      !(typeof repeatCorrelation === "number" && repeatCorrelation >= 0 && repeatCorrelation <= 1)) {
+    throw new Error("repeatCorrelation must be a finite number in [0, 1]");
+  }
+  if (samplesPerQuestion > 1 && repeatCorrelation === undefined) {
+    throw new Error("repeatCorrelation is required for samplesPerQuestion > 1; 0 assumes independent repeats, 1 assumes no variance reduction");
+  }
   const v =
     baselineAccuracy !== undefined ? baselineAccuracy * (1 - baselineAccuracy) : (variance as number);
-  const result = v / samplesPerQuestion;
+  const r = repeatCorrelation ?? 0;
+  const result = samplesPerQuestion === 1 ? v : v * (r + (1 - r) / samplesPerQuestion);
   if (result <= 0) throw new Error("per-question variance is too small to represent");
   return result;
 }
@@ -86,6 +97,7 @@ export interface PowerResult {
   samplesPerQuestion: number;
   clusterDesignEffect: number;
   perQuestionVariance: number;
+  repeatCorrelation: number | null;
 }
 
 /**
@@ -123,6 +135,7 @@ export function questionsNeeded(delta: number, inputs: PowerInputs): PowerResult
     samplesPerQuestion,
     clusterDesignEffect,
     perQuestionVariance: v,
+    repeatCorrelation: inputs.repeatCorrelation ?? null,
   };
 }
 

@@ -1,11 +1,46 @@
 import { describe, expect, it } from "vitest";
 import vectors from "../test-vectors.json";
-import { minimumDetectableEffect, questionsNeeded } from "./power.ts";
+import { minimumDetectableEffect, perQuestionVariance, questionsNeeded } from "./power.ts";
 import { invNormalCdf, zForConfidence } from "./normal.ts";
+
+describe("repeated answers preserve question difficulty", () => {
+  it("matches the uniform-difficulty example's independent variance components", () => {
+    for (const k of [1, 2, 4, 6, 100]) {
+      expect(perQuestionVariance({ baselineAccuracy: 0.5, samplesPerQuestion: k, repeatCorrelation: 1 / 3 }))
+        .toBeCloseTo(1 / 12 + 1 / (6 * k), 14);
+    }
+  });
+  it("refuses to infer independence when repeat dependence was not supplied", () => {
+    const inputs = { baselineAccuracy: 0.5, samplesPerQuestion: 100 };
+    expect(() => questionsNeeded(0.05, inputs)).toThrow(/repeatCorrelation is required/);
+    expect(() => minimumDetectableEffect(500, inputs)).toThrow(/repeatCorrelation is required/);
+    expect(questionsNeeded(0.05, { baselineAccuracy: 0.5 }).repeatCorrelation).toBeNull();
+  });
+  it("identical repeats give no budget reduction", () => {
+    for (const k of [2, 10, 100, Number.MAX_SAFE_INTEGER]) {
+      expect(questionsNeeded(0.05, { baselineAccuracy: 0.5, samplesPerQuestion: k, repeatCorrelation: 1 }).nQuestions)
+        .toBe(1570);
+    }
+  });
+  it("keeps independent repeats as an explicit choice", () => {
+    const inputs = { baselineAccuracy: 0.5, samplesPerQuestion: 100 };
+    expect(questionsNeeded(0.05, { ...inputs, repeatCorrelation: 0 }).nQuestions).toBe(16);
+    expect(questionsNeeded(0.05, { ...inputs, repeatCorrelation: 0.8 }).nQuestions).toBe(1259);
+  });
+  it("validates the repeat assumption even with one answer", () => {
+    for (const r of [-0.1, 1.1, NaN, Infinity]) {
+      for (const k of [1, 4]) {
+        const inputs = { baselineAccuracy: 0.5, samplesPerQuestion: k, repeatCorrelation: r };
+        expect(() => questionsNeeded(0.05, inputs)).toThrow(/repeatCorrelation must be/);
+        expect(() => minimumDetectableEffect(500, inputs)).toThrow(/repeatCorrelation must be/);
+      }
+    }
+  });
+});
 
 describe("questionsNeeded matches Python errorbars.power.questions_needed", () => {
   for (const vec of vectors.questionsNeeded) {
-    const { baseline, delta, alpha, power, rho, samplesPerQuestion, clusterDeff } = vec.inputs;
+    const { baseline, delta, alpha, power, rho, samplesPerQuestion, repeatCorrelation, clusterDeff } = vec.inputs;
     it(`baseline=${baseline} delta=${delta} alpha=${alpha} power=${power} rho=${rho} k=${samplesPerQuestion} deff=${clusterDeff}`, () => {
       const result = questionsNeeded(delta, {
         baselineAccuracy: baseline,
@@ -13,17 +48,19 @@ describe("questionsNeeded matches Python errorbars.power.questions_needed", () =
         power,
         rho,
         samplesPerQuestion,
+        ...(repeatCorrelation === null ? {} : { repeatCorrelation }),
         clusterDesignEffect: clusterDeff,
       });
       expect(result.nQuestions).toBe(vec.nQuestions);
       expect(result.perQuestionVariance).toBeCloseTo(vec.perQuestionVariance, 10);
+      expect(result.repeatCorrelation).toBe(repeatCorrelation);
     });
   }
 });
 
 describe("minimumDetectableEffect matches Python errorbars.power.minimum_detectable_effect", () => {
   for (const vec of vectors.minimumDetectableEffect) {
-    const { n, baseline, alpha, power, rho, samplesPerQuestion, clusterDeff } = vec.inputs;
+    const { n, baseline, alpha, power, rho, samplesPerQuestion, repeatCorrelation, clusterDeff } = vec.inputs;
     it(`n=${n} baseline=${baseline} alpha=${alpha} power=${power} rho=${rho} k=${samplesPerQuestion} deff=${clusterDeff}`, () => {
       const mde = minimumDetectableEffect(n, {
         baselineAccuracy: baseline,
@@ -31,6 +68,7 @@ describe("minimumDetectableEffect matches Python errorbars.power.minimum_detecta
         power,
         rho,
         samplesPerQuestion,
+        ...(repeatCorrelation === null ? {} : { repeatCorrelation }),
         clusterDesignEffect: clusterDeff,
       });
       // Formula outputs agree within floating-point arithmetic noise.

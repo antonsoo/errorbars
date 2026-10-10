@@ -109,7 +109,10 @@ def _command(rng: random.Random, path: Path, models: list[str]) -> list[str]:
     elif rng.random() < 0.5:
         argv = ["power", *rng.choice([["--delta", "0.03"], ["--n", "500"]])]
         argv += rng.choice([["--baseline", "0.7"], ["--variance", "0.2"]])
-        argv += rng.choice([[], ["--rho", "0.5"], ["--cluster-deff", "2.5"], ["--samples-per-question", "4"]])
+        argv += rng.choice([
+            [], ["--rho", "0.5"], ["--cluster-deff", "2.5"],
+            ["--samples-per-question", "4", "--repeat-correlation", "0.5"],
+        ])
     else:
         argv = ["power"]
         for flag, chance, values in (
@@ -121,6 +124,7 @@ def _command(rng: random.Random, path: Path, models: list[str]) -> list[str]:
             ("--power", 0.3, _number()),
             ("--rho", 0.3, _number()),
             ("--samples-per-question", 0.3, ["0", "1", "3", "-1"]),
+            ("--repeat-correlation", 0.3, _number()),
             ("--cluster-deff", 0.3, _number()),
         ):
             if rng.random() < chance:

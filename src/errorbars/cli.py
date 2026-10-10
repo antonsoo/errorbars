@@ -482,6 +482,7 @@ def cmd_power(args: argparse.Namespace) -> None:
         power=args.power,
         rho=args.rho,
         samples_per_question=args.samples_per_question,
+        repeat_correlation=args.repeat_correlation,
         cluster_design_effect=args.cluster_deff,
     )
 
@@ -500,6 +501,8 @@ def cmd_power(args: argparse.Namespace) -> None:
         table.add_row("power", f"{args.power}")
         table.add_row("rho (paired correlation)", f"{args.rho}")
         table.add_row("samples/question", str(args.samples_per_question))
+        if args.repeat_correlation is not None:
+            table.add_row("repeat correlation", str(args.repeat_correlation))
         table.add_row("cluster design effect", f"{args.cluster_deff}")
         out.table(table)
         out.note(f"Questions needed: {result.n_questions}", style="bold green")
@@ -511,6 +514,12 @@ def cmd_power(args: argparse.Namespace) -> None:
             return
         out = Output()
         out.note(f"Minimum detectable effect at n={args.n}: {mde:.4f}", style="bold green")
+    if args.samples_per_question > 1:
+        out.note(
+            f"Repeat correlation {args.repeat_correlation:g} preserves between-question variance. "
+            "rho is the correlation between the two models' averaged scores at this repeat count.",
+            style="dim",
+        )
 
 
 def cmd_import(args: argparse.Namespace) -> None:
@@ -578,6 +587,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--rho", type=float, default=0.0, help="correlation between models' per-question scores"
     )
     p_pow.add_argument("--samples-per-question", type=int, default=1)
+    p_pow.add_argument(
+        "--repeat-correlation", type=float, default=None,
+        help="within-question correlation between repeated draws from one model, in [0,1]; "
+        "required for multiple samples (0 assumes independence; 1 gives no gain from repeats)",
+    )
     p_pow.add_argument("--cluster-deff", type=float, default=1.0, help="cluster design effect (>=1)")
     p_pow.add_argument("--json", action="store_true")
     p_pow.set_defaults(func=cmd_power)

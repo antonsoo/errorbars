@@ -63,9 +63,11 @@ def test_questions_needed_scales_linearly_with_cluster_design_effect() -> None:
     assert doubled.n_questions == pytest.approx(2 * base.n_questions, rel=0.02)
 
 
-def test_questions_needed_scales_inversely_with_samples_per_question() -> None:
+def test_explicitly_independent_repeats_reproduce_the_old_budget() -> None:
     base = questions_needed(delta=0.05, baseline_accuracy=0.5, samples_per_question=1)
-    quadrupled_samples = questions_needed(delta=0.05, baseline_accuracy=0.5, samples_per_question=4)
+    quadrupled_samples = questions_needed(
+        delta=0.05, baseline_accuracy=0.5, samples_per_question=4, repeat_correlation=0
+    )
     assert quadrupled_samples.n_questions == pytest.approx(base.n_questions / 4, rel=0.05)
 
 
@@ -207,6 +209,7 @@ def test_committed_web_vectors_match_the_current_python_formulas() -> None:
                 power=source["power"],
                 rho=source["rho"],
                 samples_per_question=source["samplesPerQuestion"],
+                repeat_correlation=source["repeatCorrelation"],
                 cluster_design_effect=source["clusterDeff"],
             )
             if section == "questionsNeeded":

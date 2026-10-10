@@ -32,6 +32,7 @@ def main() -> None:
     samples = [1, 2, 4]
     deffs = [1.0, 1.5, 3.0, 1000.0]
     rng = random.Random(20261003)
+    repeat_rng = random.Random(20261009)
 
     # Sample the entire Cartesian product. Taking its first 400 entries covered only
     # baseline=0.3; the inverse vectors likewise covered only n=50.
@@ -41,6 +42,7 @@ def main() -> None:
         if case[0] + case[1] <= 1
     ]
     for baseline, delta, alpha, power, rho, k, deff in rng.sample(forward_cases, 400):
+        repeat_correlation = None if k == 1 else repeat_rng.choice([0.0, 1 / 3, 0.8, 1.0])
         result = questions_needed(
             delta=delta,
             baseline_accuracy=baseline,
@@ -48,6 +50,7 @@ def main() -> None:
             power=power,
             rho=rho,
             samples_per_question=k,
+            repeat_correlation=repeat_correlation,
             cluster_design_effect=deff,
         )
         vectors.append(
@@ -59,6 +62,7 @@ def main() -> None:
                     "power": power,
                     "rho": rho,
                     "samplesPerQuestion": k,
+                    "repeatCorrelation": repeat_correlation,
                     "clusterDeff": deff,
                 },
                 "nQuestions": result.n_questions,
@@ -71,6 +75,7 @@ def main() -> None:
     for n, baseline, alpha, power, rho, k, deff in rng.sample(
         list(itertools.product(ns, baselines, alphas, powers, rhos, samples, deffs)), 200
     ):
+        repeat_correlation = None if k == 1 else repeat_rng.choice([0.0, 1 / 3, 0.8, 1.0])
         mde = minimum_detectable_effect(
             n_questions=n,
             baseline_accuracy=baseline,
@@ -78,6 +83,7 @@ def main() -> None:
             power=power,
             rho=rho,
             samples_per_question=k,
+            repeat_correlation=repeat_correlation,
             cluster_design_effect=deff,
         )
         mde_vectors.append(
@@ -89,6 +95,7 @@ def main() -> None:
                     "power": power,
                     "rho": rho,
                     "samplesPerQuestion": k,
+                    "repeatCorrelation": repeat_correlation,
                     "clusterDeff": deff,
                 },
                 "mde": mde,

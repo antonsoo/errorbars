@@ -2,12 +2,11 @@
 
 Model: each question contributes a score whose single-sample variance is
 ``p*(1-p)`` for a binary metric (or a user-supplied ``variance`` for a
-continuous one). Averaging ``samples_per_question`` repeated generations
-per question reduces that variance by a factor of ``samples_per_question``
-(we do not assume a separate item-difficulty/decoding-noise split for
-planning purposes — see docs/formulas.md for the rationale and how this
-differs from the post-hoc decomposition in ``summarize``). Pairing two
-models on the same questions with per-question score correlation ``rho``
+continuous one). With repeat correlation r, averaging k generations gives
+variance ``V * (r + (1-r)/k)``: the between-question component does not
+disappear with more answers. For k > 1, r must be supplied explicitly.
+Pairing two models on the same questions with correlation ``rho`` between
+their k-generation question means
 shrinks the variance of the difference to ``2*V*(1-rho)`` relative to
 ``2*V`` for an unpaired design. Clustering of questions (e.g. several
 questions per passage) inflates that further by the Kish design effect.
@@ -39,12 +38,19 @@ def per_question_variance(
     baseline_accuracy: float | None = None,
     variance: float | None = None,
     samples_per_question: int = 1,
+    *,
+    repeat_correlation: float | None = None,
 ) -> float:
     """Per-question score variance after averaging repeated samples.
 
     Exactly one of ``baseline_accuracy`` (binary metric, variance =
     p(1-p)) or ``variance`` (continuous metric, raw per-sample variance)
-    must be given.
+    must be given. ``repeat_correlation`` is the within-question correlation
+    between two draws from the same model, assumed common to both models.
+    Under conditionally independent generation, it equals the fraction of
+    single-draw variance attributable to question difficulty. It must be in
+    [0, 1] and is required when averaging more than one generation. Zero is
+    an explicit independence assumption; one gives no benefit from repeats.
     """
     if (baseline_accuracy is None) == (variance is None):
         raise ValueError("pass exactly one of baseline_accuracy or variance")
@@ -54,8 +60,20 @@ def per_question_variance(
         raise ValueError(f"baseline_accuracy must be strictly between 0 and 1, got {baseline_accuracy}")
     if variance is not None and not (variance > 0 and math.isfinite(variance)):
         raise ValueError(f"variance must be a positive, finite number, got {variance}")
+    if repeat_correlation is not None and (
+        isinstance(repeat_correlation, bool) or not 0.0 <= repeat_correlation <= 1.0
+    ):
+        raise ValueError(f"repeat_correlation must be a finite number in [0, 1], got {repeat_correlation}")
+    if samples_per_question > 1 and repeat_correlation is None:
+        raise ValueError(
+            "repeat_correlation is required for samples_per_question > 1 "
+            "(CLI: --repeat-correlation). Use 0 only to assume independent repeats, "
+            "or 1 to assume no variance reduction from repeats."
+        )
     v = baseline_accuracy * (1 - baseline_accuracy) if baseline_accuracy is not None else variance
-    result = v / samples_per_question  # type: ignore[operator]
+    assert v is not None
+    r = repeat_correlation if repeat_correlation is not None else 0.0
+    result = v if samples_per_question == 1 else v * (r + (1 - r) / samples_per_question)
     if result <= 0:
         raise ValueError("per-question variance is too small to represent")
     return result
@@ -71,6 +89,7 @@ class PowerResult:
     samples_per_question: int
     cluster_design_effect: float
     per_question_variance: float
+    repeat_correlation: float | None = None
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -82,6 +101,7 @@ class PowerResult:
             "samples_per_question": self.samples_per_question,
             "cluster_design_effect": self.cluster_design_effect,
             "per_question_variance": self.per_question_variance,
+            "repeat_correlation": self.repeat_correlation,
         }
 
 
@@ -127,16 +147,23 @@ def questions_needed(
     rho: float = 0.0,
     samples_per_question: int = 1,
     cluster_design_effect: float = 1.0,
+    *,
+    repeat_correlation: float | None = None,
 ) -> PowerResult:
     """Number of questions needed to detect a paired mean difference ``delta``.
 
     ``n = (z_{a/2} + z_b)^2 * 2*V*(1-rho) * deff / delta^2`` where V is the
     per-question variance (see ``per_question_variance``).
+    ``rho`` describes the two models' question means at the requested repeat
+    count; it may change when the count changes. It is distinct from
+    ``repeat_correlation``, which describes draws from one model.
     """
     if not (delta > 0 and math.isfinite(delta)):
         raise ValueError(f"delta must be a positive, finite number, got {delta}")
     _check_design(rho, cluster_design_effect)
-    v = per_question_variance(baseline_accuracy, variance, samples_per_question)
+    v = per_question_variance(
+        baseline_accuracy, variance, samples_per_question, repeat_correlation=repeat_correlation
+    )
     if baseline_accuracy is not None and baseline_accuracy + delta > 1.0:
         raise ValueError(
             f"baseline_accuracy + delta = {baseline_accuracy + delta:.3g}: an accuracy can't exceed 1"
@@ -147,7 +174,9 @@ def questions_needed(
         raise ValueError("required question count exceeds the exactly representable planning range")
     n_int = max(2, math.ceil(root_n * root_n))
     _check_count(n_int, "required question count", 2)
-    return PowerResult(n_int, delta, alpha, power, rho, samples_per_question, cluster_design_effect, v)
+    return PowerResult(
+        n_int, delta, alpha, power, rho, samples_per_question, cluster_design_effect, v, repeat_correlation
+    )
 
 
 def minimum_detectable_effect(
@@ -159,11 +188,15 @@ def minimum_detectable_effect(
     rho: float = 0.0,
     samples_per_question: int = 1,
     cluster_design_effect: float = 1.0,
+    *,
+    repeat_correlation: float | None = None,
 ) -> float:
     """Smallest paired difference detectable with a given n, alpha, power."""
     _check_count(n_questions, "n_questions", 2)
     _check_design(rho, cluster_design_effect)
-    v = per_question_variance(baseline_accuracy, variance, samples_per_question)
+    v = per_question_variance(
+        baseline_accuracy, variance, samples_per_question, repeat_correlation=repeat_correlation
+    )
     z = _z_sum(alpha, power)
     result = _difference_sd(v, rho, cluster_design_effect) / math.sqrt(n_questions) * z
     if not math.isfinite(result) or (result == 0 and rho != 1):

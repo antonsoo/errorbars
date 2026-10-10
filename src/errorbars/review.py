@@ -11,7 +11,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-from errorbars.compare import PairedComparison, paired_compare
+from errorbars.compare import PairedComparison, SelectedInference, paired_compare, select_inference
 from errorbars.io import EvalData
 
 __all__ = ["ComparisonReview", "review_comparison"]
@@ -66,7 +66,18 @@ class ComparisonReview:
     sources: list[str]
     warnings: list[str]
 
+    @property
+    def inference(self) -> SelectedInference | None:
+        if self.comparison is None:
+            return None
+        shared = [q for q in self.questions if q.presence == "shared"]
+        single = len(shared) == self.comparison.n and all(
+            len(q.observations_a) == len(q.observations_b) == 1 for q in shared
+        )
+        return select_inference(self.comparison, single_observation_per_question=single)
+
     def as_dict(self) -> dict[str, Any]:
+        inference = self.inference
         return {
             "format": "errorbars-comparison",
             "schema_version": 1,
@@ -76,6 +87,7 @@ class ComparisonReview:
             "difference": "A - B, in original score units; higher is not necessarily better",
             "analysis_unit": "question",
             "comparison": self.comparison.as_dict() if self.comparison is not None else None,
+            "inference": inference.as_dict() if inference is not None else None,
             "unavailable_reason": self.unavailable_reason,
             "cohort": self.cohort,
             "questions": [asdict(q) for q in self.questions],

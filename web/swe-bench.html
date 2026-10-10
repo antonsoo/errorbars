@@ -84,9 +84,10 @@
           <figure class="interval-figure">
             <svg id="interval-chart" role="img" aria-labelledby="interval-title"></svg>
             <figcaption>
-              95% intervals for A minus B. An interval that crosses zero means the data are
-              compatible with no difference. One comparison at a time: among twenty pairs with
-              no real difference, about one will look different by chance.
+              Approximate 95% intervals for A minus B. The paired-t interval is separate from
+              the exact McNemar task test; they can disagree near the significance threshold.
+              An interval containing zero does not establish equivalence. These are single
+              comparisons without adjustment for browsing multiple pairs.
             </figcaption>
           </figure>
 
@@ -113,6 +114,8 @@
 
         <section class="board" aria-labelledby="board-label">
           <h2 id="board-label">Across the whole board</h2>
+          <p class="caption">These retained study figures use paired-t approximations.
+            The interactive task comparison above uses exact McNemar.</p>
           <div id="board-figures"></div>
         </section>
 
@@ -130,9 +133,9 @@
             <div>
               <dt>Tasks as the sample</dt>
               <dd>
-                Answers: would A beat B on another 500 tasks like these, from the same
-                repositories in the same mix? A paired t-test, with the exact McNemar test on
-                the discordant tasks beside it.
+                The headline uses exact McNemar on discordant binary outcomes, treating tasks
+                as independent. The paired-t interval and p-value remain labeled approximations;
+                they are not the confidence interval of the exact test.
               </dd>
             </div>
             <div>

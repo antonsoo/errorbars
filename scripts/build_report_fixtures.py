@@ -24,6 +24,10 @@ def build(output: Path) -> None:
         load_csv(ROOT / "examples/data/reading_comprehension.csv"), "tuned-70b", "baseline-70b"
     )
     write_comparison_html(clustered, output / "clustered.html")
+    for name, filename in (("two-wins", "two-questions.csv"), ("binary-repeats", "repeated.csv")):
+        data = load_csv(ROOT / "examples/leaderboard-tests" / filename)
+        a, b = data.models()
+        write_comparison_html(review_comparison(data, a, b), output / f"{name}.html")
 
     path = output / "partial-synthetic.csv"
     with path.open("w", newline="") as f:

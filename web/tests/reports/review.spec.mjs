@@ -31,6 +31,7 @@ async function download(page, name) {
 test('real retained COPA runs expose their discordances, source records and unchanged complete JSON', async ({ page, context }) => {
   const clean = await open(page, context, 'copa');
   await expect(page.locator('#effect-value')).toHaveText('+0.2000');
+  await expect(page.locator('#inference-description')).toContainText('Exact McNemar p = 0.2891');
   await expect(page.locator('#identity-note')).toContainText('20 matching');
   await expect(page.locator('#outcome-counts')).toHaveText('6A higher2B higher12equal0excluded (unpaired)');
   await page.getByLabel('Show questions').selectOption('b_higher');
@@ -48,11 +49,37 @@ test('real retained COPA runs expose their discordances, source records and unch
   expect(data.questions).toHaveLength(20); // The two-row filter must not lose eighteen questions.
   expect(data.comparison.mean_diff).toBe(0.2);
   expect(data.comparison.mcnemar).toMatchObject({ n01: 2, n10: 6 });
+  expect(data.inference).toMatchObject({ test: 'mcnemar_exact', p_value: 0.2890625, ci_low: null, ci_high: null });
   expect(data.cohort.n_identity_matching).toBe(20);
   expect(data.questions.filter(q => q.difference === -1).map(q => q.question_id)).toEqual(['copa-15', 'copa-16']);
   expect(exported.text).not.toContain('The man turned on the faucet');
   expect(exported.text).not.toContain('/home/');
   expect(exported.name).toBe('errorbars-comparison.json');
+  await clean();
+});
+
+test('two binary wins retain uncertainty in the headline and downloaded evidence', async ({ page, context }) => {
+  const clean = await open(page, context, 'two-wins');
+  await expect(page.locator('#inference-description')).toContainText('Exact McNemar p = 0.5000');
+  await expect(page.locator('#inference-description')).toContainText('No significant difference detected');
+  await expect(page.locator('.interval-table')).toContainText('Paired t (diagnostic)');
+  await expect(page.locator('#interval-chart')).toContainText('t approx.');
+  await expect(page.getByText('No exact mean-difference interval is supplied.', { exact: false })).toBeVisible();
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.inference).toMatchObject({ test: 'mcnemar_exact', p_value: 0.5, confidence: null });
+  expect(data.comparison.p_value).toBe(0); // Clearly separated legacy diagnostic.
+  await page.setViewportSize({ width: 375, height: 900 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await clean();
+});
+
+test('binary repeated-generation means are not advertised as exact Bernoulli trials', async ({ page, context }) => {
+  const clean = await open(page, context, 'binary-repeats');
+  await expect(page.locator('#inference-description')).toContainText('paired-t CI');
+  await expect(page.locator('#inference-description')).not.toContainText('McNemar');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.inference).toMatchObject({ test: 'paired_t', mcnemar_applicable: false });
+  expect(data.comparison.mcnemar).not.toBeNull(); // Preserved, ineligible diagnostic.
   await clean();
 });
 

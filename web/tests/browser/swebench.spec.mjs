@@ -31,8 +31,8 @@ test('the default pair differs on tasks and not across repositories', async ({ p
   await expect(page.locator('#verdict-detail')).toContainText('Claude 4.5 Opus (high) is 4.0 points ahead of GPT 5.2 (high)');
   // The same numbers `errorbars compare` prints for this pair (studies/swe-bench-verified/README.md).
   await expect(row(page, 'Gap, A minus B')).toHaveText('+4.0 points');
-  await expect(row(page, 'Tasks as the sample')).toContainText('+1.0 to +7.0');
-  await expect(row(page, 'Tasks as the sample')).toContainText('0.010');
+  await expect(row(page, 'Paired-t approximation')).toContainText('+1.0 to +7.0');
+  await expect(row(page, 'Paired-t approximation')).toContainText('0.010');
   await expect(row(page, 'Repositories as the sample')).toContainText('−3.7 to +11.7');
   await expect(row(page, 'Repositories as the sample')).toContainText('3.3 degrees of freedom from 12 repositories');
   await expect(row(page, 'Tasks where they differ')).toContainText('60: only A resolved 40, only B resolved 20');
@@ -48,7 +48,7 @@ test('choosing, swapping and linking a pair', async ({ page }) => {
   const clean = await boot(page);
   await page.getByLabel('A', { exact: true }).selectOption('20251205_sonar-foundation-agent_claude-opus-4-5');
   await page.getByLabel('B', { exact: true }).selectOption('20251127_openhands_claude-opus-4-5');
-  await expect(page.locator('#verdict')).toHaveText('Not distinguishable.');
+  await expect(page.locator('#verdict')).toHaveText('No significant difference detected.');
   await expect(row(page, 'Gap, A minus B')).toHaveText('+1.6 points');
   await expect(page).toHaveURL(/a=20251205_sonar-foundation-agent_claude-opus-4-5&b=20251127_openhands_claude-opus-4-5/);
 
@@ -115,5 +115,20 @@ test('reflows at phone width without sideways scrolling', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   const clean = await boot(page);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+  await clean();
+});
+
+
+test('a real threshold disagreement follows the exact binary test', async ({ page }) => {
+  const clean = await boot(page, '?a=20250928_trae_doubao_seed_code&b=20250901_warp');
+  await expect(row(page, 'Tasks where they differ')).toContainText('64: only A resolved 40, only B resolved 24');
+  await expect(row(page, 'Paired-t approximation')).toContainText('0.045');
+  await expect(row(page, 'Exact task test')).toContainText('0.060');
+  await expect(page.locator('#verdict')).toHaveText('No significant difference detected.');
+  await expect(page.locator('#verdict-detail')).toContainText('Exact task test:');
+  await expect(page.locator('#verdict-detail')).toContainText('does not establish equivalence');
+  await page.getByRole('button', { name: 'Swap A and B' }).click();
+  await expect(page.locator('#verdict')).toHaveText('No significant difference detected.');
+  await expect(row(page, 'Gap, A minus B')).toHaveText('−3.2 points');
   await clean();
 });

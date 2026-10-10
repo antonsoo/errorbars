@@ -151,7 +151,11 @@ def _check(value: Any, where: str = "") -> None:
             assert item >= 0.0, f"{where}.{key} = {item}"
         _check(item, f"{where}.{key}")
     if {"ci_low", "ci_high"} <= value.keys():
-        assert value["ci_low"] <= value["ci_high"], f"{where}: interval ends are out of order"
+        if value["ci_low"] is None or value["ci_high"] is None:
+            assert value["ci_low"] is value["ci_high"] is value.get("confidence") is None
+            assert value.get("test") == "mcnemar_exact", f"{where}: unexpected unavailable interval"
+        else:
+            assert value["ci_low"] <= value["ci_high"], f"{where}: interval ends are out of order"
     if value.get("method") in ("clt", "wilson"):
         slack = 1e-9 * max(1.0, abs(value["mean"]))
         assert value["ci_low"] - slack <= value["mean"] <= value["ci_high"] + slack, where

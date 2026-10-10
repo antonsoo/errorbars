@@ -258,6 +258,8 @@ def cmd_compare(args: argparse.Namespace) -> None:
     if review.comparison is None:
         raise ValueError(review.unavailable_reason)
     comp = review.comparison
+    inference = review.inference
+    assert inference is not None
     only_a, only_b = review.cohort["n_only_a"], review.cohort["n_only_b"]
 
     if args.json:
@@ -266,6 +268,7 @@ def cmd_compare(args: argparse.Namespace) -> None:
                 "model_a": args.model_a,
                 "model_b": args.model_b,
                 **comp.as_dict(),
+                "inference": inference.as_dict(),
                 "n_only_a": only_a,
                 "n_only_b": only_b,
                 "analysis_unit": "question",
@@ -290,9 +293,18 @@ def cmd_compare(args: argparse.Namespace) -> None:
     table.add_row(f"mean({args.model_a})", f"{comp.mean_a:.4f}")
     table.add_row(f"mean({args.model_b})", f"{comp.mean_b:.4f}")
     table.add_row("mean diff (A - B)", f"{comp.mean_diff:.4f}")
-    table.add_row("paired SE", f"{comp.se_paired:.4f}")
-    table.add_row(f"{int(args.confidence * 100)}% CI", f"[{comp.ci_low:.4f}, {comp.ci_high:.4f}]")
-    table.add_row("p-value", f"{comp.p_value:.4g}")
+    test_names = {
+        "paired_t": "paired t", "clustered_t": "clustered t (CR2)", "mcnemar_exact": "McNemar exact"
+    }
+    table.add_row("selected test", test_names[inference.test])
+    table.add_row("selected p-value", f"{inference.p_value:.4g}")
+    diagnostic = " (diagnostic)" if inference.test != "paired_t" else ""
+    table.add_row("paired-t SE" + diagnostic, f"{comp.se_paired:.4f}")
+    table.add_row(
+        f"{int(args.confidence * 100)}% paired-t CI" + diagnostic,
+        f"[{comp.ci_low:.4f}, {comp.ci_high:.4f}]",
+    )
+    table.add_row("paired-t p-value" + diagnostic, f"{comp.p_value:.4g}")
     table.add_row(
         "correlation(A, B)", f"{comp.correlation:.4f}" if comp.correlation is not None else "unavailable"
     )
@@ -308,13 +320,20 @@ def cmd_compare(args: argparse.Namespace) -> None:
         table.add_row(
             "clusters (degrees of freedom)", f"{comp.n_clusters} ({comp.dof_clustered:.1f})"
         )
-    if comp.mcnemar is not None:
+    if comp.mcnemar is not None and inference.mcnemar_applicable:
         table.add_row(
             "McNemar discordant (A wrong/B right, A right/B wrong)",
             f"{comp.mcnemar.n01} / {comp.mcnemar.n10}",
         )
         table.add_row("McNemar exact p-value", f"{comp.mcnemar.p_value:.4g}")
     out.table(table)
+    if inference.test == "mcnemar_exact":
+        out.note(
+            "The selected test uses one binary observation per shared question. "
+            "The paired-t interval is a separate approximation, not an exact McNemar interval. "
+            "No exact mean-difference interval is supplied.",
+            style="dim",
+        )
     out.note(
         f"Question content checks: {review.cohort['n_identity_matching']} matching, "
         f"{review.cohort['n_identity_partial']} partially checked, "

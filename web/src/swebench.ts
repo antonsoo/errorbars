@@ -81,21 +81,31 @@ function verdict(a: Submission, b: Submission, r: PairedResult): [string, string
       `Both resolve ${percent(a.score)} of the tasks. They disagree on ${differ} of them, split evenly.`,
     ];
   }
-  if (r.p >= ALPHA) {
+  const taskDifference = r.mcnemarP < ALPHA;
+  const repositoryDifference = r.pClustered < ALPHA;
+  const observed = `${ahead.name} is ${gap} points ahead of ${behind.name} (${scores}).`;
+  const tests = `Exact task test: ${pValue(r.mcnemarP)}. Repository-clustered test: ${pValue(r.pClustered)}.`;
+  if (!taskDifference && !repositoryDifference) {
     return [
-      "Not distinguishable.",
-      `${ahead.name} is ${gap} points ahead of ${behind.name} (${scores}). A gap this size is within the noise of 500 tasks: ${pValue(r.p)}.`,
+      "No significant difference detected.",
+      `${observed} ${tests} Neither test detects a difference at 5%; this does not establish equivalence.`,
     ];
   }
-  if (r.pClustered >= ALPHA) {
+  if (taskDifference && !repositoryDifference) {
     return [
       "Different on tasks like these.",
-      `${ahead.name} is ${gap} points ahead of ${behind.name} (${scores}; ${pValue(r.p)}). Whether that holds on other codebases, 12 repositories cannot say: ${pValue(r.pClustered)} with repositories as the sample.`,
+      `${observed} ${tests} The exact task-independent test detects a difference at 5%; the repository-clustered test does not.`,
+    ];
+  }
+  if (!taskDifference && repositoryDifference) {
+    return [
+      "Different under the repository model.",
+      `${observed} ${tests} The repository-clustered test detects a difference at 5%; the exact task-independent test does not. These models make different assumptions.`,
     ];
   }
   return [
     "Different, on these tasks and across repositories.",
-    `${ahead.name} is ${gap} points ahead of ${behind.name} (${scores}; ${pValue(r.p)}). It holds with repositories as the sample too: ${pValue(r.pClustered)}.`,
+    `${observed} ${tests} Both tests detect a difference at 5% under their respective assumptions.`,
   ];
 }
 
@@ -117,7 +127,7 @@ function drawIntervals(r: PairedResult): void {
   chart.setAttribute("height", String(height));
   chart.replaceChildren(
     svg("title", { id: "interval-title" },
-      `A minus B: ${signed(r.diff)} points. Tasks as the sample: ${signed(r.ciLow)} to ${signed(r.ciHigh)}. Repositories as the sample: ${signed(r.ciLowClustered)} to ${signed(r.ciHighClustered)}.`),
+      `A minus B: ${signed(r.diff)} points. Paired-t approximation: ${signed(r.ciLow)} to ${signed(r.ciHigh)}. Repositories as the sample: ${signed(r.ciLowClustered)} to ${signed(r.ciHighClustered)}.`),
   );
   for (let tick = -Math.floor(reach / step) * step; tick <= reach; tick += step) {
     const tx = x(tick / 100);
@@ -131,7 +141,7 @@ function drawIntervals(r: PairedResult): void {
     svg("text", { x: right, y: plotBottom + 40, class: "axis-end", "text-anchor": "end" }, "A ahead, in points →"),
   );
   const rows: [string, string, number, number][] = [
-    ["Tasks as the sample", `${signed(r.ciLow)} to ${signed(r.ciHigh)}`, r.ciLow, r.ciHigh],
+    ["Paired-t approximation", `${signed(r.ciLow)} to ${signed(r.ciHigh)}`, r.ciLow, r.ciHigh],
     ["Repositories as the sample", `${signed(r.ciLowClustered)} to ${signed(r.ciHighClustered)}`, r.ciLowClustered, r.ciHighClustered],
   ];
   rows.forEach(([label, range, low, high], i) => {
@@ -161,7 +171,8 @@ function fillTable(a: Submission, b: Submission, r: PairedResult): void {
     ["Resolved", `A ${percent(r.meanA)} (${Math.round(r.meanA * r.n)} of ${r.n}) · B ${percent(r.meanB)} (${Math.round(r.meanB * r.n)})`],
     ["Gap, A minus B", `${signed(r.diff)} points`],
     ["Tasks where they differ", `${r.onlyA + r.onlyB}: only A resolved ${r.onlyA}, only B resolved ${r.onlyB} · exact McNemar ${pValue(r.mcnemarP)}`],
-    ["Tasks as the sample", `standard error ${points(r.se)} · 95% interval ${signed(r.ciLow)} to ${signed(r.ciHigh)} · ${pValue(r.p)}`],
+    ["Exact task test", `${pValue(r.mcnemarP)} (McNemar); no multiple-comparison adjustment`],
+    ["Paired-t approximation", `standard error ${points(r.se)} · 95% interval ${signed(r.ciLow)} to ${signed(r.ciHigh)} · ${pValue(r.p)}`],
     ["Repositories as the sample", `standard error ${points(r.seClustered)} · 95% interval ${signed(r.ciLowClustered)} to ${signed(r.ciHighClustered)} · ${pValue(r.pClustered)} · ${r.dofClustered.toFixed(1)} degrees of freedom from ${r.clusters} repositories`],
     ["Agreement", r.correlation === null ? "correlation unavailable: one run resolves all tasks or none" : `correlation of outcomes ${r.correlation.toFixed(2)}`],
   ];

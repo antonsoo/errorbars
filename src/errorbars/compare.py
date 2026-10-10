@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, field
-from typing import Any
+from dataclasses import asdict, dataclass, field
+from typing import Any, Literal
 
 import numpy as np
 from numpy.typing import ArrayLike
@@ -18,7 +18,52 @@ from errorbars.stats import (
     t_two_sided_p,
 )
 
-__all__ = ["PairedComparison", "paired_compare", "McNemarResult", "mcnemar_exact"]
+__all__ = [
+    "PairedComparison", "paired_compare", "McNemarResult", "mcnemar_exact",
+    "SelectedInference", "select_inference", "PairedTest",
+]
+
+PairedTest = Literal["paired_t", "clustered_t", "mcnemar_exact"]
+
+
+@dataclass(frozen=True)
+class SelectedInference:
+    """The test selected from observation structure, with its matching interval.
+
+    Exact McNemar does not supply a mean-difference interval here. A paired-t
+    interval must not be presented as the confidence interval of that test.
+    The low-level PairedComparison retains all diagnostic calculations.
+    """
+    test: PairedTest
+    p_value: float
+    ci_low: float | None
+    ci_high: float | None
+    confidence: float | None
+    mcnemar_applicable: bool
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+def select_inference(
+    comparison: PairedComparison, *, single_observation_per_question: bool,
+) -> SelectedInference:
+    """Select from shared observations: clustered t, exact binary, then paired t.
+
+    The caller must check generation counts on shared questions. A binary
+    question mean can average many observations and is not a Bernoulli trial.
+    """
+    comp = comparison
+    binary = comp.mcnemar is not None and single_observation_per_question
+    if comp.p_value_clustered is not None:
+        return SelectedInference(
+            "clustered_t", comp.p_value_clustered, comp.ci_low_clustered,
+            comp.ci_high_clustered, comp.confidence, binary,
+        )
+    if binary:
+        assert comp.mcnemar is not None
+        return SelectedInference("mcnemar_exact", comp.mcnemar.p_value, None, None, None, True)
+    return SelectedInference("paired_t", comp.p_value, comp.ci_low, comp.ci_high, comp.confidence, False)
 
 # Below this many effective degrees of freedom a 95% t interval is more than 13%
 # wider than a normal one, and a reader should know why.

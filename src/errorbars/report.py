@@ -76,22 +76,38 @@ def comparison_html(review: ComparisonReview) -> str:
             f"Inference unavailable: {_text(review.unavailable_reason)}. Observed scores remain below."
         )
     else:
-        clustered = comp.se_clustered is not None
-        lo, hi = (comp.ci_low_clustered, comp.ci_high_clustered) if clustered else (comp.ci_low, comp.ci_high)
-        p = comp.p_value_clustered if clustered else comp.p_value
-        inference = (
-            f"{review.confidence * 100:g}% {'cluster-robust ' if clustered else 'paired '}CI "
-            f"[{_number(lo)}, {_number(hi)}]; two-sided p = {_number(p)}."
-        )
-        if lo is not None and hi is not None and lo <= 0 <= hi:
-            inference += " The interval includes zero; it does not establish a difference or equivalence."
-        if clustered:
-            inference += (
-                f" Based on {c['n_clusters']} independent clusters "
-                f"({comp.dof_clustered:.1f} effective degrees of freedom)."
+        selected = review.inference
+        assert selected is not None
+        clustered = selected.test == "clustered_t"
+        exact = selected.test == "mcnemar_exact"
+        if exact:
+            assert comp.mcnemar is not None
+            discordant = comp.mcnemar.n01 + comp.mcnemar.n10
+            alpha = 1 - review.confidence
+            conclusion = (
+                "No significant difference detected" if selected.p_value >= alpha
+                else "A difference is detected"
             )
+            inference = (
+                f"Exact McNemar p = {_number(selected.p_value)} on {discordant} discordant questions. "
+                f"{conclusion} at alpha={alpha:g}. Non-significance does not establish equivalence."
+            )
+        else:
+            lo, hi = selected.ci_low, selected.ci_high
+            inference = (
+                f"{review.confidence * 100:g}% {'cluster-robust t' if clustered else 'paired-t'} CI "
+                f"[{_number(lo)}, {_number(hi)}]; two-sided p = {_number(selected.p_value)}."
+            )
+            if lo is not None and hi is not None and lo <= 0 <= hi:
+                inference += " The interval includes zero; it does not establish a difference or equivalence."
+            if clustered:
+                inference += (
+                    f" Based on {c['n_clusters']} independent clusters "
+                    f"({comp.dof_clustered:.1f} effective degrees of freedom)."
+                )
         rows: list[tuple[str, float | None, float | None, float | None]] = [
-            ("Paired (unclustered)", comp.ci_low, comp.ci_high, comp.p_value)
+            ("Paired t (diagnostic)" if exact or clustered else "Paired t (primary)",
+             comp.ci_low, comp.ci_high, comp.p_value)
         ]
         if clustered:
             rows.insert(0, ("Cluster-robust (primary)", comp.ci_low_clustered,
@@ -105,7 +121,12 @@ def comparison_html(review: ComparisonReview) -> str:
                 for name, low, high, pv in rows
             ) + "</tbody></table>"
         )
-        if comp.mcnemar is not None:
+        if exact:
+            interval_table += (
+                '<p class="caption">The paired-t interval is a separate approximation, not an exact '
+                "McNemar interval. No exact mean-difference interval is supplied.</p>"
+            )
+        if comp.mcnemar is not None and selected.mcnemar_applicable:
             suffix = " Unadjusted for clustering." if clustered else ""
             interval_table += (
                 '<p class="caption">Exact McNemar (binary question scores): '

@@ -57,9 +57,10 @@
     byId("interval-chart").replaceChildren();
     const comp = data.comparison;
     if (!comp) return;
+    const exact = data.inference?.test === "mcnemar_exact";
     const intervals = comp.se_clustered !== undefined
       ? [["Clustered", comp.ci_low_clustered, comp.ci_high_clustered], ["Unclustered", comp.ci_low, comp.ci_high]]
-      : [["Paired", comp.ci_low, comp.ci_high]];
+      : [[exact ? "t approx." : "Paired t", comp.ci_low, comp.ci_high]];
     let low = Math.min(0, ...intervals.map((row) => row[1]));
     let high = Math.max(0, ...intervals.map((row) => row[2]));
     if (low === high) { low = -1; high = 1; }
@@ -70,7 +71,9 @@
     const right = width - 18;
     const x = (value) => left + (value - low) / (high - low) * (right - left);
     const height = intervals.length * 40 + 48;
-    const svg = chart("interval-chart", width, height, `${data.confidence * 100}% confidence intervals for A minus B, in score units`);
+    const caption = `${data.confidence * 100}% confidence intervals for A minus B, in score units`;
+    const svg = chart("interval-chart", width, height,
+      exact ? `${caption}. Paired-t diagnostic, not an exact McNemar interval.` : caption);
     svg.append(svgNode("line", { x1: x(0), x2: x(0), y1: 10, y2: height - 32, class: "zero-line" }));
     intervals.forEach(([name, min, max], i) => {
       const y = 28 + i * 40;

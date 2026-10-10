@@ -5,9 +5,9 @@ from __future__ import annotations
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from itertools import combinations
-from typing import Any, Literal
+from typing import Any
 
-from errorbars.compare import FEW_CLUSTER_DOF, PairedComparison, paired_compare
+from errorbars.compare import FEW_CLUSTER_DOF, PairedComparison, PairedTest, paired_compare, select_inference
 from errorbars.io import EvalData
 from errorbars.stats import (
     MeanEstimate,
@@ -104,7 +104,7 @@ class PairwiseResult:
     model_b: str
     comparison: PairedComparison
     p_holm: float
-    test: Literal["paired_t", "clustered_t", "mcnemar_exact"] = "paired_t"
+    test: PairedTest = "paired_t"
 
     @property
     def p_value_used(self) -> float:
@@ -329,14 +329,10 @@ def build_leaderboard(
         clusters = [cluster_of_q[q] for q in common] if cluster_of_q else None
         has_real_clusters = clusters is not None and len(set(clusters)) < len(clusters)
         comp = paired_compare(sa, sb, clusters=clusters if has_real_clusters else None, confidence=confidence)
-        test: Literal["paired_t", "clustered_t", "mcnemar_exact"] = "paired_t"
-        if comp.p_value_clustered is not None:
-            test = "clustered_t"
-        elif comp.mcnemar is not None and all(counts[m][q] == 1 for m in (a, b) for q in common):
-            # A question mean of 0 or 1 is not a Bernoulli observation when it
-            # averages several generations. Unmatched repeats do not enter this pair.
-            test = "mcnemar_exact"
-        result = PairwiseResult(a, b, comp, p_holm=1.0, test=test)
+        inference = select_inference(
+            comp, single_observation_per_question=all(counts[m][q] == 1 for m in (a, b) for q in common),
+        )
+        result = PairwiseResult(a, b, comp, p_holm=1.0, test=inference.test)
         raw_p.append(result.p_value_used)
         pairwise.append(result)
 

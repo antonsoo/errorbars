@@ -474,7 +474,7 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     for note in dict.fromkeys(note for pr in lb.pairwise for note in pr.comparison.warnings):
         out.note(note, style="yellow")
     out.note(
-        "'p (used, Holm)' adjusts the selected tests across all pairs: clustered t for "
+        "'p (used, Holm)' adjusts the selected tests across all tested pairs: clustered t for "
         "dependent questions, exact McNemar for one binary score per shared question, "
         "paired t for continuous scores or repeated-generation means. Groups do not establish equivalence.",
         style="dim",

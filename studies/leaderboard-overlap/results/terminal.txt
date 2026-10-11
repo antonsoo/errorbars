@@ -1,0 +1,38 @@
+                                                       leaderboard                                                       
+┏━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
+┃ rank ┃ model   ┃   mean ┃            95% CI ┃ interval basis          ┃  n ┃ not separated: ranks ┃ not tested: ranks ┃
+┡━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━┩
+│    1 │ model-d │ 0.6000 │  [0.3516, 0.8484] │ CR2: 3 clusters, df=2.0 │ 30 │ 2-4                  │ -                 │
+│    2 │ model-a │ 0.5500 │ [-1.3559, 2.4559] │ CR2: 2 clusters, df=1.0 │ 20 │ 1                    │ 3-4               │
+│    3 │ model-b │ 0.5000 │ [-3.3119, 4.3119] │ CR2: 2 clusters, df=1.0 │ 20 │ 1                    │ 2, 4              │
+│    4 │ model-c │ 0.4500 │ [-1.4559, 2.3559] │ CR2: 2 clusters, df=1.0 │ 20 │ 1                    │ 2-3               │
+└──────┴─────────┴────────┴───────────────────┴─────────────────────────┴────┴──────────────────────┴───────────────────┘
+Grouped-question intervals use CR2 standard errors and Student t with effective 
+degrees of freedom. Each question keeps equal weight; intervals are marginal, 
+not adjusted across models. Unclustered diagnostics remain in --json.
+Intervals for model-d: The interval uses 3 clusters and 2.0 effective degrees of
+freedom; few independent clusters limit precision.
+Intervals for model-a, model-b, model-c: The interval uses 2 clusters and 1.0 
+effective degrees of freedom; few independent clusters limit precision.
+'not separated: ranks' lists only other models whose paired test has 
+Holm-adjusted p >= 0.05. Gaps are preserved; '-' means none. Non-significance 
+does not establish equivalence. The overlapping groups remain in --json.
+The models were not scored on the same questions. Each mean is over that model's
+own questions; each paired test uses the questions its two models share.
+3 model pairs cannot be tested: 3 with only one shared independent cluster. 
+Untested pairs establish neither a difference nor equivalence.
+                               pairwise paired tests (Holm-corrected)                                
+┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ A       ┃ B       ┃ shared n ┃ mean diff ┃ test        ┃ p (used) ┃ p (used, Holm) ┃ significant? ┃
+┡━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ model-d │ model-a │       20 │   +0.0000 │ clustered t │        1 │              1 │ no           │
+│ model-d │ model-b │       20 │   +0.1000 │ clustered t │    0.844 │              1 │ no           │
+│ model-d │ model-c │       20 │   +0.2000 │ clustered t │      0.5 │              1 │ no           │
+└─────────┴─────────┴──────────┴───────────┴─────────────┴──────────┴────────────────┴──────────────┘
+Clustered inference rests on 1.0 effective degrees of freedom: 2 clusters, the 
+largest holding 50% of the questions. Its interval is wide because few 
+independent clusters carry the estimate.
+'p (used, Holm)' adjusts the selected tests across all tested pairs: clustered t
+for dependent questions, exact McNemar for one binary score per shared question,
+paired t for continuous scores or repeated-generation means. Groups do not 
+establish equivalence.

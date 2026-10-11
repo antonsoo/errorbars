@@ -21,6 +21,14 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Leaderboards keep usable model estimates and pairwise tests when some pairs
+  share only one independent cluster. Those pairs have an explicit untested
+  reason and shared-question count; they never receive a significance decision.
+  Question content signatures are indexed per model once per board, avoiding
+  repeated scans of every model's observations for each pair. Recorded 120-model
+  runtime with identity declarations fell from 31.3 to 5.9 seconds with identical
+  numerical output. [Reproduction and timing limits](studies/leaderboard-overlap/README.md).
+
 - Comparisons and rankings reject known conflicting scorer names or recorded
   configurations for shared questions. Inspect scorer parameters are fingerprinted
   without exporting their raw values; lm-eval metric names survive normalized export.

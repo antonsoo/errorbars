@@ -1,0 +1,94 @@
+{
+  "python": "3.12.12",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "source_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "leaderboard_module_sha256": "192b537265dbe614d13755d9ba8728827c5bb1f9d1b93bfb9cbf750fc4fb94b5",
+  "identity_note": "Synthetic hashes of question IDs, not verified content signatures.",
+  "cluster_note": "No cluster column; this measures question-level binary pair tests.",
+  "measurements": [
+    {
+      "models": 40,
+      "questions": 500,
+      "rows": 20000,
+      "synthetic_identity_declarations": false,
+      "seconds": [
+        0.528122572999564,
+        0.570759050999186,
+        0.7270845839957474
+      ],
+      "median_seconds": 0.570759050999186,
+      "output_sha256": "bb821418d0084e8e3f7fc0b2f4e7187a5892164bb820e1b2a400cb6e943d6c57",
+      "tested_pairs": 780
+    },
+    {
+      "models": 40,
+      "questions": 500,
+      "rows": 20000,
+      "synthetic_identity_declarations": true,
+      "seconds": [
+        0.6253324130084366,
+        0.6135648679919541,
+        0.566122197007644
+      ],
+      "median_seconds": 0.6135648679919541,
+      "output_sha256": "bb821418d0084e8e3f7fc0b2f4e7187a5892164bb820e1b2a400cb6e943d6c57",
+      "tested_pairs": 780
+    },
+    {
+      "models": 80,
+      "questions": 500,
+      "rows": 40000,
+      "synthetic_identity_declarations": false,
+      "seconds": [
+        1.6796282020077342,
+        1.5723024659964722,
+        1.6158834919915535
+      ],
+      "median_seconds": 1.6158834919915535,
+      "output_sha256": "fd9214c85780b499fc8ae7d341b647e3fac3a9ff84fb535dde60a84009f045b2",
+      "tested_pairs": 3160
+    },
+    {
+      "models": 80,
+      "questions": 500,
+      "rows": 40000,
+      "synthetic_identity_declarations": true,
+      "seconds": [
+        1.8193070289999014,
+        1.761197671003174,
+        1.7708516840066295
+      ],
+      "median_seconds": 1.7708516840066295,
+      "output_sha256": "fd9214c85780b499fc8ae7d341b647e3fac3a9ff84fb535dde60a84009f045b2",
+      "tested_pairs": 3160
+    },
+    {
+      "models": 120,
+      "questions": 500,
+      "rows": 60000,
+      "synthetic_identity_declarations": false,
+      "seconds": [
+        4.190798910000012,
+        4.988880408011028,
+        4.647677111002849
+      ],
+      "median_seconds": 4.647677111002849,
+      "output_sha256": "6e2625b4a81697c4eb659af6b879e5365c2f1c9ecf1431d09daaf0d83921c86e",
+      "tested_pairs": 7140
+    },
+    {
+      "models": 120,
+      "questions": 500,
+      "rows": 60000,
+      "synthetic_identity_declarations": true,
+      "seconds": [
+        6.042993972005206,
+        5.911381737998454,
+        4.701540800000657
+      ],
+      "median_seconds": 5.911381737998454,
+      "output_sha256": "6e2625b4a81697c4eb659af6b879e5365c2f1c9ecf1431d09daaf0d83921c86e",
+      "tested_pairs": 7140
+    }
+  ]
+}

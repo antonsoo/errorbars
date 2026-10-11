@@ -242,6 +242,8 @@ def build_leaderboard(
     question means. The method is selected from the data structure, never
     from whichever test gives the smaller p-value. Holm is applied once to
     all selected raw p-values, including boards with mixed score types.
+    A pair sharing fewer than two questions or fewer than two independent
+    clusters remains untested; it does not prevent other pairs from being tested.
     """
     data.validate()
     models = data.models()
@@ -250,9 +252,13 @@ def build_leaderboard(
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
 
-    qmap = {m: data.filter_model(m).scores_by_question() for m in models}
-    counts = {m: Counter(data.filter_model(m).question_id) for m in models}
-    n_observations = {m: len(data.filter_model(m)) for m in models}
+    parts = {m: data.filter_model(m) for m in models}
+    qmap = {m: part.scores_by_question() for m, part in parts.items()}
+    counts = {m: Counter(part.question_id) for m, part in parts.items()}
+    n_observations = {m: len(part) for m, part in parts.items()}
+    # Index content evidence once per board. Looking up both models in all rows
+    # for every pair made validation cubic in model count on harness exports.
+    hashes = {m: part.hashes_by_question(m) for m, part in parts.items()}
     cluster_of_q = data.cluster_by_question()
 
     entries: list[LeaderboardEntry] = []
@@ -318,7 +324,7 @@ def build_leaderboard(
     # makes this check cubic in the number of models.
     scoring = data.scoring_by_model() if data.scoring is not None else {}
     for a, b in combinations(order, 2):
-        conflicts = data.pairing_conflicts(a, b)
+        conflicts = sorted(q for q in hashes[a].keys() & hashes[b].keys() if hashes[a][q] != hashes[b][q])
         if conflicts:
             raise ValueError(
                 f"{a!r} vs {b!r}: conflicting question content for {len(conflicts)} shared ids "
@@ -341,6 +347,9 @@ def build_leaderboard(
         sa = [qmap[a][q] for q in common]
         sb = [qmap[b][q] for q in common]
         clusters = [cluster_of_q[q] for q in common] if cluster_of_q else None
+        if clusters is not None and len(set(clusters)) < 2:
+            untested_pairs.append(UntestedPair(a, b, len(common), "fewer_than_two_shared_clusters"))
+            continue
         has_real_clusters = clusters is not None and len(set(clusters)) < len(clusters)
         comp = paired_compare(sa, sb, clusters=clusters if has_real_clusters else None, confidence=confidence)
         inference = select_inference(
@@ -372,8 +381,18 @@ def build_leaderboard(
             "model's own questions; each paired test uses the questions its two models share."
         )
     if untested_pairs:
+        reasons = Counter(pair.reason for pair in untested_pairs)
+        details = []
+        if reasons["fewer_than_two_shared_questions"]:
+            details.append(
+                f"{reasons['fewer_than_two_shared_questions']} with fewer than two shared questions"
+            )
+        if reasons["fewer_than_two_shared_clusters"]:
+            details.append(
+                f"{reasons['fewer_than_two_shared_clusters']} with only one shared independent cluster"
+            )
         warnings.append(
-            f"{len(untested_pairs)} model pairs have fewer than two shared questions and cannot be tested. "
+            f"{len(untested_pairs)} model pairs cannot be tested: {'; '.join(details)}. "
             "Untested pairs establish neither a difference nor equivalence."
         )
     return Leaderboard(

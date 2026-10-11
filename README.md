@@ -116,6 +116,9 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   [Why exact rank sets matter on 173 public submissions](studies/leaderboard-ranks/README.md).
   Forest plots name the interval method and wrap full model names. The CLI writes
   SVG without dependencies; Python callers can also use the matplotlib extra.
+  Partial cohorts sharing only one independent group now keep an explicit
+  untested pair while the rest of the board remains usable. Question identity
+  checks index each model once. [Failure capture and timing evidence](studies/leaderboard-overlap/README.md).
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect. Repeated-answer plans in this checkout require an explicit

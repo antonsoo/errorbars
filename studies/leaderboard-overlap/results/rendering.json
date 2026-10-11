@@ -1,0 +1,30 @@
+[
+  {
+    "browser": "chromium",
+    "offline": true,
+    "width": 640,
+    "height": 370,
+    "texts": 31,
+    "outside": [],
+    "untested": [
+      "not tested: 3-4",
+      "not tested: 2, 4",
+      "not tested: 2-3"
+    ],
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "offline": true,
+    "width": 640,
+    "height": 370,
+    "texts": 31,
+    "outside": [],
+    "untested": [
+      "not tested: 3-4",
+      "not tested: 2, 4",
+      "not tested: 2-3"
+    ],
+    "errors": []
+  }
+]

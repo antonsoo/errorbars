@@ -1,0 +1,13 @@
+{
+  "command": [
+    "errorbars",
+    "leaderboard",
+    "studies/leaderboard-overlap/partial-cohorts.csv",
+    "--json"
+  ],
+  "input_sha256": "0913fc13a49338106034e145a0685131032781d8a7a67fb8003ff17a21d7fdeb",
+  "leaderboard_module_sha256": "3108c9c19daebc2c300a522ed1febda16d0a742ff2ad0dca885d2aad2cc25cb6",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "error: need at least 2 independent clusters; one cluster cannot estimate a clustered SE\n"
+}

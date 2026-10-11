@@ -117,3 +117,16 @@ def test_real_models_retain_matching_question_content():
     review = review_comparison(data, *data.models())
     assert review.cohort["n_identity_matching"] == 20
     assert review.comparison.mean_diff == pytest.approx(0.2)  # Directory sort puts random-gpt2 first.
+
+
+def test_leaderboard_identity_index_preserves_partial_repeats_and_rechecks_mutated_data():
+    data = EvalData(
+        ["q1", "q1", "q2", "q1", "q2"], ["A", "A", "A", "B", "B"], [1, 0, 1, 1, 0],
+        sample=["0", "1", "0", "0", "0"], question_hash=["h1", None, "h2", "h1", "h2"],
+    )
+    with_identity = build_leaderboard(data).as_dict()
+    data.question_hash = None
+    assert build_leaderboard(data).as_dict() == with_identity
+    data.question_hash = ["h1", None, "h2", "changed-question", "h2"]
+    with pytest.raises(ValueError, match="conflicting question content.*q1"):
+        build_leaderboard(data)

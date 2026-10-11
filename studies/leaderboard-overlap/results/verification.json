@@ -1,0 +1,38 @@
+{
+  "source_revision": "4deac3186c0d9411560813a57222320f38ca7b7e",
+  "clean_archive": true,
+  "source_checks": {
+    "python": "3.12.12",
+    "ruff": "passed",
+    "mypy": "18 source files clean",
+    "pytest": "593 passed in 60.93 seconds"
+  },
+  "archive_checks": {
+    "python": "3.14.7",
+    "install": "uv sync --locked --group dev --extra all",
+    "ruff": "passed",
+    "mypy": "18 source files clean",
+    "pytest": "593 passed in 68.35 seconds",
+    "build": "uv build: sdist and wheel succeeded"
+  },
+  "installed_wheel": {
+    "filename": "errorbars-0.2.4-py3-none-any.whl",
+    "sha256": "e6bd6697c2912ca7b081e55ae9f91453d107141c75d287f282764db92d534e11",
+    "bytes": 175203,
+    "python": "3.12.12",
+    "dependencies": [
+      "numpy==2.5.4"
+    ],
+    "import_from_site_packages": true,
+    "partial_cohorts_json_matches_source": true,
+    "partial_cohorts_svg_matches_source": true,
+    "plain_terminal_output": "passed without rich",
+    "power_quickstart_questions": 4361,
+    "reading_comprehension_leaderboard": "passed"
+  },
+  "publication": {
+    "pushed": false,
+    "registry_release": false,
+    "hosted_deployment": false
+  }
+}

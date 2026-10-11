@@ -108,3 +108,17 @@ repair concerns pair intersections within otherwise estimable boards. Scoring
 and content conflicts still reject the board, including conflicts in an
 otherwise untestable pair. Sparse cluster intervals can be very wide and extend
 outside the binary score range; the example retains them without clipping.
+
+## Installation check
+
+Source revision `4deac31` passed lint, strict type checking, and 593 tests under
+Python 3.12.12. A clean `git archive` then passed `uv sync --locked --group dev
+--extra all`, `ruff check .`, `mypy src/errorbars`, all 593 tests under Python
+3.14.7, and `uv build` (source distribution and wheel).
+
+The resulting wheel was installed into a fresh Python 3.12 environment with
+only its required NumPy dependency. Running outside the checkout, the partial
+cohort JSON and SVG matched the source artifacts byte for byte; the plain
+terminal table worked without Rich. The README power quickstart returned 4,361
+questions and its reading-comprehension leaderboard completed.
+[Wheel hash and verification receipt](results/verification.json).

@@ -6,7 +6,7 @@ comparisons and model estimates remain available. The same change indexes
 question signatures per model instead of scanning every observation for each
 pair. Neither change alters the statistical formulas.
 
-These repairs are local source changes, not a PyPI release or a hosted update.
+These repairs are source changes. No PyPI release or manual hosted update was made.
 
 ## A board that previously aborted
 

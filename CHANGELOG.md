@@ -103,6 +103,12 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Table imports refuse duplicate DataFrame columns before pandas can discard values.
+  CSV parsing rejects unfinished quoted fields and text after a closing quote, with a
+  located input error instead of analyzing repaired data. Failed inputs leave existing
+  CLI reports and exports intact. Duplicate row indexes and valid CSV quoting remain
+  supported. [Reproduction](studies/table-imports/README.md).
+
 - Inspect imports now refuse cancelled/failed runs, incomplete sample counts,
   invalidations, invalid epoch coverage and changing automatic scorer selection.
   Completed limits and selected-ID runs remain supported. Recorded text inputs,

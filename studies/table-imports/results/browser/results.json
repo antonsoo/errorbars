@@ -1,0 +1,50 @@
+[
+  {
+    "browser": "chromium",
+    "width": 375,
+    "questions": 40,
+    "filtered": 8,
+    "downloads": {
+      "Download evidence (JSON)": 38960,
+      "Download shown questions (CSV)": 759
+    },
+    "errors": [],
+    "requests": []
+  },
+  {
+    "browser": "chromium",
+    "width": 1440,
+    "questions": 40,
+    "filtered": 8,
+    "downloads": {
+      "Download evidence (JSON)": 38960,
+      "Download shown questions (CSV)": 759
+    },
+    "errors": [],
+    "requests": []
+  },
+  {
+    "browser": "firefox",
+    "width": 375,
+    "questions": 40,
+    "filtered": 8,
+    "downloads": {
+      "Download evidence (JSON)": 38960,
+      "Download shown questions (CSV)": 759
+    },
+    "errors": [],
+    "requests": []
+  },
+  {
+    "browser": "firefox",
+    "width": 1440,
+    "questions": 40,
+    "filtered": 8,
+    "downloads": {
+      "Download evidence (JSON)": 38960,
+      "Download shown questions (CSV)": 759
+    },
+    "errors": [],
+    "requests": []
+  }
+]

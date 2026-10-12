@@ -1,0 +1,22 @@
+[
+  {
+    "file": "chromium-1440-errorbars-questions.csv",
+    "rows": 8,
+    "sha256": "09d46194cb789bb26026bf079a05830dce30d05cac22765eb988e6c5de964fe0"
+  },
+  {
+    "file": "chromium-375-errorbars-questions.csv",
+    "rows": 8,
+    "sha256": "09d46194cb789bb26026bf079a05830dce30d05cac22765eb988e6c5de964fe0"
+  },
+  {
+    "file": "firefox-1440-errorbars-questions.csv",
+    "rows": 8,
+    "sha256": "09d46194cb789bb26026bf079a05830dce30d05cac22765eb988e6c5de964fe0"
+  },
+  {
+    "file": "firefox-375-errorbars-questions.csv",
+    "rows": 8,
+    "sha256": "09d46194cb789bb26026bf079a05830dce30d05cac22765eb988e6c5de964fe0"
+  }
+]

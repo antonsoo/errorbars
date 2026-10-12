@@ -505,31 +505,39 @@ def load_csv(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
     with open(path, newline="", encoding="utf-8-sig") as f:
         header = f.readline()
         f.seek(0)
-        delimiter = _delimiter(header, columns)
-        reader = csv.DictReader(f, delimiter=delimiter)
-        if reader.fieldnames is None:
-            raise ValueError(f"{path}: empty or headerless CSV")
-        reader.fieldnames = [name.strip() for name in reader.fieldnames]
-        seen_headers: set[str] = set()
-        for name in reader.fieldnames:
-            if name in seen_headers:
-                raise ValueError(f"{path}: duplicate CSV column {name!r}")
-            seen_headers.add(name)
-        records: Iterable[dict[str, Any]] = reader
-        if delimiter != ",":
-            records = _decimal_commas(reader, columns.score)
-        sources: list[RecordSource | None] = []
+        try:
+            delimiter = _delimiter(header, columns)
+        except csv.Error as exc:
+            raise ValueError(f"{path}:1: invalid CSV header: {exc}") from exc
+        reader = csv.DictReader(f, delimiter=delimiter, strict=True)
+        try:
+            if reader.fieldnames is None:
+                raise ValueError(f"{path}: empty or headerless CSV")
+            reader.fieldnames = [name.strip() for name in reader.fieldnames]
+            seen_headers: set[str] = set()
+            for name in reader.fieldnames:
+                if name in seen_headers:
+                    raise ValueError(f"{path}: duplicate CSV column {name!r}")
+                seen_headers.add(name)
+            records: Iterable[dict[str, Any]] = reader
+            if delimiter != ",":
+                records = _decimal_commas(reader, columns.score)
+            sources: list[RecordSource | None] = []
 
-        def located() -> Iterable[dict[str, Any]]:
-            start = reader.line_num + 1
-            for record, row in enumerate(records, 1):
-                sources.append(RecordSource(str(path), record, start, reader.line_num, columns.score))
-                yield row
+            def located() -> Iterable[dict[str, Any]]:
                 start = reader.line_num + 1
+                for record, row in enumerate(records, 1):
+                    sources.append(RecordSource(str(path), record, start, reader.line_num, columns.score))
+                    yield row
+                    start = reader.line_num + 1
 
-        data = _from_records(located(), columns)
-        data.sources = sources
-        return data
+            data = _from_records(located(), columns)
+            data.sources = sources
+            return data
+        except csv.Error as exc:
+            # DictReader.line_num updates only after a successful record. The
+            # underlying reader also counts lines consumed by a failed record.
+            raise ValueError(f"{path}:{reader.reader.line_num}: invalid CSV: {exc}") from exc
 
 
 def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
@@ -562,6 +570,12 @@ def load_jsonl(path: str | Path, columns: ColumnMap | None = None) -> EvalData:
 def load_dataframe(df: Any, columns: ColumnMap | None = None) -> EvalData:
     """Load per-item scores from a pandas DataFrame."""
     columns = columns or ColumnMap()
+    # to_dict warns and drops duplicate columns, potentially changing scores,
+    # identities or pairing metadata. Row indexes are not observation identity.
+    if not df.columns.is_unique:
+        duplicated = df.columns[df.columns.duplicated()].tolist()
+        labels = _names(dict.fromkeys(duplicated))
+        raise ValueError(f"duplicate DataFrame columns: {labels}; rename or select columns before loading")
     records = df.to_dict(orient="records")
     return _from_records(records, columns)
 

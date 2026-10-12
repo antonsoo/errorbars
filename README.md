@@ -213,10 +213,15 @@ For example, ten successful generations of q1 and one failed generation of q2 ha
 mean of **0.5**, rather than a draw-weighted **10/11**. The runnable synthetic example is in
 [the repeated-generation walkthrough](examples/README.md#unequal-repeated-generations).
 
-Identifiers must be nonempty scalar values. Duplicate CSV columns or JSON fields, explicit
+Identifiers must be nonempty scalar values. Duplicate CSV or DataFrame columns, JSON fields, explicit
 missing sample/cluster labels, and contradictory cluster assignments are rejected. A question's
 cluster is shared across models. When combining files, missing cluster metadata can be resolved
 from another file for the same question; every other question needs an explicit assignment.
+`load_dataframe` allows duplicate row indexes; observation identity comes from the configured
+columns. Rename or explicitly select duplicate columns before loading. CSV quote errors, including
+an unfinished quoted field at EOF, report the input path and physical line. A missing final newline
+is valid; these checks cannot detect missing whole records. See the
+[table import reproduction](studies/table-imports/README.md).
 
 Every command takes several files (`errorbars leaderboard model-a.csv model-b.csv ...`) and puts
 their rows together. The same model, question and sample in two files is refused, as it is within

@@ -1,0 +1,12 @@
+power: questions needed
+input                     value
+------------------------  -----
+delta                      0.03
+alpha                      0.05
+power                       0.8
+rho (paired correlation)    0.0
+samples/question              1
+cluster design effect       1.0
+Questions needed: 4361
+Minimum detectable effect at n=1000: 0.3000
+The assumed correlation sets this minimum gap: smaller binary improvements cannot occur under these assumptions, regardless of question count.

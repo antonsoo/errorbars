@@ -1,0 +1,8 @@
+Using CPython 3.14.7
+Creating virtual environment at: wheel314
+Activate with: source wheel314/bin/activate
+Using Python 3.14.7 environment at: wheel314
+Resolved 2 packages in 3ms
+Installed 2 packages in 75ms
+ + errorbars==0.2.4 (from file:///tmp/claude-1000/errorbars-binary-feasibility/clean/dist/errorbars-0.2.4-py3-none-any.whl)
+ + numpy==2.5.4

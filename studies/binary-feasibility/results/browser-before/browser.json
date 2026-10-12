@@ -1,0 +1,961 @@
+{
+  "expectation": "before",
+  "records": [
+    {
+      "engine": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "states": [
+        {
+          "name": "impossible-pair",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "28\t7.103 points\tWithin range\n57 (current)\t4.979 points\tWithin range\n114\t3.52 points\tWithin range\n228\t2.489 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "questions",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.9,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": 0.05,
+              "availableQuestions": null
+            },
+            "result": {
+              "nQuestions": 57,
+              "minimumDetectableEffect": 0.04978547579687035,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 114,
+              "approximateGroups": 57,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 566,
+              "minimumDetectableEffect": 0.04996108648605634
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --delta 0.05 --baseline 0.9 --rho 0.9 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:27.588Z"
+          },
+          "download": "chromium-1440-impossible-pair.json",
+          "downloadSha256": "364dd411e55c412ea3cab91738151c26c4631b90994e1e749ec55f47fbf94083",
+          "overflow": false,
+          "accessibilityViolations": [],
+          "screenshot": "chromium-1440-impossible-pair.png"
+        },
+        {
+          "name": "valid-budget",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "67\t10.268 points\tExceeds 100% accuracy\n135 (current)\t7.234 points\tWithin range\n270\t5.115 points\tWithin range\n540\t3.617 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 135
+            },
+            "result": {
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.07233661928488266,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 270,
+              "approximateGroups": 135,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.10229942804890024
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:29.092Z"
+          },
+          "download": "chromium-1440-valid-budget.json",
+          "downloadSha256": "0f2c8054c14c66701960280a731669a81c65dd6eddba59cfdc475e301cb420f5",
+          "overflow": false,
+          "accessibilityViolations": []
+        },
+        {
+          "name": "negative-minimum",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "500\t8.68 points\tWithin range\n1,000 (current)\t6.138 points\tWithin range\n2,000\t4.34 points\tWithin range\n4,000\t3.069 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.2,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": -0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 1000
+            },
+            "result": {
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.06137965682934015,
+              "maximumImprovement": 0.8,
+              "achievableImprovement": true,
+              "modelAnswers": 2000,
+              "approximateGroups": 1000,
+              "perQuestionVariance": 0.16000000000000003
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.050116279939673394
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:29.824Z"
+          },
+          "download": "chromium-1440-negative-minimum.json",
+          "downloadSha256": "bd217028340f3090f62d549dbc37f04a1ee71f73160ee40ecae3af2389df9d0f",
+          "overflow": false,
+          "accessibilityViolations": []
+        }
+      ],
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "cspViolations": [],
+      "physicallyStoppedServer": true,
+      "served": {
+        "index.html": {
+          "sha256": "3659dd3c8893b2961ba7820922308a51886ea11d9faa2eea318b2cf32a9d8323",
+          "bytes": 9337
+        },
+        "assets/index-6lWbLB8l.js": {
+          "sha256": "9142b4d776e9932a0986bc3ff657bacf9895c0f56beea146a14fabf0ba1c42a8",
+          "bytes": 16651
+        },
+        "assets/theme-OwnbEBKB.js": {
+          "sha256": "322c5aa65daade6f8b398d7cc60c542e4ae083839f98f23652cf9b16a553e900",
+          "bytes": 1143
+        },
+        "assets/theme-D5FsHUt7.css": {
+          "sha256": "0a9ab0a3f17fbc15194cc1d2b1d6bcf35c48f8d2504a12c1551bcf1dd6a69342",
+          "bytes": 35408
+        },
+        "assets/spectral-400-latin-CTVgUekv.woff2": {
+          "sha256": "cf8daee3b83c1e662196c6e34e444bc41344d54bfeb4fb5351e197de6ce94539",
+          "bytes": 21696
+        },
+        "assets/ibm-plex-sans-latin-IvpUvPa2.woff2": {
+          "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+          "bytes": 45712
+        },
+        "assets/ibm-plex-mono-400-latin-DMJ8VG8y.woff2": {
+          "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+          "bytes": 14708
+        },
+        "assets/ibm-plex-mono-600-latin-BgSNZQsw.woff2": {
+          "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+          "bytes": 15620
+        },
+        "assets/ibm-plex-sans-greek-CmyJS8uq.woff2": {
+          "sha256": "f598dd0700f155e2facfaa8ecfacace397d4c2c153e9ce37ab7ad310e8505bc2",
+          "bytes": 19500
+        },
+        "assets/spectral-600-latin-DE3OxvnQ.woff2": {
+          "sha256": "33faca8b5795a0de1af77cbc43a050a3655c4b1e03e04847fdef4d19d2e361d2",
+          "bytes": 22936
+        },
+        "assets/ibm-plex-mono-500-latin-DSY6xOcd.woff2": {
+          "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+          "bytes": 14888
+        }
+      }
+    },
+    {
+      "engine": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "states": [
+        {
+          "name": "impossible-pair",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "28\t7.103 points\tWithin range\n57 (current)\t4.979 points\tWithin range\n114\t3.52 points\tWithin range\n228\t2.489 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "questions",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.9,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": 0.05,
+              "availableQuestions": null
+            },
+            "result": {
+              "nQuestions": 57,
+              "minimumDetectableEffect": 0.04978547579687035,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 114,
+              "approximateGroups": 57,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 566,
+              "minimumDetectableEffect": 0.04996108648605634
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --delta 0.05 --baseline 0.9 --rho 0.9 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:30.710Z"
+          },
+          "download": "chromium-375-impossible-pair.json",
+          "downloadSha256": "576ed1a8227c099d4203cca7c308b8a799be90dc6a86f02f74337b784763712b",
+          "overflow": false,
+          "accessibilityViolations": []
+        },
+        {
+          "name": "valid-budget",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "67\t10.268 points\tExceeds 100% accuracy\n135 (current)\t7.234 points\tWithin range\n270\t5.115 points\tWithin range\n540\t3.617 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 135
+            },
+            "result": {
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.07233661928488266,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 270,
+              "approximateGroups": 135,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.10229942804890024
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:31.541Z"
+          },
+          "download": "chromium-375-valid-budget.json",
+          "downloadSha256": "f2769fa9d091e0f63fc46b6d2fc2eb772ce1cb79a0bb448feaed977254856042",
+          "overflow": false,
+          "accessibilityViolations": []
+        },
+        {
+          "name": "negative-minimum",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "500\t8.68 points\tWithin range\n1,000 (current)\t6.138 points\tWithin range\n2,000\t4.34 points\tWithin range\n4,000\t3.069 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.2,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": -0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 1000
+            },
+            "result": {
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.06137965682934015,
+              "maximumImprovement": 0.8,
+              "achievableImprovement": true,
+              "modelAnswers": 2000,
+              "approximateGroups": 1000,
+              "perQuestionVariance": 0.16000000000000003
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.050116279939673394
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:32.191Z"
+          },
+          "download": "chromium-375-negative-minimum.json",
+          "downloadSha256": "bf6aca3d26d770be5b544b587cc721b9db9b55081f3136ac355f6275603e5a53",
+          "overflow": false,
+          "accessibilityViolations": [],
+          "screenshot": "chromium-375-negative-minimum.png"
+        }
+      ],
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "cspViolations": [],
+      "physicallyStoppedServer": true,
+      "served": {
+        "index.html": {
+          "sha256": "3659dd3c8893b2961ba7820922308a51886ea11d9faa2eea318b2cf32a9d8323",
+          "bytes": 9337
+        },
+        "assets/index-6lWbLB8l.js": {
+          "sha256": "9142b4d776e9932a0986bc3ff657bacf9895c0f56beea146a14fabf0ba1c42a8",
+          "bytes": 16651
+        },
+        "assets/theme-D5FsHUt7.css": {
+          "sha256": "0a9ab0a3f17fbc15194cc1d2b1d6bcf35c48f8d2504a12c1551bcf1dd6a69342",
+          "bytes": 35408
+        },
+        "assets/theme-OwnbEBKB.js": {
+          "sha256": "322c5aa65daade6f8b398d7cc60c542e4ae083839f98f23652cf9b16a553e900",
+          "bytes": 1143
+        },
+        "assets/spectral-400-latin-CTVgUekv.woff2": {
+          "sha256": "cf8daee3b83c1e662196c6e34e444bc41344d54bfeb4fb5351e197de6ce94539",
+          "bytes": 21696
+        },
+        "assets/ibm-plex-sans-latin-IvpUvPa2.woff2": {
+          "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+          "bytes": 45712
+        },
+        "assets/ibm-plex-mono-400-latin-DMJ8VG8y.woff2": {
+          "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+          "bytes": 14708
+        },
+        "assets/spectral-600-latin-DE3OxvnQ.woff2": {
+          "sha256": "33faca8b5795a0de1af77cbc43a050a3655c4b1e03e04847fdef4d19d2e361d2",
+          "bytes": 22936
+        },
+        "assets/ibm-plex-mono-600-latin-BgSNZQsw.woff2": {
+          "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+          "bytes": 15620
+        },
+        "assets/ibm-plex-sans-greek-CmyJS8uq.woff2": {
+          "sha256": "f598dd0700f155e2facfaa8ecfacace397d4c2c153e9ce37ab7ad310e8505bc2",
+          "bytes": 19500
+        },
+        "assets/ibm-plex-mono-500-latin-DSY6xOcd.woff2": {
+          "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+          "bytes": 14888
+        }
+      }
+    },
+    {
+      "engine": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "states": [
+        {
+          "name": "impossible-pair",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "28\t7.103 points\tWithin range\n57 (current)\t4.979 points\tWithin range\n114\t3.52 points\tWithin range\n228\t2.489 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "questions",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.9,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": 0.05,
+              "availableQuestions": null
+            },
+            "result": {
+              "nQuestions": 57,
+              "minimumDetectableEffect": 0.04978547579687035,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 114,
+              "approximateGroups": 57,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 566,
+              "minimumDetectableEffect": 0.04996108648605634
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --delta 0.05 --baseline 0.9 --rho 0.9 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:34.972Z"
+          },
+          "download": "firefox-1440-impossible-pair.json",
+          "downloadSha256": "33862e5e686fd92716879b7086e9d474da75538ba782366709f1146fb30a8b1c",
+          "overflow": false,
+          "accessibilityViolations": [],
+          "screenshot": "firefox-1440-impossible-pair.png"
+        },
+        {
+          "name": "valid-budget",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "67\t10.268 points\tExceeds 100% accuracy\n135 (current)\t7.234 points\tWithin range\n270\t5.115 points\tWithin range\n540\t3.617 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 135
+            },
+            "result": {
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.07233661928488266,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 270,
+              "approximateGroups": 135,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.10229942804890024
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:36.293Z"
+          },
+          "download": "firefox-1440-valid-budget.json",
+          "downloadSha256": "2e88c4e478a04de8ccd44910db870d1f61223003a885198b7cf88719b6746ee0",
+          "overflow": false,
+          "accessibilityViolations": []
+        },
+        {
+          "name": "negative-minimum",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "500\t8.68 points\tWithin range\n1,000 (current)\t6.138 points\tWithin range\n2,000\t4.34 points\tWithin range\n4,000\t3.069 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.2,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": -0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 1000
+            },
+            "result": {
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.06137965682934015,
+              "maximumImprovement": 0.8,
+              "achievableImprovement": true,
+              "modelAnswers": 2000,
+              "approximateGroups": 1000,
+              "perQuestionVariance": 0.16000000000000003
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.050116279939673394
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:37.550Z"
+          },
+          "download": "firefox-1440-negative-minimum.json",
+          "downloadSha256": "b580eaa8494141394aaebf82b2009c6fa27cce7ffc34fe33c81f88e02d51be4c",
+          "overflow": false,
+          "accessibilityViolations": []
+        }
+      ],
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "cspViolations": [],
+      "physicallyStoppedServer": true,
+      "served": {
+        "index.html": {
+          "sha256": "3659dd3c8893b2961ba7820922308a51886ea11d9faa2eea318b2cf32a9d8323",
+          "bytes": 9337
+        },
+        "assets/index-6lWbLB8l.js": {
+          "sha256": "9142b4d776e9932a0986bc3ff657bacf9895c0f56beea146a14fabf0ba1c42a8",
+          "bytes": 16651
+        },
+        "assets/theme-D5FsHUt7.css": {
+          "sha256": "0a9ab0a3f17fbc15194cc1d2b1d6bcf35c48f8d2504a12c1551bcf1dd6a69342",
+          "bytes": 35408
+        },
+        "assets/theme-OwnbEBKB.js": {
+          "sha256": "322c5aa65daade6f8b398d7cc60c542e4ae083839f98f23652cf9b16a553e900",
+          "bytes": 1143
+        },
+        "assets/ibm-plex-sans-latin-IvpUvPa2.woff2": {
+          "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+          "bytes": 45712
+        },
+        "assets/spectral-400-latin-CTVgUekv.woff2": {
+          "sha256": "cf8daee3b83c1e662196c6e34e444bc41344d54bfeb4fb5351e197de6ce94539",
+          "bytes": 21696
+        },
+        "assets/ibm-plex-mono-400-latin-DMJ8VG8y.woff2": {
+          "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+          "bytes": 14708
+        },
+        "assets/spectral-600-latin-DE3OxvnQ.woff2": {
+          "sha256": "33faca8b5795a0de1af77cbc43a050a3655c4b1e03e04847fdef4d19d2e361d2",
+          "bytes": 22936
+        },
+        "assets/ibm-plex-mono-600-latin-BgSNZQsw.woff2": {
+          "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+          "bytes": 15620
+        },
+        "assets/ibm-plex-sans-greek-CmyJS8uq.woff2": {
+          "sha256": "f598dd0700f155e2facfaa8ecfacace397d4c2c153e9ce37ab7ad310e8505bc2",
+          "bytes": 19500
+        },
+        "assets/ibm-plex-mono-500-latin-DSY6xOcd.woff2": {
+          "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+          "bytes": 14888
+        }
+      }
+    },
+    {
+      "engine": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "states": [
+        {
+          "name": "impossible-pair",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "28\t7.103 points\tWithin range\n57 (current)\t4.979 points\tWithin range\n114\t3.52 points\tWithin range\n228\t2.489 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "questions",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.9,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": 0.05,
+              "availableQuestions": null
+            },
+            "result": {
+              "nQuestions": 57,
+              "minimumDetectableEffect": 0.04978547579687035,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 114,
+              "approximateGroups": 57,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 566,
+              "minimumDetectableEffect": 0.04996108648605634
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --delta 0.05 --baseline 0.9 --rho 0.9 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:39.278Z"
+          },
+          "download": "firefox-375-impossible-pair.json",
+          "downloadSha256": "1aee81774c01a0aecad26270d43d1a8d57e9159baf0c8fafe955ee4092f20d97",
+          "overflow": false,
+          "accessibilityViolations": []
+        },
+        {
+          "name": "valid-budget",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "67\t10.268 points\tExceeds 100% accuracy\n135 (current)\t7.234 points\tWithin range\n270\t5.115 points\tWithin range\n540\t3.617 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.9,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": 0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 135
+            },
+            "result": {
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.07233661928488266,
+              "maximumImprovement": 0.09999999999999998,
+              "achievableImprovement": true,
+              "modelAnswers": 270,
+              "approximateGroups": 135,
+              "perQuestionVariance": 0.08999999999999998
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 135,
+              "minimumDetectableEffect": 0.10229942804890024
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:40.611Z"
+          },
+          "download": "firefox-375-valid-budget.json",
+          "downloadSha256": "595ded802ef24e16ea5c6b728da2c941a25ac939550fac8667844317a9f10606",
+          "overflow": false,
+          "accessibilityViolations": []
+        },
+        {
+          "name": "negative-minimum",
+          "disabled": false,
+          "resultVisible": true,
+          "error": "",
+          "warnings": "",
+          "table": "500\t8.68 points\tWithin range\n1,000 (current)\t6.138 points\tWithin range\n2,000\t4.34 points\tWithin range\n4,000\t3.069 points\tWithin range",
+          "plan": {
+            "format": "errorbars-plan",
+            "schemaVersion": 1,
+            "method": "paired-normal-approximation-v1",
+            "mode": "budget",
+            "inputs": {
+              "baselineAccuracy": 0.2,
+              "alpha": 0.05,
+              "power": 0.8,
+              "rho": -0.5,
+              "samplesPerQuestion": 1,
+              "clusterDesignEffect": 1,
+              "averageClusterSize": 1,
+              "intraclassCorrelation": 0,
+              "targetDifference": null,
+              "availableQuestions": 1000
+            },
+            "result": {
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.06137965682934015,
+              "maximumImprovement": 0.8,
+              "achievableImprovement": true,
+              "modelAnswers": 2000,
+              "approximateGroups": 1000,
+              "perQuestionVariance": 0.16000000000000003
+            },
+            "sensitivity": {
+              "rho": 0,
+              "nQuestions": 1000,
+              "minimumDetectableEffect": 0.050116279939673394
+            },
+            "units": {
+              "accuracy": "fraction",
+              "difference": "fraction (multiply by 100 for percentage points)",
+              "questions": "distinct questions per model",
+              "modelAnswers": "one answer per question from each of two models"
+            },
+            "assumptions": [
+              "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+              "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+              "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+              "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+              "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+            ],
+            "warnings": [],
+            "cliCommand": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+            "generatedAt": "2026-10-12T09:54:41.661Z"
+          },
+          "download": "firefox-375-negative-minimum.json",
+          "downloadSha256": "e6334df91758e11b1cca4bc1c38bbc82398b4b43b70856b7dcbf5095bb8a74c7",
+          "overflow": false,
+          "accessibilityViolations": [],
+          "screenshot": "firefox-375-negative-minimum.png"
+        }
+      ],
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "cspViolations": [],
+      "physicallyStoppedServer": true,
+      "served": {
+        "index.html": {
+          "sha256": "3659dd3c8893b2961ba7820922308a51886ea11d9faa2eea318b2cf32a9d8323",
+          "bytes": 9337
+        },
+        "assets/index-6lWbLB8l.js": {
+          "sha256": "9142b4d776e9932a0986bc3ff657bacf9895c0f56beea146a14fabf0ba1c42a8",
+          "bytes": 16651
+        },
+        "assets/theme-OwnbEBKB.js": {
+          "sha256": "322c5aa65daade6f8b398d7cc60c542e4ae083839f98f23652cf9b16a553e900",
+          "bytes": 1143
+        },
+        "assets/theme-D5FsHUt7.css": {
+          "sha256": "0a9ab0a3f17fbc15194cc1d2b1d6bcf35c48f8d2504a12c1551bcf1dd6a69342",
+          "bytes": 35408
+        },
+        "assets/spectral-400-latin-CTVgUekv.woff2": {
+          "sha256": "cf8daee3b83c1e662196c6e34e444bc41344d54bfeb4fb5351e197de6ce94539",
+          "bytes": 21696
+        },
+        "assets/ibm-plex-sans-latin-IvpUvPa2.woff2": {
+          "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+          "bytes": 45712
+        },
+        "assets/ibm-plex-mono-400-latin-DMJ8VG8y.woff2": {
+          "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+          "bytes": 14708
+        },
+        "assets/spectral-600-latin-DE3OxvnQ.woff2": {
+          "sha256": "33faca8b5795a0de1af77cbc43a050a3655c4b1e03e04847fdef4d19d2e361d2",
+          "bytes": 22936
+        },
+        "assets/ibm-plex-mono-600-latin-BgSNZQsw.woff2": {
+          "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+          "bytes": 15620
+        },
+        "assets/ibm-plex-sans-greek-CmyJS8uq.woff2": {
+          "sha256": "f598dd0700f155e2facfaa8ecfacace397d4c2c153e9ce37ab7ad310e8505bc2",
+          "bytes": 19500
+        },
+        "assets/ibm-plex-mono-500-latin-DSY6xOcd.woff2": {
+          "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+          "bytes": 14888
+        }
+      }
+    }
+  ]
+}

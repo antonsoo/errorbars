@@ -1,0 +1,205 @@
+{
+  "python": "3.10.21",
+  "replays": [
+    {
+      "download": "chromium-1440-valid-budget.json",
+      "command": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "27f284e0dcd2615d31abc50759ad30d0f9aa9fe9d3b7e3ce5c661ea20f78527c",
+      "result": {
+        "n_questions": 135,
+        "mde": 0.07233661928488266,
+        "baseline_accuracy": 0.9,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.0,
+          "maximum_delta": 0.07297297297297296,
+          "minimum_inclusive": false,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": false
+      }
+    },
+    {
+      "download": "chromium-1440-negative-minimum.json",
+      "command": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "ef5594ef015a774310e5043f162172177a95c1744854bbb4dbdd86e953d7de99",
+      "result": {
+        "n_questions": 1000,
+        "mde": 0.30000000000000004,
+        "baseline_accuracy": 0.2,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": -0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.30000000000000004,
+          "maximum_delta": 0.7411764705882353,
+          "minimum_inclusive": true,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": true
+      }
+    },
+    {
+      "download": "chromium-375-valid-budget.json",
+      "command": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "7d00709ffc9b4063c147aae66ff2e1a013094dd459c0fd50b5e63ea715329210",
+      "result": {
+        "n_questions": 135,
+        "mde": 0.07233661928488266,
+        "baseline_accuracy": 0.9,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.0,
+          "maximum_delta": 0.07297297297297296,
+          "minimum_inclusive": false,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": false
+      }
+    },
+    {
+      "download": "chromium-375-negative-minimum.json",
+      "command": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "2109ee2ae8f28f2cb7b89cd425d601bf53306dfd3f3a3adca20ea2129364c437",
+      "result": {
+        "n_questions": 1000,
+        "mde": 0.30000000000000004,
+        "baseline_accuracy": 0.2,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": -0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.30000000000000004,
+          "maximum_delta": 0.7411764705882353,
+          "minimum_inclusive": true,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": true
+      }
+    },
+    {
+      "download": "firefox-1440-valid-budget.json",
+      "command": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "4dfeb0bc6b0c432d87a1063b27d27e821ccc01a912afa542e65f9c7c851e6f78",
+      "result": {
+        "n_questions": 135,
+        "mde": 0.07233661928488266,
+        "baseline_accuracy": 0.9,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.0,
+          "maximum_delta": 0.07297297297297296,
+          "minimum_inclusive": false,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": false
+      }
+    },
+    {
+      "download": "firefox-1440-negative-minimum.json",
+      "command": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "ed93724cd0e67fabc6b5afd2929c1488499c60da4d88d9b881e20483f8675445",
+      "result": {
+        "n_questions": 1000,
+        "mde": 0.30000000000000004,
+        "baseline_accuracy": 0.2,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": -0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.30000000000000004,
+          "maximum_delta": 0.7411764705882353,
+          "minimum_inclusive": true,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": true
+      }
+    },
+    {
+      "download": "firefox-375-valid-budget.json",
+      "command": "errorbars power --n 135 --baseline 0.9 --rho 0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "b17dbe148fd0b6705668b2a78a892db0f0758f7aabd77df0a59eaf45902be0c0",
+      "result": {
+        "n_questions": 135,
+        "mde": 0.07233661928488266,
+        "baseline_accuracy": 0.9,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": 0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.0,
+          "maximum_delta": 0.07297297297297296,
+          "minimum_inclusive": false,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": false
+      }
+    },
+    {
+      "download": "firefox-375-negative-minimum.json",
+      "command": "errorbars power --n 1000 --baseline 0.2 --rho -0.5 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+      "sha256": "7a2b208bc1803a9cab885f2b1fef06996f9fa2f9264434f81d104419fe7b93fa",
+      "result": {
+        "n_questions": 1000,
+        "mde": 0.30000000000000004,
+        "baseline_accuracy": 0.2,
+        "variance": null,
+        "alpha": 0.05,
+        "power": 0.8,
+        "rho": -0.5,
+        "samples_per_question": 1,
+        "repeat_correlation": null,
+        "cluster_design_effect": 1.0,
+        "binary_feasibility": {
+          "model": "single-answer-bernoulli",
+          "minimum_delta": 0.30000000000000004,
+          "maximum_delta": 0.7411764705882353,
+          "minimum_inclusive": true,
+          "maximum_inclusive": true
+        },
+        "correlation_limited": true
+      }
+    }
+  ]
+}

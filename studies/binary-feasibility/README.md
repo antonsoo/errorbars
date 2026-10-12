@@ -19,6 +19,9 @@ Full CLI output is retained in [before.json](results/before.json) and
 boundary policy are in [formulas.md](../../docs/formulas.md#binary-feasibility).
 The [planning guide](../../docs/planning.md) describes version 2 browser exports
 and the distinct scope of continuous and repeated-answer variance models.
+The [verification record](../../docs/verification-binary-feasibility-2026-10-12.md)
+links the clean archive, isolated wheel installations, downloaded-plan replays
+and inspected before/after browser captures.
 
 ## Independent checks
 
@@ -57,6 +60,7 @@ uv run python studies/binary-feasibility/check.py --output /tmp/binary-oracle.js
 uv run python studies/binary-feasibility/workflows.py --expect after --output /tmp/binary-cli.json
 npm --prefix web ci && npm --prefix web run build
 node studies/binary-feasibility/browser.mjs web/dist /tmp/binary-browser after
+uv run python studies/binary-feasibility/replay.py --plans /tmp/binary-browser --output /tmp/binary-replay.json
 ```
 
 The native TypeScript runner needs Node 24 or newer (`--node` selects an
@@ -73,6 +77,11 @@ The CLI runner uses the Python interpreter executing the script, so the same
 13-case workflow can be run from an isolated wheel installation. To inspect the
 baseline, use an isolated checkout of the pinned commit and its installed CLI
 or set `PYTHONPATH` to that checkout's `src` with `--expect before`.
+
+`replay.py` runs the command stored in each downloaded version 2 budget plan
+through its interpreter's installed CLI and compares the count, MDE, endpoint
+flags and correlation-limit metadata. It does not reconstruct the browser's
+inputs from a separate fixture.
 
 ## Scope
 

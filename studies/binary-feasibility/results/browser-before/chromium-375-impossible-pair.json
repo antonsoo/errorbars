@@ -1,0 +1,48 @@
+{
+  "format": "errorbars-plan",
+  "schemaVersion": 1,
+  "method": "paired-normal-approximation-v1",
+  "mode": "questions",
+  "inputs": {
+    "baselineAccuracy": 0.9,
+    "alpha": 0.05,
+    "power": 0.8,
+    "rho": 0.9,
+    "samplesPerQuestion": 1,
+    "clusterDesignEffect": 1,
+    "averageClusterSize": 1,
+    "intraclassCorrelation": 0,
+    "targetDifference": 0.05,
+    "availableQuestions": null
+  },
+  "result": {
+    "nQuestions": 57,
+    "minimumDetectableEffect": 0.04978547579687035,
+    "maximumImprovement": 0.09999999999999998,
+    "achievableImprovement": true,
+    "modelAnswers": 114,
+    "approximateGroups": 57,
+    "perQuestionVariance": 0.08999999999999998
+  },
+  "sensitivity": {
+    "rho": 0,
+    "nQuestions": 566,
+    "minimumDetectableEffect": 0.04996108648605634
+  },
+  "units": {
+    "accuracy": "fraction",
+    "difference": "fraction (multiply by 100 for percentage points)",
+    "questions": "distinct questions per model",
+    "modelAnswers": "one answer per question from each of two models"
+  },
+  "assumptions": [
+    "Normal approximation for one two-sided paired comparison; this is a planning estimate, not a guarantee.",
+    "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
+    "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
+    "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
+    "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation."
+  ],
+  "warnings": [],
+  "cliCommand": "errorbars power --delta 0.05 --baseline 0.9 --rho 0.9 --alpha 0.05 --power 0.8 --cluster-deff 1 --samples-per-question 1 --json",
+  "generatedAt": "2026-10-12T09:54:30.710Z"
+}

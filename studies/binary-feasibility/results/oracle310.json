@@ -1,0 +1,60 @@
+{
+  "scope": "Joint Bernoulli feasibility; does not validate normal-approximation power",
+  "python": "3.10.21",
+  "node": "v24.21.0",
+  "decimalPrecision": 70,
+  "tableTotals": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "counts": {
+    "grid": 1781,
+    "exactGridFeasible": 673,
+    "countRangeExcludedFromParity": 95,
+    "integerTables": 6776
+  },
+  "floatingBoundaryDifferences": [
+    {
+      "p": 0.1,
+      "rho": -1,
+      "delta": 0.8,
+      "minimumCell": "-2.775557561562890923074647084174554518469002437634397813E-17",
+      "accepted": true
+    },
+    {
+      "p": 0.4,
+      "rho": -1,
+      "delta": 0.2,
+      "minimumCell": "-2.77555756156289119056491713795739561748386309231277625E-17",
+      "accepted": true
+    },
+    {
+      "p": 0.49,
+      "rho": -1,
+      "delta": 0.02,
+      "minimumCell": "-8.6736173798840353215361361071868235848586345858340323E-18",
+      "accepted": true
+    },
+    {
+      "p": 0.99,
+      "rho": 0,
+      "delta": 0.01,
+      "minimumCell": "8.67361737988404317577939995590294591531802033970927E-20",
+      "accepted": false
+    },
+    {
+      "p": 0.999,
+      "rho": 0,
+      "delta": 0.001,
+      "minimumCell": "8.673617379884043175779399955902945915318020339709E-22",
+      "accepted": false
+    }
+  ],
+  "smallestReturnedJointCell": "-6.91113832829159614120555508616726419529663479427442521E-17",
+  "crossLanguageCases": 15238,
+  "inputSha256": "566747f5a8f5515375f51cc6af0b03c85cfaad8253eb14ad50123d117e1c80c7",
+  "maximumMdeDifference": 0.0,
+  "questionCountRounding": []
+}

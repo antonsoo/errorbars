@@ -1,0 +1,9 @@
+Using CPython 3.10.21
+Creating virtual environment at: wheel310
+Activate with: source wheel310/bin/activate
+Using Python 3.10.21 environment at: wheel310
+Resolved 2 packages in 182ms
+Prepared 1 package in 11ms
+Installed 2 packages in 74ms
+ + errorbars==0.2.4 (from file:///tmp/claude-1000/errorbars-binary-feasibility/clean/dist/errorbars-0.2.4-py3-none-any.whl)
+ + numpy==1.24.0

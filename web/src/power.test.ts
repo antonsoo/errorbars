@@ -1,7 +1,36 @@
 import { describe, expect, it } from "vitest";
 import vectors from "../test-vectors.json";
-import { minimumDetectableEffect, perQuestionVariance, questionsNeeded } from "./power.ts";
+import { BinaryFeasibilityError, binaryEffectRange, minimumDetectableEffect, perQuestionVariance, questionsNeeded } from "./power.ts";
 import { invNormalCdf, zForConfidence } from "./normal.ts";
+
+describe("single-answer binary feasibility", () => {
+  it("rejects impossible positive and negative correlation assumptions", () => {
+    for (const [baselineAccuracy, rho, delta] of [[0.8, 1, 0.05], [0.9, 0.9, 0.05], [0.2, -0.5, 0.03]] as const) {
+      expect(() => questionsNeeded(delta, { baselineAccuracy, rho })).toThrow(BinaryFeasibilityError);
+    }
+    expect(() => minimumDetectableEffect(100, { baselineAccuracy: 0.8, rho: 1 })).toThrow(BinaryFeasibilityError);
+  });
+  it("retains a negative-correlation minimum rather than reporting an impossible smaller gap", () => {
+    const inputs = { baselineAccuracy: 0.2, rho: -0.5 };
+    expect(binaryEffectRange(0.2, -0.5).minimumDelta).toBeCloseTo(0.3, 14);
+    for (const n of [100, 1000, 1e9]) expect(minimumDetectableEffect(n, inputs)).toBeCloseTo(0.3, 14);
+    expect(questionsNeeded(0.3, inputs).nQuestions).toBe(42);
+    expect(() => minimumDetectableEffect(2, inputs)).toThrow(BinaryFeasibilityError);
+  });
+  it("does not use absolute epsilon to permit gaps near perfect pairing", () => {
+    const bounds = binaryEffectRange(0.5, 1 - Number.EPSILON / 2);
+    expect(bounds.maximumDelta).toBeGreaterThan(0);
+    expect(bounds.maximumDelta).toBeLessThan(1e-15);
+    expect(() => questionsNeeded(2 * bounds.maximumDelta, { baselineAccuracy: 0.5, rho: 1 - Number.EPSILON / 2 })).toThrow(BinaryFeasibilityError);
+  });
+  it("excludes constant targets and preserves the scope of other variance models", () => {
+    expect(() => questionsNeeded(0.5, { baselineAccuracy: 0.5 })).toThrow(BinaryFeasibilityError);
+    expect(questionsNeeded(0.05, { variance: 0.16, rho: 1 }).binaryFeasibility).toBeNull();
+    expect(questionsNeeded(0.05, { baselineAccuracy: 0.8, rho: 1, samplesPerQuestion: 2, repeatCorrelation: 0.5 }).binaryFeasibility).toBeNull();
+    expect(binaryEffectRange(0.2094563824951179, 0).maximumDelta).toBe(1 - 0.2094563824951179);
+    expect(questionsNeeded(0.790543617504882, { baselineAccuracy: 0.2094563824951179 }).nQuestions).toBeGreaterThanOrEqual(2);
+  });
+});
 
 describe("repeated answers preserve question difficulty", () => {
   it("matches the uniform-difficulty example's independent variance components", () => {
@@ -42,7 +71,7 @@ describe("questionsNeeded matches Python errorbars.power.questions_needed", () =
   for (const vec of vectors.questionsNeeded) {
     const { baseline, delta, alpha, power, rho, samplesPerQuestion, repeatCorrelation, clusterDeff } = vec.inputs;
     it(`baseline=${baseline} delta=${delta} alpha=${alpha} power=${power} rho=${rho} k=${samplesPerQuestion} deff=${clusterDeff}`, () => {
-      const result = questionsNeeded(delta, {
+      const run = () => questionsNeeded(delta, {
         baselineAccuracy: baseline,
         alpha,
         power,
@@ -51,8 +80,10 @@ describe("questionsNeeded matches Python errorbars.power.questions_needed", () =
         ...(repeatCorrelation === null ? {} : { repeatCorrelation }),
         clusterDesignEffect: clusterDeff,
       });
+      if (vec.error) { expect(run).toThrow(BinaryFeasibilityError); return; }
+      const result = run();
       expect(result.nQuestions).toBe(vec.nQuestions);
-      expect(result.perQuestionVariance).toBeCloseTo(vec.perQuestionVariance, 10);
+      expect(result.perQuestionVariance).toBeCloseTo(vec.perQuestionVariance!, 10);
       expect(result.repeatCorrelation).toBe(repeatCorrelation);
     });
   }
@@ -62,7 +93,7 @@ describe("minimumDetectableEffect matches Python errorbars.power.minimum_detecta
   for (const vec of vectors.minimumDetectableEffect) {
     const { n, baseline, alpha, power, rho, samplesPerQuestion, repeatCorrelation, clusterDeff } = vec.inputs;
     it(`n=${n} baseline=${baseline} alpha=${alpha} power=${power} rho=${rho} k=${samplesPerQuestion} deff=${clusterDeff}`, () => {
-      const mde = minimumDetectableEffect(n, {
+      const run = () => minimumDetectableEffect(n, {
         baselineAccuracy: baseline,
         alpha,
         power,
@@ -71,8 +102,10 @@ describe("minimumDetectableEffect matches Python errorbars.power.minimum_detecta
         ...(repeatCorrelation === null ? {} : { repeatCorrelation }),
         clusterDesignEffect: clusterDeff,
       });
+      if (vec.error) { expect(run).toThrow(BinaryFeasibilityError); return; }
+      const mde = run();
       // Formula outputs agree within floating-point arithmetic noise.
-      expect(Math.abs(mde - vec.mde)).toBeLessThanOrEqual(Math.abs(vec.mde) * 1e-14);
+      expect(Math.abs(mde - vec.mde!)).toBeLessThanOrEqual(Math.abs(vec.mde!) * 1e-14);
     });
   }
 });

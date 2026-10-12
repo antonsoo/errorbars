@@ -314,8 +314,52 @@ rounding `1 - alpha` to 1 for small significance levels.
 
 The browser restricts power to 50%-99.9% and alpha to 0.1%-20%. Its exact
 editors, inverse budget mode, sensitivity calculation, and saved-plan units
-are documented in [Evaluation planning](planning.md). A budget's mathematical
-MDE can exceed `1 - baseline_accuracy`; this is retained and labelled as an
-unachievable improvement rather than clipped into a plausible-looking result.
+are documented in [Evaluation planning](planning.md). For one binary answer,
+the raw normal MDE is intersected with the feasible effect interval below.
 The warning thresholds of 30 questions or groups are prompts to check the
 approximation, not guarantees of validity above those thresholds.
+
+### Binary feasibility
+
+For one binary answer per model and question, let the baseline be $p$, the
+improved accuracy be $q=p+\delta$, and their Pearson correlation be $\rho$.
+The joint probabilities must all be nonnegative:
+
+$$s=pq+\rho\sqrt{p(1-p)q(1-q)},\quad
+(P_{11},P_{10},P_{01},P_{00})=(s,p-s,q-s,1-p-q+s).$$
+
+This is the marginal-to-joint relationship in the
+[Stata paired-proportions manual, methods and formulas, equation 1](https://www.stata.com/manuals/pss-2powerpairedproportions.pdf).
+Stata's McNemar power calculation is different from the common-variance
+normal approximation retained here. We use the relationship only to check
+whether a joint distribution exists.
+
+Solving the four nonnegativity inequalities gives the following bounds on
+$q$, intersected with $p<q<1$:
+
+| Correlation | Lower bound on q | Upper bound on q |
+| --- | --- | --- |
+| $\rho\ge0$ | $p$ (excluded) | $p/[p+\rho^2(1-p)]$ |
+| $\rho<0$ | $\rho^2(1-p)/[p+\rho^2(1-p)]$ | $(1-p)/[1-p+\rho^2p]$ |
+
+The positive-effect interval subtracts $p$ from these bounds. At $\rho=1$
+there is no positive effect. At $\rho=-1$, $q=1-p$ is the only possibility,
+and is an improvement only if $p<1/2$. At $\rho=0$, the upper bound $q=1$
+is excluded: Pearson correlation is undefined for a constant target.
+
+`questions_needed` rejects an effect outside this interval. For a fixed budget,
+`minimum_detectable_effect` returns the greater of the raw normal threshold
+and the feasible lower bound, provided it is inside the feasible interval;
+otherwise it raises `BinaryFeasibilityError`. A positive lower bound can cause
+a flat MDE curve even as the budget grows. The normal formula is monotone in
+the effect, so this intersection finds its smallest detectable feasible effect;
+it does not replace the formula with exact binary power.
+
+The implementations factor the effect bounds to avoid subtracting nearly equal
+accuracies near perfect positive correlation. Closed endpoints allow 16 machine
+epsilons relative to the effect/bound for floating-point roundoff; open endpoints
+remain strict. Inputs whose floating-point sum rounds to a constant target are
+rejected. This is a numerical feasibility check, not a claim of exact real
+arithmetic. It applies only when `baseline_accuracy` is supplied and
+`samples_per_question=1`. Continuous scores and repeated-answer averages retain
+their existing variance model; their joint feasibility is not checked.

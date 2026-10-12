@@ -10,7 +10,7 @@ budget. The Python CLI supplies both directions through `errorbars power`.
 | Editor | Units | Browser range |
 | --- | --- | --- |
 | Baseline accuracy | Percent | 0.1 to 99.9 |
-| Gap to detect | Percentage points | 0.01 to 50, subject to baseline + gap <= 100% |
+| Gap to detect | Percentage points | 0.01 to 50, subject to joint binary feasibility and baseline + gap < 100% |
 | Available questions | Distinct questions per model | Integers from 2 to 1,000,000,000 |
 | Paired correlation | Correlation of the models' scores on shared questions | -0.95 to 0.95 |
 | Average cluster size | Questions per group | 1 to 1,000; fractions are allowed |
@@ -35,7 +35,10 @@ correlation from data.
 The budget table and curve use the actual computed MDE at integer question
 counts. The marker therefore may be slightly below the requested gap after
 rounding the required count upward. Every plotted point is calculated; there
-is no simulated scatter or confidence band. Axis labels retain their size
+is no simulated scatter or confidence band. Budgets with no detectable feasible
+gap are omitted from the curve and marked **Unavailable** in the table. A valid
+primary plan stays visible even if the correlation-zero sensitivity is unavailable.
+Axis labels retain their size
 when the viewport changes. A fixed link on small screens gives the current
 answer and jumps to the result, or to the invalid field that needs correction.
 
@@ -46,12 +49,14 @@ and the artifact contains no observed evaluation scores.
 
 | JSON field | Meaning |
 | --- | --- |
-| `format`, `schemaVersion` | `errorbars-plan`, version `1` |
-| `method` | `paired-normal-approximation-v1` |
+| `format`, `schemaVersion` | `errorbars-plan`, version `2` |
+| `method` | `paired-normal-bernoulli-feasible-v2` |
 | `mode` | `questions` or `budget` |
 | `inputs` | Baseline, alpha, power, rho, one sample per question, cluster assumptions, derived design effect, and the active gap or budget |
-| `result` | Question count, actual MDE, upper bound on improvement, whether the MDE fits that upper bound, model-answer count, approximate groups, variance |
-| `sensitivity` | Result with rho=0 and every other assumption held fixed |
+| `result` | Question count, smallest feasible detectable gap, accuracy headroom, model-answer count, approximate groups, variance |
+| `result.binaryFeasibility` | `model: single-answer-bernoulli`, `minimumDelta`, `maximumDelta`, and endpoint flags `minimumInclusive` / `maximumInclusive` |
+| `result.correlationLimited` | True when the returned gap equals a positive minimum imposed by correlation |
+| `sensitivity` | Result with rho=0 and every other assumption held fixed; `minimumDetectableEffect` is null with an `unavailableReason` when that budget cannot detect a feasible improvement |
 | `units` | Accuracy and differences are fractions; multiply differences by 100 for percentage points |
 | `assumptions`, `warnings` | Model caveats and conditions affecting this specific plan |
 | `cliCommand` | A complete `errorbars power ... --json` command |
@@ -61,6 +66,20 @@ The inactive gap or budget is `null`, so an old draft cannot be mistaken for
 an applied parameter. In questions mode the sensitivity's MDE is evaluated
 at its own required count; in budget mode it uses the shared fixed budget.
 The JSON does not provide a plan-import workflow.
+
+Version 1 artifacts may contain impossible binary assumptions or an MDE above
+the accuracy ceiling. Version 2 rejects such primary plans rather than marking
+them achievable or exporting their numeric result. The legacy `maximumImprovement`
+field still means accuracy headroom (`1-p`); the tighter interval is in
+`binaryFeasibility`. `achievableImprovement` is always true in valid version 2
+exports. All endpoint values use fractional accuracy units.
+
+The Python API raises `BinaryFeasibilityError`, a `ValueError` subclass, for
+unavailable single-answer plans. These CLI errors exit 1 without JSON on stdout.
+Successful CLI JSON includes `binary_feasibility` with the same information in
+snake_case; inverse plans also include `correlation_limited`. The metadata is
+null for continuous scores and repeated-answer averages because this check
+does not establish their joint feasibility. The returned MDE remains a float.
 
 Open **Reproduce this plan** and use **Select command** to select the complete
 command for ordinary keyboard copying. This does not need clipboard API
@@ -79,8 +98,21 @@ before leaving the page if you need to keep it.
 This is the existing equal-variance normal approximation documented in
 [formulas.md, section 11](formulas.md#11-power-analysis), not an exact paired
 binary power calculation. It assumes `p(1-p)` for both models. The correlation
-and ICC are planning assumptions. It does not enforce the joint Bernoulli
-constraints relating correlation to two different accuracies.
+and ICC are planning assumptions. The planner now enforces the joint Bernoulli
+constraints relating correlation to two different accuracies. This only checks
+whether the proposed paired outcomes can exist; it does not establish that the
+normal approximation achieves the target power.
+
+For example, 90% baseline accuracy, a 5-point improvement and correlation 0.9
+would require a negative probability for one joint outcome. This plan is
+rejected. At 20% baseline accuracy and correlation -0.5, feasible improvements
+run from 30 to about 74.118 points. With 1,000 questions the returned minimum is
+30 points, and the plan explains that smaller improvements cannot occur under
+that correlation assumption, regardless of question count. A 30-point target
+needs 42 questions under the retained approximation, so this bound-limited MDE
+is not an invertible budget estimate. A target accuracy of 100% has zero
+variance and undefined Pearson correlation and is excluded. See the
+[joint-cell derivation](formulas.md#binary-feasibility).
 
 A result below 30 questions, or fewer than 30 approximate groups when
 clustering is enabled, carries a warning. These thresholds are reminders to
@@ -88,8 +120,8 @@ validate the design, not validated sample-size cutoffs. A plan above them
 can still be unreliable near accuracy boundaries or with unusual grouping.
 Unequal cluster sizes and few independent groups can require a different
 analysis. The displayed group count is approximate and is not rounded into
-a recruitment recommendation. Budget mode retains an MDE beyond the possible
-improvement to 100% and flags it explicitly.
+a recruitment recommendation. Budget mode rejects a plan when no feasible
+improvement reaches the requested power under the approximation.
 
 The page uses one answer per model per question. Python and CLI plans with
 multiple answers now require an explicit within-question repeat correlation;

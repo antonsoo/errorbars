@@ -14,7 +14,7 @@ from errorbars.inputs import load_inputs
 from errorbars.io import ColumnMap, EvalData, write_csv
 from errorbars.leaderboard import build_leaderboard, rank_ranges
 from errorbars.plot import forest_plot_svg
-from errorbars.power import minimum_detectable_effect, questions_needed
+from errorbars.power import binary_effect_range, minimum_detectable_effect, questions_needed
 from errorbars.review import review_comparison
 from errorbars.stats import bootstrap_ci, is_binary, mean_ci_clt, prefer_wilson, wilson_ci
 
@@ -520,16 +520,31 @@ def cmd_power(args: argparse.Namespace) -> None:
         out.note(f"Questions needed: {result.n_questions}", style="bold green")
     else:
         mde = minimum_detectable_effect(n_questions=args.n, **kwargs)
-        payload = {"n_questions": args.n, "mde": mde, **{k: v for k, v in kwargs.items()}}
+        bounds = (
+            binary_effect_range(args.baseline, args.rho)
+            if args.baseline is not None and args.samples_per_question == 1 else None
+        )
+        at_minimum = bounds is not None and bounds.minimum_delta > 0 and mde == bounds.minimum_delta
+        payload = {
+            "n_questions": args.n, "mde": mde, **kwargs,
+            "binary_feasibility": bounds.as_dict() if bounds else None,
+            "correlation_limited": at_minimum,
+        }
         if args.json:
             _print_json(payload)
             return
         out = Output()
         out.note(f"Minimum detectable effect at n={args.n}: {mde:.4f}", style="bold green")
+        if at_minimum:
+            out.note(
+                "The assumed correlation sets this minimum gap: smaller binary improvements "
+                "cannot occur under these assumptions, regardless of question count.", style="dim",
+            )
     if args.samples_per_question > 1:
         out.note(
             f"Repeat correlation {args.repeat_correlation:g} preserves between-question variance. "
-            "rho is the correlation between the two models' averaged scores at this repeat count.",
+            "rho is the correlation between the two models' averaged scores at this repeat count. "
+            "Joint feasibility of repeated averages is not checked.",
             style="dim",
         )
 

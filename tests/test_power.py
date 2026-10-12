@@ -7,7 +7,12 @@ from statistics import NormalDist
 import numpy as np
 import pytest
 
-from errorbars.power import minimum_detectable_effect, per_question_variance, questions_needed
+from errorbars.power import (
+    BinaryFeasibilityError,
+    minimum_detectable_effect,
+    per_question_variance,
+    questions_needed,
+)
 
 _NORMAL = NormalDist()
 
@@ -187,7 +192,7 @@ def test_mde_against_independent_scipy_quantiles(n: int, baseline: float, rho: f
         2 * baseline * (1 - baseline) * (1 - rho) * deff / n
     ) ** 0.5
     actual = minimum_detectable_effect(
-        n, baseline_accuracy=baseline, rho=rho, cluster_design_effect=deff, alpha=0.01, power=0.99
+        n, variance=baseline * (1 - baseline), rho=rho, cluster_design_effect=deff, alpha=0.01, power=0.99
     )
     assert actual == pytest.approx(expected, rel=1e-13)
 
@@ -212,6 +217,13 @@ def test_committed_web_vectors_match_the_current_python_formulas() -> None:
                 repeat_correlation=source["repeatCorrelation"],
                 cluster_design_effect=source["clusterDeff"],
             )
+            if case["error"]:
+                with pytest.raises(BinaryFeasibilityError):
+                    if section == "questionsNeeded":
+                        questions_needed(source["delta"], **kwargs)
+                    else:
+                        minimum_detectable_effect(source["n"], **kwargs)
+                continue
             if section == "questionsNeeded":
                 result = questions_needed(source["delta"], **kwargs)
                 assert result.n_questions == case["nQuestions"], case

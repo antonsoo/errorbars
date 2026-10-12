@@ -1,9 +1,8 @@
 import "./fonts/fonts.css";
 import "./style.css";
-import { minimumDetectableEffect } from "./power.ts";
 import { buildCurve, renderChart } from "./chart.ts";
 import { initTheme } from "./theme.ts";
-import { ASSUMPTIONS, defaults, FIELDS, isActive, plan, PlanInputError, type Field, type Plan, type PlanMode } from "./planner.ts";
+import { ASSUMPTIONS, budgetEffect, defaults, FIELDS, isActive, plan, PlanInputError, type Field, type Plan, type PlanMode } from "./planner.ts";
 
 const byId = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
 const number = (n: number): string => n.toLocaleString("en-US", { maximumFractionDigits: 3 });
@@ -127,15 +126,18 @@ function render(p: Plan): void {
   byId("result-work").textContent = `${number(p.result.modelAnswers)} model answers in total. One answer per model per question.`;
   byId("pairing-sensitivity").textContent = mode === "questions"
     ? `If the paired correlation were 0, the same gap would need ${number(p.sensitivity.nQuestions)} questions per model. All other assumptions stay fixed.`
-    : `If the paired correlation were 0, this budget's detectable gap would be ${points(p.sensitivity.minimumDetectableEffect)}. All other assumptions stay fixed.`;
+    : p.sensitivity.minimumDetectableEffect === null
+      ? "With correlation 0, this budget cannot detect a feasible improvement at the requested power."
+      : `If the paired correlation were 0, this budget's detectable gap would be ${points(p.sensitivity.minimumDetectableEffect)}. All other assumptions stay fixed.`;
   drawChart(p);
-  byId("chart-caption").textContent = `The curve and marker are calculated from your assumptions. Gaps above ${points(p.result.maximumImprovement)} exceed the distance from this baseline to 100% accuracy.`;
+  const bounds = p.result.binaryFeasibility;
+  byId("chart-caption").textContent = `The assumed correlation permits positive binary improvements ${bounds.minimumInclusive ? `from ${points(bounds.minimumDelta)}` : "above 0 points"} ${bounds.maximumInclusive ? "through" : "up to, but not including,"} ${points(bounds.maximumDelta)}. Budgets with no detectable feasible gap are omitted from the curve and marked unavailable below.`;
   const rows = [...new Set([Math.max(2, Math.floor(n / 2)), n, n * 2, n * 4])];
   byId("budget-rows").replaceChildren(...rows.map(budget => {
     const row = document.createElement("tr");
     if (budget === n) row.className = "current-budget";
-    const gap = minimumDetectableEffect(budget, p.inputs);
-    for (const text of [number(budget) + (budget === n ? " (current)" : ""), points(gap), gap <= p.result.maximumImprovement ? "Within range" : "Exceeds 100% accuracy"]) {
+    const gap = budgetEffect(budget, p.inputs);
+    for (const text of [number(budget) + (budget === n ? " (current)" : ""), gap.value === null ? "Unavailable" : points(gap.value), gap.value === null ? "No detectable feasible gap" : gap.value === bounds.minimumDelta && bounds.minimumDelta > 0 ? "At correlation's minimum gap" : "Within feasible range"]) {
       const cell = document.createElement("td");
       cell.textContent = text;
       row.append(cell);

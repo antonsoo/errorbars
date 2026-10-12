@@ -12,7 +12,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 3938,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -26,7 +27,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 1568206171,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -40,7 +42,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 342406,
-      "perQuestionVariance": 0.14000000000000004
+      "perQuestionVariance": 0.14000000000000004,
+      "error": null
     },
     {
       "inputs": {
@@ -54,7 +57,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 8278,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -68,7 +72,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 1374723485,
-      "perQuestionVariance": 0.0008991000000000009
+      "perQuestionVariance": 0.0008991000000000009,
+      "error": null
     },
     {
       "inputs": {
@@ -81,8 +86,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 2186052,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -96,7 +102,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 96804763,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -110,7 +117,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 12,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -124,7 +132,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 10,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -138,7 +147,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 60,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -152,7 +162,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 1016835,
-      "perQuestionVariance": 0.00024975
+      "perQuestionVariance": 0.00024975,
+      "error": null
     },
     {
       "inputs": {
@@ -165,8 +176,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 95,
-      "perQuestionVariance": 0.08999999999999998
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -180,7 +192,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 7911,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -194,7 +207,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 6427130,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -208,7 +222,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 269762,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -221,8 +236,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 1969,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -236,7 +252,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0008491500000000002
+      "perQuestionVariance": 0.0008491500000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -250,7 +267,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 500367,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -264,7 +282,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 1459533,
-      "perQuestionVariance": 0.0008991000000000009
+      "perQuestionVariance": 0.0008991000000000009,
+      "error": null
     },
     {
       "inputs": {
@@ -278,7 +297,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 33228,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -292,7 +312,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 574832,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -306,7 +327,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 4,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -320,7 +342,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 31462,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -334,7 +357,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 9887679,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -348,7 +372,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 1491,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -362,7 +387,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 22619,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -376,7 +402,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 45454,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -390,7 +417,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4480,
-      "perQuestionVariance": 0.0006660000000000007
+      "perQuestionVariance": 0.0006660000000000007,
+      "error": null
     },
     {
       "inputs": {
@@ -404,7 +432,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 514,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -418,7 +447,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 132531165,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -432,7 +462,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 947,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -446,7 +477,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 14347,
-      "perQuestionVariance": 0.17850000000000005
+      "perQuestionVariance": 0.17850000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -460,7 +492,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 249,
-      "perQuestionVariance": 0.0008491500000000002
+      "perQuestionVariance": 0.0008491500000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -474,7 +507,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 322,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -488,7 +522,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -502,7 +537,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 5019946161,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -516,7 +552,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 156,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -529,8 +566,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 2,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -544,7 +582,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 936686,
-      "perQuestionVariance": 0.0765
+      "perQuestionVariance": 0.0765,
+      "error": null
     },
     {
       "inputs": {
@@ -558,7 +597,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 171276948,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -571,8 +611,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 5063514374,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -586,7 +627,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 661967653,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -600,7 +642,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 403578698293,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -614,7 +657,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 5052865,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -628,7 +672,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 272854668,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -642,7 +687,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5,
-      "perQuestionVariance": 0.14
+      "perQuestionVariance": 0.14,
+      "error": null
     },
     {
       "inputs": {
@@ -656,7 +702,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 964234876,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -670,7 +717,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 56859671,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -683,8 +731,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 54,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -698,7 +747,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 51299749,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -712,7 +762,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 10,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -725,8 +776,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 7,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -740,7 +792,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 502,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -754,7 +807,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3440248960,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -768,7 +822,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 3705825,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -782,7 +837,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 332541627,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -796,7 +852,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 26,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -810,7 +867,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1379100,
-      "perQuestionVariance": 0.0625
+      "perQuestionVariance": 0.0625,
+      "error": null
     },
     {
       "inputs": {
@@ -824,7 +882,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3924440,
-      "perQuestionVariance": 0.0625
+      "perQuestionVariance": 0.0625,
+      "error": null
     },
     {
       "inputs": {
@@ -838,7 +897,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -851,8 +911,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 122166,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -865,8 +926,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 527,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -880,7 +942,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 38418,
-      "perQuestionVariance": 0.022499999999999996
+      "perQuestionVariance": 0.022499999999999996,
+      "error": null
     },
     {
       "inputs": {
@@ -894,7 +957,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 6719586,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -908,7 +972,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 158626151,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -922,7 +987,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 12318,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -936,7 +1002,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 3116009,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -950,7 +1017,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 201789350,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -964,7 +1032,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 8720,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -978,7 +1047,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -992,7 +1062,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 753347,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -1006,7 +1077,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 35501094,
-      "perQuestionVariance": 0.0008491500000000002
+      "perQuestionVariance": 0.0008491500000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -1020,7 +1092,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 16159421,
-      "perQuestionVariance": 0.18900000000000003
+      "perQuestionVariance": 0.18900000000000003,
+      "error": null
     },
     {
       "inputs": {
@@ -1033,8 +1106,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 69,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1048,7 +1122,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 196221994,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1062,7 +1137,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 31639,
-      "perQuestionVariance": 0.00024975000000000024
+      "perQuestionVariance": 0.00024975000000000024,
+      "error": null
     },
     {
       "inputs": {
@@ -1076,7 +1152,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 3,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -1090,7 +1167,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 24170599,
-      "perQuestionVariance": 0.08099999999999999
+      "perQuestionVariance": 0.08099999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -1104,7 +1182,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 8623,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1118,7 +1197,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 254,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -1132,7 +1212,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4003,
-      "perQuestionVariance": 0.0765
+      "perQuestionVariance": 0.0765,
+      "error": null
     },
     {
       "inputs": {
@@ -1146,7 +1227,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 540567583,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1160,7 +1242,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 250997308037,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -1174,7 +1257,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 2441759,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -1188,7 +1272,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 5118,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -1202,7 +1287,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4842945,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -1215,8 +1301,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 152874,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1230,7 +1317,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 4,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -1244,7 +1332,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 46562,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -1258,7 +1347,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 104,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -1272,7 +1362,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -1286,7 +1377,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 42,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -1300,7 +1392,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 895990768,
-      "perQuestionVariance": 0.0008491500000000009
+      "perQuestionVariance": 0.0008491500000000009,
+      "error": null
     },
     {
       "inputs": {
@@ -1314,7 +1407,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0525
+      "perQuestionVariance": 0.0525,
+      "error": null
     },
     {
       "inputs": {
@@ -1328,7 +1422,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -1342,7 +1437,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 55665008,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -1355,8 +1451,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 7013791,
-      "perQuestionVariance": 0.21000000000000002
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1370,7 +1467,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 5053,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -1384,7 +1482,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 10178522,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1398,7 +1497,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 6,
-      "perQuestionVariance": 0.14
+      "perQuestionVariance": 0.14,
+      "error": null
     },
     {
       "inputs": {
@@ -1412,7 +1512,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 491,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -1425,8 +1526,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 13984136,
-      "perQuestionVariance": 0.21000000000000002
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1440,7 +1542,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1913,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1454,7 +1557,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 21423766,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -1468,7 +1572,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 379763578,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1482,7 +1587,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2840,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -1496,7 +1602,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 76,
-      "perQuestionVariance": 0.0008991000000000001
+      "perQuestionVariance": 0.0008991000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1509,8 +1616,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 639885496,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1523,8 +1631,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 927,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1538,7 +1647,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 91051003,
-      "perQuestionVariance": 0.17850000000000005
+      "perQuestionVariance": 0.17850000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -1552,7 +1662,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1097454748,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1566,7 +1677,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 57035224,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1579,8 +1691,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 701379098020,
-      "perQuestionVariance": 0.21000000000000002
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1593,8 +1706,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 455,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1608,7 +1722,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 22328274006,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -1622,7 +1737,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 162284,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -1636,7 +1752,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 856384736,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -1650,7 +1767,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3071,
-      "perQuestionVariance": 0.0008991000000000001
+      "perQuestionVariance": 0.0008991000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1664,7 +1782,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -1678,7 +1797,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -1692,7 +1812,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 67638587,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1706,7 +1827,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 13636,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -1720,7 +1842,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -1734,7 +1857,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 3397198,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1748,7 +1872,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 5685,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -1762,7 +1887,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 1541493,
-      "perQuestionVariance": 0.08099999999999999
+      "perQuestionVariance": 0.08099999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -1776,7 +1902,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 11368945,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1790,7 +1917,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 290,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -1803,8 +1931,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 34115145,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -1818,7 +1947,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 44300,
-      "perQuestionVariance": 0.0008991000000000009
+      "perQuestionVariance": 0.0008991000000000009,
+      "error": null
     },
     {
       "inputs": {
@@ -1832,7 +1962,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 143343707,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -1846,7 +1977,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2182,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -1860,7 +1992,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 1711056701,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -1874,7 +2007,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 62944279,
-      "perQuestionVariance": 0.0525
+      "perQuestionVariance": 0.0525,
+      "error": null
     },
     {
       "inputs": {
@@ -1888,7 +2022,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 4872405,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -1902,7 +2037,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 154,
-      "perQuestionVariance": 0.14000000000000004
+      "perQuestionVariance": 0.14000000000000004,
+      "error": null
     },
     {
       "inputs": {
@@ -1916,7 +2052,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 3946887,
-      "perQuestionVariance": 0.0008991000000000009
+      "perQuestionVariance": 0.0008991000000000009,
+      "error": null
     },
     {
       "inputs": {
@@ -1930,7 +2067,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 652,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -1944,7 +2082,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 11364,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -1958,7 +2097,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 955,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -1972,7 +2112,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 55643016,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -1986,7 +2127,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 451756,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2000,7 +2142,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 2380419,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -2014,7 +2157,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 51,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -2028,7 +2172,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2811,
-      "perQuestionVariance": 0.0765
+      "perQuestionVariance": 0.0765,
+      "error": null
     },
     {
       "inputs": {
@@ -2042,7 +2187,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 429,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2056,7 +2202,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 221694418,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -2070,7 +2217,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 6086,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -2083,8 +2231,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 7714,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2098,7 +2247,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 69,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -2112,7 +2262,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 109,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2126,7 +2277,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 4439409,
-      "perQuestionVariance": 0.06
+      "perQuestionVariance": 0.06,
+      "error": null
     },
     {
       "inputs": {
@@ -2140,7 +2292,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 11867,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -2154,7 +2307,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 32539,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -2168,7 +2322,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1193145,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2182,7 +2337,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -2196,7 +2352,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 122937456998,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -2210,7 +2367,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 428192367534,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -2224,7 +2382,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 3408985,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2238,7 +2397,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -2252,7 +2412,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 1765248,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2266,7 +2427,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 16241350,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -2280,7 +2442,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 48018236,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -2293,8 +2456,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 1977,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2308,7 +2472,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 755331337,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2322,7 +2487,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 9416837,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2336,7 +2502,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 378398,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -2350,7 +2517,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 8655580125,
-      "perQuestionVariance": 0.14
+      "perQuestionVariance": 0.14,
+      "error": null
     },
     {
       "inputs": {
@@ -2364,7 +2532,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 1193145,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -2378,7 +2547,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 341068335,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -2392,7 +2562,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 63761207,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -2406,7 +2577,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 7,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -2419,8 +2591,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 64282326,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2433,8 +2606,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 191125,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2448,7 +2622,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5002,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2462,7 +2637,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 55205,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -2476,7 +2652,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5267783,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2490,7 +2667,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 36845,
-      "perQuestionVariance": 0.0008991000000000001
+      "perQuestionVariance": 0.0008991000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -2504,7 +2682,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 420734,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -2518,7 +2697,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 504474,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -2532,7 +2712,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 158,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -2546,7 +2727,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 69228,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2560,7 +2742,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 229933,
-      "perQuestionVariance": 0.14
+      "perQuestionVariance": 0.14,
+      "error": null
     },
     {
       "inputs": {
@@ -2574,7 +2757,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2038669,
-      "perQuestionVariance": 0.0006660000000000007
+      "perQuestionVariance": 0.0006660000000000007,
+      "error": null
     },
     {
       "inputs": {
@@ -2588,7 +2772,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 205199,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2602,7 +2787,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 383,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -2616,7 +2802,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 27056,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -2630,7 +2817,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 131259,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -2644,7 +2832,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 423758,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -2658,7 +2847,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 183,
-      "perQuestionVariance": 0.08099999999999999
+      "perQuestionVariance": 0.08099999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -2672,7 +2862,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 34006,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -2686,7 +2877,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 610711289,
-      "perQuestionVariance": 0.0625
+      "perQuestionVariance": 0.0625,
+      "error": null
     },
     {
       "inputs": {
@@ -2699,8 +2891,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 3731,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2714,7 +2907,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2293502,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -2727,8 +2921,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 97,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2742,7 +2937,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 9466512,
-      "perQuestionVariance": 0.14000000000000004
+      "perQuestionVariance": 0.14000000000000004,
+      "error": null
     },
     {
       "inputs": {
@@ -2756,7 +2952,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 123,
-      "perQuestionVariance": 0.17850000000000002
+      "perQuestionVariance": 0.17850000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2770,7 +2967,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 344899,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2784,7 +2982,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 208,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -2798,7 +2997,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 57,
-      "perQuestionVariance": 0.17850000000000002
+      "perQuestionVariance": 0.17850000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2812,7 +3012,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 35,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -2826,7 +3027,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 123651144641,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -2840,7 +3042,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 26731,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -2854,7 +3057,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 16,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2868,7 +3072,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 492220,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -2881,8 +3086,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 190,
-      "perQuestionVariance": 0.21000000000000002
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2896,7 +3102,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 79542977551,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2909,8 +3116,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 45079,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2924,7 +3132,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 20706,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -2938,7 +3147,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 1936096,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2951,8 +3161,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 1758067,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -2966,7 +3177,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 53559414,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -2980,7 +3192,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 107573,
-      "perQuestionVariance": 0.0008491500000000002
+      "perQuestionVariance": 0.0008491500000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -2994,7 +3207,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 1484,
-      "perQuestionVariance": 0.18900000000000003
+      "perQuestionVariance": 0.18900000000000003,
+      "error": null
     },
     {
       "inputs": {
@@ -3008,7 +3222,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 941683630,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3022,7 +3237,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 41819,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3036,7 +3252,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 265,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -3050,7 +3267,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 44,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -3064,7 +3282,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4237577,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -3078,7 +3297,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 443388835,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -3092,7 +3312,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 8920,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -3106,7 +3327,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 116,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -3120,7 +3342,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 402,
-      "perQuestionVariance": 0.0525
+      "perQuestionVariance": 0.0525,
+      "error": null
     },
     {
       "inputs": {
@@ -3134,7 +3357,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 191284,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3148,7 +3372,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3213564805,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -3162,7 +3387,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 27591890175,
-      "perQuestionVariance": 0.0525
+      "perQuestionVariance": 0.0525,
+      "error": null
     },
     {
       "inputs": {
@@ -3176,7 +3402,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 4560,
-      "perQuestionVariance": 0.14
+      "perQuestionVariance": 0.14,
+      "error": null
     },
     {
       "inputs": {
@@ -3189,8 +3416,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 13301666,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3204,7 +3432,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2559542,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3218,7 +3447,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 362,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -3232,7 +3462,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 6907712,
-      "perQuestionVariance": 0.0008991000000000001
+      "perQuestionVariance": 0.0008991000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3246,7 +3477,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 803,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -3259,8 +3491,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 1229,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3274,7 +3507,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 68400,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -3288,7 +3522,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 898,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -3302,7 +3537,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 1537138292,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3316,7 +3552,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 455,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3329,8 +3566,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3344,7 +3582,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1221422577,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3358,7 +3597,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 604,
-      "perQuestionVariance": 0.08099999999999999
+      "perQuestionVariance": 0.08099999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -3372,7 +3612,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 9854247,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3386,7 +3627,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 3253870,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3400,7 +3642,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 33099,
-      "perQuestionVariance": 0.022499999999999996
+      "perQuestionVariance": 0.022499999999999996,
+      "error": null
     },
     {
       "inputs": {
@@ -3414,7 +3657,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5149,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3428,7 +3672,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 2494672,
-      "perQuestionVariance": 0.0765
+      "perQuestionVariance": 0.0765,
+      "error": null
     },
     {
       "inputs": {
@@ -3442,7 +3687,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 16,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -3456,7 +3702,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 2616293245,
-      "perQuestionVariance": 0.16666666666666669
+      "perQuestionVariance": 0.16666666666666669,
+      "error": null
     },
     {
       "inputs": {
@@ -3470,7 +3717,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 401362378641,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3484,7 +3732,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5122,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -3498,7 +3747,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 149831,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -3512,7 +3762,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 141252545,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3526,7 +3777,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 611,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3540,7 +3792,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 96804763,
-      "perQuestionVariance": 0.06
+      "perQuestionVariance": 0.06,
+      "error": null
     },
     {
       "inputs": {
@@ -3554,7 +3807,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 689,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -3568,7 +3822,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 53785138,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -3581,8 +3836,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 29237,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3595,8 +3851,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 36435,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3610,7 +3867,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 10,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3624,7 +3882,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 7,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -3638,7 +3897,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 986,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3652,7 +3912,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 24700,
-      "perQuestionVariance": 0.14000000000000004
+      "perQuestionVariance": 0.14000000000000004,
+      "error": null
     },
     {
       "inputs": {
@@ -3665,8 +3926,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3680,7 +3942,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3694,7 +3957,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 143427033164,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3708,7 +3972,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 127395,
-      "perQuestionVariance": 0.00024975
+      "perQuestionVariance": 0.00024975,
+      "error": null
     },
     {
       "inputs": {
@@ -3722,7 +3987,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 3622,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -3736,7 +4002,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 44,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -3750,7 +4017,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 58,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3764,7 +4032,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 352,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3778,7 +4047,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 7842,
-      "perQuestionVariance": 0.0004995000000000005
+      "perQuestionVariance": 0.0004995000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -3791,8 +4061,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 15,
-      "perQuestionVariance": 0.21000000000000002
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -3806,7 +4077,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 931227,
-      "perQuestionVariance": 0.18900000000000003
+      "perQuestionVariance": 0.18900000000000003,
+      "error": null
     },
     {
       "inputs": {
@@ -3820,7 +4092,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 171000,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3834,7 +4107,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 563,
-      "perQuestionVariance": 0.17850000000000002
+      "perQuestionVariance": 0.17850000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3848,7 +4122,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 645366,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -3862,7 +4137,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 93,
-      "perQuestionVariance": 0.08099999999999999
+      "perQuestionVariance": 0.08099999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -3876,7 +4152,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 27069,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -3890,7 +4167,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 268926,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -3904,7 +4182,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 103719389,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -3918,7 +4197,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3762701992,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -3932,7 +4212,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 85,
-      "perQuestionVariance": 0.0525
+      "perQuestionVariance": 0.0525,
+      "error": null
     },
     {
       "inputs": {
@@ -3946,7 +4227,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 37667346,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -3960,7 +4242,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 19880,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -3974,7 +4257,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 12100595286,
-      "perQuestionVariance": 0.022499999999999996
+      "perQuestionVariance": 0.022499999999999996,
+      "error": null
     },
     {
       "inputs": {
@@ -3988,7 +4272,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2299325,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -4001,8 +4286,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 3360,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4016,7 +4302,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 856385,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -4029,8 +4316,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 13,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4044,7 +4332,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 386,
-      "perQuestionVariance": 0.18900000000000003
+      "perQuestionVariance": 0.18900000000000003,
+      "error": null
     },
     {
       "inputs": {
@@ -4058,7 +4347,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 32933,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -4072,7 +4362,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 2370502255,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -4086,7 +4377,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1080,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -4100,7 +4392,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 66689673,
-      "perQuestionVariance": 0.14000000000000004
+      "perQuestionVariance": 0.14000000000000004,
+      "error": null
     },
     {
       "inputs": {
@@ -4114,7 +4407,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4495,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -4128,7 +4422,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 517,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -4141,8 +4436,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 8867776694,
-      "perQuestionVariance": 0.21000000000000002
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4156,7 +4452,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -4170,7 +4467,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 358568,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4184,7 +4482,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 2849987,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -4198,7 +4497,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 396,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4212,7 +4512,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.00024975
+      "perQuestionVariance": 0.00024975,
+      "error": null
     },
     {
       "inputs": {
@@ -4226,7 +4527,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 121750,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -4239,8 +4541,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 16,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4254,7 +4557,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1035,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -4268,7 +4572,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 68214,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -4282,7 +4587,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 272973,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4296,7 +4602,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 68979726,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -4310,7 +4617,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2736,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4324,7 +4632,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0008491500000000002
+      "perQuestionVariance": 0.0008491500000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4338,7 +4647,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 6027994,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -4352,7 +4662,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 85415,
-      "perQuestionVariance": 0.0004995000000000005
+      "perQuestionVariance": 0.0004995000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -4366,7 +4677,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 537266431,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -4380,7 +4692,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 11369,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -4394,7 +4707,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 13636,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -4408,7 +4722,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 561,
-      "perQuestionVariance": 0.17850000000000005
+      "perQuestionVariance": 0.17850000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -4422,7 +4737,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 13795945088,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4436,7 +4752,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 193,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -4450,7 +4767,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4398,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -4464,7 +4782,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 807,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4477,8 +4796,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 2,
-      "perQuestionVariance": 0.21
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4492,7 +4812,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 26479,
-      "perQuestionVariance": 0.06
+      "perQuestionVariance": 0.06,
+      "error": null
     },
     {
       "inputs": {
@@ -4506,7 +4827,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 182487,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -4520,7 +4842,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 41042937,
-      "perQuestionVariance": 0.17850000000000005
+      "perQuestionVariance": 0.17850000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -4534,7 +4857,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 7062628,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -4548,7 +4872,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 283,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -4561,8 +4886,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 485,
-      "perQuestionVariance": 0.08999999999999998
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4576,7 +4902,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 6305,
-      "perQuestionVariance": 0.06
+      "perQuestionVariance": 0.06,
+      "error": null
     },
     {
       "inputs": {
@@ -4589,8 +4916,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 15863,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4604,7 +4932,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 2,
-      "perQuestionVariance": 0.0004995
+      "perQuestionVariance": 0.0004995,
+      "error": null
     },
     {
       "inputs": {
@@ -4617,8 +4946,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 23,
-      "perQuestionVariance": 0.08999999999999998
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4632,7 +4962,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3188061,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -4646,7 +4977,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 584689,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -4660,7 +4992,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 245,
-      "perQuestionVariance": 0.0008991000000000001
+      "perQuestionVariance": 0.0008991000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -4674,7 +5007,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 3183609,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4688,7 +5022,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 682136669,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -4702,7 +5037,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 276609278245,
-      "perQuestionVariance": 0.08099999999999999
+      "perQuestionVariance": 0.08099999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -4716,7 +5052,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3047825,
-      "perQuestionVariance": 0.17850000000000005
+      "perQuestionVariance": 0.17850000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -4730,7 +5067,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 27592,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4744,7 +5082,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 131695,
-      "perQuestionVariance": 0.105
+      "perQuestionVariance": 0.105,
+      "error": null
     },
     {
       "inputs": {
@@ -4758,7 +5097,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 382633,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -4772,7 +5112,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 236,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -4786,7 +5127,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 684,
-      "perQuestionVariance": 0.189
+      "perQuestionVariance": 0.189,
+      "error": null
     },
     {
       "inputs": {
@@ -4800,7 +5142,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 335702752,
-      "perQuestionVariance": 0.022499999999999996
+      "perQuestionVariance": 0.022499999999999996,
+      "error": null
     },
     {
       "inputs": {
@@ -4814,7 +5157,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 227379,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -4828,7 +5172,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -4842,7 +5187,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 2595,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4856,7 +5202,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 113598141,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4870,7 +5217,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 17,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -4883,8 +5231,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 2,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4898,7 +5247,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 4778124,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -4912,7 +5262,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 377,
-      "perQuestionVariance": 0.10500000000000001
+      "perQuestionVariance": 0.10500000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -4925,8 +5276,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 13,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4940,7 +5292,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 1345,
-      "perQuestionVariance": 0.17850000000000002
+      "perQuestionVariance": 0.17850000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -4953,8 +5306,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 6327793,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -4968,7 +5322,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 135,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -4982,7 +5337,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 960364706,
-      "perQuestionVariance": 0.125
+      "perQuestionVariance": 0.125,
+      "error": null
     },
     {
       "inputs": {
@@ -4996,7 +5352,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 4413118,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -5010,7 +5367,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 1039,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5023,8 +5381,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "nQuestions": 44843,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5038,7 +5397,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1136,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -5051,8 +5411,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 148,
-      "perQuestionVariance": 0.08999999999999998
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5066,7 +5427,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 23026,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -5080,7 +5442,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 4645312,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -5094,7 +5457,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 18,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -5108,7 +5472,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 275918902,
-      "perQuestionVariance": 0.21000000000000002
+      "perQuestionVariance": 0.21000000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5122,7 +5487,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 173241071,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5136,7 +5502,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 1339,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -5150,7 +5517,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 1194031,
-      "perQuestionVariance": 0.0004995000000000005
+      "perQuestionVariance": 0.0004995000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -5163,8 +5531,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 396,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5178,7 +5547,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 119700,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -5192,7 +5562,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 5532,
-      "perQuestionVariance": 0.06
+      "perQuestionVariance": 0.06,
+      "error": null
     },
     {
       "inputs": {
@@ -5206,7 +5577,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 16118,
-      "perQuestionVariance": 0.000999
+      "perQuestionVariance": 0.000999,
+      "error": null
     },
     {
       "inputs": {
@@ -5220,7 +5592,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 5700714,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -5234,7 +5607,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 56191,
-      "perQuestionVariance": 0.21
+      "perQuestionVariance": 0.21,
+      "error": null
     },
     {
       "inputs": {
@@ -5248,7 +5622,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 76374,
-      "perQuestionVariance": 0.0006660000000000001
+      "perQuestionVariance": 0.0006660000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -5262,7 +5637,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 216378,
-      "perQuestionVariance": 0.06
+      "perQuestionVariance": 0.06,
+      "error": null
     },
     {
       "inputs": {
@@ -5276,7 +5652,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 6621519,
-      "perQuestionVariance": 0.17850000000000002
+      "perQuestionVariance": 0.17850000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5290,7 +5667,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 24,
-      "perQuestionVariance": 0.022499999999999996
+      "perQuestionVariance": 0.022499999999999996,
+      "error": null
     },
     {
       "inputs": {
@@ -5304,7 +5682,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 4,
-      "perQuestionVariance": 0.0525
+      "perQuestionVariance": 0.0525,
+      "error": null
     },
     {
       "inputs": {
@@ -5318,7 +5697,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 15779,
-      "perQuestionVariance": 0.0008491500000000002
+      "perQuestionVariance": 0.0008491500000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5332,7 +5712,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 36283625,
-      "perQuestionVariance": 0.21250000000000002
+      "perQuestionVariance": 0.21250000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5346,7 +5727,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 942,
-      "perQuestionVariance": 0.052500000000000005
+      "perQuestionVariance": 0.052500000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -5360,7 +5742,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 382250,
-      "perQuestionVariance": 0.022499999999999996
+      "perQuestionVariance": 0.022499999999999996,
+      "error": null
     },
     {
       "inputs": {
@@ -5374,7 +5757,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 323,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -5388,7 +5772,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 36525,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -5401,8 +5786,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "nQuestions": 141,
-      "perQuestionVariance": 0.000999
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5416,7 +5802,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 16,
-      "perQuestionVariance": 0.0008991000000000001
+      "perQuestionVariance": 0.0008991000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -5430,7 +5817,8 @@
         "clusterDeff": 1.5
       },
       "nQuestions": 25930,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -5444,7 +5832,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 631,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     },
     {
       "inputs": {
@@ -5458,7 +5847,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 376270199177,
-      "perQuestionVariance": 0.225
+      "perQuestionVariance": 0.225,
+      "error": null
     },
     {
       "inputs": {
@@ -5472,7 +5862,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 3822499,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -5486,7 +5877,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 36421,
-      "perQuestionVariance": 0.17850000000000002
+      "perQuestionVariance": 0.17850000000000002,
+      "error": null
     },
     {
       "inputs": {
@@ -5500,7 +5892,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 15069984,
-      "perQuestionVariance": 0.0625
+      "perQuestionVariance": 0.0625,
+      "error": null
     },
     {
       "inputs": {
@@ -5514,7 +5907,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 15287,
-      "perQuestionVariance": 0.17850000000000005
+      "perQuestionVariance": 0.17850000000000005,
+      "error": null
     },
     {
       "inputs": {
@@ -5527,8 +5921,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "nQuestions": 41,
-      "perQuestionVariance": 0.25
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5542,7 +5937,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 1756309,
-      "perQuestionVariance": 0.000999000000000001
+      "perQuestionVariance": 0.000999000000000001,
+      "error": null
     },
     {
       "inputs": {
@@ -5556,7 +5952,8 @@
         "clusterDeff": 3.0
       },
       "nQuestions": 3458841,
-      "perQuestionVariance": 0.04499999999999999
+      "perQuestionVariance": 0.04499999999999999,
+      "error": null
     },
     {
       "inputs": {
@@ -5569,8 +5966,9 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "nQuestions": 6305,
-      "perQuestionVariance": 0.000999000000000001
+      "nQuestions": null,
+      "perQuestionVariance": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5584,7 +5982,8 @@
         "clusterDeff": 1000.0
       },
       "nQuestions": 2956274,
-      "perQuestionVariance": 0.08999999999999998
+      "perQuestionVariance": 0.08999999999999998,
+      "error": null
     },
     {
       "inputs": {
@@ -5598,7 +5997,8 @@
         "clusterDeff": 1.0
       },
       "nQuestions": 5412,
-      "perQuestionVariance": 0.25
+      "perQuestionVariance": 0.25,
+      "error": null
     }
   ],
   "minimumDetectableEffect": [
@@ -5613,7 +6013,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.04697402306490823
+      "mde": 0.04697402306490823,
+      "error": null
     },
     {
       "inputs": {
@@ -5626,7 +6027,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.1732696332728771
+      "mde": 0.1732696332728771,
+      "error": null
     },
     {
       "inputs": {
@@ -5639,7 +6041,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 4.238643103278023e-06
+      "mde": 4.238643103278023e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -5652,7 +6055,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.24481015151789398
+      "mde": 0.24481015151789398,
+      "error": null
     },
     {
       "inputs": {
@@ -5665,7 +6069,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.0001992391370922368
+      "mde": 0.0001992391370922368,
+      "error": null
     },
     {
       "inputs": {
@@ -5678,7 +6083,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.5081017463260642
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5691,7 +6097,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 5.095112623954546e-06
+      "mde": 5.095112623954546e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -5704,7 +6111,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.13784911544697367
+      "mde": 0.13784911544697367,
+      "error": null
     },
     {
       "inputs": {
@@ -5717,7 +6125,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 3.235759091245837e-05
+      "mde": 3.235759091245837e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -5730,7 +6139,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.021203820078232818
+      "mde": 0.021203820078232818,
+      "error": null
     },
     {
       "inputs": {
@@ -5743,7 +6153,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.04549056784750848
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5756,7 +6167,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.00020233133961321676
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5769,7 +6181,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 5.6805153017865064e-05
+      "mde": 5.6805153017865064e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -5782,7 +6195,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.02325010929282406
+      "mde": 0.02325010929282406,
+      "error": null
     },
     {
       "inputs": {
@@ -5795,7 +6209,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.19467018671928055
+      "mde": 0.19467018671928055,
+      "error": null
     },
     {
       "inputs": {
@@ -5808,7 +6223,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.002228990966325446
+      "mde": 0.002228990966325446,
+      "error": null
     },
     {
       "inputs": {
@@ -5821,7 +6237,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.044920969395842
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5834,7 +6251,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.20145260437986706
+      "mde": 0.20145260437986706,
+      "error": null
     },
     {
       "inputs": {
@@ -5847,7 +6265,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 1.9300013402999974e-05
+      "mde": 1.9300013402999974e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -5860,7 +6279,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.04913542907383867
+      "mde": 0.04913542907383867,
+      "error": null
     },
     {
       "inputs": {
@@ -5873,7 +6293,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.024257586724242605
+      "mde": 0.024257586724242605,
+      "error": null
     },
     {
       "inputs": {
@@ -5886,7 +6307,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 6.794834317835175e-05
+      "mde": 6.794834317835175e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -5899,7 +6321,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.0026250856311910284
+      "mde": 0.0026250856311910284,
+      "error": null
     },
     {
       "inputs": {
@@ -5912,7 +6335,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.07919071906650199
+      "mde": 0.07919071906650199,
+      "error": null
     },
     {
       "inputs": {
@@ -5925,7 +6349,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.12242031230016104
+      "mde": 0.12242031230016104,
+      "error": null
     },
     {
       "inputs": {
@@ -5938,7 +6363,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 19.163940498919196
+      "mde": 19.163940498919196,
+      "error": null
     },
     {
       "inputs": {
@@ -5951,7 +6377,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.01794172191762441
+      "mde": 0.01794172191762441,
+      "error": null
     },
     {
       "inputs": {
@@ -5964,7 +6391,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.0014702415919314905
+      "mde": 0.0014702415919314905,
+      "error": null
     },
     {
       "inputs": {
@@ -5977,7 +6405,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.017098594818285243
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -5990,7 +6419,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.1094072266974296
+      "mde": 0.1094072266974296,
+      "error": null
     },
     {
       "inputs": {
@@ -6003,7 +6433,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 1.9853711482641125
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6016,7 +6447,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.706706034396046
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6029,7 +6461,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1000.0
       },
-      "mde": 59.424856836670635
+      "mde": 59.424856836670635,
+      "error": null
     },
     {
       "inputs": {
@@ -6042,7 +6475,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.02175604714018181
+      "mde": 0.02175604714018181,
+      "error": null
     },
     {
       "inputs": {
@@ -6055,7 +6489,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 6.93999174616449
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6068,7 +6503,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 1.5723858039043613e-05
+      "mde": 1.5723858039043613e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -6081,7 +6517,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.022573869004716425
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6094,7 +6531,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.007320513846644468
+      "mde": 0.007320513846644468,
+      "error": null
     },
     {
       "inputs": {
@@ -6107,7 +6545,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.002222858461492815
+      "mde": 0.002222858461492815,
+      "error": null
     },
     {
       "inputs": {
@@ -6120,7 +6559,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.057415411593287544
+      "mde": 0.057415411593287544,
+      "error": null
     },
     {
       "inputs": {
@@ -6133,7 +6573,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.0036047578042045303
+      "mde": 0.0036047578042045303,
+      "error": null
     },
     {
       "inputs": {
@@ -6146,7 +6587,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 3.2089366775011015
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6159,7 +6601,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.24740540800007965
+      "mde": 0.37802522135766026,
+      "error": null
     },
     {
       "inputs": {
@@ -6172,7 +6615,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.016401857492416523
+      "mde": 0.016401857492416523,
+      "error": null
     },
     {
       "inputs": {
@@ -6185,7 +6629,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 0.5552463458898645
+      "mde": 0.5552463458898645,
+      "error": null
     },
     {
       "inputs": {
@@ -6198,7 +6643,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.1599573638116611
+      "mde": 0.1599573638116611,
+      "error": null
     },
     {
       "inputs": {
@@ -6211,7 +6657,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.06741893653032727
+      "mde": 0.06741893653032727,
+      "error": null
     },
     {
       "inputs": {
@@ -6224,7 +6671,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 2.593361376676706
+      "mde": 2.593361376676706,
+      "error": null
     },
     {
       "inputs": {
@@ -6237,7 +6685,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 2.8475452115680195e-06
+      "mde": 2.8475452115680195e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -6250,7 +6699,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.07192690322627497
+      "mde": 0.07192690322627497,
+      "error": null
     },
     {
       "inputs": {
@@ -6263,7 +6713,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.012100584222210333
+      "mde": 0.012100584222210333,
+      "error": null
     },
     {
       "inputs": {
@@ -6276,7 +6727,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.08510505960758558
+      "mde": 0.08510505960758558,
+      "error": null
     },
     {
       "inputs": {
@@ -6289,7 +6741,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.3780296833548032
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6302,7 +6755,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.10349822549863065
+      "mde": 0.10349822549863065,
+      "error": null
     },
     {
       "inputs": {
@@ -6315,7 +6769,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.0006741893653032726
+      "mde": 0.0006741893653032726,
+      "error": null
     },
     {
       "inputs": {
@@ -6328,7 +6783,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 7.201367514532966e-06
+      "mde": 7.201367514532966e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -6341,7 +6797,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.03550902374570264
+      "mde": 0.03550902374570264,
+      "error": null
     },
     {
       "inputs": {
@@ -6354,7 +6811,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.13131995796173976
+      "mde": 0.13131995796173976,
+      "error": null
     },
     {
       "inputs": {
@@ -6367,7 +6825,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1000.0
       },
-      "mde": 0.001771482047018637
+      "mde": 0.001771482047018637,
+      "error": null
     },
     {
       "inputs": {
@@ -6380,7 +6839,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.24604228243101867
+      "mde": 0.24604228243101867,
+      "error": null
     },
     {
       "inputs": {
@@ -6393,7 +6853,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.003098109494239641
+      "mde": 0.003098109494239641,
+      "error": null
     },
     {
       "inputs": {
@@ -6406,7 +6867,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1000.0
       },
-      "mde": 0.40122292496650447
+      "mde": 0.40122292496650447,
+      "error": null
     },
     {
       "inputs": {
@@ -6419,7 +6881,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.17796244280518425
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6432,7 +6895,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.0613592667862339
+      "mde": 0.0613592667862339,
+      "error": null
     },
     {
       "inputs": {
@@ -6445,7 +6909,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.12364217264049877
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6458,7 +6923,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.06643130049761983
+      "mde": 0.06643130049761983,
+      "error": null
     },
     {
       "inputs": {
@@ -6471,7 +6937,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.24597352789666718
+      "mde": 0.24597352789666718,
+      "error": null
     },
     {
       "inputs": {
@@ -6484,7 +6951,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.007810893528666815
+      "mde": 0.007810893528666815,
+      "error": null
     },
     {
       "inputs": {
@@ -6497,7 +6965,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.512528610456056
+      "mde": 0.512528610456056,
+      "error": null
     },
     {
       "inputs": {
@@ -6510,7 +6979,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.0036399270058470293
+      "mde": 0.0036399270058470293,
+      "error": null
     },
     {
       "inputs": {
@@ -6523,7 +6993,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 10.223477870625079
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6536,7 +7007,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.29708980749278696
+      "mde": 0.29708980749278696,
+      "error": null
     },
     {
       "inputs": {
@@ -6549,7 +7021,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.22440013908624862
+      "mde": 0.22440013908624862,
+      "error": null
     },
     {
       "inputs": {
@@ -6562,7 +7035,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.18479481851416185
+      "mde": 0.18479481851416185,
+      "error": null
     },
     {
       "inputs": {
@@ -6575,7 +7049,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 40.06806102821849
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6588,7 +7063,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.0016440309944284264
+      "mde": 0.0016440309944284264,
+      "error": null
     },
     {
       "inputs": {
@@ -6601,7 +7077,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.036726093690048325
+      "mde": 0.036726093690048325,
+      "error": null
     },
     {
       "inputs": {
@@ -6614,7 +7091,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.08023233752954638
+      "mde": 0.08023233752954638,
+      "error": null
     },
     {
       "inputs": {
@@ -6627,7 +7105,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 2.812703165954673
+      "mde": 2.812703165954673,
+      "error": null
     },
     {
       "inputs": {
@@ -6640,7 +7119,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.02131708133289952
+      "mde": 0.02131708133289952,
+      "error": null
     },
     {
       "inputs": {
@@ -6653,7 +7133,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 51.2528610456056
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6666,7 +7147,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.00014998317782627263
+      "mde": 0.00014998317782627263,
+      "error": null
     },
     {
       "inputs": {
@@ -6679,7 +7161,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.16209832891206508
+      "mde": 0.16209832891206508,
+      "error": null
     },
     {
       "inputs": {
@@ -6692,7 +7175,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.013752850781981851
+      "mde": 0.013752850781981851,
+      "error": null
     },
     {
       "inputs": {
@@ -6705,7 +7189,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.029193255865697067
+      "mde": 0.029193255865697067,
+      "error": null
     },
     {
       "inputs": {
@@ -6718,7 +7203,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.019797679766625505
+      "mde": 0.019797679766625505,
+      "error": null
     },
     {
       "inputs": {
@@ -6731,7 +7217,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.0041506248237722
+      "mde": 0.0041506248237722,
+      "error": null
     },
     {
       "inputs": {
@@ -6744,7 +7231,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1000.0
       },
-      "mde": 0.00037784062123577403
+      "mde": 0.00037784062123577403,
+      "error": null
     },
     {
       "inputs": {
@@ -6757,7 +7245,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1000.0
       },
-      "mde": 1.4178385959422095
+      "mde": 1.4178385959422095,
+      "error": null
     },
     {
       "inputs": {
@@ -6770,7 +7259,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 30.301177744247198
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6783,7 +7273,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.008960628927270717
+      "mde": 0.008960628927270717,
+      "error": null
     },
     {
       "inputs": {
@@ -6796,7 +7287,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 16.723717130739804
+      "mde": 16.723717130739804,
+      "error": null
     },
     {
       "inputs": {
@@ -6809,7 +7301,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 1.8555606019695858
+      "mde": 1.8555606019695858,
+      "error": null
     },
     {
       "inputs": {
@@ -6822,7 +7315,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.022632706514150648
+      "mde": 0.022632706514150648,
+      "error": null
     },
     {
       "inputs": {
@@ -6835,7 +7329,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 1.283847632787205e-05
+      "mde": 1.283847632787205e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -6848,7 +7343,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.253517841755156
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6861,7 +7357,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.5315634208977957
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6874,7 +7371,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.41474383417801786
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6887,7 +7385,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.11182054123958775
+      "mde": 0.11182054123958775,
+      "error": null
     },
     {
       "inputs": {
@@ -6900,7 +7399,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 8.0136122056437e-05
+      "mde": 8.0136122056437e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -6913,7 +7413,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.2418033443142975
+      "mde": 0.2418033443142975,
+      "error": null
     },
     {
       "inputs": {
@@ -6926,7 +7427,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 3.6926872340669317e-05
+      "mde": 3.6926872340669317e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -6939,7 +7441,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.07752730903720316
+      "mde": 0.07752730903720316,
+      "error": null
     },
     {
       "inputs": {
@@ -6952,7 +7455,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 1.08504928927324
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -6965,7 +7469,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.03768257901865848
+      "mde": 0.03768257901865848,
+      "error": null
     },
     {
       "inputs": {
@@ -6978,7 +7483,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.03921037432169527
+      "mde": 0.03921037432169527,
+      "error": null
     },
     {
       "inputs": {
@@ -6991,7 +7497,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.005529446058198397
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7004,7 +7511,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.35833253476187577
+      "mde": 0.35833253476187577,
+      "error": null
     },
     {
       "inputs": {
@@ -7017,7 +7525,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 37.1428931119514
+      "mde": 37.1428931119514,
+      "error": null
     },
     {
       "inputs": {
@@ -7030,7 +7539,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 0.5609059434654341
+      "mde": 0.5609059434654341,
+      "error": null
     },
     {
       "inputs": {
@@ -7043,7 +7553,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 2.2935438158334374
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7056,7 +7567,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.04068800081683807
+      "mde": 0.04068800081683807,
+      "error": null
     },
     {
       "inputs": {
@@ -7069,7 +7581,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.05387661790500747
+      "mde": 0.05387661790500747,
+      "error": null
     },
     {
       "inputs": {
@@ -7082,7 +7595,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.019621104903885495
+      "mde": 0.019621104903885495,
+      "error": null
     },
     {
       "inputs": {
@@ -7095,7 +7609,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.013902232056268157
+      "mde": 0.013902232056268157,
+      "error": null
     },
     {
       "inputs": {
@@ -7108,7 +7623,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.23737793534026355
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7121,7 +7637,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.12482004736695872
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7134,7 +7651,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 4.115924367534113e-05
+      "mde": 4.115924367534113e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -7147,7 +7665,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.09011478584559279
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7160,7 +7679,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.5872807056097293
+      "mde": 0.5872807056097293,
+      "error": null
     },
     {
       "inputs": {
@@ -7173,7 +7693,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.07728495801078004
+      "mde": 0.07728495801078004,
+      "error": null
     },
     {
       "inputs": {
@@ -7186,7 +7707,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.0010659869843108192
+      "mde": 0.0010659869843108192,
+      "error": null
     },
     {
       "inputs": {
@@ -7199,7 +7721,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.06153539385854699
+      "mde": 0.06153539385854699,
+      "error": null
     },
     {
       "inputs": {
@@ -7212,7 +7735,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 0.021224348873567056
+      "mde": 0.021224348873567056,
+      "error": null
     },
     {
       "inputs": {
@@ -7225,7 +7749,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 3.2007401464199816
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7238,7 +7763,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 3.0
       },
-      "mde": 9.576993532714435e-05
+      "mde": 9.576993532714435e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -7251,7 +7777,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 3.0
       },
-      "mde": 0.020812078886208892
+      "mde": 0.020812078886208892,
+      "error": null
     },
     {
       "inputs": {
@@ -7264,7 +7791,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.04697402306490825
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7277,7 +7805,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.008527596952142917
+      "mde": 0.008527596952142917,
+      "error": null
     },
     {
       "inputs": {
@@ -7290,7 +7819,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.045490567847508476
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7303,7 +7833,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.07575294436061804
+      "mde": 0.07575294436061804,
+      "error": null
     },
     {
       "inputs": {
@@ -7316,7 +7847,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 0.9704975879011194
+      "mde": 0.9704975879011194,
+      "error": null
     },
     {
       "inputs": {
@@ -7329,7 +7861,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 0.8667816655991006
+      "mde": 0.8667816655991006,
+      "error": null
     },
     {
       "inputs": {
@@ -7342,7 +7875,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.0003438763700674806
+      "mde": 0.0003438763700674806,
+      "error": null
     },
     {
       "inputs": {
@@ -7355,7 +7889,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 3.511686230995288
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7368,7 +7903,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 5.031656970136275e-05
+      "mde": 5.031656970136275e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -7381,7 +7917,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 1.0449356617563434
+      "mde": 1.0449356617563434,
+      "error": null
     },
     {
       "inputs": {
@@ -7394,7 +7931,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.26599448809891324
+      "mde": 0.26599448809891324,
+      "error": null
     },
     {
       "inputs": {
@@ -7407,7 +7945,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.09435508684807865
+      "mde": 0.09435508684807865,
+      "error": null
     },
     {
       "inputs": {
@@ -7420,7 +7959,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.00036756039798287285
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7433,7 +7973,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 1.5190690049825362
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7446,7 +7987,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.02053905561546565
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7459,7 +8001,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.011462545668916019
+      "mde": 0.011462545668916019,
+      "error": null
     },
     {
       "inputs": {
@@ -7472,7 +8015,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 9.206059235167412e-05
+      "mde": 9.206059235167412e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -7485,7 +8029,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.025211831544149757
+      "mde": 0.025211831544149757,
+      "error": null
     },
     {
       "inputs": {
@@ -7498,7 +8043,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 4.581902582635118e-06
+      "mde": 4.581902582635118e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -7511,7 +8057,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.03516406470253338
+      "mde": 0.03516406470253338,
+      "error": null
     },
     {
       "inputs": {
@@ -7524,7 +8071,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.04603474262200513
+      "mde": 0.04603474262200513,
+      "error": null
     },
     {
       "inputs": {
@@ -7537,7 +8085,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.11884971367334132
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7550,7 +8099,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.1348714616466856
+      "mde": 0.1348714616466856,
+      "error": null
     },
     {
       "inputs": {
@@ -7563,7 +8113,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.15013098838868183
+      "mde": 0.15013098838868183,
+      "error": null
     },
     {
       "inputs": {
@@ -7576,7 +8127,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 1.203567295236182
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7589,7 +8141,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.23836193600489936
+      "mde": 0.23836193600489936,
+      "error": null
     },
     {
       "inputs": {
@@ -7602,7 +8155,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.00010371609078281549
+      "mde": 0.00010371609078281549,
+      "error": null
     },
     {
       "inputs": {
@@ -7615,7 +8169,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.29778812423890877
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7628,7 +8183,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.009152108782823807
+      "mde": 0.009152108782823807,
+      "error": null
     },
     {
       "inputs": {
@@ -7641,7 +8197,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.3749901356814563
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7654,7 +8211,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.0010581450757940105
+      "mde": 0.0010581450757940105,
+      "error": null
     },
     {
       "inputs": {
@@ -7667,7 +8225,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 2.096514405205814
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7680,7 +8239,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.00040280402066933385
+      "mde": 0.00040280402066933385,
+      "error": null
     },
     {
       "inputs": {
@@ -7693,7 +8253,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 6.398294552466443e-06
+      "mde": 6.398294552466443e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -7706,7 +8267,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 0.002069964509972612
+      "mde": 0.002069964509972612,
+      "error": null
     },
     {
       "inputs": {
@@ -7719,7 +8281,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 0.6696422745619356
+      "mde": 0.6696422745619356,
+      "error": null
     },
     {
       "inputs": {
@@ -7732,7 +8295,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.049425146978037016
+      "mde": 0.049425146978037016,
+      "error": null
     },
     {
       "inputs": {
@@ -7745,7 +8309,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.001169976649566465
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7758,7 +8323,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.5
       },
-      "mde": 0.00987187832110132
+      "mde": 0.00987187832110132,
+      "error": null
     },
     {
       "inputs": {
@@ -7771,7 +8337,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.020550281308941674
+      "mde": 0.020550281308941674,
+      "error": null
     },
     {
       "inputs": {
@@ -7784,7 +8351,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.0
       },
-      "mde": 0.17918981637141337
+      "mde": 0.17918981637141337,
+      "error": null
     },
     {
       "inputs": {
@@ -7797,7 +8365,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.0
       },
-      "mde": 0.002376034977714473
+      "mde": 0.002376034977714473,
+      "error": null
     },
     {
       "inputs": {
@@ -7810,7 +8379,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 3.0
       },
-      "mde": 0.09011478584559279
+      "mde": 0.09011478584559279,
+      "error": null
     },
     {
       "inputs": {
@@ -7823,7 +8393,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.8679555884255893
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7836,7 +8407,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.1480781748165199
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7849,7 +8421,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.058811907963485704
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7862,7 +8435,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.1580961508803611
+      "mde": 0.1580961508803611,
+      "error": null
     },
     {
       "inputs": {
@@ -7875,7 +8449,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.002771033372342934
+      "mde": 0.002771033372342934,
+      "error": null
     },
     {
       "inputs": {
@@ -7888,7 +8463,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.023808264205365245
+      "mde": 0.023808264205365245,
+      "error": null
     },
     {
       "inputs": {
@@ -7901,7 +8477,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 1.6003700732099908
+      "mde": 1.6003700732099908,
+      "error": null
     },
     {
       "inputs": {
@@ -7914,7 +8491,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 0.37395368340811924
+      "mde": 0.37802522135766026,
+      "error": null
     },
     {
       "inputs": {
@@ -7927,7 +8505,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1000.0
       },
-      "mde": 2.195995136828727
+      "mde": 2.195995136828727,
+      "error": null
     },
     {
       "inputs": {
@@ -7940,7 +8519,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.048085744089910426
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -7953,7 +8533,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.011312696370773156
+      "mde": 0.011312696370773156,
+      "error": null
     },
     {
       "inputs": {
@@ -7966,7 +8547,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 3.002619767773637e-05
+      "mde": 3.002619767773637e-05,
+      "error": null
     },
     {
       "inputs": {
@@ -7979,7 +8561,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.0018562158510105448
+      "mde": 0.0018562158510105448,
+      "error": null
     },
     {
       "inputs": {
@@ -7992,7 +8575,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.19408076971704472
+      "mde": 0.19408076971704472,
+      "error": null
     },
     {
       "inputs": {
@@ -8005,7 +8589,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.006625570911543211
+      "mde": 0.006625570911543211,
+      "error": null
     },
     {
       "inputs": {
@@ -8018,7 +8603,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 1.0
       },
-      "mde": 0.09394804612981647
+      "mde": 0.09394804612981647,
+      "error": null
     },
     {
       "inputs": {
@@ -8031,7 +8617,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.010112840479549088
+      "mde": 0.010112840479549088,
+      "error": null
     },
     {
       "inputs": {
@@ -8044,7 +8631,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.253517841755156
+      "mde": 0.253517841755156,
+      "error": null
     },
     {
       "inputs": {
@@ -8057,7 +8645,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.5
       },
-      "mde": 0.5004922926549802
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -8070,7 +8659,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 1.823118244480104
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -8083,7 +8673,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.2343268058600043
+      "mde": 0.2343268058600043,
+      "error": null
     },
     {
       "inputs": {
@@ -8096,7 +8687,8 @@
         "repeatCorrelation": 0.3333333333333333,
         "clusterDeff": 3.0
       },
-      "mde": 0.10019926307838434
+      "mde": 0.10019926307838434,
+      "error": null
     },
     {
       "inputs": {
@@ -8109,7 +8701,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1000.0
       },
-      "mde": 6.182636043139654
+      "mde": 6.182636043139654,
+      "error": null
     },
     {
       "inputs": {
@@ -8122,7 +8715,8 @@
         "repeatCorrelation": 0.8,
         "clusterDeff": 1.5
       },
-      "mde": 0.07560882716675828
+      "mde": 0.07560882716675828,
+      "error": null
     },
     {
       "inputs": {
@@ -8135,7 +8729,8 @@
         "repeatCorrelation": 0.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.005238664714519493
+      "mde": 0.005238664714519493,
+      "error": null
     },
     {
       "inputs": {
@@ -8148,7 +8743,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1000.0
       },
-      "mde": 0.07940212101101982
+      "mde": null,
+      "error": "binary-feasibility"
     },
     {
       "inputs": {
@@ -8161,7 +8757,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 3.0
       },
-      "mde": 4.798510620102928e-06
+      "mde": 4.798510620102928e-06,
+      "error": null
     },
     {
       "inputs": {
@@ -8174,7 +8771,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1.5
       },
-      "mde": 0.011916277780823338
+      "mde": 0.011916277780823338,
+      "error": null
     },
     {
       "inputs": {
@@ -8187,7 +8785,8 @@
         "repeatCorrelation": null,
         "clusterDeff": 1.0
       },
-      "mde": 0.09731085288565686
+      "mde": 0.09731085288565686,
+      "error": null
     },
     {
       "inputs": {
@@ -8200,7 +8799,8 @@
         "repeatCorrelation": 1.0,
         "clusterDeff": 1000.0
       },
-      "mde": 6.316629178505139
+      "mde": 6.316629178505139,
+      "error": null
     }
   ],
   "normalQuantiles": [

@@ -21,6 +21,18 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Single-answer binary power plans reject impossible combinations of baseline,
+  improvement and pairing correlation. Fixed-budget planning intersects its
+  normal threshold with the feasible joint Bernoulli interval, including a
+  correlation-imposed minimum for some negative correlations. Unavailable
+  budgets are omitted from the chart and identified in the comparison table;
+  a missing sensitivity result does not hide a valid primary plan. Browser
+  exports use schema version 2 with feasibility bounds and null sensitivity
+  results where appropriate. Python exposes `binary_effect_range` and
+  `BinaryFeasibilityError`; CLI JSON includes feasibility metadata. The normal
+  power approximation is unchanged. This check does not validate continuous
+  scores or repeated-answer averages. See [planning](docs/planning.md).
+
 - Leaderboards keep usable model estimates and pairwise tests when some pairs
   share only one independent cluster. Those pairs have an explicit untested
   reason and shared-question count; they never receive a significance decision.

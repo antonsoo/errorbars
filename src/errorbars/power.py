@@ -23,10 +23,97 @@ from dataclasses import dataclass
 from statistics import NormalDist
 from typing import Any
 
-__all__ = ["PowerResult", "questions_needed", "minimum_detectable_effect", "per_question_variance"]
+__all__ = [
+    "PowerResult", "questions_needed", "minimum_detectable_effect", "per_question_variance",
+    "BinaryEffectRange", "BinaryFeasibilityError", "binary_effect_range",
+]
 
 _NORMAL = NormalDist()
 _MAX_COUNT = 2**53 - 1  # Keep plans exactly representable in the browser as well as Python.
+
+
+class BinaryFeasibilityError(ValueError):
+    """The requested binary comparison cannot exist under its pairing assumptions."""
+
+
+@dataclass(frozen=True)
+class BinaryEffectRange:
+    """Feasible positive mean improvements for two single Bernoulli outcomes.
+
+    Zero is always excluded. A zero-correlation upper endpoint is also excluded:
+    a target that is always correct has no defined Pearson correlation.
+    """
+
+    minimum_delta: float
+    maximum_delta: float
+    maximum_inclusive: bool
+
+    def as_dict(self) -> dict[str, float | bool | str]:
+        return {
+            "model": "single-answer-bernoulli",
+            "minimum_delta": self.minimum_delta,
+            "maximum_delta": self.maximum_delta,
+            "minimum_inclusive": self.minimum_delta > 0,
+            "maximum_inclusive": self.maximum_inclusive,
+        }
+
+    def describe(self) -> str:
+        lower = "greater than 0" if self.minimum_delta == 0 else f"at least {100 * self.minimum_delta:.8g}"
+        upper = "at most" if self.maximum_inclusive else "less than"
+        return f"{lower} and {upper} {100 * self.maximum_delta:.8g} percentage points"
+
+    def contains(self, delta: float) -> bool:
+        # Tolerance is relative to the effect, not to the baseline: an absolute
+        # epsilon could admit a materially impossible gap near perfect pairing.
+        tolerance = 16 * math.ulp(1.0) * max(abs(delta), abs(self.minimum_delta))
+        upper_tolerance = 16 * math.ulp(1.0) * max(abs(delta), abs(self.maximum_delta))
+        return (
+            math.isfinite(delta) and delta > 0
+            and delta >= self.minimum_delta - tolerance
+            and (delta <= self.maximum_delta + upper_tolerance if self.maximum_inclusive
+                 else delta < self.maximum_delta)
+        )
+
+
+def binary_effect_range(baseline_accuracy: float, rho: float) -> BinaryEffectRange:
+    """The positive-effect interval allowed by nonnegative cells in a 2x2 table.
+
+    For baseline p and target q, P(A=1,B=1) = pq + rho*sqrt(p(1-p)q(1-q)).
+    Requiring all four cells to be nonnegative bounds q at fixed p and rho.
+    This checks feasibility, not the calibration of the normal power formula.
+    It does not apply to averages of multiple answers or continuous scores.
+    """
+    if not 0 < baseline_accuracy < 1:
+        raise ValueError("baseline_accuracy must be strictly between 0 and 1")
+    if not -1 <= rho <= 1:
+        raise ValueError("rho must be in [-1, 1]")
+    p = baseline_accuracy
+    complement = 1 - p
+    r = abs(rho)
+    if rho >= 0:
+        low = 0.0
+        # Factored forms avoid subtracting nearly equal q and p at rho near 1.
+        high = (
+            complement if rho == 0
+            else p * complement * (1 - r) * (1 + r) / (p + r * r * complement)
+        )
+    else:
+        low = max(0.0, (r * complement - p) * (r * complement + p) / (p + r * r * complement))
+        high = (complement - r * p) * (complement + r * p) / (complement + r * r * p)
+    if high <= 0 or low > high:
+        raise BinaryFeasibilityError(
+            "This baseline and correlation permit no positive improvement for single-answer "
+            "binary scores. Change the assumed correlation or baseline."
+        )
+    return BinaryEffectRange(low, high, rho != 0 and p + high < 1)
+
+
+def _check_binary_delta(baseline: float, delta: float, bounds: BinaryEffectRange) -> None:
+    if baseline + delta >= 1 or not bounds.contains(delta):
+        raise BinaryFeasibilityError(
+            f"The assumed correlation permits binary improvements {bounds.describe()}; "
+            f"the requested gap is {100 * delta:.8g} points. Change the correlation or gap."
+        )
 
 
 def _check_count(value: int, name: str, minimum: int) -> None:
@@ -90,6 +177,7 @@ class PowerResult:
     cluster_design_effect: float
     per_question_variance: float
     repeat_correlation: float | None = None
+    binary_feasibility: BinaryEffectRange | None = None
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -102,6 +190,7 @@ class PowerResult:
             "cluster_design_effect": self.cluster_design_effect,
             "per_question_variance": self.per_question_variance,
             "repeat_correlation": self.repeat_correlation,
+            "binary_feasibility": self.binary_feasibility.as_dict() if self.binary_feasibility else None,
         }
 
 
@@ -169,13 +258,18 @@ def questions_needed(
             f"baseline_accuracy + delta = {baseline_accuracy + delta:.3g}: an accuracy can't exceed 1"
         )
     z = _z_sum(alpha, power)
+    bounds = None
+    if baseline_accuracy is not None and samples_per_question == 1:
+        bounds = binary_effect_range(baseline_accuracy, rho)
+        _check_binary_delta(baseline_accuracy, delta, bounds)
     root_n = _difference_sd(v, rho, cluster_design_effect) / delta * z
     if not math.isfinite(root_n) or root_n > math.sqrt(_MAX_COUNT):
         raise ValueError("required question count exceeds the exactly representable planning range")
     n_int = max(2, math.ceil(root_n * root_n))
     _check_count(n_int, "required question count", 2)
     return PowerResult(
-        n_int, delta, alpha, power, rho, samples_per_question, cluster_design_effect, v, repeat_correlation
+        n_int, delta, alpha, power, rho, samples_per_question, cluster_design_effect, v,
+        repeat_correlation, bounds,
     )
 
 
@@ -191,7 +285,14 @@ def minimum_detectable_effect(
     *,
     repeat_correlation: float | None = None,
 ) -> float:
-    """Smallest paired difference detectable with a given n, alpha, power."""
+    """Smallest feasible paired difference detectable with a given n, alpha, power.
+
+    For a single binary answer, intersect the normal approximation's detectable
+    effects with the joint Bernoulli interval. Negative correlation can impose a
+    positive minimum gap even at infinite budget. Raise BinaryFeasibilityError
+    when the interval contains no detectable effect; never return an impossible
+    binary gap. Continuous and repeated-average designs keep their variance model.
+    """
     _check_count(n_questions, "n_questions", 2)
     _check_design(rho, cluster_design_effect)
     v = per_question_variance(
@@ -201,4 +302,14 @@ def minimum_detectable_effect(
     result = _difference_sd(v, rho, cluster_design_effect) / math.sqrt(n_questions) * z
     if not math.isfinite(result) or (result == 0 and rho != 1):
         raise ValueError("minimum detectable effect is outside the representable planning range")
+    if baseline_accuracy is not None and samples_per_question == 1:
+        bounds = binary_effect_range(baseline_accuracy, rho)
+        result = max(result, bounds.minimum_delta)
+        if baseline_accuracy + result >= 1 or not bounds.contains(result):
+            raise BinaryFeasibilityError(
+                "This budget cannot detect a feasible binary improvement at the requested power. "
+                f"The assumed correlation permits gaps {bounds.describe()}. "
+                "Increase the budget or change the planning assumptions."
+            )
+        result = min(result, bounds.maximum_delta)
     return result

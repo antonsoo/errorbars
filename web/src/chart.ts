@@ -1,8 +1,8 @@
-import { minimumDetectableEffect, type PowerInputs } from "./power.ts";
+import { BinaryFeasibilityError, minimumDetectableEffect, type PowerInputs } from "./power.ts";
 
 export interface ChartPoint {
   n: number;
-  mde: number;
+  mde: number | null;
 }
 
 export function buildCurve(inputs: PowerInputs, nMin: number, nMax: number, points = 60): ChartPoint[] {
@@ -12,7 +12,12 @@ export function buildCurve(inputs: PowerInputs, nMin: number, nMax: number, poin
   for (let i = 0; i < points; i++) {
     const logN = logMin + ((logMax - logMin) * i) / (points - 1);
     const n = Math.round(10 ** logN);
-    out.push({ n, mde: minimumDetectableEffect(Math.max(2, n), inputs) });
+    try {
+      out.push({ n, mde: minimumDetectableEffect(Math.max(2, n), inputs) });
+    } catch (error) {
+      if (!(error instanceof BinaryFeasibilityError)) throw error;
+      out.push({ n, mde: null });
+    }
   }
   return out.filter((p, i) => i === 0 || p.n !== out[i - 1]!.n);
 }
@@ -20,7 +25,7 @@ export function buildCurve(inputs: PowerInputs, nMin: number, nMax: number, poin
 interface RenderOptions {
   width?: number;
   height?: number;
-  current: ChartPoint;
+  current: { n: number; mde: number };
 }
 
 const MARGIN = { top: 14, right: 18, bottom: 30, left: 46 };
@@ -33,7 +38,7 @@ export function renderChart(container: HTMLElement, curve: ChartPoint[], opts: R
 
   const nMin = curve[0]!.n;
   const nMax = curve[curve.length - 1]!.n;
-  const mdeMax = Math.max(...curve.map((p) => p.mde), opts.current.mde) * 1.08;
+  const mdeMax = Math.max(...curve.flatMap(p => p.mde === null ? [] : [p.mde]), opts.current.mde) * 1.08;
 
   const xScale = (n: number) => {
     const t = (Math.log10(n) - Math.log10(nMin)) / (Math.log10(nMax) - Math.log10(nMin));
@@ -41,9 +46,13 @@ export function renderChart(container: HTMLElement, curve: ChartPoint[], opts: R
   };
   const yScale = (mde: number) => MARGIN.top + (1 - mde / mdeMax) * plotH;
 
-  const pathD = curve
-    .map((p, i) => `${i === 0 ? "M" : "L"} ${xScale(p.n).toFixed(2)} ${yScale(p.mde).toFixed(2)}`)
-    .join(" ");
+  let connected = false;
+  const pathD = curve.map(p => {
+    if (p.mde === null) { connected = false; return ""; }
+    const command = connected ? "L" : "M";
+    connected = true;
+    return `${command} ${xScale(p.n).toFixed(2)} ${yScale(p.mde).toFixed(2)}`;
+  }).join(" ");
 
   // gridlines + y-axis ticks (MDE, as accuracy points)
   const yTicks = 4;
@@ -74,7 +83,7 @@ export function renderChart(container: HTMLElement, curve: ChartPoint[], opts: R
   const currentY = yScale(opts.current.mde);
 
   container.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Computed minimum detectable effect versus question count. Current plan: ${opts.current.n} questions, ${(opts.current.mde * 100).toFixed(3)} percentage points. Question count uses a logarithmic scale; exact values follow in a table.">
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Feasible minimum detectable effect versus question count. Current plan: ${opts.current.n} questions, ${(opts.current.mde * 100).toFixed(3)} percentage points. Unavailable budgets are omitted from the curve. Question count uses a logarithmic scale; exact values follow in a table.">
       ${yGridLines.join("")}
       <path class="chart-curve" d="${pathD}"/>
       <line x1="${currentX.toFixed(2)}" y1="${MARGIN.top}" x2="${currentX.toFixed(2)}" y2="${height - MARGIN.bottom}" stroke="var(--noise)" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>

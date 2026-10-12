@@ -28,12 +28,10 @@ describe("evaluation plans retain assumptions and units", () => {
   });
   it("does not coerce a gap exceeding the available accuracy range", () => {
     expect(() => plan("questions", { ...defaults(), baseline: 99, delta: 3 })).toThrow(/exceeds 100%/);
-    const p = plan("budget", { ...defaults(), baseline: 99, budget: 2 });
-    expect(p.result.achievableImprovement).toBe(false);
-    expect(p.warnings.join(" ")).toContain("cannot detect an achievable");
+    expect(() => plan("budget", { ...defaults(), baseline: 99, budget: 2 })).toThrow(/cannot detect a feasible/);
   });
   it("preserves honest small-sample and group caveats", () => {
-    const p = plan("budget", { ...defaults(), budget: 20, clusterSize: 10, icc: 0.2 });
+    const p = plan("budget", { ...defaults(), budget: 20, clusterSize: 10, icc: 0.02 });
     expect(p.warnings.join(" ")).toContain("Fewer than 30 questions");
     expect(p.warnings.join(" ")).toContain("Fewer than 30 groups");
     expect(p.result.approximateGroups).toBe(2);
@@ -53,15 +51,30 @@ describe("evaluation plans retain assumptions and units", () => {
     for (const icc of [NaN, Infinity, -0.1, 1.1]) expect(() => designEffect(icc, 2)).toThrow();
     for (const size of [NaN, Infinity, 0]) expect(() => designEffect(0.2, size)).toThrow();
   });
-  it("builds a strictly ordered, decreasing computed curve including the minimum budget", () => {
-    const p = plan("budget", { ...defaults(), budget: 2 });
+  it("keeps unavailable budgets distinct from feasible decreasing points", () => {
+    const p = plan("budget", { ...defaults(), budget: 20 });
     const curve = buildCurve(p.inputs, 2, 20);
     expect(curve[0]!.n).toBe(2);
-    expect(curve[0]!.mde).toBe(p.result.minimumDetectableEffect);
+    expect(curve[0]!.mde).toBeNull();
     expect(curve.at(-1)!.n).toBe(20);
+    expect(curve.at(-1)!.mde).toBe(p.result.minimumDetectableEffect);
     curve.slice(1).forEach((point, i) => {
       expect(point.n).toBeGreaterThan(curve[i]!.n);
-      expect(point.mde).toBeLessThan(curve[i]!.mde);
+      if (curve[i]!.mde !== null) expect(point.mde).toBeLessThan(curve[i]!.mde);
     });
+  });
+  it("retains a valid plan when the rho=0 sensitivity budget is unavailable", () => {
+    const p = plan("budget", { ...defaults(), baseline: 90, budget: 135, rho: 0.5 });
+    expect(p.result.minimumDetectableEffect).toBeLessThan(0.1);
+    expect(p.sensitivity.minimumDetectableEffect).toBeNull();
+    expect(p.sensitivity.unavailableReason).toContain("cannot detect a feasible");
+    expect(p.schemaVersion).toBe(2);
+  });
+  it("explains a correlation-imposed minimum and its flat curve", () => {
+    const p = plan("budget", { ...defaults(), baseline: 20, budget: 1000, rho: -0.5 });
+    expect(p.result.minimumDetectableEffect).toBeCloseTo(0.3, 14);
+    expect(p.result.correlationLimited).toBe(true);
+    expect(p.warnings.join(" ")).toContain("regardless of question count");
+    expect(buildCurve(p.inputs, 1000, 10000).every(point => point.mde === p.result.minimumDetectableEffect)).toBe(true);
   });
 });

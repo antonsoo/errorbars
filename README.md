@@ -415,8 +415,10 @@ vectors match the current implementation.
 Choose **Questions needed** or **Gap my budget can detect**. Number fields keep exact
 inputs; invalid edits disable results and downloads until corrected. The chart and table
 contain calculated values only, and a comparison at correlation zero exposes how much the
-answer depends on pairing. Small question/group counts and gaps beyond 100% accuracy carry
-explicit warnings. The normal approximation remains a planning estimate.
+answer depends on pairing. Impossible combinations of baseline, improvement and binary
+correlation cannot be exported. Budget mode finds the smallest feasible detectable gap;
+negative correlation can impose a minimum gap regardless of budget. Small question/group
+counts carry explicit warnings. The normal approximation remains a planning estimate.
 
 **Download plan (JSON)** retains inputs, units, results, assumptions and a complete
 `errorbars power` command. Calculations and downloads stay local and work offline after

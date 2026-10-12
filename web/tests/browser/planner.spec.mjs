@@ -39,7 +39,7 @@ test('exact editing, slider controls, and both directions preserve assumptions',
   await page.getByLabel('Intraclass correlation (ICC)', { exact: true }).fill('0.2');
   const p = await downloadPlan(page);
   expect(p.format).toBe('errorbars-plan');
-  expect(p.schemaVersion).toBe(1);
+  expect(p.schemaVersion).toBe(2);
   expect(p.inputs.baselineAccuracy).toBe(0.654321);
   expect(p.inputs.rho).toBe(0.123456);
   expect(p.inputs.clusterDesignEffect).toBe(1.5);
@@ -95,19 +95,24 @@ test('impossible accuracy improvements and small group counts remain explicit', 
   await page.locator('#budget').fill('20');
   await page.locator('#clusterSize').fill('10');
   await page.locator('#icc').fill('0.2');
-  await expect(page.locator('#plan-warnings')).toContainText('cannot detect an achievable');
+  await expect(page.locator('#input-error')).toContainText('cannot detect a feasible');
+  await expect(page.locator('#plan-output')).toBeHidden();
+  await expect(page.locator('#download-plan')).toBeDisabled();
+  await page.locator('#baseline').fill('50');
+  await page.locator('#icc').fill('0.02');
   await expect(page.locator('#plan-warnings')).toContainText('Fewer than 30 groups');
   const p = await downloadPlan(page);
-  expect(p.result.achievableImprovement).toBe(false);
+  expect(p.result.achievableImprovement).toBe(true);
   expect(p.result.approximateGroups).toBe(2);
-  expect(p.warnings).toHaveLength(3);
+  expect(p.warnings).toHaveLength(2);
   await clean();
 });
 
 test('two-question chart marker stays inside its plot and only computed points appear', async ({ page }) => {
   const clean = await boot(page);
   await page.locator('#delta').fill('50');
-  await page.locator('#rho').fill('0.95');
+  await page.locator('#baseline').fill('10');
+  await page.locator('#rho').fill('0');
   await page.locator('#power').fill('50');
   await page.locator('#alpha').fill('20');
   await expect(page.locator('#result-n')).toHaveText('2');
@@ -122,6 +127,64 @@ test('two-question chart marker stays inside its plot and only computed points a
   const p = await downloadPlan(page);
   const [, gap] = await page.locator('#budget-rows tr.current-budget td').allTextContents();
   expect(gap).toContain((p.result.minimumDetectableEffect * 100).toFixed(3));
+  await clean();
+});
+
+test('impossible paired binary assumptions disable export and recover on correction', async ({ page }) => {
+  const clean = await boot(page);
+  await page.locator('#baseline').fill('90');
+  await page.locator('#delta').fill('5');
+  await page.locator('#rho').fill('0.9');
+  await expect(page.locator('#input-error')).toContainText('assumed correlation permits');
+  await expect(page.locator('#delta')).toHaveAttribute('aria-invalid', 'true');
+  await expect(page.locator('#plan-output')).toBeHidden();
+  await expect(page.locator('#download-plan')).toBeDisabled();
+  await page.locator('#rho').fill('0.5');
+  const p = await downloadPlan(page);
+  expect(p.result.binaryFeasibility.maximumDelta).toBeCloseTo(0.07297297297297, 12);
+  expect(p.result.nQuestions).toBe(283);
+  await page.locator('#rho').fill('-0.5');
+  await expect(page.locator('#input-error')).toContainText('no positive improvement');
+  await expect(page.locator('#rho')).toHaveAttribute('aria-invalid', 'true');
+  await expect(page.locator('#download-plan')).toBeDisabled();
+  await clean();
+});
+
+test('unavailable sensitivity and budget rows do not hide a valid plan', async ({ page }) => {
+  const clean = await boot(page);
+  await page.getByRole('radio', { name: 'Gap my budget can detect' }).check();
+  await page.locator('#baseline').fill('90');
+  await page.locator('#rho').fill('0.5');
+  await page.locator('#budget').fill('135');
+  const p = await downloadPlan(page);
+  expect(p.sensitivity.minimumDetectableEffect).toBeNull();
+  expect(p.sensitivity.unavailableReason).toContain('cannot detect a feasible');
+  await expect(page.locator('#pairing-sensitivity')).toContainText('cannot detect a feasible');
+  await expect(page.locator('#budget-rows tr').first()).toContainText('Unavailable');
+  await expect(page.locator('#budget-rows tr.current-budget')).toContainText('Within feasible range');
+  expect(await page.locator('#chart svg').innerHTML()).not.toMatch(/NaN|Infinity/);
+  expect(await page.locator('.chart-curve').getAttribute('d')).toMatch(/^\s*M/);
+  await clean();
+});
+
+test('negative correlation minimum is visible and retained in saved plans', async ({ page, context }) => {
+  const clean = await boot(page);
+  await context.setOffline(true);
+  await page.getByRole('radio', { name: 'Gap my budget can detect' }).check();
+  await page.locator('#baseline').fill('20');
+  await page.locator('#rho').fill('-0.5');
+  await page.locator('#budget').fill('1000');
+  const p = await downloadPlan(page);
+  expect(p.result.correlationLimited).toBe(true);
+  expect(p.result.minimumDetectableEffect).toBeCloseTo(0.3, 14);
+  expect(p.result.binaryFeasibility.minimumInclusive).toBe(true);
+  await expect(page.locator('#plan-warnings')).toContainText('regardless of question count');
+  await expect(page.locator('#budget-rows tr.current-budget')).toContainText("At correlation's minimum gap");
+  await page.locator('#budget').fill('2');
+  await expect(page.locator('#plan-output')).toBeHidden();
+  await expect(page.locator('#download-plan')).toBeDisabled();
+  await page.locator('#budget').fill('1000');
+  await expect(page.locator('#plan-output')).toBeVisible();
   await clean();
 });
 

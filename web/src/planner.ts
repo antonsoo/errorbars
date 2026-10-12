@@ -1,4 +1,4 @@
-import { designEffect, minimumDetectableEffect, perQuestionVariance, questionsNeeded } from "./power.ts";
+import { BinaryFeasibilityError, binaryEffectRange, designEffect, minimumDetectableEffect, perQuestionVariance, questionsNeeded, type PowerInputs } from "./power.ts";
 
 export type PlanMode = "questions" | "budget";
 export type Field = "baseline" | "delta" | "budget" | "rho" | "clusterSize" | "icc" | "alpha" | "power";
@@ -38,8 +38,18 @@ export const ASSUMPTIONS = [
   "Binary scores with the same planning variance p(1-p) for both models; one answer per model per question.",
   "Pairing correlation and within-group ICC are assumptions, not estimates from observed data.",
   "Clustering uses 1 + (average cluster size - 1) * ICC. Unequal groups and few independent groups can need a different design.",
-  "The model does not enforce joint Bernoulli feasibility for the assumed correlation and changed accuracy. Validate near-boundary or large-gap plans with a pilot or simulation.",
+  "The baseline, improvement and pairing correlation must describe a possible joint binary outcome. This feasibility check does not calibrate the normal approximation; validate small-sample or large-gap plans by simulation.",
 ] as const;
+
+/** An unavailable comparison budget must not erase an otherwise valid plan. */
+export function budgetEffect(n: number, inputs: PowerInputs) {
+  try {
+    return { value: minimumDetectableEffect(n, inputs), reason: null };
+  } catch (error) {
+    if (!(error instanceof BinaryFeasibilityError)) throw error;
+    return { value: null, reason: error.message };
+  }
+}
 
 export function plan(mode: PlanMode, values: Values) {
   for (const f of FIELDS) {
@@ -63,19 +73,34 @@ export function plan(mode: PlanMode, values: Values) {
     samplesPerQuestion: 1,
     clusterDesignEffect,
   };
-  const n = mode === "questions" ? questionsNeeded(delta, inputs).nQuestions : values.budget;
-  const mde = minimumDetectableEffect(n, inputs);
+  let n: number, mde: number;
+  let feasible;
+  try {
+    feasible = binaryEffectRange(baselineAccuracy, inputs.rho);
+  } catch (error) {
+    if (!(error instanceof BinaryFeasibilityError)) throw error;
+    throw new PlanInputError("rho", error.message);
+  }
+  try {
+    n = mode === "questions" ? questionsNeeded(delta, inputs).nQuestions : values.budget;
+    mde = minimumDetectableEffect(n, inputs);
+  } catch (error) {
+    if (!(error instanceof BinaryFeasibilityError)) throw error;
+    throw new PlanInputError(mode === "questions" ? "delta" : "budget", error.message);
+  }
   const maxImprovement = 1 - baselineAccuracy;
   const withoutPairing = { ...inputs, rho: 0 };
   const sensitivityN = mode === "questions" ? questionsNeeded(delta, withoutPairing).nQuestions : n;
+  const sensitivityEffect = budgetEffect(sensitivityN, withoutPairing);
   const warnings: string[] = [];
-  if (mde > maxImprovement) warnings.push("This budget cannot detect an achievable accuracy improvement under these assumptions: the estimated gap exceeds the distance to 100%.");
+  const correlationLimited = feasible.minimumDelta > 0 && mde === feasible.minimumDelta;
+  if (correlationLimited) warnings.push("The assumed correlation sets this minimum gap: smaller binary improvements cannot occur under these assumptions, regardless of question count.");
   if (n < 30) warnings.push("Fewer than 30 questions: the normal approximation may be unreliable. Check the proposed design by simulation.");
   if (values.clusterSize > 1 && n / values.clusterSize < 30) warnings.push("Fewer than 30 groups at this average cluster size. The normal approximation does not account for small-group uncertainty.");
   return {
     format: "errorbars-plan" as const,
-    schemaVersion: 1 as const,
-    method: "paired-normal-approximation-v1" as const,
+    schemaVersion: 2 as const,
+    method: "paired-normal-bernoulli-feasible-v2" as const,
     mode,
     inputs: {
       ...inputs,
@@ -92,11 +117,14 @@ export function plan(mode: PlanMode, values: Values) {
       modelAnswers: n * 2,
       approximateGroups: n / values.clusterSize,
       perQuestionVariance: perQuestionVariance(inputs),
+      binaryFeasibility: feasible,
+      correlationLimited,
     },
     sensitivity: {
       rho: 0,
       nQuestions: sensitivityN,
-      minimumDetectableEffect: minimumDetectableEffect(sensitivityN, withoutPairing),
+      minimumDetectableEffect: sensitivityEffect.value,
+      unavailableReason: sensitivityEffect.reason,
     },
     units: { accuracy: "fraction", difference: "fraction (multiply by 100 for percentage points)", questions: "distinct questions per model", modelAnswers: "one answer per question from each of two models" },
     assumptions: ASSUMPTIONS,

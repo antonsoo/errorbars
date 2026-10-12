@@ -16,7 +16,7 @@ from pathlib import Path
 
 from scipy.special import ndtri
 
-from errorbars.power import minimum_detectable_effect, questions_needed
+from errorbars.power import BinaryFeasibilityError, minimum_detectable_effect, questions_needed
 
 OUT_PATH = Path(__file__).parent.parent / "web" / "test-vectors.json"
 
@@ -43,7 +43,7 @@ def main() -> None:
     ]
     for baseline, delta, alpha, power, rho, k, deff in rng.sample(forward_cases, 400):
         repeat_correlation = None if k == 1 else repeat_rng.choice([0.0, 1 / 3, 0.8, 1.0])
-        result = questions_needed(
+        kwargs = dict(
             delta=delta,
             baseline_accuracy=baseline,
             alpha=alpha,
@@ -53,6 +53,11 @@ def main() -> None:
             repeat_correlation=repeat_correlation,
             cluster_design_effect=deff,
         )
+        try:
+            result = questions_needed(**kwargs)
+            n_questions, v, error = result.n_questions, result.per_question_variance, None
+        except BinaryFeasibilityError:
+            n_questions, v, error = None, None, "binary-feasibility"
         vectors.append(
             {
                 "inputs": {
@@ -65,8 +70,9 @@ def main() -> None:
                     "repeatCorrelation": repeat_correlation,
                     "clusterDeff": deff,
                 },
-                "nQuestions": result.n_questions,
-                "perQuestionVariance": result.per_question_variance,
+                "nQuestions": n_questions,
+                "perQuestionVariance": v,
+                "error": error,
             }
         )
 
@@ -76,7 +82,7 @@ def main() -> None:
         list(itertools.product(ns, baselines, alphas, powers, rhos, samples, deffs)), 200
     ):
         repeat_correlation = None if k == 1 else repeat_rng.choice([0.0, 1 / 3, 0.8, 1.0])
-        mde = minimum_detectable_effect(
+        kwargs = dict(
             n_questions=n,
             baseline_accuracy=baseline,
             alpha=alpha,
@@ -86,6 +92,10 @@ def main() -> None:
             repeat_correlation=repeat_correlation,
             cluster_design_effect=deff,
         )
+        try:
+            mde, error = minimum_detectable_effect(**kwargs), None
+        except BinaryFeasibilityError:
+            mde, error = None, "binary-feasibility"
         mde_vectors.append(
             {
                 "inputs": {
@@ -99,6 +109,7 @@ def main() -> None:
                     "clusterDeff": deff,
                 },
                 "mde": mde,
+                "error": error,
             }
         )
 

@@ -1,0 +1,58 @@
+{
+  "input": {
+    "resolved_ids": null
+  },
+  "baseline": {
+    "model_a": "my-run",
+    "model_b": "20231010_rag_claude2",
+    "mean_a": 0.0,
+    "mean_b": 0.044,
+    "mean_diff": -0.044,
+    "se_paired": 0.009181317617116443,
+    "ci_low": -0.06203880457034039,
+    "ci_high": -0.02596119542965961,
+    "p_value": 2.177976048148435e-06,
+    "correlation": null,
+    "se_unpaired": 0.009181317617116443,
+    "variance_reduction": 0.0,
+    "n": 500,
+    "confidence": 0.95,
+    "warnings": [
+      "Correlation is unavailable because at least one score vector is constant."
+    ],
+    "mcnemar": {
+      "n01": 22,
+      "n10": 0,
+      "p_value": 4.76837158203125e-07
+    },
+    "inference": {
+      "test": "mcnemar_exact",
+      "p_value": 4.76837158203125e-07,
+      "ci_low": null,
+      "ci_high": null,
+      "confidence": null,
+      "mcnemar_applicable": true
+    },
+    "n_only_a": 0,
+    "n_only_b": 0,
+    "analysis_unit": "question",
+    "n_observations_a": 500,
+    "n_observations_b": 500,
+    "question_identity": {
+      "matching": 0,
+      "partial": 0,
+      "unavailable": 500,
+      "conflicting": 0
+    },
+    "scoring_rules": {
+      "matching": 0,
+      "unavailable": 500,
+      "conflicting": 0
+    }
+  },
+  "corrected": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "<work>/null.json: \"resolved_ids\" must be a list of task id strings\n"
+  }
+}

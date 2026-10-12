@@ -13,7 +13,7 @@ field. These are constructed malformed inputs, not claimed production incidents.
 
 Both entry points now require present result fields to be lists of strings. If
 both aliases appear, their task sets must agree. Order and repeated IDs do not
-matter. Explicit empty lists remain valid. Invalid CSV imports fail before any
+matter. Explicit empty lists remain valid. Invalid reports fail before any
 CSV is emitted; invalid browser pastes leave the previous comparison intact.
 
 ## Before and after
@@ -30,6 +30,12 @@ at 375 and 1440 pixels, offline after local fonts and figures have loaded.
 | Valid JSON CLI controls accepted | 6/6 | 6/6 |
 | Malformed browser pastes rejected, prior comparison preserved | 72/88 | 88/88 |
 | Valid browser pastes accepted | 24/24 | 24/24 |
+
+A downstream check turns the malformed `{"resolved_ids": null}` report into an
+apparent 4.4-point loss against the real `20231010_rag_claude2` run, with exact
+McNemar p = 0.0000004768. That is analysis of invented zero scores, not evidence
+about a personal model. The corrected exporter emits no CSV for this input;
+`results/downstream.json` retains the actual CLI result and corrected error.
 
 The two other baseline CLI failures leaked type errors. Every corrected failure
 exits 1 with an input diagnostic. Valid zero-result, modern/legacy and equivalent

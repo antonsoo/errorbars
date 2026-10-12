@@ -1,0 +1,268 @@
+{
+  "python": "3.12.12",
+  "cases": {
+    "resolved_ids-null": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-null.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-false": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-false.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-zero": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-zero.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-object": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-object.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-string": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-string.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-task-string": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-task-string.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-null-item": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-null-item.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-nested-list": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-nested-list.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved_ids-object-ids": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved_ids-object-ids.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-null": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-null.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-false": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-false.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-zero": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-zero.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-object": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-object.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-string": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-string.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-task-string": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-task-string.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-null-item": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-null-item.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-nested-list": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-nested-list.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "resolved-object-ids": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/resolved-object-ids.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "empty-primary": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/empty-primary.json: \"resolved_ids\" and \"resolved\" disagree",
+      "traceback": false
+    },
+    "empty-secondary": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/empty-secondary.json: \"resolved_ids\" and \"resolved\" disagree",
+      "traceback": false
+    },
+    "null-primary": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/null-primary.json: \"resolved_ids\" must be a list of task id strings",
+      "traceback": false
+    },
+    "null-secondary": {
+      "valid": false,
+      "exit": 1,
+      "rows": 0,
+      "resolved": 0,
+      "csv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "<work>/null-secondary.json: \"resolved\" must be a list of task id strings",
+      "traceback": false
+    },
+    "empty-modern": {
+      "valid": true,
+      "exit": 0,
+      "rows": 500,
+      "resolved": 0,
+      "csv_sha256": "29c406a44a25e5b1b1f8caa053330c59e4566a5dbb0414b93fd68d75b79669db",
+      "error": "",
+      "traceback": false
+    },
+    "empty-legacy": {
+      "valid": true,
+      "exit": 0,
+      "rows": 500,
+      "resolved": 0,
+      "csv_sha256": "29c406a44a25e5b1b1f8caa053330c59e4566a5dbb0414b93fd68d75b79669db",
+      "error": "",
+      "traceback": false
+    },
+    "empty-both": {
+      "valid": true,
+      "exit": 0,
+      "rows": 500,
+      "resolved": 0,
+      "csv_sha256": "29c406a44a25e5b1b1f8caa053330c59e4566a5dbb0414b93fd68d75b79669db",
+      "error": "",
+      "traceback": false
+    },
+    "modern": {
+      "valid": true,
+      "exit": 0,
+      "rows": 500,
+      "resolved": 1,
+      "csv_sha256": "9364a08376bc0ce0bd48efa59da27c71aaa88b3f283185af5d39aa03049124c6",
+      "error": "",
+      "traceback": false
+    },
+    "legacy": {
+      "valid": true,
+      "exit": 0,
+      "rows": 500,
+      "resolved": 1,
+      "csv_sha256": "9364a08376bc0ce0bd48efa59da27c71aaa88b3f283185af5d39aa03049124c6",
+      "error": "",
+      "traceback": false
+    },
+    "equal-aliases": {
+      "valid": true,
+      "exit": 0,
+      "rows": 500,
+      "resolved": 1,
+      "csv_sha256": "9364a08376bc0ce0bd48efa59da27c71aaa88b3f283185af5d39aa03049124c6",
+      "error": "",
+      "traceback": false
+    }
+  },
+  "retained_submissions": {
+    "count": 175,
+    "rows": 87500,
+    "csv_sha256": "5cb7dd19e6317af0bc7ce88c3c9c6f91bf4688f1c5a2dbef69ec0cbed5000588"
+  },
+  "plain_text_sha256": "9364a08376bc0ce0bd48efa59da27c71aaa88b3f283185af5d39aa03049124c6",
+  "totals": {
+    "malformed_rejected_cleanly": 22,
+    "malformed_accepted": 0,
+    "valid_accepted": 6
+  }
+}

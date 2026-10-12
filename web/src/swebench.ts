@@ -266,11 +266,23 @@ function parseOwnRun(text: string): string[] {
     } catch {
       throw new Error("That looks like JSON but does not parse. Paste the whole report, or one task id per line.");
     }
-    const list = Array.isArray(report)
-      ? report
-      : ((report as Record<string, unknown>).resolved_ids ?? (report as Record<string, unknown>).resolved);
+    const fields = Array.isArray(report)
+      ? [report]
+      : ["resolved_ids", "resolved"].filter((key) => Object.hasOwn(report as object, key))
+        .map((key) => (report as Record<string, unknown>)[key]);
+    if (fields.some((value) => !Array.isArray(value) || value.some((id) => typeof id !== "string"))) {
+      throw new Error('"resolved_ids" and "resolved" must be lists of task id strings.');
+    }
+    const list = fields[0];
     if (!Array.isArray(list) || list.some((id) => typeof id !== "string")) {
       throw new Error('The report has no "resolved_ids" or "resolved" list of task ids.');
+    }
+    const ids = new Set(list);
+    if (fields.some((value) => {
+      const other = new Set(value as string[]);
+      return other.size !== ids.size || [...other].some((id) => !ids.has(id));
+    })) {
+      throw new Error('"resolved_ids" and "resolved" disagree. Nothing was compared.');
     }
     return list as string[];
   }

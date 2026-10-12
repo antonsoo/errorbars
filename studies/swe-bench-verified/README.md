@@ -295,6 +295,13 @@ data cannot say whether it would hold on other repositories (p = 0.21). In the
 table above the same two models share a letter, because there it is one of 55
 comparisons. `--mine NAME=report.json` adds your own run from the report the
 SWE-bench harness writes, or from a text file of resolved task ids.
+JSON reports must contain a `resolved_ids` or `resolved` list of task-id strings.
+If both fields are present, both must be valid and name the same tasks (order and
+repetition do not matter). An explicit empty list is a zero-resolution result;
+`null`, booleans, numbers and objects are errors. The browser applies the same
+checks and retains the previous comparison on a rejected paste. This preserves
+the study's policy: tasks absent from a valid resolved list count as unresolved
+over all 500 tasks. [Counterexamples and replay](../own-run-imports/README.md).
 
 ## References
 

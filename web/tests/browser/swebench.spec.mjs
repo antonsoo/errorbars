@@ -132,3 +132,40 @@ test('a real threshold disagreement follows the exact binary test', async ({ pag
   await expect(row(page, 'Gap, A minus B')).toHaveText('−3.2 points');
   await clean();
 });
+
+for (const width of [375, 1440]) {
+  test(`malformed personal-run lists preserve the previous comparison at ${width}px`, async ({ page, context }) => {
+    await page.setViewportSize({ width, height: 960 });
+    const clean = await boot(page);
+    await page.evaluate(async () => { await Promise.all([...document.fonts].map(font => font.load())); });
+    await context.setOffline(true);
+    await page.getByText('Use a run of my own as A').click();
+    const box = page.getByLabel('Resolved task ids, one per line, or the report the SWE-bench harness writes');
+    const apply = page.getByRole('button', { name: 'Compare this run' });
+    const task = 'astropy__astropy-12907';
+    await box.fill(JSON.stringify({ resolved_ids: [task] })); await apply.click();
+    await expect(page.locator('#own-status')).toContainText('1 of 500 tasks resolved');
+    const previous = await page.locator('#result-table').textContent();
+    const malformed = [];
+    for (const field of ['resolved_ids', 'resolved']) {
+      for (const value of [null, false, 0, {}, '', task, [task, null], [[task]], { [task]: true }]) {
+        malformed.push({ [field]: value });
+      }
+    }
+    malformed.push(
+      { resolved_ids: [], resolved: [task] },
+      { resolved_ids: [task], resolved: [] },
+      { resolved_ids: null, resolved: [task] },
+      { resolved_ids: [task], resolved: null },
+    );
+    for (const report of malformed) {
+      await box.fill(JSON.stringify(report)); await apply.click();
+      await expect(page.locator('#own-status')).toHaveClass(/own-status-error/);
+      await expect(page.locator('#result-table')).toHaveText(previous);
+    }
+    await box.fill(JSON.stringify({ resolved_ids: [], resolved: [] })); await apply.click();
+    await expect(page.locator('#own-status')).toContainText('0 of 500 tasks resolved');
+    await expect(page.locator('#own-status')).not.toHaveClass(/own-status-error/);
+    await clean();
+  });
+}

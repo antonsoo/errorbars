@@ -1,0 +1,17 @@
+{
+  "source": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20231010_rag_claude2/results/results.json",
+  "input_bytes": 45042,
+  "input_sha256": "218ffade97aafd6792dcef813f4ddd1a9a1bf1a629ff13ac28787a59a1e10e98",
+  "runs": {
+    "before": {
+      "records": 500,
+      "resolved": 22,
+      "csv_sha256": "c20cddba127d0f481abb2afba91719e2d10a7b879fb4bd0bdc5d97be5fbdc8fe"
+    },
+    "after": {
+      "records": 500,
+      "resolved": 22,
+      "csv_sha256": "c20cddba127d0f481abb2afba91719e2d10a7b879fb4bd0bdc5d97be5fbdc8fe"
+    }
+  }
+}

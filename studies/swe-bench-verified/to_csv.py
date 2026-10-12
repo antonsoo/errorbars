@@ -37,7 +37,15 @@ def _own_run(spec: str, known: set[str]) -> tuple[str, set[str]]:
     else:
         if not isinstance(report, dict) or not ({"resolved_ids", "resolved"} & report.keys()):
             raise SystemExit(f'{file}: expected a JSON object with "resolved_ids" or "resolved"') from None
-        resolved = set(report.get("resolved_ids") or report.get("resolved") or [])
+        lists = {key: report[key] for key in ("resolved_ids", "resolved") if key in report}
+        for key, value in lists.items():
+            if not isinstance(value, list) or any(not isinstance(iid, str) for iid in value):
+                raise SystemExit(f'{file}: "{key}" must be a list of task id strings')
+        # Empty lists are real zero-resolution results. Falsey malformed values
+        # must not become empty lists, or fall through to a different alias.
+        resolved = set(next(iter(lists.values())))
+        if any(set(value) != resolved for value in lists.values()):
+            raise SystemExit(f'{file}: "resolved_ids" and "resolved" disagree')
     unknown = sorted(resolved - known)
     if unknown:
         raise SystemExit(

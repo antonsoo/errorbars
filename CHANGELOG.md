@@ -103,6 +103,12 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- SWE-bench personal-run imports reject malformed result lists and conflicting
+  `resolved_ids` / `resolved` fields. The CSV exporter no longer turns `null`,
+  `false`, zero or an empty object into 500 failures; rejected browser pastes
+  preserve the previous comparison. Explicit empty lists and the documented
+  leaderboard denominator are unchanged. [Replay](studies/own-run-imports/README.md).
+
 - Table imports refuse duplicate DataFrame columns before pandas can discard values.
   CSV parsing rejects unfinished quoted fields and text after a closing quote, with a
   located input error instead of analyzing repaired data. Failed inputs leave existing

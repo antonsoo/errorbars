@@ -1,0 +1,43 @@
+npm notice run errorbars-calculator@0.1.0 test:reports
+npm notice run playwright test --config playwright.reports.config.mjs
+
+Running 28 tests using 2 workers
+
+(node:2838057) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2838056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/reports/review.spec.mjs:31:1 › real retained COPA runs expose their discordances, source records and unchanged complete JSON (889ms)
+  ✓   2 [chromium] › tests/reports/review.spec.mjs:61:1 › two binary wins retain uncertainty in the headline and downloaded evidence (920ms)
+  ✓   3 [chromium] › tests/reports/review.spec.mjs:76:1 › binary repeated-generation means are not advertised as exact Bernoulli trials (342ms)
+  ✓   5 [chromium] › tests/reports/review.spec.mjs:116:1 › cluster deletion points back to its original questions without recomputing a test (643ms)
+  ✓   4 [chromium] › tests/reports/review.spec.mjs:86:1 › unequal cohorts, repeated generations, paging and filtered CSV stay separate from inference (1.1s)
+  ✓   6 [chromium] › tests/reports/review.spec.mjs:137:1 › conflicting content is inspectable while the paired result is withheld (443ms)
+  ✓   7 [chromium] › tests/reports/review.spec.mjs:153:1 › scorer conflicts retain matching questions and export the changed grading evidence (557ms)
+  ✓   8 [chromium] › tests/reports/review.spec.mjs:184:1 › hostile identifiers stay text, controls stay visible, CSV is inert and JSON preserves evidence (533ms)
+  ✓   9 [chromium] › tests/reports/review.spec.mjs:205:1 › an empty intersection keeps observations and never invents a zero difference (438ms)
+  ✓  10 [chromium] › tests/reports/review.spec.mjs:217:1 › large evidence stays complete while DOM rows and interaction remain bounded (1.3s)
+  ✓  11 [chromium] › tests/reports/review.spec.mjs:233:3 › light and dark accessibility, navigation and print at 1440px (4.3s)
+  ✓  12 [chromium] › tests/reports/review.spec.mjs:233:3 › light and dark accessibility, navigation and print at 375px (3.5s)
+  ✓  14 [chromium] › tests/reports/review.spec.mjs:255:1 › printing follows the paper palette when dark mode comes only from the system (346ms)
+(node:2838659) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium] › tests/reports/review.spec.mjs:233:3 › light and dark accessibility, navigation and print at 320px (3.6s)
+(node:2838946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/reports/review.spec.mjs:31:1 › real retained COPA runs expose their discordances, source records and unchanged complete JSON (2.8s)
+  ✓  17 [firefox] › tests/reports/review.spec.mjs:76:1 › binary repeated-generation means are not advertised as exact Bernoulli trials (717ms)
+  ✓  16 [firefox] › tests/reports/review.spec.mjs:61:1 › two binary wins retain uncertainty in the headline and downloaded evidence (2.4s)
+  ✓  18 [firefox] › tests/reports/review.spec.mjs:86:1 › unequal cohorts, repeated generations, paging and filtered CSV stay separate from inference (1.8s)
+  ✓  20 [firefox] › tests/reports/review.spec.mjs:137:1 › conflicting content is inspectable while the paired result is withheld (790ms)
+  ✓  19 [firefox] › tests/reports/review.spec.mjs:116:1 › cluster deletion points back to its original questions without recomputing a test (1.1s)
+  ✓  21 [firefox] › tests/reports/review.spec.mjs:153:1 › scorer conflicts retain matching questions and export the changed grading evidence (1.1s)
+  ✓  22 [firefox] › tests/reports/review.spec.mjs:184:1 › hostile identifiers stay text, controls stay visible, CSV is inert and JSON preserves evidence (1.1s)
+  ✓  23 [firefox] › tests/reports/review.spec.mjs:205:1 › an empty intersection keeps observations and never invents a zero difference (798ms)
+  ✓  24 [firefox] › tests/reports/review.spec.mjs:217:1 › large evidence stays complete while DOM rows and interaction remain bounded (1.5s)
+  ✓  25 [firefox] › tests/reports/review.spec.mjs:233:3 › light and dark accessibility, navigation and print at 1440px (6.2s)
+  ✓  26 [firefox] › tests/reports/review.spec.mjs:233:3 › light and dark accessibility, navigation and print at 375px (5.7s)
+  ✓  28 [firefox] › tests/reports/review.spec.mjs:255:1 › printing follows the paper palette when dark mode comes only from the system (722ms)
+  ✓  27 [firefox] › tests/reports/review.spec.mjs:233:3 › light and dark accessibility, navigation and print at 320px (5.0s)
+
+  28 passed (31.2s)

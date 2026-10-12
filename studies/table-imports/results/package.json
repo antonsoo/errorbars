@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "482a1d41f54e24a0970f6b39bed78e1b251f4469",
+  "cleanArchiveInputs": 407,
+  "packageFiles": 26,
+  "sourceArchiveWheelInstallationsMatch": true,
+  "artifacts": [
+    {
+      "name": "errorbars-0.2.4.tar.gz",
+      "bytes": 238762,
+      "sha256": "f089e3ebfc81df0cb181bf75ddebda1b60d64668b83f29ecb412307610852452"
+    },
+    {
+      "name": "errorbars-0.2.4-py3-none-any.whl",
+      "bytes": 177369,
+      "sha256": "d7f6802bbaf620e90e37564a3e05ae5096bb1bb7e114fe8de83bb439bd6be691"
+    }
+  ]
+}

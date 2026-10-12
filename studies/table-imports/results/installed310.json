@@ -1,0 +1,639 @@
+{
+  "python": "3.10.21",
+  "pandas": "1.5.0",
+  "dataframes": {
+    "score": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: score; rename or select columns before loading",
+      "warnings": []
+    },
+    "question_id": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: question_id; rename or select columns before loading",
+      "warnings": []
+    },
+    "model": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: model; rename or select columns before loading",
+      "warnings": []
+    },
+    "cluster_id": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: cluster_id; rename or select columns before loading",
+      "warnings": []
+    },
+    "sample": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: sample; rename or select columns before loading",
+      "warnings": []
+    },
+    "question_hash": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: question_hash; rename or select columns before loading",
+      "warnings": []
+    },
+    "scorer": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: scorer; rename or select columns before loading",
+      "warnings": []
+    },
+    "note": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "duplicate DataFrame columns: note; rename or select columns before loading",
+      "warnings": []
+    }
+  },
+  "csv": {
+    "comma-unfinished": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/comma-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "comma-after-quote": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/comma-after-quote.csv:5: invalid CSV: ',' expected after '\"'",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "comma-multiline": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/comma-multiline.csv:6: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "semicolon-unfinished": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/semicolon-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "semicolon-after-quote": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/semicolon-after-quote.csv:5: invalid CSV: ';' expected after '\"'",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "semicolon-multiline": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/semicolon-multiline.csv:6: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "tab-unfinished": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/tab-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "tab-after-quote": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/tab-after-quote.csv:5: invalid CSV: '\t' expected after '\"'",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "tab-multiline": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/tab-multiline.csv:6: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "unfinished-header": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/unfinished-header.csv:1: invalid CSV: unexpected end of data",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "after-quote-header": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/after-quote-header.csv:1: invalid CSV: ',' expected after '\"'",
+      "warnings": [],
+      "located_rejection": true
+    },
+    "field-limit": {
+      "accepted": false,
+      "type": "ValueError",
+      "error": "<work>/field-limit.csv:2: invalid CSV: field larger than field limit (131072)",
+      "warnings": [],
+      "located_rejection": true
+    }
+  },
+  "cli": {
+    "comma-unfinished/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-unfinished/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-unfinished/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-unfinished/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-after-quote/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-after-quote.csv:5: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-after-quote/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-after-quote.csv:5: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-after-quote/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-after-quote.csv:5: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-after-quote/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-after-quote.csv:5: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-multiline/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-multiline/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-multiline/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "comma-multiline/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/comma-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-unfinished/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-unfinished/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-unfinished/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-unfinished/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-after-quote/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-after-quote.csv:5: invalid CSV: ';' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-after-quote/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-after-quote.csv:5: invalid CSV: ';' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-after-quote/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-after-quote.csv:5: invalid CSV: ';' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-after-quote/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-after-quote.csv:5: invalid CSV: ';' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-multiline/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-multiline/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-multiline/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "semicolon-multiline/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/semicolon-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-unfinished/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-unfinished/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-unfinished/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-unfinished/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-unfinished.csv:5: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-after-quote/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-after-quote.csv:5: invalid CSV: '\t' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-after-quote/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-after-quote.csv:5: invalid CSV: '\t' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-after-quote/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-after-quote.csv:5: invalid CSV: '\t' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-after-quote/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-after-quote.csv:5: invalid CSV: '\t' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-multiline/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-multiline/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-multiline/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "tab-multiline/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/tab-multiline.csv:6: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "unfinished-header/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/unfinished-header.csv:1: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "unfinished-header/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/unfinished-header.csv:1: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "unfinished-header/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/unfinished-header.csv:1: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "unfinished-header/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/unfinished-header.csv:1: invalid CSV: unexpected end of data",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "after-quote-header/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/after-quote-header.csv:1: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "after-quote-header/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/after-quote-header.csv:1: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "after-quote-header/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/after-quote-header.csv:1: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "after-quote-header/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/after-quote-header.csv:1: invalid CSV: ',' expected after '\"'",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "field-limit/summarize": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/field-limit.csv:2: invalid CSV: field larger than field limit (131072)",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "field-limit/compare": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/field-limit.csv:2: invalid CSV: field larger than field limit (131072)",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "field-limit/leaderboard": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/field-limit.csv:2: invalid CSV: field larger than field limit (131072)",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    },
+    "field-limit/import": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: <work>/field-limit.csv:2: invalid CSV: field larger than field limit (131072)",
+      "traceback": false,
+      "preserved": true,
+      "safe_rejection": true
+    }
+  },
+  "unique_dataframe_difference": 0.2,
+  "valid_dataframes": {
+    "unique": "fb97d47bc952149b51a04175bd60fde30b04c6476b8473304ccbeba4a09d47e3",
+    "duplicate_index": "fb97d47bc952149b51a04175bd60fde30b04c6476b8473304ccbeba4a09d47e3",
+    "custom": "fb97d47bc952149b51a04175bd60fde30b04c6476b8473304ccbeba4a09d47e3"
+  },
+  "valid_csv": {
+    "valid-0.csv": "f11ae3d4dac10d2a34fd95f3745278966b06f91758162cb4d236796c0d2ba187",
+    "valid-1.csv": "58bd27c36644472782ce8e2d3b023d530cc5b094a0d8deddc85db8fd301efcd2",
+    "valid-2.csv": "4c8f8f83e98b8925f48a0b16a4d40f6d686c8e60d26835dab0bc9346cab883ab",
+    "valid-3.csv": "f9299017924053c60a2918ad79f8d0e2b893b76dfeac7cb7523d5943fae9f810",
+    "valid-4.csv": "08dddaaca248958708801c2cedc8e3cdc856fc44e6c4e8f86cada6398bfc1d6a",
+    "valid-5.csv": "5e58fe3e8e6432c057e45acc00569f2429a2f4a27248ebbcf9117ed76b9af06a",
+    "valid-6.csv": "ff20676b301ef9e986db67882662084c9ddafe2282e2750e0aafa4244dc2c3f7",
+    "valid-7.csv": "39a91ab15190126feee8070d8ffc718d5463b89718490a7d11ec26961760bea2",
+    "valid-8.csv": "0d6fb4911e48939d424c4ad6773d1d9a077e24f8674ded467bc9e8c1c1397174",
+    "valid-9.csv": "88cd2194102e0de3df21d4d55b2965ce3376357b24aac14525d9d23e570f9e80",
+    "valid-10.csv": "b01273b43334664ad57233d4056e4f274e376a133a12a911a35b33beefb78d77",
+    "valid-11.csv": "1a87c68bfa391d3dc16731522c900d109daa26919c6de7c03abbbc0bd318d3a5",
+    "valid-12.csv": "0839fadbc50bd615533e5106543cf7b715b59f49a8c109b4440621702648f622",
+    "valid-13.csv": "19a81a9740e1544958b2fbf4eff900e075862caa4bd2385a9ef6adaaea45fb29",
+    "valid-14.csv": "fdacdcaae387b5bb82b3e2cd67024953ace4f98e8e6c223ae9d3ecc3a72a9f72",
+    "valid-15.csv": "5a2f9cc03c9631894116a65efdeb8e49516b4994bc7a27f7c6e8f37af9466ed0",
+    "valid-16.csv": "37d740c2a01d09783d472f85b734bda6d0d01be87738a8dc821f9ffd20f96de6",
+    "valid-17.csv": "1b4cc769d2ba65259aea62bb9d7a4df92bb97053f4c12abbd0f137fbc95f4aeb",
+    "valid-18.csv": "d65c2a9e3bfa9dc24dcd56f0cbe81226cdd103988aa7121a47e199fe9d4e1335",
+    "valid-19.csv": "37032401c6788aff9f68a71b0c83e507a4b9b1cb5d4225cb74f7b85c598eee2d",
+    "valid-20.csv": "bc1e099f2b5c4110e29f9927a127dce9cb145843f6391be8117d224846d908a0",
+    "valid-21.csv": "4ea94da075e38a2f6c96159ff892eaf55a876e521db0874c4b3b829486d97762",
+    "valid-22.csv": "9ff62568e1584647fa057cf0ce010042e449b82a8d8dbdd777a2575754a8f066",
+    "valid-23.csv": "8ee3ea1be52756541b88aaca744730e1c0b390c708558cebe6f052120ca6c9fb",
+    "valid-24.csv": "992eaffed4fb38fcd4464c22e8cf3cb9c4640b86f984ddf16e27b99e26eb1f3e",
+    "valid-25.csv": "bdc3aa6f1d22719082940926ae81d6b7d2ea4fbc95f37fb6aa65f1d31b37384d",
+    "valid-26.csv": "aacb5f2281cece0dc227c230e72e7bb3d10a13460f4363b0fe991036566a8530",
+    "valid-27.csv": "104190199cfa58576c362eccb2f0fa79aaf66e57d6909b88210feaf5173205ca",
+    "valid-28.csv": "71eaa9a11695348eafaed49146618fb530cd751fe0c7f5e9a2860ccbeff0958d",
+    "valid-29.csv": "5fa7629148cfd9d2ec2efb417301d4d51780a3d1b775d2ea5d5a14989ad5751b",
+    "valid-30.csv": "0b3a32ac8b5ba0e2a72d8fb49c582be92867bca887437a27e1875d76fd5db607",
+    "valid-31.csv": "3d3f5d1f890954bb0e0cae97c5a5c63f7375c52558058e236ac535b4e91c4cc9",
+    "valid-32.csv": "4a05cdbbaf37e657b18a0cb07546ee7f7cdc08119edb32ac42d2a90529665b8d",
+    "valid-33.csv": "09c52075eb4bd1c51a51fda045aae2611026743ab1077c916c6c003f0672e162",
+    "valid-34.csv": "6dd58a9335fd6b8b688f3dc7032d7d77577f81f93322ca178dee7acbdb1df39f",
+    "valid-35.csv": "fa59b2f5a2fe288f31a63fd616e2cd51bc2c5b624c8cc694c621537cf4d970d6",
+    "valid-36.csv": "5ea034fd2e5cf56638e5cfaf2e9c782a55f72519f7727d3643d1d3fea9645b44",
+    "valid-37.csv": "ab3e933a46d8c7af41eb984bafed95f0ab332b64e1c044b778607ad3b5d29919",
+    "valid-38.csv": "443d274a37efb18341ba356e6b46afcd5df6f0e007c043739af92f1268991b9f",
+    "valid-39.csv": "486ee44bb95ee0aae9f03926334cd56a5592be99c2a43bbdd9b854f2a578f22c",
+    "valid-40.csv": "7f0d1369aafd8114ff6bf39c4978a4ae85f2fc3aff56de220ffb3ae888baa5eb",
+    "valid-41.csv": "af61b37393329d5fb7f7fbd067b560d92c905b70ed00f06effd5995e88b63ef1",
+    "valid-42.csv": "40fe90feea6c241770fc3c88646b715a1b4d53e13542ae3a6c4a55cbca2bdc08",
+    "valid-43.csv": "ac29c44a7b32ecc01d8a0019c8c7bd5b998df399b8df51bffd06fcc7853fc4ad",
+    "valid-44.csv": "0139d85d3b721b78098c4e7bfb816badeddbf8d493672c881eb77e9c8d7dfd5e",
+    "valid-45.csv": "3c9d20fdc43a87ec66613ea3ce3318b4ae1b98dcbb5172ea4aa601f3b66e5c01",
+    "valid-46.csv": "3a67274aec8c8474cc968036da94b8f85d4f80f57abce5e1aa2f3595170f9303",
+    "valid-47.csv": "a0209a018804b2bf359f40b6c4102861ba4758a2da62b89c678aa71143006c42"
+  },
+  "retained_csv": {
+    "examples/data/reading_comprehension.csv": {
+      "records": 800,
+      "sha256": "df2f3bba9bebc2d65f46783ced1cafd979a44bce1dcb7bf56af0029bf8d8a112"
+    },
+    "examples/data/repeated_sampling.csv": {
+      "records": 240,
+      "sha256": "845c23ef6bc8b825925a35dd9690af8c151718ce94900589ed00328ed1c24d89"
+    },
+    "examples/data/unequal_repetitions.csv": {
+      "records": 13,
+      "sha256": "88e0333dd6afd8a499b53cd5eb91f5db5bd2d6007682d0b5658ef3b078c9e324"
+    },
+    "examples/leaderboard-ranks/gaps.csv": {
+      "records": 402,
+      "sha256": "ff08b38d8d3065e3df9dd52ad538c37ec3eededa17f2c4b84464ad31d157a489"
+    },
+    "examples/leaderboard-tests/repeated.csv": {
+      "records": 8,
+      "sha256": "c809d67a6473c2c61a0982230048f8e227804ff255e877b52ac2abd5672451a1"
+    },
+    "examples/leaderboard-tests/two-questions.csv": {
+      "records": 4,
+      "sha256": "53ad512952f987f8aa3cbabcb8ee8267245cd26d699e0f5fb89ad99c3c1db854"
+    },
+    "studies/leaderboard-overlap/partial-cohorts.csv": {
+      "records": 90,
+      "sha256": "7d0258831df9ab70aea7e8c4029705306358553ed5531a692f6e60aa4bbe5ebb"
+    }
+  },
+  "public_csv": {
+    "source": {
+      "repository": "https://github.com/SWE-bench/experiments",
+      "commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+      "path": "evaluation/verified",
+      "note": "Derived from the per-task outcome lists that each submission publishes. Bit i of 'resolved' (most significant first) is instances[i]."
+    },
+    "ids": [
+      "20231010_rag_claude2",
+      "20231010_rag_gpt35"
+    ],
+    "records": 1000,
+    "input_sha256": "fb232b5e2239f5033196ac59a7338f77b85e89ba096fb24fafd2418fc6bc08f0",
+    "records_sha256": "3a328da6c293e60bd24fba9d66deddc192f92b741473bba1dc0d6ed10c9147ba"
+  },
+  "valid_cli": {
+    "json_sha256": "20253443be02e397456d9d177fec743f922818b4a37ac0d0e73b0dc5ee37c0f4",
+    "html_sha256": "64a813f7850d0bb065c7118daa24383c229849c9b5baf541509bce3d576ef486",
+    "difference": 0.2
+  },
+  "totals": {
+    "duplicate_columns_rejected": 8,
+    "located_csv_rejections": 12,
+    "safe_cli_rejections": 48,
+    "valid_csv": 48,
+    "valid_dataframes": 3
+  }
+}

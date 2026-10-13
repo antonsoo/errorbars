@@ -1,0 +1,29 @@
+{
+  "python": "3.12.12",
+  "sourceFileSha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "implementationSha256": "8c8ee4d668a920ad70abef8ee4857efdcf6068b3860e3d57d96ab516ce6ec6dc",
+  "questions": 500,
+  "usableSubmissions": 173,
+  "excludedSubmissions": 2,
+  "results": [
+    {
+      "scope": "question",
+      "models": 173,
+      "pairs": 14878,
+      "groups": 117,
+      "groupStatus": "complete",
+      "seconds": 17.76587095798459,
+      "completeReportSha256WithoutGroupStatus": "c68148ff32bfe83daff2ac39aeafed4060ac06ee4f72ae3dccafc2a7a9da96ca"
+    },
+    {
+      "scope": "clustered",
+      "models": 173,
+      "pairs": 14878,
+      "groups": 2,
+      "groupStatus": "complete",
+      "seconds": 32.19854537898209,
+      "completeReportSha256WithoutGroupStatus": "fb4f3d1a9d70a023d1f572c2898a3f8b3da5d29cd5055aa392c38024c2f3234c"
+    }
+  ],
+  "note": "Retained public outcomes; not a new crawl or accuracy study. All prior report fields are hashed, including complete groups, inference, warnings and rank comparisons."
+}

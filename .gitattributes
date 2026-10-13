@@ -1,0 +1,2 @@
+# Preserve the original padding in captured terminal evidence.
+studies/group-enumeration/results/large-terminal.txt whitespace=-blank-at-eol

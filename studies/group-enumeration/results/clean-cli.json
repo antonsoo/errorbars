@@ -1,0 +1,80 @@
+{
+  "harnessPython": "3.12.12",
+  "cliPython": "Python 3.12.12",
+  "results": [
+    {
+      "case": "pairs-8-json",
+      "inputBytes": 376857,
+      "inputSha256": "8c4d385368c5aae03df3931254e23096ccf40b41d0f127a7e391a3e4931551f7",
+      "exit": 0,
+      "seconds": 3.426120093005011,
+      "resource": {
+        "seconds": 2.95,
+        "peakRssKiB": 47944,
+        "exit": 0
+      },
+      "outputSha256": "bc2a4dac345d76edb0495649bd701adf2c05ad989cc709b073c0a239218b7c9d",
+      "pairwiseExactRationalChecks": 120,
+      "models": 16,
+      "mathematicalMaximalGroups": 256,
+      "groupStatus": "complete",
+      "reportSha256WithoutGroupStatus": "a59f586ce6388fe7889047cae35d843ca77a9c1e769b41283592d092804a07e1"
+    },
+    {
+      "case": "pairs-12-json",
+      "inputBytes": 565273,
+      "inputSha256": "a224be651fe0bfbfcdd3845ce565d0817398fefbbeda548f2a0f7301c47690d4",
+      "exit": 0,
+      "seconds": 3.3964534100086894,
+      "resource": {
+        "seconds": 2.52,
+        "peakRssKiB": 57348,
+        "exit": 0
+      },
+      "outputSha256": "552e43e8218e71fe87835df2c9a740c63f9522a4c61649db6adc7e8950ae36c4",
+      "pairwiseExactRationalChecks": 276,
+      "models": 24,
+      "mathematicalMaximalGroups": 4096,
+      "groupStatus": "complete",
+      "reportSha256WithoutGroupStatus": "1388b4f5f86396ad6935d05ad65ab0707707ce81ef8039c7918ed02c167c9ecc"
+    },
+    {
+      "case": "pairs-25-json",
+      "inputBytes": 1177625,
+      "inputSha256": "13006309bb72d0057a428a841bb29bfda68bf8b593e6b3ab3b60ffa7df3521fb",
+      "exit": 0,
+      "seconds": 10.212930303008761,
+      "resource": {
+        "seconds": 9.31,
+        "peakRssKiB": 75352,
+        "exit": 0
+      },
+      "outputSha256": "a44fc1ea57ca7188077dee4bd544fc8a48b2d78e72b5abfea4306ad2e0af4b1d",
+      "pairwiseExactRationalChecks": 1225,
+      "models": 50,
+      "mathematicalMaximalGroups": 33554432,
+      "groupStatus": "omitted_group_limit",
+      "reportSha256WithoutGroupStatus": "a740cdaa9818c92968f81d602cf56999342c1372ef6b6f2dfc326c30cac6c6fc"
+    },
+    {
+      "case": "pairs-25-terminal",
+      "inputBytes": 1177625,
+      "inputSha256": "13006309bb72d0057a428a841bb29bfda68bf8b593e6b3ab3b60ffa7df3521fb",
+      "exit": 0,
+      "seconds": 6.90682850999292,
+      "resource": {
+        "seconds": 6.7,
+        "peakRssKiB": 75232,
+        "exit": 0
+      },
+      "outputSha256": "921dc14235ee4b6224def337e22b12dadf88e1a1d2e110698bd46d6e46b206ff",
+      "svgSha256": "7b6f4b2e252358656394cb85d5457275f44e64712b00482d00189bebdc9d127f",
+      "svgBytes": 39903,
+      "allModelsInSvg": true,
+      "terminalExplainsOmission": true
+    }
+  ],
+  "addressSpaceLimitMiB": 512,
+  "outputLimitMiB": 8,
+  "note": "Single CLI observations under Linux limits; not production timing estimates. Every pair uses integer binomial tails and rational Holm correction."
+}

@@ -1,0 +1,28 @@
+{
+  "artifacts": [
+    {
+      "path": "large-report.json.gz",
+      "bytes": 7584,
+      "sha256": "d19e36aa4824d1f6ecf8720d972c4aa560bd6050934d19ed1d1ddcb7844d6eb0",
+      "uncompressedBytes": 543743,
+      "uncompressedSha256": "a44fc1ea57ca7188077dee4bd544fc8a48b2d78e72b5abfea4306ad2e0af4b1d"
+    },
+    {
+      "path": "large-terminal.txt",
+      "bytes": 15396,
+      "sha256": "921dc14235ee4b6224def337e22b12dadf88e1a1d2e110698bd46d6e46b206ff",
+      "uncompressedBytes": 15396,
+      "uncompressedSha256": "921dc14235ee4b6224def337e22b12dadf88e1a1d2e110698bd46d6e46b206ff"
+    },
+    {
+      "path": "large.svg",
+      "bytes": 39903,
+      "sha256": "7b6f4b2e252358656394cb85d5457275f44e64712b00482d00189bebdc9d127f",
+      "uncompressedBytes": 39903,
+      "uncompressedSha256": "7b6f4b2e252358656394cb85d5457275f44e64712b00482d00189bebdc9d127f"
+    }
+  ],
+  "svgRenderedAndInspected": true,
+  "renderer": "Chromium via local HTML image wrapper",
+  "previewSha256": "6516a6849798764430a57c4fb23ad293b61b036ac986a4335bbed81d10b5583b"
+}

@@ -64,6 +64,9 @@ significance decision. For example, the constructed 50-model case retains one
 significantly different partner and 48 non-significant partners for every model.
 Non-significance does not establish equivalence.
 
+The full non-significance graph remains reconstructible from `pairwise`, even
+when its redundant maximal-group listing is unavailable.
+
 ## Verification method
 
 [replay.py](replay.py) runs actual CLI processes under the same 512 MiB address
@@ -93,3 +96,44 @@ the existing pinned [outcomes file](../swe-bench-verified/data/outcomes.json);
 this is not a new crawl or a fresh evaluation-accuracy study.
 
 No package release or hosted deployment is part of this source repair.
+
+## Retained outcomes
+
+[The baseline failure](results/failure-before.json) records exit 1, no report
+and a `MemoryError` from clique enumeration under the address-space limit.
+The [clean CLI replay](results/clean-cli.json) finishes all four commands under
+the same limit. Its 50-model JSON and terminal/SVG runs peak at 75,352 and
+75,232 KiB RSS respectively. The failed baseline peaked at 406,300 KiB RSS;
+address-space limits also count mapped memory, so this is not a 512 MiB RSS
+measurement. These are individual resource observations on this machine,
+not production timing or universal memory guarantees.
+
+The complete 50-model exports are retained as
+[compressed JSON](results/large-report.json.gz),
+[terminal output](results/large-terminal.txt) and [standalone SVG](results/large.svg).
+The SVG was rendered and inspected; all 50 visible model labels and the summary
+omission warning remain present. [Export hashes](results/exports.json) identify
+the exact files. No output contains an arbitrary first subset of groups.
+
+[Before](results/public-before.json) and [clean-build](results/public-clean.json)
+public replays retain every prior report field unchanged for 173 usable
+submissions and 500 questions. Both inference scopes contain 14,878 pairwise
+tests. The question-level report retains all 117 groups; the repository-clustered
+report retains both groups. Only the new `group_status: "complete"` field is
+excluded from their whole-report hash comparison. Two submissions remain
+excluded by the existing reported-score consistency rule.
+
+[verification.json](results/verification.json) records a clean archive of
+implementation `1e2ab7a`: locked install, lint, types, 680 tests, sdist and wheel.
+All 471 tracked entries match the archive commit. The CLI inspection harness
+has its own recorded hash; production code did not change after this archive.
+The 181,716-byte wheel rebuilt from the sdist has SHA-256
+`65c8f4a1932352955471b651093bb1cd9353a9cde1c988b85e9b3f5a3496df0f`.
+It is byte-identical to the first wheel.
+
+Fresh installs on [Python 3.10.21 / NumPy 1.24.0](results/cli-minimum.json) and
+[Python 3.14.7 / NumPy 2.5.4](results/cli-current.json) each match all 27 package
+source/asset files. All three complete JSON exports and the SVG match the clean
+build, with every pair independently checked and all four commands completing
+under the same limits. The package version remains 0.2.4; this does not publish
+the repair to PyPI or update a hosted application.

@@ -131,7 +131,9 @@ def main() -> None:
                 assert "1,225" in content.decode() or "1225" in content.decode()
                 plot = ET.fromstring(svg.read_bytes())
                 assert plot.tag == "{http://www.w3.org/2000/svg}svg"
-                labels = {node.text for node in plot.iter("{http://www.w3.org/2000/svg}text")}
+                # The plot prefixes visible model names with their numeric rank.
+                labels = {(node.text or "").partition(". ")[2]
+                          for node in plot.iter("{http://www.w3.org/2000/svg}text")}
                 assert {f"pair-{i:02}-{side}" for i in range(1, pairs + 1)
                         for side in ["base", "edit"]} <= labels
                 checked = {"svgSha256": hashlib.sha256(svg.read_bytes()).hexdigest(),

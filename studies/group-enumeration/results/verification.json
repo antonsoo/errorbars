@@ -1,0 +1,249 @@
+{
+  "implementationCommit": "1e2ab7ab81b7da6d4aff1cbf4dd2336413840c36",
+  "checks": [
+    {
+      "name": "clean-install",
+      "command": [
+        "uv",
+        "sync",
+        "--locked",
+        "--group",
+        "dev",
+        "--extra",
+        "all",
+        "--python",
+        "3.12"
+      ],
+      "exit": 0,
+      "logSha256": "e9559ad0ef66e64ce3e4e62ec8baaff7de09aa9567f2f95a399ab0cd929f9b1b"
+    },
+    {
+      "name": "clean-lint",
+      "command": [
+        "<clean>/.venv/bin/ruff",
+        "check",
+        "."
+      ],
+      "exit": 0,
+      "logSha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "clean-types",
+      "command": [
+        "<clean>/.venv/bin/mypy",
+        "src/errorbars"
+      ],
+      "exit": 0,
+      "logSha256": "df31673ff938e9a6a603c56cfd13949b42c1b8edcba9d2688c7f771f48c449d9"
+    },
+    {
+      "name": "clean-tests",
+      "command": [
+        "<clean>/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit": 0,
+      "logSha256": "fd2b203708e20e907f92e4758866aa7ea5349e8cb6919ddd956f0f8c82c53715"
+    },
+    {
+      "name": "clean-build",
+      "command": [
+        "uv",
+        "build",
+        "--out-dir",
+        "<scratch>/dist"
+      ],
+      "exit": 0,
+      "logSha256": "15be451ad0dd1a314e9562a6f6d001e0fd637f27b991a3678984444d429f7a65"
+    },
+    {
+      "name": "clean-cli",
+      "command": [
+        "<clean>/.venv/bin/python",
+        "<checkout>/studies/group-enumeration/replay.py",
+        "--python",
+        "<clean>/.venv/bin/python",
+        "--source",
+        "<clean>",
+        "--out",
+        "<scratch>/cli-clean"
+      ],
+      "exit": 0,
+      "logSha256": "3b1f96620eb9bd1edbe238c300df08fc341a8c7ca6e0ef6cf0e726b83d2b9dc7"
+    },
+    {
+      "name": "clean-public",
+      "command": [
+        "<clean>/.venv/bin/python",
+        "<clean>/studies/group-enumeration/public_replay.py",
+        "--root",
+        "<clean>",
+        "--out",
+        "<scratch>/public-clean"
+      ],
+      "exit": 0,
+      "logSha256": "096cc04dbf597b0efd69690f50e12c4070a52de2e86f645c7ab27796bc684ffa"
+    },
+    {
+      "name": "wheel-from-sdist",
+      "command": [
+        "uv",
+        "build",
+        "--wheel",
+        "--out-dir",
+        "<scratch>/from-sdist"
+      ],
+      "exit": 0,
+      "logSha256": "3f41cb4df79e30d2f5ce786c227d2e15c3705e4de000c9d3fdc4bd6259096164"
+    },
+    {
+      "name": "minimum-venv",
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "3.10",
+        "<scratch>/installed-minimum"
+      ],
+      "exit": 0,
+      "logSha256": "ba5f5224971664b07f6a022187ad7ab1a0d607075c0ee3cb889619d424d08ba8"
+    },
+    {
+      "name": "minimum-install",
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        "<scratch>/installed-minimum/bin/python",
+        "<scratch>/from-sdist/errorbars-0.2.4-py3-none-any.whl",
+        "numpy==1.24.0"
+      ],
+      "exit": 0,
+      "logSha256": "73ce1096517c5fdeff65891a797708e626e1182b93c4d185d3f9f93d86a2e214"
+    },
+    {
+      "name": "minimum-cli",
+      "command": [
+        "<clean>/.venv/bin/python",
+        "<checkout>/studies/group-enumeration/replay.py",
+        "--python",
+        "<scratch>/installed-minimum/bin/python",
+        "--out",
+        "<scratch>/cli-minimum"
+      ],
+      "exit": 0,
+      "logSha256": "fd2eb7caa328fedc9005cdf01ba873fba97ce05e5ec78bfe31949dc0fadba412"
+    },
+    {
+      "name": "minimum-entrypoint",
+      "command": [
+        "<scratch>/installed-minimum/bin/errorbars",
+        "--version"
+      ],
+      "exit": 0,
+      "logSha256": "c231e16f914054b544be61d89891c386c56063b433a6f0913f3ede153aa76bba"
+    },
+    {
+      "name": "current-venv",
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "3.14",
+        "<scratch>/installed-current"
+      ],
+      "exit": 0,
+      "logSha256": "550ed989f6ad20e179a7f1026a5cc9876472b2f2174b7696eb9e93096e42ded0"
+    },
+    {
+      "name": "current-install",
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        "<scratch>/installed-current/bin/python",
+        "<scratch>/from-sdist/errorbars-0.2.4-py3-none-any.whl",
+        "numpy"
+      ],
+      "exit": 0,
+      "logSha256": "3524cde0e2a190ed8c710800b5eb1d3d3e30c87c39ce60bcd34f3fd1bb3d8e8b"
+    },
+    {
+      "name": "current-cli",
+      "command": [
+        "<clean>/.venv/bin/python",
+        "<checkout>/studies/group-enumeration/replay.py",
+        "--python",
+        "<scratch>/installed-current/bin/python",
+        "--out",
+        "<scratch>/cli-current"
+      ],
+      "exit": 0,
+      "logSha256": "26911d9b8d440290fb589ba655c1d6a466d847f1c9f9e71ef2d9b78f708744be"
+    },
+    {
+      "name": "current-entrypoint",
+      "command": [
+        "<scratch>/installed-current/bin/errorbars",
+        "--version"
+      ],
+      "exit": 0,
+      "logSha256": "c231e16f914054b544be61d89891c386c56063b433a6f0913f3ede153aa76bba"
+    }
+  ],
+  "installed": [
+    {
+      "label": "minimum",
+      "python": "Python 3.10.21",
+      "numpy": "1.24.0",
+      "sourceFilesMatch": 27,
+      "cliCases": 4,
+      "allJsonAndSvgMatchClean": true
+    },
+    {
+      "label": "current",
+      "python": "Python 3.14.7",
+      "numpy": "2.5.4",
+      "sourceFilesMatch": 27,
+      "cliCases": 4,
+      "allJsonAndSvgMatchClean": true
+    }
+  ],
+  "sourceArchiveSha256": "1d06e5b25c923b8288e1209dd4b4ce0918c97886bb15f3fcfd36c5137b22e382",
+  "buildPython": "Python 3.12.12",
+  "trackedEntriesMatchCommit": 471,
+  "publicReplayComplete": true,
+  "harnessCorrection": "SVG inspection was corrected to account for numeric rank prefixes in visible model labels; production code and exported SVG did not change. Only the artifact replay was repeated.",
+  "cliInspectionHarness": {
+    "path": "studies/group-enumeration/replay.py",
+    "sha256": "9354b988c98335bad54645614c8cf00eabb85abbae66e55ffa268e242bee47c7"
+  },
+  "artifacts": {
+    "errorbars-0.2.4-py3-none-any.whl": {
+      "bytes": 181716,
+      "sha256": "65c8f4a1932352955471b651093bb1cd9353a9cde1c988b85e9b3f5a3496df0f"
+    },
+    "errorbars-0.2.4.tar.gz": {
+      "bytes": 247462,
+      "sha256": "663307f62e7923d09b398819e573bff2091d4f9d439e82d3fcdd8e653eac10f3"
+    }
+  },
+  "wheelFromSdist": {
+    "bytes": 181716,
+    "sha256": "65c8f4a1932352955471b651093bb1cd9353a9cde1c988b85e9b3f5a3496df0f"
+  },
+  "unitTestsPassed": 680,
+  "results": {
+    "clean-cli.json": "614e6d3307f316e53998b1bff31c3a79279d4592c01bf44ddbb32b06ca00c3ed",
+    "cli-minimum.json": "7559e7da03e9837eede8116949fb1f5750e3e99cc9ec1fc081dca83394bf2442",
+    "cli-current.json": "eaf28e1f6f6cd4fc280b52a81264acb6e4bd88cf45c291067f5397201403d701",
+    "public-clean.json": "3be155ff7187e5889df85065e5e529c95035269bd397b402b8ef867c7de1d1a8",
+    "exports.json": "8d7151fd2a5bbe213af2468c0152eb173e60b0a43bfcb335e4803d6dfe190491"
+  },
+  "scope": "Clean source archive and independently installed wheel rebuilt from its sdist. No package release or hosted deployment.",
+  "complete": true
+}

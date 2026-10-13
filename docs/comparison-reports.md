@@ -22,6 +22,18 @@ uv run --no-dev errorbars compare tests/fixtures/lm_eval_output \
 Open `comparison.html`. There is also a ready-to-open
 [COPA comparison artifact](../examples/reports/copa-comparison.html).
 Download that HTML file and open it locally.
+
+The source CLI protects every loaded input path and any results sidecar used
+for model identity. `--html` refuses a destination that aliases one of them,
+as well as symbolic-link destinations. CSV import and SVG export use the same
+complete-write replacement: an I/O failure preserves an earlier output.
+On POSIX, successful new and replaced outputs have mode 0600.
+For direct Python use, `write_csv` protects its recorded source paths;
+`write_comparison_html(..., protected=paths)` accepts original paths explicitly
+because a comparison review retains only display basenames. Input paths passed
+to these APIs are interpreted in the caller's working directory.
+[Executable output-integrity study](../studies/output-integrity/README.md).
+
 For pip users, `pip install .` installs the checkout; the same `errorbars compare`
 command works without `uv run --no-dev`. NumPy is the only runtime dependency.
 

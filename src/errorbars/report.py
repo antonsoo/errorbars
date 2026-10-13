@@ -6,14 +6,14 @@ import base64
 import hashlib
 import html
 import json
-import os
-import tempfile
 import unicodedata
+from collections.abc import Iterable
 from importlib.resources import files
 from pathlib import Path
 from string import Template
 
 from errorbars import __version__
+from errorbars._output import atomic_text_output
 from errorbars.review import ComparisonReview
 
 __all__ = ["comparison_html", "write_comparison_html"]
@@ -188,19 +188,14 @@ def comparison_html(review: ComparisonReview) -> str:
     )
 
 
-def write_comparison_html(review: ComparisonReview, path: str | Path) -> None:
-    """Write atomically; a failed replacement leaves the previous report intact."""
-    destination = Path(path)
+def write_comparison_html(
+    review: ComparisonReview, path: str | Path, *, protected: Iterable[str | Path] = (),
+) -> None:
+    """Write atomically, protecting caller-supplied source paths.
+
+    A review contains only display basenames, not enough to identify input files;
+    the CLI supplies their original paths separately. Failed writes keep the old report.
+    """
     content = comparison_html(review)
-    temporary: str | None = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", newline="\n", prefix=f".{destination.name}.",
-            suffix=".tmp", dir=destination.parent, delete=False,
-        ) as f:
-            temporary = f.name
-            f.write(content)
-        os.replace(temporary, destination)
-    finally:
-        if temporary is not None:
-            Path(temporary).unlink(missing_ok=True)
+    with atomic_text_output(path, protected=protected, newline="\n") as f:
+        f.write(content)

@@ -84,7 +84,7 @@ def test_failed_replacement_preserves_previous_report(tmp_path, monkeypatch):
     def fail(*args):
         raise OSError("cannot replace")
 
-    monkeypatch.setattr("errorbars.report.os.replace", fail)
+    monkeypatch.setattr("errorbars._output.os.replace", fail)
     with pytest.raises(OSError, match="cannot replace"):
         write_comparison_html(review, output)
     assert output.read_text() == "previous report"

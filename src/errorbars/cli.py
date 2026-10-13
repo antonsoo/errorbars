@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from errorbars import __version__
+from errorbars._output import atomic_text_output
 from errorbars._tables import Output, Table, visible
 from errorbars.inputs import load_inputs
 from errorbars.io import ColumnMap, EvalData, write_csv
@@ -44,6 +45,7 @@ def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
     for note in loaded.notes:
         print(f"note: {visible(note)}", file=sys.stderr)
     loaded.data.validate()
+    args.protected_inputs = loaded.protected_paths
     return loaded.data
 
 
@@ -275,7 +277,10 @@ def cmd_compare(args: argparse.Namespace) -> None:
             raise ValueError("--html output must end in .html or .htm")
         from errorbars.report import write_comparison_html
 
-        write_comparison_html(review, args.html)
+        write_comparison_html(
+            review, args.html,
+            protected=args.protected_inputs,
+        )
         print(f"wrote comparison evidence to {visible(args.html)}", file=sys.stderr)
     if review.comparison is None:
         raise ValueError(review.unavailable_reason)
@@ -391,7 +396,8 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
 
     if args.plot:
         svg = forest_plot_svg(lb, title=args.plot_title)
-        Path(args.plot).write_text(svg, encoding="utf-8")
+        with atomic_text_output(args.plot, protected=args.protected_inputs) as f:
+            f.write(svg)
 
     if args.json:
         _print_json({
@@ -583,7 +589,7 @@ def cmd_import(args: argparse.Namespace) -> None:
     args.scorer_value_col = "scorer_value"
     data = _load(args, model=args.model)
 
-    write_csv(data, args.output)
+    write_csv(data, args.output, protected=args.protected_inputs)
     n_models = len(data.models())
     print(f"wrote {len(data)} rows ({n_models} model{'s' if n_models != 1 else ''}) to {args.output}")
 

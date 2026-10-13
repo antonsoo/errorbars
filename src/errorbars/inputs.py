@@ -30,6 +30,7 @@ from pathlib import Path
 from errorbars.adapters.lm_eval import (
     load_lm_eval_samples,
     looks_like_samples,
+    model_metadata_path,
     samples_file_parts,
 )
 from errorbars.io import ColumnMap, EvalData, concat, load_csv, load_jsonl
@@ -46,6 +47,8 @@ class Loaded:
     files: list[Path] = field(default_factory=list)
     #: Things the caller should tell the user: an older run that was passed over.
     notes: list[str] = field(default_factory=list)
+    #: Input evidence that exports must preserve, including model-identity sidecars.
+    protected_paths: list[Path] = field(default_factory=list)
 
 
 def split_spec(spec: str) -> tuple[str | None, Path]:
@@ -172,6 +175,7 @@ def load_inputs(
         raise ValueError("no input files given")
     notes: list[str] = []
     files: list[Path] = []
+    protected_paths: list[Path] = []
     parts: list[tuple[str, EvalData]] = []
     scoring: dict[str, tuple[str, Path]] = {}
     inspected = False
@@ -181,6 +185,11 @@ def load_inputs(
         for one in paths:
             kind = _kind(one)
             data = _load_one(one, kind, name, model, columns, metric, filter_name, scorer, score_key)
+            protected_paths.append(one)
+            if kind == "lm-eval" and not (name or model):
+                metadata = model_metadata_path(one)
+                if metadata is not None and metadata.is_file():
+                    protected_paths.append(metadata)
             inspected = inspected or kind == "inspect"
             if kind == "lm-eval" and data.sources is not None:
                 for qid, source in zip(data.question_id, data.sources, strict=True):
@@ -197,4 +206,4 @@ def load_inputs(
             parts.append((str(one), data))
     if score_key is not None and not inspected:
         raise ValueError("--score-key selects a named value in Inspect logs; no Inspect log was supplied")
-    return Loaded(data=concat(parts), files=files, notes=notes)
+    return Loaded(data=concat(parts), files=files, notes=notes, protected_paths=protected_paths)

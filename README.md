@@ -283,6 +283,14 @@ errorbars compare greedy=logs/a.eval sampled=logs/b.eval    # two runs of one mo
 errorbars import lm-eval out -o all.csv         # or write the canonical CSV once and keep it
 ```
 
+In this source checkout, CSV, SVG and HTML exports refuse input files and their
+aliases, including a results sidecar used to infer an lm-eval model name.
+Exports replace their destination only after a complete write; a failed write
+keeps an earlier export intact. Symbolic-link destinations are refused. New
+and replaced files are private on POSIX (mode 0600).
+[Actual CLI overwrite and partial-write replay](studies/output-integrity/README.md).
+This correction is unreleased.
+
 - **lm-eval**: a `samples_<task>_<timestamp>.jsonl` file, a model's directory, or the whole
   `--output_path`. The samples file does not name its model; lm-eval writes it beside a
   `results_<timestamp>.json` that does, and that is where the name comes from. A samples file

@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Export integrity
+
+- Protect loaded inputs and inferred-model sidecars from CSV, SVG and HTML
+  exports, including aliases through symlinks, hard links and linked directories.
+  Previously, successful CLI commands could replace native logs or score tables
+  with their own output. Symbolic-link and nonregular destinations are refused.
+- Write all three formats through a private sibling file and replace the
+  destination only after a complete flushed write. Failed CSV/SVG writes no
+  longer leave truncated output in place of an earlier report. HTML retains
+  that existing guarantee and supports full-length destination filenames.
+  [Before/after CLI and artifact evidence](studies/output-integrity/README.md).
+
 ### Added
 
 - Select named values from dictionary-valued Inspect scores with `--score-key`

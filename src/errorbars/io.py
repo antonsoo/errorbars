@@ -14,10 +14,12 @@ import math
 import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
+from itertools import chain
 from numbers import Real
 from pathlib import Path
 from typing import Any
 
+from errorbars._output import atomic_text_output
 from errorbars.scoring import ScoringRule, compare_scoring, score_value_labels
 
 __all__ = [
@@ -596,13 +598,15 @@ def load_dataframe(df: Any, columns: ColumnMap | None = None) -> EvalData:
     return _from_records(records, columns)
 
 
-def write_csv(data: EvalData, path: str | Path) -> None:
+def write_csv(data: EvalData, path: str | Path, *, protected: Iterable[str | Path] = ()) -> None:
     """Write an ``EvalData`` back out as a canonical long-format CSV.
 
     Used by ``errorbars import`` to turn an adapter's output into a file
     ``summarize``/``compare``/``leaderboard`` can load directly. Only
     includes ``cluster_id`` / ``sample`` columns when the data actually has
-    them.
+    them. Recorded source paths and caller-supplied ``protected`` paths are
+    protected from replacement. A failed write
+    preserves the previous destination; successful outputs are private on POSIX.
     """
     data.validate()
     fieldnames = ["question_id", "model", "score"]
@@ -617,7 +621,8 @@ def write_csv(data: EvalData, path: str | Path) -> None:
         if any(rule is not None and rule.value_key is not None for rule in data.scoring):
             fieldnames.append("scorer_value")
 
-    with open(path, "w", newline="", encoding="utf-8") as f:
+    sources = (source.path for source in data.sources or [] if source is not None)
+    with atomic_text_output(path, protected=chain(protected, sources), newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for i in range(len(data)):

@@ -46,7 +46,10 @@ from pathlib import Path
 
 from errorbars.io import EvalData, RecordSource, ScoringRule, _coerce_score, _identifier, _unique_fields
 
-__all__ = ["load_lm_eval_samples", "infer_model_name", "samples_file_parts", "looks_like_samples"]
+__all__ = [
+    "load_lm_eval_samples", "infer_model_name", "model_metadata_path",
+    "samples_file_parts", "looks_like_samples",
+]
 
 # lm-eval's own convention (loggers/evaluation_tracker.py): samples files are
 # named "samples_<task>_<ISO timestamp>.jsonl". Searched rather than anchored
@@ -72,6 +75,13 @@ def looks_like_samples(record: object) -> bool:
     return isinstance(record, dict) and "doc_id" in record and isinstance(record.get("metrics"), list)
 
 
+def model_metadata_path(path: str | Path) -> Path | None:
+    """The matching-run sidecar used for model identity, if its name can be inferred."""
+    path = Path(path)
+    parts = samples_file_parts(path)
+    return path.with_name(f"results_{parts[1]}.json") if parts else None
+
+
 def infer_model_name(path: str | Path) -> str | None:
     """The model that wrote a samples file, from the ``results_*.json`` lm-eval put beside it.
 
@@ -79,13 +89,8 @@ def infer_model_name(path: str | Path) -> str | None:
     sibling with another timestamp does not identify these samples. Renamed
     samples need an explicit model name. ``None`` if identity is unavailable.
     """
-    path = Path(path)
-    parts = samples_file_parts(path)
-    candidates: list[Path] = []
-    if parts is not None:
-        same_run = path.with_name(f"results_{parts[1]}.json")
-        if same_run.is_file():
-            candidates = [same_run]
+    same_run = model_metadata_path(path)
+    candidates = [same_run] if same_run is not None and same_run.is_file() else []
     for candidate in candidates:
         try:
             with open(candidate, encoding="utf-8-sig") as f:

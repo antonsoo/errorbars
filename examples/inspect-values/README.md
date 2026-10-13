@@ -105,3 +105,28 @@ artifacts retain the appropriate selection after filtering. Complete JSON still
 contains all 24 questions. The inspected correctness state has no axe violations.
 No page errors, external requests, CSP violations or page overflow were observed.
 All four [screenshots](../../docs/assets/inspect-values/) were inspected.
+
+## Installed artifact verification
+
+[The receipt](evidence/verification.json) records a fresh archive of implementation
+commit `322f77554d168d0310da1786e99bbc55c37980a6`: dependency installation,
+Python lint/types/build, 666 Python checks, web lint/types/build, 691 calculator
+checks and 52 web browser checks. All tracked archive files remained unchanged.
+
+The separately built 179,214-byte wheel was installed into three new environments:
+
+| Installation | Python | Inspect AI | Result |
+| --- | --- | --- | --- |
+| Bare package | 3.12.12 | Absent | 30 standalone report browser checks; native import explains the required extra |
+| Minimum supported Python and SDK | 3.10.21 | 0.3.268 | All three selected vectors, 12 CLI commands, epoch counts and conflict refusals reproduced |
+| Fresh current SDK resolution | 3.12.12 | 0.3.279 | Same replay and refusals reproduced |
+
+All 26 installed package files matched the clean source. Both SDK installations
+produced four HTML reports byte-identical to the files exercised by the retained
+offline browser workflows. The wheel SHA-256 is
+`a24ae31d86e2380f56aec42fbea7e1fdbf1f8fd9c1e3b59e3445fd3322251ed1`.
+
+A small warm-process timing check of reading both 24-question native logs,
+selecting a value and comparing it took a median 59.8 ms across five calls.
+It excludes process startup and report rendering; it is not a large-log benchmark.
+The receipt records the environment and all five timings.

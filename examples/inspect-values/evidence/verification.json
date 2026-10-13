@@ -1,0 +1,420 @@
+{
+  "implementationCommit": "322f77554d168d0310da1786e99bbc55c37980a6",
+  "date": "2026-10-12",
+  "sourceOnly": true,
+  "cleanArchive": {
+    "trackedFilesUnchanged": 452,
+    "python": {
+      "checks": [
+        {
+          "name": "python-install",
+          "exit": 0
+        },
+        {
+          "name": "lint",
+          "exit": 0
+        },
+        {
+          "name": "typecheck",
+          "exit": 0
+        },
+        {
+          "name": "python-tests",
+          "exit": 0
+        },
+        {
+          "name": "package-build",
+          "exit": 0
+        }
+      ],
+      "python": "Python 3.12.12"
+    },
+    "web": {
+      "checks": [
+        {
+          "name": "web-install",
+          "exit": 0
+        },
+        {
+          "name": "web-lint",
+          "exit": 0
+        },
+        {
+          "name": "web-types",
+          "exit": 0
+        },
+        {
+          "name": "web-unit",
+          "exit": 0
+        },
+        {
+          "name": "web-build",
+          "exit": 0
+        }
+      ],
+      "node": "v24.21.0"
+    },
+    "pythonChecks": 666,
+    "webUnitChecks": 691,
+    "webBrowserChecks": 52,
+    "bareWheelReportBrowserChecks": 30
+  },
+  "installedArtifacts": {
+    "sourceCommit": "322f77554d168d0310da1786e99bbc55c37980a6",
+    "wheel": {
+      "file": "errorbars-0.2.4-py3-none-any.whl",
+      "bytes": 179214,
+      "sha256": "a24ae31d86e2380f56aec42fbea7e1fdbf1f8fd9c1e3b59e3445fd3322251ed1"
+    },
+    "sdist": {
+      "errorbars-0.2.4.tar.gz": {
+        "bytes": 243511,
+        "sha256": "c2f2ff7bdbe41d5e18863e34db33a5f654f3fc14f75f0fd2f7c629667f46d1db"
+      }
+    },
+    "environments": [
+      {
+        "environment": "bare",
+        "python": "Python 3.12.12",
+        "packageFilesMatch": 26,
+        "inspectAbsentHandled": true
+      },
+      {
+        "environment": "minimum",
+        "python": "3.10.21",
+        "inspect": "0.3.268",
+        "numpy": "2.2.6",
+        "packageFilesMatch": 26,
+        "replay": {
+          "synthetic": true,
+          "version": "0.2.4",
+          "cases": {
+            "correct": {
+              "n": 24,
+              "means": [
+                0.3333333333333333,
+                0.6666666666666666
+              ],
+              "difference": -0.3333333333333333,
+              "inference": {
+                "test": "mcnemar_exact",
+                "p_value": 0.0078125,
+                "ci_low": null,
+                "ci_high": null,
+                "confidence": null,
+                "mcnemar_applicable": true
+              },
+              "oracle_p": 0.0078125,
+              "canonicalPreservesSelection": true,
+              "cliCommandsPassed": 4
+            },
+            "concise": {
+              "n": 24,
+              "means": [
+                0.3333333333333333,
+                1.0
+              ],
+              "difference": -0.6666666666666666,
+              "inference": {
+                "test": "mcnemar_exact",
+                "p_value": 3.0517578125e-05,
+                "ci_low": null,
+                "ci_high": null,
+                "confidence": null,
+                "mcnemar_applicable": true
+              },
+              "oracle_p": 3.0517578125e-05,
+              "canonicalPreservesSelection": true,
+              "cliCommandsPassed": 4
+            },
+            "words": {
+              "n": 24,
+              "means": [
+                3.0,
+                1.0
+              ],
+              "difference": 2.0,
+              "inference": {
+                "test": "paired_t",
+                "p_value": 6.444485482269906e-07,
+                "ci_low": 1.3899861506102666,
+                "ci_high": 2.610013849389733,
+                "confidence": 0.95,
+                "mcnemar_applicable": false
+              },
+              "oracle_p": 6.444485482269885e-07,
+              "canonicalPreservesSelection": true,
+              "cliCommandsPassed": 4
+            }
+          },
+          "conflict": {
+            "scorer": "answer_dimensions",
+            "values": [
+              "correct",
+              "concise"
+            ],
+            "conflictingQuestions": 24,
+            "inferenceAvailable": false,
+            "canonicalCompareExit": 1,
+            "canonicalLeaderboardExit": 1
+          },
+          "epochs": {
+            "mean": 0.6666666666666666,
+            "se": 0.09829463743659811,
+            "ci_low": 0.4740127174175119,
+            "ci_high": 0.8593206159158213,
+            "confidence": 0.95,
+            "method": "clt",
+            "n": 24,
+            "model": "mockllm/model",
+            "is_binary": true,
+            "analysis_unit": "question",
+            "n_questions": 24,
+            "n_observations": 48,
+            "score_values": [
+              {
+                "model": "mockllm/model",
+                "scorer": "inspect:answer_dimensions",
+                "scorer_value": "correct"
+              }
+            ],
+            "within_between": {
+              "var_within": 0.0,
+              "var_between": 0.23188405797101444
+            }
+          },
+          "implementationSha256": {
+            "__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+            "_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+            "_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+            "adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+            "adapters/_inspect_integrity.py": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+            "adapters/inspect_ai.py": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+            "adapters/lm_eval.py": "30b13b08559c90ec4ee91aa0b8c55c325ab566bd071d5788d2281d891b21923c",
+            "cli.py": "f6f0ef8a71be59cd71f633e20d1428b32cc3b3292013dad506d67adc6ec3dabb",
+            "compare.py": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+            "inputs.py": "84318301c591f5927db8e6393ec96a0bbdcff54e8a792a954bbd0227130ce866",
+            "io.py": "2b2f625363b528196890d6c1fd4d0dca88d8487f511240fdc05bff9787039224",
+            "leaderboard.py": "192b537265dbe614d13755d9ba8728827c5bb1f9d1b93bfb9cbf750fc4fb94b5",
+            "plot.py": "96ee5736a7a86bc4b50eb3fbb09f69f2c9988be284fa0d1c04667858808bf17c",
+            "power.py": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+            "report.py": "d518b24560e4d651f03caaa3b37ffba21a26ce6d04ea2a3ebf3c7d77057aa9d9",
+            "report_assets/report.css": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+            "report_assets/report.js": "ccd6ce54773b8687e8f284f1bea15898e06a70116c14fb277bfb7daeec7dca10",
+            "report_assets/template.html": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+            "review.py": "5582ee6884d230fa38bce8d40f0d165cf75d87573d7d599d008a9787c9e2544e",
+            "scoring.py": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+            "stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+          }
+        },
+        "html": [
+          {
+            "report": "correct",
+            "bytes": 198682,
+            "sha256": "8571bc04f581cf7bcef11717669927cf805d312fefaad1b9e64b163c2ecc14e5",
+            "matchesOfflineTestedReport": true
+          },
+          {
+            "report": "concise",
+            "bytes": 198889,
+            "sha256": "c506a3b60955a7483f94c9d12ae6bc8718dad1e12737c679ef038c98b079cdac",
+            "matchesOfflineTestedReport": true
+          },
+          {
+            "report": "words",
+            "bytes": 198360,
+            "sha256": "5699019c3b8e52480d6c866fdecfdf7a6b2ccbac548c268151721237ebe265b6",
+            "matchesOfflineTestedReport": true
+          },
+          {
+            "report": "conflict",
+            "bytes": 198257,
+            "sha256": "f200a667e048a1c5ae8b89f3b38abf356e6f71b062cf1f22dd00e4a808fe0c97",
+            "matchesOfflineTestedReport": true
+          }
+        ]
+      },
+      {
+        "environment": "current",
+        "python": "3.12.12",
+        "inspect": "0.3.279",
+        "numpy": "2.5.4",
+        "packageFilesMatch": 26,
+        "replay": {
+          "synthetic": true,
+          "version": "0.2.4",
+          "cases": {
+            "correct": {
+              "n": 24,
+              "means": [
+                0.3333333333333333,
+                0.6666666666666666
+              ],
+              "difference": -0.3333333333333333,
+              "inference": {
+                "test": "mcnemar_exact",
+                "p_value": 0.0078125,
+                "ci_low": null,
+                "ci_high": null,
+                "confidence": null,
+                "mcnemar_applicable": true
+              },
+              "oracle_p": 0.0078125,
+              "canonicalPreservesSelection": true,
+              "cliCommandsPassed": 4
+            },
+            "concise": {
+              "n": 24,
+              "means": [
+                0.3333333333333333,
+                1.0
+              ],
+              "difference": -0.6666666666666666,
+              "inference": {
+                "test": "mcnemar_exact",
+                "p_value": 3.0517578125e-05,
+                "ci_low": null,
+                "ci_high": null,
+                "confidence": null,
+                "mcnemar_applicable": true
+              },
+              "oracle_p": 3.0517578125e-05,
+              "canonicalPreservesSelection": true,
+              "cliCommandsPassed": 4
+            },
+            "words": {
+              "n": 24,
+              "means": [
+                3.0,
+                1.0
+              ],
+              "difference": 2.0,
+              "inference": {
+                "test": "paired_t",
+                "p_value": 6.444485482269906e-07,
+                "ci_low": 1.3899861506102666,
+                "ci_high": 2.610013849389733,
+                "confidence": 0.95,
+                "mcnemar_applicable": false
+              },
+              "oracle_p": 6.444485482269885e-07,
+              "canonicalPreservesSelection": true,
+              "cliCommandsPassed": 4
+            }
+          },
+          "conflict": {
+            "scorer": "answer_dimensions",
+            "values": [
+              "correct",
+              "concise"
+            ],
+            "conflictingQuestions": 24,
+            "inferenceAvailable": false,
+            "canonicalCompareExit": 1,
+            "canonicalLeaderboardExit": 1
+          },
+          "epochs": {
+            "mean": 0.6666666666666666,
+            "se": 0.09829463743659811,
+            "ci_low": 0.4740127174175119,
+            "ci_high": 0.8593206159158213,
+            "confidence": 0.95,
+            "method": "clt",
+            "n": 24,
+            "model": "mockllm/model",
+            "is_binary": true,
+            "analysis_unit": "question",
+            "n_questions": 24,
+            "n_observations": 48,
+            "score_values": [
+              {
+                "model": "mockllm/model",
+                "scorer": "inspect:answer_dimensions",
+                "scorer_value": "correct"
+              }
+            ],
+            "within_between": {
+              "var_within": 0.0,
+              "var_between": 0.23188405797101444
+            }
+          },
+          "implementationSha256": {
+            "__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+            "_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+            "_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+            "adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+            "adapters/_inspect_integrity.py": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+            "adapters/inspect_ai.py": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+            "adapters/lm_eval.py": "30b13b08559c90ec4ee91aa0b8c55c325ab566bd071d5788d2281d891b21923c",
+            "cli.py": "f6f0ef8a71be59cd71f633e20d1428b32cc3b3292013dad506d67adc6ec3dabb",
+            "compare.py": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+            "inputs.py": "84318301c591f5927db8e6393ec96a0bbdcff54e8a792a954bbd0227130ce866",
+            "io.py": "2b2f625363b528196890d6c1fd4d0dca88d8487f511240fdc05bff9787039224",
+            "leaderboard.py": "192b537265dbe614d13755d9ba8728827c5bb1f9d1b93bfb9cbf750fc4fb94b5",
+            "plot.py": "96ee5736a7a86bc4b50eb3fbb09f69f2c9988be284fa0d1c04667858808bf17c",
+            "power.py": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+            "report.py": "d518b24560e4d651f03caaa3b37ffba21a26ce6d04ea2a3ebf3c7d77057aa9d9",
+            "report_assets/report.css": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+            "report_assets/report.js": "ccd6ce54773b8687e8f284f1bea15898e06a70116c14fb277bfb7daeec7dca10",
+            "report_assets/template.html": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+            "review.py": "5582ee6884d230fa38bce8d40f0d165cf75d87573d7d599d008a9787c9e2544e",
+            "scoring.py": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+            "stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+          }
+        },
+        "html": [
+          {
+            "report": "correct",
+            "bytes": 198682,
+            "sha256": "8571bc04f581cf7bcef11717669927cf805d312fefaad1b9e64b163c2ecc14e5",
+            "matchesOfflineTestedReport": true
+          },
+          {
+            "report": "concise",
+            "bytes": 198889,
+            "sha256": "c506a3b60955a7483f94c9d12ae6bc8718dad1e12737c679ef038c98b079cdac",
+            "matchesOfflineTestedReport": true
+          },
+          {
+            "report": "words",
+            "bytes": 198360,
+            "sha256": "5699019c3b8e52480d6c866fdecfdf7a6b2ccbac548c268151721237ebe265b6",
+            "matchesOfflineTestedReport": true
+          },
+          {
+            "report": "conflict",
+            "bytes": 198257,
+            "sha256": "f200a667e048a1c5ae8b89f3b38abf356e6f71b062cf1f22dd00e4a808fe0c97",
+            "matchesOfflineTestedReport": true
+          }
+        ]
+      }
+    ]
+  },
+  "offlineReportWorkflows": 16,
+  "downloads": 32,
+  "installedHtmlMatchesBrowserEvidence": true,
+  "timing": {
+    "workload": "Two retained synthetic 24-question Inspect logs, native read/selection and comparison. Five measured calls after one warm-up; no HTML rendering or process startup.",
+    "samplesMs": [
+      66.63421200937591,
+      59.81674400391057,
+      59.276966989273205,
+      59.18904399732128,
+      67.04987198463641
+    ],
+    "medianMs": 59.81674400391057,
+    "environment": {
+      "python": "3.12.12",
+      "inspect": "0.3.268",
+      "platform": "Linux 6.18.54.1-microsoft-standard-WSL2",
+      "logicalCpus": 14
+    }
+  },
+  "limitations": [
+    "The SDK captures use synthetic questions and deterministic responses, not a model-quality evaluation.",
+    "Named values are exact nonblank top-level keys; nested values and incomplete selected cohorts are rejected.",
+    "Matching declarations do not establish equal scoring code, external grader state or units.",
+    "A local wheel was built and installed; the package version remains 0.2.4 and no registry release or hosted deployment was performed."
+  ]
+}

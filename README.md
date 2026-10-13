@@ -425,9 +425,14 @@ Full derivations with references are in [`docs/formulas.md`](docs/formulas.md):
   checks variance on later draws of the same questions; it does not validate power on new questions.
   The equal-variance normal approximation still needs defensible pilot assumptions, and pairing
   correlation must describe the averages at the requested repeat count. This repair is unreleased.
-- Leaderboard groups are maximal cliques of the "not significantly different" graph, which is the
-  statistically direct approach — it can produce a model in more than one group, unlike a
-  minimal-letters heuristic (e.g. R's `multcompView`).
+- Leaderboard groups are maximal cliques of the "not significantly different" graph;
+  models can appear in several overlapping groups. Their count can be exponential.
+  The source checkout bounds enumeration by 4,096 groups and 50,000 search states.
+  If that summary cannot finish, `groups` is `null`, `group_status` explains why,
+  and all model estimates, pairwise tests and exact rank comparisons remain
+  available. Non-significance does not establish equivalence.
+  [Reproduction, JSON contract and limits](studies/group-enumeration/README.md).
+  This repair is unreleased.
 - [Verification evidence](docs/verification-2026-10-04.md) records the current planning
   checks, supported environments, browser coverage, and limits of the audit.
 - [Data-integrity verification](docs/data-integrity-2026-10-04.md) records the subsequent

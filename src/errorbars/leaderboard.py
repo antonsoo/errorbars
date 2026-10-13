@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from itertools import combinations
-from typing import Any
+from typing import Any, Literal
 
 from errorbars.compare import FEW_CLUSTER_DOF, PairedComparison, PairedTest, paired_compare, select_inference
 from errorbars.io import EvalData
@@ -25,6 +25,18 @@ __all__ = [
     "LeaderboardEntry", "PairwiseResult", "UntestedPair", "Leaderboard",
     "build_leaderboard", "holm_correction", "rank_ranges",
 ]
+
+# A modest number of models can have millions of overlapping maximal groups.
+# These are report summaries; resource exhaustion must not discard inference.
+_MAX_GROUPS = 4096
+_MAX_GROUP_SEARCH_STATES = 50_000
+GroupStatus = Literal["complete", "omitted_group_limit", "omitted_search_limit"]
+
+
+class _GroupEnumerationLimitError(RuntimeError):
+    def __init__(self, status: GroupStatus) -> None:
+        super().__init__(status)
+        self.status = status
 
 
 def rank_ranges(ranks: list[int]) -> str:
@@ -146,10 +158,11 @@ class UntestedPair:
 class Leaderboard:
     entries: list[LeaderboardEntry]  # sorted by mean, descending
     pairwise: list[PairwiseResult]
-    groups: list[list[str]]  # each group: models not significantly different (Holm alpha)
+    groups: list[list[str]] | None  # Complete maximal groups, or unavailable; never a partial list.
     alpha: float
     untested_pairs: list[UntestedPair] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
+    group_status: GroupStatus = "complete"
 
     def rank_comparisons(self) -> dict[str, dict[str, list[int]]]:
         """Exact other-model ranks by decision; non-significance is not transitive.
@@ -177,6 +190,10 @@ class Leaderboard:
             "entries": [e.as_dict() for e in self.entries],
             "pairwise": [p.as_dict() for p in self.pairwise],
             "groups": self.groups,
+            "group_status": self.group_status,
+            **({"group_limits": {"max_groups": _MAX_GROUPS,
+                                  "max_search_states": _MAX_GROUP_SEARCH_STATES}}
+               if self.group_status != "complete" else {}),
             "alpha": self.alpha,
             "rank_comparisons": self.rank_comparisons(),
             "untested_pairs": [asdict(pair) for pair in self.untested_pairs],
@@ -184,7 +201,10 @@ class Leaderboard:
         }
 
 
-def _maximal_cliques(nodes: list[str], edges: set[frozenset[str]]) -> list[list[str]]:
+def _maximal_cliques(
+    nodes: list[str], edges: set[frozenset[str]], *,
+    max_groups: int = _MAX_GROUPS, max_search_states: int = _MAX_GROUP_SEARCH_STATES,
+) -> list[list[str]]:
     """Bron-Kerbosch with pivoting (Tomita, Tanaka & Takahashi 2006).
 
     A leaderboard whose top entries are tied is close to one big clique, the
@@ -192,6 +212,9 @@ def _maximal_cliques(nodes: list[str], edges: set[frozenset[str]]) -> list[list[
     SWE-bench Verified submissions and did not finish for 47. Branching only
     on candidates outside the pivot's neighbourhood visits each maximal clique
     about once. Iterative, so a large tied group cannot exhaust the stack.
+    The number of maximal cliques itself can still be exponential. Count both
+    completed groups and visited search states; refuse the entire summary if
+    either budget is exceeded, rather than publishing a biased partial list.
     """
     order = {v: i for i, v in enumerate(nodes)}
     adj: dict[str, set[str]] = {v: set() for v in nodes}
@@ -202,10 +225,16 @@ def _maximal_cliques(nodes: list[str], edges: set[frozenset[str]]) -> list[list[
 
     cliques: list[set[str]] = []
     stack: list[tuple[set[str], set[str], set[str]]] = [(set(), set(nodes), set())]
+    searched = 0
     while stack:
+        if searched >= max_search_states:
+            raise _GroupEnumerationLimitError("omitted_search_limit")
+        searched += 1
         r, p, x = stack.pop()
         if not p:
             if not x:
+                if len(cliques) >= max_groups:
+                    raise _GroupEnumerationLimitError("omitted_group_limit")
                 cliques.append(r)
             continue
         pivot = max(p | x, key=lambda u: (len(p & adj[u]), -order[u]))
@@ -244,6 +273,8 @@ def build_leaderboard(
     all selected raw p-values, including boards with mixed score types.
     A pair sharing fewer than two questions or fewer than two independent
     clusters remains untested; it does not prevent other pairs from being tested.
+    If maximal group enumeration exceeds its count or search budget, groups is
+    None and group_status explains the omission. All inference remains complete.
     """
     data.validate()
     models = data.models()
@@ -366,9 +397,23 @@ def build_leaderboard(
     ]
 
     edges = {frozenset((pr.model_a, pr.model_b)) for pr in pairwise if pr.p_holm >= alpha}
-    groups = _maximal_cliques(order, edges)
-
     warnings = []
+    groups: list[list[str]] | None
+    group_status: GroupStatus = "complete"
+    try:
+        groups = _maximal_cliques(order, edges)
+    except _GroupEnumerationLimitError as exc:
+        groups, group_status = None, exc.status
+        limit = (
+            f"exceeded the {_MAX_GROUPS:,}-group summary limit"
+            if group_status == "omitted_group_limit"
+            else f"reached the {_MAX_GROUP_SEARCH_STATES:,}-state search limit"
+        )
+        warnings.append(
+            f"Overlapping non-significance groups were omitted because enumeration {limit}. "
+            "Every model estimate, pairwise test and exact rank comparison is retained; "
+            "this does not change any significance decision."
+        )
     if data.scoring is not None:
         warnings.append(
             "Scoring checks reject conflicting recorded names or configurations on shared questions. "
@@ -397,7 +442,7 @@ def build_leaderboard(
         )
     return Leaderboard(
         entries=entries, pairwise=pairwise, groups=groups, alpha=alpha,
-        untested_pairs=untested_pairs, warnings=warnings,
+        untested_pairs=untested_pairs, warnings=warnings, group_status=group_status,
     )
 
 

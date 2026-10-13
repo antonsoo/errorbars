@@ -462,7 +462,9 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
     out.note(
         "'not separated: ranks' lists only other models whose paired test has "
         f"Holm-adjusted p >= {args.alpha}. Gaps are preserved; '-' means none. "
-        "Non-significance does not establish equivalence. The overlapping groups remain in --json.",
+        "Non-significance does not establish equivalence. "
+        + ("The overlapping groups remain in --json." if lb.groups is not None
+           else "Complete pairwise results remain in --json."),
         style="dim",
     )
     for note in lb.warnings:

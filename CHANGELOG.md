@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Leaderboard summary limits
+
+- Bound maximal-group enumeration by 4,096 completed groups and 50,000 search
+  states. A 50-model score table can have over 33 million overlapping groups;
+  constructing them previously exhausted memory before the CLI printed any
+  report. Model estimates, all pairwise tests, Holm correction, exact rank
+  comparisons and SVG export now survive an omitted group summary.
+- `Leaderboard.groups` can be `None` (`null` in JSON). `group_status` is
+  `complete`, `omitted_group_limit` or `omitted_search_limit`; an omitted
+  summary also includes `group_limits` in JSON and an explanatory warning.
+  A list always contains the complete maximal-group enumeration, never an
+  arbitrary first subset. [Reproduction and evidence](studies/group-enumeration/README.md).
+
 ### Export integrity
 
 - Protect loaded inputs and inferred-model sidecars from CSV, SVG and HTML

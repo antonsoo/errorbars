@@ -1,0 +1,25 @@
+{
+  "case": 25,
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"elapsedSeconds\":%e,\"peakRssKiB\":%M,\"exitStatus\":%x}",
+    "-o",
+    "<scratch>/before-25.time",
+    "<checkout>/.venv/bin/python",
+    "-m",
+    "errorbars.cli",
+    "leaderboard",
+    "<scratch>/pairs-25.csv"
+  ],
+  "returncode": 1,
+  "timeout": false,
+  "seconds": 5.5292603929992765,
+  "addressSpaceLimitMiB": 512,
+  "outputLimitMiB": 8,
+  "stdoutBytes": 0,
+  "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"<scratch>/before/src/errorbars/cli.py\", line 719, in <module>\n  File \"<scratch>/before/src/errorbars/cli.py\", line 697, in main\n  File \"<scratch>/before/src/errorbars/cli.py\", line 707, in _run\n  File \"<scratch>/before/src/errorbars/cli.py\", line 395, in cmd_leaderboard\n  File \"<scratch>/before/src/errorbars/leaderboard.py\", line 369, in build_leaderboard\n  File \"<scratch>/before/src/errorbars/leaderboard.py\", line 213, in _maximal_cliques\nMemoryError\n",
+  "resource": "Command exited with non-zero status 1\n{\"elapsedSeconds\":5.52,\"peakRssKiB\":406300,\"exitStatus\":1}\n",
+  "baselineCommit": "f4dd23faf62c06cfbe04b03a6bd565de4b15bc17",
+  "inputSha256": "13006309bb72d0057a428a841bb29bfda68bf8b593e6b3ab3b60ffa7df3521fb"
+}

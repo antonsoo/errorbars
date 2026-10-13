@@ -1,0 +1,45 @@
+{
+  "harnessPython": "3.12.12",
+  "cliPython": "Python 3.12.12",
+  "results": [
+    {
+      "case": "pairs-8-json",
+      "inputBytes": 376857,
+      "inputSha256": "8c4d385368c5aae03df3931254e23096ccf40b41d0f127a7e391a3e4931551f7",
+      "exit": 0,
+      "seconds": 2.772004006023053,
+      "resource": {
+        "seconds": 2.6,
+        "peakRssKiB": 48080,
+        "exit": 0
+      },
+      "outputSha256": "b66e38c34e9c8f95cbe20c30c132846ea5de2be020ff98daad6068d687184dc6",
+      "pairwiseExactRationalChecks": 120,
+      "models": 16,
+      "mathematicalMaximalGroups": 256,
+      "groupStatus": "complete",
+      "reportSha256WithoutGroupStatus": "a59f586ce6388fe7889047cae35d843ca77a9c1e769b41283592d092804a07e1"
+    },
+    {
+      "case": "pairs-12-json",
+      "inputBytes": 565273,
+      "inputSha256": "a224be651fe0bfbfcdd3845ce565d0817398fefbbeda548f2a0f7301c47690d4",
+      "exit": 0,
+      "seconds": 2.9060752550140023,
+      "resource": {
+        "seconds": 2.56,
+        "peakRssKiB": 57512,
+        "exit": 0
+      },
+      "outputSha256": "08359115fb8a4d3dffed83fa78caaca5576f53c2f5f55825ddc844ba5a30657c",
+      "pairwiseExactRationalChecks": 276,
+      "models": 24,
+      "mathematicalMaximalGroups": 4096,
+      "groupStatus": "complete",
+      "reportSha256WithoutGroupStatus": "1388b4f5f86396ad6935d05ad65ab0707707ce81ef8039c7918ed02c167c9ecc"
+    }
+  ],
+  "addressSpaceLimitMiB": 512,
+  "outputLimitMiB": 8,
+  "note": "Single CLI observations under Linux resource limits, not representative production timings. Every binary pair is checked using exact integer binomial tails and rational Holm correction."
+}

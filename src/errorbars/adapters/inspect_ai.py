@@ -24,7 +24,9 @@ from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier
 __all__ = ["load_inspect_log"]
 
 
-def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
+def load_inspect_log(
+    path: str | Path, scorer: str | None = None, *, score_key: str | None = None,
+) -> EvalData:
     """Load per-sample scores from an Inspect AI ``.eval`` or ``.json`` log.
 
     Args:
@@ -32,6 +34,8 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
         scorer: which scorer's score to use, for tasks with more than one
             scorer. Defaults to the only scorer, and raises if a sample has
             more than one and none was specified.
+        score_key: exact top-level key in a dictionary-valued score. Required
+            for named values; the selected scalar must exist on every sample.
 
     Repeated ``--epochs`` sampling of the same input is captured in the
     ``sample`` column (Inspect's per-sample ``epoch`` number), so
@@ -42,6 +46,8 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     generated message IDs and solver conversations. Changed dataset inputs
     conservatively block pairing; unsupported input kinds stay unchecked.
     """
+    if score_key is not None and (not isinstance(score_key, str) or not score_key.strip()):
+        raise ValueError("score_key (--score-key) must be a nonempty named value")
     try:
         from inspect_ai.log import read_eval_log
         from inspect_ai.scorer import CORRECT, INCORRECT, NOANSWER, PARTIAL, value_to_float
@@ -98,12 +104,30 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
                 "select one scorer present on every sample with scorer=... (--scorer)"
             )
         value = s.scores[key].value
+        if score_key is not None:
+            if not isinstance(value, dict):
+                raise ValueError(
+                    f"{path}: sample {s.id!r}: scorer {key!r} is not dictionary-valued; "
+                    f"cannot select --score-key {score_key!r}"
+                )
+            if score_key not in value:
+                raise ValueError(
+                    f"{path}: sample {s.id!r}: scorer {key!r} has no named value {score_key!r} "
+                    f"(has: {list(value)}); selected values must exist on every sample"
+                )
+            value = value[score_key]
         # value_to_float turns anything it can't read into 0.0. A scorer with several named
         # values has no single score to read, so say so instead of reporting a mean of 0.
-        if isinstance(value, (dict, list)):
+        if isinstance(value, dict) and score_key is None:
             raise ValueError(
-                f"{path}: sample {s.id!r}: scorer {key!r} returns {type(value).__name__} values "
-                f"({value!r}), not one score per sample"
+                f"{path}: sample {s.id!r}: scorer {key!r} returns dict values "
+                f"(keys: {list(value)}); select one with score_key=... (--score-key)"
+            )
+        if isinstance(value, (dict, list)):
+            selected = f", value {score_key!r}" if score_key is not None else ""
+            raise ValueError(
+                f"{path}: sample {s.id!r}: scorer {key!r}{selected}: "
+                f"returns {type(value).__name__} values, not one scalar score per sample"
             )
         # Inspect's fallback is zero even for None or an unrecognized string. Only pass
         # supported codes/numbers to that converter; an unknown grade is not a wrong answer.
@@ -114,7 +138,11 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
                 _coerce_score(value, 1)
             number = _coerce_score(to_float(value), 1)
         except ValueError as exc:
-            raise ValueError(f"{path}: sample {s.id!r}: unsupported or nonfinite grade {value!r}") from exc
+            selected = f", value {score_key!r}" if score_key is not None else ""
+            raise ValueError(
+                f"{path}: sample {s.id!r}: scorer {key!r}{selected}: "
+                f"unsupported or nonfinite grade {value!r}"
+            ) from exc
         question_id.append(_identifier(s.id, "question_id", len(question_id) + 1))
         model_col.append(model)
         score.append(number)
@@ -129,7 +157,7 @@ def load_inspect_log(path: str | Path, scorer: str | None = None) -> EvalData:
     data = EvalData(
         question_id=question_id, model=model_col, score=score, sample=sample_col, sources=sources,
         question_hash=signatures if any(signatures) else None,
-        scoring=[scoring_rule(log, selected_scorer, path)] * len(score),
+        scoring=[scoring_rule(log, selected_scorer, path, score_key)] * len(score),
     )
     data.validate()
     return data

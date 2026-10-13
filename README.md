@@ -312,6 +312,23 @@ three times (`score-first`, `maj@8`, `maj@64`), and reading those as three times
 shrink every error bar, so the import stops and asks. `--scorer` (Inspect) picks one scorer for
 tasks with more than one.
 
+**Named Inspect values are supported in this checkout (unreleased).** A single
+scorer can return, for example, correctness, brevity and word count for every
+answer. Select the exact top-level key with `--score-key`; errorbars does not
+choose the first key or turn the dictionary into a zero:
+
+```sh
+errorbars compare A=examples/inspect-values/logs/baseline.eval B=examples/inspect-values/logs/candidate.eval --score-key correct --html correct.html
+errorbars compare A=examples/inspect-values/logs/baseline.eval B=examples/inspect-values/logs/candidate.eval --score-key words --json
+```
+
+These retained Inspect runs contain controlled synthetic responses, not model
+performance results. They exercise three grading dimensions and two epochs.
+The selected value appears in CLI output, comparison evidence and CSV exports;
+comparing different dimensions blocks inference even when scorer names and
+parameters match. A missing or unscored selected value rejects the import.
+[Reproduction and independent checks](examples/inspect-values/README.md).
+
 Both adapters were built and tested against real, unedited output — not from memory: **lm-eval
 0.4.13** (`lm_eval run --model dummy --tasks copa --limit 20 --log_samples ...`, a multi-metric
 `arc_easy` run, a three-filter `gsm8k_cot_self_consistency` run, and the two-model output directory

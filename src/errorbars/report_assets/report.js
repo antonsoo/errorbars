@@ -248,7 +248,7 @@
     root.append(node("p", q.identity === "conflicting"
       ? "Conflicting question content: this id has different known signatures. The paired result is withheld for the entire comparison."
       : q.scoring === "conflicting"
-      ? "Conflicting scoring rules: the recorded scorer names or configurations differ. Re-score both runs under the same rule before comparing."
+      ? "Conflicting scoring rules: the recorded scorer names, selected values or configurations differ. Select the same value and scoring rule before comparing."
       : q.difference === null ? "Excluded from the paired estimate: one model has no observed score. Missing is not zero."
       : `A - B = ${number(q.difference, true)}. Each model's score is the mean of its observed draws.`, "caption"));
     root.append(node("p", `Question identity: ${q.identity}.`, "caption"));
@@ -279,6 +279,7 @@
         if (obs.metric !== null) source.append(node("span", `Score: ${obs.metric}`, "source-meta"));
         if (obs.filter !== null) source.append(node("span", `Filter: ${obs.filter}`, "source-meta"));
         if (obs.scorer) source.append(node("span", `Scorer: ${obs.scorer}`, "source-meta"));
+        if (obs.scorer_value != null) source.append(node("span", `Selected value: ${obs.scorer_value}`, "source-meta"));
         if (obs.scorer_config) {
           const proof = node("details"); proof.append(node("summary", "Scorer configuration fingerprint"));
           proof.append(node("p", obs.scorer_config, "caption")); source.append(proof);
@@ -346,9 +347,15 @@
   byId("download-csv").addEventListener("click", () => {
     const header = ["question_id", "cluster_id", "presence", "identity", "scoring", "model_a", "model_b", "mean_a", "mean_b",
       "difference_a_minus_b", "n_observations_a", "n_observations_b"];
+    const named = data.score_values?.length > 0;
+    if (named) header.push("scorer_values_a", "scorer_values_b");
+    function values(observations) {
+      return JSON.stringify([...new Set(observations.map(obs => JSON.stringify({ scorer: obs.scorer, value: obs.scorer_value ?? null })))].map(text => JSON.parse(text)));
+    }
     const lines = [header.map(csvCell).join(",")];
     for (const q of rows) lines.push([q.question_id, q.cluster_id, q.presence, q.identity, q.scoring, data.model_a, data.model_b,
-      q.mean_a, q.mean_b, q.difference, q.observations_a.length, q.observations_b.length].map(csvCell).join(","));
+      q.mean_a, q.mean_b, q.difference, q.observations_a.length, q.observations_b.length,
+      ...(named ? [values(q.observations_a), values(q.observations_b)] : [])].map(csvCell).join(","));
     download(lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8", "errorbars-questions.csv");
   });
   byId("search").addEventListener("input", changeFilters);

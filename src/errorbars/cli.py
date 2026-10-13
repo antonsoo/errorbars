@@ -37,6 +37,7 @@ def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
             metric=args.metric,
             filter_name=args.filter,
             scorer=args.scorer,
+            score_key=args.score_key,
         )
     except ImportError as exc:
         raise SystemExit(f"error: {exc}") from exc
@@ -62,6 +63,9 @@ def _input_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument("--question-hash-col", default="question_hash")
     sp.add_argument("--scorer-col", default="scorer", help="recorded scoring-rule name in CSV/JSONL")
     sp.add_argument("--scorer-config-col", default="scorer_config", help="scorer configuration fingerprint")
+    sp.add_argument(
+        "--scorer-value-col", default="scorer_value", help="recorded named score value in CSV/JSONL",
+    )
     _harness_args(sp)
 
 
@@ -77,6 +81,10 @@ def _harness_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument(
         "--scorer", default=None, help="Inspect scorer to use (default: the only one, if unambiguous)"
     )
+    sp.add_argument(
+        "--score-key", default=None,
+        help="exact top-level named value in an Inspect dictionary-valued score (no default)",
+    )
 
 
 def _columns_from(args: argparse.Namespace) -> ColumnMap:
@@ -89,11 +97,18 @@ def _columns_from(args: argparse.Namespace) -> ColumnMap:
         question_hash=args.question_hash_col,
         scorer=args.scorer_col,
         scorer_config=args.scorer_config_col,
+        scorer_value=args.scorer_value_col,
     )
 
 
 def _print_json(obj: Any) -> None:
     print(json.dumps(obj, indent=2, default=str, allow_nan=False))
+
+
+def _print_score_values(out: Output, data: EvalData) -> None:
+    for item in data.score_values():
+        value = repr(item['scorer_value']) if item['scorer_value'] is not None else "whole scalar score"
+        out.note(f"{item['model']}: {item['scorer']}, value {value}", style="dim")
 
 
 def _has_clusters(data: EvalData) -> bool:
@@ -148,6 +163,8 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     result["analysis_unit"] = "question"
     result["n_questions"] = len(scores)
     result["n_observations"] = len(sub)
+    if sub.score_values():
+        result["score_values"] = sub.score_values()
 
     cluster_info = None
     if _has_clusters(sub) and sub.cluster_id:
@@ -195,6 +212,7 @@ def cmd_summarize(args: argparse.Namespace) -> None:
 
     out = Output()
     table = Table(title=f"summarize: {result['model']}")
+    _print_score_values(out, sub)
     table.add_column("metric")
     table.add_column("value", justify="right")
     table.add_row("n", str(est.n))
@@ -271,6 +289,7 @@ def cmd_compare(args: argparse.Namespace) -> None:
             {
                 "model_a": args.model_a,
                 "model_b": args.model_b,
+                **({"score_values": review.score_values} if review.score_values else {}),
                 **comp.as_dict(),
                 "inference": inference.as_dict(),
                 "n_only_a": only_a,
@@ -292,6 +311,8 @@ def cmd_compare(args: argparse.Namespace) -> None:
 
     out = Output()
     table = Table(title=f"compare: {args.model_a} vs {args.model_b}")
+    _print_score_values(out, data.filter_model(args.model_a))
+    _print_score_values(out, data.filter_model(args.model_b))
     table.add_column("metric")
     table.add_column("value", justify="right")
     table.add_row("n (shared questions)", str(comp.n))
@@ -373,11 +394,14 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
         Path(args.plot).write_text(svg, encoding="utf-8")
 
     if args.json:
-        _print_json(lb.as_dict())
+        _print_json({
+            **lb.as_dict(), **({"score_values": data.score_values()} if data.score_values() else {}),
+        })
         return
 
     out = Output()
     table = Table(title="leaderboard")
+    _print_score_values(out, data)
     table.add_column("rank", justify="right")
     table.add_column("model")
     table.add_column("mean", justify="right")
@@ -556,6 +580,7 @@ def cmd_import(args: argparse.Namespace) -> None:
     args.cluster_col, args.sample_col = "cluster_id", "sample"
     args.question_hash_col = "question_hash"
     args.scorer_col, args.scorer_config_col = "scorer", "scorer_config"
+    args.scorer_value_col = "scorer_value"
     data = _load(args, model=args.model)
 
     write_csv(data, args.output)

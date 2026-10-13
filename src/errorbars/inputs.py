@@ -122,6 +122,7 @@ def _load_one(
     metric: str | None,
     filter_name: str | None,
     scorer: str | None,
+    score_key: str | None,
 ) -> EvalData:
     """One file. ``name`` is the NAME of a NAME=PATH given for it; ``model`` the name given
     for every harness log."""
@@ -139,7 +140,7 @@ def _load_one(
 
     from errorbars.adapters.inspect_ai import load_inspect_log
 
-    data = load_inspect_log(path, scorer=scorer)
+    data = load_inspect_log(path, scorer=scorer, score_key=score_key)
     if name or model:
         data.model = [str(name or model)] * len(data)
     return data
@@ -153,6 +154,7 @@ def load_inputs(
     metric: str | None = None,
     filter_name: str | None = None,
     scorer: str | None = None,
+    score_key: str | None = None,
 ) -> Loaded:
     """Load one or more files or directories (each optionally as ``NAME=PATH``) as one dataset.
 
@@ -163,6 +165,7 @@ def load_inputs(
         metric: lm-eval metric to use as the score (required when ambiguous).
         filter_name: lm-eval filter to use, for a task scored under several.
         scorer: Inspect scorer to use, for a task with more than one.
+        score_key: named value to select from an Inspect dictionary-valued scorer.
     """
     columns = columns or ColumnMap()
     if not specs:
@@ -171,12 +174,14 @@ def load_inputs(
     files: list[Path] = []
     parts: list[tuple[str, EvalData]] = []
     scoring: dict[str, tuple[str, Path]] = {}
+    inspected = False
     for spec in specs:
         name, path = split_spec(str(spec))
         paths = _expand_directory(path, notes) if path.is_dir() else [path]
         for one in paths:
             kind = _kind(one)
-            data = _load_one(one, kind, name, model, columns, metric, filter_name, scorer)
+            data = _load_one(one, kind, name, model, columns, metric, filter_name, scorer, score_key)
+            inspected = inspected or kind == "inspect"
             if kind == "lm-eval" and data.sources is not None:
                 for qid, source in zip(data.question_id, data.sources, strict=True):
                     assert source is not None and source.metric is not None
@@ -190,4 +195,6 @@ def load_inputs(
                     scoring[qid] = (source.metric, one)
             files.append(one)
             parts.append((str(one), data))
+    if score_key is not None and not inspected:
+        raise ValueError("--score-key selects a named value in Inspect logs; no Inspect log was supplied")
     return Loaded(data=concat(parts), files=files, notes=notes)

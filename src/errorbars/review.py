@@ -13,6 +13,7 @@ from typing import Any
 
 from errorbars.compare import PairedComparison, SelectedInference, paired_compare, select_inference
 from errorbars.io import EvalData
+from errorbars.scoring import ScoringRule, score_value_labels
 
 __all__ = ["ComparisonReview", "review_comparison"]
 
@@ -30,6 +31,7 @@ class Observation:
     question_hash: str | None
     scorer: str | None = None
     scorer_config: str | None = None
+    scorer_value: str | None = None
 
 
 @dataclass(frozen=True)
@@ -70,6 +72,16 @@ class ComparisonReview:
     warnings: list[str]
 
     @property
+    def score_values(self) -> list[dict[str, str | None]]:
+        return score_value_labels(
+            (model, ScoringRule(obs.scorer, obs.scorer_config, obs.scorer_value))
+            for question in self.questions
+            for model, observations in ((self.model_a, question.observations_a),
+                                        (self.model_b, question.observations_b))
+            for obs in observations if obs.scorer is not None
+        )
+
+    @property
     def inference(self) -> SelectedInference | None:
         if self.comparison is None:
             return None
@@ -97,6 +109,7 @@ class ComparisonReview:
             "clusters": [asdict(c) for c in self.clusters],
             "sources": [{"id": i, "name": name} for i, name in enumerate(self.sources)],
             "warnings": self.warnings,
+            "score_values": self.score_values,
         }
 
 
@@ -186,8 +199,8 @@ def review_comparison(
     elif scoring_conflicts:
         problem = (
             f"conflicting scoring rules for {len(scoring_conflicts)} shared ids "
-            f"(including {scoring_conflicts[0]!r}); re-score both runs under the same "
-            "scorer and parameters before comparing"
+            f"(including {scoring_conflicts[0]!r}); select the same score value and use "
+            "matching scorer parameters before comparing"
         )
     elif len(common) < 2:
         problem = (
@@ -218,6 +231,7 @@ def review_comparison(
                 source.filter if source else None,
                 part.question_hash[i] if part.question_hash is not None else None,
                 rule.name if rule else None, rule.config_hash if rule else None,
+                rule.value_key if rule else None,
             ))
         return result
 

@@ -1,0 +1,29 @@
+{
+  "baselineCommit": "3e63c255e83381f2151e1353048d5f16e1408326",
+  "existingFixture": {
+    "command": "errorbars summarize tests/fixtures/inspect_tiny_named_values.eval --scorer shape --json",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "error: tests/fixtures/inspect_tiny_named_values.eval: sample 'q1': scorer 'shape' returns dict values ({'length': 33, 'has_digit': False}), not one score per sample\n"
+  },
+  "nativeCaptures": [
+    {
+      "command": "errorbars summarize examples/inspect-values/logs/baseline.eval --scorer answer_dimensions --json",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: examples/inspect-values/logs/baseline.eval: sample 'q01': scorer 'answer_dimensions' returns dict values ({'correct': 'I', 'concise': False, 'words': 4}), not one score per sample\n"
+    },
+    {
+      "command": "errorbars summarize examples/inspect-values/logs/candidate.eval --scorer answer_dimensions --json",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: examples/inspect-values/logs/candidate.eval: sample 'q01': scorer 'answer_dimensions' returns dict values ({'correct': 'C', 'concise': True, 'words': 1}), not one score per sample\n"
+    },
+    {
+      "command": "errorbars summarize examples/inspect-values/logs/candidate-epochs.eval --scorer answer_dimensions --json",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "error: examples/inspect-values/logs/candidate-epochs.eval: sample 'q01': scorer 'answer_dimensions' returns dict values ({'correct': 'C', 'concise': True, 'words': 1}), not one score per sample\n"
+    }
+  ]
+}

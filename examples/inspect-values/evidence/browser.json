@@ -1,0 +1,468 @@
+{
+  "workflows": [
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 1440,
+      "key": "correct",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        }
+      ],
+      "effect": -0.3333333333333333,
+      "html": {
+        "bytes": 198682,
+        "sha256": "8571bc04f581cf7bcef11717669927cf805d312fefaad1b9e64b163c2ecc14e5"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 1440,
+      "key": "concise",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": -0.6666666666666666,
+      "html": {
+        "bytes": 198889,
+        "sha256": "c506a3b60955a7483f94c9d12ae6bc8718dad1e12737c679ef038c98b079cdac"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 1440,
+      "key": "words",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        }
+      ],
+      "effect": 2,
+      "html": {
+        "bytes": 198360,
+        "sha256": "5699019c3b8e52480d6c866fdecfdf7a6b2ccbac548c268151721237ebe265b6"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 1440,
+      "key": "conflict",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": null,
+      "html": {
+        "bytes": 198257,
+        "sha256": "f200a667e048a1c5ae8b89f3b38abf356e6f71b062cf1f22dd00e4a808fe0c97"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 375,
+      "key": "correct",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        }
+      ],
+      "effect": -0.3333333333333333,
+      "html": {
+        "bytes": 198682,
+        "sha256": "8571bc04f581cf7bcef11717669927cf805d312fefaad1b9e64b163c2ecc14e5"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 375,
+      "key": "concise",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": -0.6666666666666666,
+      "html": {
+        "bytes": 198889,
+        "sha256": "c506a3b60955a7483f94c9d12ae6bc8718dad1e12737c679ef038c98b079cdac"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 375,
+      "key": "words",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        }
+      ],
+      "effect": 2,
+      "html": {
+        "bytes": 198360,
+        "sha256": "5699019c3b8e52480d6c866fdecfdf7a6b2ccbac548c268151721237ebe265b6"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "width": 375,
+      "key": "conflict",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": null,
+      "html": {
+        "bytes": 198257,
+        "sha256": "f200a667e048a1c5ae8b89f3b38abf356e6f71b062cf1f22dd00e4a808fe0c97"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 1440,
+      "key": "correct",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        }
+      ],
+      "effect": -0.3333333333333333,
+      "html": {
+        "bytes": 198682,
+        "sha256": "8571bc04f581cf7bcef11717669927cf805d312fefaad1b9e64b163c2ecc14e5"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 1440,
+      "key": "concise",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": -0.6666666666666666,
+      "html": {
+        "bytes": 198889,
+        "sha256": "c506a3b60955a7483f94c9d12ae6bc8718dad1e12737c679ef038c98b079cdac"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 1440,
+      "key": "words",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        }
+      ],
+      "effect": 2,
+      "html": {
+        "bytes": 198360,
+        "sha256": "5699019c3b8e52480d6c866fdecfdf7a6b2ccbac548c268151721237ebe265b6"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 1440,
+      "key": "conflict",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": null,
+      "html": {
+        "bytes": 198257,
+        "sha256": "f200a667e048a1c5ae8b89f3b38abf356e6f71b062cf1f22dd00e4a808fe0c97"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 375,
+      "key": "correct",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        }
+      ],
+      "effect": -0.3333333333333333,
+      "html": {
+        "bytes": 198682,
+        "sha256": "8571bc04f581cf7bcef11717669927cf805d312fefaad1b9e64b163c2ecc14e5"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 375,
+      "key": "concise",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": -0.6666666666666666,
+      "html": {
+        "bytes": 198889,
+        "sha256": "c506a3b60955a7483f94c9d12ae6bc8718dad1e12737c679ef038c98b079cdac"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 375,
+      "key": "words",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "words"
+        }
+      ],
+      "effect": 2,
+      "html": {
+        "bytes": 198360,
+        "sha256": "5699019c3b8e52480d6c866fdecfdf7a6b2ccbac548c268151721237ebe265b6"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "engine": "firefox",
+      "browser": "155.0",
+      "width": 375,
+      "key": "conflict",
+      "offline": true,
+      "downloads": 2,
+      "selectedValues": [
+        {
+          "model": "A",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "B",
+          "scorer": "inspect:answer_dimensions",
+          "scorer_value": "concise"
+        }
+      ],
+      "effect": null,
+      "html": {
+        "bytes": 198257,
+        "sha256": "f200a667e048a1c5ae8b89f3b38abf356e6f71b062cf1f22dd00e4a808fe0c97"
+      },
+      "originalScoresAndSelectionRetained": true,
+      "filteredCsvRows": 1,
+      "pageErrors": [],
+      "externalRequests": []
+    }
+  ]
+}

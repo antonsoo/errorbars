@@ -1,0 +1,122 @@
+{
+  "synthetic": true,
+  "version": "0.2.4",
+  "cases": {
+    "correct": {
+      "n": 24,
+      "means": [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "difference": -0.3333333333333333,
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 0.0078125,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "oracle_p": 0.0078125,
+      "canonicalPreservesSelection": true,
+      "cliCommandsPassed": 4
+    },
+    "concise": {
+      "n": 24,
+      "means": [
+        0.3333333333333333,
+        1.0
+      ],
+      "difference": -0.6666666666666666,
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 3.0517578125e-05,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "oracle_p": 3.0517578125e-05,
+      "canonicalPreservesSelection": true,
+      "cliCommandsPassed": 4
+    },
+    "words": {
+      "n": 24,
+      "means": [
+        3.0,
+        1.0
+      ],
+      "difference": 2.0,
+      "inference": {
+        "test": "paired_t",
+        "p_value": 6.444485482269906e-07,
+        "ci_low": 1.3899861506102666,
+        "ci_high": 2.610013849389733,
+        "confidence": 0.95,
+        "mcnemar_applicable": false
+      },
+      "oracle_p": 6.444485482269885e-07,
+      "canonicalPreservesSelection": true,
+      "cliCommandsPassed": 4
+    }
+  },
+  "conflict": {
+    "scorer": "answer_dimensions",
+    "values": [
+      "correct",
+      "concise"
+    ],
+    "conflictingQuestions": 24,
+    "inferenceAvailable": false,
+    "canonicalCompareExit": 1,
+    "canonicalLeaderboardExit": 1
+  },
+  "epochs": {
+    "mean": 0.6666666666666666,
+    "se": 0.09829463743659811,
+    "ci_low": 0.4740127174175119,
+    "ci_high": 0.8593206159158213,
+    "confidence": 0.95,
+    "method": "clt",
+    "n": 24,
+    "model": "mockllm/model",
+    "is_binary": true,
+    "analysis_unit": "question",
+    "n_questions": 24,
+    "n_observations": 48,
+    "score_values": [
+      {
+        "model": "mockllm/model",
+        "scorer": "inspect:answer_dimensions",
+        "scorer_value": "correct"
+      }
+    ],
+    "within_between": {
+      "var_within": 0.0,
+      "var_between": 0.23188405797101444
+    }
+  },
+  "implementationSha256": {
+    "__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+    "_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+    "_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+    "adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+    "adapters/_inspect_integrity.py": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+    "adapters/inspect_ai.py": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+    "adapters/lm_eval.py": "30b13b08559c90ec4ee91aa0b8c55c325ab566bd071d5788d2281d891b21923c",
+    "cli.py": "f6f0ef8a71be59cd71f633e20d1428b32cc3b3292013dad506d67adc6ec3dabb",
+    "compare.py": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+    "inputs.py": "84318301c591f5927db8e6393ec96a0bbdcff54e8a792a954bbd0227130ce866",
+    "io.py": "2b2f625363b528196890d6c1fd4d0dca88d8487f511240fdc05bff9787039224",
+    "leaderboard.py": "192b537265dbe614d13755d9ba8728827c5bb1f9d1b93bfb9cbf750fc4fb94b5",
+    "plot.py": "96ee5736a7a86bc4b50eb3fbb09f69f2c9988be284fa0d1c04667858808bf17c",
+    "power.py": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+    "report.py": "d518b24560e4d651f03caaa3b37ffba21a26ce6d04ea2a3ebf3c7d77057aa9d9",
+    "report_assets/report.css": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+    "report_assets/report.js": "ccd6ce54773b8687e8f284f1bea15898e06a70116c14fb277bfb7daeec7dca10",
+    "report_assets/template.html": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+    "review.py": "5582ee6884d230fa38bce8d40f0d165cf75d87573d7d599d008a9787c9e2544e",
+    "scoring.py": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+    "stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+  }
+}

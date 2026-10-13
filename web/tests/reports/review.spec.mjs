@@ -28,6 +28,31 @@ async function download(page, name) {
   return { name: item.suggestedFilename(), text: await readFile(await item.path(), 'utf8') };
 }
 
+test('selected named values survive inspection and downloads and prevent unlike-dimension inference', async ({ page, context }) => {
+  const clean = await open(page, context, 'named-values');
+  await expect(page.locator('#scoring-note')).toContainText("'correct'");
+  await page.getByRole('button', { name: 'Inspect question q1', exact: true }).click();
+  await expect(page.locator('#inspector')).toContainText('Selected value: correct');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.score_values.map(row => row.scorer_value)).toEqual(['correct', 'correct']);
+  expect(data.questions[0].observations_a[0].scorer_value).toBe('correct');
+  const csv = (await download(page, 'Download shown questions (CSV)')).text;
+  expect(csv).toContain('scorer_values_a'); expect(csv).toContain('correct');
+  await page.goto(pathToFileURL(join(process.env.ERRORBARS_REPORT_FIXTURES, 'named-conflict.html')).href);
+  await expect(page.locator('#effect-value')).toHaveText('unavailable');
+  await expect(page.locator('#scoring-note')).toContainText('2 conflicting');
+  await page.getByRole('button', { name: 'Inspect question q1', exact: true }).click();
+  await expect(page.locator('#inspector')).toContainText('Selected value: words');
+  await page.goto(pathToFileURL(join(process.env.ERRORBARS_REPORT_FIXTURES, 'named-hostile.html')).href);
+  await page.getByRole('button', { name: 'Inspect question q1', exact: true }).click();
+  await expect(page.locator('#inspector')).toContainText('window.pwned=true');
+  expect(await page.evaluate(() => window.pwned)).toBeUndefined();
+  await expect(page.locator('img')).toHaveCount(0);
+  await page.setViewportSize({ width: 375, height: 900 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await clean();
+});
+
 test('real retained COPA runs expose their discordances, source records and unchanged complete JSON', async ({ page, context }) => {
   const clean = await open(page, context, 'copa');
   await expect(page.locator('#effect-value')).toHaveText('+0.2000');

@@ -62,6 +62,16 @@ def build(output: Path) -> None:
         scoring=[ScoringRule("inspect:match", "exact")] * 2 + [ScoringRule("inspect:match", "any")] * 2,
     )
     write_comparison_html(review_comparison(scoring_conflict, "A", "B"), output / "scoring-conflict.html")
+    for name, key_a, key_b in [
+        ("named-values", "correct", "correct"), ("named-conflict", "correct", "words"),
+        ("named-hostile", model, model),
+    ]:
+        named = EvalData(
+            ["q1", "q2"] * 2, ["A", "A", "B", "B"], [0, 1, 1, 1],
+            scoring=[ScoringRule("inspect:dimensions", "settings", key_a)] * 2
+            + [ScoringRule("inspect:dimensions", "settings", key_b)] * 2,
+        )
+        write_comparison_html(review_comparison(named, "A", "B"), output / f"{name}.html")
     missing = EvalData(["a", "b", "x", "y"], ["A", "A", "B", "B"], [1, 0, 0, 1])
     write_comparison_html(review_comparison(missing, "A", "B"), output / "missing.html")
 

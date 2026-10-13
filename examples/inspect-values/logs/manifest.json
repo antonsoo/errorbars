@@ -1,0 +1,1311 @@
+{
+  "inspect_ai": "0.3.268",
+  "synthetic": true,
+  "runs": {
+    "baseline": {
+      "sha256": "e83ec85c059f3892b2f9f60270c870e8f6a13d74df5668dc0e56e0100005d4d9",
+      "epochs": 1,
+      "samples": 24,
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "correct",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.3333333333333333,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          },
+          {
+            "name": "concise",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.3333333333333333,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          },
+          {
+            "name": "words",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "mean": {
+                "name": "mean",
+                "group": null,
+                "value": 3.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "answer_dimensions",
+          "score": "correct",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "observations": [
+        {
+          "id": "q01",
+          "epoch": 1,
+          "response": "The answer is 2.",
+          "target": "2",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q02",
+          "epoch": 1,
+          "response": "The answer is 4.",
+          "target": "4",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q03",
+          "epoch": 1,
+          "response": "6",
+          "target": "6",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q04",
+          "epoch": 1,
+          "response": "The answer is 8.",
+          "target": "8",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q05",
+          "epoch": 1,
+          "response": "The answer is 10.",
+          "target": "10",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q06",
+          "epoch": 1,
+          "response": "12",
+          "target": "12",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q07",
+          "epoch": 1,
+          "response": "The answer is 14.",
+          "target": "14",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q08",
+          "epoch": 1,
+          "response": "The answer is 16.",
+          "target": "16",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q09",
+          "epoch": 1,
+          "response": "18",
+          "target": "18",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q10",
+          "epoch": 1,
+          "response": "The answer is 20.",
+          "target": "20",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q11",
+          "epoch": 1,
+          "response": "The answer is 22.",
+          "target": "22",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q12",
+          "epoch": 1,
+          "response": "24",
+          "target": "24",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q13",
+          "epoch": 1,
+          "response": "The answer is 26.",
+          "target": "26",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q14",
+          "epoch": 1,
+          "response": "The answer is 28.",
+          "target": "28",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q15",
+          "epoch": 1,
+          "response": "30",
+          "target": "30",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q16",
+          "epoch": 1,
+          "response": "The answer is 32.",
+          "target": "32",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q17",
+          "epoch": 1,
+          "response": "The answer is 34.",
+          "target": "34",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q18",
+          "epoch": 1,
+          "response": "36",
+          "target": "36",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q19",
+          "epoch": 1,
+          "response": "The answer is 38.",
+          "target": "38",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q20",
+          "epoch": 1,
+          "response": "The answer is 40.",
+          "target": "40",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q21",
+          "epoch": 1,
+          "response": "42",
+          "target": "42",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q22",
+          "epoch": 1,
+          "response": "The answer is 44.",
+          "target": "44",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q23",
+          "epoch": 1,
+          "response": "The answer is 46.",
+          "target": "46",
+          "value": {
+            "correct": "I",
+            "concise": false,
+            "words": 4
+          }
+        },
+        {
+          "id": "q24",
+          "epoch": 1,
+          "response": "48",
+          "target": "48",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        }
+      ]
+    },
+    "candidate": {
+      "sha256": "eeecb4a10c96b8f2941e671341f0f2410b600bd8431ea138ebbd8b4ee6a158e1",
+      "epochs": 1,
+      "samples": 24,
+      "results": {
+        "total_samples": 24,
+        "completed_samples": 24,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "correct",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.6666666666666666,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          },
+          {
+            "name": "concise",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 1.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          },
+          {
+            "name": "words",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "mean": {
+                "name": "mean",
+                "group": null,
+                "value": 1.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "answer_dimensions",
+          "score": "correct",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "observations": [
+        {
+          "id": "q01",
+          "epoch": 1,
+          "response": "2",
+          "target": "2",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q02",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "4",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q03",
+          "epoch": 1,
+          "response": "6",
+          "target": "6",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q04",
+          "epoch": 1,
+          "response": "8",
+          "target": "8",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q05",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "10",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q06",
+          "epoch": 1,
+          "response": "12",
+          "target": "12",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q07",
+          "epoch": 1,
+          "response": "14",
+          "target": "14",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q08",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "16",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q09",
+          "epoch": 1,
+          "response": "18",
+          "target": "18",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q10",
+          "epoch": 1,
+          "response": "20",
+          "target": "20",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q11",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "22",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q12",
+          "epoch": 1,
+          "response": "24",
+          "target": "24",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q13",
+          "epoch": 1,
+          "response": "26",
+          "target": "26",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q14",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "28",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q15",
+          "epoch": 1,
+          "response": "30",
+          "target": "30",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q16",
+          "epoch": 1,
+          "response": "32",
+          "target": "32",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q17",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "34",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q18",
+          "epoch": 1,
+          "response": "36",
+          "target": "36",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q19",
+          "epoch": 1,
+          "response": "38",
+          "target": "38",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q20",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "40",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q21",
+          "epoch": 1,
+          "response": "42",
+          "target": "42",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q22",
+          "epoch": 1,
+          "response": "44",
+          "target": "44",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q23",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "46",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q24",
+          "epoch": 1,
+          "response": "48",
+          "target": "48",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        }
+      ]
+    },
+    "candidate-epochs": {
+      "sha256": "e27077a55e18a6600a138e9a34b878f86496f8d8a43759e283027d9088d47419",
+      "epochs": 2,
+      "samples": 48,
+      "results": {
+        "total_samples": 48,
+        "completed_samples": 48,
+        "logged_samples": null,
+        "early_stopping": null,
+        "scores": [
+          {
+            "name": "correct",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.6666666666666666,
+                "params": {},
+                "metadata": null
+              },
+              "stderr": {
+                "name": "stderr",
+                "group": null,
+                "value": 0.09829463743659811,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          },
+          {
+            "name": "concise",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 1.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          },
+          {
+            "name": "words",
+            "scorer": "answer_dimensions",
+            "reducer": null,
+            "scored_samples": 24,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "mean": {
+                "name": "mean",
+                "group": null,
+                "value": 1.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        "headline": {
+          "scorer": "answer_dimensions",
+          "score": "correct",
+          "metric": "accuracy",
+          "reducer": null
+        },
+        "metadata": null
+      },
+      "observations": [
+        {
+          "id": "q01",
+          "epoch": 1,
+          "response": "2",
+          "target": "2",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q02",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "4",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q03",
+          "epoch": 1,
+          "response": "6",
+          "target": "6",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q04",
+          "epoch": 1,
+          "response": "8",
+          "target": "8",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q05",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "10",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q06",
+          "epoch": 1,
+          "response": "12",
+          "target": "12",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q07",
+          "epoch": 1,
+          "response": "14",
+          "target": "14",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q08",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "16",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q09",
+          "epoch": 1,
+          "response": "18",
+          "target": "18",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q10",
+          "epoch": 1,
+          "response": "20",
+          "target": "20",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q11",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "22",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q12",
+          "epoch": 1,
+          "response": "24",
+          "target": "24",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q13",
+          "epoch": 1,
+          "response": "26",
+          "target": "26",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q14",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "28",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q15",
+          "epoch": 1,
+          "response": "30",
+          "target": "30",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q16",
+          "epoch": 1,
+          "response": "32",
+          "target": "32",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q17",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "34",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q18",
+          "epoch": 1,
+          "response": "36",
+          "target": "36",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q19",
+          "epoch": 1,
+          "response": "38",
+          "target": "38",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q20",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "40",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q21",
+          "epoch": 1,
+          "response": "42",
+          "target": "42",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q22",
+          "epoch": 1,
+          "response": "44",
+          "target": "44",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q23",
+          "epoch": 1,
+          "response": "unknown",
+          "target": "46",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q24",
+          "epoch": 1,
+          "response": "48",
+          "target": "48",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q01",
+          "epoch": 2,
+          "response": "2",
+          "target": "2",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q02",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "4",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q03",
+          "epoch": 2,
+          "response": "6",
+          "target": "6",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q04",
+          "epoch": 2,
+          "response": "8",
+          "target": "8",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q05",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "10",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q06",
+          "epoch": 2,
+          "response": "12",
+          "target": "12",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q07",
+          "epoch": 2,
+          "response": "14",
+          "target": "14",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q08",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "16",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q09",
+          "epoch": 2,
+          "response": "18",
+          "target": "18",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q10",
+          "epoch": 2,
+          "response": "20",
+          "target": "20",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q11",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "22",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q12",
+          "epoch": 2,
+          "response": "24",
+          "target": "24",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q13",
+          "epoch": 2,
+          "response": "26",
+          "target": "26",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q14",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "28",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q15",
+          "epoch": 2,
+          "response": "30",
+          "target": "30",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q16",
+          "epoch": 2,
+          "response": "32",
+          "target": "32",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q17",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "34",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q18",
+          "epoch": 2,
+          "response": "36",
+          "target": "36",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q19",
+          "epoch": 2,
+          "response": "38",
+          "target": "38",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q20",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "40",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q21",
+          "epoch": 2,
+          "response": "42",
+          "target": "42",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q22",
+          "epoch": 2,
+          "response": "44",
+          "target": "44",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q23",
+          "epoch": 2,
+          "response": "unknown",
+          "target": "46",
+          "value": {
+            "correct": "I",
+            "concise": true,
+            "words": 1
+          }
+        },
+        {
+          "id": "q24",
+          "epoch": 2,
+          "response": "48",
+          "target": "48",
+          "value": {
+            "correct": "C",
+            "concise": true,
+            "words": 1
+          }
+        }
+      ]
+    }
+  }
+}

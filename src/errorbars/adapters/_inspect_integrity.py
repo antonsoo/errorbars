@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from inspect_ai.log import EvalLog, EvalSample
 
 
-def scoring_rule(log: EvalLog, key: str, path: str | Path) -> ScoringRule:
+def scoring_rule(log: EvalLog, key: str, path: str | Path, value_key: str | None = None) -> ScoringRule:
     """Fingerprint the result's recorded scorer parameters, including re-scoring.
 
     The original eval.scorers declaration may predate `inspect score`. Results
@@ -31,6 +31,8 @@ def scoring_rule(log: EvalLog, key: str, path: str | Path) -> ScoringRule:
     for result in log.results.scores:
         if result.scorer != key or "params" not in result.model_fields_set:
             continue
+        if value_key is not None and result.name != value_key:
+            continue
         try:
             canonical = json.dumps(
                 result.params, sort_keys=True, ensure_ascii=True, separators=(",", ":"),
@@ -41,7 +43,7 @@ def scoring_rule(log: EvalLog, key: str, path: str | Path) -> ScoringRule:
         hashes.add("inspect-params-v1:" + hashlib.sha256(canonical.encode("ascii")).hexdigest())
     if len(hashes) > 1:
         raise ValueError(f"{path}: scorer {key!r}: conflicting recorded parameters in Inspect results")
-    return ScoringRule("inspect:" + key, next(iter(hashes), None))
+    return ScoringRule("inspect:" + key, next(iter(hashes), None), value_key)
 
 
 def check_complete(log: EvalLog, path: str | Path) -> None:

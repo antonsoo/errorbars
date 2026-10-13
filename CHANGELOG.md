@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Added
 
+- Select named values from dictionary-valued Inspect scores with `--score-key`
+  (`load_inspect_log(..., score_key=...)` and `load_inputs(..., score_key=...)`).
+  Keep the selected value in canonical CSV/JSONL, CLI results, question evidence
+  and browser downloads. Unlike selected values conflict even with identical
+  scorer parameters; missing or invalid selected grades reject the cohort.
+  [Native Inspect capture and comparison checks](examples/inspect-values/README.md).
+
 - `studies/swe-bench-verified/`: the package run over the per-task results of 173 public
   SWE-bench Verified submissions, with the scripts that fetch the data at a pinned commit and
   reproduce every number and figure. `to_csv.py` writes any submissions, or a run of your own,

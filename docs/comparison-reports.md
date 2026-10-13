@@ -204,19 +204,41 @@ unknown. lm-eval imports retain `lm-eval:<metric>` with unknown configuration;
 filters remain separate provenance because they can define the model-system
 variant being compared.
 
-Canonical CSV/JSONL can retain these two optional columns:
+Canonical CSV/JSONL can retain these optional columns:
 
 | Column | Meaning | Missing value |
 | --- | --- | --- |
 | `scorer` | Namespaced scoring-rule name | Unchecked rule |
 | `scorer_config` | Fingerprint of the recorded configuration | Unchecked configuration |
+| `scorer_value` | Exact selected key in a dictionary-valued score | Whole scalar score when `scorer` is known |
 
-`--scorer-col` and `--scorer-config-col` map custom column names. `--scorer`
-continues to select an Inspect scorer. Configuration fingerprints require a
-scorer name. Blank CSV cells and absent/null JSON values remain unknown.
+`--scorer-col`, `--scorer-config-col` and `--scorer-value-col` map custom column
+names. `--scorer` selects an Inspect scorer; `--score-key` selects one named
+value returned by that scorer. Configuration fingerprints and selected keys
+require a scorer name. Blank configuration cells and absent/null configuration
+values remain unknown. Keys are exact nonblank strings: punctuation and case
+are preserved, without interpreting dots or slashes as a nested path.
 `errorbars import` and `write_csv` preserve the declarations; removing these
 columns removes the check. Earlier CSV exports need re-importing from native
 logs to recover the metadata.
+
+For named Inspect values, every selected sample must contain the selected key
+with a recognized scalar grade. Missing keys, nulls, nonfinite numbers and
+unknown grade strings reject the import instead of changing the denominator or
+counting them as zero. Other named values do not enter the selected analysis.
+Nested dictionaries, arrays and automatic key selection are not supported.
+`--score-key` applies to Inspect inputs; it fails if no Inspect log was supplied.
+Canonical input already carries its selection in `scorer_value`.
+
+Different selected keys, or a selected key versus a whole scalar score from the
+same named scorer, are conflicting scoring declarations. This check survives
+CSV export and does not depend on having a configuration fingerprint. It does
+not prove that identically named values have the same units or implementation.
+The original scorer parameters remain hashed rather than copied into reports.
+The selected key is visible in each observation, complete JSON downloads and
+the filtered summary CSV's `scorer_values_a` / `scorer_values_b` columns. The
+summary CSV contains question means, not a canonical observation-level import.
+See the [retained Inspect example](../examples/inspect-values/README.md).
 
 Python callers can supply `EvalData(..., scoring=[ScoringRule(name, config_hash),
 ...])` using `ScoringRule` from `errorbars.io`. One entry corresponds to one

@@ -18,7 +18,7 @@ from numbers import Real
 from pathlib import Path
 from typing import Any
 
-from errorbars.scoring import ScoringRule, compare_scoring
+from errorbars.scoring import ScoringRule, compare_scoring, score_value_labels
 
 __all__ = [
     "EvalData",
@@ -62,6 +62,7 @@ class ColumnMap:
     question_hash: str | None = "question_hash"
     scorer: str | None = "scorer"
     scorer_config: str | None = "scorer_config"
+    scorer_value: str | None = "scorer_value"
 
 
 @dataclass
@@ -86,6 +87,9 @@ class EvalData:
         for m in self.model:
             seen.setdefault(m, None)
         return list(seen)
+
+    def score_values(self) -> list[dict[str, str | None]]:
+        return score_value_labels(zip(self.model, self.scoring or [], strict=False))
 
     def filter_model(self, model: str) -> EvalData:
         idx = [i for i, m in enumerate(self.model) if m == model]
@@ -197,6 +201,10 @@ class EvalData:
                     not isinstance(rule.config_hash, str) or not rule.config_hash.strip()
                 ):
                     raise ValueError(f"row {row}: scorer_config must be a nonempty string or None")
+                if rule.value_key is not None and (
+                    not isinstance(rule.value_key, str) or not rule.value_key.strip()
+                ):
+                    raise ValueError(f"row {row}: scorer_value must be a nonempty string or None")
             self.scoring_by_model()
         if self.question_hash is not None:
             if len(self.question_hash) != n:
@@ -423,6 +431,14 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
             hashes.append(None)
         scorer = row.get(columns.scorer) if columns.scorer else None
         config = row.get(columns.scorer_config) if columns.scorer_config else None
+        value_key = row.get(columns.scorer_value) if columns.scorer_value else None
+        if value_key is not None and value_key != "":
+            if not isinstance(value_key, str) or not value_key.strip():
+                raise ValueError(f"row {n}: scorer_value must be a nonempty string or null")
+            if scorer is None or scorer == "":
+                raise ValueError(f"row {n}: scorer_value requires a scorer name")
+        else:
+            value_key = None
         if config is not None and config != "":
             if not isinstance(config, str) or not config.strip():
                 raise ValueError(f"row {n}: scorer_config must be a nonempty string or null")
@@ -433,7 +449,7 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
         if scorer is not None and scorer != "":
             if not isinstance(scorer, str) or not scorer.strip():
                 raise ValueError(f"row {n}: scorer must be a nonempty string or null")
-            scoring.append(ScoringRule(scorer, config))
+            scoring.append(ScoringRule(scorer, config, value_key))
         else:
             scoring.append(None)
         # The same (model, question, sample) twice would be counted as two questions, inflating n and
@@ -598,6 +614,8 @@ def write_csv(data: EvalData, path: str | Path) -> None:
         fieldnames.append("question_hash")
     if data.scoring is not None:
         fieldnames.extend(("scorer", "scorer_config"))
+        if any(rule is not None and rule.value_key is not None for rule in data.scoring):
+            fieldnames.append("scorer_value")
 
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -618,4 +636,6 @@ def write_csv(data: EvalData, path: str | Path) -> None:
                 rule = data.scoring[i]
                 row["scorer"] = rule.name if rule is not None else None
                 row["scorer_config"] = rule.config_hash if rule is not None else None
+                if "scorer_value" in fieldnames:
+                    row["scorer_value"] = rule.value_key if rule is not None else None
             writer.writerow(row)

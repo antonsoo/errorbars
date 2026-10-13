@@ -161,6 +161,13 @@ def comparison_html(review: ComparisonReview) -> str:
         f"{c['n_scoring_unavailable']} unchecked, {c['n_scoring_conflicting']} conflicting shared questions. "
         "Matching declarations do not verify scorer implementations or unrecorded settings."
     )
+    if review.score_values:
+        labels = [
+            f"{item['model']}: {item['scorer']} / "
+            + (repr(item['scorer_value']) if item['scorer_value'] is not None else "whole scalar score")
+            for item in review.score_values
+        ]
+        scoring_note += " Selected values: " + _text("; ".join(labels)) + "."
     payload = json.dumps(review.as_dict(), ensure_ascii=True, allow_nan=False, separators=(",", ":"))
     # JSON is inert script data, but the HTML parser still recognizes </script>.
     payload = payload.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")

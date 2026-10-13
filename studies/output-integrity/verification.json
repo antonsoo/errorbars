@@ -1,0 +1,257 @@
+{
+  "implementationCommit": "4633de1ab500fc2ee0f9d0f743dfa4e65e16dec5",
+  "steps": [
+    {
+      "name": "clean-install",
+      "command": [
+        "uv",
+        "sync",
+        "--locked",
+        "--group",
+        "dev",
+        "--extra",
+        "all",
+        "--python",
+        "3.12"
+      ],
+      "exit": 0,
+      "seconds": 12.719
+    },
+    {
+      "name": "clean-lint",
+      "command": [
+        "<scratch>/clean-4633de1/.venv/bin/ruff",
+        "check",
+        "."
+      ],
+      "exit": 0,
+      "seconds": 0.283
+    },
+    {
+      "name": "clean-types",
+      "command": [
+        "<scratch>/clean-4633de1/.venv/bin/mypy",
+        "src/errorbars"
+      ],
+      "exit": 0,
+      "seconds": 54.012
+    },
+    {
+      "name": "clean-tests",
+      "command": [
+        "<scratch>/clean-4633de1/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit": 0,
+      "seconds": 418.275
+    },
+    {
+      "name": "clean-build",
+      "command": [
+        "uv",
+        "build",
+        "--out-dir",
+        "<scratch>/dist"
+      ],
+      "exit": 0,
+      "seconds": 2.764
+    },
+    {
+      "name": "minimum-venv",
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "3.10",
+        "<scratch>/installed-minimum"
+      ],
+      "exit": 0,
+      "seconds": 0.083
+    },
+    {
+      "name": "minimum-install",
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        "<scratch>/installed-minimum/bin/python",
+        "<scratch>/dist/errorbars-0.2.4-py3-none-any.whl",
+        "numpy==1.24.0"
+      ],
+      "exit": 0,
+      "seconds": 0.527
+    },
+    {
+      "name": "minimum-replay",
+      "command": [
+        "<scratch>/installed-minimum/bin/python",
+        "<scratch>/clean-4633de1/studies/output-integrity/replay.py",
+        "--python",
+        "<scratch>/installed-minimum/bin/python",
+        "--label",
+        "installed-minimum",
+        "--work",
+        "<scratch>/minimum-replay"
+      ],
+      "exit": 0,
+      "seconds": 24.583
+    },
+    {
+      "name": "minimum-version",
+      "command": [
+        "<scratch>/installed-minimum/bin/errorbars",
+        "--version"
+      ],
+      "exit": 0,
+      "seconds": 0.279
+    },
+    {
+      "name": "minimum-power",
+      "command": [
+        "<scratch>/installed-minimum/bin/errorbars",
+        "power",
+        "--delta",
+        "0.03",
+        "--baseline",
+        "0.5",
+        "--json"
+      ],
+      "exit": 0,
+      "seconds": 0.259
+    },
+    {
+      "name": "current-venv",
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "3.14",
+        "<scratch>/installed-current"
+      ],
+      "exit": 0,
+      "seconds": 0.077
+    },
+    {
+      "name": "current-install",
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        "<scratch>/installed-current/bin/python",
+        "<scratch>/dist/errorbars-0.2.4-py3-none-any.whl",
+        "numpy"
+      ],
+      "exit": 0,
+      "seconds": 0.833
+    },
+    {
+      "name": "current-replay",
+      "command": [
+        "<scratch>/installed-current/bin/python",
+        "<scratch>/clean-4633de1/studies/output-integrity/replay.py",
+        "--python",
+        "<scratch>/installed-current/bin/python",
+        "--label",
+        "installed-current",
+        "--work",
+        "<scratch>/current-replay"
+      ],
+      "exit": 0,
+      "seconds": 21.442
+    },
+    {
+      "name": "current-version",
+      "command": [
+        "<scratch>/installed-current/bin/errorbars",
+        "--version"
+      ],
+      "exit": 0,
+      "seconds": 0.247
+    },
+    {
+      "name": "current-power",
+      "command": [
+        "<scratch>/installed-current/bin/errorbars",
+        "power",
+        "--delta",
+        "0.03",
+        "--baseline",
+        "0.5",
+        "--json"
+      ],
+      "exit": 0,
+      "seconds": 0.234
+    }
+  ],
+  "installed": [
+    {
+      "label": "minimum",
+      "python": "Python 3.10.21",
+      "sourceFilesMatch": 27,
+      "numpy": "1.24.0",
+      "cases": 36,
+      "disagreements": 0,
+      "allFilesystemOutcomesAndExportHashesMatchSource": true
+    },
+    {
+      "label": "current",
+      "python": "Python 3.14.7",
+      "sourceFilesMatch": 27,
+      "numpy": "2.5.4",
+      "cases": 36,
+      "disagreements": 0,
+      "allFilesystemOutcomesAndExportHashesMatchSource": true
+    }
+  ],
+  "buildPython": "Python 3.12.12",
+  "artifacts": {
+    "errorbars-0.2.4-py3-none-any.whl": {
+      "bytes": 180869,
+      "sha256": "fc5c7bfc97433d8aa895ff50607f71d71048536a4db6b4b95018341810fbd258"
+    },
+    "errorbars-0.2.4.tar.gz": {
+      "bytes": 246004,
+      "sha256": "4d56cd3ba65a81579d7459dfa5caeb1b63995bd9e94d5b4f2c88a8aa18cd92f3"
+    }
+  },
+  "archive": {
+    "trackedFiles": 459,
+    "allBytesUnchanged": true
+  },
+  "packageFiles": {
+    "_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+    "_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+    "__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+    "io.py": "841aec4e93f0ce3991eab8496a8f627ba5e7ebcf7c6642ac8633fca5c3e05390",
+    "review.py": "5582ee6884d230fa38bce8d40f0d165cf75d87573d7d599d008a9787c9e2544e",
+    "scoring.py": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+    "report.py": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e",
+    "leaderboard.py": "192b537265dbe614d13755d9ba8728827c5bb1f9d1b93bfb9cbf750fc4fb94b5",
+    "_output.py": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c",
+    "cli.py": "9cbc846bd36298bc6465f4f37429fad4454ec53146bb40abe8c9df26bc1acd1b",
+    "stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920",
+    "plot.py": "96ee5736a7a86bc4b50eb3fbb09f69f2c9988be284fa0d1c04667858808bf17c",
+    "compare.py": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+    "power.py": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+    "py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "inputs.py": "12a2542f3ebb7aad1206da196d527a2343538f9e68fd28e45bd833ae024066db",
+    "report_assets/report.css": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+    "report_assets/template.html": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+    "report_assets/report.js": "ccd6ce54773b8687e8f284f1bea15898e06a70116c14fb277bfb7daeec7dca10",
+    "adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+    "adapters/_inspect_integrity.py": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+    "adapters/inspect_ai.py": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+    "adapters/lm_eval.py": "e329e65bdd1808e36ddaafde1a3aacc60551f9e203bb242974cb55255368191c",
+    "report_assets/fonts/ibm-plex-mono-400-latin.woff2": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+    "report_assets/fonts/spectral-500-latin.woff2": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00",
+    "report_assets/fonts/LICENSE.txt": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5",
+    "report_assets/fonts/ibm-plex-sans-latin.woff2": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+  },
+  "scope": "Clean source archive and separately installed local wheel; no package release or deployment.",
+  "pythonChecks": 676,
+  "reportRendering": "All 11 previously successful export controls are byte-identical before and after. Report templates, assets and browser source are unchanged."
+}

@@ -76,6 +76,36 @@ sidecar protection, direct CSV API protection, complete
 replacement, temporary cleanup and preservation when synchronization fails.
 No calculation, report template, browser script or style changed.
 
+## Clean build and installed wheel
+
+A fresh archive of implementation `4633de1` completed `uv sync --locked --group
+dev --extra all --python 3.12`, ruff, mypy, all **676 Python checks**, and
+`uv build`. The build used Python 3.12.12. All 459 tracked files remained
+byte-identical. See the [verification receipt](verification.json) and
+[full-suite log](results/clean-tests.txt).
+
+The resulting wheel was installed separately in two new environments, with
+only the package and NumPy. All 27 package source and asset files matched the
+clean archive in both installations:
+
+| Installed environment | NumPy | Replay | Export hashes and filesystem outcomes |
+| --- | --- | --- | --- |
+| Python 3.10.21, declared minimum Python series | 1.24.0, dependency floor | [36/36 correct](results/installed-minimum.json) | Match corrected source |
+| Python 3.14.7 | 2.5.4 | [36/36 correct](results/installed-current.json) | Match corrected source |
+
+Both installed entry points also completed `--version` and the documented
+`power --delta 0.03 --baseline 0.5` command. Native Inspect and other optional
+dependencies were included in the full clean-source checks, not these minimal
+wheel environments. No optional package was needed for the output replay.
+
+| Local artifact | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `errorbars-0.2.4-py3-none-any.whl` | 180869 | `fc5c7bfc97433d8aa895ff50607f71d71048536a4db6b4b95018341810fbd258` |
+| `errorbars-0.2.4.tar.gz` | 246004 | `4d56cd3ba65a81579d7459dfa5caeb1b63995bd9e94d5b4f2c88a8aa18cd92f3` |
+
+The wheel was built from the source distribution. These are local artifact
+checks; version remains 0.2.4 and neither artifact was uploaded to PyPI.
+
 ## Reproduce
 
 From a source checkout with dependencies installed:

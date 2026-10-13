@@ -1,0 +1,1060 @@
+{
+  "label": "installed-minimum",
+  "python": "Python 3.10.21",
+  "inputs": {
+    "examples/data/reading_comprehension.csv": {
+      "bytes": 32836,
+      "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+    },
+    "tests/fixtures/samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+      "bytes": 19266,
+      "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+    }
+  },
+  "cases": [
+    {
+      "case": "csv-input-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.csv": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "symlink": "export.csv"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "symlink": "export.csv"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-output-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not be a symbolic link; choose a separate regular file",
+      "before": {
+        "export.csv": {
+          "symlink": "samples_copa_2026-09-24T03-04-37.941131.jsonl"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "symlink": "samples_copa_2026-09-24T03-04-37.941131.jsonl"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-dangling-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not be a symbolic link; choose a separate regular file",
+      "before": {
+        "export.csv": {
+          "symlink": "missing-target"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "symlink": "missing-target"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-hard-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.csv": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-write-failure",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: File too large",
+      "before": {
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-new",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 121,
+      "stderr": "",
+      "before": {
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "bytes": 2470,
+          "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 2470,
+        "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "csv-replace",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 125,
+      "stderr": "",
+      "before": {
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "bytes": 2470,
+          "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 2470,
+        "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "csv-long-name",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 372,
+      "stderr": "",
+      "before": {
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        },
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.csv": {
+          "bytes": 2470,
+          "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 2470,
+        "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "csv-parent-link",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 135,
+      "stderr": "",
+      "before": {
+        "alias": {
+          "symlink": "real"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "alias": {
+          "symlink": "real"
+        },
+        "real/export.csv": {
+          "bytes": 2470,
+          "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 2470,
+        "sha256": "d3e9877ba6b8d8c90592694776bfec897d14cd1704cb9e2a03f210a911e823d1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "svg-input-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.svg": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "symlink": "export.svg"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "symlink": "export.svg"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-output-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not be a symbolic link; choose a separate regular file",
+      "before": {
+        "export.svg": {
+          "symlink": "scores.csv"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "symlink": "scores.csv"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-dangling-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not be a symbolic link; choose a separate regular file",
+      "before": {
+        "export.svg": {
+          "symlink": "missing-target"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "symlink": "missing-target"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-hard-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.svg": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-write-failure",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: File too large",
+      "before": {
+        "export.svg": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-new",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 6059,
+      "stderr": "",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "bytes": 5435,
+          "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 5435,
+        "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+      },
+      "agrees": true
+    },
+    {
+      "case": "svg-replace",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 6059,
+      "stderr": "",
+      "before": {
+        "export.svg": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "bytes": 5435,
+          "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 5435,
+        "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+      },
+      "agrees": true
+    },
+    {
+      "case": "svg-long-name",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 6059,
+      "stderr": "",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.svg": {
+          "bytes": 5435,
+          "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 5435,
+        "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+      },
+      "agrees": true
+    },
+    {
+      "case": "svg-parent-link",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 6059,
+      "stderr": "",
+      "before": {
+        "alias": {
+          "symlink": "real"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "alias": {
+          "symlink": "real"
+        },
+        "real/export.svg": {
+          "bytes": 5435,
+          "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 5435,
+        "sha256": "330156607598ceecca9fb7d602d27fe2c0dc8ecdcf263b6813b81323d2c1f476"
+      },
+      "agrees": true
+    },
+    {
+      "case": "html-input-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.html": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "symlink": "export.html"
+        }
+      },
+      "after": {
+        "export.html": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "symlink": "export.html"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "html-output-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not be a symbolic link; choose a separate regular file",
+      "before": {
+        "export.html": {
+          "symlink": "scores.csv"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.html": {
+          "symlink": "scores.csv"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "html-dangling-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not be a symbolic link; choose a separate regular file",
+      "before": {
+        "export.html": {
+          "symlink": "missing-target"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.html": {
+          "symlink": "missing-target"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "html-hard-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.html": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.html": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "html-write-failure",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: File too large",
+      "before": {
+        "export.html": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.html": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "html-new",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 1260,
+      "stderr": "wrote comparison evidence to <case>/export.html",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.html": {
+          "bytes": 298928,
+          "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 298928,
+        "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "html-replace",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 1260,
+      "stderr": "wrote comparison evidence to <case>/export.html",
+      "before": {
+        "export.html": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.html": {
+          "bytes": 298928,
+          "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 298928,
+        "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "html-long-name",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 1260,
+      "stderr": "wrote comparison evidence to <case>/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.html",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        },
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.html": {
+          "bytes": 298928,
+          "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 298928,
+        "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "html-parent-link",
+      "expected": "written",
+      "exit": 0,
+      "stdoutBytes": 1260,
+      "stderr": "wrote comparison evidence to <case>/alias/export.html",
+      "before": {
+        "alias": {
+          "symlink": "real"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "alias": {
+          "symlink": "real"
+        },
+        "real/export.html": {
+          "bytes": 298928,
+          "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": false,
+      "export": {
+        "bytes": 298928,
+        "sha256": "e02675706010bc793d42416bcd4346ff4fe1ea2233f8e9291c4c4ad535542fb1"
+      },
+      "agrees": true
+    },
+    {
+      "case": "csv-same-source",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-same-source",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-canonical-source",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-empty-source",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: no rows found in input data",
+      "before": {
+        "empty.csv": {
+          "bytes": 24,
+          "sha256": "a9157d3a140a747926680915d51d74fae95e80ec69ed55cc7d73df80c9bb9db5"
+        }
+      },
+      "after": {
+        "empty.csv": {
+          "bytes": 24,
+          "sha256": "a9157d3a140a747926680915d51d74fae95e80ec69ed55cc7d73df80c9bb9db5"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-input-parent-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "alias": {
+          "symlink": "real"
+        },
+        "real/scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "alias": {
+          "symlink": "real"
+        },
+        "real/scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-metadata",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "results_2026-09-24T03-04-37.941131.json": {
+          "bytes": 25,
+          "sha256": "c95bba497054601d14aea80e027f1101cd10dfdb093614d7c5c55a5bd963c01e"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "results_2026-09-24T03-04-37.941131.json": {
+          "bytes": 25,
+          "sha256": "c95bba497054601d14aea80e027f1101cd10dfdb093614d7c5c55a5bd963c01e"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "csv-metadata-link",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must not replace an input file or an alias of one",
+      "before": {
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "c95bba497054601d14aea80e027f1101cd10dfdb093614d7c5c55a5bd963c01e"
+        },
+        "results_2026-09-24T03-04-37.941131.json": {
+          "symlink": "export.csv"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "after": {
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "c95bba497054601d14aea80e027f1101cd10dfdb093614d7c5c55a5bd963c01e"
+        },
+        "results_2026-09-24T03-04-37.941131.json": {
+          "symlink": "export.csv"
+        },
+        "samples_copa_2026-09-24T03-04-37.941131.jsonl": {
+          "bytes": 19266,
+          "sha256": "59c7f4d823f9463d659674ed917795eeda15f269a12e21d7407013e0d06959d3"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-directory",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must be a regular file",
+      "before": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    },
+    {
+      "case": "svg-fifo",
+      "expected": "rejected",
+      "exit": 1,
+      "stdoutBytes": 0,
+      "stderr": "error: output must be a regular file",
+      "before": {
+        "export.svg": {
+          "mode": 4516
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "after": {
+        "export.svg": {
+          "mode": 4516
+        },
+        "scores.csv": {
+          "bytes": 32836,
+          "sha256": "611d428a5f8b14937b9fcf5ed72c8a86f1e66a846a4b6f2dee7009d65a0aaa71"
+        }
+      },
+      "unchanged": true,
+      "export": null,
+      "agrees": true
+    }
+  ],
+  "count": 36,
+  "disagreements": 0
+}

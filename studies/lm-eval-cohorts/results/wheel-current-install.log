@@ -1,0 +1,6 @@
+Using Python 3.14.7 environment at: <work>/wheel-current
+Resolved 2 packages in 3.22s
+Prepared 1 package in 8ms
+Installed 2 packages in 92ms
+ + errorbars==0.2.4 (from file://<clean-checkout>/dist/errorbars-0.2.4-py3-none-any.whl)
+ + numpy==2.5.4

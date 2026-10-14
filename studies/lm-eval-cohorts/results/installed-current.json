@@ -1,0 +1,749 @@
+{
+  "environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.4"
+  },
+  "source_override": false,
+  "native_inputs": {
+    "tests/fixtures/lm_eval_output/sshleifer__tiny-gpt2/samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+      "bytes": 19174,
+      "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+    },
+    "tests/fixtures/lm_eval_output/sshleifer__tiny-gpt2/results_2026-10-01T23-15-32.942677.json": {
+      "bytes": 966,
+      "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+    },
+    "tests/fixtures/samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+      "bytes": 44164,
+      "sha256": "68bc0a6c9cbecbfd83d86044d7ae38f25f73d70c5883b2f28b0fa71268c5dd3f"
+    }
+  },
+  "population": "native 20-question COPA / 4-question, 3-filter GSM8K software import checks",
+  "controls": "Damage is derived; the multi-filter count sidecar is constructed, not a native capture.",
+  "cases": [
+    {
+      "case": "complete-inferred",
+      "derivation": "complete",
+      "command": [
+        "errorbars",
+        "summarize",
+        "<work>/complete-inferred/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"sshleifer/tiny-gpt2\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": "",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "complete-explicit",
+      "derivation": "complete",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/complete-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"example\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": "",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "complete-directory",
+      "derivation": "complete",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/complete-directory",
+        "--json"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"example\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": "",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "truncated-inferred",
+      "derivation": "prefix",
+      "command": [
+        "errorbars",
+        "summarize",
+        "<work>/truncated-inferred/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/truncated-inferred/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 5 selected samples, but <work>/truncated-inferred/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 4660,
+          "sha256": "374fe6bfbf6c8363824d3679133da5adb8ebf7543e38a58f7866daf7dc45a920"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 4660,
+          "sha256": "374fe6bfbf6c8363824d3679133da5adb8ebf7543e38a58f7866daf7dc45a920"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "truncated-explicit",
+      "derivation": "prefix",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/truncated-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/truncated-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 5 selected samples, but <work>/truncated-explicit/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 4660,
+          "sha256": "374fe6bfbf6c8363824d3679133da5adb8ebf7543e38a58f7866daf7dc45a920"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 4660,
+          "sha256": "374fe6bfbf6c8363824d3679133da5adb8ebf7543e38a58f7866daf7dc45a920"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "correct-only-explicit",
+      "derivation": "correct-only",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/correct-only-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/correct-only-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 12 selected samples, but <work>/correct-only-explicit/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 11487,
+          "sha256": "12426aaa985b106f3c8e7eb8aa65b03c28cb9099916ef3ac9e51a582a85dba3d"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 11487,
+          "sha256": "12426aaa985b106f3c8e7eb8aa65b03c28cb9099916ef3ac9e51a582a85dba3d"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "missing-compare",
+      "derivation": "one-missing",
+      "command": [
+        "errorbars",
+        "compare",
+        "control=<work>/control/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "example=<work>/missing-compare/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/missing-compare/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 19 selected samples, but <work>/missing-compare/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 18153,
+          "sha256": "0c3d3e98c5f11a2ff0220b0de9ecf255baef3727de8ad07cf0ffd995928e5918"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 18153,
+          "sha256": "0c3d3e98c5f11a2ff0220b0de9ecf255baef3727de8ad07cf0ffd995928e5918"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "missing-leaderboard",
+      "derivation": "one-missing",
+      "command": [
+        "errorbars",
+        "leaderboard",
+        "control=<work>/control/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "example=<work>/missing-leaderboard/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/missing-leaderboard/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 19 selected samples, but <work>/missing-leaderboard/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 18153,
+          "sha256": "0c3d3e98c5f11a2ff0220b0de9ecf255baef3727de8ad07cf0ffd995928e5918"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 18153,
+          "sha256": "0c3d3e98c5f11a2ff0220b0de9ecf255baef3727de8ad07cf0ffd995928e5918"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "missing-import-preserves-output",
+      "derivation": "one-missing",
+      "command": [
+        "errorbars",
+        "import",
+        "lm-eval",
+        "example=<work>/missing-import-preserves-output/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "-o",
+        "<work>/missing-import-preserves-output/export.csv"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/missing-import-preserves-output/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 19 selected samples, but <work>/missing-import-preserves-output/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 18153,
+          "sha256": "0c3d3e98c5f11a2ff0220b0de9ecf255baef3727de8ad07cf0ffd995928e5918"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "export.csv": {
+          "bytes": 25,
+          "sha256": "6c8a1d5533e5d4bad22c0e4707267768901a57dfd4f84f30147dfa0610ca9f30"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 18153,
+          "sha256": "0c3d3e98c5f11a2ff0220b0de9ecf255baef3727de8ad07cf0ffd995928e5918"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "added-record",
+      "derivation": "one-added",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/added-record/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/added-record/samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 21 selected samples, but <work>/added-record/results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 20196,
+          "sha256": "e36b3cc4cf134e88e7734b7ee465bb8ca1c4e31e180e84757e2c9649ed37c319"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 20196,
+          "sha256": "e36b3cc4cf134e88e7734b7ee465bb8ca1c4e31e180e84757e2c9649ed37c319"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "invalid-count",
+      "derivation": "invalid-count",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/invalid-count/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/invalid-count/results_2026-10-01T23-15-32.942677.json: task 'copa': 'effective' must be a positive integer\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 64,
+          "sha256": "17179ea8d111a9f6817302683845ba18e33e93ee4977c8cd7376a4f0f52c6f8a"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 64,
+          "sha256": "17179ea8d111a9f6817302683845ba18e33e93ee4977c8cd7376a4f0f52c6f8a"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "damaged-results",
+      "derivation": "damaged-results",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/damaged-results/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/damaged-results/results_2026-10-01T23-15-32.942677.json: invalid matching lm-eval results: Expecting value: line 1 column 15 (char 14)\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 14,
+          "sha256": "99f0e9c362b5ec6a99f15ca07e6731ae8c63939a3d54ef207fb534e6b3542308"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 14,
+          "sha256": "99f0e9c362b5ec6a99f15ca07e6731ae8c63939a3d54ef207fb534e6b3542308"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "orphan-explicit",
+      "derivation": "orphan",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/orphan-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"example\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": "",
+      "before": {
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "unrelated-count-ignored",
+      "derivation": "foreign-count",
+      "command": [
+        "errorbars",
+        "summarize",
+        "example=<work>/unrelated-count-ignored/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"example\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": "",
+      "before": {
+        "results_2026-01-01T00-00-00.000000.json": {
+          "bytes": 63,
+          "sha256": "f108f76ff003dc3f9e4f03fd88e07b251fddcfb4aeb7f5b2273ec6fe309455ca"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-01-01T00-00-00.000000.json": {
+          "bytes": 63,
+          "sha256": "f108f76ff003dc3f9e4f03fd88e07b251fddcfb4aeb7f5b2273ec6fe309455ca"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "legacy-no-count",
+      "derivation": "legacy-no-count",
+      "command": [
+        "errorbars",
+        "summarize",
+        "<work>/legacy-no-count/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "--json"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.6,\n  \"se\": 0.10954451150103323,\n  \"ci_low\": 0.38658150076225317,\n  \"ci_high\": 0.7811934676271829,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 20,\n  \"model\": \"legacy\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 20,\n  \"n_observations\": 20\n}\n",
+      "stderr": "",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 23,
+          "sha256": "b1f7153dea634ade1a6cc4835d664fb3d1c6c577afb83fdda86a4df26dc48f90"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 23,
+          "sha256": "b1f7153dea634ade1a6cc4835d664fb3d1c6c577afb83fdda86a4df26dc48f90"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "filters-complete",
+      "derivation": "filters-complete",
+      "command": [
+        "errorbars",
+        "summarize",
+        "<work>/filters-complete/samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl",
+        "--json",
+        "--filter",
+        "maj@8"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.0,\n  \"se\": 0.2449954980675067,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.4898908364545972,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 4,\n  \"model\": \"multifilter\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 4,\n  \"n_observations\": 4\n}\n",
+      "stderr": "",
+      "before": {
+        "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+          "bytes": 44164,
+          "sha256": "68bc0a6c9cbecbfd83d86044d7ae38f25f73d70c5883b2f28b0fa71268c5dd3f"
+        },
+        "results_2026-10-01T13-21-10.261566.json": {
+          "bytes": 109,
+          "sha256": "b1f2db9fd2bf08379228566871c21ebf504619256e91f46bdb27333f9da350ed"
+        }
+      },
+      "after": {
+        "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+          "bytes": 44164,
+          "sha256": "68bc0a6c9cbecbfd83d86044d7ae38f25f73d70c5883b2f28b0fa71268c5dd3f"
+        },
+        "results_2026-10-01T13-21-10.261566.json": {
+          "bytes": 109,
+          "sha256": "b1f2db9fd2bf08379228566871c21ebf504619256e91f46bdb27333f9da350ed"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "selected-filter-missing",
+      "derivation": "filters-missing",
+      "command": [
+        "errorbars",
+        "summarize",
+        "<work>/selected-filter-missing/samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl",
+        "--json",
+        "--filter",
+        "maj@8"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: <work>/selected-filter-missing/samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl: lm-eval cohort mismatch for task 'gsm8k_cot_self_consistency', filter 'maj@8': 3 selected samples, but <work>/selected-filter-missing/results_2026-10-01T13-21-10.261566.json records 4 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.\n",
+      "before": {
+        "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+          "bytes": 40300,
+          "sha256": "edbc14e46f9f05ce6262ac66b811421cdfd0b36654c53e93787e8ae667b02b8c"
+        },
+        "results_2026-10-01T13-21-10.261566.json": {
+          "bytes": 109,
+          "sha256": "b1f2db9fd2bf08379228566871c21ebf504619256e91f46bdb27333f9da350ed"
+        }
+      },
+      "after": {
+        "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+          "bytes": 40300,
+          "sha256": "edbc14e46f9f05ce6262ac66b811421cdfd0b36654c53e93787e8ae667b02b8c"
+        },
+        "results_2026-10-01T13-21-10.261566.json": {
+          "bytes": 109,
+          "sha256": "b1f2db9fd2bf08379228566871c21ebf504619256e91f46bdb27333f9da350ed"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "unselected-filter-missing",
+      "derivation": "filters-missing",
+      "command": [
+        "errorbars",
+        "summarize",
+        "<work>/unselected-filter-missing/samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl",
+        "--json",
+        "--filter",
+        "score-first"
+      ],
+      "expected": "accept",
+      "exit_code": 0,
+      "stdout": "{\n  \"mean\": 0.0,\n  \"se\": 0.2449954980675067,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.4898908364545972,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 4,\n  \"model\": \"multifilter\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 4,\n  \"n_observations\": 4\n}\n",
+      "stderr": "",
+      "before": {
+        "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+          "bytes": 40300,
+          "sha256": "edbc14e46f9f05ce6262ac66b811421cdfd0b36654c53e93787e8ae667b02b8c"
+        },
+        "results_2026-10-01T13-21-10.261566.json": {
+          "bytes": 109,
+          "sha256": "b1f2db9fd2bf08379228566871c21ebf504619256e91f46bdb27333f9da350ed"
+        }
+      },
+      "after": {
+        "samples_gsm8k_cot_self_consistency_2026-10-01T13-21-10.261566.jsonl": {
+          "bytes": 40300,
+          "sha256": "edbc14e46f9f05ce6262ac66b811421cdfd0b36654c53e93787e8ae667b02b8c"
+        },
+        "results_2026-10-01T13-21-10.261566.json": {
+          "bytes": 109,
+          "sha256": "b1f2db9fd2bf08379228566871c21ebf504619256e91f46bdb27333f9da350ed"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "sidecar-output-explicit",
+      "derivation": "complete",
+      "command": [
+        "errorbars",
+        "import",
+        "lm-eval",
+        "example=<work>/sidecar-output-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "-o",
+        "<work>/sidecar-output-explicit/results_2026-10-01T23-15-32.942677.json"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: output must not replace an input file or an alias of one\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    },
+    {
+      "case": "sidecar-hardlink-explicit",
+      "derivation": "complete",
+      "command": [
+        "errorbars",
+        "import",
+        "lm-eval",
+        "example=<work>/sidecar-hardlink-explicit/samples_copa_2026-10-01T23-15-32.942677.jsonl",
+        "-o",
+        "<work>/sidecar-hardlink-explicit/export.csv"
+      ],
+      "expected": "reject without modifying evidence/output",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "error: output must not replace an input file or an alias of one\n",
+      "before": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "export.csv": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "after": {
+        "results_2026-10-01T23-15-32.942677.json": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "export.csv": {
+          "bytes": 966,
+          "sha256": "dbaed39572ba5737816b22ed4bd164ef70feba89584cad70ce6175c4db349a0e"
+        },
+        "samples_copa_2026-10-01T23-15-32.942677.jsonl": {
+          "bytes": 19174,
+          "sha256": "179d40210e39f7bac48cbffa87d1db558312ae2df09c58614641677abd7cbcfc"
+        }
+      },
+      "agrees": true
+    }
+  ],
+  "count": 20,
+  "disagreements": 0
+}

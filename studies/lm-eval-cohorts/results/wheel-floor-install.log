@@ -1,0 +1,8 @@
+Using Python 3.10.21 environment at: <work>/wheel-floor
+Resolved 2 packages in 6.23s
+Downloading numpy (16.5MiB)
+ Downloaded numpy
+Prepared 1 package in 21.75s
+Installed 2 packages in 41ms
+ + errorbars==0.2.4 (from file://<clean-checkout>/dist/errorbars-0.2.4-py3-none-any.whl)
+ + numpy==1.24.0

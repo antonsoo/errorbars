@@ -1,0 +1,40 @@
+{
+  "code_commit": "3305216",
+  "python_checks": {
+    "commands": [
+      "uv sync --locked --group dev --extra all",
+      "uv run ruff check .",
+      "uv run mypy src/errorbars",
+      "uv run pytest -q",
+      "uv build"
+    ],
+    "tests_passed": 710,
+    "mypy_source_files": 19
+  },
+  "web_checks": {
+    "commands": [
+      "npm ci",
+      "npm run lint",
+      "npm run typecheck",
+      "npm test",
+      "npm run build",
+      "npm run test:browser",
+      "ERRORBARS_REPORT_PYTHON=<installed-wheel-python> npm run test:reports"
+    ],
+    "unit_tests_passed": 691,
+    "browser_tests_passed": 52,
+    "offline_report_tests_passed": 30,
+    "output": "web/dist/"
+  },
+  "artifacts": {
+    "errorbars-0.2.4.tar.gz": {
+      "bytes": 249169,
+      "sha256": "6f19776d7c580bc604dc20913e217837e35469209abd2450b8ad747dc7a7f919"
+    },
+    "errorbars-0.2.4-py3-none-any.whl": {
+      "bytes": 182628,
+      "sha256": "3639d9089c8f1f39d4c62aac1ece47142ab7333260592500879bbb48e546f97e"
+    }
+  },
+  "publication": "Local commits and locally built artifacts only; no push, release or deployment."
+}

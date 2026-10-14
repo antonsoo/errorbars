@@ -86,3 +86,26 @@ CSV files and direct score arrays do not carry native sidecar counts.
 The change is local and unreleased. No PyPI package or hosted calculator
 deployment is claimed. The existing web build is `cd web && npm run build`,
 with output in `web/dist/`.
+
+## Artifact verification
+
+A clean archive of code commit `3305216` passed a fresh locked install,
+Ruff, strict mypy, all 710 Python tests, and wheel/source-distribution
+builds. All 20 CLI workflows also passed using only the built wheel on
+[Python 3.14.7 / NumPy 2.5.3](results/installed-current.json) and the
+declared floor [Python 3.10.21 / NumPy 1.24.0](results/installed-floor.json).
+The replays cleared `PYTHONPATH`; no source override was used for those runs.
+
+The clean web install passed lint, typecheck, 691 unit checks and its
+production build. The existing browser suite passed 52 checks in Chromium
+and Firefox; 30 standalone comparison-report checks also passed using the
+installed wheel, including offline viewing, downloads and mobile layouts.
+The [verification receipt](results/verification.json) records the exact
+commands and the built artifact sizes and SHA-256 hashes. Browser and
+installation logs are retained alongside it. These verify compatibility
+with the local build, not a hosted deployment.
+
+![Installed CLI rejects a shortened native COPA cohort](../../docs/assets/lm-eval-cohorts.png)
+
+The terminal image was rendered from [unedited installed stderr](../../docs/assets/lm-eval-cohorts.ansi)
+and visually inspected. It is the 12-versus-20 rejection above.

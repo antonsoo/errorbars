@@ -1,0 +1,1 @@
+error: samples_copa_2026-10-01T23-15-32.942677.jsonl: lm-eval cohort mismatch for task 'copa', filter 'none': 12 selected samples, but results_2026-10-01T23-15-32.942677.json records 20 evaluated. Restore the complete sample log from this run before analysis; an explicit model name does not override recorded cohort evidence.

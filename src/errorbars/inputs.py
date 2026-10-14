@@ -47,7 +47,7 @@ class Loaded:
     files: list[Path] = field(default_factory=list)
     #: Things the caller should tell the user: an older run that was passed over.
     notes: list[str] = field(default_factory=list)
-    #: Input evidence that exports must preserve, including model-identity sidecars.
+    #: Input evidence that exports must preserve, including lm-eval results sidecars.
     protected_paths: list[Path] = field(default_factory=list)
 
 
@@ -186,7 +186,7 @@ def load_inputs(
             kind = _kind(one)
             data = _load_one(one, kind, name, model, columns, metric, filter_name, scorer, score_key)
             protected_paths.append(one)
-            if kind == "lm-eval" and not (name or model):
+            if kind == "lm-eval":
                 metadata = model_metadata_path(one)
                 if metadata is not None and metadata.is_file():
                     protected_paths.append(metadata)

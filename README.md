@@ -360,6 +360,16 @@ conversion semantics. Finish or retry an incomplete evaluation before importing 
 lm-eval records require a valid `doc_id`; row order is never
 used to fabricate question identity.
 
+The source lm-eval adapter also reconciles the selected filter's record count
+with `n-samples[task].effective` in a matching-timestamp results file, even
+with `NAME=PATH` or `--model`. A truncated native COPA capture previously
+reported 100% after its eight incorrect answers were removed, although the
+unchanged results file recorded 20 evaluated questions and the complete
+capture scored 60%. It now stops before analysis or export. The `original`
+dataset count is not used: completed limited runs remain valid. Missing
+sidecars or missing count declarations stay unchecked, and count agreement
+does not authenticate the cohort. [Before/after installed CLI evidence](studies/lm-eval-cohorts/README.md).
+
 The source lm-eval adapter also computes a versioned SHA-256 signature from each logged
 document and target. It ignores prompt arguments and responses so prompt variants remain
 comparable. It computes the signature from the contents, rather than trusting the stored

@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Native lm-eval cohort integrity
+
+- Reconcile the selected filter's sample count with the matching results
+  sidecar's `n-samples[task].effective`, including when the model is explicitly
+  named. Missing, extra or malformed declared counts stop analysis and exports.
+  Legitimate limited runs use the evaluated count rather than the original
+  dataset size. Missing count evidence remains unchecked.
+- Preserve matching results sidecars from CSV/SVG/HTML exports with explicit
+  model names as well as inferred names. A model override no longer lets an
+  export replace the count evidence, including through hard-link aliases.
+  [Native captures and CLI reproduction](studies/lm-eval-cohorts/README.md).
+
 ### Leaderboard summary limits
 
 - Bound maximal-group enumeration by 4,096 completed groups and 50,000 search

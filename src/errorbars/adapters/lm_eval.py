@@ -76,7 +76,7 @@ def looks_like_samples(record: object) -> bool:
 
 
 def model_metadata_path(path: str | Path) -> Path | None:
-    """The matching-run sidecar used for model identity, if its name can be inferred."""
+    """The matching-run results sidecar, if its name can be inferred."""
     path = Path(path)
     parts = samples_file_parts(path)
     return path.with_name(f"results_{parts[1]}.json") if parts else None
@@ -89,18 +89,63 @@ def infer_model_name(path: str | Path) -> str | None:
     sibling with another timestamp does not identify these samples. Renamed
     samples need an explicit model name. ``None`` if identity is unavailable.
     """
-    same_run = model_metadata_path(path)
-    candidates = [same_run] if same_run is not None and same_run.is_file() else []
-    for candidate in candidates:
-        try:
-            with open(candidate, encoding="utf-8-sig") as f:
-                results = json.load(f, object_pairs_hook=_unique_fields)
-        except (OSError, ValueError):
-            continue
-        name = results.get("model_name") if isinstance(results, dict) else None
-        if isinstance(name, str) and name.strip():
-            return name
+    try:
+        results = _read_results(Path(path))
+    except (OSError, ValueError):
+        return None
+    name = results.get("model_name") if results is not None else None
+    if isinstance(name, str) and name.strip():
+        return name
     return None
+
+
+def _read_results(path: Path) -> dict[str, object] | None:
+    """Only the matching timestamp supplies evidence, even with an explicit name."""
+    sidecar = model_metadata_path(path)
+    if sidecar is None or not (sidecar.exists() or sidecar.is_symlink()):
+        return None
+    if not sidecar.is_file():
+        raise ValueError(f"{sidecar}: matching lm-eval results must be a regular file")
+    try:
+        with sidecar.open(encoding="utf-8-sig") as handle:
+            results = json.load(handle, object_pairs_hook=_unique_fields)
+    except ValueError as exc:
+        raise ValueError(f"{sidecar}: invalid matching lm-eval results: {exc}") from exc
+    if not isinstance(results, dict):
+        raise ValueError(f"{sidecar}: matching lm-eval results must be a JSON object")
+    return results
+
+
+def _check_cohort(path: Path, results: dict[str, object] | None, count: int, filter_name: str) -> None:
+    """Check the selected filter's evaluated count, never the full dataset size.
+
+    Absent evidence remains unknown. A declared but malformed count cannot be
+    ignored, and naming the model does not authorize a different cohort.
+    """
+    if results is None or "n-samples" not in results:
+        return
+    counts = results["n-samples"]
+    sidecar = model_metadata_path(path)
+    if not isinstance(counts, dict):
+        raise ValueError(f"{sidecar}: invalid 'n-samples'; expected per-task counts")
+    task = _infer_task_name(path)
+    if task not in counts:
+        return
+    declared = counts[task]
+    if not isinstance(declared, dict):
+        raise ValueError(f"{sidecar}: invalid sample counts for task {task!r}")
+    if "effective" not in declared:
+        return
+    expected = declared["effective"]
+    if type(expected) is not int or expected <= 0:
+        raise ValueError(f"{sidecar}: task {task!r}: 'effective' must be a positive integer")
+    if count != expected:
+        raise ValueError(
+            f"{path}: lm-eval cohort mismatch for task {task!r}, filter {filter_name!r}: "
+            f"{count} selected samples, but {sidecar} records {expected} evaluated. "
+            "Restore the complete sample log from this run before analysis; "
+            "an explicit model name does not override recorded cohort evidence."
+        )
 
 
 def load_lm_eval_samples(
@@ -127,11 +172,18 @@ def load_lm_eval_samples(
     ``question_id`` is the task name (inferred from the filename, if it
     matches lm-eval's naming convention) plus ``doc_id``, e.g.
     ``"copa-3"``, so files from different tasks can be safely concatenated.
+
+    A matching results sidecar's ``n-samples[task].effective`` count must
+    agree with the selected filter's records, including with an explicit
+    model name. Missing count evidence stays unchecked; ``original`` is
+    the full dataset size and cannot identify a legitimate limited cohort.
     """
     path = Path(path)
     task_name = _infer_task_name(path)
+    results = _read_results(path)
     if model is None:
-        model = infer_model_name(path)
+        name = results.get("model_name") if results is not None else None
+        model = name if isinstance(name, str) and name.strip() else None
     if model is None:
         raise ValueError(
             f"{path}: can't tell which model wrote this (no matching-timestamp results file names one); "
@@ -236,6 +288,7 @@ def load_lm_eval_samples(
         except ValueError as exc:
             raise ValueError(f"{path}: metric {key!r}, {str(exc).replace('row', 'line', 1)}") from exc
 
+    _check_cohort(path, results, len(score), filter_name or next(iter(filters)))
     data = EvalData(
         question_id=question_id, model=model_col, score=score, sources=sources,
         question_hash=question_hash if any(question_hash) else None,

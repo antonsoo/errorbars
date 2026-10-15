@@ -16,6 +16,8 @@ files already recorded each metric's direction and aggregation.
 | `likelihood`, mean, higher is better | 0.7836766094578247 / 0.4581389677929259 | Precise ranked first | Same ordering and estimates |
 | `perplexity`, exponential aggregation, lower is better | 1.2840254166877414 / 2.204773979462882 | Displayed means -0.25 / -0.790625 | Refused before inference or export: raw scalar inputs are not perplexity scores |
 
+![The actual corrected forest plot ranks the smaller original-unit loss first and names its recorded direction](../../docs/assets/metric-contract/chromium-forest.png)
+
 The [before](results/before.json) and [after](results/after.json) receipts
 contain library results, actual CLI exit/output checks, and SHA-256/size
 receipts for all four unedited [native capture files](captures/).
@@ -109,3 +111,6 @@ that rejected operations preserve existing output artifacts.
 To generate new native captures, install `lm-eval==0.4.13` in a separate
 environment and run `python capture.py --out /path/to/new-captures`.
 The capture uses a scripted `DummyLM` subclass, not an external model backend.
+
+[Clean-source, installed-wheel and offline-browser verification](../../docs/verification-metric-contract-2026-10-15.md)
+includes the retained receipts, screenshot inspection and publication boundary.

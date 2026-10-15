@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "file": "chromium-1440.csv",
+      "rows": 1,
+      "direction": false,
+      "original_means": [
+        0.1,
+        0.6
+      ]
+    },
+    {
+      "file": "chromium-375.csv",
+      "rows": 1,
+      "direction": false,
+      "original_means": [
+        0.1,
+        0.6
+      ]
+    },
+    {
+      "file": "firefox-1440.csv",
+      "rows": 1,
+      "direction": false,
+      "original_means": [
+        0.1,
+        0.6
+      ]
+    },
+    {
+      "file": "firefox-375.csv",
+      "rows": 1,
+      "direction": false,
+      "original_means": [
+        0.1,
+        0.6
+      ]
+    }
+  ]
+}

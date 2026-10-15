@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "loss.html": {
+      "sha256": "06b661deebc7f359de806e9ac894802b136004e5543571e9c1a851788f4fdbd2",
+      "bytes": 202116
+    },
+    "loss.svg": {
+      "sha256": "ebf0cad0cf08f82eec88adf1b57daeff352d64642ac339a1755fbf8fad29f8f1",
+      "bytes": 4786
+    },
+    "loss.json": {
+      "sha256": "d870048b9fe4ec8e82abcf8726f7e14f981d55690d062748980da933addcf7ba",
+      "bytes": 1962
+    },
+    "loss.csv": {
+      "sha256": "38c9ffa64bda605104fa6640d9377f55715c792717b9dadeb1299700d9691d32",
+      "bytes": 9145
+    }
+  },
+  "workflows": [
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "csv_filtered_questions": 1,
+      "csv_direction_preserved": true,
+      "report_horizontal_overflow": false,
+      "original_unit_difference": -0.5406249999999999,
+      "svg_models_in_order": [
+        "precise",
+        "noisy"
+      ],
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "csv_filtered_questions": 1,
+      "csv_direction_preserved": true,
+      "report_horizontal_overflow": false,
+      "original_unit_difference": -0.5406249999999999,
+      "svg_models_in_order": [
+        "precise",
+        "noisy"
+      ],
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "csv_filtered_questions": 1,
+      "csv_direction_preserved": true,
+      "report_horizontal_overflow": false,
+      "original_unit_difference": -0.5406249999999999,
+      "svg_models_in_order": [
+        "precise",
+        "noisy"
+      ],
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "csv_filtered_questions": 1,
+      "csv_direction_preserved": true,
+      "report_horizontal_overflow": false,
+      "original_unit_difference": -0.5406249999999999,
+      "svg_models_in_order": [
+        "precise",
+        "noisy"
+      ],
+      "errors": [],
+      "network_requests": []
+    }
+  ]
+}

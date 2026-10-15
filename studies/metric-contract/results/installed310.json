@@ -1,0 +1,145 @@
+{
+  "python": "3.10.21",
+  "numpy": "1.24.0",
+  "io_sha256": "7035cd02a04b9982579fbdbb718fddd2d7a8a691f9e7be8c9945080fbb6c76c0",
+  "checks": [
+    {
+      "case": "native lower loss",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "terminal direction",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "native higher likelihood",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "native CSV export",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "CSV leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "named native inputs",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "native offline comparison",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "contradictory override",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "contradictory override",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "unknown direction labelled default",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "explicit lower raw scores",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "refuse nonlinear summarize",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "refuse nonlinear compare",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "refuse nonlinear leaderboard",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "refuse nonlinear import",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "finite nanmean aggregation",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "conflicting native declarations",
+      "exit": 1,
+      "no_traceback": true
+    }
+  ],
+  "cli_workflows": 17,
+  "native_losses": [
+    {
+      "model": "precise",
+      "mean": 0.25,
+      "se": 0.02008048322256247,
+      "ci_low": 0.21064297609161675,
+      "ci_high": 0.28935702390838325,
+      "n": 32,
+      "method": "clt",
+      "interval_status": "available",
+      "n_observations": 32,
+      "analysis_unit": "question",
+      "confidence": 0.95,
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": []
+    },
+    {
+      "model": "noisy",
+      "mean": 0.790625,
+      "se": 0.0255422542864223,
+      "ci_low": 0.7405631015146485,
+      "ci_high": 0.8406868984853515,
+      "n": 32,
+      "method": "clt",
+      "interval_status": "available",
+      "n_observations": 32,
+      "analysis_unit": "question",
+      "confidence": 0.95,
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": []
+    }
+  ],
+  "pairwise": [
+    {
+      "model_a": "precise",
+      "model_b": "noisy",
+      "mean_diff": -0.5406249999999999,
+      "p_value": 1.0077757205664373e-16,
+      "p_value_clustered": null,
+      "mcnemar": null,
+      "test": "paired_t",
+      "p_value_used": 1.0077757205664373e-16,
+      "p_holm": 1.0077757205664373e-16,
+      "n_shared": 32,
+      "warnings": []
+    }
+  ],
+  "original_scores_retained": true
+}

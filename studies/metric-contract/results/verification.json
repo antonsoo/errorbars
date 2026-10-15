@@ -1,0 +1,59 @@
+{
+  "baseline_commit": "d76caddc115c2e30a09b71553e1f786566e36510",
+  "tested_implementation_commit": "86497b1d1be11427b3b36e06f0ab671ab5c068db",
+  "tested_git_archive_tar_sha256": "af718aab2b70b186610e2a4c9533bc7de9838cbdfc9ec53a049c96d8d266fdc4",
+  "clean_checkout": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "ruff": "passed",
+    "mypy_source_files": 20,
+    "pytest_passed": 763
+  },
+  "installed_packages": {
+    "310": [
+      "errorbars==0.2.4",
+      "numpy==1.24.0"
+    ],
+    "314": [
+      "errorbars==0.2.4",
+      "numpy==2.5.4"
+    ]
+  },
+  "installed_cli_workflows_each": 17,
+  "installed_runtime_files_matching_source_each": 28,
+  "web": {
+    "node_versions": [
+      "24.21.0",
+      "26.7.0"
+    ],
+    "lint": "passed",
+    "typecheck": "passed",
+    "tests_passed": 691,
+    "build": "passed",
+    "byte_identical_build_files": 65,
+    "output_directory": "web/dist"
+  },
+  "browsers": {
+    "runner_node": "26.7.0",
+    "standalone_report_checks_passed": 32,
+    "production_page_checks_passed": 52,
+    "installed_capture_workflows": 4,
+    "offline_downloads_checked": 8,
+    "independent_csv_download_checks": 4,
+    "screenshots_inspected": 6,
+    "unchanged_source_files_since_browser_suite": 82,
+    "final_wheel_artifacts_byte_identical_to_inspected_files_each": 4
+  },
+  "build_artifacts": {
+    "errorbars-0.2.4.tar.gz": {
+      "sha256": "cf13d9cbd30f09db14efd8e80eb2f8b135c7e688a3cc749c76f4b602c7acc280",
+      "bytes": 255509
+    },
+    "errorbars-0.2.4-py3-none-any.whl": {
+      "sha256": "7f6d74e9f085362dc4995196619264e7bc7d9ada17600832bbe3ca8834dfce5b",
+      "bytes": 187120
+    }
+  },
+  "log_path_normalization": "Web test logs replace only the temporary absolute checkout prefix with <checkout>.",
+  "publication": "Local commits only; no push, deployment, tag or package publication."
+}

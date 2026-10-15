@@ -1,0 +1,64 @@
+{
+  "checked_at_utc": "2026-10-15T18:00:16.845605+00:00",
+  "clean_source_commit": "dd63d96478c7db45081005174fc9d0df57eb93cf",
+  "remote_main": "dd63d96478c7db45081005174fc9d0df57eb93cf",
+  "files": [
+    {
+      "file": "src/errorbars/adapters/_lm_eval_metric.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/src/errorbars/adapters/_lm_eval_metric.py",
+      "bytes": 7270,
+      "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71",
+      "matches_clean_source": true
+    },
+    {
+      "file": "src/errorbars/adapters/lm_eval.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/src/errorbars/adapters/lm_eval.py",
+      "bytes": 14029,
+      "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65",
+      "matches_clean_source": true
+    },
+    {
+      "file": "tests/test_lm_eval_grading.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/tests/test_lm_eval_grading.py",
+      "bytes": 8052,
+      "sha256": "2c6bf70b4a294f354acd915921520d933969502562adf41e767536df26011171",
+      "matches_clean_source": true
+    },
+    {
+      "file": "studies/lm-eval-grading/capture.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/studies/lm-eval-grading/capture.py",
+      "bytes": 3379,
+      "sha256": "4efc4abb108086e54df6865170d71d81e06c20a4a7fbf828667504e3c637e64c",
+      "matches_clean_source": true
+    },
+    {
+      "file": "studies/lm-eval-grading/results/before.json",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/studies/lm-eval-grading/results/before.json",
+      "bytes": 9531,
+      "sha256": "bfdf442dea3c64732a0cddc8d8b680e99f220ddc497e20660539d14670a80877",
+      "matches_clean_source": true
+    },
+    {
+      "file": "studies/lm-eval-grading/results/after.json",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/studies/lm-eval-grading/results/after.json",
+      "bytes": 10156,
+      "sha256": "641861efe8d2b1da1a0b3135ca72a7a850beda3fb1c0fd6c6492c11bb0e3eb25",
+      "matches_clean_source": true
+    },
+    {
+      "file": "studies/lm-eval-grading/results/verification.json",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/studies/lm-eval-grading/results/verification.json",
+      "bytes": 1823,
+      "sha256": "f5c581bbb61245c1319031780d6f09322f1bc0d613c32bb674721dd44927e346",
+      "matches_clean_source": true
+    },
+    {
+      "file": "docs/verification-lm-eval-grading-2026-10-15.md",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dd63d96478c7db45081005174fc9d0df57eb93cf/docs/verification-lm-eval-grading-2026-10-15.md",
+      "bytes": 5032,
+      "sha256": "c60afe5c08f2baa8bba4f96ec4329614163611c2131ca0a1351ff21c2bf3c485",
+      "matches_clean_source": true
+    }
+  ],
+  "scope": "Public source only; no registry release or manual deployment."
+}

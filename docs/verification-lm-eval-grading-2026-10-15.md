@@ -86,4 +86,8 @@ distinct matching/conflicting states with no horizontal overflow:
 Matching recorded parameters do not establish equivalent plugin code,
 dependencies, authentication or unrecorded grader state. Explicit and omitted
 defaults may conservatively differ. The study documents these boundaries.
-Verification uses local builds; no PyPI release or manual deployment follows.
+The verified source commits were pushed with the owner's authorization. The
+[public-source receipt](../studies/lm-eval-grading/results/source-publication.json)
+records clean source and GitHub `main` equality at `dd63d96`, plus eight
+byte-identical files fetched from immutable public URLs. No PyPI release or
+manual deployment was performed.

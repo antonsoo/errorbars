@@ -1,0 +1,108 @@
+{
+  "python": "3.12.12",
+  "numpy": "2.5.3",
+  "cli_workflows": 20,
+  "checks": [
+    {
+      "case": "folded import",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "folded native compare",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "folded native leaderboard",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "folded canonical compare",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "folded canonical leaderboard",
+      "exit": 1,
+      "no_traceback": true
+    },
+    {
+      "case": "strict-repeat import",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "strict-repeat native compare",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "strict-repeat native leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "strict-repeat canonical compare",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "strict-repeat canonical leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "improved-strict import",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "improved-strict native compare",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "improved-strict native leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "improved-strict canonical compare",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "improved-strict canonical leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "prompt-variant import",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "prompt-variant native compare",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "prompt-variant native leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "prompt-variant canonical compare",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
+      "case": "prompt-variant canonical leaderboard",
+      "exit": 0,
+      "no_traceback": true
+    }
+  ],
+  "native_and_canonical_contracts_match": true
+}

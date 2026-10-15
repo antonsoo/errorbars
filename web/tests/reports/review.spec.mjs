@@ -45,6 +45,36 @@ test('native loss direction and original score units survive offline question ex
   await clean();
 });
 
+test('native generation-grader conflicts keep questions while withholding the paired result', async ({ page, context }) => {
+  const clean = await open(page, context, 'native-grading-conflict');
+  await expect(page.locator('#effect-value')).toHaveText('unavailable');
+  await expect(page.locator('#scoring-note')).toContainText('24 conflicting');
+  await expect(page.locator('#identity-note')).toContainText('24 matching');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.comparison).toBeNull(); expect(data.inference).toBeNull();
+  expect(data.questions).toHaveLength(24);
+  expect(data.questions.every(q => q.scoring === 'conflicting' && q.difference === null)).toBe(true);
+  const q = data.questions[0];
+  expect(q.observations_a[0].scorer_config).toMatch(/^lm-eval-generation-params-v1:/);
+  expect(q.observations_a[0].scorer_config).not.toBe(q.observations_b[0].scorer_config);
+  await page.getByLabel('Search question or cluster').fill('grading_contract-0');
+  const csv = (await download(page, 'Download shown questions (CSV)')).text;
+  expect(csv.trim().split('\r\n')).toHaveLength(2);
+  expect(csv).toContain('"conflicting","matching","conflicting"');
+  await clean();
+});
+
+test('native changed answers under the same generation grader retain their exact test', async ({ page, context }) => {
+  const clean = await open(page, context, 'native-grading-control');
+  await expect(page.locator('#effect-value')).toHaveText('-0.3333');
+  await expect(page.locator('#scoring-note')).toContainText('24 matching');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.inference).toMatchObject({ test: 'mcnemar_exact', p_value: 0.0078125 });
+  expect(data.cohort.n_scoring_conflicting).toBe(0);
+  expect(data.questions.every(q => q.observations_a[0].scorer_config === q.observations_b[0].scorer_config)).toBe(true);
+  await clean();
+});
+
 test('selected named values survive inspection and downloads and prevent unlike-dimension inference', async ({ page, context }) => {
   const clean = await open(page, context, 'named-values');
   await expect(page.locator('#scoring-note')).toContainText("'correct'");

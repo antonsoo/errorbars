@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Native generation grading declarations
+
+- Retain the selected lm-eval default generation metric's forwarded grading
+  parameters and backend choice as a versioned fingerprint. Changing only
+  `exact_match(ignore_case=...)` previously appeared as a 33.3-point model gain
+  on identical answers, with exact McNemar p=0.0078125. Known conflicts now
+  withhold inference and ranking while retaining inspectable question evidence.
+- Fingerprints survive canonical CSV and comparison downloads without raw
+  grader parameters. Same-grader repeats, key-order changes, prompt variants
+  and actually changed answers stay usable. Custom processors, other output
+  branches and missing declarations stay explicitly unchecked; their unused
+  metric kwargs cannot certify scoring equivalence.
+  [Native captures, controls and replay](studies/lm-eval-grading/README.md).
+
 ### Metric direction and aggregation
 
 - Retain lm-eval's recorded `higher_is_better` declarations and rank mean

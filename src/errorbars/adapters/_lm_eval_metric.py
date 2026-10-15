@@ -8,8 +8,58 @@ aggregation functions or apply their aggregate direction to their raw inputs.
 
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 from pathlib import Path
+
+from errorbars.scoring import ScoringRule
+
+
+def metric_scoring_rule(
+    results: dict[str, object] | None, task: str | None, metric: str, path: Path,
+) -> ScoringRule:
+    """Fingerprint recorded kwargs actually used by default generation scoring.
+
+    ``metric_direction`` validates the container shapes before this is called.
+    Custom process_results overrides metric kwargs; other output types use
+    separate scoring branches. Neither can be certified by hashing unused kwargs.
+    Matching declarations do not establish matching registered metric code.
+    """
+    name = "lm-eval:" + metric
+    configs = results.get("configs") if results is not None else None
+    config = configs.get(task) if isinstance(configs, dict) else None
+    if not isinstance(config, dict) or config.get("output_type") != "generate_until":
+        return ScoringRule(name)
+    if config.get("process_results") is not None:
+        return ScoringRule(name)
+    declarations = config.get("metric_list")
+    if not isinstance(declarations, list):
+        return ScoringRule(name)
+    fingerprints = set()
+    for declaration in declarations:
+        if not isinstance(declaration, dict) or declaration.get("metric") != metric:
+            continue
+        backend = declaration.get("hf_evaluate", False)
+        if type(backend) is not bool:
+            raise ValueError(f"{path}: metric {metric!r}: hf_evaluate must be a boolean")
+        # task.py forwards all remaining fields to the generation metric. Mean
+        # aggregation and display direction do not change these per-item grades.
+        parameters = {key: value for key, value in declaration.items()
+                      if key not in {"metric", "aggregation", "higher_is_better", "hf_evaluate"}}
+        try:
+            canonical = json.dumps(
+                {"parameters": parameters, "hf_evaluate": backend}, sort_keys=True,
+                ensure_ascii=True, separators=(",", ":"), allow_nan=False,
+            )
+        except (TypeError, ValueError, RecursionError) as exc:
+            raise ValueError(f"{path}: metric {metric!r}: invalid recorded grading parameters") from exc
+        fingerprints.add(
+            "lm-eval-generation-params-v1:" + hashlib.sha256(canonical.encode("ascii")).hexdigest()
+        )
+    if len(fingerprints) > 1:
+        raise ValueError(f"{path}: metric {metric!r}: conflicting recorded grading parameters")
+    return ScoringRule(name, next(iter(fingerprints), None))
 
 
 def metric_direction(

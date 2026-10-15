@@ -362,6 +362,13 @@ binary `.eval` format, and needs the `inspect` extra:
 `pip install "errorbars[inspect]"`. The lm-eval
 adapter has no extra dependency — `--log_samples` is already plain JSONL.
 
+Default lm-eval generation imports also retain recorded grading parameters.
+Changing only `exact_match(ignore_case=...)` previously produced an apparent
+33.3-point model gain on identical answers (p=0.0078125). Known conflicts now
+withhold inference and ranking, including after canonical CSV export; prompt
+variants and changed answers under a common grader remain usable.
+[Native captures, controls and limits](studies/lm-eval-grading/README.md).
+
 The source checkout retains the selected lm-eval metric's `higher_is_better`
 declarations and checks its recorded aggregation. A controlled native capture
 previously ranked mean loss `0.790625` ahead of `0.25`; it now ranks lower loss

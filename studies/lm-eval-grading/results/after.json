@@ -1,0 +1,312 @@
+{
+  "python": "3.12.12",
+  "cases": [
+    {
+      "other_run": "folded",
+      "same_questions_targets": true,
+      "same_answers": true,
+      "same_prompt_arguments": true,
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": null,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 0,
+        "n_scoring_conflicting": 24,
+        "n_scoring_unavailable": 0
+      },
+      "inference": null,
+      "raw_score_exact_p": 0.0078125,
+      "unavailable_reason": "conflicting scoring rules for 24 shared ids (including 'grading_contract-0'); select the same score value and use matching scorer parameters before comparing",
+      "config_fingerprints": [
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795",
+        "lm-eval-generation-params-v1:ecb136ee9955c52ce335bd3cb19f88cd6c114d5832a34b13cee2ec46b217f03c"
+      ],
+      "leaderboard": {
+        "status": "refused",
+        "reason": "'B' vs 'A': conflicting scoring rules for 24 shared ids (including 'grading_contract-0'); re-score both runs under the same scorer and parameters before ranking"
+      },
+      "compare_cli": {
+        "exit": 1,
+        "stdout": false,
+        "scoring_conflict": true
+      },
+      "leaderboard_cli": {
+        "exit": 1,
+        "stdout": false,
+        "scoring_conflict": true
+      },
+      "html_created": true
+    },
+    {
+      "other_run": "strict-repeat",
+      "same_questions_targets": true,
+      "same_answers": true,
+      "same_prompt_arguments": true,
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.0,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 1.0,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "raw_score_exact_p": 1.0,
+      "unavailable_reason": null,
+      "config_fingerprints": [
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795",
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795"
+      ],
+      "leaderboard": {
+        "status": "accepted",
+        "entries": 2
+      },
+      "compare_cli": {
+        "exit": 0,
+        "stdout": true,
+        "scoring_conflict": false,
+        "inference": {
+          "test": "mcnemar_exact",
+          "p_value": 1.0,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence": null,
+          "mcnemar_applicable": true
+        }
+      },
+      "leaderboard_cli": {
+        "exit": 0,
+        "stdout": true,
+        "scoring_conflict": false
+      },
+      "html_created": true
+    },
+    {
+      "other_run": "improved-strict",
+      "same_questions_targets": true,
+      "same_answers": false,
+      "same_prompt_arguments": true,
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.6666666666666666,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.6666666666666666,
+        "mean_difference": -0.3333333333333333,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 0.0078125,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "raw_score_exact_p": 0.0078125,
+      "unavailable_reason": null,
+      "config_fingerprints": [
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795",
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795"
+      ],
+      "leaderboard": {
+        "status": "accepted",
+        "entries": 2
+      },
+      "compare_cli": {
+        "exit": 0,
+        "stdout": true,
+        "scoring_conflict": false,
+        "inference": {
+          "test": "mcnemar_exact",
+          "p_value": 0.0078125,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence": null,
+          "mcnemar_applicable": true
+        }
+      },
+      "leaderboard_cli": {
+        "exit": 0,
+        "stdout": true,
+        "scoring_conflict": false
+      },
+      "html_created": true
+    },
+    {
+      "other_run": "prompt-variant",
+      "same_questions_targets": true,
+      "same_answers": true,
+      "same_prompt_arguments": false,
+      "cohort": {
+        "n_a": 24,
+        "n_b": 24,
+        "n_shared": 24,
+        "n_only_a": 0,
+        "n_only_b": 0,
+        "n_observations_a": 24,
+        "n_observations_b": 24,
+        "n_shared_observations_a": 24,
+        "n_shared_observations_b": 24,
+        "mean_all_a": 0.3333333333333333,
+        "mean_all_b": 0.3333333333333333,
+        "mean_shared_a": 0.3333333333333333,
+        "mean_shared_b": 0.3333333333333333,
+        "mean_difference": 0.0,
+        "n_clusters": null,
+        "n_identity_matching": 24,
+        "n_identity_partial": 0,
+        "n_identity_conflicting": 0,
+        "n_identity_unavailable": 0,
+        "n_scoring_matching": 24,
+        "n_scoring_conflicting": 0,
+        "n_scoring_unavailable": 0
+      },
+      "inference": {
+        "test": "mcnemar_exact",
+        "p_value": 1.0,
+        "ci_low": null,
+        "ci_high": null,
+        "confidence": null,
+        "mcnemar_applicable": true
+      },
+      "raw_score_exact_p": 1.0,
+      "unavailable_reason": null,
+      "config_fingerprints": [
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795",
+        "lm-eval-generation-params-v1:47fad72204f464d40679e23328b27e65dab629b9546640ec72873d73e1a1e795"
+      ],
+      "leaderboard": {
+        "status": "accepted",
+        "entries": 2
+      },
+      "compare_cli": {
+        "exit": 0,
+        "stdout": true,
+        "scoring_conflict": false,
+        "inference": {
+          "test": "mcnemar_exact",
+          "p_value": 1.0,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence": null,
+          "mcnemar_applicable": true
+        }
+      },
+      "leaderboard_cli": {
+        "exit": 0,
+        "stdout": true,
+        "scoring_conflict": false
+      },
+      "html_created": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "captures/folded/folded/results_2026-10-15T10-32-48.459615.json",
+      "bytes": 2499,
+      "sha256": "4e990081d6689c9da05bf326f475f3f81834b896819e2f0bba699245b946a344"
+    },
+    {
+      "path": "captures/improved-strict/improved-strict/results_2026-10-15T10-32-48.476558.json",
+      "bytes": 2519,
+      "sha256": "2aa501572ccf6012fe96d1d71b89d62f0776d9326e173b88ba2fb36f165bead9"
+    },
+    {
+      "path": "captures/prompt-variant/prompt-variant/results_2026-10-15T10-32-48.500474.json",
+      "bytes": 2571,
+      "sha256": "6e0aec0f8f04eb067fb0ad5b8cee1b9a8ea439f5b1f7bbcf9350ce687fffd857"
+    },
+    {
+      "path": "captures/strict/strict/results_2026-10-15T10-32-48.422627.json",
+      "bytes": 2500,
+      "sha256": "a090323be38e086038f453d4f08363aca1a2fc8ea8a0a9fed74ef163d5b78463"
+    },
+    {
+      "path": "captures/strict-repeat/strict-repeat/results_2026-10-15T10-32-48.469459.json",
+      "bytes": 2515,
+      "sha256": "8220f5a90893c038c590b593fa3ebf7880b3f5b74cd9920afdd5e1c67f245205"
+    },
+    {
+      "path": "captures/folded/folded/samples_grading_contract_2026-10-15T10-32-48.459615.jsonl",
+      "bytes": 15186,
+      "sha256": "77d5699bd0be2c63743a04ca047e6738f4929fd0402d3a6a448baff1063ca843"
+    },
+    {
+      "path": "captures/improved-strict/improved-strict/samples_grading_contract_2026-10-15T10-32-48.476558.jsonl",
+      "bytes": 15186,
+      "sha256": "b1500cedbc78b6251feac7ace14c412c98b34ffda45ea294a05b8d05e22fa048"
+    },
+    {
+      "path": "captures/prompt-variant/prompt-variant/samples_grading_contract_2026-10-15T10-32-48.500474.jsonl",
+      "bytes": 15738,
+      "sha256": "375ca02e608f75c8ad782e8274973252edf18a3e85f5fde5e0e303f6a4fcd050"
+    },
+    {
+      "path": "captures/strict/strict/samples_grading_contract_2026-10-15T10-32-48.422627.jsonl",
+      "bytes": 15186,
+      "sha256": "8a84d352c7c51a5e6a2db2be1af248001c6d749bb0c18a7fe1ad786f6fc29a53"
+    },
+    {
+      "path": "captures/strict-repeat/strict-repeat/samples_grading_contract_2026-10-15T10-32-48.469459.jsonl",
+      "bytes": 15186,
+      "sha256": "8a84d352c7c51a5e6a2db2be1af248001c6d749bb0c18a7fe1ad786f6fc29a53"
+    }
+  ],
+  "changed_grader_inference_withheld": true,
+  "common_grader_controls_usable": true
+}

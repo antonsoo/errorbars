@@ -44,8 +44,8 @@ import json
 import re
 from pathlib import Path
 
-from errorbars.adapters._lm_eval_metric import metric_direction
-from errorbars.io import EvalData, RecordSource, ScoringRule, _coerce_score, _identifier, _unique_fields
+from errorbars.adapters._lm_eval_metric import metric_direction, metric_scoring_rule
+from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier, _unique_fields
 
 __all__ = [
     "load_lm_eval_samples", "infer_model_name", "model_metadata_path",
@@ -295,8 +295,7 @@ def load_lm_eval_samples(
     data = EvalData(
         question_id=question_id, model=model_col, score=score, sources=sources,
         question_hash=question_hash if any(question_hash) else None,
-        # Samples record the metric label, not its implementation/configuration.
-        scoring=[ScoringRule("lm-eval:" + str(selected_metric))] * len(score),
+        scoring=[metric_scoring_rule(results, task_name, selected_metric, path)] * len(score),
         higher_is_better=[direction] * len(score) if direction is not None else None,
     )
     data.validate()

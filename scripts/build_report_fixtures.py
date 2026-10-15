@@ -23,6 +23,12 @@ def build(output: Path) -> None:
     metric_captures = ROOT / "studies/metric-contract/captures"
     losses = load_inputs([metric_captures / "precise", metric_captures / "noisy"], metric="mean_nll").data
     write_comparison_html(review_comparison(losses, "precise", "noisy"), output / "loss.html")
+    grading_captures = ROOT / "studies/lm-eval-grading/captures"
+    for label, other in (
+        ("native-grading-conflict", "folded"), ("native-grading-control", "improved-strict"),
+    ):
+        graded = load_inputs([f"A={grading_captures / 'strict'}", f"B={grading_captures / other}"]).data
+        write_comparison_html(review_comparison(graded, "A", "B"), output / f"{label}.html")
     clustered = review_comparison(
         load_csv(ROOT / "examples/data/reading_comprehension.csv"), "tuned-70b", "baseline-70b"
     )

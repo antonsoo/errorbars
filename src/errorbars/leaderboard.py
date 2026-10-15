@@ -314,7 +314,9 @@ def build_leaderboard(
     direction = higher_is_better if higher_is_better is not None else next(iter(directions), True)
 
     parts = {m: data.filter_model(m) for m in models}
-    qmap = {m: part.scores_by_question() for m, part in parts.items()}
+    # The whole dataset was validated above; these parts only select its rows.
+    # Revalidating each part repeats a full-data scan without new input evidence.
+    qmap = {m: part._validated_question_means() for m, part in parts.items()}
     counts = {m: Counter(part.question_id) for m, part in parts.items()}
     n_observations = {m: len(part) for m, part in parts.items()}
     # Index content evidence once per board. Looking up both models in all rows

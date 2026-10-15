@@ -1,0 +1,142 @@
+{
+  "scope": "cProfile on first 50,000 questions / 400,000 rows; kernel change only, before validation reuse",
+  "profiled_seconds": 27.651390168999985,
+  "input_sha256": "512659f7aaa2c582381aa870cad0eec09decc6caf1a47862eccffd86fb4a35f7",
+  "baseline_revision": "0590c884ea168530c2831aa97ff1f78c48eebca6",
+  "functions": [
+    {
+      "module": "cli.py",
+      "line": 1,
+      "function": "<module>",
+      "calls": 1,
+      "self_seconds": 0.00012869200000000002,
+      "cumulative_seconds": 27.488907411000003
+    },
+    {
+      "module": "cli.py",
+      "line": 712,
+      "function": "main",
+      "calls": 1,
+      "self_seconds": 1.7754e-05,
+      "cumulative_seconds": 27.416398396
+    },
+    {
+      "module": "cli.py",
+      "line": 725,
+      "function": "_run",
+      "calls": 1,
+      "self_seconds": 0.092549932,
+      "cumulative_seconds": 27.408415915000003
+    },
+    {
+      "module": "cli.py",
+      "line": 395,
+      "function": "cmd_leaderboard",
+      "calls": 1,
+      "self_seconds": 0.042540358,
+      "cumulative_seconds": 27.315865983000002
+    },
+    {
+      "module": "cli.py",
+      "line": 31,
+      "function": "_load",
+      "calls": 1,
+      "self_seconds": 0.028567046000000002,
+      "cumulative_seconds": 15.605102659000002
+    },
+    {
+      "module": "io.py",
+      "line": 553,
+      "function": "load_csv",
+      "calls": 1,
+      "self_seconds": 0.058043626,
+      "cumulative_seconds": 11.992973012
+    },
+    {
+      "module": "io.py",
+      "line": 420,
+      "function": "_from_records",
+      "calls": 1,
+      "self_seconds": 2.651228891,
+      "cumulative_seconds": 11.934779703
+    },
+    {
+      "module": "leaderboard.py",
+      "line": 259,
+      "function": "build_leaderboard",
+      "calls": 1,
+      "self_seconds": 1.8387348860000001,
+      "cumulative_seconds": 11.663121855
+    },
+    {
+      "module": "io.py",
+      "line": 170,
+      "function": "validate",
+      "calls": 12,
+      "self_seconds": 3.6587986270000004,
+      "cumulative_seconds": 9.764227538
+    },
+    {
+      "module": "io.py",
+      "line": 114,
+      "function": "scores_by_question",
+      "calls": 8,
+      "self_seconds": 2.0561713150000003,
+      "cumulative_seconds": 4.648315059000001
+    },
+    {
+      "module": "io.py",
+      "line": 583,
+      "function": "located",
+      "calls": 400001,
+      "self_seconds": 0.8445841030000001,
+      "cumulative_seconds": 4.0714576010000005
+    },
+    {
+      "module": "io.py",
+      "line": 358,
+      "function": "_coerce_score",
+      "calls": 2400000,
+      "self_seconds": 1.7066311820000002,
+      "cumulative_seconds": 2.595392087
+    },
+    {
+      "module": "io.py",
+      "line": 261,
+      "function": "concat",
+      "calls": 1,
+      "self_seconds": 0.022119361,
+      "cumulative_seconds": 1.7905518310000001
+    },
+    {
+      "module": "io.py",
+      "line": 375,
+      "function": "_label",
+      "calls": 800000,
+      "self_seconds": 0.308749078,
+      "cumulative_seconds": 1.5650155510000001
+    },
+    {
+      "module": "io.py",
+      "line": 382,
+      "function": "_identifier",
+      "calls": 800000,
+      "self_seconds": 0.8060480510000001,
+      "cumulative_seconds": 1.2562664730000002
+    },
+    {
+      "module": "leaderboard.py",
+      "line": 442,
+      "function": "<genexpr>",
+      "calls": 2800028,
+      "self_seconds": 0.8972360410000001,
+      "cumulative_seconds": 0.8972360410000001
+    }
+  ],
+  "note": "Instrumented profile times are for attribution, not an uninstrumented benchmark.",
+  "profiled_validation_modules_sha256": {
+    "cli.py": "098ec0524215e09039792df660f07a6558619441c22ef8595f364dc046348809",
+    "io.py": "7035cd02a04b9982579fbdbb718fddd2d7a8a691f9e7be8c9945080fbb6c76c0",
+    "leaderboard.py": "85ea971db5e1d4c495bb57d827d82c3a4f43ef8eed6bacae01a7281caa7f6d7f"
+  }
+}

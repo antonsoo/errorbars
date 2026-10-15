@@ -1,0 +1,16 @@
+{
+  "python": "3.12.12",
+  "synthetic": true,
+  "kernel": [],
+  "cli": {
+    "seconds": 73.35319757499383,
+    "input_sha256": "5e33fde7fe27625e1226e00fa3039bfda8f52829c75094635b750d28d590b8dd",
+    "user_cpu_seconds": 71.134772,
+    "system_cpu_seconds": 1.855446,
+    "peak_rss_kib_linux": 1242592,
+    "models": 8,
+    "pairs": 28,
+    "command": "errorbars leaderboard independent-binary.csv --json",
+    "output": "repeated-before-2-leaderboard.json"
+  }
+}

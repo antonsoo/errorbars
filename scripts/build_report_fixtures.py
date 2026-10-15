@@ -38,6 +38,16 @@ def build(output: Path) -> None:
         a, b = data.models()
         write_comparison_html(review_comparison(data, a, b), output / f"{name}.html")
 
+    n_tiny = 1075
+    tiny_ids = [f"constructed-{i:04d}" for i in range(n_tiny)]
+    tiny = EvalData(
+        tiny_ids * 2, ["constructed-A"] * n_tiny + ["constructed-B"] * n_tiny,
+        [1.0] * n_tiny + [0.0] * n_tiny,
+    )
+    write_comparison_html(
+        review_comparison(tiny, "constructed-A", "constructed-B"), output / "tiny-exact-tail.html"
+    )
+
     path = output / "partial-synthetic.csv"
     with path.open("w", newline="") as f:
         writer = csv.writer(f)

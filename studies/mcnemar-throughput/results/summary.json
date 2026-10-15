@@ -1,0 +1,29 @@
+{
+  "runs_executed_sequentially": true,
+  "other_host_activity_controlled": false,
+  "pairs": [
+    {
+      "pair": 1,
+      "baseline_wall_seconds": 125.77287317498121,
+      "current_wall_seconds": 55.121733923995635,
+      "baseline_cpu_seconds": 94.708168,
+      "current_cpu_seconds": 51.519855,
+      "baseline_peak_rss_kib": 1258704,
+      "current_peak_rss_kib": 1237648
+    },
+    {
+      "pair": 2,
+      "baseline_wall_seconds": 73.35319757499383,
+      "current_wall_seconds": 56.661088963999646,
+      "baseline_cpu_seconds": 72.990218,
+      "current_cpu_seconds": 53.58573799999999,
+      "baseline_peak_rss_kib": 1242592,
+      "current_peak_rss_kib": 1258704
+    }
+  ],
+  "cli_reports_same_estimates_intervals_ranks_groups_and_decisions": true,
+  "raw_and_holm_p_relative_tolerance": 2e-11,
+  "initial_serial_before_wall_seconds": 50.05864282901166,
+  "initial_serial_after_wall_seconds": 70.2023044200032,
+  "timing_limit": "Wall time varies substantially on this shared host; report matched CPU and wall captures without a universal speedup claim."
+}

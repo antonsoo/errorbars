@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Iterator
 from dataclasses import asdict, dataclass, field
 from typing import Any, Literal
 
@@ -259,8 +260,8 @@ def mcnemar_exact(scores_a: ArrayLike, scores_b: ArrayLike) -> McNemarResult:
     Uses only the discordant pairs b = #(A=0,B=1), c = #(A=1,B=0); under the
     null they are Binomial(b+c, 0.5). Reference: McNemar (1947); the exact
     version is preferred over the chi-square approximation when b+c is
-    small. Matches ``statsmodels.stats.contingency_tables.mcnemar(...,
-    exact=True)``.
+    small. The finite binomial probabilities are evaluated numerically, with
+    integer-rational and statsmodels/SciPy cross-checks in the tests.
     """
     a = score_vector(scores_a, "scores_a")
     b = score_vector(scores_b, "scores_b")
@@ -274,15 +275,43 @@ def mcnemar_exact(scores_a: ArrayLike, scores_b: ArrayLike) -> McNemarResult:
     if total == 0:
         return McNemarResult(n01, n10, 1.0)
     k = min(n01, n10)
+    return McNemarResult(n01, n10, _binomial_half_two_sided(total, k))
+
+
+def _binomial_half_two_sided(total: int, k: int) -> float:
+    """Twice P(X <= k), X ~ Binomial(total, 1/2), for k <= total // 2.
+
+    Evaluate the same finite distribution using normalized probabilities.
+    Repeated arithmetic on total-bit integer coefficients made near-tied
+    large comparisons quadratic in practice. No normal/chi-square test is used.
+    """
     if 2 * k >= total - 1:
-        return McNemarResult(n01, n10, 1.0)
-    # two-sided exact binomial test, p=0.5: sum both tails via symmetry
-    # Adjacent coefficients obey C(n,i)=C(n,i-1)*(n-i+1)/i. Keep the
-    # numerator exact, without rebuilding thousands of factorial ratios.
-    coefficient = numerator = 1
-    for i in range(1, k + 1):
-        coefficient = coefficient * (total - i + 1) // i
-        numerator += coefficient
-    tail = numerator / (2**total)
-    p_value = min(1.0, 2 * tail)
-    return McNemarResult(n01, n10, float(p_value))
+        return 1.0
+    if k == 0:
+        # Double before rounding: 2**-1075 underflows, but twice it is representable.
+        return 2.0 ** (1 - total)
+    center = total // 2
+    # C(2m,m)/2**(2m) = product((2i-1)/(2i), i=1..m). The odd case follows
+    # from C(2m+1,m) = C(2m,m)*(2m+1)/(m+1). No huge integers or lgamma subtraction.
+    mass = math.prod((2 * i - 1) / (2 * i) for i in range(1, center + 1))
+    if total % 2:
+        mass *= total / (total + 1)
+    exponent = 0
+    for i in range(center, k, -1):
+        mass *= i / (total - i + 1)
+        if mass < 2.0 ** -512:
+            mass = math.ldexp(mass, 512)
+            exponent -= 512
+
+    def relative_terms() -> Iterator[float]:
+        term = 1.0
+        yield term
+        for i in range(k, 0, -1):
+            term *= i / (total - i + 1)
+            if term == 0.0:
+                break
+            yield term
+
+    # Keep intermediate terms normal and sum relative to the largest tail term.
+    # fsum retains small contributions; apply the binary scale only at the end.
+    return min(1.0, math.ldexp(2 * mass * math.fsum(relative_terms()), exponent))

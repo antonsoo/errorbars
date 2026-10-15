@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL, fileURLToPath } from 'node:url';
 
 async function open(page, context, name) {
   const errors = [], requests = [];
@@ -142,6 +142,36 @@ test('two binary wins retain uncertainty in the headline and downloaded evidence
   expect(data.comparison.p_value).toBe(0); // Clearly separated legacy diagnostic.
   await page.setViewportSize({ width: 375, height: 900 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await clean();
+});
+
+test('a representable tiny exact tail survives the installed offline report and download', async ({ page, context, browserName }) => {
+  const clean = await open(page, context, 'tiny-exact-tail');
+  await expect(page.locator('#inference-description')).toContainText('Exact McNemar');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.inference).toMatchObject({ test: 'mcnemar_exact', p_value: Number.MIN_VALUE });
+  expect(data.comparison.mcnemar).toMatchObject({ n01: 0, n10: 1075, p_value: Number.MIN_VALUE });
+  expect(data.questions).toHaveLength(1075);
+  await page.getByLabel('Search question or cluster').fill('constructed-1074');
+  await page.getByRole('button', { name: 'Inspect question constructed-1074', exact: true }).click();
+  await expect(page.locator('#inspector')).toContainText('1.0000');
+  const csv = (await download(page, 'Download shown questions (CSV)')).text;
+  expect(csv.trim().split('\r\n')).toHaveLength(2);
+  expect(csv).toContain('constructed-1074');
+  if (process.env.UPDATE_MCNEMAR_SCREENSHOTS) {
+    const directory = fileURLToPath(new URL('../../../docs/assets/mcnemar-throughput/', import.meta.url));
+    await mkdir(directory, { recursive: true });
+    for (const width of [1440, 375]) {
+      await page.setViewportSize({ width, height: 960 });
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await page.screenshot({ path: join(directory, `${browserName}-${width}.png`), fullPage: true });
+    }
+    const evidence = fileURLToPath(new URL('../../../studies/mcnemar-throughput/results/', import.meta.url));
+    await writeFile(join(evidence, `${browserName}-report.json`), JSON.stringify({
+      inference: data.inference, mcnemar: data.comparison.mcnemar, questions: data.questions.length,
+      filtered_csv: csv, offline: true,
+    }, null, 2) + '\n');
+  }
   await clean();
 });
 

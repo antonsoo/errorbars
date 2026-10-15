@@ -116,6 +116,14 @@ class EvalData:
         self.validate()
         if len(self.models()) > 1:
             raise ValueError("select one model before averaging scores by question")
+        return self._validated_question_means()
+
+    def _validated_question_means(self) -> dict[str, float]:
+        """One-model means for an operation that has just validated its input.
+
+        No validation result is cached: callers may mutate EvalData between
+        operations. Internal filtering preserves the rows' validated values.
+        """
         totals: dict[str, list[float]] = {}
         for qid, s in zip(self.question_id, self.score, strict=True):
             totals.setdefault(qid, []).append(s)

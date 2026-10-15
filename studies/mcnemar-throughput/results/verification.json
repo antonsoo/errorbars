@@ -1,0 +1,139 @@
+{
+  "recorded_utc": "2026-10-15T19:29:37.540971+00:00",
+  "baseline_revision": "0590c884ea168530c2831aa97ff1f78c48eebca6",
+  "environments": {
+    "clean-venv": {
+      "python": "3.14.7",
+      "packages": {
+        "errorbars": "0.2.4",
+        "numpy": "2.5.3"
+      }
+    },
+    "installed": {
+      "python": "3.14.7",
+      "packages": {
+        "errorbars": "0.2.4",
+        "numpy": "2.5.4"
+      }
+    },
+    "minimums": {
+      "python": "3.10.21",
+      "packages": {
+        "errorbars": "0.2.4",
+        "numpy": "1.24.0"
+      }
+    }
+  },
+  "checks": [
+    {
+      "command": "uv sync --locked --group dev --extra all --python 3.14",
+      "result": "pass",
+      "scope": "fresh checkout-index snapshot and environment"
+    },
+    {
+      "command": "ruff check src tests scripts/build_report_fixtures.py studies/mcnemar-throughput; mypy src/errorbars",
+      "result": "pass"
+    },
+    {
+      "command": "pytest -q",
+      "environment": "clean locked Python 3.14.7",
+      "passed": 788,
+      "skipped": 0
+    },
+    {
+      "command": "python -m pytest -q tests/test_mcnemar_scale.py tests/test_compare_vs_oracles.py tests/test_leaderboard.py tests/test_selected_inference.py tests/test_evidence_integrity.py",
+      "environment": "installed wheel, Python 3.10.21, runtime floor NumPy 1.24.0",
+      "passed": 147,
+      "skipped": 15,
+      "skip_reason": "optional Inspect AI package absent"
+    },
+    {
+      "command": "uv build",
+      "result": "pass",
+      "scope": "wheel built from source distribution; all 28 package files byte-equal to workspace"
+    },
+    {
+      "command": "python studies/mcnemar-throughput/oracles.py",
+      "result": "pass",
+      "probability_checks": 4368
+    },
+    {
+      "command": "python studies/mcnemar-throughput/audit_swe.py",
+      "result": "pass",
+      "scope": "retained real outcome snapshot, task-independent diagnostic",
+      "models": 173,
+      "questions": 500,
+      "pairs": 14878,
+      "changed_decisions": 0
+    },
+    {
+      "command": "npm ci; npm run typecheck; npm run lint; npm test; npm run build",
+      "result": "pass",
+      "ui_tests_passed": 691
+    },
+    {
+      "command": "npx playwright test --output <separate temporary directory>",
+      "passed": 52,
+      "engines": [
+        "Chromium",
+        "Firefox"
+      ],
+      "scope": "clean production app"
+    },
+    {
+      "command": "ERRORBARS_REPORT_PYTHON=<installed Python> UPDATE_MCNEMAR_SCREENSHOTS=1 npm run test:reports",
+      "passed": 38,
+      "engines": [
+        "Chromium",
+        "Firefox"
+      ],
+      "scope": "fresh offline standalone reports from installed wheel, including complete tiny-tail JSON and CSV downloads"
+    },
+    {
+      "command": "errorbars power --delta 0.03 --baseline 0.5",
+      "result": "pass",
+      "bare_wheel_install": true,
+      "questions_needed": 4361
+    },
+    {
+      "command": "python studies/mcnemar-throughput/benchmark.py installed",
+      "result": "pass",
+      "scope": "bare installed-wheel 1.6-million-row CSV replay",
+      "all_28_pair_decisions_and_ranks_match_baseline": true,
+      "timing_note": "This installation replay ran alongside verification jobs and is not a paired performance measurement."
+    }
+  ],
+  "corrected_harness_failure": {
+    "description": "Concurrent browser suites shared their default artifact directory and caused two ENOENT teardown errors. The app suite was rerun with a separate output directory and all 52 checks passed.",
+    "product_assertion_failure": false
+  },
+  "source_sha256": {
+    "src/errorbars/__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+    "src/errorbars/_output.py": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c",
+    "src/errorbars/_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+    "src/errorbars/_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+    "src/errorbars/adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+    "src/errorbars/adapters/_inspect_integrity.py": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+    "src/errorbars/adapters/_lm_eval_metric.py": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71",
+    "src/errorbars/adapters/inspect_ai.py": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+    "src/errorbars/adapters/lm_eval.py": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65",
+    "src/errorbars/cli.py": "ec3e09e061f604469f1a1b7e3b567e899e0f36548171dc60d422f05f6a5f1078",
+    "src/errorbars/compare.py": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8",
+    "src/errorbars/inputs.py": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb",
+    "src/errorbars/io.py": "fb83b095220f508c46c0c1067fc5ef729d40b7e64b625119dd3bb0dbab44baf2",
+    "src/errorbars/leaderboard.py": "a28fb28916af79baf442e82b51612f7510bd989cda3e63b8efde858b3165d99e",
+    "src/errorbars/plot.py": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a",
+    "src/errorbars/power.py": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+    "src/errorbars/report.py": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e",
+    "src/errorbars/review.py": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e",
+    "src/errorbars/scoring.py": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+    "src/errorbars/stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+  },
+  "source_publication": "pending push at recording; package publication and hosted deployment are separate",
+  "limits": [
+    "Synthetic throughput control; no model accuracy claim.",
+    "Wall time varies substantially on shared WSL2; both paired CPU/wall captures and initial contrary wall captures are retained.",
+    "Floating evaluation of the finite binomial distribution; tested through one million disagreements at stated tolerances.",
+    "Fixed SWE-bench browser implementation unchanged."
+  ]
+}

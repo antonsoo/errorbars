@@ -1,0 +1,16 @@
+{
+  "data_scope": "retained SWE-bench study snapshot; task-independent diagnostic",
+  "input_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "models": 173,
+  "questions": 500,
+  "pairs": 14878,
+  "excluded": [
+    "20250720_mini-v0.0.0-claude-3-7-sonnet-20250219",
+    "20260226_mini-v2.0.0_gemini-3-pro-high"
+  ],
+  "oracle": "integer combinations; complete two-sided numerator",
+  "raw_and_holm_p_values_agree": true,
+  "changed_significance_decisions": [],
+  "significant_pairs": 10657,
+  "max_absolute_raw_p_difference": 8.881784197001252e-16
+}

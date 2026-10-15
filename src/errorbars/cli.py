@@ -44,7 +44,8 @@ def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
         raise SystemExit(f"error: {exc}") from exc
     for note in loaded.notes:
         print(f"note: {visible(note)}", file=sys.stderr)
-    loaded.data.validate()
+    # load_inputs returns concat's validated dataset. Keep validation at public
+    # load/statistics boundaries, without another identical scan in this wrapper.
     args.protected_inputs = loaded.protected_paths
     return loaded.data
 

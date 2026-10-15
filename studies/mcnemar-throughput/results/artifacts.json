@@ -1,0 +1,156 @@
+{
+  "artifacts": [
+    {
+      "file": "errorbars-0.2.4-py3-none-any.whl",
+      "bytes": 188873,
+      "sha256": "aa5bdbf827f1f91062ad113bcbc590f6ae533321d180256505f5564286499e36"
+    },
+    {
+      "file": "errorbars-0.2.4.tar.gz",
+      "bytes": 262129,
+      "sha256": "10ed2bcb89b48823a0371e40b5447017d344564712b9f081f114b700e0e858fc"
+    }
+  ],
+  "workspace_wheel_and_sdist_files_equal": [
+    {
+      "file": "errorbars/__init__.py",
+      "bytes": 673,
+      "sha256": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55"
+    },
+    {
+      "file": "errorbars/_output.py",
+      "bytes": 2098,
+      "sha256": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c"
+    },
+    {
+      "file": "errorbars/_tables.py",
+      "bytes": 5626,
+      "sha256": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853"
+    },
+    {
+      "file": "errorbars/_validation.py",
+      "bytes": 1751,
+      "sha256": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707"
+    },
+    {
+      "file": "errorbars/cli.py",
+      "bytes": 32384,
+      "sha256": "ec3e09e061f604469f1a1b7e3b567e899e0f36548171dc60d422f05f6a5f1078"
+    },
+    {
+      "file": "errorbars/compare.py",
+      "bytes": 12322,
+      "sha256": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8"
+    },
+    {
+      "file": "errorbars/inputs.py",
+      "bytes": 8414,
+      "sha256": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb"
+    },
+    {
+      "file": "errorbars/io.py",
+      "bytes": 31538,
+      "sha256": "fb83b095220f508c46c0c1067fc5ef729d40b7e64b625119dd3bb0dbab44baf2"
+    },
+    {
+      "file": "errorbars/leaderboard.py",
+      "bytes": 23041,
+      "sha256": "a28fb28916af79baf442e82b51612f7510bd989cda3e63b8efde858b3165d99e"
+    },
+    {
+      "file": "errorbars/plot.py",
+      "bytes": 9169,
+      "sha256": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a"
+    },
+    {
+      "file": "errorbars/power.py",
+      "bytes": 14059,
+      "sha256": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839"
+    },
+    {
+      "file": "errorbars/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "errorbars/report.py",
+      "bytes": 10089,
+      "sha256": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e"
+    },
+    {
+      "file": "errorbars/review.py",
+      "bytes": 14267,
+      "sha256": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e"
+    },
+    {
+      "file": "errorbars/scoring.py",
+      "bytes": 2165,
+      "sha256": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa"
+    },
+    {
+      "file": "errorbars/stats.py",
+      "bytes": 16292,
+      "sha256": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+    },
+    {
+      "file": "errorbars/adapters/__init__.py",
+      "bytes": 77,
+      "sha256": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f"
+    },
+    {
+      "file": "errorbars/adapters/_inspect_integrity.py",
+      "bytes": 7548,
+      "sha256": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31"
+    },
+    {
+      "file": "errorbars/adapters/_lm_eval_metric.py",
+      "bytes": 7270,
+      "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71"
+    },
+    {
+      "file": "errorbars/adapters/inspect_ai.py",
+      "bytes": 7644,
+      "sha256": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25"
+    },
+    {
+      "file": "errorbars/adapters/lm_eval.py",
+      "bytes": 14029,
+      "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65"
+    },
+    {
+      "file": "errorbars/report_assets/report.css",
+      "bytes": 12519,
+      "sha256": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991"
+    },
+    {
+      "file": "errorbars/report_assets/report.js",
+      "bytes": 22681,
+      "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161"
+    },
+    {
+      "file": "errorbars/report_assets/template.html",
+      "bytes": 10051,
+      "sha256": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050"
+    },
+    {
+      "file": "errorbars/report_assets/fonts/LICENSE.txt",
+      "bytes": 13870,
+      "sha256": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5"
+    },
+    {
+      "file": "errorbars/report_assets/fonts/ibm-plex-mono-400-latin.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "file": "errorbars/report_assets/fonts/ibm-plex-sans-latin.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    },
+    {
+      "file": "errorbars/report_assets/fonts/spectral-500-latin.woff2",
+      "bytes": 22836,
+      "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+    }
+  ]
+}

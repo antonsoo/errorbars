@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Large binary comparisons
+
+- Evaluate the exact McNemar binomial tail with normalized probabilities rather
+  than repeatedly updating large integer coefficients. Preserve the finite
+  binomial test, test selection and Holm correction; no asymptotic test replaces it.
+  Keep intermediate probabilities scaled so representable tiny two-sided tails
+  do not become zero before doubling.
+- Reuse validated rows while constructing one leaderboard's per-question means,
+  and avoid a duplicate validation scan in the CLI input wrapper. Public loading
+  and statistical entry points still validate their inputs, including after callers
+  mutate a previously analyzed dataset; no validation state is cached.
+- Retain synthetic CSV/CLI timing, independent integer/SciPy checks, a real-outcome
+  audit and installed-package verification under `studies/mcnemar-throughput`.
+  This is source work; no registry release is implied.
+
 ### Native generation grading declarations
 
 - Retain the selected lm-eval default generation metric's forwarded grading
@@ -225,9 +240,6 @@ All notable changes to this project are documented in this file.
   question IDs match. Native lm-eval imports fingerprint the document and target; canonical
   inputs can carry `question_hash`. Matching, partial and unavailable checks remain distinct.
   Prompt arguments and responses do not enter question identity.
-- Exact McNemar tails reuse adjacent integer binomial coefficients. Large binary comparisons
-  retain the exact result without rebuilding each coefficient independently.
-
 - Summary and leaderboard means now give each question equal weight after averaging its
   repeated generations. Counts and SEs use distinct questions; retained observation counts
   remain available in JSON and repeated-generation tables. Wilson cannot count repeated

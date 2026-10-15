@@ -1,0 +1,18 @@
+{
+  "inference": {
+    "test": "mcnemar_exact",
+    "p_value": 5e-324,
+    "ci_low": null,
+    "ci_high": null,
+    "confidence": null,
+    "mcnemar_applicable": true
+  },
+  "mcnemar": {
+    "n01": 0,
+    "n10": 1075,
+    "p_value": 5e-324
+  },
+  "questions": 1075,
+  "filtered_csv": "\"question_id\",\"cluster_id\",\"presence\",\"identity\",\"scoring\",\"model_a\",\"model_b\",\"mean_a\",\"mean_b\",\"difference_a_minus_b\",\"n_observations_a\",\"n_observations_b\"\r\n\"constructed-1074\",\"\",\"shared\",\"unavailable\",\"unavailable\",\"constructed-A\",\"constructed-B\",\"1\",\"0\",\"1\",\"1\",\"1\"\r\n",
+  "offline": true
+}

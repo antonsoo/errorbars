@@ -73,6 +73,20 @@ def test_build_leaderboard_requires_two_models() -> None:
         build_leaderboard(data)
 
 
+def test_validation_is_fresh_after_mutation_between_leaderboards() -> None:
+    data = EvalData(["q1", "q2"] * 2, ["a"] * 2 + ["b"] * 2, [1.0, 0.0, 0.0, 1.0])
+    assert len(build_leaderboard(data).pairwise) == 1
+    data.score[0] = float("nan")
+    with pytest.raises(ValueError, match="not a finite number"):
+        build_leaderboard(data)
+    data.score[0] = 1.0
+    data.question_id[1] = "q1"
+    with pytest.raises(ValueError, match="already has a score"):
+        build_leaderboard(data)
+    with pytest.raises(ValueError, match="already has a score"):
+        data.filter_model("a").scores_by_question()
+
+
 def _clustered_board() -> EvalData:
     rng = np.random.default_rng(3)
     question_id, model, score, cluster = [], [], [], []

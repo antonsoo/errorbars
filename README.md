@@ -106,6 +106,12 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   question ledger with both run means, observed generations and source line/record locations.
   Find lower scores and missing questions, inspect which passages drive the result, and download
   complete JSON or filtered CSV. One file, including fonts; no server or upload.
+- **Large binary evaluations (source checkout)** — exact McNemar tails use scaled
+  probability recurrences, avoiding repeated arithmetic on giant integers. A
+  leaderboard also reuses its just-validated rows when averaging questions.
+  Public inputs remain validated on every call. The
+  [throughput study](studies/mcnemar-throughput/README.md) retains an actual
+  1.6-million-row CLI replay, independent probability checks and the limitations.
 - **`leaderboard`** — every model with its CI and exact ranks without a significant
   Holm-corrected paired difference. Untested pairs remain explicit; rank gaps are preserved. This checkout selects exact McNemar for one binary score per shared
   question, clustered t for grouped questions, and paired t for continuous or repeated

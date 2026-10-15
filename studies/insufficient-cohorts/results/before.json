@@ -1,0 +1,7 @@
+{
+  "base_commit": "b2375ec8637683af1870d01802857f4747461d6d",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "error: model 'django-only': need at least 2 independent clusters for an interval\n",
+  "input_sha256": "56b95536e6fcaf860195dfea68f42bb3d9fd9603a9b909c1f24468058ff04e7d"
+}

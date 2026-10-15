@@ -428,9 +428,13 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             str(rank),
             e.model,
             f"{e.mean:.4f}",
-            f"[{e.ci_low:.4f}, {e.ci_high:.4f}]",
+            f"[{e.ci_low:.4f}, {e.ci_high:.4f}]"
+            if e.ci_low is not None and e.ci_high is not None else "unavailable",
             f"CR2: {e.n_clusters} clusters, df={e.dof_clustered:.1f}"
-            if e.n_clusters is not None else e.method.upper(),
+            if e.dof_clustered is not None else {
+                "fewer_than_two_questions": "only 1 question",
+                "fewer_than_two_clusters": "only 1 cluster",
+            }.get(e.interval_status, e.method.upper()),
             str(e.n),
         ]
         if has_repeats:

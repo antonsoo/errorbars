@@ -1,0 +1,491 @@
+{
+  "python": "3.12.12",
+  "numpy": "2.5.3",
+  "module_sha256": "ea5ddf295438ffd2c7787b6f7a19ea6910501c894bb69c696da50009f95559be",
+  "cases": {
+    "swe-bench-partial": {
+      "input_sha256": "56b95536e6fcaf860195dfea68f42bb3d9fd9603a9b909c1f24468058ff04e7d",
+      "svg_sha256": "175e64123d3ab246b6920eaab9801a54d01616382fdbe7679d92e36ba89db4a0",
+      "complete_estimates_unchanged": true,
+      "complete_pair_unchanged": true,
+      "output": {
+        "entries": [
+          {
+            "model": "django-only",
+            "mean": 0.8268398268398268,
+            "se": null,
+            "ci_low": null,
+            "ci_high": null,
+            "n": 231,
+            "method": "unavailable",
+            "interval_status": "fewer_than_two_clusters",
+            "n_observations": 231,
+            "analysis_unit": "question",
+            "confidence": 0.95,
+            "n_clusters": 1,
+            "dof_clustered": null,
+            "unclustered": {
+              "mean": 0.8268398268398268,
+              "se": 0.02495001329539699,
+              "ci_low": 0.7779386993670532,
+              "ci_high": 0.8757409543126005,
+              "confidence": 0.95,
+              "method": "clt",
+              "n": 231
+            },
+            "warnings": [
+              "Only one independent cluster is observed; at least two are needed to estimate a clustered interval."
+            ]
+          },
+          {
+            "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+            "mean": 0.792,
+            "se": 0.030459418671662835,
+            "ci_low": 0.7002896677366969,
+            "ci_high": 0.8837103322633032,
+            "n": 500,
+            "method": "clustered_cr2",
+            "interval_status": "available",
+            "n_observations": 500,
+            "analysis_unit": "question",
+            "confidence": 0.95,
+            "n_clusters": 12,
+            "dof_clustered": 3.330800316130594,
+            "unclustered": {
+              "mean": 0.792,
+              "se": 0.018169542221229962,
+              "ci_low": 0.7563883516308094,
+              "ci_high": 0.8276116483691907,
+              "confidence": 0.95,
+              "method": "clt",
+              "n": 500
+            },
+            "warnings": [
+              "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+            ]
+          },
+          {
+            "model": "20251215_livesweagent_claude-opus-4-5",
+            "mean": 0.792,
+            "se": 0.027529777776583168,
+            "ci_low": 0.7091105301042993,
+            "ci_high": 0.8748894698957008,
+            "n": 500,
+            "method": "clustered_cr2",
+            "interval_status": "available",
+            "n_observations": 500,
+            "analysis_unit": "question",
+            "confidence": 0.95,
+            "n_clusters": 12,
+            "dof_clustered": 3.330800316130594,
+            "unclustered": {
+              "mean": 0.792,
+              "se": 0.018169542221229962,
+              "ci_low": 0.7563883516308094,
+              "ci_high": 0.8276116483691907,
+              "confidence": 0.95,
+              "method": "clt",
+              "n": 500
+            },
+            "warnings": [
+              "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+            ]
+          }
+        ],
+        "pairwise": [
+          {
+            "model_a": "20251205_sonar-foundation-agent_claude-opus-4-5",
+            "model_b": "20251215_livesweagent_claude-opus-4-5",
+            "mean_diff": 0.0,
+            "p_value": 1.0,
+            "p_value_clustered": 1.0,
+            "mcnemar": {
+              "n01": 18,
+              "n10": 18,
+              "p_value": 1.0
+            },
+            "test": "clustered_t",
+            "p_value_used": 1.0,
+            "p_holm": 1.0,
+            "n_shared": 500,
+            "warnings": [
+              "Clustered inference rests on 3.3 effective degrees of freedom: 12 clusters, the largest holding 46% of the questions. Its interval is wide because few independent clusters carry the estimate."
+            ]
+          }
+        ],
+        "groups": [
+          [
+            "django-only"
+          ],
+          [
+            "20251205_sonar-foundation-agent_claude-opus-4-5",
+            "20251215_livesweagent_claude-opus-4-5"
+          ]
+        ],
+        "group_status": "complete",
+        "alpha": 0.05,
+        "rank_comparisons": {
+          "django-only": {
+            "non_significant": [],
+            "significant": [],
+            "untested": [
+              2,
+              3
+            ]
+          },
+          "20251205_sonar-foundation-agent_claude-opus-4-5": {
+            "non_significant": [
+              3
+            ],
+            "significant": [],
+            "untested": [
+              1
+            ]
+          },
+          "20251215_livesweagent_claude-opus-4-5": {
+            "non_significant": [
+              2
+            ],
+            "significant": [],
+            "untested": [
+              1
+            ]
+          }
+        },
+        "untested_pairs": [
+          {
+            "model_a": "django-only",
+            "model_b": "20251205_sonar-foundation-agent_claude-opus-4-5",
+            "n_shared": 231,
+            "reason": "fewer_than_two_shared_clusters"
+          },
+          {
+            "model_a": "django-only",
+            "model_b": "20251215_livesweagent_claude-opus-4-5",
+            "n_shared": 231,
+            "reason": "fewer_than_two_shared_clusters"
+          }
+        ],
+        "warnings": [
+          "The models were not scored on the same questions. Each mean is over that model's own questions; each paired test uses the questions its two models share.",
+          "2 model pairs cannot be tested: 2 with only one shared independent cluster. Untested pairs establish neither a difference nor equivalence."
+        ]
+      }
+    },
+    "single-continuous": {
+      "entries": [
+        {
+          "model": "full",
+          "mean": 0.4,
+          "se": 0.19999999999999998,
+          "ci_low": 0.008007203091989323,
+          "ci_high": 0.7919927969080107,
+          "n": 2,
+          "method": "clt",
+          "interval_status": "available",
+          "n_observations": 2,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
+        },
+        {
+          "model": "partial",
+          "mean": 0.25,
+          "se": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 1,
+          "method": "unavailable",
+          "interval_status": "fewer_than_two_questions",
+          "n_observations": 1,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": [
+            "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+          ]
+        }
+      ],
+      "pairwise": [],
+      "groups": [
+        [
+          "full"
+        ],
+        [
+          "partial"
+        ]
+      ],
+      "group_status": "complete",
+      "alpha": 0.05,
+      "rank_comparisons": {
+        "full": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            2
+          ]
+        },
+        "partial": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            1
+          ]
+        }
+      },
+      "untested_pairs": [
+        {
+          "model_a": "full",
+          "model_b": "partial",
+          "n_shared": 1,
+          "reason": "fewer_than_two_shared_questions"
+        }
+      ],
+      "warnings": [
+        "The models were not scored on the same questions. Each mean is over that model's own questions; each paired test uses the questions its two models share.",
+        "1 model pairs cannot be tested: 1 with fewer than two shared questions. Untested pairs establish neither a difference nor equivalence."
+      ]
+    },
+    "repeated-binary": {
+      "entries": [
+        {
+          "model": "partial",
+          "mean": 0.6666666666666666,
+          "se": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 1,
+          "method": "unavailable",
+          "interval_status": "fewer_than_two_questions",
+          "n_observations": 3,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": [
+            "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+          ]
+        },
+        {
+          "model": "full",
+          "mean": 0.4,
+          "se": 0.19999999999999998,
+          "ci_low": 0.008007203091989323,
+          "ci_high": 0.7919927969080107,
+          "n": 2,
+          "method": "clt",
+          "interval_status": "available",
+          "n_observations": 2,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
+        }
+      ],
+      "pairwise": [],
+      "groups": [
+        [
+          "partial"
+        ],
+        [
+          "full"
+        ]
+      ],
+      "group_status": "complete",
+      "alpha": 0.05,
+      "rank_comparisons": {
+        "partial": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            2
+          ]
+        },
+        "full": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            1
+          ]
+        }
+      },
+      "untested_pairs": [
+        {
+          "model_a": "partial",
+          "model_b": "full",
+          "n_shared": 1,
+          "reason": "fewer_than_two_shared_questions"
+        }
+      ],
+      "warnings": [
+        "The models were not scored on the same questions. Each mean is over that model's own questions; each paired test uses the questions its two models share.",
+        "1 model pairs cannot be tested: 1 with fewer than two shared questions. Untested pairs establish neither a difference nor equivalence."
+      ]
+    },
+    "single-binary": {
+      "entries": [
+        {
+          "model": "partial",
+          "mean": 1.0,
+          "se": 0.9799819922700268,
+          "ci_low": 0.20654931437723745,
+          "ci_high": 1.0,
+          "n": 1,
+          "method": "wilson",
+          "interval_status": "available",
+          "n_observations": 1,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
+        },
+        {
+          "model": "full",
+          "mean": 0.4,
+          "se": 0.19999999999999998,
+          "ci_low": 0.008007203091989323,
+          "ci_high": 0.7919927969080107,
+          "n": 2,
+          "method": "clt",
+          "interval_status": "available",
+          "n_observations": 2,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": []
+        }
+      ],
+      "pairwise": [],
+      "groups": [
+        [
+          "partial"
+        ],
+        [
+          "full"
+        ]
+      ],
+      "group_status": "complete",
+      "alpha": 0.05,
+      "rank_comparisons": {
+        "partial": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            2
+          ]
+        },
+        "full": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            1
+          ]
+        }
+      },
+      "untested_pairs": [
+        {
+          "model_a": "partial",
+          "model_b": "full",
+          "n_shared": 1,
+          "reason": "fewer_than_two_shared_questions"
+        }
+      ],
+      "warnings": [
+        "The models were not scored on the same questions. Each mean is over that model's own questions; each paired test uses the questions its two models share.",
+        "1 model pairs cannot be tested: 1 with fewer than two shared questions. Untested pairs establish neither a difference nor equivalence."
+      ]
+    },
+    "all-descriptive": {
+      "entries": [
+        {
+          "model": "b",
+          "mean": 0.4,
+          "se": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 1,
+          "method": "unavailable",
+          "interval_status": "fewer_than_two_questions",
+          "n_observations": 1,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": [
+            "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+          ]
+        },
+        {
+          "model": "a",
+          "mean": 0.2,
+          "se": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 1,
+          "method": "unavailable",
+          "interval_status": "fewer_than_two_questions",
+          "n_observations": 1,
+          "analysis_unit": "question",
+          "confidence": 0.95,
+          "n_clusters": null,
+          "dof_clustered": null,
+          "unclustered": null,
+          "warnings": [
+            "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+          ]
+        }
+      ],
+      "pairwise": [],
+      "groups": [
+        [
+          "b"
+        ],
+        [
+          "a"
+        ]
+      ],
+      "group_status": "complete",
+      "alpha": 0.05,
+      "rank_comparisons": {
+        "b": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            2
+          ]
+        },
+        "a": {
+          "non_significant": [],
+          "significant": [],
+          "untested": [
+            1
+          ]
+        }
+      },
+      "untested_pairs": [
+        {
+          "model_a": "b",
+          "model_b": "a",
+          "n_shared": 1,
+          "reason": "fewer_than_two_shared_questions"
+        }
+      ],
+      "warnings": [
+        "1 model pairs cannot be tested: 1 with fewer than two shared questions. Untested pairs establish neither a difference nor equivalence."
+      ]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "browser": "chromium",
+    "file": "partial",
+    "offline": true,
+    "width": 640,
+    "height": 340,
+    "texts": 32,
+    "outside": [],
+    "unavailable": 1,
+    "annotationOutsidePlot": [],
+    "openPoints": 1,
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "file": "all-descriptive",
+    "offline": true,
+    "width": 640,
+    "height": 254,
+    "texts": 24,
+    "outside": [],
+    "unavailable": 2,
+    "annotationOutsidePlot": [],
+    "openPoints": 2,
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "file": "partial",
+    "offline": true,
+    "width": 640,
+    "height": 340,
+    "texts": 32,
+    "outside": [],
+    "unavailable": 1,
+    "annotationOutsidePlot": [],
+    "openPoints": 1,
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "file": "all-descriptive",
+    "offline": true,
+    "width": 640,
+    "height": 254,
+    "texts": 24,
+    "outside": [],
+    "unavailable": 2,
+    "annotationOutsidePlot": [],
+    "openPoints": 2,
+    "errors": []
+  }
+]

@@ -261,8 +261,14 @@ def test_cluster_intervals_count_questions_instead_of_generations() -> None:
 
 def test_one_group_cannot_silently_fall_back_to_an_iid_interval() -> None:
     data = EvalData(["q1", "q2"] * 2, ["a"] * 2 + ["b"] * 2, [1.0, 0.0, 0.0, 1.0], ["one-passage"] * 4)
-    with pytest.raises(ValueError, match="model 'a'.*at least 2 independent clusters"):
-        build_leaderboard(data)
+    board = build_leaderboard(data)
+    assert not board.pairwise
+    assert len(board.untested_pairs) == 1
+    for entry in board.entries:
+        assert entry.mean == 0.5
+        assert entry.se is entry.ci_low is entry.ci_high is None
+        assert entry.interval_status == "fewer_than_two_clusters"
+        assert entry.n_clusters == 1
 
 
 def test_singleton_clusters_preserve_existing_intervals() -> None:

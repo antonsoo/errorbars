@@ -1,0 +1,103 @@
+{
+  "entries": [
+    {
+      "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "mean": 0.792,
+      "se": 0.030459418671662835,
+      "ci_low": 0.7002896677366969,
+      "ci_high": 0.8837103322633032,
+      "n": 500,
+      "method": "clustered_cr2",
+      "n_observations": 500,
+      "analysis_unit": "question",
+      "confidence": 0.95,
+      "n_clusters": 12,
+      "dof_clustered": 3.330800316130594,
+      "unclustered": {
+        "mean": 0.792,
+        "se": 0.018169542221229962,
+        "ci_low": 0.7563883516308094,
+        "ci_high": 0.8276116483691907,
+        "confidence": 0.95,
+        "method": "clt",
+        "n": 500
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+      ]
+    },
+    {
+      "model": "20251215_livesweagent_claude-opus-4-5",
+      "mean": 0.792,
+      "se": 0.027529777776583168,
+      "ci_low": 0.7091105301042993,
+      "ci_high": 0.8748894698957008,
+      "n": 500,
+      "method": "clustered_cr2",
+      "n_observations": 500,
+      "analysis_unit": "question",
+      "confidence": 0.95,
+      "n_clusters": 12,
+      "dof_clustered": 3.330800316130594,
+      "unclustered": {
+        "mean": 0.792,
+        "se": 0.018169542221229962,
+        "ci_low": 0.7563883516308094,
+        "ci_high": 0.8276116483691907,
+        "confidence": 0.95,
+        "method": "clt",
+        "n": 500
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+      ]
+    }
+  ],
+  "pairwise": [
+    {
+      "model_a": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "model_b": "20251215_livesweagent_claude-opus-4-5",
+      "mean_diff": 0.0,
+      "p_value": 1.0,
+      "p_value_clustered": 1.0,
+      "mcnemar": {
+        "n01": 18,
+        "n10": 18,
+        "p_value": 1.0
+      },
+      "test": "clustered_t",
+      "p_value_used": 1.0,
+      "p_holm": 1.0,
+      "n_shared": 500,
+      "warnings": [
+        "Clustered inference rests on 3.3 effective degrees of freedom: 12 clusters, the largest holding 46% of the questions. Its interval is wide because few independent clusters carry the estimate."
+      ]
+    }
+  ],
+  "groups": [
+    [
+      "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "20251215_livesweagent_claude-opus-4-5"
+    ]
+  ],
+  "group_status": "complete",
+  "alpha": 0.05,
+  "rank_comparisons": {
+    "20251205_sonar-foundation-agent_claude-opus-4-5": {
+      "non_significant": [
+        2
+      ],
+      "significant": [],
+      "untested": []
+    },
+    "20251215_livesweagent_claude-opus-4-5": {
+      "non_significant": [
+        1
+      ],
+      "significant": [],
+      "untested": []
+    }
+  },
+  "untested_pairs": [],
+  "warnings": []
+}

@@ -66,9 +66,15 @@ The table names its interval basis. JSON entries retain the confidence level,
 methods and confidence level. These are marginal intervals, not simultaneous
 intervals or pairwise-difference intervals.
 
-Fewer than two independent clusters cannot estimate grouped uncertainty:
-the command refuses that model's interval instead of falling back to an
-independent-question interval. Few effective degrees of freedom and zero
+Fewer than two independent clusters cannot estimate grouped uncertainty.
+The leaderboard retains that model's observed mean and counts, with null
+`se`, `ci_low` and `ci_high`, `method="unavailable"`, and
+`interval_status="fewer_than_two_clusters"`. Other models and valid paired
+tests remain available. A model with only one distinct question and continuous
+or repeated-generation scores uses `interval_status="fewer_than_two_questions"`.
+One binary observation without grouped questions still has a Wilson interval.
+[Partial-run evidence and API details](../studies/insufficient-cohorts/README.md).
+Few effective degrees of freedom and zero
 cluster variance remain explicit warnings. Repeated generations are averaged
 before clustering; seven generations of one question do not give that question
 seven times the weight. Singleton cluster labels preserve the existing CLT or

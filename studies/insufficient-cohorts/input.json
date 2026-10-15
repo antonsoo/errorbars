@@ -1,0 +1,23 @@
+{
+  "source": "../swe-bench-verified/data/outcomes.json",
+  "source_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "submissions": [
+    "20251205_sonar-foundation-agent_claude-opus-4-5",
+    "20251215_livesweagent_claude-opus-4-5"
+  ],
+  "restriction": "The synthetic partial run django-only retains only the first submission's Django tasks. No claim that this partial submission was published.",
+  "clusters": {
+    "astropy/astropy": 22,
+    "django/django": 231,
+    "matplotlib/matplotlib": 34,
+    "mwaskom/seaborn": 2,
+    "pallets/flask": 1,
+    "psf/requests": 8,
+    "pydata/xarray": 22,
+    "pylint-dev/pylint": 10,
+    "pytest-dev/pytest": 19,
+    "scikit-learn/scikit-learn": 32,
+    "sphinx-doc/sphinx": 44,
+    "sympy/sympy": 75
+  }
+}

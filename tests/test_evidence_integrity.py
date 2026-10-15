@@ -225,6 +225,14 @@ def test_single_passage_is_not_reinterpreted_as_independent_questions(tmp_path: 
     path.write_text("question_id,model,score,cluster_id\nq1,a,1,p\nq2,a,0,p\nq1,b,0,p\nq2,b,1,p\n")
     args = ["--model", "a"] if command == "summarize" else []
     result = run_cli(command, str(path), "--json", *args)
+    if command == "leaderboard":
+        assert result.returncode == 0, result.stderr
+        board = json.loads(result.stdout)
+        assert all(e["interval_status"] == "fewer_than_two_clusters" for e in board["entries"])
+        assert all(e["se"] is e["ci_low"] is e["ci_high"] is None for e in board["entries"])
+        assert not board["pairwise"]
+        assert board["untested_pairs"][0]["reason"] == "fewer_than_two_shared_clusters"
+        return
     assert result.returncode != 0
     assert "at least 2 independent clusters" in result.stderr
     assert "Traceback" not in result.stderr and not result.stdout

@@ -31,6 +31,7 @@ __all__ = [
 _MAX_GROUPS = 4096
 _MAX_GROUP_SEARCH_STATES = 50_000
 GroupStatus = Literal["complete", "omitted_group_limit", "omitted_search_limit"]
+IntervalStatus = Literal["available", "fewer_than_two_questions", "fewer_than_two_clusters"]
 
 
 class _GroupEnumerationLimitError(RuntimeError):
@@ -76,9 +77,9 @@ def holm_correction(p_values: list[float]) -> list[float]:
 class LeaderboardEntry:
     model: str
     mean: float
-    se: float
-    ci_low: float
-    ci_high: float
+    se: float | None
+    ci_low: float | None
+    ci_high: float | None
     n: int
     method: str
     n_observations: int = 0
@@ -87,6 +88,7 @@ class LeaderboardEntry:
     dof_clustered: float | None = None
     unclustered: MeanEstimate | None = None
     warnings: list[str] = field(default_factory=list)
+    interval_status: IntervalStatus = "available"
 
     def __post_init__(self) -> None:
         if self.n_observations == 0:
@@ -101,6 +103,7 @@ class LeaderboardEntry:
             "ci_high": self.ci_high,
             "n": self.n,
             "method": self.method,
+            "interval_status": self.interval_status,
             "n_observations": self.n_observations,
             "analysis_unit": "question",
             "confidence": self.confidence,
@@ -264,6 +267,8 @@ def build_leaderboard(
     displayed interval instead uses CR2 and Student t with effective degrees
     of freedom; the unclustered estimate is retained as a diagnostic. Means
     always weight questions equally, even with unequal numbers of generations.
+    A model with insufficient independent units keeps its mean and counts,
+    with None for its SE and interval and an explicit interval_status.
 
     Pairwise grouping uses clustered t when multiple shared questions belong to a
     cluster, exact McNemar for one binary observation per shared question
@@ -282,6 +287,8 @@ def build_leaderboard(
         raise ValueError("leaderboard needs at least 2 models")
     if not 0.0 < alpha < 1.0:
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
+    if not 0.0 < confidence < 1.0:
+        raise ValueError(f"confidence must be in (0, 1), got {confidence}")
 
     parts = {m: data.filter_model(m) for m in models}
     qmap = {m: part.scores_by_question() for m, part in parts.items()}
@@ -296,19 +303,44 @@ def build_leaderboard(
     for m in models:
         scores = list(qmap[m].values())
         repeated = n_observations[m] > len(scores)
-        if repeated and len(scores) < 2:
-            raise ValueError(
-                f"model {m!r}: need at least 2 distinct questions for repeated-generation inference"
+        clusters = [cluster_of_q[q] for q in qmap[m]] if cluster_of_q else None
+        cluster_count = len(set(clusters)) if clusters is not None else None
+        has_real_clusters = cluster_count is not None and cluster_count < len(scores)
+        # An unavailable estimate is local to this model. Never invent an IID
+        # interval for clustered questions or count generations as questions.
+        status: IntervalStatus = "available"
+        if has_real_clusters and cluster_count == 1:
+            status = "fewer_than_two_clusters"
+        elif len(scores) < 2 and (repeated or not is_binary(scores)):
+            status = "fewer_than_two_questions"
+        if status != "available":
+            note = (
+                "Only one independent cluster is observed; at least two are needed "
+                "to estimate a clustered interval."
+                if status == "fewer_than_two_clusters" else
+                "Only one distinct question is observed; at least two are needed "
+                "to estimate a mean interval for continuous or repeated-generation scores."
             )
+            entries.append(
+                LeaderboardEntry(
+                    m, sum(scores) / len(scores), None, None, None, len(scores), "unavailable",
+                    n_observations[m], confidence=confidence,
+                    n_clusters=1 if has_real_clusters else None,
+                    unclustered=(
+                        _summarize_mean(scores, confidence, None if repeated else use_wilson_below_n)
+                        if has_real_clusters else None
+                    ),
+                    warnings=[note], interval_status=status,
+                )
+            )
+            continue
         est = _summarize_mean(scores, confidence, None if repeated else use_wilson_below_n)
         unclustered = None
         n_clusters, dof = None, None
         notes = []
-        clusters = [cluster_of_q[q] for q in qmap[m]] if cluster_of_q else None
-        if clusters is not None and len(set(clusters)) < len(clusters):
+        if has_real_clusters:
+            assert clusters is not None
             n_clusters = len(set(clusters))
-            if n_clusters < 2:
-                raise ValueError(f"model {m!r}: need at least 2 independent clusters for an interval")
             unclustered = est
             se = cluster_robust_se(scores, clusters)
             dof = cluster_degrees_of_freedom(clusters)

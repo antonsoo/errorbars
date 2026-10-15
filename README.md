@@ -119,6 +119,12 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   Partial cohorts sharing only one independent group now keep an explicit
   untested pair while the rest of the board remains usable. Question identity
   checks index each model once. [Failure capture and timing evidence](studies/leaderboard-overlap/README.md).
+- **Incomplete leaderboard runs (source checkout)** — a run covering only one independent
+  cluster, or one question with continuous or repeated scores, keeps its observed mean and
+  counts. Its SE and interval are explicitly unavailable; valid comparisons between other
+  runs still work. JSON records `interval_status` and nullable uncertainty fields; terminal
+  tables and both forest-plot formats identify the missing interval.
+  [SWE-bench partial-run reproduction](studies/insufficient-cohorts/README.md).
 - **`power`** — number of questions needed to detect an effect δ at a given α and power, or the
   minimum detectable effect for a given n, accounting for pairing correlation, repeated sampling,
   and cluster design effect. Repeated-answer plans in this checkout require an explicit

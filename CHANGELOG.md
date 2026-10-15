@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Descriptive leaderboard runs
+
+- Retain model means and counts when a run covers only one independent cluster,
+  or only one question with continuous or repeated-generation scores. Previously
+  these runs aborted the whole board. Other models' estimates and eligible
+  paired tests remain available, while insufficient pairs stay untested.
+- `LeaderboardEntry.se`, `ci_low` and `ci_high` can now be `None` (`null` in JSON).
+  `interval_status` distinguishes `available`, `fewer_than_two_questions` and
+  `fewer_than_two_clusters`; unavailable entries have `method="unavailable"`.
+  Terminal tables and SVG/matplotlib plots label missing intervals explicitly.
+  [Captured failure and installed-wheel replay](studies/insufficient-cohorts/README.md).
+
 ### Native lm-eval cohort integrity
 
 - Reconcile the selected filter's sample count with the matching results

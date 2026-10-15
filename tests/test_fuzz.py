@@ -152,8 +152,18 @@ def _check(value: Any, where: str = "") -> None:
         _check(item, f"{where}.{key}")
     if {"ci_low", "ci_high"} <= value.keys():
         if value["ci_low"] is None or value["ci_high"] is None:
-            assert value["ci_low"] is value["ci_high"] is value.get("confidence") is None
-            assert value.get("test") == "mcnemar_exact", f"{where}: unexpected unavailable interval"
+            assert value["ci_low"] is value["ci_high"] is None
+            if value.get("method") == "unavailable":
+                assert value.get("se") is None
+                assert value.get("interval_status") in ("fewer_than_two_questions", "fewer_than_two_clusters")
+                assert 0 < value["confidence"] < 1
+                if value["interval_status"] == "fewer_than_two_questions":
+                    assert value["n"] == 1 and value["n_observations"] >= 1
+                else:
+                    assert value["n_clusters"] == 1 and value["n"] > 1
+            else:
+                assert value.get("confidence") is None
+                assert value.get("test") == "mcnemar_exact", f"{where}: unexpected unavailable interval"
         else:
             assert value["ci_low"] <= value["ci_high"], f"{where}: interval ends are out of order"
     if value.get("method") in ("clt", "wilson"):

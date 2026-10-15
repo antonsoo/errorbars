@@ -132,6 +132,12 @@ def main() -> None:
         shutil.copyfile(source, samples)
         sidecar = next(source.parent.glob("results_*.json"))
         metadata = json.loads(sidecar.read_text())
+        metadata["configs"]["metric_contract"]["metric_list"][0]["aggregation"] = "nanmean"
+        (work / sidecar.name).write_text(json.dumps(metadata))
+        finite_mean = command("finite nanmean aggregation", [
+            "leaderboard", f"A={samples}", specs[1], "--metric", "mean_nll", "--json",
+        ])
+        assert json.loads(finite_mean.stdout)["entries"][0]["mean"] == 0.25
         metadata["higher_is_better"]["metric_contract"]["mean_nll"] = True
         (work / sidecar.name).write_text(json.dumps(metadata))
         result = command("conflicting native declarations", [

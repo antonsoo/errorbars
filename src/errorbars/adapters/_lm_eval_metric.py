@@ -73,7 +73,8 @@ def metric_direction(
     if len(aggregations) > 1:
         raise ValueError(f"{path}: metric {metric!r}: conflicting aggregation declarations")
     aggregation = next(iter(aggregations), None)
-    if aggregation is not None and aggregation != "mean":
+    # Scores are already finite, so the harness's nanmean equals its mean.
+    if aggregation is not None and aggregation not in ("mean", "nanmean"):
         label = aggregation
         label = repr(label) if re.fullmatch(r"[\w+.-]{1,60}", label) else "a custom function"
         raise ValueError(

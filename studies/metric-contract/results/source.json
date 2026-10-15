@@ -79,12 +79,17 @@
       "no_traceback": true
     },
     {
+      "case": "finite nanmean aggregation",
+      "exit": 0,
+      "no_traceback": true
+    },
+    {
       "case": "conflicting native declarations",
       "exit": 1,
       "no_traceback": true
     }
   ],
-  "cli_workflows": 16,
+  "cli_workflows": 17,
   "native_losses": [
     {
       "model": "precise",

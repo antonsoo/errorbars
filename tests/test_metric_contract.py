@@ -151,12 +151,20 @@ def test_native_non_mean_metric_inputs_cannot_be_reported_as_that_metric():
         native("perplexity")
 
 
-@pytest.mark.parametrize("aggregation", ["median", "perplexity", "weighted_perplexity", "nanmean"])
+@pytest.mark.parametrize("aggregation", ["median", "perplexity", "weighted_perplexity"])
 def test_non_mean_aggregation_declarations_are_refused_even_on_scalars(tmp_path, aggregation):
     samples = modified_metadata(tmp_path, lambda m: m["configs"]["metric_contract"]["metric_list"][0].update(
         aggregation=aggregation))
     with pytest.raises(ValueError, match="not an arithmetic mean"):
         load_lm_eval_samples(samples, model="renamed", metric="mean_nll")
+
+
+def test_native_nanmean_is_an_arithmetic_mean_for_the_accepted_finite_scores(tmp_path):
+    samples = modified_metadata(tmp_path, lambda m: m["configs"]["metric_contract"]["metric_list"][0].update(
+        aggregation="nanmean"))
+    data = load_lm_eval_samples(samples, metric="mean_nll")
+    assert data.higher_is_better == [False] * 32
+    assert data.score == native().filter_model("precise").score
 
 
 @pytest.mark.parametrize("value", [0, 1, "false", [], {}])

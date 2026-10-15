@@ -80,10 +80,10 @@ aggregated question ledger, rather than the canonical observation import.
   do not establish direction or aggregation. Missing sidecars and absent
   declarations stay unchecked; matching declarations do not authenticate the
   data or verify custom scorer/aggregator code.
-- A recorded aggregation other than the literal `mean` is refused, including
+- Recorded aggregations other than `mean` or `nanmean` are refused, including
   custom function source. Such functions are never imported or executed.
-  Even `nanmean` is outside the supported declared contract; inputs here must
-  be finite scores and should declare `mean` if that is the intended estimand.
+  Since accepted scores are finite, the harness's `nanmean` is an ordinary
+  arithmetic mean on these inputs. Missing or non-finite scores are still refused.
 - A native lower-first declaration also requires a recorded mean aggregation.
   For example, perplexity's lower-first direction cannot be applied to its
   raw log likelihoods. Restore the matching result configuration or supply

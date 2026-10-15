@@ -145,8 +145,13 @@ produces a warning about the assumed common direction. Known conflicting
 directions cannot be overridden by that flag. Matching declarations establish
 neither source authenticity nor equivalent custom scorer code.
 
-This is local source work, with locally built and tested artifacts. No source
-push, hosted update, version tag or package publication was performed.
+The initial verification used local source and locally built artifacts. Source
+commits were subsequently pushed with the owner's authorization. The
+[public-source receipt](../studies/metric-contract/results/source-publication.json)
+records a matching GitHub `main` and eight matching pinned public files at
+`dfdc9ca`, checked against a clean isolated worktree. This is source evidence;
+no package release or manual site deployment was performed. The original
+verification receipt retains its local-only publication state at execution time.
 The existing project description remains appropriate: "Error bars for LLM
 evals: standard errors, clustering, paired comparisons, leaderboards, and power analysis."
 Relevant topics: `llm-evaluation`, `statistics`, `confidence-intervals`,

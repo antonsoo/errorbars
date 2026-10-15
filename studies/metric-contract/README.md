@@ -35,8 +35,9 @@ estimand and uncertainty method; changing the label or sign would not fix it.
 
 ## Use the corrected source
 
-Install this checkout. These additions are unreleased; the registry package
-and hosted site were not updated by this work.
+Install this checkout. No package release was made in this session. The
+[source publication receipt](results/source-publication.json) verifies the
+subsequent source push separately from the local package and browser checks.
 
 ```bash
 uv sync --group dev --extra all

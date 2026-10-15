@@ -1,0 +1,68 @@
+{
+  "captured_at_utc": "2026-10-15T17:37:02.449187+00:00",
+  "repository": "https://github.com/antonsoo/errorbars",
+  "verified_source_commit": "dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255",
+  "remote_main_at_capture": "dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255",
+  "isolated_worktree_clean": true,
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/README.md",
+      "bytes": 33030,
+      "sha256": "fcf3d07a45854a2cc05687bd85aef4e8bd1ddfd1ffe42972afc2ab83b164f013",
+      "matches_committed_file": true
+    },
+    {
+      "path": "src/errorbars/adapters/_lm_eval_metric.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/src/errorbars/adapters/_lm_eval_metric.py",
+      "bytes": 4784,
+      "sha256": "691ed6d226eec5f4bf8cd53929f44d89ecef8a118d26b0fb47c569395adb8583",
+      "matches_committed_file": true
+    },
+    {
+      "path": "src/errorbars/adapters/lm_eval.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/src/errorbars/adapters/lm_eval.py",
+      "bytes": 14086,
+      "sha256": "a66eb26564798c90c5926b34a630aa58c72469b4f584f0d8700506c599c31c8b",
+      "matches_committed_file": true
+    },
+    {
+      "path": "src/errorbars/io.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/src/errorbars/io.py",
+      "bytes": 31183,
+      "sha256": "7035cd02a04b9982579fbdbb718fddd2d7a8a691f9e7be8c9945080fbb6c76c0",
+      "matches_committed_file": true
+    },
+    {
+      "path": "src/errorbars/leaderboard.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/src/errorbars/leaderboard.py",
+      "bytes": 22873,
+      "sha256": "85ea971db5e1d4c495bb57d827d82c3a4f43ef8eed6bacae01a7281caa7f6d7f",
+      "matches_committed_file": true
+    },
+    {
+      "path": "src/errorbars/report_assets/report.js",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/src/errorbars/report_assets/report.js",
+      "bytes": 22681,
+      "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161",
+      "matches_committed_file": true
+    },
+    {
+      "path": "tests/test_metric_contract.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/tests/test_metric_contract.py",
+      "bytes": 10189,
+      "sha256": "ec2b28bbbca459d4feb4cc7d2d301aa2060cffa4d0161ce10d26b13b1716dd58",
+      "matches_committed_file": true
+    },
+    {
+      "path": "docs/verification-metric-contract-2026-10-15.md",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/dfdc9ca81f9e8f750fafdf6ef2984f05aa3b6255/docs/verification-metric-contract-2026-10-15.md",
+      "bytes": 7614,
+      "sha256": "f2a36a0a4270c51e3e9cc75b7da6ff23725bf3ab9d9b2c96a4a2be1146908060",
+      "matches_committed_file": true
+    }
+  ],
+  "package_release_performed": false,
+  "manual_site_deployment_performed": false,
+  "scope": "Public source verification; no package-release or hosted-byte claim."
+}

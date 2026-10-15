@@ -1,0 +1,134 @@
+{
+  "artifacts": {
+    "folded-native.html": {
+      "sha256": "e44c56756e461d5b32051d1c9049571cd5e90d963081f13f72352c08f4fc9733",
+      "bytes": 199796
+    },
+    "improved-strict-native.html": {
+      "sha256": "3596757a464ccd25f197731deceda6c7185c39140d77ea8f3cd00240fc8d1645",
+      "bytes": 200130
+    }
+  },
+  "workflows": [
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "case": "folded",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": "withheld",
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "case": "improved-strict",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": 0.0078125,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "case": "folded",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": "withheld",
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "case": "improved-strict",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": 0.0078125,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "case": "folded",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": "withheld",
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "case": "improved-strict",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": 0.0078125,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "case": "folded",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": "withheld",
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "case": "improved-strict",
+      "offline_before_load": true,
+      "json_matches_complete_evidence": true,
+      "json_questions": 24,
+      "csv_filtered_questions": 1,
+      "csv_scoring_state_preserved": true,
+      "horizontal_overflow": false,
+      "inference": 0.0078125,
+      "errors": [],
+      "network_requests": []
+    }
+  ]
+}

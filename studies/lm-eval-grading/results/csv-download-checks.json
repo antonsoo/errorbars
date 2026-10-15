@@ -1,0 +1,50 @@
+[
+  {
+    "download": "chromium-1440-folded.csv",
+    "rows": 1,
+    "scoring": "conflicting",
+    "unknown_difference_is_empty": true
+  },
+  {
+    "download": "chromium-1440-improved-strict.csv",
+    "rows": 1,
+    "scoring": "matching",
+    "unknown_difference_is_empty": false
+  },
+  {
+    "download": "chromium-375-folded.csv",
+    "rows": 1,
+    "scoring": "conflicting",
+    "unknown_difference_is_empty": true
+  },
+  {
+    "download": "chromium-375-improved-strict.csv",
+    "rows": 1,
+    "scoring": "matching",
+    "unknown_difference_is_empty": false
+  },
+  {
+    "download": "firefox-1440-folded.csv",
+    "rows": 1,
+    "scoring": "conflicting",
+    "unknown_difference_is_empty": true
+  },
+  {
+    "download": "firefox-1440-improved-strict.csv",
+    "rows": 1,
+    "scoring": "matching",
+    "unknown_difference_is_empty": false
+  },
+  {
+    "download": "firefox-375-folded.csv",
+    "rows": 1,
+    "scoring": "conflicting",
+    "unknown_difference_is_empty": true
+  },
+  {
+    "download": "firefox-375-improved-strict.csv",
+    "rows": 1,
+    "scoring": "matching",
+    "unknown_difference_is_empty": false
+  }
+]

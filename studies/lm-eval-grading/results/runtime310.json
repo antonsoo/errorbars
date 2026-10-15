@@ -1,0 +1,149 @@
+{
+  "packages": [
+    "errorbars==0.2.4",
+    "numpy==1.24.0"
+  ],
+  "runtime_files": [
+    {
+      "file": "__init__.py",
+      "sha256": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+      "bytes": 673
+    },
+    {
+      "file": "_output.py",
+      "sha256": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c",
+      "bytes": 2098
+    },
+    {
+      "file": "_tables.py",
+      "sha256": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+      "bytes": 5626
+    },
+    {
+      "file": "_validation.py",
+      "sha256": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+      "bytes": 1751
+    },
+    {
+      "file": "adapters/__init__.py",
+      "sha256": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+      "bytes": 77
+    },
+    {
+      "file": "adapters/_inspect_integrity.py",
+      "sha256": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+      "bytes": 7548
+    },
+    {
+      "file": "adapters/_lm_eval_metric.py",
+      "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71",
+      "bytes": 7270
+    },
+    {
+      "file": "adapters/inspect_ai.py",
+      "sha256": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+      "bytes": 7644
+    },
+    {
+      "file": "adapters/lm_eval.py",
+      "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65",
+      "bytes": 14029
+    },
+    {
+      "file": "cli.py",
+      "sha256": "098ec0524215e09039792df660f07a6558619441c22ef8595f364dc046348809",
+      "bytes": 32249
+    },
+    {
+      "file": "compare.py",
+      "sha256": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+      "bytes": 11189
+    },
+    {
+      "file": "inputs.py",
+      "sha256": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb",
+      "bytes": 8414
+    },
+    {
+      "file": "io.py",
+      "sha256": "7035cd02a04b9982579fbdbb718fddd2d7a8a691f9e7be8c9945080fbb6c76c0",
+      "bytes": 31183
+    },
+    {
+      "file": "leaderboard.py",
+      "sha256": "85ea971db5e1d4c495bb57d827d82c3a4f43ef8eed6bacae01a7281caa7f6d7f",
+      "bytes": 22873
+    },
+    {
+      "file": "plot.py",
+      "sha256": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a",
+      "bytes": 9169
+    },
+    {
+      "file": "power.py",
+      "sha256": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+      "bytes": 14059
+    },
+    {
+      "file": "py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "file": "report.py",
+      "sha256": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e",
+      "bytes": 10089
+    },
+    {
+      "file": "report_assets/fonts/LICENSE.txt",
+      "sha256": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5",
+      "bytes": 13870
+    },
+    {
+      "file": "report_assets/fonts/ibm-plex-mono-400-latin.woff2",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "bytes": 14708
+    },
+    {
+      "file": "report_assets/fonts/ibm-plex-sans-latin.woff2",
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "bytes": 45712
+    },
+    {
+      "file": "report_assets/fonts/spectral-500-latin.woff2",
+      "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00",
+      "bytes": 22836
+    },
+    {
+      "file": "report_assets/report.css",
+      "sha256": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+      "bytes": 12519
+    },
+    {
+      "file": "report_assets/report.js",
+      "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161",
+      "bytes": 22681
+    },
+    {
+      "file": "report_assets/template.html",
+      "sha256": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+      "bytes": 10051
+    },
+    {
+      "file": "review.py",
+      "sha256": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e",
+      "bytes": 14267
+    },
+    {
+      "file": "scoring.py",
+      "sha256": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+      "bytes": 2165
+    },
+    {
+      "file": "stats.py",
+      "sha256": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920",
+      "bytes": 16292
+    }
+  ],
+  "quickstart_questions": 4361
+}

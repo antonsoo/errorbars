@@ -1,0 +1,62 @@
+{
+  "tested_commit": "5bb93127d3dc9a3273323ae0c23fb671a1f9d81a",
+  "archive_sha256": "d8771efb3967d2717ef3573a6bdab91f5b645016970442b1d6d231273ac692b3",
+  "clean_source": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "ruff": "passed",
+    "mypy_source_files": 20,
+    "pytest_passed": 783
+  },
+  "minimal_installed_wheels": {
+    "310": {
+      "packages": [
+        "errorbars==0.2.4",
+        "numpy==1.24.0"
+      ],
+      "runtime_files_matching_source": 28,
+      "grading_cli_workflows": 28,
+      "previous_metric_cli_workflows": 17,
+      "quickstart_questions": 4361
+    },
+    "314": {
+      "packages": [
+        "errorbars==0.2.4",
+        "numpy==2.5.4"
+      ],
+      "runtime_files_matching_source": 28,
+      "grading_cli_workflows": 28,
+      "previous_metric_cli_workflows": 17,
+      "quickstart_questions": 4361
+    }
+  },
+  "artifacts_matching_between_source_and_both_wheels": 12,
+  "web": {
+    "node": "24.21.0",
+    "clean_npm_ci": true,
+    "lint": "passed",
+    "typecheck": "passed",
+    "tests_passed": 691,
+    "build": "passed",
+    "files_byte_identical_to_previous_verified_build": 65,
+    "report_browser_checks": 36,
+    "unchanged_production_browser_checks_previously_passed": 52
+  },
+  "installed_report_browsers": {
+    "fresh_offline_contexts": 8,
+    "downloads_checked": 16,
+    "independent_csv_checks": 8,
+    "screenshots_inspected": 8
+  },
+  "packages": {
+    "errorbars-0.2.4.tar.gz": {
+      "sha256": "cfddbd5a2b31ad97b3d9e1c0d7097b1cdf7d8bd5d7308c9334fe820e6b3a904e",
+      "bytes": 259340
+    },
+    "errorbars-0.2.4-py3-none-any.whl": {
+      "sha256": "ed8e4d7a379ae6f954de3d40b3263f0386a5dbc1a955954d4a0583555fbc41eb",
+      "bytes": 187966
+    }
+  },
+  "publication_at_execution": "Local source and wheel verification; no registry release or manual deployment."
+}

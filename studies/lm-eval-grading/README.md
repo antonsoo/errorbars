@@ -96,3 +96,7 @@ To regenerate logs, use a separate environment with `lm-eval==0.4.13` and run
 `python capture.py --out /path/to/new-captures`. Package installation needs
 network access; capture generation uses local data and scripted providers.
 Do not append new timestamped runs into the retained capture directories.
+
+The [installed-package verification](../../docs/verification-lm-eval-grading-2026-10-15.md)
+retains clean archive, minimal-wheel and offline browser checks, including
+actual downloaded evidence and inspected screenshots.

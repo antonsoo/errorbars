@@ -59,7 +59,7 @@ for (const [name, engine] of Object.entries({ chromium, firefox })) {
         else {
           assert.equal(text.trim().split('\r\n').length, 2);
           assert(text.includes('"scoring"'));
-          assert(text.includes(`"${question}","","${conflict ? 'conflicting' : 'both'}","matching","${conflict ? 'conflicting' : 'matching'}"`));
+          assert(text.includes(`"${question}","","${conflict ? 'conflicting' : 'shared'}","matching","${conflict ? 'conflicting' : 'matching'}"`));
         }
       }
       assert.deepEqual(errors, []); assert.deepEqual(requests, []);

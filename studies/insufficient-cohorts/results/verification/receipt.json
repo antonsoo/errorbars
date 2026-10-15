@@ -1,0 +1,71 @@
+{
+  "source_revision": "6f40abe",
+  "clean_archive": true,
+  "checks": {
+    "python": "3.14.7",
+    "ruff": "passed",
+    "mypy": "passed",
+    "pytest": "722 passed",
+    "build": "wheel and sdist",
+    "web_lint": "passed",
+    "web_typecheck": "passed",
+    "web_tests": "691 passed",
+    "web_build": "passed"
+  },
+  "installed": [
+    {
+      "python": "3.10.21",
+      "numpy": "1.24.0",
+      "runtime_dependencies": [
+        "numpy"
+      ],
+      "replay_cases": 5
+    },
+    {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "runtime_dependencies": [
+        "numpy"
+      ],
+      "replay_cases": 5
+    }
+  ],
+  "quickstart": "power --delta 0.03 --baseline 0.5 returned 4361; synthetic leaderboard and tuned-70b summary succeeded on both bare wheels.",
+  "source_clean_and_installed_outputs_equal": true,
+  "installed_svg_byte_identical_to_inspected_source_svg": true,
+  "wheel": {
+    "name": "errorbars-0.2.4-py3-none-any.whl",
+    "sha256": "10617fddbd346f7777ad2de1738f2221be1ac6ba9d78fd6574d0bad49224f91d",
+    "source_files": {
+      "errorbars/__init__.py": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55",
+      "errorbars/_output.py": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c",
+      "errorbars/_tables.py": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853",
+      "errorbars/_validation.py": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707",
+      "errorbars/cli.py": "07ef3cb8bab14f2aaade89f29bf5e7ff47ad5d85a5e226309bdc3d1bbbcbce04",
+      "errorbars/compare.py": "4e300f3659ec1be192f8a66fb9fb58d4fffa110acde58447b2988f0f2e2c9fc2",
+      "errorbars/inputs.py": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb",
+      "errorbars/io.py": "841aec4e93f0ce3991eab8496a8f627ba5e7ebcf7c6642ac8633fca5c3e05390",
+      "errorbars/leaderboard.py": "ea5ddf295438ffd2c7787b6f7a19ea6910501c894bb69c696da50009f95559be",
+      "errorbars/plot.py": "bcad325215e3651d2bceeb3c0de32e280a8e183b45f90acccba3acdd95ca7fb8",
+      "errorbars/power.py": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839",
+      "errorbars/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "errorbars/report.py": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e",
+      "errorbars/review.py": "5582ee6884d230fa38bce8d40f0d165cf75d87573d7d599d008a9787c9e2544e",
+      "errorbars/scoring.py": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa",
+      "errorbars/stats.py": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920",
+      "errorbars/adapters/__init__.py": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f",
+      "errorbars/adapters/_inspect_integrity.py": "f1d693043ed9c074a8f6dc6cd2b2b2759fd4f5d5483775f2c35349138b627b31",
+      "errorbars/adapters/inspect_ai.py": "16505ebe3844834d7562efc52968c53d0d0ba29b7f0f152aeff8a4e3977d7a25",
+      "errorbars/adapters/lm_eval.py": "4cec380dffc7076a80cdca9b80ae40e104744b8974e6cbb185cdc1715576325c",
+      "errorbars/report_assets/report.css": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991",
+      "errorbars/report_assets/report.js": "ccd6ce54773b8687e8f284f1bea15898e06a70116c14fb277bfb7daeec7dca10",
+      "errorbars/report_assets/template.html": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050",
+      "errorbars/report_assets/fonts/LICENSE.txt": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5",
+      "errorbars/report_assets/fonts/ibm-plex-mono-400-latin.woff2": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "errorbars/report_assets/fonts/ibm-plex-sans-latin.woff2": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "errorbars/report_assets/fonts/spectral-500-latin.woff2": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+    }
+  },
+  "release": "Local commits only. No push, tag, registry release or deployment.",
+  "log_paths": "Temporary clean-checkout path normalized to <clean-checkout> in the web log."
+}

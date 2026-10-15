@@ -97,6 +97,21 @@ binary scores, and a board containing only descriptive means. It also parses
 the SVG to ensure unavailable rows have open markers and no interval bars.
 [`results/source.json`](results/source.json) retains the source replay.
 
+A fresh archive of implementation commit `6f40abe` passed Ruff, strict mypy,
+all 722 Python tests on Python 3.14.7, and wheel/sdist builds. The clean web
+checkout also passed lint, type checking, 691 tests and its production build.
+The wheel was then installed separately with only NumPy on Python 3.10.21 /
+NumPy 1.24.0 and Python 3.14.7 / NumPy 2.5.3. All five CLI replay cases passed
+on each installation. Full replay outputs matched source, and both exported
+SVG files were byte-identical to the inspected source export. All 27 packaged
+source/resource files matched the archive. The documented power command
+returned 4,361 and the synthetic summary/leaderboard commands ran on both bare
+installations. [Receipt and file hashes](results/verification/receipt.json),
+[clean checks](results/verification/clean-checks.log),
+[web checks](results/verification/clean-web.log),
+[minimum installation](results/verification/installed310.json), and
+[current installation](results/verification/installed314.json).
+
 The browser replay opens actual SVG files **offline before navigation** in
 Chromium and Firefox. Both the partial and all-descriptive exports render
 without errors, keep every label inside the canvas, and keep unavailable

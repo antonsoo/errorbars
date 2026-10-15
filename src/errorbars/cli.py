@@ -63,6 +63,7 @@ def _input_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument("--cluster-col", default="cluster_id")
     sp.add_argument("--sample-col", default="sample")
     sp.add_argument("--question-hash-col", default="question_hash")
+    sp.add_argument("--higher-is-better-col", default="higher_is_better", help="score direction in CSV/JSONL")
     sp.add_argument("--scorer-col", default="scorer", help="recorded scoring-rule name in CSV/JSONL")
     sp.add_argument("--scorer-config-col", default="scorer_config", help="scorer configuration fingerprint")
     sp.add_argument(
@@ -100,6 +101,7 @@ def _columns_from(args: argparse.Namespace) -> ColumnMap:
         scorer=args.scorer_col,
         scorer_config=args.scorer_config_col,
         scorer_value=args.scorer_value_col,
+        higher_is_better=args.higher_is_better_col,
     )
 
 
@@ -392,7 +394,10 @@ _MAX_PAIR_ROWS = 66
 
 def cmd_leaderboard(args: argparse.Namespace) -> None:
     data = _load(args)
-    lb = build_leaderboard(data, confidence=args.confidence, alpha=args.alpha)
+    lb = build_leaderboard(
+        data, confidence=args.confidence, alpha=args.alpha,
+        higher_is_better=None if args.score_direction is None else args.score_direction == "higher",
+    )
 
     if args.plot:
         svg = forest_plot_svg(lb, title=args.plot_title)
@@ -444,6 +449,10 @@ def cmd_leaderboard(args: argparse.Namespace) -> None:
             cells.append(rank_ranges(comparisons[e.model]["untested"]))
         table.add_row(*cells)
     out.table(table)
+    out.note(
+        f"Rank order: {'higher' if lb.higher_is_better else 'lower'} scores first "
+        f"({lb.direction_source}). Scores remain in their original units.",
+    )
     if any(e.n_clusters is not None for e in lb.entries):
         out.note(
             "Grouped-question intervals use CR2 standard errors and Student t with effective "
@@ -593,6 +602,7 @@ def cmd_import(args: argparse.Namespace) -> None:
     args.question_hash_col = "question_hash"
     args.scorer_col, args.scorer_config_col = "scorer", "scorer_config"
     args.scorer_value_col = "scorer_value"
+    args.higher_is_better_col = "higher_is_better"
     data = _load(args, model=args.model)
 
     write_csv(data, args.output, protected=args.protected_inputs)
@@ -628,6 +638,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_lb = sub.add_parser("leaderboard", help="rank all models with pairwise tests")
     p_lb.add_argument("--confidence", type=float, default=0.95)
     p_lb.add_argument("--alpha", type=float, default=0.05)
+    p_lb.add_argument(
+        "--score-direction", choices=("higher", "lower"), default=None,
+        help="rank direction for scores without declarations; cannot contradict recorded direction",
+    )
     p_lb.add_argument("--plot", default=None, help="write an SVG forest plot to this path")
     p_lb.add_argument("--plot-title", default=None)
     p_lb.add_argument("--json", action="store_true")

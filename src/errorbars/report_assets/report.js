@@ -348,14 +348,20 @@
     const header = ["question_id", "cluster_id", "presence", "identity", "scoring", "model_a", "model_b", "mean_a", "mean_b",
       "difference_a_minus_b", "n_observations_a", "n_observations_b"];
     const named = data.score_values?.length > 0;
+    const directed = data.questions.some(q => [...q.observations_a, ...q.observations_b].some(obs => obs.higher_is_better != null));
     if (named) header.push("scorer_values_a", "scorer_values_b");
+    if (directed) header.push("higher_is_better_a", "higher_is_better_b");
     function values(observations) {
       return JSON.stringify([...new Set(observations.map(obs => JSON.stringify({ scorer: obs.scorer, value: obs.scorer_value ?? null })))].map(text => JSON.parse(text)));
+    }
+    function directions(observations) {
+      return JSON.stringify([...new Set(observations.map(obs => obs.higher_is_better ?? null))]);
     }
     const lines = [header.map(csvCell).join(",")];
     for (const q of rows) lines.push([q.question_id, q.cluster_id, q.presence, q.identity, q.scoring, data.model_a, data.model_b,
       q.mean_a, q.mean_b, q.difference, q.observations_a.length, q.observations_b.length,
-      ...(named ? [values(q.observations_a), values(q.observations_b)] : [])].map(csvCell).join(","));
+      ...(named ? [values(q.observations_a), values(q.observations_b)] : []),
+      ...(directed ? [directions(q.observations_a), directions(q.observations_b)] : [])].map(csvCell).join(","));
     download(lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8", "errorbars-questions.csv");
   });
   byId("search").addEventListener("input", changeFilters);

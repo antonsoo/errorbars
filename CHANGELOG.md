@@ -4,6 +4,23 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Metric direction and aggregation
+
+- Retain lm-eval's recorded `higher_is_better` declarations and rank mean
+  losses in ascending order. Direction survives canonical CSV, normalized
+  JSONL/DataFrames, model selection, concatenation and comparison evidence.
+  `leaderboard --score-direction lower` supplies a direction for undeclared
+  scores; an explicit flag cannot override contradictory recorded evidence.
+  JSON, terminal output and both forest-plot formats identify rank direction
+  and whether it is recorded, explicitly supplied or the higher-first default.
+- Refuse recorded non-mean lm-eval aggregations before analysis or exports.
+  Scalar sample values can be inputs to a corpus metric: native perplexity
+  samples contain log likelihoods, whose mean is not perplexity. A recorded
+  lower-is-better declaration without a recorded mean aggregation is also
+  refused because an aggregate's direction need not order its inputs.
+  Unknown metadata stays unknown. Original units and two-sided tests are
+  preserved. [Native captures and before/after replay](studies/metric-contract/README.md).
+
 ### Descriptive leaderboard runs
 
 - Retain model means and counts when a run covers only one independent cluster,

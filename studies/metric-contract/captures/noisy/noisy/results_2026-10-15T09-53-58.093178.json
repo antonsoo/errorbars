@@ -1,0 +1,96 @@
+{
+  "results": {
+    "metric_contract": {
+      "name": "metric_contract",
+      "alias": "metric_contract",
+      "sample_len": 32,
+      "mean_nll,none": 0.790625,
+      "mean_nll_stderr,none": "N/A",
+      "likelihood,none": 0.4581389677929259,
+      "likelihood_stderr,none": "N/A",
+      "perplexity,none": 2.204773979462882,
+      "perplexity_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {},
+  "configs": {
+    "metric_contract": {
+      "task": "metric_contract",
+      "custom_dataset": "def dataset(**_: object) -> DatasetDict:\n    return DatasetDict({\"test\": Dataset.from_list([\n        {\"prompt\": f\"Controlled metric case {i}:\", \"target\": \" correct\"} for i in range(32)\n    ])})\n",
+      "test_split": "test",
+      "doc_to_text": "prompt",
+      "doc_to_target": "target",
+      "unsafe_code": false,
+      "process_results": "def metrics(doc: dict, results: list[tuple[float, bool]]) -> dict[str, float]:\n    log_probability = results[0][0]\n    return {\n        \"mean_nll\": -log_probability,\n        \"likelihood\": math.exp(log_probability),\n        \"perplexity\": log_probability,\n    }\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "prompt",
+        "doc_to_choice": null,
+        "doc_to_target": "target",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "mean_nll",
+          "aggregation": "mean",
+          "higher_is_better": false
+        },
+        {
+          "metric": "likelihood",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "perplexity",
+          "aggregation": "perplexity",
+          "higher_is_better": false
+        }
+      ],
+      "output_type": "loglikelihood",
+      "repeats": 1,
+      "should_decontaminate": false
+    }
+  },
+  "versions": {
+    "metric_contract": "Yaml"
+  },
+  "n-shot": {
+    "metric_contract": 0
+  },
+  "higher_is_better": {
+    "metric_contract": {
+      "mean_nll": false,
+      "likelihood": true,
+      "perplexity": false
+    }
+  },
+  "n-samples": {
+    "metric_contract": {
+      "original": 32,
+      "effective": 32
+    }
+  },
+  "lm_eval_version": "0.4.13",
+  "task_hashes": {
+    "metric_contract": "a1f8df27b53c1b3bd82d51f30ae46136638f66e838b840ede9d08b2a2caacb61"
+  },
+  "model_source": "scripted",
+  "model_name": "noisy",
+  "model_name_sanitized": "noisy",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "total_evaluation_time_seconds": "1.2484000762924552e-05"
+}

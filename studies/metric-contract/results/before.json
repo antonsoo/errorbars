@@ -1,0 +1,134 @@
+{
+  "python": "3.12.12",
+  "inputs": [
+    {
+      "path": "captures/noisy/noisy/results_2026-10-15T09-53-58.093178.json",
+      "sha256": "d171e600060e28c5a560d0501c28129d6c0bb6911f454d66279236086f4ddff8",
+      "bytes": 2909
+    },
+    {
+      "path": "captures/precise/precise/results_2026-10-15T09-53-58.087178.json",
+      "sha256": "a5878792cfeb916dcb9e5418c5c44ad52b7fafcb188612cb3eae33bc7953f528",
+      "bytes": 2910
+    },
+    {
+      "path": "captures/noisy/noisy/samples_metric_contract_2026-10-15T09-53-58.093178.jsonl",
+      "sha256": "b02792868cd62193dbab91ef10b5f8ba7246f2507cd1557909a8d8cdf6c41545",
+      "bytes": 21038
+    },
+    {
+      "path": "captures/precise/precise/samples_metric_contract_2026-10-15T09-53-58.087178.jsonl",
+      "sha256": "862f4ec520dcd1206d27cc6388a467c6c672a85ca3e4e651de196c499432c3a7",
+      "bytes": 21026
+    }
+  ],
+  "cases": [
+    {
+      "metric": "mean_nll",
+      "status": "accepted",
+      "expected_order": [
+        "precise",
+        "noisy"
+      ],
+      "actual_order": [
+        "noisy",
+        "precise"
+      ],
+      "order_matches": false,
+      "harness_values": {
+        "precise": 0.25,
+        "noisy": 0.790625
+      },
+      "errorbars_means": {
+        "noisy": 0.790625,
+        "precise": 0.25
+      },
+      "means_match_harness": true,
+      "higher_is_better": null,
+      "direction_source": null,
+      "cli_exit": 0,
+      "cli_traceback": false,
+      "cli_stdout": true,
+      "cli_order": [
+        "noisy",
+        "precise"
+      ],
+      "cli_means": {
+        "noisy": 0.790625,
+        "precise": 0.25
+      }
+    },
+    {
+      "metric": "likelihood",
+      "status": "accepted",
+      "expected_order": [
+        "precise",
+        "noisy"
+      ],
+      "actual_order": [
+        "precise",
+        "noisy"
+      ],
+      "order_matches": true,
+      "harness_values": {
+        "precise": 0.7836766094578247,
+        "noisy": 0.4581389677929259
+      },
+      "errorbars_means": {
+        "precise": 0.7836766094578247,
+        "noisy": 0.45813896779292596
+      },
+      "means_match_harness": true,
+      "higher_is_better": null,
+      "direction_source": null,
+      "cli_exit": 0,
+      "cli_traceback": false,
+      "cli_stdout": true,
+      "cli_order": [
+        "precise",
+        "noisy"
+      ],
+      "cli_means": {
+        "precise": 0.7836766094578247,
+        "noisy": 0.45813896779292596
+      }
+    },
+    {
+      "metric": "perplexity",
+      "status": "accepted",
+      "expected_order": [
+        "precise",
+        "noisy"
+      ],
+      "actual_order": [
+        "precise",
+        "noisy"
+      ],
+      "order_matches": true,
+      "harness_values": {
+        "precise": 1.2840254166877414,
+        "noisy": 2.204773979462882
+      },
+      "errorbars_means": {
+        "precise": -0.25,
+        "noisy": -0.790625
+      },
+      "means_match_harness": false,
+      "higher_is_better": null,
+      "direction_source": null,
+      "cli_exit": 0,
+      "cli_traceback": false,
+      "cli_stdout": true,
+      "cli_order": [
+        "precise",
+        "noisy"
+      ],
+      "cli_means": {
+        "precise": -0.25,
+        "noisy": -0.790625
+      }
+    }
+  ],
+  "wrong_rankings": 1,
+  "mislabelled_metric_means": 1
+}

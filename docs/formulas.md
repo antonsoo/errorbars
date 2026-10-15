@@ -234,6 +234,15 @@ approximation. See [test selection](leaderboard-tests.md) and the
 
 ## 9. Holm-Bonferroni correction
 
+Leaderboard rank direction does not transform scores. A recorded
+`higher_is_better=false` puts the lowest question mean first; pairwise
+differences remain A - B in the original units, and two-sided p-values and
+Holm decisions are invariant under reversal. Both models' scores must use
+one compatible direction for ranking. Native lm-eval values with a recorded
+aggregation other than `mean` cannot be analyzed as mean metric scores;
+for example, `exp(-mean(log_likelihood))` is perplexity, while
+`mean(log_likelihood)` is not. [Capture and interpretation policy](../studies/metric-contract/README.md).
+
 Controls the family-wise error rate across $m$ pairwise tests without
 assuming independence (Holm, 1979), less conservative than Bonferroni:
 sort p-values ascending, adjust the $k$-th smallest to

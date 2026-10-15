@@ -159,13 +159,15 @@ class UntestedPair:
 
 @dataclass(frozen=True)
 class Leaderboard:
-    entries: list[LeaderboardEntry]  # sorted by mean, descending
+    entries: list[LeaderboardEntry]  # sorted by mean in the declared score direction
     pairwise: list[PairwiseResult]
     groups: list[list[str]] | None  # Complete maximal groups, or unavailable; never a partial list.
     alpha: float
     untested_pairs: list[UntestedPair] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     group_status: GroupStatus = "complete"
+    higher_is_better: bool = True
+    direction_source: Literal["recorded", "explicit", "default"] = "default"
 
     def rank_comparisons(self) -> dict[str, dict[str, list[int]]]:
         """Exact other-model ranks by decision; non-significance is not transitive.
@@ -198,6 +200,8 @@ class Leaderboard:
                                   "max_search_states": _MAX_GROUP_SEARCH_STATES}}
                if self.group_status != "complete" else {}),
             "alpha": self.alpha,
+            "higher_is_better": self.higher_is_better,
+            "direction_source": self.direction_source,
             "rank_comparisons": self.rank_comparisons(),
             "untested_pairs": [asdict(pair) for pair in self.untested_pairs],
             "warnings": self.warnings,
@@ -257,6 +261,8 @@ def build_leaderboard(
     confidence: float = 0.95,
     alpha: float = 0.05,
     use_wilson_below_n: int = 30,
+    *,
+    higher_is_better: bool | None = None,
 ) -> Leaderboard:
     """Build a leaderboard: per-model CIs, Holm-corrected pairwise tests, groups.
 
@@ -280,6 +286,12 @@ def build_leaderboard(
     clusters remains untested; it does not prevent other pairs from being tested.
     If maximal group enumeration exceeds its count or search budget, groups is
     None and group_status explains the omission. All inference remains complete.
+
+    Recorded score direction determines rank order. ``higher_is_better`` can
+    supply a direction for undeclared scores, but cannot override contradictory
+    input evidence. With neither, the historical higher-first order is used and
+    explicitly labelled as a default. Scores and A - B differences keep their
+    original units; selecting a rank direction never negates observations.
     """
     data.validate()
     models = data.models()
@@ -289,6 +301,17 @@ def build_leaderboard(
         raise ValueError(f"alpha must be in (0, 1), got {alpha}")
     if not 0.0 < confidence < 1.0:
         raise ValueError(f"confidence must be in (0, 1), got {confidence}")
+    if higher_is_better is not None and type(higher_is_better) is not bool:
+        raise ValueError("higher_is_better must be a boolean or None")
+    directions = {value for value in data.higher_is_better or [] if value is not None}
+    if len(directions) > 1:
+        raise ValueError("conflicting score directions: a leaderboard requires one common direction")
+    if directions and higher_is_better is not None and higher_is_better not in directions:
+        raise ValueError("requested score direction conflicts with recorded higher_is_better evidence")
+    direction_source: Literal["recorded", "explicit", "default"] = (
+        "explicit" if higher_is_better is not None else "recorded" if directions else "default"
+    )
+    direction = higher_is_better if higher_is_better is not None else next(iter(directions), True)
 
     parts = {m: data.filter_model(m) for m in models}
     qmap = {m: part.scores_by_question() for m, part in parts.items()}
@@ -375,7 +398,7 @@ def build_leaderboard(
                 warnings=notes,
             )
         )
-    entries.sort(key=lambda e: e.mean, reverse=True)
+    entries.sort(key=lambda e: e.mean, reverse=direction)
     order = [e.model for e in entries]
 
     # Align questions for paired tests: use the intersection of question_ids
@@ -430,6 +453,12 @@ def build_leaderboard(
 
     edges = {frozenset((pr.model_a, pr.model_b)) for pr in pairwise if pr.p_holm >= alpha}
     warnings = []
+    missing_direction = sum(value is None for value in data.higher_is_better or [])
+    if directions and missing_direction and higher_is_better is None:
+        warnings.append(
+            f"Score direction is unrecorded for {missing_direction} observations; "
+            "ranking assumes they use the same direction as the recorded scores."
+        )
     groups: list[list[str]] | None
     group_status: GroupStatus = "complete"
     try:
@@ -475,6 +504,7 @@ def build_leaderboard(
     return Leaderboard(
         entries=entries, pairwise=pairwise, groups=groups, alpha=alpha,
         untested_pairs=untested_pairs, warnings=warnings, group_status=group_status,
+        higher_is_better=direction, direction_source=direction_source,
     )
 
 

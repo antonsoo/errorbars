@@ -20,6 +20,9 @@ def build(output: Path) -> None:
     capture = load_inputs([ROOT / "tests/fixtures/lm_eval_output"]).data
     real = review_comparison(capture, "hf-internal-testing/tiny-random-gpt2", "sshleifer/tiny-gpt2")
     write_comparison_html(real, output / "copa.html")
+    metric_captures = ROOT / "studies/metric-contract/captures"
+    losses = load_inputs([metric_captures / "precise", metric_captures / "noisy"], metric="mean_nll").data
+    write_comparison_html(review_comparison(losses, "precise", "noisy"), output / "loss.html")
     clustered = review_comparison(
         load_csv(ROOT / "examples/data/reading_comprehension.csv"), "tuned-70b", "baseline-70b"
     )

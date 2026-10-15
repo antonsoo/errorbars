@@ -28,6 +28,23 @@ async function download(page, name) {
   return { name: item.suggestedFilename(), text: await readFile(await item.path(), 'utf8') };
 }
 
+test('native loss direction and original score units survive offline question exports', async ({ page, context }) => {
+  const clean = await open(page, context, 'loss');
+  await expect(page.locator('#effect-value')).toHaveText('-0.5406');
+  const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+  expect(data.questions).toHaveLength(32);
+  expect(data.comparison.mean_diff).toBeCloseTo(-0.540625, 12);
+  expect(data.questions.every(q => [...q.observations_a, ...q.observations_b]
+    .every(obs => obs.higher_is_better === false))).toBe(true);
+  await page.getByLabel('Search question or cluster').fill('metric_contract-0');
+  await expect(page.locator('#question-rows tr')).toHaveCount(1);
+  const csv = (await download(page, 'Download shown questions (CSV)')).text;
+  expect(csv.trim().split('\r\n')).toHaveLength(2);
+  expect(csv).toContain('"higher_is_better_a","higher_is_better_b"');
+  expect(csv).toContain('"[false]","[false]"');
+  await clean();
+});
+
 test('selected named values survive inspection and downloads and prevent unlike-dimension inference', async ({ page, context }) => {
   const clean = await open(page, context, 'named-values');
   await expect(page.locator('#scoring-note')).toContainText("'correct'");

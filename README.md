@@ -119,6 +119,12 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   Partial cohorts sharing only one independent group now keep an explicit
   untested pair while the rest of the board remains usable. Question identity
   checks index each model once. [Failure capture and timing evidence](studies/leaderboard-overlap/README.md).
+- **Metric direction (source checkout)** — mean losses rank lower first when
+  the native results record that direction. CSV/JSONL can retain
+  `higher_is_better`, and `leaderboard --score-direction lower` supplies it
+  for undeclared scores. Recorded non-mean aggregations are refused;
+  averaging a harness's perplexity inputs does not estimate perplexity.
+  [Counterexamples and usage](studies/metric-contract/README.md).
 - **Incomplete leaderboard runs (source checkout)** — a run covering only one independent
   cluster, or one question with continuous or repeated scores, keeps its observed mean and
   counts. Its SE and interval are explicitly unavailable; valid comparisons between other
@@ -355,6 +361,16 @@ fixtures (`tests/fixtures/samples_*.jsonl`, `tests/fixtures/lm_eval_output/`,
 binary `.eval` format, and needs the `inspect` extra:
 `pip install "errorbars[inspect]"`. The lm-eval
 adapter has no extra dependency — `--log_samples` is already plain JSONL.
+
+The source checkout retains the selected lm-eval metric's `higher_is_better`
+declarations and checks its recorded aggregation. A controlled native capture
+previously ranked mean loss `0.790625` ahead of `0.25`; it now ranks lower loss
+first without negating scores. Known non-mean aggregations stop before analysis
+or export: selecting native perplexity previously displayed negative log-likelihood
+means instead of the harness's positive perplexities. Missing declarations stay
+unknown; a lower-is-better declaration needs a recorded mean aggregation before
+its direction can be applied to the per-item values.
+[Retained captures, policy and commands](studies/metric-contract/README.md).
 
 Inspect imports refuse unscored samples, missing grades and unrecognized grade strings.
 The source checkout also checks status, planned/completed/recorded counts, selected IDs,

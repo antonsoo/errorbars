@@ -32,6 +32,7 @@ class Observation:
     scorer: str | None = None
     scorer_config: str | None = None
     scorer_value: str | None = None
+    higher_is_better: bool | None = None
 
 
 @dataclass(frozen=True)
@@ -232,6 +233,7 @@ def review_comparison(
                 part.question_hash[i] if part.question_hash is not None else None,
                 rule.name if rule else None, rule.config_hash if rule else None,
                 rule.value_key if rule else None,
+                part.higher_is_better[i] if part.higher_is_better is not None else None,
             ))
         return result
 

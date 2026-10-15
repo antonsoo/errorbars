@@ -69,6 +69,8 @@ def forest_plot_svg(
         cursor += height
     axis_y = cursor
     captions = [
+        f"Rank order: {'higher' if leaderboard.higher_is_better else 'lower'} scores first "
+        f"({leaderboard.direction_source}); original score units.",
         _interval_caption(leaderboard),
         f"Not separated: other ranks with Holm-adjusted p >= {leaderboard.alpha:g}. "
         "Gaps are preserved; '-' means none. Non-significance does not establish equivalence.",
@@ -184,7 +186,10 @@ def forest_plot_matplotlib(leaderboard: Leaderboard, title: str | None = None) -
                         textcoords="offset points", fontsize=8)
     ax.set_yticks(ys)
     ax.set_yticklabels([e.model for e in entries])
-    caption = f"mean score\n{_interval_caption(leaderboard)}"
+    caption = (
+        f"mean score ({'higher' if leaderboard.higher_is_better else 'lower'} scores first; "
+        f"{leaderboard.direction_source})\n{_interval_caption(leaderboard)}"
+    )
     for note in leaderboard.warnings:
         caption += "\n" + "\n".join(wrap(note, width=85))
     ax.set_xlabel(caption)

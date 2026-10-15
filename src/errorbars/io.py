@@ -65,6 +65,7 @@ class ColumnMap:
     scorer: str | None = "scorer"
     scorer_config: str | None = "scorer_config"
     scorer_value: str | None = "scorer_value"
+    higher_is_better: str | None = "higher_is_better"
 
 
 @dataclass
@@ -80,6 +81,7 @@ class EvalData:
     sources: list[RecordSource | None] | None = None
     question_hash: list[str | None] | None = None
     scoring: list[ScoringRule | None] | None = None
+    higher_is_better: list[bool | None] | None = None
 
     def __len__(self) -> int:
         return len(self.score)
@@ -105,6 +107,8 @@ class EvalData:
             sources=[self.sources[i] for i in idx] if self.sources is not None else None,
             question_hash=[self.question_hash[i] for i in idx] if self.question_hash is not None else None,
             scoring=[self.scoring[i] for i in idx] if self.scoring is not None else None,
+            higher_is_better=[self.higher_is_better[i] for i in idx]
+            if self.higher_is_better is not None else None,
         )
 
     def scores_by_question(self) -> dict[str, float]:
@@ -188,6 +192,22 @@ class EvalData:
             if not isinstance(score, Real):
                 raise ValueError(f"row {row}: normalized score must be numeric")
             _coerce_score(score, row)
+        if self.higher_is_better is not None:
+            if len(self.higher_is_better) != n:
+                raise ValueError("higher_is_better must have one boolean or None per score")
+            directions: dict[tuple[str, str], bool] = {}
+            for row, direction in enumerate(self.higher_is_better, 1):
+                if direction is None:
+                    continue
+                if type(direction) is not bool:
+                    raise ValueError(f"row {row}: higher_is_better must be a boolean or None")
+                direction_key = (self.model[row - 1], self.question_id[row - 1])
+                if direction_key in directions and directions[direction_key] != direction:
+                    raise ValueError(
+                        f"model {direction_key[0]!r}, question {direction_key[1]!r}: "
+                        "conflicting score directions"
+                    )
+                directions[direction_key] = direction
         if self.scoring is not None:
             if len(self.scoring) != n:
                 raise ValueError("scoring must have one ScoringRule or None per score")
@@ -275,6 +295,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
     any_sources = any(data.sources is not None for _, data in parts)
     any_hashes = any(data.question_hash is not None for _, data in parts)
     any_scoring = any(data.scoring is not None for _, data in parts)
+    any_directions = any(data.higher_is_better is not None for _, data in parts)
 
     question_id: list[str] = []
     model: list[str] = []
@@ -284,6 +305,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
     sources: list[RecordSource | None] = []
     question_hash: list[str | None] = []
     scoring: list[ScoringRule | None] = []
+    directions: list[bool | None] = []
     seen: dict[tuple[str, str, str], str] = {}
     for source, data in parts:
         samples = data.sample or ["0"] * len(data)
@@ -312,6 +334,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
         sources.extend(data.sources if data.sources is not None else [None] * len(data))
         question_hash.extend(data.question_hash if data.question_hash is not None else [None] * len(data))
         scoring.extend(data.scoring if data.scoring is not None else [None] * len(data))
+        directions.extend(data.higher_is_better if data.higher_is_better is not None else [None] * len(data))
 
     result = EvalData(
         question_id,
@@ -323,6 +346,7 @@ def concat(parts: Iterable[tuple[str, EvalData]]) -> EvalData:
         sources if any_sources else None,
         question_hash if any_hashes else None,
         scoring if any_scoring else None,
+        directions if any_directions else None,
     )
     result.validate()
     return result
@@ -383,6 +407,16 @@ def _names(row: dict[str, Any]) -> str:
     return (", ".join(shown) + more) or "no fields"
 
 
+def _coerce_direction(value: Any, row: int) -> bool | None:
+    if value is None or value == "":
+        return None
+    if type(value) is bool:
+        return value
+    if isinstance(value, str) and value.strip().lower() in ("true", "false"):
+        return value.strip().lower() == "true"
+    raise ValueError(f"row {row}: higher_is_better must be true, false or empty (unknown)")
+
+
 def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> EvalData:
     question_id: list[str] = []
     model: list[str] = []
@@ -393,6 +427,7 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
     hashes: list[str | None] = []
     has_hashes = False
     scoring: list[ScoringRule | None] = []
+    directions: list[bool | None] = []
 
     n = 0
     seen: dict[tuple[str, str, str], int] = {}
@@ -411,6 +446,8 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
         question_id.append(_label(row, columns.question_id, n))
         model.append(_label(row, columns.model, n))
         score.append(_coerce_score(row[columns.score], n))
+        directions.append(_coerce_direction(row.get(columns.higher_is_better), n)
+                          if columns.higher_is_better else None)
         if columns.cluster_id is not None and columns.cluster_id in row:
             cluster = _identifier(row[columns.cluster_id], columns.cluster_id, n)
             qid = question_id[-1]
@@ -480,6 +517,7 @@ def _from_records(records: Iterable[dict[str, Any]], columns: ColumnMap) -> Eval
         question_id, model, score, cluster_id, sample if has_samples else None, columns,
         question_hash=hashes if has_hashes else None,
         scoring=scoring if any(scoring) else None,
+        higher_is_better=directions if any(value is not None for value in directions) else None,
     )
     result.validate()
     return result
@@ -616,6 +654,8 @@ def write_csv(data: EvalData, path: str | Path, *, protected: Iterable[str | Pat
         fieldnames.append("sample")
     if data.question_hash is not None:
         fieldnames.append("question_hash")
+    if data.higher_is_better is not None:
+        fieldnames.append("higher_is_better")
     if data.scoring is not None:
         fieldnames.extend(("scorer", "scorer_config"))
         if any(rule is not None and rule.value_key is not None for rule in data.scoring):
@@ -637,6 +677,9 @@ def write_csv(data: EvalData, path: str | Path, *, protected: Iterable[str | Pat
                 row["sample"] = data.sample[i]
             if data.question_hash is not None:
                 row["question_hash"] = data.question_hash[i]
+            if data.higher_is_better is not None:
+                direction = data.higher_is_better[i]
+                row["higher_is_better"] = str(direction).lower() if direction is not None else None
             if data.scoring is not None:
                 rule = data.scoring[i]
                 row["scorer"] = rule.name if rule is not None else None

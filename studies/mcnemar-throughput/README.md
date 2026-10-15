@@ -134,8 +134,12 @@ for correctness, not timing. Python 3.10 with the declared NumPy 1.24 floor
 passes 147 focused checks; 15 optional Inspect AI checks skip because that
 package is absent. The complete clean environment has no skips.
 
-These results describe this source change and its locally built artifacts.
-They do not establish a package release or hosted deployment.
+Source and evidence are published at
+[`4e1a399`](https://github.com/antonsoo/errorbars/commit/4e1a399d801ef27b52f688d8ec4ed594e949d1ea).
+The [publication receipt](results/publication.json) checks remote branch identity
+and all 42 changed files against their pinned public raw bytes. These results
+describe the source change and its locally built artifacts; they do not
+establish a package release or hosted deployment.
 
 ## Reproduce
 

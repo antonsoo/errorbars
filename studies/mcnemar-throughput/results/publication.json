@@ -1,0 +1,266 @@
+{
+  "recorded_utc": "2026-10-15T19:32:36.205575+00:00",
+  "source_revision": "4e1a399d801ef27b52f688d8ec4ed594e949d1ea",
+  "baseline_revision": "0590c884ea168530c2831aa97ff1f78c48eebca6",
+  "remote": "https://github.com/antonsoo/errorbars",
+  "remote_heads": [
+    "4e1a399d801ef27b52f688d8ec4ed594e949d1ea\tHEAD",
+    "4e1a399d801ef27b52f688d8ec4ed594e949d1ea\trefs/heads/main"
+  ],
+  "local_tree_clean_at_verification": true,
+  "pinned_raw_files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 33443,
+      "sha256": "89a0d5d67f5e84d62049b8be10b540fbb72c240722bc6fee9e17065333b53501",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/CHANGELOG.md"
+    },
+    {
+      "path": "README.md",
+      "bytes": 33928,
+      "sha256": "dd0825b47d00a6f3b9905bb315c4b74bec1277bd06ada928232d2e5072d78361",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/README.md"
+    },
+    {
+      "path": "docs/assets/mcnemar-throughput/chromium-1440.png",
+      "bytes": 236709,
+      "sha256": "545fa2a2e08b7711fb4a9264800e9f330f33523f79a094c9abb89becd10afa88",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/docs/assets/mcnemar-throughput/chromium-1440.png"
+    },
+    {
+      "path": "docs/assets/mcnemar-throughput/chromium-375.png",
+      "bytes": 225721,
+      "sha256": "dec45b51865bab419ad85a119202c0eff9fd70d264d5d31db5f84b0c605760e4",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/docs/assets/mcnemar-throughput/chromium-375.png"
+    },
+    {
+      "path": "docs/assets/mcnemar-throughput/firefox-1440.png",
+      "bytes": 384314,
+      "sha256": "e93b2746405c73d282af0518a4f82636b4cea0677a2d4b895b4f8f133cdb420c",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/docs/assets/mcnemar-throughput/firefox-1440.png"
+    },
+    {
+      "path": "docs/assets/mcnemar-throughput/firefox-375.png",
+      "bytes": 349593,
+      "sha256": "65b4cf7d74c12bb22e6bcb4548fa98264772e444c74108517967c0201039c851",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/docs/assets/mcnemar-throughput/firefox-375.png"
+    },
+    {
+      "path": "scripts/build_report_fixtures.py",
+      "bytes": 5527,
+      "sha256": "3cd8005be4d379c93714277f32106e7ae0717cdd95958b1bf8d781d37dc4043a",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/scripts/build_report_fixtures.py"
+    },
+    {
+      "path": "src/errorbars/cli.py",
+      "bytes": 32384,
+      "sha256": "ec3e09e061f604469f1a1b7e3b567e899e0f36548171dc60d422f05f6a5f1078",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/src/errorbars/cli.py"
+    },
+    {
+      "path": "src/errorbars/compare.py",
+      "bytes": 12322,
+      "sha256": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/src/errorbars/compare.py"
+    },
+    {
+      "path": "src/errorbars/io.py",
+      "bytes": 31538,
+      "sha256": "fb83b095220f508c46c0c1067fc5ef729d40b7e64b625119dd3bb0dbab44baf2",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/src/errorbars/io.py"
+    },
+    {
+      "path": "src/errorbars/leaderboard.py",
+      "bytes": 23041,
+      "sha256": "a28fb28916af79baf442e82b51612f7510bd989cda3e63b8efde858b3165d99e",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/src/errorbars/leaderboard.py"
+    },
+    {
+      "path": "studies/mcnemar-throughput/README.md",
+      "bytes": 9196,
+      "sha256": "99f55ce5167d6e3157fcc3be25fe05f4f792e476210530757acf0840e1f6c682",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/README.md"
+    },
+    {
+      "path": "studies/mcnemar-throughput/audit_swe.py",
+      "bytes": 3269,
+      "sha256": "912e3b336f326a89fb3952b6c7d15ab3087d1141bd4a8d6397aa7b91543a5cd8",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/audit_swe.py"
+    },
+    {
+      "path": "studies/mcnemar-throughput/benchmark.py",
+      "bytes": 2971,
+      "sha256": "b43c4627526b19c8eb94be30d0e7dbd54de99a831286fef667b9052f26bb5512",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/benchmark.py"
+    },
+    {
+      "path": "studies/mcnemar-throughput/generate.py",
+      "bytes": 1859,
+      "sha256": "3d0c3d966a8ceed4ac1f9b15e87f6f29e1e6ab2f9109d1d54e50d76c5fb2b63a",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/generate.py"
+    },
+    {
+      "path": "studies/mcnemar-throughput/oracles.py",
+      "bytes": 2860,
+      "sha256": "5aa3622b454262b824c1b7cfcb40a123b90b97bdd0c2be1c4cde1ce69f27c3b2",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/oracles.py"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/artifacts.json",
+      "bytes": 4980,
+      "sha256": "b5f2949c94acee99dc9f3f75c16b0c9bb4c2ba4f1d03e7844642ec1ccaf19f4c",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/artifacts.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/chromium-report.json",
+      "bytes": 631,
+      "sha256": "1e503a24d4e270a9e348c666f67db64015ff07ae50d76bf871069f1bcd0022d8",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/chromium-report.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/firefox-report.json",
+      "bytes": 631,
+      "sha256": "1e503a24d4e270a9e348c666f67db64015ff07ae50d76bf871069f1bcd0022d8",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/firefox-report.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/input.json",
+      "bytes": 2728,
+      "sha256": "be7c4d209549b477f216c3acd5f3ed645304a5c674ad85304d711f8452090b43",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/input.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/installed-leaderboard.json",
+      "bytes": 17132,
+      "sha256": "0dc75f01e82fb3fe4fe367a80192fff5b408f923408fcd25ea54b43cd52a9d7c",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/installed-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/installed.json",
+      "bytes": 1585,
+      "sha256": "ac15d415d657d44a54ab331be1b0412d07b7d52d5c3a1b788115c8aee34e1f23",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/installed.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/oracles.json",
+      "bytes": 816293,
+      "sha256": "d28a471bc12d494c5234a30e9aff5f3545ce1749dec52be980a4118ec45bd858",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/oracles.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/profile.json",
+      "bytes": 3814,
+      "sha256": "14c149f43a932fc3687d7275eb2a2e9190873f33c461e604a44e44fa8b5c9669",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/profile.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-after-1-leaderboard.json",
+      "bytes": 17132,
+      "sha256": "0dc75f01e82fb3fe4fe367a80192fff5b408f923408fcd25ea54b43cd52a9d7c",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-after-1-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-after-1.json",
+      "bytes": 462,
+      "sha256": "2c8d860757285442dcb2147e618def08ed70923d99d83e8de6b37169846c91f8",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-after-1.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-after-2-leaderboard.json",
+      "bytes": 17132,
+      "sha256": "0dc75f01e82fb3fe4fe367a80192fff5b408f923408fcd25ea54b43cd52a9d7c",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-after-2-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-after-2.json",
+      "bytes": 481,
+      "sha256": "b3d0865e5ff92fdbcfdcbe87c8cd1ba2b4abebd9134b025d16d1b371f461cc84",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-after-2.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-before-1-leaderboard.json",
+      "bytes": 17146,
+      "sha256": "e2cba8aebbe9b289685fdd0e613c92e640024c273466a5ff81c8d4c7f9c4d8af",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-before-1-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-before-1.json",
+      "bytes": 464,
+      "sha256": "ae87c52c7d853cf6e5833dd42d0e58d68ba980ebd292456d4f2c6ad3784d9447",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-before-1.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-before-2-leaderboard.json",
+      "bytes": 17146,
+      "sha256": "e2cba8aebbe9b289685fdd0e613c92e640024c273466a5ff81c8d4c7f9c4d8af",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-before-2-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/repeated-before-2.json",
+      "bytes": 462,
+      "sha256": "557a4707e1346d64c8aed99e181afeecad74fc4bef0ebf759581aec52f9b4356",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/repeated-before-2.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/serial-after-leaderboard.json",
+      "bytes": 17132,
+      "sha256": "0dc75f01e82fb3fe4fe367a80192fff5b408f923408fcd25ea54b43cd52a9d7c",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/serial-after-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/serial-after.json",
+      "bytes": 1484,
+      "sha256": "5ca3cdfc38d7d7503573a82fdd62f41b573a950b1e647a2c37a04f99f6b17581",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/serial-after.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/serial-before-leaderboard.json",
+      "bytes": 17146,
+      "sha256": "e2cba8aebbe9b289685fdd0e613c92e640024c273466a5ff81c8d4c7f9c4d8af",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/serial-before-leaderboard.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/serial-before.json",
+      "bytes": 1466,
+      "sha256": "2b60463cd87313fd6f9ce8b72f3cc2b1eaaad920dfa5aca500714daba8477297",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/serial-before.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/summary.json",
+      "bytes": 1070,
+      "sha256": "72cb700b2281ca035b306f8549392d52a2379fd537b6bf43d01c118a2db57a2e",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/summary.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/swe-audit.json",
+      "bytes": 580,
+      "sha256": "56e28fee10d66aa36c361cc05b1007087ab0e28ee445999922377d395134707e",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/swe-audit.json"
+    },
+    {
+      "path": "studies/mcnemar-throughput/results/verification.json",
+      "bytes": 6121,
+      "sha256": "fc037a0a8368ccef0ab158eb6b28f7a656d856fc5b59b027acf94e1b76f2abf8",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/studies/mcnemar-throughput/results/verification.json"
+    },
+    {
+      "path": "tests/test_leaderboard.py",
+      "bytes": 12335,
+      "sha256": "64797b07f122329fc05043b04117bae7d9c92e6fbdb330ef82d3e579eeabdbef",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/tests/test_leaderboard.py"
+    },
+    {
+      "path": "tests/test_mcnemar_scale.py",
+      "bytes": 1392,
+      "sha256": "d0e1425ff727c1f026cd84d1394a00db0fc3700ce9e8642610afc5db81721198",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/tests/test_mcnemar_scale.py"
+    },
+    {
+      "path": "web/tests/reports/review.spec.mjs",
+      "bytes": 23819,
+      "sha256": "14853d66ac194f7b0166003e42ffd745b92117f21201ce26a31f5986f5990ef1",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/4e1a399d801ef27b52f688d8ec4ed594e949d1ea/web/tests/reports/review.spec.mjs"
+    }
+  ],
+  "scope": "Source publication only; no registry release, tag, or manual hosted deployment."
+}

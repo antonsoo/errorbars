@@ -72,6 +72,18 @@ def test_numpy_integer_grades_are_averaged_in_score_units():
     assert set(data.scores_by_question().values()) == {0.5}
 
 
+@pytest.mark.parametrize(
+    "values,expected",
+    [
+        ([10**16 + 1, -(10**16)], 0.5),
+        ([np.int64(10**16 + 1), np.int64(-(10**16))], 0.5),
+        ([Fraction(10**16) + Fraction(1, 3), Fraction(-(10**16))], float(Fraction(1, 6))),
+    ],
+)
+def test_exact_integer_and_rational_remainders_survive_averaging(values, expected):
+    assert set(_data({"model": values}).scores_by_question().values()) == {expected}
+
+
 def test_actual_inspect_epochs_do_not_manufacture_a_paired_gain():
     pytest.importorskip("inspect_ai")
     from errorbars.inputs import load_inputs

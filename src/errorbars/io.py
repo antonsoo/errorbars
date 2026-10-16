@@ -14,11 +14,12 @@ import math
 import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
+from fractions import Fraction
 from itertools import chain
-from numbers import Real
+from numbers import Integral, Real
 from pathlib import Path
 from statistics import mean
-from typing import Any
+from typing import Any, cast
 
 from errorbars._output import atomic_text_output
 from errorbars.scoring import ScoringRule, compare_scoring, score_value_labels
@@ -34,6 +35,16 @@ __all__ = [
     "load_dataframe",
     "write_csv",
 ]
+
+
+def _native_grade(value: float) -> int | float | Fraction:
+    # NumPy integer result types can truncate mean's fractional result. Unbox
+    # them while retaining exact integer/rational grades through accumulation.
+    if type(value) is float:
+        return value
+    if isinstance(value, Integral):
+        return int(value)
+    return value if isinstance(value, Fraction) else float(value)
 
 
 @dataclass(frozen=True)
@@ -131,7 +142,12 @@ class EvalData:
         # Round after division, not after the sum as well. Even an accurate
         # floating sum of three 0.1 grades can otherwise manufacture a paired
         # difference from one identical grade, then a zero-variance p=0 result.
-        return {qid: v[0] if len(v) == 1 else float(mean(map(float, v))) for qid, v in totals.items()}
+        # statistics accepts mixed native numerics; its stub requires one type.
+        return {
+            qid: v[0] if len(v) == 1
+            else float(mean(cast(Iterable[float], map(_native_grade, v))))
+            for qid, v in totals.items()
+        }
 
     def cluster_by_question(self) -> dict[str, str]:
         if not self.cluster_id:

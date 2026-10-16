@@ -1,0 +1,724 @@
+{
+  "wheel310": {
+    "python": "3.10.21",
+    "runtime_files_match_source": 28,
+    "optional_inspect_installed": false,
+    "exact_numeric_controls": 3,
+    "commands": [
+      {
+        "arguments": [
+          "--help"
+        ],
+        "exit": 0,
+        "stdout_sha256": "87a0f42e08a175a4e57fb236f804a5ccf4e2cad68092a91e987af1c486000d47"
+      },
+      {
+        "arguments": [
+          "--version"
+        ],
+        "exit": 0,
+        "stdout_sha256": "c231e16f914054b544be61d89891c386c56063b433a6f0913f3ede153aa76bba"
+      },
+      {
+        "arguments": [
+          "power",
+          "--delta",
+          "0.03",
+          "--baseline",
+          "0.5"
+        ],
+        "exit": 0,
+        "stdout_sha256": "c6db23074c74e0132fb38d2b3c58a23ede80fe62546b8324b7c64703f730fd73"
+      },
+      {
+        "arguments": [
+          "power",
+          "--n",
+          "500",
+          "--baseline",
+          "0.5"
+        ],
+        "exit": 0,
+        "stdout_sha256": "db6584ff928fa7f4076dfe989ab09c5c3231c71fcd13e55b1063e862cc07084b"
+      },
+      {
+        "arguments": [
+          "summarize",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--model",
+          "tuned-70b",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "d928aa718a11c01cfb5965db8b6904042ff8bc004a56da3d543968d60f6f203e"
+      },
+      {
+        "arguments": [
+          "compare",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--model-a",
+          "tuned-70b",
+          "--model-b",
+          "baseline-70b",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "acff3440f216629777872afaff42a833843e6dde7983339b971203cc53b35419"
+      },
+      {
+        "arguments": [
+          "compare",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--model-a",
+          "tuned-70b",
+          "--model-b",
+          "baseline-70b",
+          "--html",
+          "<output>/comparison.html"
+        ],
+        "exit": 0,
+        "stdout_sha256": "a0717c54c6e7041b380c30f071f19616858132f3400d0c20204006f5dc69a929"
+      },
+      {
+        "arguments": [
+          "leaderboard",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "1e2d67a283e7a48fbc225133c57ead50916a9d6b22064597f6b23da059d2bfdd"
+      },
+      {
+        "arguments": [
+          "leaderboard",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--plot",
+          "<output>/forest.svg"
+        ],
+        "exit": 0,
+        "stdout_sha256": "4456d8c776649298a3974830e3e61fe660e93c7710ed7e4172bef3dc21c032ce"
+      }
+    ],
+    "replay": {
+      "version": "0.2.4",
+      "python": "3.10.21",
+      "native_inspect": false,
+      "package_location_kind": "site-packages",
+      "io_sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e",
+      "scenarios": {
+        "constant": {
+          "leaderboard": {
+            "groups": [
+              [
+                "once",
+                "triple",
+                "ten"
+              ]
+            ],
+            "pairwise": [
+              {
+                "model_a": "once",
+                "model_b": "triple",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "once",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "triple",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              }
+            ]
+          },
+          "leaderboard_stderr": "",
+          "compare": {
+            "mean_diff": 0.0,
+            "p_value": 1.0,
+            "n": 20,
+            "n_observations_a": 20,
+            "n_observations_b": 60,
+            "question_identity": {
+              "matching": 0,
+              "partial": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "inference": {
+              "test": "paired_t",
+              "p_value": 1.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0,
+              "confidence": 0.95,
+              "mcnemar_applicable": false
+            },
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+              "Correlation is unavailable because at least one score vector is constant.",
+              "Variance reduction is unavailable because both score vectors are constant."
+            ]
+          },
+          "compare_stderr": "wrote comparison evidence to constant.html\n",
+          "input_sha256": "50dd9785ed900be09158c72d6c1229f48596b6d3e032f1dd75d79cf3d7f12b2d"
+        },
+        "same_distribution": {
+          "leaderboard": {
+            "groups": [
+              [
+                "once",
+                "triple",
+                "ten"
+              ]
+            ],
+            "pairwise": [
+              {
+                "model_a": "once",
+                "model_b": "triple",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "once",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "triple",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              }
+            ]
+          },
+          "leaderboard_stderr": "",
+          "compare": {
+            "mean_diff": 0.0,
+            "p_value": 1.0,
+            "n": 20,
+            "n_observations_a": 60,
+            "n_observations_b": 180,
+            "question_identity": {
+              "matching": 0,
+              "partial": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "inference": {
+              "test": "paired_t",
+              "p_value": 1.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0,
+              "confidence": 0.95,
+              "mcnemar_applicable": false
+            },
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+              "Correlation is unavailable because at least one score vector is constant.",
+              "Variance reduction is unavailable because both score vectors are constant."
+            ]
+          },
+          "compare_stderr": "wrote comparison evidence to same_distribution.html\n",
+          "input_sha256": "dd20e5eccfd19e695036360c788263607ff21fd20db831ed58d6af6c5a0bb45c"
+        }
+      }
+    },
+    "dependency_versions": {
+      "numpy": "2.2.6"
+    }
+  },
+  "wheel314": {
+    "python": "3.14.7",
+    "runtime_files_match_source": 28,
+    "optional_inspect_installed": true,
+    "exact_numeric_controls": 3,
+    "commands": [
+      {
+        "arguments": [
+          "--help"
+        ],
+        "exit": 0,
+        "stdout_sha256": "87a0f42e08a175a4e57fb236f804a5ccf4e2cad68092a91e987af1c486000d47"
+      },
+      {
+        "arguments": [
+          "--version"
+        ],
+        "exit": 0,
+        "stdout_sha256": "c231e16f914054b544be61d89891c386c56063b433a6f0913f3ede153aa76bba"
+      },
+      {
+        "arguments": [
+          "power",
+          "--delta",
+          "0.03",
+          "--baseline",
+          "0.5"
+        ],
+        "exit": 0,
+        "stdout_sha256": "caf208387eaff23f87486e3610df9a306d2aeb501b09e3bb09811834493f485e"
+      },
+      {
+        "arguments": [
+          "power",
+          "--n",
+          "500",
+          "--baseline",
+          "0.5"
+        ],
+        "exit": 0,
+        "stdout_sha256": "db6584ff928fa7f4076dfe989ab09c5c3231c71fcd13e55b1063e862cc07084b"
+      },
+      {
+        "arguments": [
+          "summarize",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--model",
+          "tuned-70b",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "d928aa718a11c01cfb5965db8b6904042ff8bc004a56da3d543968d60f6f203e"
+      },
+      {
+        "arguments": [
+          "compare",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--model-a",
+          "tuned-70b",
+          "--model-b",
+          "baseline-70b",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "acff3440f216629777872afaff42a833843e6dde7983339b971203cc53b35419"
+      },
+      {
+        "arguments": [
+          "compare",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--model-a",
+          "tuned-70b",
+          "--model-b",
+          "baseline-70b",
+          "--html",
+          "<output>/comparison.html"
+        ],
+        "exit": 0,
+        "stdout_sha256": "e53a483fb8abdccff7d6d1567a297de966b97a87505af2074718526ab9504473"
+      },
+      {
+        "arguments": [
+          "leaderboard",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--json"
+        ],
+        "exit": 0,
+        "stdout_sha256": "182467a7e49029bc1b87b00c286ce2d3c2f73c659095471c0faa9859cb52ab29"
+      },
+      {
+        "arguments": [
+          "leaderboard",
+          "<source>/examples/data/reading_comprehension.csv",
+          "--plot",
+          "<output>/forest.svg"
+        ],
+        "exit": 0,
+        "stdout_sha256": "34f6e3b3863841f870c9438fad00cfffbd68e0ab1734b96b66e015513afa6860"
+      }
+    ],
+    "replay": {
+      "version": "0.2.4",
+      "python": "3.14.7",
+      "native_inspect": true,
+      "package_location_kind": "site-packages",
+      "io_sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e",
+      "scenarios": {
+        "constant": {
+          "leaderboard": {
+            "groups": [
+              [
+                "once",
+                "triple",
+                "ten"
+              ]
+            ],
+            "pairwise": [
+              {
+                "model_a": "once",
+                "model_b": "triple",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "once",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "triple",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              }
+            ]
+          },
+          "leaderboard_stderr": "",
+          "compare": {
+            "mean_diff": 0.0,
+            "p_value": 1.0,
+            "n": 20,
+            "n_observations_a": 20,
+            "n_observations_b": 60,
+            "question_identity": {
+              "matching": 0,
+              "partial": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "inference": {
+              "test": "paired_t",
+              "p_value": 1.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0,
+              "confidence": 0.95,
+              "mcnemar_applicable": false
+            },
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+              "Correlation is unavailable because at least one score vector is constant.",
+              "Variance reduction is unavailable because both score vectors are constant."
+            ]
+          },
+          "compare_stderr": "wrote comparison evidence to constant.html\n",
+          "input_sha256": "50dd9785ed900be09158c72d6c1229f48596b6d3e032f1dd75d79cf3d7f12b2d"
+        },
+        "same_distribution": {
+          "leaderboard": {
+            "groups": [
+              [
+                "once",
+                "triple",
+                "ten"
+              ]
+            ],
+            "pairwise": [
+              {
+                "model_a": "once",
+                "model_b": "triple",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "once",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              },
+              {
+                "model_a": "triple",
+                "model_b": "ten",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              }
+            ]
+          },
+          "leaderboard_stderr": "",
+          "compare": {
+            "mean_diff": 0.0,
+            "p_value": 1.0,
+            "n": 20,
+            "n_observations_a": 60,
+            "n_observations_b": 180,
+            "question_identity": {
+              "matching": 0,
+              "partial": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 0,
+              "unavailable": 20,
+              "conflicting": 0
+            },
+            "inference": {
+              "test": "paired_t",
+              "p_value": 1.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0,
+              "confidence": 0.95,
+              "mcnemar_applicable": false
+            },
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+              "Correlation is unavailable because at least one score vector is constant.",
+              "Variance reduction is unavailable because both score vectors are constant."
+            ]
+          },
+          "compare_stderr": "wrote comparison evidence to same_distribution.html\n",
+          "input_sha256": "dd20e5eccfd19e695036360c788263607ff21fd20db831ed58d6af6c5a0bb45c"
+        },
+        "inspect": {
+          "leaderboard": {
+            "groups": [
+              [
+                "once",
+                "triple"
+              ]
+            ],
+            "pairwise": [
+              {
+                "model_a": "once",
+                "model_b": "triple",
+                "mean_diff": 0.0,
+                "p_value": 1.0,
+                "p_value_clustered": null,
+                "mcnemar": null,
+                "test": "paired_t",
+                "p_value_used": 1.0,
+                "p_holm": 1.0,
+                "n_shared": 20,
+                "warnings": [
+                  "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+                  "Correlation is unavailable because at least one score vector is constant.",
+                  "Variance reduction is unavailable because both score vectors are constant."
+                ]
+              }
+            ]
+          },
+          "leaderboard_stderr": "",
+          "compare": {
+            "mean_diff": 0.0,
+            "p_value": 1.0,
+            "n": 20,
+            "n_observations_a": 20,
+            "n_observations_b": 60,
+            "question_identity": {
+              "matching": 20,
+              "partial": 0,
+              "unavailable": 0,
+              "conflicting": 0
+            },
+            "scoring_rules": {
+              "matching": 20,
+              "unavailable": 0,
+              "conflicting": 0
+            },
+            "inference": {
+              "test": "paired_t",
+              "p_value": 1.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0,
+              "confidence": 0.95,
+              "mcnemar_applicable": false
+            },
+            "warnings": [
+              "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+              "Correlation is unavailable because at least one score vector is constant.",
+              "Variance reduction is unavailable because both score vectors are constant."
+            ]
+          },
+          "compare_stderr": "wrote comparison evidence to inspect.html\n"
+        }
+      }
+    },
+    "dependency_versions": {
+      "numpy": "2.5.4",
+      "inspect-ai": "0.3.268"
+    }
+  },
+  "artifact": {
+    "file": "errorbars-0.2.4-py3-none-any.whl",
+    "bytes": 189779,
+    "sha256": "ceb4e7dc89c8c76055bfba7876f6ebde7befc2f79186c48748d68c202f93c292",
+    "source_commit": "61245fd"
+  },
+  "clean_checks": {
+    "python": "3.12.12",
+    "source_commit": "61245fd",
+    "pytest_passed": 815,
+    "mypy_source_files": 20,
+    "commands": [
+      "uv sync --locked --python 3.12 --group dev --extra all",
+      "uv run --locked ruff check .",
+      "uv run --locked mypy src/errorbars",
+      "uv run --locked pytest -q",
+      "uv build"
+    ],
+    "all_exits": 0,
+    "wheel_rebuild_identical": true
+  },
+  "web_checks": {
+    "source_commit": "6b5d038",
+    "code_unchanged_in": "61245fd",
+    "commands": [
+      "npm ci",
+      "npm run lint",
+      "npm run typecheck",
+      "npm test",
+      "npm run build",
+      "npm run test:browser"
+    ],
+    "all_exits": 0,
+    "unit_tests": 691,
+    "production_browser_tests": 52,
+    "output_directory": "web/dist/",
+    "installed_report_tests": 38,
+    "report_test_command": "ERRORBARS_REPORT_PYTHON=<wheel310>/bin/python npm run test:reports",
+    "report_fixture_source_import_override": false
+  },
+  "installed_targeted_browser_workflows": 12
+}

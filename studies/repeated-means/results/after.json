@@ -1,8 +1,9 @@
 {
   "version": "0.2.4",
+  "python": "3.12.12",
   "native_inspect": true,
   "package_location_kind": "source",
-  "io_sha256": "d4633db167bfeb5922a6848be7d964de65e9eecca8958f9d4ab1e86285c358b7",
+  "io_sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e",
   "scenarios": {
     "constant": {
       "leaderboard": {
@@ -262,6 +263,5 @@
       },
       "compare_stderr": "wrote comparison evidence to inspect.html\n"
     }
-  },
-  "python": "3.12.12"
+  }
 }

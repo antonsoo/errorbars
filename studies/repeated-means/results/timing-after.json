@@ -3,13 +3,15 @@
   "questions": 5000,
   "models": 3,
   "repeats": 3,
+  "python": "3.12.12",
+  "io_sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e",
   "input_bytes": 3563412,
   "input_sha256": "56d9f79836ff3135dc4d399e68c031a4fae45a7ba9517a0456715196e8ef6bf4",
   "scope": "Synthetic identical grade distributions; shared host; no general speed claim",
   "samples": [
     {
-      "wall_seconds": 3.4410276800044812,
-      "child_cpu_seconds": 3.901900000000003,
+      "wall_seconds": 8.905451308994088,
+      "child_cpu_seconds": 5.8538350000000055,
       "groups": [
         [
           "once",
@@ -24,8 +26,8 @@
       ]
     },
     {
-      "wall_seconds": 3.612777707981877,
-      "child_cpu_seconds": 4.1072669999999984,
+      "wall_seconds": 7.832610149984248,
+      "child_cpu_seconds": 5.8625810000000005,
       "groups": [
         [
           "once",
@@ -40,8 +42,8 @@
       ]
     },
     {
-      "wall_seconds": 4.329976695997175,
-      "child_cpu_seconds": 4.86941,
+      "wall_seconds": 7.721690380014479,
+      "child_cpu_seconds": 5.661483999999996,
       "groups": [
         [
           "once",
@@ -55,7 +57,5 @@
         1.0
       ]
     }
-  ],
-  "python": "3.12.12",
-  "io_sha256": "d4633db167bfeb5922a6848be7d964de65e9eecca8958f9d4ab1e86285c358b7"
+  ]
 }

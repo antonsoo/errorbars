@@ -91,6 +91,18 @@ git clone https://github.com/antonsoo/errorbars && cd errorbars
 errorbars leaderboard examples/data/reading_comprehension.csv
 ```
 
+The source corrections described here are not in the tested PyPI 0.2.4 build.
+To use them, install this verified public revision:
+
+```bash
+python -m pip install --force-reinstall "errorbars @ git+https://github.com/antonsoo/errorbars.git@39c2f3e8f4cdd237b5ea647d64c44fdf13291c5b"
+```
+
+`--force-reinstall` replaces an existing 0.2.4 installation; this source still
+declares that version. [Installation and repeated-score replay](studies/repeated-means/results/source-install.json)
+verify all 28 installed package files and the corrected comparisons. This is a
+source installation, separate from a new PyPI release.
+
 ## Features
 
 - **`summarize`** — mean, SE, and 95% CI (CLT by default, Wilson for binary scores with few

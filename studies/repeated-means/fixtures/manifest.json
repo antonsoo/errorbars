@@ -1,0 +1,61 @@
+{
+  "inspect_ai": "0.3.268",
+  "synthetic": true,
+  "model": "built-in mockllm; no model API or external grader",
+  "runs": [
+    {
+      "file": "epochs-1.eval",
+      "epochs": 1,
+      "samples": 20,
+      "all_raw_grades": 0.1,
+      "sha256": "b08971dfdca74e3c0c54f67266dbe4eb4f8cafdbcb7a8ca3e7d9a06f3cf7f8cf",
+      "native_results": [
+        {
+          "name": "fractional_grade",
+          "scorer": "fractional_grade",
+          "reducer": null,
+          "scored_samples": 20,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "group": null,
+              "value": 0.10000000000000002,
+              "params": {},
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "file": "epochs-3.eval",
+      "epochs": 3,
+      "samples": 60,
+      "all_raw_grades": 0.1,
+      "sha256": "3c0ec94553a614b9fce6f4ca992dc175a30257e85a475adae9eef372130aa657",
+      "native_results": [
+        {
+          "name": "fractional_grade",
+          "scorer": "fractional_grade",
+          "reducer": null,
+          "scored_samples": 20,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "group": null,
+              "value": 0.10000000000000002,
+              "params": {},
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    }
+  ]
+}

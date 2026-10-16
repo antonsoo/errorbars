@@ -102,6 +102,8 @@ errorbars leaderboard examples/data/reading_comprehension.csv
   per-question scores and how much pairing shrank the SE vs. an unpaired comparison; a
   cluster-robust paired SE/CI/p-value when clusters are present, which stays valid when the
   clusters are few or very unequal in size; exact McNemar test for binary scores.
+  The source checkout also prevents repetition counts from manufacturing a gain:
+  [identical fractional grades previously produced p=0 after averaging](studies/repeated-means/README.md).
 - **Comparison evidence (source checkout)** — `compare --html report.html` opens a complete
   question ledger with both run means, observed generations and source line/record locations.
   Find lower scores and missing questions, inspect which passages drive the result, and download

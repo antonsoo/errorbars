@@ -1,0 +1,67 @@
+{
+  "rows": 210000,
+  "questions": 5000,
+  "models": 3,
+  "repeats": 3,
+  "input_bytes": 3563412,
+  "input_sha256": "56d9f79836ff3135dc4d399e68c031a4fae45a7ba9517a0456715196e8ef6bf4",
+  "scope": "Synthetic identical grade distributions; shared host; no general speed claim",
+  "samples": [
+    {
+      "wall_seconds": 3.8565655109705403,
+      "child_cpu_seconds": 4.369281,
+      "groups": [
+        [
+          "once"
+        ],
+        [
+          "triple",
+          "ten"
+        ]
+      ],
+      "p_holm": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "wall_seconds": 3.516063972027041,
+      "child_cpu_seconds": 3.8980000000000006,
+      "groups": [
+        [
+          "once"
+        ],
+        [
+          "triple",
+          "ten"
+        ]
+      ],
+      "p_holm": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "wall_seconds": 3.714539655018598,
+      "child_cpu_seconds": 4.128157000000001,
+      "groups": [
+        [
+          "once"
+        ],
+        [
+          "triple",
+          "ten"
+        ]
+      ],
+      "p_holm": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "python": "3.12.12",
+  "io_sha256": "fb83b095220f508c46c0c1067fc5ef729d40b7e64b625119dd3bb0dbab44baf2"
+}

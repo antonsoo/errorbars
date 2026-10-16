@@ -161,6 +161,13 @@ use the raw draws; clustered SE uses one averaged score and one cluster assignme
 question. Wilson is reserved for one binary observation per question. More draws can
 reduce sampling noise, but they do not create more independently sampled questions.
 
+In the source checkout, repeated-score question means accumulate the exact ratios
+of the stored binary64 grades and round once after division (`statistics.mean`).
+Rounding the sum first can make three identical `0.1` grades average to a different
+float from one `0.1` grade; a constant resulting paired difference can receive
+p=0 under the zero-variance convention below. No score rounding or significance
+tolerance is introduced. [Native Inspect and CSV reproduction](../studies/repeated-means/README.md).
+
 ## 7. Paired comparison
 
 For two models scored on the *same* questions, the difference

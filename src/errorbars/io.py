@@ -17,6 +17,7 @@ from dataclasses import dataclass, field
 from itertools import chain
 from numbers import Real
 from pathlib import Path
+from statistics import mean
 from typing import Any
 
 from errorbars._output import atomic_text_output
@@ -127,7 +128,10 @@ class EvalData:
         totals: dict[str, list[float]] = {}
         for qid, s in zip(self.question_id, self.score, strict=True):
             totals.setdefault(qid, []).append(s)
-        return {qid: sum(v) / len(v) for qid, v in totals.items()}
+        # Round after division, not after the sum as well. Even an accurate
+        # floating sum of three 0.1 grades can otherwise manufacture a paired
+        # difference from one identical grade, then a zero-variance p=0 result.
+        return {qid: v[0] if len(v) == 1 else float(mean(map(float, v))) for qid, v in totals.items()}
 
     def cluster_by_question(self) -> dict[str, str]:
         if not self.cluster_id:

@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Repeated-score means
+
+- Average each question's repeated grades with one final rounding, using the
+  standard library's exact-ratio mean. Rounding a sum before dividing could
+  turn identical raw grades into a constant paired difference, p=0 and separate
+  leaderboard groups solely because sample counts differed.
+- Preserve single-observation throughput, original grades, genuine tiny
+  differences, test selection and zero-variance warnings. Retain two native
+  Inspect epoch runs, CSV/HTML/CLI replays and a 210,000-row workload in the
+  [repeated-means study](studies/repeated-means/README.md).
+
 ### Inspect score conversion
 
 - Refuse selected Inspect results that record an explicit metric `to_float`

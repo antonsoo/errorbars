@@ -11,8 +11,9 @@ The corrected source accumulates exact ratios of the stored binary64 grades and
 rounds once after division, using `statistics.mean`. Single observations retain
 their direct path. Original grades, question weights, inference selection and
 zero-variance warnings remain available. No rounding threshold discards small
-input differences. This is local source work; no package release or hosted
-deployment is included.
+input differences. The corrected source is now public. [Pinned-file verification](results/public-source.json)
+compares the tested code, native fixture and receipts with GitHub. No package
+release or hosted deployment is included.
 
 ## Actual workflows
 

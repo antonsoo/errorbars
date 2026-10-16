@@ -1,0 +1,58 @@
+{
+  "checked_at_utc": "2026-10-16T22:53:56.748659+00:00",
+  "repository": "https://github.com/antonsoo/errorbars",
+  "source_revision": "80e3ccf2a1abbbb6243fb4b88a33e50221ca7694",
+  "remote_main": "80e3ccf2a1abbbb6243fb4b88a33e50221ca7694",
+  "clean_tree_at_check": true,
+  "files": [
+    {
+      "path": "src/errorbars/io.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/80e3ccf2a1abbbb6243fb4b88a33e50221ca7694/src/errorbars/io.py",
+      "status": 200,
+      "bytes": 32436,
+      "sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e",
+      "matches_committed_bytes": true
+    },
+    {
+      "path": "tests/test_repeated_means.py",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/80e3ccf2a1abbbb6243fb4b88a33e50221ca7694/tests/test_repeated_means.py",
+      "status": 200,
+      "bytes": 4073,
+      "sha256": "a801940b3318a755ee32fa9a605a957951b6dd3c92b075385b676cc55cb346e5",
+      "matches_committed_bytes": true
+    },
+    {
+      "path": "studies/repeated-means/README.md",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/80e3ccf2a1abbbb6243fb4b88a33e50221ca7694/studies/repeated-means/README.md",
+      "status": 200,
+      "bytes": 8073,
+      "sha256": "9947a1d3f93bcb19d3fb9eef1fe9e0a89b010d70f16bcbbff09cf67d807934ab",
+      "matches_committed_bytes": true
+    },
+    {
+      "path": "studies/repeated-means/results/after.json",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/80e3ccf2a1abbbb6243fb4b88a33e50221ca7694/studies/repeated-means/results/after.json",
+      "status": 200,
+      "bytes": 10310,
+      "sha256": "9a0d941b25fe77d71ec30afdc2fcc772d1a819bbc7768433374d445a7f3eb682",
+      "matches_committed_bytes": true
+    },
+    {
+      "path": "studies/repeated-means/results/verification.json",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/80e3ccf2a1abbbb6243fb4b88a33e50221ca7694/studies/repeated-means/results/verification.json",
+      "status": 200,
+      "bytes": 27102,
+      "sha256": "1599bba9ec345380e40be8016794039eaabb972eafbee205e12b68c6457950c4",
+      "matches_committed_bytes": true
+    },
+    {
+      "path": "studies/repeated-means/fixtures/epochs-3.eval",
+      "url": "https://raw.githubusercontent.com/antonsoo/errorbars/80e3ccf2a1abbbb6243fb4b88a33e50221ca7694/studies/repeated-means/fixtures/epochs-3.eval",
+      "status": 200,
+      "bytes": 119211,
+      "sha256": "3c0ec94553a614b9fce6f4ca992dc175a30257e85a475adae9eef372130aa657",
+      "matches_committed_bytes": true
+    }
+  ],
+  "scope": "Public source bytes only; no PyPI release, tag or hosted deployment is claimed."
+}

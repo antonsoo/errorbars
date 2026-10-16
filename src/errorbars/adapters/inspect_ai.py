@@ -7,11 +7,15 @@ unedited log this adapter is built and tested against.
 
 This reads logs with Inspect's own ``inspect_ai.log.read_eval_log`` and
 converts score values with its own ``inspect_ai.scorer.value_to_float``
-(the same conversion Inspect uses for its own metrics: correct/incorrect/
+(the default conversion Inspect uses for its built-in metrics: correct/incorrect/
 partial/no-answer string codes -> 1.0/0.0/0.5/0.0, numbers and bools pass
 through) rather than hand-parsing the ``.eval`` file, which is a versioned
 binary/zip format not meant to be read directly. Requires the ``inspect``
 extra: ``pip install "errorbars[inspect]"``.
+
+Recorded custom ``to_float`` callbacks are refused: the log keeps a callable
+name, not a reproducible mapping. Numeric raw grades can mean the opposite of
+the native metric's scores, so substituting the default would corrupt inference.
 """
 
 from __future__ import annotations
@@ -79,6 +83,7 @@ def load_inspect_log(
     sources: list[RecordSource | None] = []
     signatures: list[str | None] = []
     selected_scorer = scorer
+    selected_rule = None
 
     for record, s in enumerate(log.samples, 1):
         if not s.scores:
@@ -103,6 +108,8 @@ def load_inspect_log(
                 f"{path}: sample {s.id!r}: scorer changed from {selected_scorer!r} to {key!r}; "
                 "select one scorer present on every sample with scorer=... (--scorer)"
             )
+        if selected_rule is None:
+            selected_rule = scoring_rule(log, key, path, score_key)
         value = s.scores[key].value
         if score_key is not None:
             if not isinstance(value, dict):
@@ -152,12 +159,12 @@ def load_inspect_log(
 
     if not question_id:
         raise ValueError(f"{path}: no scored samples found")
-    assert selected_scorer is not None
+    assert selected_rule is not None
 
     data = EvalData(
         question_id=question_id, model=model_col, score=score, sample=sample_col, sources=sources,
         question_hash=signatures if any(signatures) else None,
-        scoring=[scoring_rule(log, selected_scorer, path, score_key)] * len(score),
+        scoring=[selected_rule] * len(score),
     )
     data.validate()
     return data

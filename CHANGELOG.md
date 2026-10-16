@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Inspect score conversion
+
+- Refuse selected Inspect results that record an explicit metric `to_float`
+  callback. Logs retain the callable's name without its mapping or closure;
+  numeric raw grades can have the opposite meaning from native accuracy.
+  Substituting the default previously reversed a perfect/wrong leaderboard.
+- Check the selected scorer/value's current result metadata before conversion,
+  including when scorer parameters are missing. Other named dimensions remain
+  usable; original scorer declarations may predate native re-scoring.
+- Preserve existing CSV, comparison HTML and forest-plot outputs on refusal.
+  Retain six native mockllm captures and actual CLI replays under
+  `studies/inspect-converters`. Explicit default callbacks are also opaque;
+  callers can export reviewed numeric per-question scores separately.
+
 ### Large binary comparisons
 
 - Evaluate the exact McNemar binomial tail with normalized probabilities rather

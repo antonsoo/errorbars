@@ -1,0 +1,1 @@
+error: studies/inspect-converters/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.

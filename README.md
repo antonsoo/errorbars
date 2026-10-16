@@ -391,7 +391,12 @@ epochs and invalidations. Cancelled, failed, drained or incompletely recorded ev
 cannot quietly become smaller successful datasets. A completed `--limit` or `--sample-id`
 selection is accepted. One scorer must be present across the entire imported log.
 Valid `C`/`I`/`P`/`N`, boolean representations and finite numeric scores keep Inspect's
-conversion semantics. Finish or retry an incomplete evaluation before importing its log.
+default conversion semantics. Recorded custom metric `to_float` callbacks are
+refused in this checkout: their opaque callable names do not establish the grade
+mapping. A native accuracy of 1.0 could otherwise become 0.0 and reverse the
+leaderboard. Export documented numeric per-question scores as CSV/JSONL for
+these logs. [Native reproduction and selection scope](studies/inspect-converters/README.md).
+Finish or retry an incomplete evaluation before importing its log.
 lm-eval records require a valid `doc_id`; row order is never
 used to fabricate question identity.
 

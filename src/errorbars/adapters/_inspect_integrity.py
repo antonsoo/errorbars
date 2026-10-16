@@ -23,15 +23,26 @@ def scoring_rule(log: EvalLog, key: str, path: str | Path, value_key: str | None
     """Fingerprint the result's recorded scorer parameters, including re-scoring.
 
     The original eval.scorers declaration may predate `inspect score`. Results
-    describe the scores being imported. Epoch reducers and aggregate metrics do
-    not change the per-sample grades we read and are deliberately excluded.
+    describe the scores being imported. Custom metric converters can change the
+    numeric meaning of raw grades, but logs retain only an opaque callable name.
+    Refuse that known ambiguity before applying the default grade conversion.
     """
     hashes = set()
     assert log.results is not None  # check_complete runs before this function.
     for result in log.results.scores:
-        if result.scorer != key or "params" not in result.model_fields_set:
+        if result.scorer != key:
             continue
         if value_key is not None and result.name != value_key:
+            continue
+        for metric in result.metrics.values():
+            if "to_float" in metric.params:
+                raise ValueError(
+                    f"{path}: scorer {key!r}: metric {metric.name!r} records a custom score "
+                    "conversion (to_float). Its callable name does not establish the numeric "
+                    "meaning of raw grades; the default conversion may reverse the result. "
+                    "Export documented numeric per-question scores as CSV/JSONL instead."
+                )
+        if "params" not in result.model_fields_set:
             continue
         try:
             canonical = json.dumps(

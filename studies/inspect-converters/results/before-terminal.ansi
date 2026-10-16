@@ -1,0 +1,31 @@
+                                       leaderboard                                        
+┏━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃ rank ┃ model   ┃   mean ┃           95% CI ┃ interval basis ┃ n ┃ not separated: ranks ┃
+┡━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│    1 │ wrong   │ 1.0000 │ [0.6756, 1.0000] │ WILSON         │ 8 │ -                    │
+│    2 │ perfect │ 0.0000 │ [0.0000, 0.3244] │ WILSON         │ 8 │ -                    │
+└──────┴─────────┴────────┴──────────────────┴────────────────┴───┴──────────────────────┘
+Rank order: higher scores first (default). Scores remain in their original 
+units.
+'not separated: ranks' lists only other models whose paired test has 
+Holm-adjusted p >= 0.05. Gaps are preserved; '-' means none. Non-significance 
+does not establish equivalence. The overlapping groups remain in --json.
+Scoring checks reject conflicting recorded names or configurations on shared 
+questions. Missing declarations remain unchecked; matching declarations do not 
+verify scorer code or unrecorded settings.
+                               pairwise paired tests (Holm-corrected)                                
+┏━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ A     ┃ B       ┃ shared n ┃ mean diff ┃ test          ┃ p (used) ┃ p (used, Holm) ┃ significant? ┃
+┡━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ wrong │ perfect │        8 │   +1.0000 │ McNemar exact │ 0.007812 │       0.007812 │ yes          │
+└───────┴─────────┴──────────┴───────────┴───────────────┴──────────┴────────────────┴──────────────┘
+Paired differences have zero estimated variance. The t-test uses p=0 for a 
+nonzero difference and p=1 for identical scores by convention; a point interval 
+does not establish population certainty. Use the exact McNemar result for binary
+pairs.
+Correlation is unavailable because at least one score vector is constant.
+Variance reduction is unavailable because both score vectors are constant.
+'p (used, Holm)' adjusts the selected tests across all tested pairs: clustered t
+for dependent questions, exact McNemar for one binary score per shared question,
+paired t for continuous scores or repeated-generation means. Groups do not 
+establish equivalence.

@@ -1,0 +1,207 @@
+{
+  "synthetic": true,
+  "model": "built-in mockllm; scripted answers; no model API",
+  "observations": [
+    {
+      "file": "reversed-perfect.eval",
+      "status": "success",
+      "samples": 8,
+      "sha256": "6cf8066262e3430988ce0b5c8e1e3908c3c4066146883c72e1e9151014aa24e3",
+      "native_results": [
+        {
+          "name": "reversed_grade",
+          "scorer": "reversed_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "group": null,
+              "value": 1.0,
+              "params": {
+                "to_float": "to_float"
+              },
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "file": "reversed-wrong.eval",
+      "status": "success",
+      "samples": 8,
+      "sha256": "3c96487909b5dc730caff6b0a144b450df6183758f203de84aa3a99894b0acbf",
+      "native_results": [
+        {
+          "name": "reversed_grade",
+          "scorer": "reversed_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "group": null,
+              "value": 0.0,
+              "params": {
+                "to_float": "to_float"
+              },
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "file": "default-perfect.eval",
+      "status": "success",
+      "samples": 8,
+      "sha256": "5a6f03d29445ae3279f39ce96975246302250337923f77f03d18030d7384034b",
+      "native_results": [
+        {
+          "name": "default_grade",
+          "scorer": "default_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "group": null,
+              "value": 1.0,
+              "params": {},
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "file": "default-wrong.eval",
+      "status": "success",
+      "samples": 8,
+      "sha256": "dabcde14999dc4c03f0fd7796461bdc15a7efcfbcf28391fe856921b40e8eb33",
+      "native_results": [
+        {
+          "name": "default_grade",
+          "scorer": "default_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "group": null,
+              "value": 0.0,
+              "params": {},
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "file": "named-perfect.eval",
+      "status": "success",
+      "samples": 8,
+      "sha256": "57a8835056b2718519edc92123e00d8ae4afadfedb0a9dae76592ea766d19cbe",
+      "native_results": [
+        {
+          "name": "reversed",
+          "scorer": "named_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "group": null,
+              "value": 1.0,
+              "params": {
+                "to_float": "to_float"
+              },
+              "metadata": null
+            }
+          },
+          "metadata": null
+        },
+        {
+          "name": "plain",
+          "scorer": "named_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "group": null,
+              "value": 1.0,
+              "params": {},
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    },
+    {
+      "file": "named-wrong.eval",
+      "status": "success",
+      "samples": 8,
+      "sha256": "36fbd8f3a8c104fab6b1e999ac7e6f2f0e8bd5552ff49dc237d09a493df4cf13",
+      "native_results": [
+        {
+          "name": "reversed",
+          "scorer": "named_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "group": null,
+              "value": 0.0,
+              "params": {
+                "to_float": "to_float"
+              },
+              "metadata": null
+            }
+          },
+          "metadata": null
+        },
+        {
+          "name": "plain",
+          "scorer": "named_grade",
+          "reducer": null,
+          "scored_samples": 8,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "group": null,
+              "value": 0.0,
+              "params": {},
+              "metadata": null
+            }
+          },
+          "metadata": null
+        }
+      ]
+    }
+  ],
+  "inspect_ai": "0.3.268"
+}

@@ -100,3 +100,7 @@ authenticate graders or establish equivalent model settings. The valid controls
 check this boundary, not general model accuracy or statistical calibration.
 
 This source change does not release a registry package or deploy a hosted app.
+Source/evidence revision `5dfe1788869972038d2a44b5e90a1e54ea6dc752` was pushed
+and checked against GitHub's branch head with a clean tree. All 43 changed
+files matched their pinned raw URLs; the [publication receipt](results/publication.json)
+records their sizes and SHA-256 hashes separately from local wheel validation.

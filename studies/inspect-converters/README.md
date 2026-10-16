@@ -32,6 +32,21 @@ Their [manifest](captures/manifest.json) records checksums and native results.
 ranking plus actual `summarize`, `compare`, `leaderboard` and `import` commands.
 Refusal preserves prior canonical CSV, comparison HTML and forest-plot files.
 
+The [verification receipt](results/verification.json) retains a clean archive's
+lint/typecheck, **799 passing Python tests**, web checks and build. Independently
+installed wheels passed the same 16 CLI commands and library replay on Python
+3.14 with Inspect 0.3.281 and Python 3.10 with the declared minimum Inspect
+0.3.268, NumPy 1.24.0, HTTPX 0.27.0 and agent-client-protocol 0.12.0. All 28
+installed source/asset files match the clean checkout in both environments.
+
+The default, selected `plain`, and canonical CSV round-trip comparisons also
+produce usable standalone HTML. [Twelve fresh offline browser workflows](results/browser.json)
+in Chromium/Firefox at 1440 and 375 px checked exact inference, selected value,
+question/source inspection, JSON evidence and filtered CSV downloads (24 actual
+downloads), with no network requests, page errors or horizontal overflow. The
+[mobile inspector](../../docs/assets/inspect-converters/firefox-375.png) retains
+the original source record; screenshots were inspected in both engines.
+
 ## Why refuse
 
 Inspect's [custom scorer documentation](https://inspect.aisi.org.uk/custom-scorers.html)
@@ -68,6 +83,13 @@ uv run errorbars leaderboard \
 The retained logs suffice for replay; no model service is needed. To replay
 the baseline, set `PYTHONPATH` to that revision's `src/`, using the same script
 and interpreter. The package's optional `inspect` dependency is required.
+
+After generating the three valid control reports into one directory, run
+`node studies/inspect-converters/browser.mjs REPORT_DIRECTORY OUTPUT_DIRECTORY`.
+The browser script opens files disconnected before their first load. The
+retained report [JSON](results/plain-native.json) and [canonical CSV](results/plain.csv)
+describe the selected `plain` observations; an opaque converter never creates
+replacement report files.
 
 ## Limits
 

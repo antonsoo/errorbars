@@ -1,0 +1,62 @@
+{
+  "model_a": "perfect",
+  "model_b": "wrong",
+  "score_values": [
+    {
+      "model": "perfect",
+      "scorer": "inspect:named_grade",
+      "scorer_value": "plain"
+    },
+    {
+      "model": "wrong",
+      "scorer": "inspect:named_grade",
+      "scorer_value": "plain"
+    }
+  ],
+  "mean_a": 1.0,
+  "mean_b": 0.0,
+  "mean_diff": 1.0,
+  "se_paired": 0.0,
+  "ci_low": 1.0,
+  "ci_high": 1.0,
+  "p_value": 0.0,
+  "correlation": null,
+  "se_unpaired": 0.0,
+  "variance_reduction": null,
+  "n": 8,
+  "confidence": 0.95,
+  "warnings": [
+    "Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.",
+    "Correlation is unavailable because at least one score vector is constant.",
+    "Variance reduction is unavailable because both score vectors are constant."
+  ],
+  "mcnemar": {
+    "n01": 0,
+    "n10": 8,
+    "p_value": 0.0078125
+  },
+  "inference": {
+    "test": "mcnemar_exact",
+    "p_value": 0.0078125,
+    "ci_low": null,
+    "ci_high": null,
+    "confidence": null,
+    "mcnemar_applicable": true
+  },
+  "n_only_a": 0,
+  "n_only_b": 0,
+  "analysis_unit": "question",
+  "n_observations_a": 8,
+  "n_observations_b": 8,
+  "question_identity": {
+    "matching": 8,
+    "partial": 0,
+    "unavailable": 0,
+    "conflicting": 0
+  },
+  "scoring_rules": {
+    "matching": 8,
+    "unavailable": 0,
+    "conflicting": 0
+  }
+}

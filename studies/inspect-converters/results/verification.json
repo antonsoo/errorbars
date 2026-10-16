@@ -1,0 +1,347 @@
+{
+  "source_commit": "7bef06829d26e8141f8c017914c38b23381bcf10",
+  "native_study": {
+    "runs": 6,
+    "successful_runs": 6,
+    "questions_per_run": 8,
+    "ambiguous_imports_before": 2,
+    "ambiguous_imports_after": 0,
+    "valid_controls": 2,
+    "cli_commands_per_environment": 16
+  },
+  "checks": {
+    "ruff": "All checks passed!",
+    "mypy": "Success: no issues found in 20 source files",
+    "pytest": "799 passed",
+    "browser": "12 workflows, 24 actual downloads, Chromium/Firefox 1440px and 375px; disconnected before first file load",
+    "web_unit_tests": "Tests  691 passed (691)"
+  },
+  "artifacts": [
+    {
+      "file": ".gitignore",
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    {
+      "file": "errorbars-0.2.4-py3-none-any.whl",
+      "bytes": 189351,
+      "sha256": "22e9d96d1964425e7583e38e2ab8cd2b2f0693d5227d791899d3ef709d8f9101"
+    },
+    {
+      "file": "errorbars-0.2.4.tar.gz",
+      "bytes": 262986,
+      "sha256": "f7007b464804e22d874ae550391074d05b6e5beb7b7e6e19c21335330dc3657e"
+    }
+  ],
+  "installations": [
+    {
+      "python": "3.14.7",
+      "versions": {
+        "errorbars": "0.2.4",
+        "inspect-ai": "0.3.281",
+        "numpy": "2.5.4",
+        "httpx": "0.28.1",
+        "agent-client-protocol": "0.12.1"
+      },
+      "environment": "installed",
+      "matching_source_and_asset_files": 28,
+      "files": [
+        {
+          "path": "__init__.py",
+          "bytes": 673,
+          "sha256": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55"
+        },
+        {
+          "path": "_output.py",
+          "bytes": 2098,
+          "sha256": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c"
+        },
+        {
+          "path": "_tables.py",
+          "bytes": 5626,
+          "sha256": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853"
+        },
+        {
+          "path": "_validation.py",
+          "bytes": 1751,
+          "sha256": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707"
+        },
+        {
+          "path": "adapters/__init__.py",
+          "bytes": 77,
+          "sha256": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f"
+        },
+        {
+          "path": "adapters/_inspect_integrity.py",
+          "bytes": 8176,
+          "sha256": "5ffa5cb45a0c933172e4c2a8c6ed4412cd88f9cbf8aa503dad68e87295e1a770"
+        },
+        {
+          "path": "adapters/_lm_eval_metric.py",
+          "bytes": 7270,
+          "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71"
+        },
+        {
+          "path": "adapters/inspect_ai.py",
+          "bytes": 7976,
+          "sha256": "b0d9f555df247312b4d29e297ef5fe35b84c87dbe4c52dcde8932c1f37d20e7e"
+        },
+        {
+          "path": "adapters/lm_eval.py",
+          "bytes": 14029,
+          "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65"
+        },
+        {
+          "path": "cli.py",
+          "bytes": 32384,
+          "sha256": "ec3e09e061f604469f1a1b7e3b567e899e0f36548171dc60d422f05f6a5f1078"
+        },
+        {
+          "path": "compare.py",
+          "bytes": 12322,
+          "sha256": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8"
+        },
+        {
+          "path": "inputs.py",
+          "bytes": 8414,
+          "sha256": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb"
+        },
+        {
+          "path": "io.py",
+          "bytes": 31538,
+          "sha256": "fb83b095220f508c46c0c1067fc5ef729d40b7e64b625119dd3bb0dbab44baf2"
+        },
+        {
+          "path": "leaderboard.py",
+          "bytes": 23041,
+          "sha256": "a28fb28916af79baf442e82b51612f7510bd989cda3e63b8efde858b3165d99e"
+        },
+        {
+          "path": "plot.py",
+          "bytes": 9169,
+          "sha256": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a"
+        },
+        {
+          "path": "power.py",
+          "bytes": 14059,
+          "sha256": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839"
+        },
+        {
+          "path": "py.typed",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "report.py",
+          "bytes": 10089,
+          "sha256": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e"
+        },
+        {
+          "path": "report_assets/fonts/LICENSE.txt",
+          "bytes": 13870,
+          "sha256": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5"
+        },
+        {
+          "path": "report_assets/fonts/ibm-plex-mono-400-latin.woff2",
+          "bytes": 14708,
+          "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+        },
+        {
+          "path": "report_assets/fonts/ibm-plex-sans-latin.woff2",
+          "bytes": 45712,
+          "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+        },
+        {
+          "path": "report_assets/fonts/spectral-500-latin.woff2",
+          "bytes": 22836,
+          "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+        },
+        {
+          "path": "report_assets/report.css",
+          "bytes": 12519,
+          "sha256": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991"
+        },
+        {
+          "path": "report_assets/report.js",
+          "bytes": 22681,
+          "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161"
+        },
+        {
+          "path": "report_assets/template.html",
+          "bytes": 10051,
+          "sha256": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050"
+        },
+        {
+          "path": "review.py",
+          "bytes": 14267,
+          "sha256": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e"
+        },
+        {
+          "path": "scoring.py",
+          "bytes": 2165,
+          "sha256": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa"
+        },
+        {
+          "path": "stats.py",
+          "bytes": 16292,
+          "sha256": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+        }
+      ]
+    },
+    {
+      "python": "3.10.21",
+      "versions": {
+        "errorbars": "0.2.4",
+        "inspect-ai": "0.3.268",
+        "numpy": "1.24.0",
+        "httpx": "0.27.0",
+        "agent-client-protocol": "0.12.0"
+      },
+      "environment": "minimums",
+      "matching_source_and_asset_files": 28,
+      "files": [
+        {
+          "path": "__init__.py",
+          "bytes": 673,
+          "sha256": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55"
+        },
+        {
+          "path": "_output.py",
+          "bytes": 2098,
+          "sha256": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c"
+        },
+        {
+          "path": "_tables.py",
+          "bytes": 5626,
+          "sha256": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853"
+        },
+        {
+          "path": "_validation.py",
+          "bytes": 1751,
+          "sha256": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707"
+        },
+        {
+          "path": "adapters/__init__.py",
+          "bytes": 77,
+          "sha256": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f"
+        },
+        {
+          "path": "adapters/_inspect_integrity.py",
+          "bytes": 8176,
+          "sha256": "5ffa5cb45a0c933172e4c2a8c6ed4412cd88f9cbf8aa503dad68e87295e1a770"
+        },
+        {
+          "path": "adapters/_lm_eval_metric.py",
+          "bytes": 7270,
+          "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71"
+        },
+        {
+          "path": "adapters/inspect_ai.py",
+          "bytes": 7976,
+          "sha256": "b0d9f555df247312b4d29e297ef5fe35b84c87dbe4c52dcde8932c1f37d20e7e"
+        },
+        {
+          "path": "adapters/lm_eval.py",
+          "bytes": 14029,
+          "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65"
+        },
+        {
+          "path": "cli.py",
+          "bytes": 32384,
+          "sha256": "ec3e09e061f604469f1a1b7e3b567e899e0f36548171dc60d422f05f6a5f1078"
+        },
+        {
+          "path": "compare.py",
+          "bytes": 12322,
+          "sha256": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8"
+        },
+        {
+          "path": "inputs.py",
+          "bytes": 8414,
+          "sha256": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb"
+        },
+        {
+          "path": "io.py",
+          "bytes": 31538,
+          "sha256": "fb83b095220f508c46c0c1067fc5ef729d40b7e64b625119dd3bb0dbab44baf2"
+        },
+        {
+          "path": "leaderboard.py",
+          "bytes": 23041,
+          "sha256": "a28fb28916af79baf442e82b51612f7510bd989cda3e63b8efde858b3165d99e"
+        },
+        {
+          "path": "plot.py",
+          "bytes": 9169,
+          "sha256": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a"
+        },
+        {
+          "path": "power.py",
+          "bytes": 14059,
+          "sha256": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839"
+        },
+        {
+          "path": "py.typed",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "report.py",
+          "bytes": 10089,
+          "sha256": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e"
+        },
+        {
+          "path": "report_assets/fonts/LICENSE.txt",
+          "bytes": 13870,
+          "sha256": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5"
+        },
+        {
+          "path": "report_assets/fonts/ibm-plex-mono-400-latin.woff2",
+          "bytes": 14708,
+          "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+        },
+        {
+          "path": "report_assets/fonts/ibm-plex-sans-latin.woff2",
+          "bytes": 45712,
+          "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+        },
+        {
+          "path": "report_assets/fonts/spectral-500-latin.woff2",
+          "bytes": 22836,
+          "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+        },
+        {
+          "path": "report_assets/report.css",
+          "bytes": 12519,
+          "sha256": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991"
+        },
+        {
+          "path": "report_assets/report.js",
+          "bytes": 22681,
+          "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161"
+        },
+        {
+          "path": "report_assets/template.html",
+          "bytes": 10051,
+          "sha256": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050"
+        },
+        {
+          "path": "review.py",
+          "bytes": 14267,
+          "sha256": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e"
+        },
+        {
+          "path": "scoring.py",
+          "bytes": 2165,
+          "sha256": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa"
+        },
+        {
+          "path": "stats.py",
+          "bytes": 16292,
+          "sha256": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+        }
+      ]
+    }
+  ],
+  "scope": "Local package checks. Source push recorded separately. No registry release or hosted deployment."
+}

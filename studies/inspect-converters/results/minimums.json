@@ -1,0 +1,392 @@
+{
+  "synthetic": true,
+  "cases": 4,
+  "wrong_acceptances": 0,
+  "valid_controls": 2,
+  "observations": [
+    {
+      "encoding": "reversed",
+      "score_key": null,
+      "expect_refusal": true,
+      "inputs": [
+        {
+          "file": "reversed-perfect.eval",
+          "sha256": "6cf8066262e3430988ce0b5c8e1e3908c3c4066146883c72e1e9151014aa24e3"
+        },
+        {
+          "file": "reversed-wrong.eval",
+          "sha256": "3c96487909b5dc730caff6b0a144b450df6183758f203de84aa3a99894b0acbf"
+        }
+      ],
+      "native_results": [
+        [
+          {
+            "name": "reversed_grade",
+            "scorer": "reversed_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 1.0,
+                "params": {
+                  "to_float": "to_float"
+                },
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        [
+          {
+            "name": "reversed_grade",
+            "scorer": "reversed_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.0,
+                "params": {
+                  "to_float": "to_float"
+                },
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ]
+      ],
+      "accepted": false,
+      "error": "<study>/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.",
+      "commands": [
+        {
+          "command": "summarize",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": null
+        },
+        {
+          "command": "compare",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": true
+        },
+        {
+          "command": "leaderboard",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": true
+        },
+        {
+          "command": "import",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": true
+        }
+      ]
+    },
+    {
+      "encoding": "default",
+      "score_key": null,
+      "expect_refusal": false,
+      "inputs": [
+        {
+          "file": "default-perfect.eval",
+          "sha256": "5a6f03d29445ae3279f39ce96975246302250337923f77f03d18030d7384034b"
+        },
+        {
+          "file": "default-wrong.eval",
+          "sha256": "dabcde14999dc4c03f0fd7796461bdc15a7efcfbcf28391fe856921b40e8eb33"
+        }
+      ],
+      "native_results": [
+        [
+          {
+            "name": "default_grade",
+            "scorer": "default_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 1.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        [
+          {
+            "name": "default_grade",
+            "scorer": "default_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ]
+      ],
+      "accepted": true,
+      "entries": [
+        {
+          "model": "perfect",
+          "mean": 1.0
+        },
+        {
+          "model": "wrong",
+          "mean": 0.0
+        }
+      ],
+      "first_rank": "perfect",
+      "commands": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 1.0,\n  \"se\": 0.12249774903375335,\n  \"ci_low\": 0.6755924351161198,\n  \"ci_high\": 1.0,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 8,\n  \"model\": \"mockllm/model\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 8,\n  \"n_observations\": 8\n}\n",
+          "stderr": "",
+          "previous_export_preserved": null
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"perfect\",\n  \"model_b\": \"wrong\",\n  \"mean_a\": 1.0,\n  \"mean_b\": 0.0,\n  \"mean_diff\": 1.0,\n  \"se_paired\": 0.0,\n  \"ci_low\": 1.0,\n  \"ci_high\": 1.0,\n  \"p_value\": 0.0,\n  \"correlation\": null,\n  \"se_unpaired\": 0.0,\n  \"variance_reduction\": null,\n  \"n\": 8,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.\",\n    \"Correlation is unavailable because at least one score vector is constant.\",\n    \"Variance reduction is unavailable because both score vectors are constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 8,\n    \"p_value\": 0.0078125\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 0.0078125,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 8,\n  \"n_observations_b\": 8,\n  \"question_identity\": {\n    \"matching\": 8,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 8,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/errorbars-converter-replay-5zzk1dmq/compare.html\n",
+          "previous_export_preserved": false
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"perfect\",\n      \"mean\": 1.0,\n      \"se\": 0.12249774903375335,\n      \"ci_low\": 0.6755924351161198,\n      \"ci_high\": 1.0,\n      \"n\": 8,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 8,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"wrong\",\n      \"mean\": 0.0,\n      \"se\": 0.12249774903375335,\n      \"ci_low\": 0.0,\n      \"ci_high\": 0.3244075648838801,\n      \"n\": 8,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 8,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"perfect\",\n      \"model_b\": \"wrong\",\n      \"mean_diff\": 1.0,\n      \"p_value\": 0.0,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 8,\n        \"p_value\": 0.0078125\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 0.0078125,\n      \"p_holm\": 0.0078125,\n      \"n_shared\": 8,\n      \"warnings\": [\n        \"Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.\",\n        \"Correlation is unavailable because at least one score vector is constant.\",\n        \"Variance reduction is unavailable because both score vectors are constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"perfect\"\n    ],\n    [\n      \"wrong\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"perfect\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"wrong\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ]\n}\n",
+          "stderr": "",
+          "previous_export_preserved": false
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 8 rows (1 model) to /tmp/errorbars-converter-replay-5zzk1dmq/import.csv\n",
+          "stderr": "",
+          "previous_export_preserved": false
+        }
+      ]
+    },
+    {
+      "encoding": "named",
+      "score_key": "reversed",
+      "expect_refusal": true,
+      "inputs": [
+        {
+          "file": "named-perfect.eval",
+          "sha256": "57a8835056b2718519edc92123e00d8ae4afadfedb0a9dae76592ea766d19cbe"
+        },
+        {
+          "file": "named-wrong.eval",
+          "sha256": "36fbd8f3a8c104fab6b1e999ac7e6f2f0e8bd5552ff49dc237d09a493df4cf13"
+        }
+      ],
+      "native_results": [
+        [
+          {
+            "name": "reversed",
+            "scorer": "named_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 1.0,
+                "params": {
+                  "to_float": "to_float"
+                },
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        [
+          {
+            "name": "reversed",
+            "scorer": "named_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "accuracy": {
+                "name": "accuracy",
+                "group": null,
+                "value": 0.0,
+                "params": {
+                  "to_float": "to_float"
+                },
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ]
+      ],
+      "accepted": false,
+      "error": "<study>/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.",
+      "commands": [
+        {
+          "command": "summarize",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": null
+        },
+        {
+          "command": "compare",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": true
+        },
+        {
+          "command": "leaderboard",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": true
+        },
+        {
+          "command": "import",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: <study>/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead.\n",
+          "previous_export_preserved": true
+        }
+      ]
+    },
+    {
+      "encoding": "named",
+      "score_key": "plain",
+      "expect_refusal": false,
+      "inputs": [
+        {
+          "file": "named-perfect.eval",
+          "sha256": "57a8835056b2718519edc92123e00d8ae4afadfedb0a9dae76592ea766d19cbe"
+        },
+        {
+          "file": "named-wrong.eval",
+          "sha256": "36fbd8f3a8c104fab6b1e999ac7e6f2f0e8bd5552ff49dc237d09a493df4cf13"
+        }
+      ],
+      "native_results": [
+        [
+          {
+            "name": "plain",
+            "scorer": "named_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "mean": {
+                "name": "mean",
+                "group": null,
+                "value": 1.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ],
+        [
+          {
+            "name": "plain",
+            "scorer": "named_grade",
+            "reducer": null,
+            "scored_samples": 8,
+            "unscored_samples": 0,
+            "params": {},
+            "metrics": {
+              "mean": {
+                "name": "mean",
+                "group": null,
+                "value": 0.0,
+                "params": {},
+                "metadata": null
+              }
+            },
+            "metadata": null
+          }
+        ]
+      ],
+      "accepted": true,
+      "entries": [
+        {
+          "model": "perfect",
+          "mean": 1.0
+        },
+        {
+          "model": "wrong",
+          "mean": 0.0
+        }
+      ],
+      "first_rank": "perfect",
+      "commands": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 1.0,\n  \"se\": 0.12249774903375335,\n  \"ci_low\": 0.6755924351161198,\n  \"ci_high\": 1.0,\n  \"confidence\": 0.95,\n  \"method\": \"wilson\",\n  \"n\": 8,\n  \"model\": \"mockllm/model\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 8,\n  \"n_observations\": 8,\n  \"score_values\": [\n    {\n      \"model\": \"mockllm/model\",\n      \"scorer\": \"inspect:named_grade\",\n      \"scorer_value\": \"plain\"\n    }\n  ]\n}\n",
+          "stderr": "",
+          "previous_export_preserved": null
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"perfect\",\n  \"model_b\": \"wrong\",\n  \"score_values\": [\n    {\n      \"model\": \"perfect\",\n      \"scorer\": \"inspect:named_grade\",\n      \"scorer_value\": \"plain\"\n    },\n    {\n      \"model\": \"wrong\",\n      \"scorer\": \"inspect:named_grade\",\n      \"scorer_value\": \"plain\"\n    }\n  ],\n  \"mean_a\": 1.0,\n  \"mean_b\": 0.0,\n  \"mean_diff\": 1.0,\n  \"se_paired\": 0.0,\n  \"ci_low\": 1.0,\n  \"ci_high\": 1.0,\n  \"p_value\": 0.0,\n  \"correlation\": null,\n  \"se_unpaired\": 0.0,\n  \"variance_reduction\": null,\n  \"n\": 8,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.\",\n    \"Correlation is unavailable because at least one score vector is constant.\",\n    \"Variance reduction is unavailable because both score vectors are constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 8,\n    \"p_value\": 0.0078125\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 0.0078125,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 8,\n  \"n_observations_b\": 8,\n  \"question_identity\": {\n    \"matching\": 8,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 8,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/errorbars-converter-replay-91j3q8mc/compare.html\n",
+          "previous_export_preserved": false
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"perfect\",\n      \"mean\": 1.0,\n      \"se\": 0.12249774903375335,\n      \"ci_low\": 0.6755924351161198,\n      \"ci_high\": 1.0,\n      \"n\": 8,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 8,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"wrong\",\n      \"mean\": 0.0,\n      \"se\": 0.12249774903375335,\n      \"ci_low\": 0.0,\n      \"ci_high\": 0.3244075648838801,\n      \"n\": 8,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 8,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"perfect\",\n      \"model_b\": \"wrong\",\n      \"mean_diff\": 1.0,\n      \"p_value\": 0.0,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 8,\n        \"p_value\": 0.0078125\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 0.0078125,\n      \"p_holm\": 0.0078125,\n      \"n_shared\": 8,\n      \"warnings\": [\n        \"Paired differences have zero estimated variance. The t-test uses p=0 for a nonzero difference and p=1 for identical scores by convention; a point interval does not establish population certainty. Use the exact McNemar result for binary pairs.\",\n        \"Correlation is unavailable because at least one score vector is constant.\",\n        \"Variance reduction is unavailable because both score vectors are constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"perfect\"\n    ],\n    [\n      \"wrong\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"perfect\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"wrong\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"perfect\",\n      \"scorer\": \"inspect:named_grade\",\n      \"scorer_value\": \"plain\"\n    },\n    {\n      \"model\": \"wrong\",\n      \"scorer\": \"inspect:named_grade\",\n      \"scorer_value\": \"plain\"\n    }\n  ]\n}\n",
+          "stderr": "",
+          "previous_export_preserved": false
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 8 rows (1 model) to /tmp/errorbars-converter-replay-91j3q8mc/import.csv\n",
+          "stderr": "",
+          "previous_export_preserved": false
+        }
+      ]
+    }
+  ]
+}

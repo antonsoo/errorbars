@@ -1,3 +1,4 @@
 # Preserve the original padding in captured terminal evidence.
 studies/group-enumeration/results/large-terminal.txt whitespace=-blank-at-eol
 studies/inspect-converters/results/*-terminal.ansi -text whitespace=-blank-at-eol
+studies/inspect-converters/results/*.csv -text whitespace=cr-at-eol

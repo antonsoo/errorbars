@@ -29,28 +29,28 @@
 <text x="628.9" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">8–9</text>
 <text x="696.3" y="361.0" font-size="11.5" font-weight="400" fill="#898781" text-anchor="middle">9–10</text>
 <text x="393.0" y="384.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="middle">gap between two submissions, in points</text>
-<path d="M89.7,342.0 L157.1,342.0 L224.5,337.7 L291.9,308.1 L359.3,279.0 L426.7,230.3 L494.1,199.9 L561.5,158.5 L628.9,135.9 L696.3,135.4" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="89.7" cy="342.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 0–1 points: 0.0% of 300 pairs (repositories)</title></circle>
-<circle cx="157.1" cy="342.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 1–2 points: 0.0% of 296 pairs (repositories)</title></circle>
-<circle cx="224.5" cy="337.7" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 2–3 points: 1.8% of 278 pairs (repositories)</title></circle>
-<circle cx="291.9" cy="308.1" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 3–4 points: 14.2% of 267 pairs (repositories)</title></circle>
-<circle cx="359.3" cy="279.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 4–5 points: 26.5% of 287 pairs (repositories)</title></circle>
-<circle cx="426.7" cy="230.3" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 5–6 points: 47.0% of 262 pairs (repositories)</title></circle>
-<circle cx="494.1" cy="199.9" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 6–7 points: 59.7% of 211 pairs (repositories)</title></circle>
-<circle cx="561.5" cy="158.5" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 7–8 points: 77.1% of 179 pairs (repositories)</title></circle>
-<circle cx="628.9" cy="135.9" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 8–9 points: 86.6% of 179 pairs (repositories)</title></circle>
-<circle cx="696.3" cy="135.4" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 9–10 points: 86.8% of 159 pairs (repositories)</title></circle>
-<text x="708.3" y="139.4" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">repositories: 87%</text>
-<path d="M89.7,342.0 L157.1,342.0 L224.5,341.1 L291.9,212.7 L359.3,105.7 L426.7,104.0 L494.1,104.0 L561.5,104.0 L628.9,104.0 L696.3,104.0" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="89.7" cy="342.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 0–1 points: 0.0% of 300 pairs (tasks)</title></circle>
-<circle cx="157.1" cy="342.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 1–2 points: 0.0% of 296 pairs (tasks)</title></circle>
-<circle cx="224.5" cy="341.1" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 2–3 points: 0.4% of 278 pairs (tasks)</title></circle>
-<circle cx="291.9" cy="212.7" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 3–4 points: 54.3% of 267 pairs (tasks)</title></circle>
-<circle cx="359.3" cy="105.7" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 4–5 points: 99.3% of 287 pairs (tasks)</title></circle>
-<circle cx="426.7" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 5–6 points: 100.0% of 262 pairs (tasks)</title></circle>
-<circle cx="494.1" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 6–7 points: 100.0% of 211 pairs (tasks)</title></circle>
-<circle cx="561.5" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 7–8 points: 100.0% of 179 pairs (tasks)</title></circle>
-<circle cx="628.9" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 8–9 points: 100.0% of 179 pairs (tasks)</title></circle>
-<circle cx="696.3" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 9–10 points: 100.0% of 159 pairs (tasks)</title></circle>
+<path d="M89.7,342.0 L157.1,342.0 L224.5,337.6 L291.9,307.2 L359.3,278.1 L426.7,225.8 L494.1,196.4 L561.5,151.1 L628.9,132.4 L696.3,130.1" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="89.7" cy="342.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 0–1 points: 0.0% of 291 pairs (repositories)</title></circle>
+<circle cx="157.1" cy="342.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 1–2 points: 0.0% of 282 pairs (repositories)</title></circle>
+<circle cx="224.5" cy="337.6" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 2–3 points: 1.9% of 269 pairs (repositories)</title></circle>
+<circle cx="291.9" cy="307.2" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 3–4 points: 14.6% of 260 pairs (repositories)</title></circle>
+<circle cx="359.3" cy="278.1" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 4–5 points: 26.9% of 283 pairs (repositories)</title></circle>
+<circle cx="426.7" cy="225.8" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 5–6 points: 48.8% of 252 pairs (repositories)</title></circle>
+<circle cx="494.1" cy="196.4" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 6–7 points: 61.2% of 206 pairs (repositories)</title></circle>
+<circle cx="561.5" cy="151.1" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 7–8 points: 80.2% of 172 pairs (repositories)</title></circle>
+<circle cx="628.9" cy="132.4" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 8–9 points: 88.1% of 176 pairs (repositories)</title></circle>
+<circle cx="696.3" cy="130.1" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>gap 9–10 points: 89.0% of 155 pairs (repositories)</title></circle>
+<text x="708.3" y="134.1" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">repositories: 89%</text>
+<path d="M89.7,342.0 L157.1,342.0 L224.5,341.1 L291.9,210.2 L359.3,104.8 L426.7,104.0 L494.1,104.0 L561.5,104.0 L628.9,104.0 L696.3,104.0" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="89.7" cy="342.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 0–1 points: 0.0% of 291 pairs (tasks)</title></circle>
+<circle cx="157.1" cy="342.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 1–2 points: 0.0% of 282 pairs (tasks)</title></circle>
+<circle cx="224.5" cy="341.1" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 2–3 points: 0.4% of 269 pairs (tasks)</title></circle>
+<circle cx="291.9" cy="210.2" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 3–4 points: 55.4% of 260 pairs (tasks)</title></circle>
+<circle cx="359.3" cy="104.8" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 4–5 points: 99.7% of 283 pairs (tasks)</title></circle>
+<circle cx="426.7" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 5–6 points: 100.0% of 252 pairs (tasks)</title></circle>
+<circle cx="494.1" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 6–7 points: 100.0% of 206 pairs (tasks)</title></circle>
+<circle cx="561.5" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 7–8 points: 100.0% of 172 pairs (tasks)</title></circle>
+<circle cx="628.9" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 8–9 points: 100.0% of 176 pairs (tasks)</title></circle>
+<circle cx="696.3" cy="104.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>gap 9–10 points: 100.0% of 155 pairs (tasks)</title></circle>
 <text x="708.3" y="108.0" font-size="12" font-weight="400" fill="#52514e" text-anchor="start">tasks: 100%</text>
 </svg>

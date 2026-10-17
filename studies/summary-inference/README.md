@@ -151,3 +151,11 @@ outputs. Separate [3.14 wheel](results/wheel314-replay.json),
 summary result. Required-dependency environments use the plain terminal output
 without Rich. This verification stage did not publish a registry release, tag,
 or hosted demo; the package still declares version 0.2.4.
+
+The correction was then pushed as public source at `c531cd6`. A fresh PyPI
+0.2.4 installation reproduced the independent-question primary estimate;
+force-reinstalling the pinned Git revision selected CR2 and passed all nine
+summary replay cases. All 29 installed package files matched the verified
+archive, and 49 pinned public raw files matched Git bytes. The
+[public-source receipt](results/public-source.json) records that later stage.
+It does not establish a new registry release or a hosted-demo update.

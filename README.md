@@ -34,10 +34,10 @@ are **unreleased**; install this checkout to use them.
 ## On a real leaderboard
 
 [**SWE-bench Verified, with error bars**](studies/swe-bench-verified/README.md) runs this package
-over the per-task results of all 173 usable public submissions. The short version:
+over the per-task results of 172 complete public submissions. The short version:
 
-- Among the 78 submissions scoring 60% or more, a gap under 3 points is below what the
-  benchmark can detect (paired standard error about 1.8 points): 1 of 874 such pairs differs
+- Among the 77 complete submissions scoring 60% or more, few gaps under 3 points are
+  distinguishable (paired standard error about 1.8 points): 1 of 842 such pairs differs
   at the 5% level. Two submissions tie for the lead at 79.2%, and the leader cannot be told
   apart from ranks 2 to 9; only 7 of its 24 comparisons with ranks 2 to 25 differ after
   Holm's correction.
@@ -60,6 +60,10 @@ of those submissions, or for a run of your own pasted in as a list of resolved t
 Running it there also showed that this package's own clustered test was wrong for that
 benchmark, and too slow for a board of that size. Both are fixed in this checkout
 (**unreleased**; see the [changelog](CHANGELOG.md)).
+
+The source study and fixed-cohort browser view exclude one public run with only
+441 recorded task outcomes. The CSV converter retains those 441 observations,
+instead of adding 59 unreported failures. [Native evidence and comparison replay](studies/observed-cohorts/README.md).
 
 ## Why this exists
 

@@ -323,7 +323,7 @@ function boardFigures(): void {
     [leaderLight, leaderDark, "The leader's paired advantage over each of ranks 2 to 25, with 95% intervals. The intervals for ranks 2 to 9 include zero.",
       "The leader is not distinguishable from ranks 2 to 9. None of the 49 adjacent pairs in the top 50 differ."],
     [gapsLight, gapsDark, "Share of pairs of submissions that differ significantly, by the gap between them, for tasks and for repositories as the sample.",
-      "Among 3,003 pairs of strong submissions, a gap under 3 points is significant once in 874; above 4.2 points, always."],
+      "Among 2,926 pairs of complete strong submissions, a gap under 3 points is significant once in 842; above 4.0 points, always."],
     [recordsLight, recordsDark, "The top SWE-bench Verified score over time, with a dot for each of the 31 submissions that held it; six are marked as significantly above the one they replaced.",
       "The top score went up 30 times. Six of those new records were significantly above the record they replaced."],
   ];

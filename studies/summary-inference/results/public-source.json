@@ -1,0 +1,556 @@
+{
+  "source_revision": "c531cd67017d13838973636d199097bef2d814d9",
+  "remote_main_at_verification": "c531cd67017d13838973636d199097bef2d814d9",
+  "pinned_public_files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 35856,
+      "sha256": "8dd11018bf1181e61610463419c1e8eb38c39287dcb5c46692a48dfbd3d4af25"
+    },
+    {
+      "path": "README.md",
+      "bytes": 35358,
+      "sha256": "3eae2a13b560a47ecccdc99d0b7e01f4ee308209246caac543499a0d6b185ec5"
+    },
+    {
+      "path": "docs/assets/summary-inference-terminal.png",
+      "bytes": 200108,
+      "sha256": "b0e8f3aca25fa222dd55dabe1bab8bce92aac5782225a900fcf0373cb4d4cffc"
+    },
+    {
+      "path": "docs/assets/summary-one-cluster-terminal.png",
+      "bytes": 181671,
+      "sha256": "27997c391fce5bd0c1a0fce92a1d115a8b051b2a5b56dc89d058a5ce87515787"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 4500,
+      "sha256": "4d54b90965701e9f2d10e803c4e7a22a6f754045d990612740916d180b76c31b"
+    },
+    {
+      "path": "src/errorbars/__init__.py",
+      "bytes": 673,
+      "sha256": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55"
+    },
+    {
+      "path": "src/errorbars/_mean.py",
+      "bytes": 5318,
+      "sha256": "fe3db2e30bddc3715f80e228196f22d6db7be97d907190ca42151ee36c95f8ba"
+    },
+    {
+      "path": "src/errorbars/_output.py",
+      "bytes": 2098,
+      "sha256": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c"
+    },
+    {
+      "path": "src/errorbars/_tables.py",
+      "bytes": 5626,
+      "sha256": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853"
+    },
+    {
+      "path": "src/errorbars/_validation.py",
+      "bytes": 1751,
+      "sha256": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707"
+    },
+    {
+      "path": "src/errorbars/adapters/__init__.py",
+      "bytes": 77,
+      "sha256": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f"
+    },
+    {
+      "path": "src/errorbars/adapters/_inspect_integrity.py",
+      "bytes": 8176,
+      "sha256": "5ffa5cb45a0c933172e4c2a8c6ed4412cd88f9cbf8aa503dad68e87295e1a770"
+    },
+    {
+      "path": "src/errorbars/adapters/_lm_eval_metric.py",
+      "bytes": 7270,
+      "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71"
+    },
+    {
+      "path": "src/errorbars/adapters/inspect_ai.py",
+      "bytes": 7976,
+      "sha256": "b0d9f555df247312b4d29e297ef5fe35b84c87dbe4c52dcde8932c1f37d20e7e"
+    },
+    {
+      "path": "src/errorbars/adapters/lm_eval.py",
+      "bytes": 14029,
+      "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65"
+    },
+    {
+      "path": "src/errorbars/cli.py",
+      "bytes": 32088,
+      "sha256": "23dd6478210f1eddb9e11d3685d968200f960f70d26a97ee926b4bd7e5819339"
+    },
+    {
+      "path": "src/errorbars/compare.py",
+      "bytes": 12322,
+      "sha256": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8"
+    },
+    {
+      "path": "src/errorbars/inputs.py",
+      "bytes": 8414,
+      "sha256": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb"
+    },
+    {
+      "path": "src/errorbars/io.py",
+      "bytes": 32436,
+      "sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e"
+    },
+    {
+      "path": "src/errorbars/leaderboard.py",
+      "bytes": 19764,
+      "sha256": "965b2426dd6630c3c173cb21b7c579433dfbfa940b7e0755be4e3b1aacba483d"
+    },
+    {
+      "path": "src/errorbars/plot.py",
+      "bytes": 9169,
+      "sha256": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a"
+    },
+    {
+      "path": "src/errorbars/power.py",
+      "bytes": 14059,
+      "sha256": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839"
+    },
+    {
+      "path": "src/errorbars/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/errorbars/report.py",
+      "bytes": 10089,
+      "sha256": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/LICENSE.txt",
+      "bytes": 13870,
+      "sha256": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/ibm-plex-mono-400-latin.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/ibm-plex-sans-latin.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/spectral-500-latin.woff2",
+      "bytes": 22836,
+      "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+    },
+    {
+      "path": "src/errorbars/report_assets/report.css",
+      "bytes": 12519,
+      "sha256": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991"
+    },
+    {
+      "path": "src/errorbars/report_assets/report.js",
+      "bytes": 22681,
+      "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161"
+    },
+    {
+      "path": "src/errorbars/report_assets/template.html",
+      "bytes": 10051,
+      "sha256": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050"
+    },
+    {
+      "path": "src/errorbars/review.py",
+      "bytes": 14267,
+      "sha256": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e"
+    },
+    {
+      "path": "src/errorbars/scoring.py",
+      "bytes": 2165,
+      "sha256": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa"
+    },
+    {
+      "path": "src/errorbars/stats.py",
+      "bytes": 16292,
+      "sha256": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+    },
+    {
+      "path": "studies/summary-inference/README.md",
+      "bytes": 8798,
+      "sha256": "c41d3e4b64808c004f80d28dcc65dfbbf95e98ea88997b180b53efaa2d8334cb"
+    },
+    {
+      "path": "studies/summary-inference/audit.py",
+      "bytes": 5968,
+      "sha256": "37855a031d952d59a4a80bed0cb52f5e4af1b222e9b73f724772ae946023a408"
+    },
+    {
+      "path": "studies/summary-inference/compatibility.py",
+      "bytes": 3650,
+      "sha256": "951ead1fe94252167f73bc35ae9737fde5da9ae25cf94ca77e186fab88aad271"
+    },
+    {
+      "path": "studies/summary-inference/replay.py",
+      "bytes": 4189,
+      "sha256": "e38ca3c28e5546fb5aa54bee5825dfa672a76b37f7c1f4befde2cb350dae317e"
+    },
+    {
+      "path": "studies/summary-inference/results/artifacts.json",
+      "bytes": 49493,
+      "sha256": "16657223259e45f8d94d9f39296449d5087653f465411820dde8184f2bd0dcbc"
+    },
+    {
+      "path": "studies/summary-inference/results/before.json",
+      "bytes": 5847,
+      "sha256": "bd1268bae131451565bd9f69a960dba9ef72beeb814306dedcdcdb17e8c968d6"
+    },
+    {
+      "path": "studies/summary-inference/results/census.json",
+      "bytes": 85652,
+      "sha256": "49e2f7b7216a37fcfc85beb55153e712342490a7d8972f46a8a9c3f789bf7098"
+    },
+    {
+      "path": "studies/summary-inference/results/leaderboard-compatibility.json",
+      "bytes": 569,
+      "sha256": "e20bc1f96a25d7313c33dfdbfa6a6948ad2fb2cfae6c005f8a4c9f613b79bbf9"
+    },
+    {
+      "path": "studies/summary-inference/results/one-cluster-terminal.ansi",
+      "bytes": 1502,
+      "sha256": "fd627dbc6ccdbf3ac97ee411bc7eecd83f453fcb6f485a2a24a410219612e1d1"
+    },
+    {
+      "path": "studies/summary-inference/results/sdist312-replay.json",
+      "bytes": 8536,
+      "sha256": "13e07b4bbf1d8087126856505d636f02c06044e5a58ff08736a1300e49583e58"
+    },
+    {
+      "path": "studies/summary-inference/results/source-replay.json",
+      "bytes": 8536,
+      "sha256": "268c6b0c57d8175de08bbaf3a8eabe98b46f18b7cb7b64d872833a2afcaa722a"
+    },
+    {
+      "path": "studies/summary-inference/results/terminal.ansi",
+      "bytes": 1696,
+      "sha256": "88fd0ffc01249c6ac81ebc6db1966c1b62c0c1bbd7e3b935fc324c9c52cfb0e8"
+    },
+    {
+      "path": "studies/summary-inference/results/wheel310-replay.json",
+      "bytes": 8537,
+      "sha256": "b17f6f43ca01d17b2f84603e74642efa4ac1ca5e3ac28c63752c7a6af113137b"
+    },
+    {
+      "path": "studies/summary-inference/results/wheel314-replay.json",
+      "bytes": 8535,
+      "sha256": "29fa02379b921654e639c9d173189fde8d661c28fb29b64236bbaa6f25275223"
+    },
+    {
+      "path": "tests/test_summary_inference.py",
+      "bytes": 5265,
+      "sha256": "f5e499f67077676703ecf2fd6cb9b8de4f74c7c3463090237f325a25f6a099c7"
+    }
+  ],
+  "installed_runtime_files_match_verified_archive": 29,
+  "registry_summary": {
+    "mean": 0.792,
+    "se": 0.018169542221229962,
+    "ci_low": 0.7563883516308094,
+    "ci_high": 0.8276116483691907,
+    "confidence": 0.95,
+    "method": "clt",
+    "n": 500,
+    "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+    "is_binary": true,
+    "clustered": {
+      "clustered_se": 0.027241978302211853,
+      "clustered_ci_low": 0.7320408100252869,
+      "clustered_ci_high": 0.8519591899747132,
+      "icc": 0.058983422696892336,
+      "design_effect": 3.3986591896736216,
+      "n_clusters": 12
+    }
+  },
+  "git_upgrade_replay": {
+    "python": "3.12.12",
+    "numpy": "2.5.4",
+    "policy_module_sha256": "fe3db2e30bddc3715f80e228196f22d6db7be97d907190ca42151ee36c95f8ba",
+    "source_sha256": "56b95536e6fcaf860195dfea68f42bb3d9fd9603a9b909c1f24468058ff04e7d",
+    "cases": {
+      "auto": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018169542221229962,
+          "ci_low": 0.7563883516308094,
+          "ci_high": 0.8276116483691907,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "clt": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018169542221229962,
+          "ci_low": 0.7563883516308094,
+          "ci_high": 0.8276116483691907,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "wilson": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018151363585141474,
+          "ci_low": 0.7542636968800828,
+          "ci_high": 0.8252836882903708,
+          "confidence": 0.95,
+          "method": "wilson",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "bootstrap": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.01838620604195606,
+          "ci_low": 0.756,
+          "ci_high": 0.8260499999999992,
+          "confidence": 0.95,
+          "method": "bootstrap",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "one-cluster": {
+        "mean": 0.8268398268398268,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 231,
+        "method": "unavailable",
+        "confidence": 0.95,
+        "interval_status": "fewer_than_two_clusters",
+        "n_clusters": 1,
+        "dof_clustered": null,
+        "unclustered": {
+          "mean": 0.8268398268398268,
+          "se": 0.02495001329539699,
+          "ci_low": 0.7779386993670532,
+          "ci_high": 0.8757409543126005,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 231
+        },
+        "warnings": [
+          "Only one independent cluster is observed; at least two are needed to estimate a clustered interval."
+        ],
+        "model": "django-only",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 231,
+        "n_observations": 231,
+        "clustered": {
+          "clustered_se": null,
+          "clustered_ci_low": null,
+          "clustered_ci_high": null,
+          "clustered_dof": null,
+          "icc": null,
+          "design_effect": null,
+          "n_clusters": 1
+        }
+      },
+      "one-continuous": {
+        "mean": 0.3,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 1,
+        "method": "unavailable",
+        "confidence": 0.95,
+        "interval_status": "fewer_than_two_questions",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [
+          "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+        ],
+        "model": "m",
+        "is_binary": false,
+        "analysis_unit": "question",
+        "n_questions": 1,
+        "n_observations": 1
+      },
+      "one-repeated": {
+        "mean": 0.5,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 1,
+        "method": "unavailable",
+        "confidence": 0.95,
+        "interval_status": "fewer_than_two_questions",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [
+          "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+        ],
+        "model": "m",
+        "is_binary": false,
+        "analysis_unit": "question",
+        "n_questions": 1,
+        "n_observations": 2
+      },
+      "unequal-repetition": {
+        "mean": 0.6666666666666666,
+        "se": 0.33333333333333337,
+        "ci_low": 0.01334533848664865,
+        "ci_high": 1.3199879948466846,
+        "n": 3,
+        "method": "clt",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [],
+        "model": "m",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 3,
+        "n_observations": 14,
+        "within_between": {
+          "var_within": 0.0,
+          "var_between": 0.48000000000000015
+        }
+      },
+      "one-binary": {
+        "mean": 1.0,
+        "se": 0.9799819922700268,
+        "ci_low": 0.20654931437723745,
+        "ci_high": 1.0,
+        "n": 1,
+        "method": "wilson",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [],
+        "model": "m",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 1,
+        "n_observations": 1
+      }
+    }
+  },
+  "registry_release": false,
+  "tag_created": false,
+  "hosted_demo_changed": false
+}

@@ -1,0 +1,21 @@
+{
+  "native_sha256": "2217bde53ceffe19cfdb937fabe9c30018b631c973d6af42bcc77049d4ef12ed",
+  "source_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "n": 441,
+  "n_clusters": 12,
+  "resolved_a": 359,
+  "resolved_b": 355,
+  "mean_a": 0.8140589569160998,
+  "mean_b": 0.8049886621315193,
+  "mean_diff": 0.009070294784580499,
+  "se_clustered": 0.0267438189609321,
+  "dof_clustered": 2.5802454079007586,
+  "ci_low_clustered": -0.08443565587000607,
+  "ci_high_clustered": 0.10257624543916707,
+  "p_value_clustered": 0.7601770975568454,
+  "mcnemar": {
+    "n01": 19,
+    "n10": 23,
+    "p_value": 0.6439689563703723
+  }
+}

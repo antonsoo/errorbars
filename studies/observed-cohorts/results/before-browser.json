@@ -1,0 +1,163 @@
+{
+  "phase": "before",
+  "scenarios": [
+    {
+      "browser": "chromium",
+      "width": 375,
+      "phase": "before",
+      "submissionCount": "173",
+      "partialSelectable": true,
+      "selectedA": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "selectedB": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "verdict": "Different on tasks like these.",
+      "detail": "Sonar Foundation Agent + Claude 4.5 Opus is 7.4 points ahead of Gemini 3.5 Flash (79.2% against 71.8%). Exact task test: p < 0.0001. Repository-clustered test: p = 0.34. The exact task-independent test detects a difference at 5%; the repository-clustered test does not.",
+      "table": "\n            The comparison in numbers\n            ResolvedA 71.8% (359 of 500) · B 79.2% (396)Gap, A minus B−7.4 pointsTasks where they differ83: only A resolved 23, only B resolved 60 · exact McNemar p < 0.0001Exact task testp < 0.0001 (McNemar); no multiple-comparison adjustmentPaired-t approximationstandard error 1.8 · 95% interval −10.9 to −3.9 · p < 0.0001Repositories as the samplestandard error 6.6 · 95% interval −27.3 to +12.5 · p = 0.34 · 3.3 degrees of freedom from 12 repositoriesAgreementcorrelation of outcomes 0.57SourceA self-reported · B self-reported\n          ",
+      "unreportedTasksShownAsFailures": 59,
+      "unreportedTasksShownAsPeerOnlySuccesses": 41,
+      "horizontalOverflow": false,
+      "resolvedOnlyOwnRunKeepsFullBenchmarkConvention": true,
+      "errors": [],
+      "externalRequests": [],
+      "offlineRequests": []
+    },
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "phase": "before",
+      "submissionCount": "173",
+      "partialSelectable": true,
+      "selectedA": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "selectedB": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "verdict": "Different on tasks like these.",
+      "detail": "Sonar Foundation Agent + Claude 4.5 Opus is 7.4 points ahead of Gemini 3.5 Flash (79.2% against 71.8%). Exact task test: p < 0.0001. Repository-clustered test: p = 0.34. The exact task-independent test detects a difference at 5%; the repository-clustered test does not.",
+      "table": "\n            The comparison in numbers\n            ResolvedA 71.8% (359 of 500) · B 79.2% (396)Gap, A minus B−7.4 pointsTasks where they differ83: only A resolved 23, only B resolved 60 · exact McNemar p < 0.0001Exact task testp < 0.0001 (McNemar); no multiple-comparison adjustmentPaired-t approximationstandard error 1.8 · 95% interval −10.9 to −3.9 · p < 0.0001Repositories as the samplestandard error 6.6 · 95% interval −27.3 to +12.5 · p = 0.34 · 3.3 degrees of freedom from 12 repositoriesAgreementcorrelation of outcomes 0.57SourceA self-reported · B self-reported\n          ",
+      "unreportedTasksShownAsFailures": 59,
+      "unreportedTasksShownAsPeerOnlySuccesses": 41,
+      "horizontalOverflow": false,
+      "resolvedOnlyOwnRunKeepsFullBenchmarkConvention": true,
+      "errors": [],
+      "externalRequests": [],
+      "offlineRequests": []
+    },
+    {
+      "browser": "firefox",
+      "width": 375,
+      "phase": "before",
+      "submissionCount": "173",
+      "partialSelectable": true,
+      "selectedA": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "selectedB": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "verdict": "Different on tasks like these.",
+      "detail": "Sonar Foundation Agent + Claude 4.5 Opus is 7.4 points ahead of Gemini 3.5 Flash (79.2% against 71.8%). Exact task test: p < 0.0001. Repository-clustered test: p = 0.34. The exact task-independent test detects a difference at 5%; the repository-clustered test does not.",
+      "table": "\n            The comparison in numbers\n            ResolvedA 71.8% (359 of 500) · B 79.2% (396)Gap, A minus B−7.4 pointsTasks where they differ83: only A resolved 23, only B resolved 60 · exact McNemar p < 0.0001Exact task testp < 0.0001 (McNemar); no multiple-comparison adjustmentPaired-t approximationstandard error 1.8 · 95% interval −10.9 to −3.9 · p < 0.0001Repositories as the samplestandard error 6.6 · 95% interval −27.3 to +12.5 · p = 0.34 · 3.3 degrees of freedom from 12 repositoriesAgreementcorrelation of outcomes 0.57SourceA self-reported · B self-reported\n          ",
+      "unreportedTasksShownAsFailures": 59,
+      "unreportedTasksShownAsPeerOnlySuccesses": 41,
+      "horizontalOverflow": false,
+      "resolvedOnlyOwnRunKeepsFullBenchmarkConvention": true,
+      "errors": [],
+      "externalRequests": [],
+      "offlineRequests": []
+    },
+    {
+      "browser": "firefox",
+      "width": 1440,
+      "phase": "before",
+      "submissionCount": "173",
+      "partialSelectable": true,
+      "selectedA": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "selectedB": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "verdict": "Different on tasks like these.",
+      "detail": "Sonar Foundation Agent + Claude 4.5 Opus is 7.4 points ahead of Gemini 3.5 Flash (79.2% against 71.8%). Exact task test: p < 0.0001. Repository-clustered test: p = 0.34. The exact task-independent test detects a difference at 5%; the repository-clustered test does not.",
+      "table": "\n            The comparison in numbers\n            ResolvedA 71.8% (359 of 500) · B 79.2% (396)Gap, A minus B−7.4 pointsTasks where they differ83: only A resolved 23, only B resolved 60 · exact McNemar p < 0.0001Exact task testp < 0.0001 (McNemar); no multiple-comparison adjustmentPaired-t approximationstandard error 1.8 · 95% interval −10.9 to −3.9 · p < 0.0001Repositories as the samplestandard error 6.6 · 95% interval −27.3 to +12.5 · p = 0.34 · 3.3 degrees of freedom from 12 repositoriesAgreementcorrelation of outcomes 0.57SourceA self-reported · B self-reported\n          ",
+      "unreportedTasksShownAsFailures": 59,
+      "unreportedTasksShownAsPeerOnlySuccesses": 41,
+      "horizontalOverflow": false,
+      "resolvedOnlyOwnRunKeepsFullBenchmarkConvention": true,
+      "errors": [],
+      "externalRequests": [],
+      "offlineRequests": []
+    }
+  ],
+  "served": [
+    {
+      "path": "swe-bench.html",
+      "bytes": 10015,
+      "sha256": "00a74cbc534dbe8676307416f4c74a3699248fdb88918de8f0a606031dc4f52b"
+    },
+    {
+      "path": "assets/swe-bench-Dlo4ZJl9.js",
+      "bytes": 95348,
+      "sha256": "31caf0187581aee0c89779ee700a8fd7989cea50f9b1805ad5db74c963bc53f2"
+    },
+    {
+      "path": "assets/theme-D5FsHUt7.css",
+      "bytes": 35408,
+      "sha256": "0a9ab0a3f17fbc15194cc1d2b1d6bcf35c48f8d2504a12c1551bcf1dd6a69342"
+    },
+    {
+      "path": "assets/theme-OwnbEBKB.js",
+      "bytes": 1143,
+      "sha256": "322c5aa65daade6f8b398d7cc60c542e4ae083839f98f23652cf9b16a553e900"
+    },
+    {
+      "path": "assets/spectral-400-latin-CTVgUekv.woff2",
+      "bytes": 21696,
+      "sha256": "cf8daee3b83c1e662196c6e34e444bc41344d54bfeb4fb5351e197de6ce94539"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-IvpUvPa2.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    },
+    {
+      "path": "assets/ibm-plex-mono-400-latin-DMJ8VG8y.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "assets/spectral-italic-400-latin-CDO25mTW.woff2",
+      "bytes": 22712,
+      "sha256": "db397149a9f73fd6a41dd2fdf3314cf8a9daf0485134465cc268cac578766b71"
+    },
+    {
+      "path": "assets/spectral-600-latin-DE3OxvnQ.woff2",
+      "bytes": 22936,
+      "sha256": "33faca8b5795a0de1af77cbc43a050a3655c4b1e03e04847fdef4d19d2e361d2"
+    },
+    {
+      "path": "assets/ibm-plex-mono-600-latin-BgSNZQsw.woff2",
+      "bytes": 15620,
+      "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+    },
+    {
+      "path": "assets/leader-light-DUwQACvs.svg",
+      "bytes": 20497,
+      "sha256": "9d98174899efcf6fcadfa406e55a96702e9f4496554e2f301b1a40d8535ab957"
+    },
+    {
+      "path": "assets/gaps-dark-DwT34A7k.svg",
+      "bytes": 7505,
+      "sha256": "42977ab7a469ae9604ee650aacea94a34e3718903b1038e2f923257355a2b542"
+    },
+    {
+      "path": "assets/gaps-light-W8s23D2y.svg",
+      "bytes": 7505,
+      "sha256": "c138fa113147744c19b1fabb69f4a9d740ab27e429a9ebfd275dccbdc5596ec0"
+    },
+    {
+      "path": "assets/records-dark-CiPl0a42.svg",
+      "bytes": 14682,
+      "sha256": "2d63eeae37ba92f324c658d27eb35fae271baae6e491f91f63959c5a69726026"
+    },
+    {
+      "path": "assets/records-light-CjsiKUgJ.svg",
+      "bytes": 14682,
+      "sha256": "4216794132228800ea51a230ff95d4230d7f0032767537804478c52e6fd050b9"
+    },
+    {
+      "path": "assets/leader-dark-C1KTs-JT.svg",
+      "bytes": 20497,
+      "sha256": "001ceba8ffd04a531bd4b4d635c3e1858e4da97b1633e64dd830b6b29b43b7fc"
+    }
+  ]
+}

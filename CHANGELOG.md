@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Recorded SWE-bench cohorts
+
+- Honor explicit evaluated-task masks in the study CSV converter. One retained
+  public submission has 441 recorded outcomes; its 59 missing task records no
+  longer become observed zeroes. Keep its official 359/500 benchmark score
+  separate from its 359/441 observed-subset mean. Validate mask widths, counts
+  and resolved-task membership before emitting CSV.
+- Restrict the fixed 500-task study and browser comparison to the 172 complete,
+  score-consistent submissions. Recompute the study's affected statistics and
+  gap figures. Resolved-only own-run inputs retain their documented full-task
+  convention. [Native file and actual CLI/browser evidence](studies/observed-cohorts/README.md).
+
 ### Primary summary uncertainty
 
 - Make supplied multi-question clusters select `summarize`'s primary CR2 SE and

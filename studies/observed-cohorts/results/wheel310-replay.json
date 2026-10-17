@@ -1,0 +1,102 @@
+{
+  "python": "3.10.21",
+  "numpy": "1.24.0",
+  "installed_cli_sha256": "23dd6478210f1eddb9e11d3685d968200f960f70d26a97ee926b4bd7e5819339",
+  "converter_sha256": "96fb8f17c0536e4824ed5f48add891f5e4115f71a0e15cbbb3544707af6526e6",
+  "native_sha256": "2217bde53ceffe19cfdb937fabe9c30018b631c973d6af42bcc77049d4ef12ed",
+  "csv_sha256": "84c2e50bf8d4cf62ea0ad0f8346847e33406f3b801d13243e8c2da41ce72a857",
+  "csv_observations": 941,
+  "converter_stderr": "notice: 20260901_mini-v2.4.2_gemini-3-5-flash: exporting 441 recorded task outcomes from a 500-task benchmark; 59 unobserved tasks omitted. Means describe the observed subset, not the official full-benchmark score.\n",
+  "comparison": {
+    "model_a": "20260901_mini-v2.4.2_gemini-3-5-flash",
+    "model_b": "20251205_sonar-foundation-agent_claude-opus-4-5",
+    "mean_a": 0.8140589569160998,
+    "mean_b": 0.8049886621315193,
+    "mean_diff": 0.009070294784580499,
+    "se_paired": 0.014705891289379111,
+    "ci_low": -0.019832224530759418,
+    "ci_high": 0.03797281409992042,
+    "p_value": 0.5376990621012067,
+    "correlation": 0.6915167418807692,
+    "se_unpaired": 0.026472493767201826,
+    "variance_reduction": 0.6914020811099255,
+    "n": 441,
+    "confidence": 0.95,
+    "warnings": [
+      "Clustered inference rests on 2.6 effective degrees of freedom: 12 clusters, the largest holding 52% of the questions. Its interval is wide because few independent clusters carry the estimate."
+    ],
+    "se_clustered": 0.026743818960932086,
+    "ci_low_clustered": -0.08443565587000308,
+    "ci_high_clustered": 0.10257624543916409,
+    "p_value_clustered": 0.7601770975568456,
+    "dof_clustered": 2.5802454079007604,
+    "n_clusters": 12,
+    "mcnemar": {
+      "n01": 19,
+      "n10": 23,
+      "p_value": 0.6439689563703723
+    },
+    "inference": {
+      "test": "clustered_t",
+      "p_value": 0.7601770975568456,
+      "ci_low": -0.08443565587000308,
+      "ci_high": 0.10257624543916409,
+      "confidence": 0.95,
+      "mcnemar_applicable": true
+    },
+    "n_only_a": 0,
+    "n_only_b": 59,
+    "analysis_unit": "question",
+    "n_observations_a": 441,
+    "n_observations_b": 500,
+    "question_identity": {
+      "matching": 0,
+      "partial": 0,
+      "unavailable": 441,
+      "conflicting": 0
+    },
+    "scoring_rules": {
+      "matching": 0,
+      "unavailable": 441,
+      "conflicting": 0
+    }
+  },
+  "summary": {
+    "mean": 0.8140589569160998,
+    "se": 0.01826031679301083,
+    "ci_low": 0.750214362264954,
+    "ci_high": 0.8779035515672455,
+    "n": 441,
+    "method": "clustered_cr2",
+    "confidence": 0.95,
+    "interval_status": "available",
+    "n_clusters": 12,
+    "dof_clustered": 2.5802454079007604,
+    "unclustered": {
+      "mean": 0.8140589569160998,
+      "se": 0.018547664125214074,
+      "ci_low": 0.7777062032333346,
+      "ci_high": 0.8504117105988649,
+      "confidence": 0.95,
+      "method": "clt",
+      "n": 441
+    },
+    "warnings": [
+      "The interval uses 12 clusters and 2.6 effective degrees of freedom; few independent clusters limit precision."
+    ],
+    "model": "20260901_mini-v2.4.2_gemini-3-5-flash",
+    "is_binary": true,
+    "analysis_unit": "question",
+    "n_questions": 441,
+    "n_observations": 441,
+    "clustered": {
+      "clustered_se": 0.01826031679301083,
+      "clustered_ci_low": 0.750214362264954,
+      "clustered_ci_high": 0.8779035515672455,
+      "clustered_dof": 2.5802454079007604,
+      "icc": 0.03877159745783319,
+      "design_effect": 2.3860846091175367,
+      "n_clusters": 12
+    }
+  }
+}

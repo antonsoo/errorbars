@@ -3,18 +3,18 @@
 SWE-bench Verified scores are quoted to a tenth of a point: 79.2%, 78.8%, 77.6%.
 Every submission also publishes *which* of the 500 tasks it resolved, so the
 question "is 79.2 really better than 77.6?" has a checkable answer. This study
-runs `errorbars` over all 173 usable submissions in the public
+runs `errorbars` over 172 submissions with complete per-task outcomes in the public
 [SWE-bench/experiments](https://github.com/SWE-bench/experiments) repository
 and reports what the leaderboard's differences are worth.
 
 **What comes out**
 
-- **A gap under 3 points is below what this benchmark can detect.** Among the 78
-  submissions scoring 60% or more, 1 of the 874 pairs less than 3 points apart
+- **Few gaps under 3 points are distinguishable.** Among the 77 complete
+  submissions scoring 60% or more, 1 of the 842 pairs less than 3 points apart
   differs at the 5% level. The paired standard error of a gap is 1.8 points at
   the median (1.5 to 2.1 for nine pairs in ten), so a gap needs to be about 3 to 4
-  points to show. Between 3 and 4 points 54% of pairs differ; above 4.2 points
-  every pair does. The 3,003 pairs share 78 submissions and are not independent.
+  points to show. Between 3 and 4 points 55% of pairs differ; above 4.0 points
+  every pair does. The 2,926 pairs share 77 submissions and are not independent.
 - **The top of the board is one group.** Two submissions tie for the lead at
   79.2%. The leader is not distinguishable from ranks 2 to 9 (down to 76.4%);
   rank 2 is the tie. Of the leader's 24 comparisons with ranks 2 to 25, 16 differ
@@ -43,14 +43,16 @@ on the leaderboard are not among them.
 `fetch.py` reads the per-task outcome lists at one pinned commit of
 SWE-bench/experiments (`40f164d`, 3 September 2026) and packs them into
 [`data/outcomes.json`](data/outcomes.json): one record per submission with its
-500 outcomes and the leaderboard's own metadata tags.
+resolved mask and the leaderboard's own metadata tags. An explicit evaluated
+mask identifies which outcomes were recorded for an incomplete per-task file.
 
 | | |
 |---|---|
 | Submission directories under `evaluation/verified` | 182 |
 | Without a per-task outcome file | 7 |
 | Per-task file contradicts the submission's stated score (41 of the 175 state one) | 2 |
-| **Analysed** | **173** |
+| Incomplete per-task outcome file, excluded from fixed-cohort inference | 1 |
+| **Analysed** | **172** |
 | of which marked as checked by the SWE-bench team | 53 |
 
 The two contradictions are worth knowing about if you use this repository
@@ -59,8 +61,12 @@ yourself: `20260226_mini-v2.0.0_gemini-3-pro-high` states 69.6% and its
 `20250720_mini-v0.0.0-claude-3-7-sonnet-20250219` states 52.8% and its file
 resolves 51 tasks (10.2%). Both are left out. The other 134 submissions state no score in their metadata, so
 their per-task files could not be checked this way. One run
-(`20260901_mini-v2.4.2_gemini-3-5-flash`) reports 441 of the 500 tasks; the
-other 59 count as unresolved, as on the leaderboard.
+(`20260901_mini-v2.4.2_gemini-3-5-flash`) reports outcomes for 441 of the 500
+tasks. Its official score remains 359/500 = 71.8%, but the per-task file does
+not establish observed failures on the other 59. It is excluded from this
+study's fixed 500-task comparisons and the browser's selectors. The CSV
+converter exports the 441 recorded outcomes for analysis on their actual shared
+cohort. [Native file, captured false comparison and corrected replay](../observed-cohorts/README.md).
 
 A score here is the share of the 500 tasks resolved. A "point" is one percentage
 point, five tasks. All tests are two-sided at 5%.
@@ -85,25 +91,25 @@ twice that.
   <img src="figures/gaps-light.svg" alt="Share of pairs of submissions that differ significantly, by the gap between them. With tasks as the sample the share goes from 0% below 3 points to 100% above 5. With repositories as the sample it rises slowly and reaches 87% at 9 to 10 points." width="880">
 </picture>
 
-All 3,003 pairs among the 78 submissions at 60% or above:
+All 2,926 pairs among the 77 complete submissions at 60% or above:
 
 | Gap (points) | Pairs | Differ, tasks as the sample | Differ, repositories as the sample |
 |---|---:|---:|---:|
-| 0–1 | 300 | 0.0% | 0.0% |
-| 1–2 | 296 | 0.0% | 0.0% |
-| 2–3 | 278 | 0.4% | 1.8% |
-| 3–4 | 267 | 54.3% | 14.2% |
-| 4–5 | 287 | 99.3% | 26.5% |
-| 5–6 | 262 | 100.0% | 47.0% |
-| 6–7 | 211 | 100.0% | 59.7% |
-| 7–8 | 179 | 100.0% | 77.1% |
-| 8–9 | 179 | 100.0% | 86.6% |
-| 9–10 | 159 | 100.0% | 86.8% |
-| 10 or more | 585 | 100.0% | 94.4% |
+| 0–1 | 291 | 0.0% | 0.0% |
+| 1–2 | 282 | 0.0% | 0.0% |
+| 2–3 | 269 | 0.4% | 1.9% |
+| 3–4 | 260 | 55.4% | 14.6% |
+| 4–5 | 283 | 99.7% | 26.9% |
+| 5–6 | 252 | 100.0% | 48.8% |
+| 6–7 | 206 | 100.0% | 61.2% |
+| 7–8 | 172 | 100.0% | 80.2% |
+| 8–9 | 176 | 100.0% | 88.1% |
+| 9–10 | 155 | 100.0% | 89.0% |
+| 10 or more | 580 | 100.0% | 95.2% |
 
 The smallest gap that was significant is 2.8 points; the largest that was not is
-4.2. These are single comparisons, each at 5%, and they are not independent: the 3,003
-pairs are made from 78 submissions, and several come from the same group. Someone
+4.0. These are single comparisons, each at 5%, and they are not independent: the 2,926
+pairs are made from 77 submissions, and several come from the same group. Someone
 reading a leaderboard is making many comparisons at once, and a correction for that
 (Holm) raises the bar further: it is why none of the top 20's 190 pairs survive.
 
@@ -186,7 +192,7 @@ Everything above treats the 500 tasks as the sample, which supports statements
 about more tasks *from these repositories in this mix*. What people usually want
 from a coding benchmark is a statement about other codebases. For that, the
 repositories are the sample and the tasks inside one are correlated draws: the
-leader resolves 95% of the pytest tasks and 40% of the pylint ones. Across the 78
+leader resolves 95% of the pytest tasks and 40% of the pylint ones. Across the 77
 strong submissions the intraclass correlation by repository has a median of
 0.043, small, but with a cluster of 231 it makes the repository-level standard
 error of a score 1.5 times the binomial one.
@@ -196,7 +202,7 @@ the cluster sums; twelve equal clusters would give 11 degrees of freedom. With
 one cluster holding 46% of the tasks the estimate rests mostly on how that one
 compares with the rest, and the Satterthwaite approximation gives **3.3**. The
 95% critical value is then 3.01, not 1.96. That is the second column of the table
-above: a 4 to 5 point gap, always significant with tasks as the sample, is
+above: a 4 to 5 point gap, significant for 99.7% of these pairs with tasks as the sample, is
 significant for 27% of pairs with repositories as the sample.
 
 ### What this did to the library
@@ -241,7 +247,7 @@ pairs).
   much a re-run of the same system would move.
 - **Not significant is not equal.** A gap inside the noise may be real. The
   claim is that this benchmark, at this size, cannot show it.
-- **Most entries are self-reported.** 53 of the 173 are marked as checked by the
+- **Most entries are self-reported.** 53 of the 172 are marked as checked by the
   SWE-bench team. None of the nine record holders from 30 April 2025 on is among them.
 - **Nothing about what the tasks measure.** Contamination, over-fitting to a
   public test set and whether resolved tasks generalise are separate questions
@@ -300,8 +306,12 @@ If both fields are present, both must be valid and name the same tasks (order an
 repetition do not matter). An explicit empty list is a zero-resolution result;
 `null`, booleans, numbers and objects are errors. The browser applies the same
 checks and retains the previous comparison on a rejected paste. This preserves
-the study's policy: tasks absent from a valid resolved list count as unresolved
-over all 500 tasks. [Counterexamples and replay](../own-run-imports/README.md).
+the resolved-only own-run policy: tasks absent from a valid resolved list count
+as unresolved over all 500 tasks. Public packets with an explicit evaluated mask
+instead export only those recorded outcomes and print a notice; `--list` keeps
+the official full-benchmark score and labels incomplete coverage.
+[Own-run counterexamples](../own-run-imports/README.md),
+[recorded-cohort correction](../observed-cohorts/README.md).
 
 ## References
 

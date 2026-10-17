@@ -1,0 +1,27 @@
+       summarize: django-only       
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ metric             ┃       value ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ n                  │         231 │
+│ mean               │      0.8268 │
+│ SE                 │ unavailable │
+│ 95% CI             │ unavailable │
+│ method             │ unavailable │
+│ n clusters         │           1 │
+│ degrees of freedom │ unavailable │
+│ ICC                │ unavailable │
+│ design effect      │ unavailable │
+└────────────────────┴─────────────┘
+Supplied clusters determine primary uncertainty; each question keeps equal 
+weight. --ci selects the independent-question diagnostic below, which ignores 
+those groups.
+   independent diagnostic    
+┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ metric ┃            value ┃
+┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│ method │              clt │
+│ SE     │           0.0250 │
+│ 95% CI │ [0.7779, 0.8757] │
+└────────┴──────────────────┘
+Only one independent cluster is observed; at least two are needed to estimate a 
+clustered interval.

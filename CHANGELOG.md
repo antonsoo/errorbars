@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Primary summary uncertainty
+
+- Make supplied multi-question clusters select `summarize`'s primary CR2 SE and
+  Student-t interval, using the same policy as leaderboard entries. The old
+  independent-question estimate stays under `unclustered`; `--ci` selects that
+  diagnostic. Existing nested `clustered` field names remain aliases of the
+  selected estimate. Top-level `method`, SE and endpoints change for grouped data.
+- Retain descriptive means with `interval_status` and null uncertainty when only
+  one cluster, or one continuous/repeated question, is observed. The command
+  previously aborted those summaries. A single independent binary answer retains
+  its Wilson interval. Within/between-question variance is omitted when one
+  question cannot estimate the between-question component.
+- Retain real CLI captures and a dense-regression/SciPy oracle audit of 173 public
+  submissions in [the summary study](studies/summary-inference/README.md).
+
 ### Repeated-score means
 
 - Average each question's repeated grades with one final rounding, using the

@@ -1,0 +1,13 @@
+{
+  "baseline_revision": "0faa5857aea7464dbeb71d4ff9fe9490d3c043f4",
+  "baseline_cli_sha256": "ec3e09e061f604469f1a1b7e3b567e899e0f36548171dc60d422f05f6a5f1078",
+  "source_sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc",
+  "csv_sha256": "9d801a5d5dd6eb85543a84ba87a32fbbeb673d053c5d9416082eb2d6a3657e16",
+  "csv_observations": 86441,
+  "models": 173,
+  "pairwise": 14878,
+  "untested_pairs": 0,
+  "groups": 2,
+  "complete_json_unchanged": true,
+  "canonical_json_sha256": "989038550db9dca721c1265170f3e374a5dc84527d2bc2a209f3fc7067aec3f8"
+}

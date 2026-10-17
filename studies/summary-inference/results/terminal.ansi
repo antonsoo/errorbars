@@ -1,0 +1,29 @@
+               summarize:                
+20251205_sonar-foundation-agent_claude-op
+                 us-4-5                  
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ metric             ┃            value ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│ n                  │              500 │
+│ mean               │           0.7920 │
+│ SE                 │           0.0305 │
+│ 95% CI             │ [0.7003, 0.8837] │
+│ method             │    clustered_cr2 │
+│ n clusters         │               12 │
+│ degrees of freedom │              3.3 │
+│ ICC                │           0.0590 │
+│ design effect      │           3.3987 │
+└────────────────────┴──────────────────┘
+Supplied clusters determine primary uncertainty; each question keeps equal 
+weight. --ci selects the independent-question diagnostic below, which ignores 
+those groups.
+   independent diagnostic    
+┏━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ metric ┃            value ┃
+┡━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│ method │              clt │
+│ SE     │           0.0182 │
+│ 95% CI │ [0.7564, 0.8276] │
+└────────┴──────────────────┘
+The interval uses 12 clusters and 3.3 effective degrees of freedom; few 
+independent clusters limit precision.

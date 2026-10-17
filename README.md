@@ -105,10 +105,13 @@ source installation, separate from a new PyPI release.
 
 ## Features
 
-- **`summarize`** — mean, SE, and 95% CI (CLT by default, Wilson for binary scores with few
-  questions or a score near 0 or 1, bootstrap on request); clustered SE with its effective degrees of freedom, design effect and
-  ICC when a `cluster_id` column is present; within/between-question variance decomposition
-  when a `sample` column is present.
+- **`summarize`** — mean, SE, and 95% CI. This checkout makes supplied multi-question
+  clusters determine the primary CR2 interval, consistently with `leaderboard`.
+  `--ci` chooses an explicitly labelled independent-question diagnostic when groups
+  are present; otherwise it selects CLT, Wilson or bootstrap as before.
+  Insufficient questions or groups retain the mean with unavailable uncertainty.
+  [Retained SWE-bench reproduction and independent covariance audit](studies/summary-inference/README.md).
+  ICC, design effect and repeated-generation variance diagnostics remain available.
 - **`compare`** — selects exact binary, clustered, or paired-t inference from the shared
   observations and retains diagnostic SEs, intervals and p-values; the correlation between the two models'
   per-question scores and how much pairing shrank the SE vs. an unpaired comparison; a

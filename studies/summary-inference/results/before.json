@@ -1,0 +1,196 @@
+{
+  "revision": "0faa5857aea7464dbeb71d4ff9fe9490d3c043f4",
+  "full_summary": {
+    "mean": 0.792,
+    "se": 0.018169542221229962,
+    "ci_low": 0.7563883516308094,
+    "ci_high": 0.8276116483691907,
+    "confidence": 0.95,
+    "method": "clt",
+    "n": 500,
+    "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+    "is_binary": true,
+    "analysis_unit": "question",
+    "n_questions": 500,
+    "n_observations": 500,
+    "clustered": {
+      "clustered_se": 0.030459418671662835,
+      "clustered_ci_low": 0.7002896677366969,
+      "clustered_ci_high": 0.8837103322633032,
+      "clustered_dof": 3.330800316130594,
+      "icc": 0.058983422696892336,
+      "design_effect": 3.3986591896736216,
+      "n_clusters": 12
+    }
+  },
+  "leaderboard": {
+    "entries": [
+      {
+        "model": "django-only",
+        "mean": 0.8268398268398268,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 231,
+        "method": "unavailable",
+        "interval_status": "fewer_than_two_clusters",
+        "n_observations": 231,
+        "analysis_unit": "question",
+        "confidence": 0.95,
+        "n_clusters": 1,
+        "dof_clustered": null,
+        "unclustered": {
+          "mean": 0.8268398268398268,
+          "se": 0.02495001329539699,
+          "ci_low": 0.7779386993670532,
+          "ci_high": 0.8757409543126005,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 231
+        },
+        "warnings": [
+          "Only one independent cluster is observed; at least two are needed to estimate a clustered interval."
+        ]
+      },
+      {
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "interval_status": "available",
+        "n_observations": 500,
+        "analysis_unit": "question",
+        "confidence": 0.95,
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018169542221229962,
+          "ci_low": 0.7563883516308094,
+          "ci_high": 0.8276116483691907,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ]
+      },
+      {
+        "model": "20251215_livesweagent_claude-opus-4-5",
+        "mean": 0.792,
+        "se": 0.027529777776583168,
+        "ci_low": 0.7091105301042993,
+        "ci_high": 0.8748894698957008,
+        "n": 500,
+        "method": "clustered_cr2",
+        "interval_status": "available",
+        "n_observations": 500,
+        "analysis_unit": "question",
+        "confidence": 0.95,
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018169542221229962,
+          "ci_low": 0.7563883516308094,
+          "ci_high": 0.8276116483691907,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ]
+      }
+    ],
+    "pairwise": [
+      {
+        "model_a": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "model_b": "20251215_livesweagent_claude-opus-4-5",
+        "mean_diff": 0.0,
+        "p_value": 1.0,
+        "p_value_clustered": 1.0,
+        "mcnemar": {
+          "n01": 18,
+          "n10": 18,
+          "p_value": 1.0
+        },
+        "test": "clustered_t",
+        "p_value_used": 1.0,
+        "p_holm": 1.0,
+        "n_shared": 500,
+        "warnings": [
+          "Clustered inference rests on 3.3 effective degrees of freedom: 12 clusters, the largest holding 46% of the questions. Its interval is wide because few independent clusters carry the estimate."
+        ]
+      }
+    ],
+    "groups": [
+      [
+        "django-only"
+      ],
+      [
+        "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "20251215_livesweagent_claude-opus-4-5"
+      ]
+    ],
+    "group_status": "complete",
+    "alpha": 0.05,
+    "higher_is_better": true,
+    "direction_source": "default",
+    "rank_comparisons": {
+      "django-only": {
+        "non_significant": [],
+        "significant": [],
+        "untested": [
+          2,
+          3
+        ]
+      },
+      "20251205_sonar-foundation-agent_claude-opus-4-5": {
+        "non_significant": [
+          3
+        ],
+        "significant": [],
+        "untested": [
+          1
+        ]
+      },
+      "20251215_livesweagent_claude-opus-4-5": {
+        "non_significant": [
+          2
+        ],
+        "significant": [],
+        "untested": [
+          1
+        ]
+      }
+    },
+    "untested_pairs": [
+      {
+        "model_a": "django-only",
+        "model_b": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "n_shared": 231,
+        "reason": "fewer_than_two_shared_clusters"
+      },
+      {
+        "model_a": "django-only",
+        "model_b": "20251215_livesweagent_claude-opus-4-5",
+        "n_shared": 231,
+        "reason": "fewer_than_two_shared_clusters"
+      }
+    ],
+    "warnings": [
+      "The models were not scored on the same questions. Each mean is over that model's own questions; each paired test uses the questions its two models share.",
+      "2 model pairs cannot be tested: 2 with only one shared independent cluster. Untested pairs establish neither a difference nor equivalence."
+    ]
+  },
+  "one_cluster": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "error: need at least 2 independent clusters; one cluster cannot estimate a clustered SE\n"
+  }
+}

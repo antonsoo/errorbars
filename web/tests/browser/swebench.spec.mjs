@@ -26,7 +26,7 @@ const row = (page, name) => page.locator('#result-table tr', { has: page.getByRo
 
 test('the default pair differs on tasks and not across repositories', async ({ page }) => {
   const clean = await boot(page);
-  await expect(page.locator('#submission-count')).toHaveText('173');
+  await expect(page.locator('#submission-count')).toHaveText('172');
   await expect(page.locator('#verdict')).toHaveText('Different on tasks like these.');
   await expect(page.locator('#verdict-detail')).toContainText('Claude 4.5 Opus (high) is 4.0 points ahead of GPT 5.2 (high)');
   // The same numbers `errorbars compare` prints for this pair (studies/swe-bench-verified/README.md).

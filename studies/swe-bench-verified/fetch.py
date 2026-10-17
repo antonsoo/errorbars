@@ -146,7 +146,7 @@ def build(commit: str, cache: Path) -> dict[str, Any]:
             "open_weights_model": tags.get("os_model"),
         }
         if len(covered) < N_INSTANCES:
-            # A run that stopped early: say which tasks it reported at all.
+            # Preserve which tasks have records; absence does not establish why.
             record["evaluated"] = _bits_to_hex([int(i in covered) for i in instances])
             record["n_evaluated"] = len(covered)
         if name in peeked:

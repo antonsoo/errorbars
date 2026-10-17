@@ -36,6 +36,12 @@ export const repositoryIndex: Int32Array = Int32Array.from(instances, (instance)
 );
 
 export function unpack(hex: string, length: number): Uint8Array {
+  if (!Number.isSafeInteger(length) || length < 1) throw new RangeError("mask width must be positive");
+  if (typeof hex !== "string" || !/^[0-9a-f]+$/i.test(hex) || hex.length > Math.ceil(length / 4)) {
+    throw new RangeError(`expected a hexadecimal mask of at most ${length} bits`);
+  }
+  if ((BigInt(`0x${hex}`) >> BigInt(length)) !== 0n) throw new RangeError("mask has out-of-range task bits");
+  hex = hex.padStart(Math.ceil(length / 4), "0");
   const bits = new Uint8Array(length);
   // The string is the outcomes as one big-endian number, left-padded to whole hex digits.
   const offset = hex.length * 4 - length;
@@ -47,8 +53,27 @@ export function unpack(hex: string, length: number): Uint8Array {
   return bits;
 }
 
+/** The fixed 500-task view needs a recorded outcome for every task it compares. */
+export function hasCompleteOutcomes(sub: {
+  id: string; resolved: string; n_resolved: number; evaluated?: string; n_evaluated?: number;
+}, length: number): boolean {
+  const resolved = unpack(sub.resolved, length);
+  const evaluated = sub.evaluated === undefined ? new Uint8Array(length).fill(1) : unpack(sub.evaluated, length);
+  const nResolved = resolved.reduce((sum, bit) => sum + bit, 0);
+  const nEvaluated = evaluated.reduce((sum, bit) => sum + bit, 0);
+  if (!Number.isInteger(sub.n_resolved) || nResolved !== sub.n_resolved
+    || (sub.n_evaluated !== undefined && (!Number.isInteger(sub.n_evaluated) || nEvaluated !== sub.n_evaluated))) {
+    throw new RangeError(`${sub.id}: outcome counts disagree with task masks`);
+  }
+  if (resolved.some((bit, i) => bit !== 0 && evaluated[i] === 0)) {
+    throw new RangeError(`${sub.id}: resolved tasks must be included in evaluated tasks`);
+  }
+  return nEvaluated === length;
+}
+
 export const submissions: readonly Submission[] = raw.submissions
   .filter((s) => {
+    if (!hasCompleteOutcomes(s, instances.length)) return false;
     const computed = (100 * s.n_resolved) / instances.length;
     return s.reported === null || Math.abs(s.reported - computed) <= REPORTED_TOLERANCE;
   })

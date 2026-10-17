@@ -18,6 +18,7 @@ from typing import Any
 
 import figures
 import numpy as np
+from cohorts import decode_submission
 from numpy.typing import NDArray
 
 from errorbars.compare import paired_compare
@@ -52,10 +53,16 @@ def load(path: Path) -> tuple[list[str], NDArray[Any], list[dict[str, Any]], Flo
     repo = np.array([iid.rsplit("-", 1)[0].replace("__", "/") for iid in instances])
     kept, excluded = [], []
     for sub in data["submissions"]:
+        outcomes = decode_submission(sub, instances)
         reported = sub.get("reported")
         computed = 100.0 * sub["n_resolved"] / len(instances)
         if reported is not None and abs(float(reported) - computed) > REPORTED_TOLERANCE:
             excluded.append({"id": sub["id"], "reported": float(reported), "per_task_file": computed})
+        elif not outcomes.complete:
+            excluded.append({
+                "id": sub["id"], "reason": "incomplete_outcomes", "tasks_reported": len(outcomes.evaluated),
+                "tasks_missing": outcomes.total - len(outcomes.evaluated),
+            })
         else:
             kept.append(sub)
     width = len(instances)
@@ -388,9 +395,9 @@ def main() -> None:
         "source": source,
         "submissions": {
             "analysed": len(subs),
-            "excluded_contradictory": excluded,
+            "excluded_contradictory": [s for s in excluded if s.get("reason") != "incomplete_outcomes"],
             "incomplete_runs": [
-                {"id": s["id"], "tasks_reported": s["n_evaluated"]} for s in subs if "n_evaluated" in s
+                s for s in excluded if s.get("reason") == "incomplete_outcomes"
             ],
             "checked_by_swe_bench": sum(s["checked"] is True for s in subs),
             "at_or_above_strong": len(strong),

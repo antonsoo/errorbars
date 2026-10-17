@@ -6,8 +6,10 @@
 ID is a submission directory name from SWE-bench/experiments, or a unique part
 of one. --mine adds a run of your own: FILE is the evaluation report the
 SWE-bench harness writes (a JSON object with "resolved_ids" or "resolved"), or a
-text file with one resolved task id per line. Tasks it does not list count as
-unresolved, as on the leaderboard.
+text file with one resolved task id per line. Those resolved-only own-run inputs
+retain the documented full-benchmark convention: absent tasks count as unresolved.
+Public submissions with an explicit evaluated mask export only recorded outcomes;
+an observed-subset mean is not the official resolved / 500 benchmark score.
 
 The repository of each task goes in the cluster_id column, so errorbars also
 reports the repository-level comparison. Pass --cluster-col none to the CLI to
@@ -21,6 +23,8 @@ import csv
 import json
 import sys
 from pathlib import Path
+
+from cohorts import TaskOutcomes, decode_submission
 
 HERE = Path(__file__).parent
 
@@ -66,28 +70,45 @@ def main() -> None:
     instances: list[str] = data["instances"]
     by_id = {sub["id"]: sub for sub in data["submissions"]}
     if args.list:
-        for sub in sorted(data["submissions"], key=lambda s: -s["n_resolved"]):
-            print(f"{100 * sub['n_resolved'] / len(instances):5.1f}  {sub['id']}")
+        decoded = [decode_submission(sub, instances) for sub in data["submissions"]]
+        for sub in sorted(decoded, key=lambda s: -len(s.resolved)):
+            suffix = f"  [{len(sub.evaluated)}/{sub.total} outcomes recorded]" if not sub.complete else ""
+            print(f"{100 * len(sub.resolved) / sub.total:5.1f}  {sub.name}{suffix}")
         return
 
-    columns: list[tuple[str, set[str]]] = []
+    columns: list[TaskOutcomes] = []
     for wanted in args.ids:
         matches = [wanted] if wanted in by_id else [sid for sid in by_id if wanted in sid]
         if len(matches) != 1:
             hint = ", ".join(matches[:4]) if matches else "see --list"
             raise SystemExit(f"{wanted!r} names {len(matches)} submissions ({hint})")
-        bits = f"{int(by_id[matches[0]]['resolved'], 16):0{len(instances)}b}"
-        columns.append((matches[0], {iid for iid, bit in zip(instances, bits, strict=True) if bit == "1"}))
-    columns += [_own_run(spec, set(instances)) for spec in args.mine]
+        columns.append(decode_submission(by_id[matches[0]], instances))
+    for spec in args.mine:
+        name, resolved = _own_run(spec, set(instances))
+        columns.append(TaskOutcomes(name, frozenset(resolved), frozenset(instances), len(instances)))
     if not columns:
         parser.error("name at least one submission, or --mine NAME=FILE")
 
     writer = csv.writer(sys.stdout, lineterminator="\n")
     writer.writerow(["question_id", "model", "score", "cluster_id"])
-    for name, resolved in columns:
+    for sub in columns:
+        if not sub.complete:
+            print(
+                f"notice: {sub.name}: exporting {len(sub.evaluated)} recorded task outcomes "
+                f"from a {sub.total}-task benchmark; "
+                f"{sub.total - len(sub.evaluated)} unobserved tasks omitted. "
+                "Means describe the observed subset, not the official full-benchmark score.",
+                file=sys.stderr,
+            )
         for iid in instances:
-            writer.writerow([iid, name, int(iid in resolved), iid.rsplit("-", 1)[0].replace("__", "/")])
+            if iid in sub.evaluated:
+                writer.writerow([
+                    iid, sub.name, int(iid in sub.resolved), iid.rsplit("-", 1)[0].replace("__", "/")
+                ])
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except ValueError as exc:
+        raise SystemExit(f"error: {exc}") from None

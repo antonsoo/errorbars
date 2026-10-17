@@ -28,6 +28,39 @@ async function download(page, name) {
   return { name: item.suggestedFilename(), text: await readFile(await item.path(), 'utf8') };
 }
 
+for (const width of [375, 1440]) {
+  test(`native partial SWE-bench outcomes remain missing in the offline report at ${width}px`, async ({ page, context, browserName }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    const clean = await open(page, context, 'native-partial');
+    const before = await page.locator('#inference-description').textContent();
+    const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
+    expect(data.cohort).toMatchObject({ n_shared: 441, n_only_a: 0, n_only_b: 59,
+      n_observations_a: 441, n_observations_b: 500 });
+    expect(data.comparison.n).toBe(441);
+    expect(data.comparison.mean_a).toBeCloseTo(359 / 441, 12);
+    expect(data.comparison.mean_b).toBeCloseTo(355 / 441, 12);
+    expect(data.comparison.mcnemar.p_value).toBeCloseTo(0.6439689563703723, 12);
+    const missing = data.questions.filter(q => q.presence === 'only_b');
+    expect(missing).toHaveLength(59);
+    expect(missing.every(q => q.observations_a.length === 0 && q.observations_b.length === 1)).toBe(true);
+    await page.getByRole('button', { name: 'Inspect excluded questions', exact: true }).click();
+    await expect(page.locator('#row-status')).toContainText('of 59');
+    await page.locator('#question-rows').getByRole('button', { name: /^Inspect question / }).first().click();
+    await expect(page.locator('#inspector')).toContainText('Missing is not zero');
+    const csv = (await download(page, 'Download shown questions (CSV)')).text;
+    expect(csv.trim().split('\r\n')).toHaveLength(60);
+    expect(csv.match(/"only_b"/g)).toHaveLength(59);
+    await expect(page.locator('#inference-description')).toHaveText(before);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+    if ((browserName === 'chromium' && width === 1440) || (browserName === 'firefox' && width === 375)) {
+      await page.locator('#inspector').screenshot({
+        path: fileURLToPath(new URL(`../../../docs/assets/observed-cohorts/report-${browserName}-${width}.png`, import.meta.url)),
+      });
+    }
+    await clean();
+  });
+}
+
 test('native loss direction and original score units survive offline question exports', async ({ page, context }) => {
   const clean = await open(page, context, 'loss');
   await expect(page.locator('#effect-value')).toHaveText('-0.5406');

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import vectors from "../paired-vectors.json";
-import { instances, repositories, repositoryIndex, submissions, unpack } from "./outcomes.ts";
+import raw from "../../studies/swe-bench-verified/data/outcomes.json";
+import { hasCompleteOutcomes, instances, repositories, repositoryIndex, submissions, unpack } from "./outcomes.ts";
 import { clusterDegreesOfFreedom, mcnemarExact, pairedCompare } from "./paired.ts";
 import { tCritical, tTwoSidedP } from "./tdist.ts";
 
@@ -61,8 +62,25 @@ describe("the packed data", () => {
   });
 
   it("leaves out the two submissions whose per-task file contradicts their score", () => {
-    expect(submissions.length).toBe(173);
+    expect(submissions.length).toBe(172);
     expect(submissions.some((s) => s.id === "20260226_mini-v2.0.0_gemini-3-pro-high")).toBe(false);
+  });
+
+  it("does not turn 59 unobserved tasks into failures in the fixed-cohort view", () => {
+    const id = "20260901_mini-v2.4.2_gemini-3-5-flash";
+    const partial = raw.submissions.find((s) => s.id === id)!;
+    expect(hasCompleteOutcomes(partial, 500)).toBe(false);
+    expect(submissions.some((s) => s.id === id)).toBe(false);
+    expect(partial.n_evaluated).toBe(441);
+    expect(unpack(partial.evaluated!, 500).reduce((sum, bit) => sum + bit, 0)).toBe(441);
+  });
+
+  it("rejects inconsistent masks instead of manufacturing complete observations", () => {
+    const sub = { id: "m", resolved: "10", n_resolved: 1, evaluated: "1f", n_evaluated: 5 };
+    expect(() => hasCompleteOutcomes({ ...sub, evaluated: "0f", n_evaluated: 4 }, 5)).toThrow(/included/);
+    expect(() => hasCompleteOutcomes({ ...sub, n_evaluated: 4 }, 5)).toThrow(/counts/);
+    expect(() => hasCompleteOutcomes({ ...sub, evaluated: "20" }, 5)).toThrow(/out-of-range/);
+    expect(() => unpack("zz", 5)).toThrow(/hexadecimal/);
   });
 });
 

@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from errorbars.inputs import load_inputs
@@ -33,6 +35,20 @@ def build(output: Path) -> None:
         load_csv(ROOT / "examples/data/reading_comprehension.csv"), "tuned-70b", "baseline-70b"
     )
     write_comparison_html(clustered, output / "clustered.html")
+    partial_id = "20260901_mini-v2.4.2_gemini-3-5-flash"
+    peer_id = "20251205_sonar-foundation-agent_claude-opus-4-5"
+    native_csv = output / "native-partial.csv"
+    converted = subprocess.run(
+        [sys.executable, str(ROOT / "studies/swe-bench-verified/to_csv.py"), partial_id, peer_id],
+        capture_output=True, check=True,
+    )
+    native_csv.write_bytes(converted.stdout)
+    subprocess.run(
+        [sys.executable, "-m", "errorbars.cli", "compare", str(native_csv),
+         "--model-a", partial_id, "--model-b", peer_id,
+         "--html", str(output / "native-partial.html"), "--json"],
+        capture_output=True, check=True,
+    )
     for name, filename in (("two-wins", "two-questions.csv"), ("binary-repeats", "repeated.csv")):
         data = load_csv(ROOT / "examples/leaderboard-tests" / filename)
         a, b = data.models()

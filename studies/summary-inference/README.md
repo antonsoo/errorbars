@@ -127,3 +127,27 @@ intervals, warnings and rank comparisons. The
 [receipt](results/leaderboard-compatibility.json) retains the baseline revision
 and canonical JSON hash. This audit honors the partial run's mask and does not
 reproduce the historical study's assumption of 500 observations for every run.
+
+## Package verification
+
+The clean source archive at `80f51ec` passed Ruff, strict mypy (21 source files)
+and all 825 Python tests on Python 3.14.7 with the locked development dependencies.
+A separate Python 3.10.21 environment with the lowest allowed direct dependencies
+also passed all 825 tests; its existing matplotlib/pyparsing deprecation warning
+does not affect the results. Both the wheel and source distribution were built
+from that archive, not from the working checkout.
+
+| Installed artifact | Python | NumPy | Actual summary replay |
+|---|---|---|---|
+| Wheel, required dependency only | 3.14.7 | 2.5.4 | 9 cases passed |
+| Wheel, minimum required dependency | 3.10.21 | 1.24.0 | 9 cases passed |
+| Source distribution, required dependency only | 3.12.12 | 2.5.4 | 9 cases passed |
+
+The [artifact receipt](results/artifacts.json) retains sizes, SHA-256 hashes,
+installed-file comparisons and actual README power/leaderboard/comparison
+outputs. Separate [3.14 wheel](results/wheel314-replay.json),
+[3.10 wheel](results/wheel310-replay.json), and
+[3.12 source-distribution](results/sdist312-replay.json) receipts retain every
+summary result. Required-dependency environments use the plain terminal output
+without Rich. This verification stage did not publish a registry release, tag,
+or hosted demo; the package still declares version 0.2.4.

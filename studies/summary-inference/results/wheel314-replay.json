@@ -1,0 +1,282 @@
+{
+  "python": "3.14.7",
+  "numpy": "2.5.4",
+  "policy_module_sha256": "fe3db2e30bddc3715f80e228196f22d6db7be97d907190ca42151ee36c95f8ba",
+  "source_sha256": "56b95536e6fcaf860195dfea68f42bb3d9fd9603a9b909c1f24468058ff04e7d",
+  "cases": {
+    "auto": {
+      "mean": 0.792,
+      "se": 0.030459418671662835,
+      "ci_low": 0.7002896677366969,
+      "ci_high": 0.8837103322633032,
+      "n": 500,
+      "method": "clustered_cr2",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": 12,
+      "dof_clustered": 3.330800316130594,
+      "unclustered": {
+        "mean": 0.792,
+        "se": 0.018169542221229962,
+        "ci_low": 0.7563883516308094,
+        "ci_high": 0.8276116483691907,
+        "confidence": 0.95,
+        "method": "clt",
+        "n": 500
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+      ],
+      "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 500,
+      "n_observations": 500,
+      "clustered": {
+        "clustered_se": 0.030459418671662835,
+        "clustered_ci_low": 0.7002896677366969,
+        "clustered_ci_high": 0.8837103322633032,
+        "clustered_dof": 3.330800316130594,
+        "icc": 0.058983422696892336,
+        "design_effect": 3.3986591896736216,
+        "n_clusters": 12
+      }
+    },
+    "clt": {
+      "mean": 0.792,
+      "se": 0.030459418671662835,
+      "ci_low": 0.7002896677366969,
+      "ci_high": 0.8837103322633032,
+      "n": 500,
+      "method": "clustered_cr2",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": 12,
+      "dof_clustered": 3.330800316130594,
+      "unclustered": {
+        "mean": 0.792,
+        "se": 0.018169542221229962,
+        "ci_low": 0.7563883516308094,
+        "ci_high": 0.8276116483691907,
+        "confidence": 0.95,
+        "method": "clt",
+        "n": 500
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+      ],
+      "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 500,
+      "n_observations": 500,
+      "clustered": {
+        "clustered_se": 0.030459418671662835,
+        "clustered_ci_low": 0.7002896677366969,
+        "clustered_ci_high": 0.8837103322633032,
+        "clustered_dof": 3.330800316130594,
+        "icc": 0.058983422696892336,
+        "design_effect": 3.3986591896736216,
+        "n_clusters": 12
+      }
+    },
+    "wilson": {
+      "mean": 0.792,
+      "se": 0.030459418671662835,
+      "ci_low": 0.7002896677366969,
+      "ci_high": 0.8837103322633032,
+      "n": 500,
+      "method": "clustered_cr2",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": 12,
+      "dof_clustered": 3.330800316130594,
+      "unclustered": {
+        "mean": 0.792,
+        "se": 0.018151363585141474,
+        "ci_low": 0.7542636968800828,
+        "ci_high": 0.8252836882903708,
+        "confidence": 0.95,
+        "method": "wilson",
+        "n": 500
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+      ],
+      "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 500,
+      "n_observations": 500,
+      "clustered": {
+        "clustered_se": 0.030459418671662835,
+        "clustered_ci_low": 0.7002896677366969,
+        "clustered_ci_high": 0.8837103322633032,
+        "clustered_dof": 3.330800316130594,
+        "icc": 0.058983422696892336,
+        "design_effect": 3.3986591896736216,
+        "n_clusters": 12
+      }
+    },
+    "bootstrap": {
+      "mean": 0.792,
+      "se": 0.030459418671662835,
+      "ci_low": 0.7002896677366969,
+      "ci_high": 0.8837103322633032,
+      "n": 500,
+      "method": "clustered_cr2",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": 12,
+      "dof_clustered": 3.330800316130594,
+      "unclustered": {
+        "mean": 0.792,
+        "se": 0.01838620604195606,
+        "ci_low": 0.756,
+        "ci_high": 0.8260499999999992,
+        "confidence": 0.95,
+        "method": "bootstrap",
+        "n": 500
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+      ],
+      "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 500,
+      "n_observations": 500,
+      "clustered": {
+        "clustered_se": 0.030459418671662835,
+        "clustered_ci_low": 0.7002896677366969,
+        "clustered_ci_high": 0.8837103322633032,
+        "clustered_dof": 3.330800316130594,
+        "icc": 0.058983422696892336,
+        "design_effect": 3.3986591896736216,
+        "n_clusters": 12
+      }
+    },
+    "one-cluster": {
+      "mean": 0.8268398268398268,
+      "se": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n": 231,
+      "method": "unavailable",
+      "confidence": 0.95,
+      "interval_status": "fewer_than_two_clusters",
+      "n_clusters": 1,
+      "dof_clustered": null,
+      "unclustered": {
+        "mean": 0.8268398268398268,
+        "se": 0.02495001329539699,
+        "ci_low": 0.7779386993670532,
+        "ci_high": 0.8757409543126005,
+        "confidence": 0.95,
+        "method": "clt",
+        "n": 231
+      },
+      "warnings": [
+        "Only one independent cluster is observed; at least two are needed to estimate a clustered interval."
+      ],
+      "model": "django-only",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 231,
+      "n_observations": 231,
+      "clustered": {
+        "clustered_se": null,
+        "clustered_ci_low": null,
+        "clustered_ci_high": null,
+        "clustered_dof": null,
+        "icc": null,
+        "design_effect": null,
+        "n_clusters": 1
+      }
+    },
+    "one-continuous": {
+      "mean": 0.3,
+      "se": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n": 1,
+      "method": "unavailable",
+      "confidence": 0.95,
+      "interval_status": "fewer_than_two_questions",
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": [
+        "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+      ],
+      "model": "m",
+      "is_binary": false,
+      "analysis_unit": "question",
+      "n_questions": 1,
+      "n_observations": 1
+    },
+    "one-repeated": {
+      "mean": 0.5,
+      "se": null,
+      "ci_low": null,
+      "ci_high": null,
+      "n": 1,
+      "method": "unavailable",
+      "confidence": 0.95,
+      "interval_status": "fewer_than_two_questions",
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": [
+        "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+      ],
+      "model": "m",
+      "is_binary": false,
+      "analysis_unit": "question",
+      "n_questions": 1,
+      "n_observations": 2
+    },
+    "unequal-repetition": {
+      "mean": 0.6666666666666666,
+      "se": 0.33333333333333337,
+      "ci_low": 0.01334533848664865,
+      "ci_high": 1.3199879948466846,
+      "n": 3,
+      "method": "clt",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": [],
+      "model": "m",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 3,
+      "n_observations": 14,
+      "within_between": {
+        "var_within": 0.0,
+        "var_between": 0.48000000000000015
+      }
+    },
+    "one-binary": {
+      "mean": 1.0,
+      "se": 0.9799819922700268,
+      "ci_low": 0.20654931437723745,
+      "ci_high": 1.0,
+      "n": 1,
+      "method": "wilson",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": null,
+      "dof_clustered": null,
+      "unclustered": null,
+      "warnings": [],
+      "model": "m",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 1,
+      "n_observations": 1
+    }
+  }
+}

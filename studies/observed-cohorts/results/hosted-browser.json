@@ -1,0 +1,57 @@
+{
+  "url": "https://antonsoo.github.io/errorbars/swe-bench.html",
+  "scenarios": [
+    {
+      "browser": "chromium",
+      "width": 375,
+      "count": 172,
+      "partialExcluded": true,
+      "completePairUnchanged": true,
+      "offlineSwap": true,
+      "tableSha256": "f97a4167449a76c9b1d96db7994bd4484e31fbdaa2a5aa83403d7091a614620f",
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "violations": []
+    },
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "count": 172,
+      "partialExcluded": true,
+      "completePairUnchanged": true,
+      "offlineSwap": true,
+      "tableSha256": "f97a4167449a76c9b1d96db7994bd4484e31fbdaa2a5aa83403d7091a614620f",
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "violations": []
+    },
+    {
+      "browser": "firefox",
+      "width": 375,
+      "count": 172,
+      "partialExcluded": true,
+      "completePairUnchanged": true,
+      "offlineSwap": true,
+      "tableSha256": "f97a4167449a76c9b1d96db7994bd4484e31fbdaa2a5aa83403d7091a614620f",
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "violations": []
+    },
+    {
+      "browser": "firefox",
+      "width": 1440,
+      "count": 172,
+      "partialExcluded": true,
+      "completePairUnchanged": true,
+      "offlineSwap": true,
+      "tableSha256": "f97a4167449a76c9b1d96db7994bd4484e31fbdaa2a5aa83403d7091a614620f",
+      "errors": [],
+      "external": [],
+      "offlineRequests": [],
+      "violations": []
+    }
+  ]
+}

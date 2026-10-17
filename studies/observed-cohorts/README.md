@@ -178,3 +178,25 @@ retains artifact hashes, package-file hashes and all 65 static build files;
 the [final wheel replay](results/wheel-final-replay.json) retains the actual
 installed CLI outputs. Source, registry and hosted publication states in this
 receipt describe this local verification stage.
+
+## Public source and live build
+
+The [public-source receipt](results/public-source.json) verifies 137 pinned raw
+files at `45cc476`, including the native file, converter, case study, runtime
+and browser source. A fresh **pip** installation of PyPI 0.2.4 reproduced the
+old primary summary. The documented `--force-reinstall` Git command upgraded
+that same environment; all 29 package files matched the clean archive, all nine
+summary cases passed, and the downloaded public converter/native files replayed
+the 441-task comparison. This keeps checkout tooling distinct from installed
+wheel contents.
+
+The tested Node 24 static build was pushed to `gh-pages` as `c411e97`. The
+[canonical HTTP receipt](results/hosted.json) verified the root entry before
+and after every one of the 65 build files, including explicit `index.html` and
+`swe-bench.html`. Two polling passes were needed; an initial stale response
+was not treated as publication success. The
+[hosted browser receipt](results/hosted-browser.json) then checked both engines
+at 375 and 1440 pixels: 172 complete submissions, the partial run excluded,
+the ordinary complete comparison unchanged, and offline swapping with no
+external requests, script errors or CSP violations. No registry release or tag
+was created.

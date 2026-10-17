@@ -1,0 +1,1102 @@
+{
+  "source_revision": "45cc476a79166875d8f06b09d7ff837bb83d2540",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 36585,
+      "sha256": "3276b9c0cbb71e880ce42e43f4935a488614990acac56b0e47f1cb3be307619b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 35627,
+      "sha256": "a665d2e7178dc28f8a6c70be8d47c12695c12b750b032548eeb87ab186089911"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/after-chromium-1440.png",
+      "bytes": 100187,
+      "sha256": "3f9f2ca7cd89962daf5c4b46b80ea1bd88e2847389f70c7ce211b87d7e88b2d2"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/after-chromium-375.png",
+      "bytes": 66866,
+      "sha256": "2a5fa991b08d968971d69c51fcd7e4ba91e05ccd8e9b3c052c2109b600a1167d"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/after-firefox-1440.png",
+      "bytes": 157021,
+      "sha256": "37a26c5692007ec0932466ef9c0046d1d63ce25fe32a0e80675af743b12876e1"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/after-firefox-375.png",
+      "bytes": 107140,
+      "sha256": "13f3f0aa0788973015ad7c47477ec7b6cb2bea0ea469e63938ccff659081566e"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/before-chromium-1440.png",
+      "bytes": 99580,
+      "sha256": "f5b55999b24fa19871ed0464fc4535d83d47d6fe898262f0acf901dc3f711f1b"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/before-firefox-375.png",
+      "bytes": 104426,
+      "sha256": "454690f8684209c2e90f4e88cd1ae00962a984f8ea9ce627c03642ac48418898"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/report-chromium-1440.png",
+      "bytes": 32629,
+      "sha256": "a5d21b00efa4ce4a362069167216eabcc6da36a6327462addd9f275f10f29f6e"
+    },
+    {
+      "path": "docs/assets/observed-cohorts/report-firefox-375.png",
+      "bytes": 44864,
+      "sha256": "bcba42c2946f816bc85edc865fc27e1504a27b6305330c373b0541eace5bd23a"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 4500,
+      "sha256": "4d54b90965701e9f2d10e803c4e7a22a6f754045d990612740916d180b76c31b"
+    },
+    {
+      "path": "src/errorbars/__init__.py",
+      "bytes": 673,
+      "sha256": "7592e6d683a340ddebaa5d375660453aeda8c4745cfaf826e187a6dd9e855f55"
+    },
+    {
+      "path": "src/errorbars/_mean.py",
+      "bytes": 5318,
+      "sha256": "fe3db2e30bddc3715f80e228196f22d6db7be97d907190ca42151ee36c95f8ba"
+    },
+    {
+      "path": "src/errorbars/_output.py",
+      "bytes": 2098,
+      "sha256": "e0aed077234d1354bb87a165d7a4c6f0de2fb04c412ffa29810028e9646b7a4c"
+    },
+    {
+      "path": "src/errorbars/_tables.py",
+      "bytes": 5626,
+      "sha256": "865fb17db8ffb849f28da385ac3318a44bf5fc801edabf7ed0e27f7c6c9a0853"
+    },
+    {
+      "path": "src/errorbars/_validation.py",
+      "bytes": 1751,
+      "sha256": "b118489b9af12bb9d9bfe957c8ba9d220b95ac8f42d97d4f84c4bde6c9b84707"
+    },
+    {
+      "path": "src/errorbars/adapters/__init__.py",
+      "bytes": 77,
+      "sha256": "5e15a31e17f9390ace0c1cac9e328302efe08d7fe063da8255cea6d01e63d59f"
+    },
+    {
+      "path": "src/errorbars/adapters/_inspect_integrity.py",
+      "bytes": 8176,
+      "sha256": "5ffa5cb45a0c933172e4c2a8c6ed4412cd88f9cbf8aa503dad68e87295e1a770"
+    },
+    {
+      "path": "src/errorbars/adapters/_lm_eval_metric.py",
+      "bytes": 7270,
+      "sha256": "6e9bb54fa30907fb06722567d4f891752df9de3d7dd091d5b4368e0db173ab71"
+    },
+    {
+      "path": "src/errorbars/adapters/inspect_ai.py",
+      "bytes": 7976,
+      "sha256": "b0d9f555df247312b4d29e297ef5fe35b84c87dbe4c52dcde8932c1f37d20e7e"
+    },
+    {
+      "path": "src/errorbars/adapters/lm_eval.py",
+      "bytes": 14029,
+      "sha256": "d8c352a2e6eba24c290e38b3907936a5076aef2886e2c14e713c923f01dd2e65"
+    },
+    {
+      "path": "src/errorbars/cli.py",
+      "bytes": 32088,
+      "sha256": "23dd6478210f1eddb9e11d3685d968200f960f70d26a97ee926b4bd7e5819339"
+    },
+    {
+      "path": "src/errorbars/compare.py",
+      "bytes": 12322,
+      "sha256": "77f87c204037c965ec9ac07aba850c1f11d3677c5c15d03f581847ffe5e825f8"
+    },
+    {
+      "path": "src/errorbars/inputs.py",
+      "bytes": 8414,
+      "sha256": "91e9805d2adc827926e14b5ba4068a5bdcd79e2d66f1695b6a28ad136b7a0efb"
+    },
+    {
+      "path": "src/errorbars/io.py",
+      "bytes": 32436,
+      "sha256": "999c13a243924a34aaa1e9282915e3920505eb8e63b0ebd06e3066bd17cf4a9e"
+    },
+    {
+      "path": "src/errorbars/leaderboard.py",
+      "bytes": 19764,
+      "sha256": "965b2426dd6630c3c173cb21b7c579433dfbfa940b7e0755be4e3b1aacba483d"
+    },
+    {
+      "path": "src/errorbars/plot.py",
+      "bytes": 9169,
+      "sha256": "cf134936d4eac1a23fd667d67f0ed0db7c73ae25f91d7c5e3a1f2ea138284f3a"
+    },
+    {
+      "path": "src/errorbars/power.py",
+      "bytes": 14059,
+      "sha256": "88a4653eeb3796ce14a3b64e91d2b0a07cff7f8256a3890ebfe2eac923f92839"
+    },
+    {
+      "path": "src/errorbars/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/errorbars/report.py",
+      "bytes": 10089,
+      "sha256": "bc24d39307e0093c6119f7759670db027c6c5603872bf677716f0c26aaa1e79e"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/LICENSE.txt",
+      "bytes": 13870,
+      "sha256": "c5d4fecee0ec33e3b5f72ab76cebc170c89632775a823f3098b26568e1d6a5c5"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/ibm-plex-mono-400-latin.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/ibm-plex-sans-latin.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    },
+    {
+      "path": "src/errorbars/report_assets/fonts/spectral-500-latin.woff2",
+      "bytes": 22836,
+      "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+    },
+    {
+      "path": "src/errorbars/report_assets/report.css",
+      "bytes": 12519,
+      "sha256": "50a9ed290cdc6ef294aba721fe8d606f23d6039a5da1e7c4f6d5ed1b4e200991"
+    },
+    {
+      "path": "src/errorbars/report_assets/report.js",
+      "bytes": 22681,
+      "sha256": "ec8a2966ca92adb1744b4941bed413612fef2174134594d16229ea8e703e8161"
+    },
+    {
+      "path": "src/errorbars/report_assets/template.html",
+      "bytes": 10051,
+      "sha256": "ce0a3e3d8ed6b1b7bb0ad1ac9abd26292d6a2d1a4db2bcf4c45d115e530eb050"
+    },
+    {
+      "path": "src/errorbars/review.py",
+      "bytes": 14267,
+      "sha256": "c6fccdc3de40e7c63fe84e00693f0373fda82192071a1451665b340ded20095e"
+    },
+    {
+      "path": "src/errorbars/scoring.py",
+      "bytes": 2165,
+      "sha256": "0b908fec56a0e7fdebdb8c4b13640471c1bc424fa6c01e5c27a81ff3a06231aa"
+    },
+    {
+      "path": "src/errorbars/stats.py",
+      "bytes": 16292,
+      "sha256": "ad01c2c6d2d470043b60940228fd7e1dedf565e29310ab17cd6e15aa3963f920"
+    },
+    {
+      "path": "studies/observed-cohorts/README.md",
+      "bytes": 9139,
+      "sha256": "ecfeaadf9f33dfe0dce5d16dd333ee7fddc545f7dc581f578981bad6cd91ac1a"
+    },
+    {
+      "path": "studies/observed-cohorts/browser.mjs",
+      "bytes": 6839,
+      "sha256": "591562e6bbc5d40694fcd33eb974355a5a163a178c9457add967961ab097af5f"
+    },
+    {
+      "path": "studies/observed-cohorts/native/partial-details.json",
+      "bytes": 33544,
+      "sha256": "2217bde53ceffe19cfdb937fabe9c30018b631c973d6af42bcc77049d4ef12ed"
+    },
+    {
+      "path": "studies/observed-cohorts/oracle.py",
+      "bytes": 2554,
+      "sha256": "721fa56d4da981352d1a70f75f597783bacf5620e84ecc28f425300562cfdf53"
+    },
+    {
+      "path": "studies/observed-cohorts/replay.py",
+      "bytes": 3759,
+      "sha256": "611cd3eee5d105e9d3096f3260c795111c1eb85621092137e6ab18876852b5ac"
+    },
+    {
+      "path": "studies/observed-cohorts/results/after-browser.json",
+      "bytes": 8423,
+      "sha256": "0098aa6aa3c6fc2b79fd34d02f49f31e5c0d34f4a9daa48863c40b59788d101f"
+    },
+    {
+      "path": "studies/observed-cohorts/results/before-browser.json",
+      "bytes": 8876,
+      "sha256": "386a81cc9322e78239eebcf60476dd327916181e869395c456726e29c1589aea"
+    },
+    {
+      "path": "studies/observed-cohorts/results/before.json",
+      "bytes": 81861,
+      "sha256": "81fb2bb9274d654791e1fe54f49872a76e0616516f8d7fa8d7bd9b4909bf8927"
+    },
+    {
+      "path": "studies/observed-cohorts/results/complete-exports.json",
+      "bytes": 297,
+      "sha256": "3a8e0e46ae84b8e004e39397743757d1920438ea51d925635dc582ead3fa03b8"
+    },
+    {
+      "path": "studies/observed-cohorts/results/oracle.json",
+      "bytes": 644,
+      "sha256": "388d97c9d8d7e9cabc044e767708c2ebb1192ac8d7e95b403d029b76825d9753"
+    },
+    {
+      "path": "studies/observed-cohorts/results/sdist312-replay.json",
+      "bytes": 3533,
+      "sha256": "21c2adac97add51c49ecb7ae8084b7d081e97bcefb2ef9c5a101d9e0e40b241f"
+    },
+    {
+      "path": "studies/observed-cohorts/results/source-replay.json",
+      "bytes": 3533,
+      "sha256": "0658678de33e7ef4b9d425d94de5333096d52acb3c2d707d43190b0e49119842"
+    },
+    {
+      "path": "studies/observed-cohorts/results/wheel310-replay.json",
+      "bytes": 3534,
+      "sha256": "58f0371f314ff65057795cfbb79f6d105b9c03a91b18fef14b9069163c20878a"
+    },
+    {
+      "path": "studies/observed-cohorts/results/wheel314-replay.json",
+      "bytes": 3532,
+      "sha256": "d20490842c90e8c89997c614c5a4fa6b8ef4ff7ddb51b5943f652c1d94e91930"
+    },
+    {
+      "path": "studies/swe-bench-verified/README.md",
+      "bytes": 18503,
+      "sha256": "091d3999125216cf8281a2a9a6d1f27e249b10675737c6eb813300a76bfdb538"
+    },
+    {
+      "path": "studies/swe-bench-verified/analyze.py",
+      "bytes": 21069,
+      "sha256": "f12451522c6ee00ff510a0e24ae352240b4c5886f78da976874ad851bf8edc1e"
+    },
+    {
+      "path": "studies/swe-bench-verified/cohorts.py",
+      "bytes": 2685,
+      "sha256": "e3980542e03bc204fa2ecba68289c0dd9972e5a21241d6ba05bfb09e8a9562ba"
+    },
+    {
+      "path": "studies/swe-bench-verified/data/outcomes.json",
+      "bytes": 88605,
+      "sha256": "f9b1c893c6e843e453d82f361a86f5b6fc99e6b2c0542eea8be8beaf1b1bc2bc"
+    },
+    {
+      "path": "studies/swe-bench-verified/fetch.py",
+      "bytes": 7737,
+      "sha256": "9201e18cc09382e13cccc9d6362d773f0f6d84da9ef6c394f74b308ee9cca928"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures.py",
+      "bytes": 11043,
+      "sha256": "f315e05505e10ebacdaf055899bc1d7bfb461e72d81548512eb9b5ee19e0767f"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures/gaps-dark.svg",
+      "bytes": 7505,
+      "sha256": "e693f283c7b7f4308f15fe04e5c021ffca82d56eb68bf280dd4e5794a039ac7d"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures/gaps-light.svg",
+      "bytes": 7505,
+      "sha256": "002ca91a12b31b13ebf11dfe6714d6c0e790730b30268d5faec32b51c1e809d2"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures/leader-dark.svg",
+      "bytes": 20497,
+      "sha256": "001ceba8ffd04a531bd4b4d635c3e1858e4da97b1633e64dd830b6b29b43b7fc"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures/leader-light.svg",
+      "bytes": 20497,
+      "sha256": "9d98174899efcf6fcadfa406e55a96702e9f4496554e2f301b1a40d8535ab957"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures/records-dark.svg",
+      "bytes": 14682,
+      "sha256": "2d63eeae37ba92f324c658d27eb35fae271baae6e491f91f63959c5a69726026"
+    },
+    {
+      "path": "studies/swe-bench-verified/figures/records-light.svg",
+      "bytes": 14682,
+      "sha256": "4216794132228800ea51a230ff95d4230d7f0032767537804478c52e6fd050b9"
+    },
+    {
+      "path": "studies/swe-bench-verified/results.json",
+      "bytes": 30855,
+      "sha256": "f77f389092126aff9bf8566e2b6ac01e737b3db193d013145852768a1fc024b4"
+    },
+    {
+      "path": "studies/swe-bench-verified/to_csv.py",
+      "bytes": 5273,
+      "sha256": "96fb8f17c0536e4824ed5f48add891f5e4115f71a0e15cbbb3544707af6526e6"
+    },
+    {
+      "path": "web/src/assets.d.ts",
+      "bytes": 124,
+      "sha256": "7e5d1f29dfae5e40e8c59e5ba45ec8a6ced842cecc0caa17263429c433da6d1c"
+    },
+    {
+      "path": "web/src/chart.ts",
+      "bytes": 4115,
+      "sha256": "cf90481e2371d5b4f26eeead56215d2c78e1ec6efeaaf70ff57ed3471d9f0e88"
+    },
+    {
+      "path": "web/src/fonts/LICENSE.txt",
+      "bytes": 14057,
+      "sha256": "b62377415690bcd07dc10068c16de36d8ea176f6243c25f5f63c634f5e1fca3f"
+    },
+    {
+      "path": "web/src/fonts/fonts.css",
+      "bytes": 21662,
+      "sha256": "1592b9bd3f791e616e9002431275a963c1ad60c3099a63175c3cea744566ac9a"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-400-cyrillic-ext.woff2",
+      "bytes": 6912,
+      "sha256": "f8c22ec1804bd6966b70f43ac7c327025645b4c09597117fca2a5a6c750106fe"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-400-cyrillic.woff2",
+      "bytes": 8356,
+      "sha256": "7635422bd10ddbbcb0e0caa1154b928298f5c8319b8c00b30978d4395f4783ce"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-400-latin-ext.woff2",
+      "bytes": 13348,
+      "sha256": "6bc0f226a5b7884a8170e3f62c63d7675609d4631bdc5931b5cdab81821f00eb"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-400-latin.woff2",
+      "bytes": 14708,
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-400-vietnamese.woff2",
+      "bytes": 5868,
+      "sha256": "62632b6375305e70ddcafdd895218e6ae41a184fcd280a69c739460604ca00a9"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-500-cyrillic-ext.woff2",
+      "bytes": 6972,
+      "sha256": "3febe5c7f22e4b07b4552738673c3dbe8bced2dc5f48b866edf7ccd9552d109a"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-500-cyrillic.woff2",
+      "bytes": 8460,
+      "sha256": "1d89462e86cb8e87e7e9d6f6635605bd7c3081baca6caaecee84916bf7b60edc"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-500-latin-ext.woff2",
+      "bytes": 13432,
+      "sha256": "6bb06407c97584b0867a959e05e8874693bfeb8c317de190811c51598f2d99ea"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-500-latin.woff2",
+      "bytes": 14888,
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-500-vietnamese.woff2",
+      "bytes": 6040,
+      "sha256": "781633d95de88040fb77141d1e65d928c87c0144691fbc74da5a64d137a7e910"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-600-cyrillic-ext.woff2",
+      "bytes": 7692,
+      "sha256": "83109cdd4f8665b475dfc11d61bd44da328bf7e6eab3d3953d39c49b1b9f6015"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-600-cyrillic.woff2",
+      "bytes": 9352,
+      "sha256": "2b05a8695c7f9f4abd7178b279646a3b005a8ce57546bef6fd145f25d131e0aa"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-600-latin-ext.woff2",
+      "bytes": 14328,
+      "sha256": "32057cf50dd14bdb21a2c93766c4a2c43e4abe688ea3922df3203cac7751a98b"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-600-latin.woff2",
+      "bytes": 15620,
+      "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-mono-600-vietnamese.woff2",
+      "bytes": 6932,
+      "sha256": "51b74d53e106ba8a26dd33464b231a562069be2a234b923c115beb622e6f6bc6"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-sans-cyrillic-ext.woff2",
+      "bytes": 23568,
+      "sha256": "7d0037a170882a49e65a45c38ef195237bb07b1cc791d078379f0ac0d7ae1935"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-sans-cyrillic.woff2",
+      "bytes": 29512,
+      "sha256": "9409ee21811f0f5272b7e1d828fe8838005b0573481ef906e7e55b63f6610ab0"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-sans-greek.woff2",
+      "bytes": 19500,
+      "sha256": "f598dd0700f155e2facfaa8ecfacace397d4c2c153e9ce37ab7ad310e8505bc2"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-sans-latin-ext.woff2",
+      "bytes": 30964,
+      "sha256": "d160e20920ae4d6556518d352d3af27a74e9b0de3d8fe17b1c1044fc75aa2f81"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-sans-latin.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    },
+    {
+      "path": "web/src/fonts/ibm-plex-sans-vietnamese.woff2",
+      "bytes": 13160,
+      "sha256": "73e7f7b1c980416ae0c2461268b14c7cfcce0668e683dc43fbb11a82a227b9f2"
+    },
+    {
+      "path": "web/src/fonts/spectral-400-cyrillic-ext.woff2",
+      "bytes": 6520,
+      "sha256": "2063ca386de935a6ee88de6503ccbaa66bfd4588ca8e6516748f67f8b642122b"
+    },
+    {
+      "path": "web/src/fonts/spectral-400-cyrillic.woff2",
+      "bytes": 15372,
+      "sha256": "26ed02d522d35ca1630be575f96df8fb290882061571a87ef3ab7fc323d28f87"
+    },
+    {
+      "path": "web/src/fonts/spectral-400-latin-ext.woff2",
+      "bytes": 20240,
+      "sha256": "fc4b2566ccd9714a72c2137f822311cb0131296c83c8ee93848ae6f887969e85"
+    },
+    {
+      "path": "web/src/fonts/spectral-400-latin.woff2",
+      "bytes": 21696,
+      "sha256": "cf8daee3b83c1e662196c6e34e444bc41344d54bfeb4fb5351e197de6ce94539"
+    },
+    {
+      "path": "web/src/fonts/spectral-400-vietnamese.woff2",
+      "bytes": 7676,
+      "sha256": "e8c68397acd8950ca955de46c130c6a393ea087d50e677bace1def6460f44883"
+    },
+    {
+      "path": "web/src/fonts/spectral-500-cyrillic-ext.woff2",
+      "bytes": 6724,
+      "sha256": "aeb9fb4f370161bf5ee60f3492a9592ea06cdb3d3f51b1c79ab11c8e0f81dc80"
+    },
+    {
+      "path": "web/src/fonts/spectral-500-cyrillic.woff2",
+      "bytes": 16616,
+      "sha256": "48a05ffb93237d6d238ef45e0e906218fc6816f573fc0202c6f160813510369b"
+    },
+    {
+      "path": "web/src/fonts/spectral-500-latin-ext.woff2",
+      "bytes": 20644,
+      "sha256": "747fb031bc07d1d88891efbab9d64ec5106407499fe8eb227c9bc47b3e5f77cd"
+    },
+    {
+      "path": "web/src/fonts/spectral-500-latin.woff2",
+      "bytes": 22836,
+      "sha256": "2b70215ed40f2c73bbc7bb53cff9c8975a244c8462569e60989c77b8c5a87a00"
+    },
+    {
+      "path": "web/src/fonts/spectral-500-vietnamese.woff2",
+      "bytes": 7728,
+      "sha256": "682ecba3ca9a91afe404b4f8148d3f057a41fd002ad3d7c94cae52dcf7350ae8"
+    },
+    {
+      "path": "web/src/fonts/spectral-600-cyrillic-ext.woff2",
+      "bytes": 6792,
+      "sha256": "91038132400ffcf3db691aab8961e83e0c49e896e14f4509b064be49ca7822f6"
+    },
+    {
+      "path": "web/src/fonts/spectral-600-cyrillic.woff2",
+      "bytes": 16908,
+      "sha256": "a8297883e0f04031243b893bee1b629eb43dd90b3957e89d61b67109d655b04f"
+    },
+    {
+      "path": "web/src/fonts/spectral-600-latin-ext.woff2",
+      "bytes": 20824,
+      "sha256": "dea6bd9ca650814af1f750b7474d7205b7fe0e4c79a6b58c6f7157d90dc8815c"
+    },
+    {
+      "path": "web/src/fonts/spectral-600-latin.woff2",
+      "bytes": 22936,
+      "sha256": "33faca8b5795a0de1af77cbc43a050a3655c4b1e03e04847fdef4d19d2e361d2"
+    },
+    {
+      "path": "web/src/fonts/spectral-600-vietnamese.woff2",
+      "bytes": 7872,
+      "sha256": "84e2cc86832a0b2036ba03f00b79ef455083b3d459bafb4c8afab05f728b9335"
+    },
+    {
+      "path": "web/src/fonts/spectral-700-cyrillic-ext.woff2",
+      "bytes": 6812,
+      "sha256": "564b63ac2bd4bcc34586db15a361ec50741edd484b927fcfd29c45209d0cccf0"
+    },
+    {
+      "path": "web/src/fonts/spectral-700-cyrillic.woff2",
+      "bytes": 16776,
+      "sha256": "a9c33f590be03b7ea9701222b77a5ec4c413bec6a6dd1e6b3f500f01cdc4ca99"
+    },
+    {
+      "path": "web/src/fonts/spectral-700-latin-ext.woff2",
+      "bytes": 20824,
+      "sha256": "9b5a5be420405c68cf73fcdd06fa4c9978dcd8fb8b87b0e187e107cfb7a5da29"
+    },
+    {
+      "path": "web/src/fonts/spectral-700-latin.woff2",
+      "bytes": 23036,
+      "sha256": "5276f202cce67e8caa9f697800e11cfc9d708da67d47f6f5507dcadcf1e11c11"
+    },
+    {
+      "path": "web/src/fonts/spectral-700-vietnamese.woff2",
+      "bytes": 7892,
+      "sha256": "baa7d057d6920b29ccfb612946c203e6893180b6f43f0e22def4d0e931a49a7e"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-400-cyrillic-ext.woff2",
+      "bytes": 7292,
+      "sha256": "2ffe627c5122156c7d49c79d69065ea98a90685fed57271648a44ea34452a7c7"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-400-cyrillic.woff2",
+      "bytes": 16284,
+      "sha256": "800e7c4478044bd0861ddd67b822ac1bb18220e0ccb90c029fe88052262c99d4"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-400-latin-ext.woff2",
+      "bytes": 20644,
+      "sha256": "f554218b51a0eadc0709d6027e684ad9b5b21ddc4f3dfd4ba171ba2b41b0c99f"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-400-latin.woff2",
+      "bytes": 22712,
+      "sha256": "db397149a9f73fd6a41dd2fdf3314cf8a9daf0485134465cc268cac578766b71"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-400-vietnamese.woff2",
+      "bytes": 7820,
+      "sha256": "4248dc09c3ff0a927c12158f48d35b982c3686c12c0218abee02f56373775b73"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-500-cyrillic-ext.woff2",
+      "bytes": 7504,
+      "sha256": "da242d270d20290586d99905882cd995f9f6c05e3e50356ecdd33cae2899d823"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-500-cyrillic.woff2",
+      "bytes": 17560,
+      "sha256": "e1d5cf3fceb9cc67bd0c68a579987e580ae4e78a8d5b55d3962a8578766672af"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-500-latin-ext.woff2",
+      "bytes": 21584,
+      "sha256": "8dc6df3cc7d8da3083c846424fa57c8c0039bc0a68d3654025539541c73c5621"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-500-latin.woff2",
+      "bytes": 24208,
+      "sha256": "54be969918765d12c05e1eb4bc69a4503644728beb556c6a9bac1fcfbe60bb3d"
+    },
+    {
+      "path": "web/src/fonts/spectral-italic-500-vietnamese.woff2",
+      "bytes": 7964,
+      "sha256": "e8c8a3ba5e8439be66ad71f9b7de81cd9093046c4e7308149ed26c022138e5e9"
+    },
+    {
+      "path": "web/src/main.ts",
+      "bytes": 10637,
+      "sha256": "bc12d5ba70c61dbb623e9525447545dc982ac806ff24e6991c7e4b185329425f"
+    },
+    {
+      "path": "web/src/normal.ts",
+      "bytes": 2658,
+      "sha256": "1294e34771ae3cef580805bf28fd308ffcb150a6702bf1087d49405330908bbf"
+    },
+    {
+      "path": "web/src/outcomes.ts",
+      "bytes": 3784,
+      "sha256": "87f097a9aed653a10da15203822ed84909653fb175549cdb9c0ddf263d1d514b"
+    },
+    {
+      "path": "web/src/paired.test.ts",
+      "bytes": 4605,
+      "sha256": "5aac9f8ee4d8fe426cecf829b1d6cff90e0a4bdd992610ca9bbc9758d7698b94"
+    },
+    {
+      "path": "web/src/paired.ts",
+      "bytes": 4615,
+      "sha256": "305af9520d08a43610bd5fa159fb30e3b9210d2d3440ab85cdaa093f4e6eb72a"
+    },
+    {
+      "path": "web/src/planner.test.ts",
+      "bytes": 4523,
+      "sha256": "4a11d6661ca9e7e25fab178c4ab01ccd4314f42820b4cdb328144ce328fe6900"
+    },
+    {
+      "path": "web/src/planner.ts",
+      "bytes": 7523,
+      "sha256": "5df96572389d43ffe54ae9ee9d7fb0c94fbd91fd1176332d4e61808bcfe147fd"
+    },
+    {
+      "path": "web/src/power.test.ts",
+      "bytes": 9120,
+      "sha256": "8fe3602d8e99bb5e4cf3d053871b83b68e04e5f345270e3ce7a09f32c0f019b1"
+    },
+    {
+      "path": "web/src/power.ts",
+      "bytes": 10167,
+      "sha256": "c3974677496e1b4566b295584e4970598566a65138ba89d63956b4e30558d5fe"
+    },
+    {
+      "path": "web/src/style.css",
+      "bytes": 20837,
+      "sha256": "07d9fa7194b529a6c8e2785bb6df72562536320389e9b4d9855fee32eebd7249"
+    },
+    {
+      "path": "web/src/swebench.ts",
+      "bytes": 17823,
+      "sha256": "9ca28c8edb6c3a173e16dd4a37e878ee24a871bbaa526df6a2a23707f2843ef7"
+    },
+    {
+      "path": "web/src/tdist.ts",
+      "bytes": 3150,
+      "sha256": "4bd8bda9de189960158d56f165ae53632ce6a1531b64fd7cf13b5b3c9cf60fe1"
+    },
+    {
+      "path": "web/src/theme.ts",
+      "bytes": 865,
+      "sha256": "9018c800be25568f035798b10e3adaa50ab40fcd27760c4e4289ccaa56e2958e"
+    },
+    {
+      "path": "web/swe-bench.html",
+      "bytes": 9697,
+      "sha256": "f1bea003f22d2c8c07da42ae79c14e0f55cbd304da7b06d4035e364f2fe3a24a"
+    }
+  ],
+  "remote_main_at_verification": "dd5a5f01159831fbf0424aae9f6165a58e3ea1ac",
+  "pinned_source_is_ancestor_of_remote_main": true,
+  "installed": {
+    "python": "3.12.12",
+    "numpy": "2.5.4",
+    "package_files_match": 29
+  },
+  "registry_summary": {
+    "mean": 0.792,
+    "se": 0.018169542221229962,
+    "ci_low": 0.7563883516308094,
+    "ci_high": 0.8276116483691907,
+    "confidence": 0.95,
+    "method": "clt",
+    "n": 500,
+    "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+    "is_binary": true,
+    "clustered": {
+      "clustered_se": 0.027241978302211853,
+      "clustered_ci_low": 0.7320408100252869,
+      "clustered_ci_high": 0.8519591899747132,
+      "icc": 0.058983422696892336,
+      "design_effect": 3.3986591896736216,
+      "n_clusters": 12
+    }
+  },
+  "public_converter_and_installed_cli": {
+    "python": "3.12.12",
+    "numpy": "2.5.4",
+    "installed_cli_sha256": "23dd6478210f1eddb9e11d3685d968200f960f70d26a97ee926b4bd7e5819339",
+    "converter_sha256": "96fb8f17c0536e4824ed5f48add891f5e4115f71a0e15cbbb3544707af6526e6",
+    "native_sha256": "2217bde53ceffe19cfdb937fabe9c30018b631c973d6af42bcc77049d4ef12ed",
+    "csv_sha256": "84c2e50bf8d4cf62ea0ad0f8346847e33406f3b801d13243e8c2da41ce72a857",
+    "csv_observations": 941,
+    "converter_stderr": "notice: 20260901_mini-v2.4.2_gemini-3-5-flash: exporting 441 recorded task outcomes from a 500-task benchmark; 59 unobserved tasks omitted. Means describe the observed subset, not the official full-benchmark score.\n",
+    "comparison": {
+      "model_a": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "model_b": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "mean_a": 0.8140589569160998,
+      "mean_b": 0.8049886621315193,
+      "mean_diff": 0.009070294784580499,
+      "se_paired": 0.014705891289379111,
+      "ci_low": -0.019832224530759418,
+      "ci_high": 0.03797281409992042,
+      "p_value": 0.5376990621012067,
+      "correlation": 0.6915167418807684,
+      "se_unpaired": 0.026472493767201826,
+      "variance_reduction": 0.6914020811099255,
+      "n": 441,
+      "confidence": 0.95,
+      "warnings": [
+        "Clustered inference rests on 2.6 effective degrees of freedom: 12 clusters, the largest holding 52% of the questions. Its interval is wide because few independent clusters carry the estimate."
+      ],
+      "se_clustered": 0.026743818960932086,
+      "ci_low_clustered": -0.08443565587000308,
+      "ci_high_clustered": 0.10257624543916409,
+      "p_value_clustered": 0.7601770975568456,
+      "dof_clustered": 2.5802454079007604,
+      "n_clusters": 12,
+      "mcnemar": {
+        "n01": 19,
+        "n10": 23,
+        "p_value": 0.6439689563703723
+      },
+      "inference": {
+        "test": "clustered_t",
+        "p_value": 0.7601770975568456,
+        "ci_low": -0.08443565587000308,
+        "ci_high": 0.10257624543916409,
+        "confidence": 0.95,
+        "mcnemar_applicable": true
+      },
+      "n_only_a": 0,
+      "n_only_b": 59,
+      "analysis_unit": "question",
+      "n_observations_a": 441,
+      "n_observations_b": 500,
+      "question_identity": {
+        "matching": 0,
+        "partial": 0,
+        "unavailable": 441,
+        "conflicting": 0
+      },
+      "scoring_rules": {
+        "matching": 0,
+        "unavailable": 441,
+        "conflicting": 0
+      }
+    },
+    "summary": {
+      "mean": 0.8140589569160998,
+      "se": 0.01826031679301083,
+      "ci_low": 0.750214362264954,
+      "ci_high": 0.8779035515672455,
+      "n": 441,
+      "method": "clustered_cr2",
+      "confidence": 0.95,
+      "interval_status": "available",
+      "n_clusters": 12,
+      "dof_clustered": 2.5802454079007604,
+      "unclustered": {
+        "mean": 0.8140589569160998,
+        "se": 0.018547664125214074,
+        "ci_low": 0.7777062032333346,
+        "ci_high": 0.8504117105988649,
+        "confidence": 0.95,
+        "method": "clt",
+        "n": 441
+      },
+      "warnings": [
+        "The interval uses 12 clusters and 2.6 effective degrees of freedom; few independent clusters limit precision."
+      ],
+      "model": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "is_binary": true,
+      "analysis_unit": "question",
+      "n_questions": 441,
+      "n_observations": 441,
+      "clustered": {
+        "clustered_se": 0.01826031679301083,
+        "clustered_ci_low": 0.750214362264954,
+        "clustered_ci_high": 0.8779035515672455,
+        "clustered_dof": 2.5802454079007604,
+        "icc": 0.03877159745783319,
+        "design_effect": 2.3860846091175367,
+        "n_clusters": 12
+      }
+    }
+  },
+  "summary_upgrade_replay": {
+    "python": "3.12.12",
+    "numpy": "2.5.4",
+    "policy_module_sha256": "fe3db2e30bddc3715f80e228196f22d6db7be97d907190ca42151ee36c95f8ba",
+    "source_sha256": "56b95536e6fcaf860195dfea68f42bb3d9fd9603a9b909c1f24468058ff04e7d",
+    "cases": {
+      "auto": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018169542221229962,
+          "ci_low": 0.7563883516308094,
+          "ci_high": 0.8276116483691907,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "clt": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018169542221229962,
+          "ci_low": 0.7563883516308094,
+          "ci_high": 0.8276116483691907,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "wilson": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.018151363585141474,
+          "ci_low": 0.7542636968800828,
+          "ci_high": 0.8252836882903708,
+          "confidence": 0.95,
+          "method": "wilson",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "bootstrap": {
+        "mean": 0.792,
+        "se": 0.030459418671662835,
+        "ci_low": 0.7002896677366969,
+        "ci_high": 0.8837103322633032,
+        "n": 500,
+        "method": "clustered_cr2",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": 12,
+        "dof_clustered": 3.330800316130594,
+        "unclustered": {
+          "mean": 0.792,
+          "se": 0.01838620604195606,
+          "ci_low": 0.756,
+          "ci_high": 0.8260499999999992,
+          "confidence": 0.95,
+          "method": "bootstrap",
+          "n": 500
+        },
+        "warnings": [
+          "The interval uses 12 clusters and 3.3 effective degrees of freedom; few independent clusters limit precision."
+        ],
+        "model": "20251205_sonar-foundation-agent_claude-opus-4-5",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 500,
+        "n_observations": 500,
+        "clustered": {
+          "clustered_se": 0.030459418671662835,
+          "clustered_ci_low": 0.7002896677366969,
+          "clustered_ci_high": 0.8837103322633032,
+          "clustered_dof": 3.330800316130594,
+          "icc": 0.058983422696892336,
+          "design_effect": 3.3986591896736216,
+          "n_clusters": 12
+        }
+      },
+      "one-cluster": {
+        "mean": 0.8268398268398268,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 231,
+        "method": "unavailable",
+        "confidence": 0.95,
+        "interval_status": "fewer_than_two_clusters",
+        "n_clusters": 1,
+        "dof_clustered": null,
+        "unclustered": {
+          "mean": 0.8268398268398268,
+          "se": 0.02495001329539699,
+          "ci_low": 0.7779386993670532,
+          "ci_high": 0.8757409543126005,
+          "confidence": 0.95,
+          "method": "clt",
+          "n": 231
+        },
+        "warnings": [
+          "Only one independent cluster is observed; at least two are needed to estimate a clustered interval."
+        ],
+        "model": "django-only",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 231,
+        "n_observations": 231,
+        "clustered": {
+          "clustered_se": null,
+          "clustered_ci_low": null,
+          "clustered_ci_high": null,
+          "clustered_dof": null,
+          "icc": null,
+          "design_effect": null,
+          "n_clusters": 1
+        }
+      },
+      "one-continuous": {
+        "mean": 0.3,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 1,
+        "method": "unavailable",
+        "confidence": 0.95,
+        "interval_status": "fewer_than_two_questions",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [
+          "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+        ],
+        "model": "m",
+        "is_binary": false,
+        "analysis_unit": "question",
+        "n_questions": 1,
+        "n_observations": 1
+      },
+      "one-repeated": {
+        "mean": 0.5,
+        "se": null,
+        "ci_low": null,
+        "ci_high": null,
+        "n": 1,
+        "method": "unavailable",
+        "confidence": 0.95,
+        "interval_status": "fewer_than_two_questions",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [
+          "Only one distinct question is observed; at least two are needed to estimate a mean interval for continuous or repeated-generation scores."
+        ],
+        "model": "m",
+        "is_binary": false,
+        "analysis_unit": "question",
+        "n_questions": 1,
+        "n_observations": 2
+      },
+      "unequal-repetition": {
+        "mean": 0.6666666666666666,
+        "se": 0.33333333333333337,
+        "ci_low": 0.01334533848664865,
+        "ci_high": 1.3199879948466846,
+        "n": 3,
+        "method": "clt",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [],
+        "model": "m",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 3,
+        "n_observations": 14,
+        "within_between": {
+          "var_within": 0.0,
+          "var_between": 0.48000000000000015
+        }
+      },
+      "one-binary": {
+        "mean": 1.0,
+        "se": 0.9799819922700268,
+        "ci_low": 0.20654931437723745,
+        "ci_high": 1.0,
+        "n": 1,
+        "method": "wilson",
+        "confidence": 0.95,
+        "interval_status": "available",
+        "n_clusters": null,
+        "dof_clustered": null,
+        "unclustered": null,
+        "warnings": [],
+        "model": "m",
+        "is_binary": true,
+        "analysis_unit": "question",
+        "n_questions": 1,
+        "n_observations": 1
+      }
+    }
+  },
+  "registry_release": false,
+  "tag_created": false
+}

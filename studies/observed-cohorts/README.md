@@ -159,3 +159,22 @@ the cohort converter is the separately identified checkout script.
 
 This is source and local production-build verification. Registry release and
 hosted deployment are separate publication stages.
+
+## Clean artifact verification
+
+The clean archive of `45cc476` passed Ruff, strict mypy (21 source files), all
+840 Python tests on Python 3.14.7, and all 43 converter checks on Python 3.10.21
+with the minimum dependency environment. Node 24.22.0 installed the locked web
+dependencies, passed lint/types and 693 unit checks, built the static site, and
+passed 52 production-browser plus 42 installed offline-report workflows in
+Chromium/Firefox. Browser suites used separate artifact directories and fixed
+source files; overlapping exploratory runs are not counted as verification.
+
+Both wheel and source distribution were built from that archive. A fresh bare
+wheel installation replayed the native comparison and all nine summary cases.
+All 29 package files match the archive and the previously tested minimum-NumPy
+wheel byte-for-byte. The [verification receipt](results/verification.json)
+retains artifact hashes, package-file hashes and all 65 static build files;
+the [final wheel replay](results/wheel-final-replay.json) retains the actual
+installed CLI outputs. Source, registry and hosted publication states in this
+receipt describe this local verification stage.

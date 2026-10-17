@@ -225,6 +225,14 @@ def test_single_passage_is_not_reinterpreted_as_independent_questions(tmp_path: 
     path.write_text("question_id,model,score,cluster_id\nq1,a,1,p\nq2,a,0,p\nq1,b,0,p\nq2,b,1,p\n")
     args = ["--model", "a"] if command == "summarize" else []
     result = run_cli(command, str(path), "--json", *args)
+    if command == "summarize":
+        assert result.returncode == 0, result.stderr
+        summary = json.loads(result.stdout)
+        assert summary["mean"] == 0.5 and summary["n_clusters"] == 1
+        assert summary["interval_status"] == "fewer_than_two_clusters"
+        assert summary["se"] is summary["ci_low"] is summary["ci_high"] is None
+        assert summary["unclustered"]["ci_low"] is not None
+        return
     if command == "leaderboard":
         assert result.returncode == 0, result.stderr
         board = json.loads(result.stdout)

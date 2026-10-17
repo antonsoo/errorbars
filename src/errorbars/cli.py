@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from errorbars import __version__
+from errorbars._mean import summarize_mean
 from errorbars._output import atomic_text_output
 from errorbars._tables import Output, Table, visible
 from errorbars.inputs import load_inputs
@@ -17,7 +18,7 @@ from errorbars.leaderboard import build_leaderboard, rank_ranges
 from errorbars.plot import forest_plot_svg
 from errorbars.power import binary_effect_range, minimum_detectable_effect, questions_needed
 from errorbars.review import review_comparison
-from errorbars.stats import bootstrap_ci, is_binary, mean_ci_clt, prefer_wilson, wilson_ci
+from errorbars.stats import is_binary
 
 
 def _require_models(data: EvalData, *names: str) -> None:
@@ -116,13 +117,6 @@ def _print_score_values(out: Output, data: EvalData) -> None:
         out.note(f"{item['model']}: {item['scorer']}, value {value}", style="dim")
 
 
-def _has_clusters(data: EvalData) -> bool:
-    """True when an explicit assignment puts multiple questions in one cluster."""
-    if not data.cluster_id:
-        return False
-    return len(set(data.cluster_id)) < len(set(data.question_id))
-
-
 def cmd_summarize(args: argparse.Namespace) -> None:
     data = _load(args)
     if args.model:
@@ -143,23 +137,12 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     scores = list(question_scores.values())
     repeated = len(sub) > len(scores)
     binary = is_binary(scores)
-    if repeated and len(scores) < 2:
-        raise ValueError("need at least 2 distinct questions for repeated-generation inference")
-    if repeated and args.ci == "wilson":
-        raise ValueError("--ci wilson cannot treat repeated-generation question averages as binary trials")
-    if args.ci == "bootstrap":
-        est = bootstrap_ci(scores, confidence=args.confidence, seed=args.seed)
-    elif args.ci == "wilson" or (
-        args.ci == "auto"
-        and binary
-        and not repeated
-        and prefer_wilson(int(round(sum(scores))), len(scores))
-    ):
-        if not binary:
-            raise SystemExit("error: --ci wilson requires binary (0/1) scores")
-        est = wilson_ci(int(round(sum(scores))), len(scores), confidence=args.confidence)
-    else:
-        est = mean_ci_clt(scores, confidence=args.confidence)
+    cmap = sub.cluster_by_question()
+    clusters = [cmap[qid] for qid in question_scores] if cmap else None
+    est = summarize_mean(
+        scores, repeated=repeated, clusters=clusters, confidence=args.confidence,
+        independent_method=args.ci, seed=args.seed,
+    )
 
     result: dict[str, Any] = est.as_dict()
     models = sub.models()
@@ -172,39 +155,30 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         result["score_values"] = sub.score_values()
 
     cluster_info = None
-    if _has_clusters(sub) and sub.cluster_id:
+    if est.n_clusters is not None:
         from errorbars.stats import (
-            cluster_degrees_of_freedom,
-            cluster_robust_se,
             design_effect,
             intraclass_correlation,
-            t_for_confidence,
         )
 
-        cmap = sub.cluster_by_question()
-        clusters = [cmap[qid] for qid in question_scores]
-        n_clusters = len(set(clusters))
-        se_c = cluster_robust_se(scores, clusters)
-        icc = intraclass_correlation(scores, clusters)
-        avg_size = len(scores) / n_clusters
-        deff = design_effect(icc, avg_size)
-        # A clustered mean rests on the clusters, not the questions: G - 1 degrees
-        # of freedom when they are the same size, fewer when a few dominate.
-        dof_c = cluster_degrees_of_freedom(clusters)
-        t_crit = t_for_confidence(est.confidence, dof_c)
+        assert clusters is not None
+        icc = intraclass_correlation(scores, clusters) if est.n_clusters >= 2 else None
+        deff = design_effect(icc, len(scores) / est.n_clusters) if icc is not None else None
+        # Keep the existing nested names as aliases of the selected estimate.
+        # The old independent-question estimate is now explicitly unclustered.
         cluster_info = {
-            "clustered_se": se_c,
-            "clustered_ci_low": est.mean - t_crit * se_c,
-            "clustered_ci_high": est.mean + t_crit * se_c,
-            "clustered_dof": dof_c,
+            "clustered_se": est.se,
+            "clustered_ci_low": est.ci_low,
+            "clustered_ci_high": est.ci_high,
+            "clustered_dof": est.dof_clustered,
             "icc": icc,
             "design_effect": deff,
-            "n_clusters": n_clusters,
+            "n_clusters": est.n_clusters,
         }
         result["clustered"] = cluster_info
 
     within_between = None
-    if repeated:
+    if repeated and len(scores) >= 2:
         from errorbars.stats import within_between_variance
 
         var_w, var_b = within_between_variance(sub.score, sub.question_id)
@@ -224,26 +198,44 @@ def cmd_summarize(args: argparse.Namespace) -> None:
     if repeated:
         table.add_row("observations (generations)", str(len(sub)))
     table.add_row("mean", f"{est.mean:.4f}")
-    table.add_row("SE", f"{est.se:.4f}")
-    table.add_row(f"{int(args.confidence * 100)}% CI", f"[{est.ci_low:.4f}, {est.ci_high:.4f}]")
+    table.add_row("SE", f"{est.se:.4f}" if est.se is not None else "unavailable")
+    table.add_row(
+        f"{int(args.confidence * 100)}% CI",
+        f"[{est.ci_low:.4f}, {est.ci_high:.4f}]"
+        if est.ci_low is not None and est.ci_high is not None else "unavailable",
+    )
     table.add_row("method", est.method)
+    if cluster_info:
+        table.add_row("n clusters", str(est.n_clusters))
+        table.add_row(
+            "degrees of freedom",
+            f"{est.dof_clustered:.1f}" if est.dof_clustered is not None else "unavailable",
+        )
+        for label, value in (("ICC", cluster_info["icc"]), ("design effect", cluster_info["design_effect"])):
+            table.add_row(label, f"{value:.4f}" if value is not None else "unavailable")
     out.table(table)
     if repeated:
         out.note("Each question has equal weight; generations are averaged within a question.", style="dim")
-    if cluster_info:
-        ct = Table(title="clustering diagnostics", header_style="bold magenta")
+    if est.n_clusters is not None:
+        out.note(
+            "Supplied clusters determine primary uncertainty; each question keeps equal weight. "
+            "--ci selects the independent-question diagnostic below, which ignores those groups.",
+            style="dim",
+        )
+    if est.unclustered is not None:
+        diagnostic = est.unclustered
+        ct = Table(title="independent diagnostic", header_style="bold magenta")
         ct.add_column("metric")
         ct.add_column("value", justify="right")
-        ct.add_row("n clusters", str(cluster_info["n_clusters"]))
-        ct.add_row("ICC", f"{cluster_info['icc']:.4f}")
-        ct.add_row("design effect", f"{cluster_info['design_effect']:.3f}")
-        ct.add_row("clustered SE", f"{cluster_info['clustered_se']:.4f}")
+        ct.add_row("method", diagnostic.method)
+        ct.add_row("SE", f"{diagnostic.se:.4f}")
         ct.add_row(
-            "clustered CI",
-            f"[{cluster_info['clustered_ci_low']:.4f}, {cluster_info['clustered_ci_high']:.4f}]",
+            f"{int(args.confidence * 100)}% CI",
+            f"[{diagnostic.ci_low:.4f}, {diagnostic.ci_high:.4f}]",
         )
-        ct.add_row("degrees of freedom", f"{cluster_info['clustered_dof']:.1f}")
         out.table(ct)
+    for note in est.warnings:
+        out.note(note, style="yellow")
     if within_between:
         wt = Table(title="within/between-question variance", header_style="bold magenta")
         wt.add_column("component")
@@ -619,7 +611,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_sum = sub.add_parser("summarize", help="mean, SE, and CI for one model")
     p_sum.add_argument("--model", default=None, help="filter to this model (default: use all rows)")
     p_sum.add_argument("--confidence", type=float, default=0.95)
-    p_sum.add_argument("--ci", choices=["auto", "clt", "wilson", "bootstrap"], default="auto")
+    p_sum.add_argument(
+        "--ci", choices=["auto", "clt", "wilson", "bootstrap"], default="auto",
+        help="independent-question CI method; with supplied groups this is diagnostic and CR2 is primary",
+    )
     p_sum.add_argument("--seed", type=int, default=0, help="bootstrap RNG seed")
     p_sum.add_argument("--json", action="store_true")
     _input_args(p_sum)

@@ -7,19 +7,11 @@ from dataclasses import asdict, dataclass, field
 from itertools import combinations
 from typing import Any, Literal
 
-from errorbars.compare import FEW_CLUSTER_DOF, PairedComparison, PairedTest, paired_compare, select_inference
+from errorbars._mean import IntervalStatus, summarize_mean
+from errorbars.compare import PairedComparison, PairedTest, paired_compare, select_inference
 from errorbars.io import EvalData
 from errorbars.scoring import compare_scoring
-from errorbars.stats import (
-    MeanEstimate,
-    cluster_degrees_of_freedom,
-    cluster_robust_se,
-    is_binary,
-    mean_ci_clt,
-    prefer_wilson,
-    t_for_confidence,
-    wilson_ci,
-)
+from errorbars.stats import MeanEstimate
 
 __all__ = [
     "LeaderboardEntry", "PairwiseResult", "UntestedPair", "Leaderboard",
@@ -31,7 +23,6 @@ __all__ = [
 _MAX_GROUPS = 4096
 _MAX_GROUP_SEARCH_STATES = 50_000
 GroupStatus = Literal["complete", "omitted_group_limit", "omitted_search_limit"]
-IntervalStatus = Literal["available", "fewer_than_two_questions", "fewer_than_two_clusters"]
 
 
 class _GroupEnumerationLimitError(RuntimeError):
@@ -329,60 +320,10 @@ def build_leaderboard(
         scores = list(qmap[m].values())
         repeated = n_observations[m] > len(scores)
         clusters = [cluster_of_q[q] for q in qmap[m]] if cluster_of_q else None
-        cluster_count = len(set(clusters)) if clusters is not None else None
-        has_real_clusters = cluster_count is not None and cluster_count < len(scores)
-        # An unavailable estimate is local to this model. Never invent an IID
-        # interval for clustered questions or count generations as questions.
-        status: IntervalStatus = "available"
-        if has_real_clusters and cluster_count == 1:
-            status = "fewer_than_two_clusters"
-        elif len(scores) < 2 and (repeated or not is_binary(scores)):
-            status = "fewer_than_two_questions"
-        if status != "available":
-            note = (
-                "Only one independent cluster is observed; at least two are needed "
-                "to estimate a clustered interval."
-                if status == "fewer_than_two_clusters" else
-                "Only one distinct question is observed; at least two are needed "
-                "to estimate a mean interval for continuous or repeated-generation scores."
-            )
-            entries.append(
-                LeaderboardEntry(
-                    m, sum(scores) / len(scores), None, None, None, len(scores), "unavailable",
-                    n_observations[m], confidence=confidence,
-                    n_clusters=1 if has_real_clusters else None,
-                    unclustered=(
-                        _summarize_mean(scores, confidence, None if repeated else use_wilson_below_n)
-                        if has_real_clusters else None
-                    ),
-                    warnings=[note], interval_status=status,
-                )
-            )
-            continue
-        est = _summarize_mean(scores, confidence, None if repeated else use_wilson_below_n)
-        unclustered = None
-        n_clusters, dof = None, None
-        notes = []
-        if has_real_clusters:
-            assert clusters is not None
-            n_clusters = len(set(clusters))
-            unclustered = est
-            se = cluster_robust_se(scores, clusters)
-            dof = cluster_degrees_of_freedom(clusters)
-            half_width = t_for_confidence(confidence, dof) * se
-            est = MeanEstimate(
-                est.mean, se, est.mean - half_width, est.mean + half_width, confidence, "clustered_cr2", est.n
-            )
-            if dof < FEW_CLUSTER_DOF:
-                notes.append(
-                    f"The interval uses {n_clusters} clusters and {dof:.1f} effective "
-                    "degrees of freedom; few independent clusters limit precision."
-                )
-            if se == 0:
-                notes.append(
-                    "Cluster residual sums have zero estimated variance; "
-                    "a point interval does not establish population certainty."
-                )
+        est = summarize_mean(
+            scores, repeated=repeated, clusters=clusters, confidence=confidence,
+            use_wilson_below_n=use_wilson_below_n,
+        )
         entries.append(
             LeaderboardEntry(
                 m,
@@ -394,10 +335,11 @@ def build_leaderboard(
                 est.method,
                 n_observations[m],
                 confidence=confidence,
-                n_clusters=n_clusters,
-                dof_clustered=dof,
-                unclustered=unclustered,
-                warnings=notes,
+                n_clusters=est.n_clusters,
+                dof_clustered=est.dof_clustered,
+                unclustered=est.unclustered,
+                warnings=est.warnings,
+                interval_status=est.interval_status,
             )
         )
     entries.sort(key=lambda e: e.mean, reverse=direction)
@@ -508,14 +450,3 @@ def build_leaderboard(
         untested_pairs=untested_pairs, warnings=warnings, group_status=group_status,
         higher_is_better=direction, direction_source=direction_source,
     )
-
-
-def _summarize_mean(scores: list[float], confidence: float, use_wilson_below_n: int | None) -> MeanEstimate:
-    """``use_wilson_below_n`` is None for averages of repeated generations, which are
-    not binary trials even when every average happens to be 0 or 1."""
-    n = len(scores)
-    if use_wilson_below_n is not None and is_binary(scores):
-        successes = int(round(sum(scores)))
-        if prefer_wilson(successes, n, below_n=use_wilson_below_n):
-            return wilson_ci(successes, n, confidence)
-    return mean_ci_clt(scores, confidence)

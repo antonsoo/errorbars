@@ -107,7 +107,13 @@ def test_cli_summarize_ci_methods(ci_method: str) -> None:
     result = run_cli("summarize", str(DATA), "--model", "tuned-70b", "--ci", ci_method, "--json")
     assert result.returncode == 0, result.stderr
     payload = json.loads(result.stdout)
-    assert payload["method"] == ci_method
+    assert payload["method"] == "clustered_cr2"
+    assert payload["unclustered"]["method"] == ci_method
+    independent = run_cli(
+        "summarize", str(DATA), "--model", "tuned-70b", "--ci", ci_method, "--cluster-col", "none", "--json"
+    )
+    assert independent.returncode == 0, independent.stderr
+    assert json.loads(independent.stdout)["method"] == ci_method
 
 
 @pytest.mark.skipif(not DATA.exists(), reason="run examples/generate_synthetic.py first")

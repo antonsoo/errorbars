@@ -14,13 +14,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Officina, open-source tools by Anton Soloviev" />
     <meta property="og:title" content="Is the gap between two SWE-bench Verified scores real?" />
-    <meta property="og:description" content="A paired test on the 500 tasks for any two of 173 public submissions, or a run of your own. A gap under 3 points is noise." />
+    <meta property="og:description" content="A paired test on the 500 tasks for any two of 172 complete public submissions, or a run of your own. Incomplete outcome logs are excluded." />
     <meta property="og:url" content="https://antonsoo.github.io/errorbars/swe-bench.html" />
     <meta property="og:image" content="https://raw.githubusercontent.com/antonsoo/errorbars/main/docs/assets/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <script type="module" crossorigin src="/errorbars/assets/swe-bench-BkK202lq.js"></script>
+    <script type="module" crossorigin src="/errorbars/assets/swe-bench-C-kdaCSu.js"></script>
     <link rel="modulepreload" crossorigin href="/errorbars/assets/theme-OwnbEBKB.js">
     <link rel="stylesheet" crossorigin href="/errorbars/assets/theme-D5FsHUt7.css">
   </head>
@@ -40,8 +40,9 @@
         <p class="abstract">
           Every SWE-bench Verified submission publishes which of the 500 tasks it resolved, so a
           difference between two scores can be tested instead of read off a leaderboard. Pick two
-          of the <em><span id="submission-count"></span> public submissions</em>, or paste a run of
-          your own. Nothing you paste leaves this page.
+          of the <em><span id="submission-count"></span> public submissions with complete task outcomes</em>, or paste a run of
+          your own. The 441-task report is excluded from this fixed 500-task view; missing
+          outcomes do not become observed failures. Nothing you paste leaves this page.
         </p>
         <nav class="page-nav" aria-label="errorbars pages">
           <a href="./">Plan an evaluation</a>

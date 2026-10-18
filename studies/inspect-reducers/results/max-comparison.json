@@ -1,0 +1,1151 @@
+{
+  "format": "errorbars-comparison",
+  "schema_version": 1,
+  "model_a": "broad",
+  "model_b": "concentrated",
+  "confidence": 0.95,
+  "difference": "A - B, in original score units; higher is not necessarily better",
+  "analysis_unit": "question",
+  "comparison": {
+    "mean_a": 1,
+    "mean_b": 0.75,
+    "mean_diff": 0.25,
+    "se_paired": 0.09028938981432691,
+    "ci_low": 0.06322216662052071,
+    "ci_high": 0.4367778333794793,
+    "p_value": 0.010922496295950402,
+    "correlation": null,
+    "se_unpaired": 0.09028938981432691,
+    "variance_reduction": 0,
+    "n": 24,
+    "confidence": 0.95,
+    "warnings": [
+      "Correlation is unavailable because at least one score vector is constant."
+    ],
+    "mcnemar": {
+      "n01": 0,
+      "n10": 6,
+      "p_value": 0.03125
+    }
+  },
+  "inference": {
+    "test": "mcnemar_exact",
+    "p_value": 0.03125,
+    "ci_low": null,
+    "ci_high": null,
+    "confidence": null,
+    "mcnemar_applicable": true
+  },
+  "unavailable_reason": null,
+  "cohort": {
+    "n_a": 24,
+    "n_b": 24,
+    "n_shared": 24,
+    "n_only_a": 0,
+    "n_only_b": 0,
+    "n_observations_a": 24,
+    "n_observations_b": 24,
+    "n_shared_observations_a": 24,
+    "n_shared_observations_b": 24,
+    "mean_all_a": 1,
+    "mean_all_b": 0.75,
+    "mean_shared_a": 1,
+    "mean_shared_b": 0.75,
+    "mean_difference": 0.25,
+    "n_clusters": null,
+    "n_identity_matching": 24,
+    "n_identity_partial": 0,
+    "n_identity_conflicting": 0,
+    "n_identity_unavailable": 0,
+    "n_scoring_matching": 24,
+    "n_scoring_conflicting": 0,
+    "n_scoring_unavailable": 0
+  },
+  "questions": [
+    {
+      "question_id": "q00",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 1,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:2e56865ec10e83ebf1036389ef62fcf697e0977c7f97554c42ce224cf4d7e627",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 1,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:2e56865ec10e83ebf1036389ef62fcf697e0977c7f97554c42ce224cf4d7e627",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q01",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 2,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:2a0066bed2ca762369e707071cab367700267408103dd8a35c48f795d6a3a71d",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 2,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:2a0066bed2ca762369e707071cab367700267408103dd8a35c48f795d6a3a71d",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q02",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 3,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:e1356fbd7d249a59fa395d59c0a811f214c33ca6cb16e1e007016c31c02de5eb",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 3,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:e1356fbd7d249a59fa395d59c0a811f214c33ca6cb16e1e007016c31c02de5eb",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q03",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 4,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:ebb84766ca20184da6ce65caeb8a58ed48050512be0dbacaf9dd019a33541921",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 4,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:ebb84766ca20184da6ce65caeb8a58ed48050512be0dbacaf9dd019a33541921",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q04",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 5,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:5b4e986c34b177b218e380a6bcf4986a9eb9a8cd5828559076670b093a9064f6",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 5,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:5b4e986c34b177b218e380a6bcf4986a9eb9a8cd5828559076670b093a9064f6",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q05",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 6,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:36b792ad7f8b623445467a47c19ee1b1a26371c8e15f8d5c35f6d9a1f0e4c707",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 6,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:36b792ad7f8b623445467a47c19ee1b1a26371c8e15f8d5c35f6d9a1f0e4c707",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q06",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 7,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:02683e0c64014e8fa28f935c5aa7fdce5a80c342192040dadef3bbf6251fabcb",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 7,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:02683e0c64014e8fa28f935c5aa7fdce5a80c342192040dadef3bbf6251fabcb",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q07",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 8,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:4a8dca3fa7e065abebf32bf9d43d8fc8123cb685c26878d77e91a2f8eb66d3cd",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 8,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:4a8dca3fa7e065abebf32bf9d43d8fc8123cb685c26878d77e91a2f8eb66d3cd",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q08",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 9,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:747e3db1e30ec4048fe3db590418d10bbe29000f34b5c67670f898e45dc7d6d2",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 9,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:747e3db1e30ec4048fe3db590418d10bbe29000f34b5c67670f898e45dc7d6d2",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q09",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 10,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:4d908b5dbe137422c1faebf7735439f24a960364fd058d0b6c5d867c1f027260",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 10,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:4d908b5dbe137422c1faebf7735439f24a960364fd058d0b6c5d867c1f027260",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q10",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 11,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:dce6da233925bc2625ca3ea266ef1669606d371f2fda43aff6caf9bb060d4adc",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 11,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:dce6da233925bc2625ca3ea266ef1669606d371f2fda43aff6caf9bb060d4adc",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q11",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 12,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:db66d2213d9b6f5e6ac5e09fe1429c268c08667f8a7b32898de4ab8fe3adc9c5",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 12,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:db66d2213d9b6f5e6ac5e09fe1429c268c08667f8a7b32898de4ab8fe3adc9c5",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q12",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 13,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:49617dc9c1838aead09bf4db5d94066959fd989e080a19acd654690807858304",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 13,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:49617dc9c1838aead09bf4db5d94066959fd989e080a19acd654690807858304",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q13",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 14,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:821032cd3d19ca1238675e3a0e069af1703776982d5e2a357c251a618ed32ae2",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 14,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:821032cd3d19ca1238675e3a0e069af1703776982d5e2a357c251a618ed32ae2",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q14",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 15,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:73e7049b4493a9336d5d46de2f261c9faee65edff57ee30816580f887ad55749",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 15,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:73e7049b4493a9336d5d46de2f261c9faee65edff57ee30816580f887ad55749",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q15",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 16,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:a28fe177bd25eb01c4e5e6b1b506427a1709af9aaef3c2d07c9d875068a0d25b",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 16,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:a28fe177bd25eb01c4e5e6b1b506427a1709af9aaef3c2d07c9d875068a0d25b",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q16",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 17,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:849db15895c88226831c08c211b6df116455cff03fbfaff5f2424e417be77b30",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 17,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:849db15895c88226831c08c211b6df116455cff03fbfaff5f2424e417be77b30",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q17",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 1,
+      "difference": 0,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 18,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:99a2ed4bd9db2c3470f487242b8d055db73d47f01d4f8d6d9c12942e91590f9a",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 1,
+          "record": 18,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:99a2ed4bd9db2c3470f487242b8d055db73d47f01d4f8d6d9c12942e91590f9a",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q18",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 0,
+      "difference": 1,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 19,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:80f9eabef773364fcc40455dd82d69825314d72504670dff80bc9ced5025d09a",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 0,
+          "sample": null,
+          "source": 1,
+          "record": 19,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:80f9eabef773364fcc40455dd82d69825314d72504670dff80bc9ced5025d09a",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q19",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 0,
+      "difference": 1,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 20,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:57fb8df322d221163a6ba7ef60ca2ae4506421dd7447eb624074c211b3acaca3",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 0,
+          "sample": null,
+          "source": 1,
+          "record": 20,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:57fb8df322d221163a6ba7ef60ca2ae4506421dd7447eb624074c211b3acaca3",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q20",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 0,
+      "difference": 1,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 21,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:48a3099939f043dfaf4f4745cab34e6fd65d3b6a07282f0c2d5cee917e93c4cc",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 0,
+          "sample": null,
+          "source": 1,
+          "record": 21,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:48a3099939f043dfaf4f4745cab34e6fd65d3b6a07282f0c2d5cee917e93c4cc",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q21",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 0,
+      "difference": 1,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 22,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:a5ca81cbc8d3949f0903b78f3aaf6b4c7a2b4d058ad694f85a584d7e6f7cc00b",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 0,
+          "sample": null,
+          "source": 1,
+          "record": 22,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:a5ca81cbc8d3949f0903b78f3aaf6b4c7a2b4d058ad694f85a584d7e6f7cc00b",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q22",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 0,
+      "difference": 1,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 23,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:db3ec2a51c894982a53959f7d79c13b259cb3160d45afff5505536ac235f0889",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 0,
+          "sample": null,
+          "source": 1,
+          "record": 23,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:db3ec2a51c894982a53959f7d79c13b259cb3160d45afff5505536ac235f0889",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    },
+    {
+      "question_id": "q23",
+      "cluster_id": null,
+      "presence": "shared",
+      "mean_a": 1,
+      "mean_b": 0,
+      "difference": 1,
+      "observations_a": [
+        {
+          "score": 1,
+          "sample": null,
+          "source": 0,
+          "record": 24,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:b82af12f7f4b230b155b2d20866bd2f1799f7edbb2de0e5df98ae8219cbaa296",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "observations_b": [
+        {
+          "score": 0,
+          "sample": null,
+          "source": 1,
+          "record": 24,
+          "line_start": null,
+          "line_end": null,
+          "metric": "match [epoch reducer=max; reductions[0].samples]",
+          "filter": null,
+          "question_hash": "inspect-text-sample-v1:b82af12f7f4b230b155b2d20866bd2f1799f7edbb2de0e5df98ae8219cbaa296",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_config": "inspect-params-v1:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "scorer_value": null,
+          "higher_is_better": null
+        }
+      ],
+      "identity": "matching",
+      "scoring": "matching"
+    }
+  ],
+  "clusters": [],
+  "sources": [
+    {
+      "id": 0,
+      "name": "max-broad.eval"
+    },
+    {
+      "id": 1,
+      "name": "max-concentrated.eval"
+    }
+  ],
+  "warnings": [
+    "Correlation is unavailable because at least one score vector is constant.",
+    "Pairing uses question ids and rejects conflicting known question signatures. Missing signatures leave content identity unchecked. Matching signatures are not a check on scoring rules: confirm comparable metrics and filters. Prompt variants may intentionally differ.",
+    "Intervals describe sampling uncertainty under the chosen question/cluster model. An interval containing zero does not establish equivalence. No multiple-comparison adjustment is applied to this single comparison.",
+    "Recorded scoring rules: 24 matching, 0 conflicting, 0 unchecked shared questions. Matching names and configuration fingerprints do not verify scorer code, unrecorded defaults, external grader state or equivalent score units."
+  ],
+  "score_values": [
+    {
+      "model": "broad",
+      "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+      "scorer_value": null
+    },
+    {
+      "model": "concentrated",
+      "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+      "scorer_value": null
+    }
+  ]
+}

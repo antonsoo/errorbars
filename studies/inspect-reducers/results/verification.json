@@ -1,0 +1,163 @@
+{
+  "source_revision": "70c12fefa85f137ae82035beec0b350c425b932d",
+  "versions": {
+    "clean": {
+      "python": "3.14.7 (main, Sep  1 2026, 14:18:09) [Clang 22.1.3 ]",
+      "packages": {
+        "errorbars": "0.2.4",
+        "numpy": "2.5.3",
+        "inspect-ai": "0.3.268",
+        "httpx": "0.28.1",
+        "agent-client-protocol": "0.12.1"
+      }
+    },
+    "minimum": {
+      "python": "3.10.21 (main, Sep  1 2026, 14:16:49) [Clang 22.1.3 ]",
+      "packages": {
+        "errorbars": "0.2.4",
+        "numpy": "1.24.0",
+        "inspect-ai": "0.3.268",
+        "httpx": "0.27.0",
+        "agent-client-protocol": "0.12.1"
+      }
+    },
+    "wheel": {
+      "python": "3.14.7 (main, Sep  1 2026, 14:18:09) [Clang 22.1.3 ]",
+      "packages": {
+        "errorbars": "0.2.4",
+        "numpy": "2.5.4",
+        "inspect-ai": "0.3.281",
+        "httpx": "0.28.1",
+        "agent-client-protocol": "0.12.1"
+      }
+    }
+  },
+  "checks": [
+    {
+      "check": "clean-source-install",
+      "exit": 0,
+      "log_sha256": "fd1824c1a67bde0b2a9f2bef15b9767db0ff5dc9cc08f1c59fa8ecc9c18957c0",
+      "last_lines": [
+        " + wrapt==2.5.0",
+        " + yarl==1.25.1",
+        " + zipp==4.1.0",
+        " + zstandard==0.25.0"
+      ]
+    },
+    {
+      "check": "python-full",
+      "exit": 0,
+      "log_sha256": "491f976e13a004fe8540f6348135a29e4dba60694374df125b8c9eda6693820d",
+      "last_lines": [
+        "........................................................................ [ 91%]",
+        "........................................................................ [ 99%]",
+        ".                                                                        [100%]",
+        "865 passed in 104.50s (0:01:44)"
+      ]
+    },
+    {
+      "check": "minimum-installed-wheel-full",
+      "exit": 0,
+      "log_sha256": "b38ac109305edc90e5b6888715e5fb2442786eb29e089c0fe87259c96b9baeb1",
+      "last_lines": [
+        "    ParserElement.enablePackrat()",
+        "",
+        "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+        "865 passed, 1 warning in 139.63s (0:02:19)"
+      ]
+    },
+    {
+      "check": "web-install",
+      "exit": 0,
+      "log_sha256": "43c1f4945f21c69c5f8c50fb21db57cd9c444c2dcc487512b99fbcf8f52b8e7b",
+      "last_lines": [
+        "39 packages are looking for funding",
+        "  run `npm fund` for details",
+        "",
+        "found 0 vulnerabilities"
+      ]
+    },
+    {
+      "check": "web-build",
+      "exit": 0,
+      "log_sha256": "a8a2412dd8251f5367b1823d2963ba1ff17ec5e0af28dc01d8700283f3ac5271",
+      "last_lines": [
+        "dist/assets/index-cXEpbqwn.js                                19.49 kB \u2502 gzip:  7.56 kB",
+        "dist/assets/swe-bench-C-kdaCSu.js                            96.20 kB \u2502 gzip: 26.76 kB",
+        "",
+        "\u2713 built in 331ms"
+      ]
+    },
+    {
+      "check": "web-browser-final",
+      "exit": 0,
+      "log_sha256": "e642c671fc2c657ae3520316a2d0bfa3845fd52d87b96bfcb304ff8c2c8523b4",
+      "last_lines": [
+        "  \u2713  51 [firefox] \u203a tests/browser/swebench.spec.mjs:137:3 \u203a malformed personal-run lists preserve the previous comparison at 375px (3.7s)",
+        "  \u2713  52 [firefox] \u203a tests/browser/swebench.spec.mjs:137:3 \u203a malformed personal-run lists preserve the previous comparison at 1440px (3.5s)",
+        "",
+        "  52 passed (47.2s)"
+      ]
+    },
+    {
+      "check": "offline-report-browser-final",
+      "exit": 0,
+      "log_sha256": "bd14d63463a1ac470f4b1b1d3a11d194111ccf216460233325221c08cc39437e",
+      "last_lines": [
+        "  \u2713  42 [firefox] \u203a tests/reports/review.spec.mjs:390:1 \u203a printing follows the paper palette when dark mode comes only from the system (718ms)",
+        "  \u2713  41 [firefox] \u203a tests/reports/review.spec.mjs:368:3 \u203a light and dark accessibility, navigation and print at 320px (5.9s)",
+        "",
+        "  42 passed (39.0s)"
+      ]
+    },
+    {
+      "check": "installed-native-cli",
+      "exit": 0,
+      "log_sha256": "c2e375cae217d97d2bbb40d6e631d768441c31b0aa2358395e53a68d37c8b0c8",
+      "last_lines": [
+        "{\"cases\": 12, \"commands\": 48, \"checked\": true}"
+      ]
+    },
+    {
+      "check": "installed-reducer-browser",
+      "exit": 0,
+      "log_sha256": "4dabcd63c1dfac7608e4ded7918013cc05b7e15e19fafd96c51e80ade0675cce",
+      "last_lines": [
+        "{\"workflows\":20,\"downloads_checked\":40}"
+      ]
+    }
+  ],
+  "python_tests": 865,
+  "minimum_python_tests": 865,
+  "web_unit_tests": 693,
+  "web_browser_cases": 52,
+  "offline_report_browser_cases": 42,
+  "new_native_offline_workflows": 20,
+  "new_actual_downloads": 40,
+  "other_native_logs": 24,
+  "unchanged_canonical_imports": 16,
+  "retained_native_runs": 18,
+  "additional_sdk0281_native_runs": 18,
+  "cross_version_views_per_reader": 22,
+  "cross_version_question_checks_per_reader": 528,
+  "runtime_files_match_source_wheel_sdist_installed": 30,
+  "excluded_failed_attempts": [
+    {
+      "exit": 1,
+      "reason": "Two Playwright runs shared test-results trace output; their five ENOENT cleanup failures are excluded. Both complete suites reran with separate --output directories and exit 0."
+    }
+  ],
+  "visual_review": {
+    "before_screenshots": 8,
+    "new_installed_screenshots": 12,
+    "changed_full_suite_screenshots": 2,
+    "inspected": true,
+    "observations": "Reducer/source labels wrap at 375px; no horizontal overflow. Original score precision and complete downloadable evidence remain intact."
+  },
+  "publication": {
+    "source_push": "70c12fefa85f137ae82035beec0b350c425b932d",
+    "registry_release": false,
+    "pages_change": false,
+    "hosted_workbench_change": false
+  }
+}

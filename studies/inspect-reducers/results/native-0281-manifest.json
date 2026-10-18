@@ -1,0 +1,981 @@
+{
+  "synthetic": true,
+  "inspect_ai": "0.3.281",
+  "model": "built-in mockllm; scripted solver; no model API",
+  "questions": 24,
+  "epochs": 3,
+  "observations": [
+    {
+      "file": "mean-broad.eval",
+      "bytes": 122182,
+      "sha256": "aecb9a8b266a0db1fddf05ab7474d8ada71bc6fb36c96314c40c47d272c207b6",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "mean"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "mean",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.3333333333333332,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "mean",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "mean-concentrated.eval",
+      "bytes": 122217,
+      "sha256": "8e31cf11975fe987ebd837d5b79783b5ec3938b6acd8bd26f480b0f21584286e",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "mean"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "mean",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "mean",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "max-broad.eval",
+      "bytes": 121962,
+      "sha256": "3c61cf2ae221b86ffdf6e182f552229717d0cb4c070205671cf5d24cfd74fb28",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "max"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "max",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "max-concentrated.eval",
+      "bytes": 122119,
+      "sha256": "0b0ec47343423c96b6cb9430f87e45208930b75e20263173f71767cdfeae2bd1",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "max"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "max",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "mean-max-broad.eval",
+      "bytes": 122549,
+      "sha256": "dcc01b220fc2157725b8494b267e1fcdee62ee458dcce572dcf9b93fbab5ca9a",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "mean",
+          "max"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "mean",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.3333333333333332,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        },
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "mean",
+          "samples": 24
+        },
+        {
+          "scorer": "match",
+          "reducer": "max",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "mean-max-concentrated.eval",
+      "bytes": 122360,
+      "sha256": "31d524610f43ea04aeba5cc6c49b44ef01480fbd060da6494ac89e119d42d77e",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "mean",
+          "max"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "mean",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        },
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "mean",
+          "samples": 24
+        },
+        {
+          "scorer": "match",
+          "reducer": "max",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "pass_at_2-broad.eval",
+      "bytes": 122209,
+      "sha256": "f3526a4d0d3217e47d0418de1c8bb049143eb8e986e8b368e10844a18de69c18",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "pass_at_2"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "pass_at_2",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.6666666666666664,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "pass_at_2",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "pass_at_2-concentrated.eval",
+      "bytes": 122401,
+      "sha256": "7c4ead0ac8f7421f806408cf38eda7b5aca650ba0d06809e78b89b477afab726",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "pass_at_2"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "pass_at_2",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "pass_at_2",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "median-broad.eval",
+      "bytes": 122195,
+      "sha256": "4ccc66fa3a0dcfb8b3f61cd840306d618aba5a625e1afb92e487508fce7d3cae",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "median"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "median",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "median",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "median-concentrated.eval",
+      "bytes": 122223,
+      "sha256": "327c9e8dbb599f650962660c47804579cb6c154d24aa1c2366393ea92d0217f5",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "median"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "median",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "median",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "mode-broad.eval",
+      "bytes": 122178,
+      "sha256": "8aebea0ecd6b62c365d1273cbd1fdc784811c80940742e98ffd0808ace73fb05",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "mode"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "mode",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "mode",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "mode-concentrated.eval",
+      "bytes": 122211,
+      "sha256": "44a305f681506167dc55db7514c5887c2e5ecb62e93ce6bd1df5b795c3dbc5e9",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "mode"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "mode",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "mode",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "at_least_2-broad.eval",
+      "bytes": 122257,
+      "sha256": "3b8121dd27c77979a8b984997e7fce26c6e1a740cab431c9682b0287e7b1b9ee",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "at_least_2"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "at_least_2",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "at_least_2",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "at_least_2-concentrated.eval",
+      "bytes": 122153,
+      "sha256": "dd0ee8e2fed127ef338f87e7df9e279224ab4cbddc90c68a9ec53426fb3c222c",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "at_least_2"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "reducer": "at_least_2",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.09028938981432691,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "match",
+          "reducer": "at_least_2",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "none-broad.eval",
+      "bytes": 122134,
+      "sha256": "f4497b0fecd983167fba0afb0433c3d2e20216adeee73f1dd7d373b9f24f1e65",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "scored_samples": 72,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.3333333333333333,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.05594542388644595,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": []
+    },
+    {
+      "file": "none-concentrated.eval",
+      "bytes": 121948,
+      "sha256": "c4336d90d80ecc9cdcb918e4a702ea0785126c9e9cfb24c3d036569f076d3d6c",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "match",
+          "scorer": "match",
+          "scored_samples": 72,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.75,
+              "params": {}
+            },
+            "stderr": {
+              "name": "stderr",
+              "value": 0.051389153237064875,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": []
+    },
+    {
+      "file": "named-max-broad.eval",
+      "bytes": 121935,
+      "sha256": "b2a86f3f71c2a8ff8b56a5743a1245fc6d8b9253fc625f9cd1a3e07612c8b006",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "max"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "correct",
+          "scorer": "named_grade",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        },
+        {
+          "name": "loss",
+          "scorer": "named_grade",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "named_grade",
+          "reducer": "max",
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "file": "named-max-concentrated.eval",
+      "bytes": 121851,
+      "sha256": "1caab4f35dbd3feb057a4c1d805a6a0ca23d17c69bea2a3b6d4c8afcaf26714f",
+      "raw_samples": 72,
+      "config": {
+        "epochs": 3,
+        "epochs_reducer": [
+          "max"
+        ],
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_samples": 1,
+        "sandbox_cleanup": true,
+        "sandbox_prebuilt": false,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "results": [
+        {
+          "name": "correct",
+          "scorer": "named_grade",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "value": 0.75,
+              "params": {}
+            }
+          }
+        },
+        {
+          "name": "loss",
+          "scorer": "named_grade",
+          "reducer": "max",
+          "scored_samples": 24,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "mean": {
+              "name": "mean",
+              "value": 0.25,
+              "params": {}
+            }
+          }
+        }
+      ],
+      "reductions": [
+        {
+          "scorer": "named_grade",
+          "reducer": "max",
+          "samples": 24
+        }
+      ]
+    }
+  ]
+}

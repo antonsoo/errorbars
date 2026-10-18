@@ -1,0 +1,687 @@
+{
+  "phase": "after",
+  "files": {
+    "max": {
+      "bytes": 202777,
+      "sha256": "6247311fb44362a16305998540766c373a31cbfd7cbb5e5dda3dfa74b0cf2918"
+    },
+    "pass_at_2": {
+      "bytes": 204354,
+      "sha256": "ecf71aefd1778c12588019bbc76a4fd89533b1cf0f55c13cf6dc14f5480f9d3a"
+    },
+    "mean": {
+      "bytes": 237526,
+      "sha256": "447733d6cd49274e9de38d7623d8f17875d43c41c99022aa2c45295938bea617"
+    },
+    "max-roundtrip": {
+      "bytes": 200430,
+      "sha256": "8edd5ce620c2dd6e61e5ef9376048e0cc9916d55346d898c8b4491a31c232c75"
+    },
+    "named-max-correct": {
+      "bytes": 203653,
+      "sha256": "2cfbb38eded193980aec1498753b199bb22ed6d43cd9fbe107c04453b0206fe7"
+    }
+  },
+  "workflows": [
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "report": "max",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-1440-max.json",
+          "bytes": 40218,
+          "sha256": "d8edf60cb5f92b5ea07aec8ee280218394764510239df28a0df94303ac45865d"
+        },
+        {
+          "file": "chromium-1440-max.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "report": "pass_at_2",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        0.6666666666666666,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.3656106415702721,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-1440-pass_at_2.json",
+          "bytes": 42118,
+          "sha256": "35faa58ef0b22deb4578fa746466eb26bf74ce130c05c16d211591625f2dd5a1"
+        },
+        {
+          "file": "chromium-1440-pass_at_2.csv",
+          "bytes": 487,
+          "sha256": "df9166ec068a9e5e43efcd2a02e9d102b195ded3abe04db6b3b6d76044cbe50c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "report": "mean",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 72,
+      "means": [
+        0.3333333333333333,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-1440-mean.json",
+          "bytes": 91737,
+          "sha256": "c32bf12a44f230bc67cfd19dbd3ddfeb2a38b6e6f28297c1e7e3f21f002a6448"
+        },
+        {
+          "file": "chromium-1440-mean.csv",
+          "bytes": 414,
+          "sha256": "551e1888c4e431cee52eea36500c4d1cd83dadc1def5a3507073592f359a12a6"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "report": "max-roundtrip",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-1440-max-roundtrip.json",
+          "bytes": 37882,
+          "sha256": "ade312483c02dba8652c3d9e71f4411247fc2a58a6a0589a1bd2ce3898035e1b"
+        },
+        {
+          "file": "chromium-1440-max-roundtrip.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 1440,
+      "report": "named-max-correct",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-1440-named-max-correct.json",
+          "bytes": 41068,
+          "sha256": "5ef83fe666b24c06d77759096de799cff1bfe43a741aadb84ea11f7eb73fd5d5"
+        },
+        {
+          "file": "chromium-1440-named-max-correct.csv",
+          "bytes": 465,
+          "sha256": "62656a3168f5c724986142845b42741a647f59e2db9ecddd25999c4f30ae4508"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "report": "max",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-375-max.json",
+          "bytes": 40218,
+          "sha256": "d8edf60cb5f92b5ea07aec8ee280218394764510239df28a0df94303ac45865d"
+        },
+        {
+          "file": "chromium-375-max.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "report": "pass_at_2",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        0.6666666666666666,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.3656106415702721,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-375-pass_at_2.json",
+          "bytes": 42118,
+          "sha256": "35faa58ef0b22deb4578fa746466eb26bf74ce130c05c16d211591625f2dd5a1"
+        },
+        {
+          "file": "chromium-375-pass_at_2.csv",
+          "bytes": 487,
+          "sha256": "df9166ec068a9e5e43efcd2a02e9d102b195ded3abe04db6b3b6d76044cbe50c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "report": "mean",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 72,
+      "means": [
+        0.3333333333333333,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-375-mean.json",
+          "bytes": 91737,
+          "sha256": "c32bf12a44f230bc67cfd19dbd3ddfeb2a38b6e6f28297c1e7e3f21f002a6448"
+        },
+        {
+          "file": "chromium-375-mean.csv",
+          "bytes": 414,
+          "sha256": "551e1888c4e431cee52eea36500c4d1cd83dadc1def5a3507073592f359a12a6"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "report": "max-roundtrip",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-375-max-roundtrip.json",
+          "bytes": 37882,
+          "sha256": "ade312483c02dba8652c3d9e71f4411247fc2a58a6a0589a1bd2ce3898035e1b"
+        },
+        {
+          "file": "chromium-375-max-roundtrip.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "chromium",
+      "version": "153.0.8010.12",
+      "width": 375,
+      "report": "named-max-correct",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "chromium-375-named-max-correct.json",
+          "bytes": 41068,
+          "sha256": "5ef83fe666b24c06d77759096de799cff1bfe43a741aadb84ea11f7eb73fd5d5"
+        },
+        {
+          "file": "chromium-375-named-max-correct.csv",
+          "bytes": 465,
+          "sha256": "62656a3168f5c724986142845b42741a647f59e2db9ecddd25999c4f30ae4508"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "report": "max",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-1440-max.json",
+          "bytes": 40218,
+          "sha256": "d8edf60cb5f92b5ea07aec8ee280218394764510239df28a0df94303ac45865d"
+        },
+        {
+          "file": "firefox-1440-max.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "report": "pass_at_2",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        0.6666666666666666,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.3656106415702721,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-1440-pass_at_2.json",
+          "bytes": 42118,
+          "sha256": "35faa58ef0b22deb4578fa746466eb26bf74ce130c05c16d211591625f2dd5a1"
+        },
+        {
+          "file": "firefox-1440-pass_at_2.csv",
+          "bytes": 487,
+          "sha256": "df9166ec068a9e5e43efcd2a02e9d102b195ded3abe04db6b3b6d76044cbe50c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "report": "mean",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 72,
+      "means": [
+        0.3333333333333333,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-1440-mean.json",
+          "bytes": 91737,
+          "sha256": "c32bf12a44f230bc67cfd19dbd3ddfeb2a38b6e6f28297c1e7e3f21f002a6448"
+        },
+        {
+          "file": "firefox-1440-mean.csv",
+          "bytes": 414,
+          "sha256": "551e1888c4e431cee52eea36500c4d1cd83dadc1def5a3507073592f359a12a6"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "report": "max-roundtrip",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-1440-max-roundtrip.json",
+          "bytes": 37882,
+          "sha256": "ade312483c02dba8652c3d9e71f4411247fc2a58a6a0589a1bd2ce3898035e1b"
+        },
+        {
+          "file": "firefox-1440-max-roundtrip.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 1440,
+      "report": "named-max-correct",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-1440-named-max-correct.json",
+          "bytes": 41068,
+          "sha256": "5ef83fe666b24c06d77759096de799cff1bfe43a741aadb84ea11f7eb73fd5d5"
+        },
+        {
+          "file": "firefox-1440-named-max-correct.csv",
+          "bytes": 465,
+          "sha256": "62656a3168f5c724986142845b42741a647f59e2db9ecddd25999c4f30ae4508"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "report": "max",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-375-max.json",
+          "bytes": 40218,
+          "sha256": "d8edf60cb5f92b5ea07aec8ee280218394764510239df28a0df94303ac45865d"
+        },
+        {
+          "file": "firefox-375-max.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "report": "pass_at_2",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        0.6666666666666666,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.3656106415702721,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-375-pass_at_2.json",
+          "bytes": 42118,
+          "sha256": "35faa58ef0b22deb4578fa746466eb26bf74ce130c05c16d211591625f2dd5a1"
+        },
+        {
+          "file": "firefox-375-pass_at_2.csv",
+          "bytes": 487,
+          "sha256": "df9166ec068a9e5e43efcd2a02e9d102b195ded3abe04db6b3b6d76044cbe50c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "report": "mean",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 72,
+      "means": [
+        0.3333333333333333,
+        0.75
+      ],
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-375-mean.json",
+          "bytes": 91737,
+          "sha256": "c32bf12a44f230bc67cfd19dbd3ddfeb2a38b6e6f28297c1e7e3f21f002a6448"
+        },
+        {
+          "file": "firefox-375-mean.csv",
+          "bytes": 414,
+          "sha256": "551e1888c4e431cee52eea36500c4d1cd83dadc1def5a3507073592f359a12a6"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "report": "max-roundtrip",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-375-max-roundtrip.json",
+          "bytes": 37882,
+          "sha256": "ade312483c02dba8652c3d9e71f4411247fc2a58a6a0589a1bd2ce3898035e1b"
+        },
+        {
+          "file": "firefox-375-max-roundtrip.csv",
+          "bytes": 439,
+          "sha256": "6bcde6e285a765e3dccc7435e5ea75bbcf7e36c0300df8e6e318da38b1f9c83c"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    },
+    {
+      "browser": "firefox",
+      "version": "155.0",
+      "width": 375,
+      "report": "named-max-correct",
+      "phase": "after",
+      "offline_before_load": true,
+      "questions": 24,
+      "observations_per_run": 24,
+      "means": [
+        1,
+        0.75
+      ],
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "keyboard_inspected": "q00",
+      "inference_unchanged_after_filter": true,
+      "downloads": [
+        {
+          "file": "firefox-375-named-max-correct.json",
+          "bytes": 41068,
+          "sha256": "5ef83fe666b24c06d77759096de799cff1bfe43a741aadb84ea11f7eb73fd5d5"
+        },
+        {
+          "file": "firefox-375-named-max-correct.csv",
+          "bytes": 465,
+          "sha256": "62656a3168f5c724986142845b42741a647f59e2db9ecddd25999c4f30ae4508"
+        }
+      ],
+      "horizontal_overflow": false,
+      "errors": [],
+      "network_requests": []
+    }
+  ]
+}

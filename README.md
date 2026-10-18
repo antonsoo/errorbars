@@ -99,14 +99,16 @@ The source corrections described here are not in the tested PyPI 0.2.4 build.
 To use them, install this verified public revision:
 
 ```bash
-python -m pip install --force-reinstall "errorbars @ git+https://github.com/antonsoo/errorbars.git@45cc476a79166875d8f06b09d7ff837bb83d2540"
+python -m pip install --force-reinstall "errorbars @ git+https://github.com/antonsoo/errorbars.git@70c12fefa85f137ae82035beec0b350c425b932d"
 ```
 
 `--force-reinstall` replaces an existing 0.2.4 installation; this source still
-declares that version. [Public source and pip upgrade replay](studies/observed-cohorts/results/public-source.json)
-verify all 29 installed package files, grouped summaries and the recorded-cohort
-comparison. The [live build receipt](studies/observed-cohorts/results/hosted.json)
-checks the browser separately. These are separate from a new PyPI release.
+declares that version. [Public source and pip upgrade replay](studies/inspect-reducers/results/public-install.json)
+verify all 30 installed runtime files. Native Inspect imports additionally need
+`pip install "errorbars[inspect]"`. [Native reducer evidence](studies/inspect-reducers/README.md)
+checks installed CLI commands and actual offline report downloads. The earlier
+[cohort correction](studies/observed-cohorts/README.md) checks the fixed-task
+browser separately. These checks are separate from a new PyPI release.
 
 ## Features
 

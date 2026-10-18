@@ -53,7 +53,9 @@ class RecordSource:
 
     ``record`` is one-based (excluding a CSV header); line numbers are physical,
     inclusive file lines. Inspect logs use record order plus the sample id and
-    epoch already present in EvalData. Sources are not part of question identity.
+    epoch already present in EvalData. A retained Inspect reduction names its
+    `reductions[index].samples` array in `metric`; `record` then indexes that
+    array, not the raw epoch records. Sources are not part of question identity.
     """
 
     path: str

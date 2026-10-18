@@ -213,7 +213,7 @@
     selected = null;
     const heading = node("h3", "Select a question");
     heading.id = "inspector-heading"; heading.tabIndex = -1;
-    byId("inspector").replaceChildren(heading, node("p", "Open a question id to see every observed generation and its source record.", "caption"));
+    byId("inspector").replaceChildren(heading, node("p", "Open a question id to see every observed score and its source record.", "caption"));
   }
   function changeFilters() {
     page = 0; clearInspector(); showLedger();
@@ -250,7 +250,7 @@
       : q.scoring === "conflicting"
       ? "Conflicting scoring rules: the recorded scorer names, selected values or configurations differ. Select the same value and scoring rule before comparing."
       : q.difference === null ? "Excluded from the paired estimate: one model has no observed score. Missing is not zero."
-      : `A - B = ${number(q.difference, true)}. Each model's score is the mean of its observed draws.`, "caption"));
+      : `A - B = ${number(q.difference, true)}. Each model's score is the mean of its observed scores.`, "caption"));
     root.append(node("p", `Question identity: ${q.identity}.`, "caption"));
     root.append(node("p", `Scoring declarations: ${q.scoring ?? "unavailable"}.`, "caption"));
     for (const side of ["a", "b"]) {
@@ -262,7 +262,7 @@
       root.append(node("p", `Mean ${number(q[`mean_${side}`])} / ${formatCount(observations.length)} observation${observations.length === 1 ? "" : "s"}`, "caption"));
       const scroll = node("div", undefined, "table-scroll");
       scroll.tabIndex = 0; scroll.setAttribute("role", "region");
-      scroll.setAttribute("aria-label", `${side.toUpperCase()} observed generations`);
+      scroll.setAttribute("aria-label", `${side.toUpperCase()} observed scores`);
       const table = node("table");
       table.append(node("caption", `Observed scores for ${side.toUpperCase()}`, "sr-only"));
       const head = node("thead"); const header = node("tr");

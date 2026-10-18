@@ -40,6 +40,7 @@ def _load(args: argparse.Namespace, model: str | None = None) -> EvalData:
             filter_name=args.filter,
             scorer=args.scorer,
             score_key=args.score_key,
+            inspect_reducer=args.inspect_reducer,
         )
     except ImportError as exc:
         raise SystemExit(f"error: {exc}") from exc
@@ -89,6 +90,10 @@ def _harness_args(sp: argparse.ArgumentParser) -> None:
     sp.add_argument(
         "--score-key", default=None,
         help="exact top-level named value in an Inspect dictionary-valued score (no default)",
+    )
+    sp.add_argument(
+        "--inspect-reducer", default=None,
+        help="recorded Inspect epoch reducer to select when several exist (e.g. max or pass_at_2)",
     )
 
 

@@ -1,0 +1,162 @@
+[
+  {
+    "file": "examples/inspect-comparison/logs/different-questions.eval",
+    "input_sha256": "c9f3f678444cf7ebe416d1e0542eda100dc5099f683e4ac03f5bf8aa0e7e06a3",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "d88dc399eb00ca488fb024ede97c2b987b4c0a355930bab9f9b6f078157cceea"
+  },
+  {
+    "file": "examples/inspect-comparison/logs/limited.eval",
+    "input_sha256": "fd8bc5de95b1d9cb61f346cf2cbd8829b736f924de06dd1c5817952e8ab14a6f",
+    "status": "loaded",
+    "observations": 12,
+    "canonical_sha256": "b299efd121b2c0cc2c3c09becf3b56d6bbe673243373bdd411e9cc5ec90e2dff"
+  },
+  {
+    "file": "examples/inspect-comparison/logs/original.eval",
+    "input_sha256": "a14fa9642da4778a81ca1d9b6d2da5331426d7b9972770d49b99aaecd5bc9aac",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "b895bd64118aaa9f5a34042469aa9da86c8fa61d7756cb355ee422634bcd99b3"
+  },
+  {
+    "file": "examples/inspect-comparison/logs/selected-epochs.eval",
+    "input_sha256": "93177b65cc252f923a99edef499e34553351d87d8053f7a6df99a42cfb8f1a84",
+    "status": "loaded",
+    "observations": 6,
+    "canonical_sha256": "9412701fdafa183bc3c26fb03a202c77bcd2f1d6300509a8e1ea13d8e8f33cc3"
+  },
+  {
+    "file": "examples/inspect-comparison/logs/solver-variant.eval",
+    "input_sha256": "0e3f339d7b3257a8a8b219ee71e8af9c1ca7af2977607eb9dbfe626f1c844a0e",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "9676928672793fa3ccda5076d27d1ec7fd6d84df1764d05e1543237154928b4a"
+  },
+  {
+    "file": "examples/inspect-scoring/logs/anywhere.eval",
+    "input_sha256": "14f4feb19c18a005ab6efbb23fc8a15d1ab9cd13fbca5df28aeb89d2f2a80deb",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "dc1e2a1b592d107b3daa173d7fc48b240ba65ffbc06f6fb8b7ab011c0a1965e2"
+  },
+  {
+    "file": "examples/inspect-scoring/logs/exact-repeat.eval",
+    "input_sha256": "55f98314307d9107312ec210e8366e509613c7d02082a966b46be3c83461655b",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "13b1018c3424e4b4a86a25dfcbb70b41a6323864c354f88af900705a30d458d4"
+  },
+  {
+    "file": "examples/inspect-scoring/logs/exact.eval",
+    "input_sha256": "c5ba83764493c7ebed763a49efa4aa110eab3254beec2818ccc4a28aef4036c6",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "13b1018c3424e4b4a86a25dfcbb70b41a6323864c354f88af900705a30d458d4"
+  },
+  {
+    "file": "examples/inspect-scoring/logs/improved-exact.eval",
+    "input_sha256": "15880fdfd76eada6a2d1865375a08296bbebe5d50cdac8760f5e331e2c42efd6",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "44c0830932bcde4bddbe6e18841c783f7f54a890470c7056162a5a15c30bc41d"
+  },
+  {
+    "file": "examples/inspect-scoring/logs/includes.eval",
+    "input_sha256": "5b87deb285adfc438ec9712b9e75508137863f86996690bf710bcbca4758beda",
+    "status": "loaded",
+    "observations": 24,
+    "canonical_sha256": "56456d4b86784a1a1f2a6126b7d01347a4f8b6275b9d3916b312a4d603b4ae61"
+  },
+  {
+    "file": "examples/inspect-values/logs/baseline.eval",
+    "input_sha256": "e83ec85c059f3892b2f9f60270c870e8f6a13d74df5668dc0e56e0100005d4d9",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/examples/inspect-values/logs/baseline.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
+  },
+  {
+    "file": "examples/inspect-values/logs/candidate-epochs.eval",
+    "input_sha256": "e27077a55e18a6600a138e9a34b878f86496f8d8a43759e283027d9088d47419",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/examples/inspect-values/logs/candidate-epochs.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
+  },
+  {
+    "file": "examples/inspect-values/logs/candidate.eval",
+    "input_sha256": "eeecb4a10c96b8f2941e671341f0f2410b600bd8431ea138ebbd8b4ee6a158e1",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/examples/inspect-values/logs/candidate.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
+  },
+  {
+    "file": "studies/inspect-converters/captures/default-perfect.eval",
+    "input_sha256": "5a6f03d29445ae3279f39ce96975246302250337923f77f03d18030d7384034b",
+    "status": "loaded",
+    "observations": 8,
+    "canonical_sha256": "28ed3b65e11e329a10adccf93b12be6bae64a0c87a90244308e5dd1642af7331"
+  },
+  {
+    "file": "studies/inspect-converters/captures/default-wrong.eval",
+    "input_sha256": "dabcde14999dc4c03f0fd7796461bdc15a7efcfbcf28391fe856921b40e8eb33",
+    "status": "loaded",
+    "observations": 8,
+    "canonical_sha256": "d6da3cabf234d383b0aa62df018548f2de43e2a475692eae353b9a649a451f0c"
+  },
+  {
+    "file": "studies/inspect-converters/captures/named-perfect.eval",
+    "input_sha256": "57a8835056b2718519edc92123e00d8ae4afadfedb0a9dae76592ea766d19cbe",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+  },
+  {
+    "file": "studies/inspect-converters/captures/named-wrong.eval",
+    "input_sha256": "36fbd8f3a8c104fab6b1e999ac7e6f2f0e8bd5552ff49dc237d09a493df4cf13",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/named-wrong.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+  },
+  {
+    "file": "studies/inspect-converters/captures/reversed-perfect.eval",
+    "input_sha256": "6cf8066262e3430988ce0b5c8e1e3908c3c4066146883c72e1e9151014aa24e3",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+  },
+  {
+    "file": "studies/inspect-converters/captures/reversed-wrong.eval",
+    "input_sha256": "3c96487909b5dc730caff6b0a144b450df6183758f203de84aa3a99894b0acbf",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/reversed-wrong.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+  },
+  {
+    "file": "studies/repeated-means/fixtures/epochs-1.eval",
+    "input_sha256": "b08971dfdca74e3c0c54f67266dbe4eb4f8cafdbcb7a8ca3e7d9a06f3cf7f8cf",
+    "status": "loaded",
+    "observations": 20,
+    "canonical_sha256": "9a30b554fc5035d6861217fefc0e8d8054051b6678d773ec7c8f83bfb49a41ab"
+  },
+  {
+    "file": "studies/repeated-means/fixtures/epochs-3.eval",
+    "input_sha256": "3c0ec94553a614b9fce6f4ca992dc175a30257e85a475adae9eef372130aa657",
+    "status": "loaded",
+    "observations": 60,
+    "canonical_sha256": "53c4b1a171f26302ff7cf338f20eab4deb788edec2c5835045fcf95aa21753c7"
+  },
+  {
+    "file": "tests/fixtures/inspect_tiny_epochs.eval",
+    "input_sha256": "81dee1b4c44ebde941f00363308bc9947e2715a63193d6706f6ead44539bbbfd",
+    "status": "loaded",
+    "observations": 6,
+    "canonical_sha256": "63f58ae42093d1802d3333a1d683c22fc624c166b3aaaa45323d6e1e8517a129"
+  },
+  {
+    "file": "tests/fixtures/inspect_tiny_named_values.eval",
+    "input_sha256": "849d04149deba09164275e366327858017e33449a079dec637cf2a83750ade03",
+    "status": "refused",
+    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/tests/fixtures/inspect_tiny_named_values.eval: sample 'q1': scorer 'shape' returns dict values (keys: ['length', 'has_digit']); select one with score_key=... (--score-key)"
+  },
+  {
+    "file": "tests/fixtures/inspect_tiny_qa.eval",
+    "input_sha256": "90264ca90d2237957c885e39e872b11f00beb214c196236df3fec258fdc22c66",
+    "status": "loaded",
+    "observations": 5,
+    "canonical_sha256": "7132442e2831491ede15cdbbb6ccc2b6170db55fa86f7e3bef8f5ae241140166"
+  }
+]

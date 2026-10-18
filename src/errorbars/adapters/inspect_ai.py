@@ -23,6 +23,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from errorbars.adapters._inspect_integrity import check_complete, question_signature, scoring_rule
+from errorbars.adapters._inspect_reductions import recorded_reduction, select_reducer
 from errorbars.io import EvalData, RecordSource, _coerce_score, _identifier
 
 __all__ = ["load_inspect_log"]
@@ -30,6 +31,7 @@ __all__ = ["load_inspect_log"]
 
 def load_inspect_log(
     path: str | Path, scorer: str | None = None, *, score_key: str | None = None,
+    inspect_reducer: str | None = None,
 ) -> EvalData:
     """Load per-sample scores from an Inspect AI ``.eval`` or ``.json`` log.
 
@@ -40,6 +42,9 @@ def load_inspect_log(
             more than one and none was specified.
         score_key: exact top-level key in a dictionary-valued score. Required
             for named values; the selected scalar must exist on every sample.
+        inspect_reducer: recorded epoch reducer to select when several exist.
+            Non-mean reducers use the log's complete retained question scores;
+            ordinary means keep the individual epochs and their diagnostics.
 
     Repeated ``--epochs`` sampling of the same input is captured in the
     ``sample`` column (Inspect's per-sample ``epoch`` number), so
@@ -52,9 +57,13 @@ def load_inspect_log(
     """
     if score_key is not None and (not isinstance(score_key, str) or not score_key.strip()):
         raise ValueError("score_key (--score-key) must be a nonempty named value")
+    if inspect_reducer is not None and (
+        not isinstance(inspect_reducer, str) or not inspect_reducer.strip()
+    ):
+        raise ValueError("inspect_reducer (--inspect-reducer) must be a nonempty reducer name")
     try:
         from inspect_ai.log import read_eval_log
-        from inspect_ai.scorer import CORRECT, INCORRECT, NOANSWER, PARTIAL, value_to_float
+        from inspect_ai.scorer import CORRECT, INCORRECT, NOANSWER, PARTIAL, Value, value_to_float
     except ImportError as exc:  # pragma: no cover - exercised only without the extra
         raise ImportError(
             "reading an Inspect log needs inspect-ai, which the 'inspect' extra installs: "
@@ -84,6 +93,44 @@ def load_inspect_log(
     signatures: list[str | None] = []
     selected_scorer = scorer
     selected_rule = None
+    selected_reducer = None
+
+    def numeric_grade(value: Value, identity: object) -> float:
+        if score_key is not None:
+            if not isinstance(value, dict):
+                raise ValueError(
+                    f"{path}: sample {identity!r}: scorer {selected_scorer!r} is not dictionary-valued; "
+                    f"cannot select --score-key {score_key!r}"
+                )
+            if score_key not in value:
+                raise ValueError(
+                    f"{path}: sample {identity!r}: scorer {selected_scorer!r} has no "
+                    f"named value {score_key!r}; selected values must exist on every sample"
+                )
+            value = value[score_key]
+        if isinstance(value, dict) and score_key is None:
+            raise ValueError(
+                f"{path}: sample {identity!r}: scorer {selected_scorer!r} returns dict values "
+                f"(keys: {list(value)}); select one with score_key=... (--score-key)"
+            )
+        if isinstance(value, (dict, list)):
+            selected = f", value {score_key!r}" if score_key is not None else ""
+            raise ValueError(
+                f"{path}: sample {identity!r}: scorer {selected_scorer!r}{selected}: "
+                f"returns {type(value).__name__} values, not one scalar score per sample"
+            )
+        codes = (CORRECT, INCORRECT, PARTIAL, NOANSWER)
+        boolean_text = isinstance(value, str) and value.lower() in ("yes", "no", "true", "false")
+        try:
+            if value not in codes and not boolean_text:
+                _coerce_score(value, 1)
+            return _coerce_score(to_float(value), 1)
+        except ValueError as exc:
+            selected = f", value {score_key!r}" if score_key is not None else ""
+            raise ValueError(
+                f"{path}: sample {identity!r}: scorer {selected_scorer!r}{selected}: "
+                f"unsupported or nonfinite grade {value!r}"
+            ) from exc
 
     for record, s in enumerate(log.samples, 1):
         if not s.scores:
@@ -109,47 +156,9 @@ def load_inspect_log(
                 "select one scorer present on every sample with scorer=... (--scorer)"
             )
         if selected_rule is None:
-            selected_rule = scoring_rule(log, key, path, score_key)
-        value = s.scores[key].value
-        if score_key is not None:
-            if not isinstance(value, dict):
-                raise ValueError(
-                    f"{path}: sample {s.id!r}: scorer {key!r} is not dictionary-valued; "
-                    f"cannot select --score-key {score_key!r}"
-                )
-            if score_key not in value:
-                raise ValueError(
-                    f"{path}: sample {s.id!r}: scorer {key!r} has no named value {score_key!r} "
-                    f"(has: {list(value)}); selected values must exist on every sample"
-                )
-            value = value[score_key]
-        # value_to_float turns anything it can't read into 0.0. A scorer with several named
-        # values has no single score to read, so say so instead of reporting a mean of 0.
-        if isinstance(value, dict) and score_key is None:
-            raise ValueError(
-                f"{path}: sample {s.id!r}: scorer {key!r} returns dict values "
-                f"(keys: {list(value)}); select one with score_key=... (--score-key)"
-            )
-        if isinstance(value, (dict, list)):
-            selected = f", value {score_key!r}" if score_key is not None else ""
-            raise ValueError(
-                f"{path}: sample {s.id!r}: scorer {key!r}{selected}: "
-                f"returns {type(value).__name__} values, not one scalar score per sample"
-            )
-        # Inspect's fallback is zero even for None or an unrecognized string. Only pass
-        # supported codes/numbers to that converter; an unknown grade is not a wrong answer.
-        codes = (CORRECT, INCORRECT, PARTIAL, NOANSWER)
-        boolean_text = isinstance(value, str) and value.lower() in ("yes", "no", "true", "false")
-        try:
-            if value not in codes and not boolean_text:
-                _coerce_score(value, 1)
-            number = _coerce_score(to_float(value), 1)
-        except ValueError as exc:
-            selected = f", value {score_key!r}" if score_key is not None else ""
-            raise ValueError(
-                f"{path}: sample {s.id!r}: scorer {key!r}{selected}: "
-                f"unsupported or nonfinite grade {value!r}"
-            ) from exc
+            selected_reducer = select_reducer(log, key, path, score_key, inspect_reducer)
+            selected_rule = scoring_rule(log, key, path, score_key, reducer=selected_reducer)
+        number = numeric_grade(s.scores[key].value, s.id)
         question_id.append(_identifier(s.id, "question_id", len(question_id) + 1))
         model_col.append(model)
         score.append(number)
@@ -167,4 +176,9 @@ def load_inspect_log(
         scoring=[selected_rule] * len(score),
     )
     data.validate()
+    if selected_reducer != "mean":
+        assert selected_scorer is not None and selected_reducer is not None
+        return recorded_reduction(
+            log, data, selected_scorer, selected_reducer, path, numeric_grade,
+        )
     return data

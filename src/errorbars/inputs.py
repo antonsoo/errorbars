@@ -126,6 +126,7 @@ def _load_one(
     filter_name: str | None,
     scorer: str | None,
     score_key: str | None,
+    inspect_reducer: str | None,
 ) -> EvalData:
     """One file. ``name`` is the NAME of a NAME=PATH given for it; ``model`` the name given
     for every harness log."""
@@ -143,7 +144,9 @@ def _load_one(
 
     from errorbars.adapters.inspect_ai import load_inspect_log
 
-    data = load_inspect_log(path, scorer=scorer, score_key=score_key)
+    data = load_inspect_log(
+        path, scorer=scorer, score_key=score_key, inspect_reducer=inspect_reducer,
+    )
     if name or model:
         data.model = [str(name or model)] * len(data)
     return data
@@ -158,6 +161,7 @@ def load_inputs(
     filter_name: str | None = None,
     scorer: str | None = None,
     score_key: str | None = None,
+    inspect_reducer: str | None = None,
 ) -> Loaded:
     """Load one or more files or directories (each optionally as ``NAME=PATH``) as one dataset.
 
@@ -169,6 +173,7 @@ def load_inputs(
         filter_name: lm-eval filter to use, for a task scored under several.
         scorer: Inspect scorer to use, for a task with more than one.
         score_key: named value to select from an Inspect dictionary-valued scorer.
+        inspect_reducer: recorded Inspect epoch reducer to select when ambiguous.
     """
     columns = columns or ColumnMap()
     if not specs:
@@ -184,7 +189,9 @@ def load_inputs(
         paths = _expand_directory(path, notes) if path.is_dir() else [path]
         for one in paths:
             kind = _kind(one)
-            data = _load_one(one, kind, name, model, columns, metric, filter_name, scorer, score_key)
+            data = _load_one(
+                one, kind, name, model, columns, metric, filter_name, scorer, score_key, inspect_reducer,
+            )
             protected_paths.append(one)
             if kind == "lm-eval":
                 metadata = model_metadata_path(one)
@@ -206,4 +213,6 @@ def load_inputs(
             parts.append((str(one), data))
     if score_key is not None and not inspected:
         raise ValueError("--score-key selects a named value in Inspect logs; no Inspect log was supplied")
+    if inspect_reducer is not None and not inspected:
+        raise ValueError("--inspect-reducer selects a view in Inspect logs; no Inspect log was supplied")
     return Loaded(data=concat(parts), files=files, notes=notes, protected_paths=protected_paths)

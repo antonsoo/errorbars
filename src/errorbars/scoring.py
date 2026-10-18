@@ -30,12 +30,10 @@ class ScoringRule:
 
 
 def score_value_labels(rules: Iterable[tuple[str, ScoringRule | None]]) -> list[dict[str, str | None]]:
-    """Label selected dimensions without exposing scorer parameter values."""
+    """Label recorded score definitions, including scalar reductions, without parameters."""
     labels = dict.fromkeys(
         (model, rule.name, rule.value_key) for model, rule in rules if rule is not None
     )
-    if not any(key is not None for _, _, key in labels):
-        return []
     return [{"model": model, "scorer": scorer, "scorer_value": key} for model, scorer, key in labels]
 
 

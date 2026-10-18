@@ -1,0 +1,747 @@
+{
+  "python": "3.12.12 (main, Feb 12 2026, 00:42:14) [Clang 21.1.4 ]",
+  "package": "/home/antonsoloviev/work/projects/showcases/errorbars/src/errorbars/__init__.py",
+  "synthetic": true,
+  "questions": 24,
+  "epochs": 3,
+  "files": {
+    "mean-broad.eval": {
+      "bytes": 122359,
+      "sha256": "a00a3bbd29e366c80599e6fb757c70530f0fdfcd651dd056219ea9d1f1c395ca"
+    },
+    "mean-concentrated.eval": {
+      "bytes": 122448,
+      "sha256": "4f62ad2d284c7813df7e190138003016a0c94101190bb2ad4b3e60137c869e2a"
+    },
+    "none-broad.eval": {
+      "bytes": 122249,
+      "sha256": "2d86aa21bdbecdd4adf689f279dedc9c01c77ae0380ac621ecfbdcbbecc75e82"
+    },
+    "none-concentrated.eval": {
+      "bytes": 122204,
+      "sha256": "5009ca17e515b81f63bee95e31c05cb32448cef59c806f48f48185196abc2200"
+    },
+    "max-broad.eval": {
+      "bytes": 122305,
+      "sha256": "3af148069f16f8eb9e098b955716e93c445a36b49916708b3260c0b9ff50cfab"
+    },
+    "max-concentrated.eval": {
+      "bytes": 122260,
+      "sha256": "f1856ca017df7adbf49579cf449d0de8286b8c2e38340069f055022bef7f06ec"
+    },
+    "pass_at_2-broad.eval": {
+      "bytes": 122474,
+      "sha256": "4d42baa85544b7fee47db0cb910437b0250b51c6b65e7433fc0f9c96d8135315"
+    },
+    "pass_at_2-concentrated.eval": {
+      "bytes": 122354,
+      "sha256": "dd4282abfa5a817f0e581fa5b23553643fb0c336a7cb0d4a45e06b17dc1e9ac7"
+    },
+    "median-broad.eval": {
+      "bytes": 122402,
+      "sha256": "043f105d18e34bb688ca21724534c2d4a1eadee4993be076943ebfad0b6593e2"
+    },
+    "median-concentrated.eval": {
+      "bytes": 122366,
+      "sha256": "fd18bd73cbec974e11e63f66543b296fea5dd1007b1e4810687066962299d50d"
+    },
+    "mode-broad.eval": {
+      "bytes": 122214,
+      "sha256": "0bc0f7020fc6da00edaf3c32fe5b2f740795a535a9efd8198e4c06dd2e63e992"
+    },
+    "mode-concentrated.eval": {
+      "bytes": 122471,
+      "sha256": "c53d8946155b4d0bbc96bb5a5cdd41188cfa604465dd11938ef000de57470575"
+    },
+    "at_least_2-broad.eval": {
+      "bytes": 122344,
+      "sha256": "de3767b3f236ece9de8714f7973dc051caf78cd42832ce04b2eb16b187ad28ba"
+    },
+    "at_least_2-concentrated.eval": {
+      "bytes": 122296,
+      "sha256": "97ca97d873fac05d06004791916947f1ce85035ed283a7adaa9e8b147b933eb8"
+    },
+    "mean-max-broad.eval": {
+      "bytes": 122301,
+      "sha256": "af4f93a37d7956dcd8aaf6bc7dbfd09e3ca2f73d21aa32717f3752d7319a8ebf"
+    },
+    "mean-max-concentrated.eval": {
+      "bytes": 122570,
+      "sha256": "c4f50ad1741d905a451ac1fd92034de1ec24d193c02ad53eb73185b96a6b419d"
+    },
+    "named-max-broad.eval": {
+      "bytes": 122092,
+      "sha256": "3315a9ed9da0df31791724a6cd71e1084cec6f776c2c53ec9f820b863be5fc9b"
+    },
+    "named-max-concentrated.eval": {
+      "bytes": 122073,
+      "sha256": "2b1602665ce0aa3799f10a1dca6d14ef1558bbac240e4613519c7c5da0802d02"
+    }
+  },
+  "cases": [
+    {
+      "case": "mean",
+      "native_reducer": "mean",
+      "expected_a": 0.3333333333333333,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 144,
+      "mean_a": 0.3333333333333333,
+      "mean_b": 0.75,
+      "difference": -0.4166666666666667,
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.3333333333333333,\n  \"se\": 0.0,\n  \"ci_low\": 0.3333333333333333,\n  \"ci_high\": 0.3333333333333333,\n  \"n\": 24,\n  \"method\": \"clt\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": false,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 72,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ],\n  \"within_between\": {\n    \"var_within\": 0.3333333333333332,\n    \"var_between\": 0.0\n  }\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.3333333333333333,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.4166666666666667,\n  \"se_paired\": 0.09028938981432692,\n  \"ci_low\": -0.603444500046146,\n  \"ci_high\": -0.22988883328718737,\n  \"p_value\": 0.00012157609355318612,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": -4.440892098500626e-16,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"inference\": {\n    \"test\": \"paired_t\",\n    \"p_value\": 0.00012157609355318612,\n    \"ci_low\": -0.603444500046146,\n    \"ci_high\": -0.22988883328718737,\n    \"confidence\": 0.95,\n    \"mcnemar_applicable\": false\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 72,\n  \"n_observations_b\": 72,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mean-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.09028938981432691,\n      \"ci_low\": 0.5730360477778217,\n      \"ci_high\": 0.9269639522221783,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 72,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.3333333333333333,\n      \"se\": 0.0,\n      \"ci_low\": 0.3333333333333333,\n      \"ci_high\": 0.3333333333333333,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 72,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.4166666666666667,\n      \"p_value\": 0.00012157609355318612,\n      \"p_value_clustered\": null,\n      \"mcnemar\": null,\n      \"test\": \"paired_t\",\n      \"p_value_used\": 0.00012157609355318612,\n      \"p_holm\": 0.00012157609355318612,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\"\n    ],\n    [\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 144 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mean-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "none",
+      "native_reducer": "none",
+      "expected_a": 0.3333333333333333,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 144,
+      "mean_a": 0.3333333333333333,
+      "mean_b": 0.75,
+      "difference": -0.4166666666666667,
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.3333333333333333,\n  \"se\": 0.0,\n  \"ci_low\": 0.3333333333333333,\n  \"ci_high\": 0.3333333333333333,\n  \"n\": 24,\n  \"method\": \"clt\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": false,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 72,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ],\n  \"within_between\": {\n    \"var_within\": 0.3333333333333332,\n    \"var_between\": 0.0\n  }\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.3333333333333333,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.4166666666666667,\n  \"se_paired\": 0.09028938981432692,\n  \"ci_low\": -0.603444500046146,\n  \"ci_high\": -0.22988883328718737,\n  \"p_value\": 0.00012157609355318612,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": -4.440892098500626e-16,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"inference\": {\n    \"test\": \"paired_t\",\n    \"p_value\": 0.00012157609355318612,\n    \"ci_low\": -0.603444500046146,\n    \"ci_high\": -0.22988883328718737,\n    \"confidence\": 0.95,\n    \"mcnemar_applicable\": false\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 72,\n  \"n_observations_b\": 72,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/none-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.09028938981432691,\n      \"ci_low\": 0.5730360477778217,\n      \"ci_high\": 0.9269639522221783,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 72,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.3333333333333333,\n      \"se\": 0.0,\n      \"ci_low\": 0.3333333333333333,\n      \"ci_high\": 0.3333333333333333,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 72,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.4166666666666667,\n      \"p_value\": 0.00012157609355318612,\n      \"p_value_clustered\": null,\n      \"mcnemar\": null,\n      \"test\": \"paired_t\",\n      \"p_value_used\": 0.00012157609355318612,\n      \"p_holm\": 0.00012157609355318612,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\"\n    ],\n    [\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 144 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/none-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "max",
+      "native_reducer": "max",
+      "expected_a": 1,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 1.0,
+      "mean_b": 0.75,
+      "difference": 0.25,
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "ranking": [
+        "broad",
+        "concentrated"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 1.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.8620237953250198,\n  \"ci_high\": 1.0,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 1.0,\n  \"mean_b\": 0.75,\n  \"mean_diff\": 0.25,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": 0.06322216662052071,\n  \"ci_high\": 0.4367778333794793,\n  \"p_value\": 0.010922496295950402,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 6,\n    \"p_value\": 0.03125\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 0.03125,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/max-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"broad\",\n      \"mean\": 1.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.8620237953250198,\n      \"ci_high\": 1.0,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"broad\",\n      \"model_b\": \"concentrated\",\n      \"mean_diff\": 0.25,\n      \"p_value\": 0.010922496295950402,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 6,\n        \"p_value\": 0.03125\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 0.03125,\n      \"p_holm\": 0.03125,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"broad\"\n    ],\n    [\n      \"concentrated\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/max-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "pass_at_2",
+      "native_reducer": "pass_at_2",
+      "expected_a": 0.6666666666666667,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 0.6666666666666666,
+      "mean_b": 0.75,
+      "difference": -0.08333333333333336,
+      "test": "paired_t",
+      "p": 0.3656106415702721,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match [epoch reducer=pass_at_2; epochs=3]",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match [epoch reducer=pass_at_2; epochs=3]",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.6666666666666666,\n  \"se\": 0.0,\n  \"ci_low\": 0.6666666666666666,\n  \"ci_high\": 0.6666666666666666,\n  \"n\": 24,\n  \"method\": \"clt\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": false,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=pass_at_2; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=pass_at_2; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=pass_at_2; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.6666666666666666,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.08333333333333336,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": -0.27011116671281266,\n  \"ci_high\": 0.10344450004614593,\n  \"p_value\": 0.3656106415702721,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"inference\": {\n    \"test\": \"paired_t\",\n    \"p_value\": 0.3656106415702721,\n    \"ci_low\": -0.27011116671281266,\n    \"ci_high\": 0.10344450004614593,\n    \"confidence\": 0.95,\n    \"mcnemar_applicable\": false\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/pass_at_2-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.6666666666666666,\n      \"se\": 0.0,\n      \"ci_low\": 0.6666666666666666,\n      \"ci_high\": 0.6666666666666666,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.08333333333333336,\n      \"p_value\": 0.3656106415702721,\n      \"p_value_clustered\": null,\n      \"mcnemar\": null,\n      \"test\": \"paired_t\",\n      \"p_value_used\": 0.3656106415702721,\n      \"p_holm\": 0.3656106415702721,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\",\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [\n        2\n      ],\n      \"significant\": [],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [\n        1\n      ],\n      \"significant\": [],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=pass_at_2; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=pass_at_2; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/pass_at_2-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "median",
+      "native_reducer": "median",
+      "expected_a": 0,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 0.0,
+      "mean_b": 0.75,
+      "difference": -0.75,
+      "test": "mcnemar_exact",
+      "p": 7.62939453125e-06,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match [epoch reducer=median; epochs=3]",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match [epoch reducer=median; epochs=3]",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.13797620467498012,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=median; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=median; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=median; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.0,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.75,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": -0.9367778333794793,\n  \"ci_high\": -0.5632221666205207,\n  \"p_value\": 2.23621031314774e-08,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 18,\n    \"n10\": 0,\n    \"p_value\": 7.62939453125e-06\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 7.62939453125e-06,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/median-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.0,\n      \"ci_high\": 0.13797620467498012,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.75,\n      \"p_value\": 2.23621031314774e-08,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 18,\n        \"p_value\": 7.62939453125e-06\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 7.62939453125e-06,\n      \"p_holm\": 7.62939453125e-06,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\"\n    ],\n    [\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=median; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=median; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/median-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "mode",
+      "native_reducer": "mode",
+      "expected_a": 0,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 0.0,
+      "mean_b": 0.75,
+      "difference": -0.75,
+      "test": "mcnemar_exact",
+      "p": 7.62939453125e-06,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match [epoch reducer=mode; epochs=3]",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match [epoch reducer=mode; epochs=3]",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.13797620467498012,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=mode; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=mode; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=mode; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.0,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.75,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": -0.9367778333794793,\n  \"ci_high\": -0.5632221666205207,\n  \"p_value\": 2.23621031314774e-08,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 18,\n    \"n10\": 0,\n    \"p_value\": 7.62939453125e-06\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 7.62939453125e-06,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mode-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.0,\n      \"ci_high\": 0.13797620467498012,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.75,\n      \"p_value\": 2.23621031314774e-08,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 18,\n        \"p_value\": 7.62939453125e-06\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 7.62939453125e-06,\n      \"p_holm\": 7.62939453125e-06,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\"\n    ],\n    [\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=mode; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=mode; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mode-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "at_least_2",
+      "native_reducer": "at_least_2",
+      "expected_a": 0,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 0.0,
+      "mean_b": 0.75,
+      "difference": -0.75,
+      "test": "mcnemar_exact",
+      "p": 7.62939453125e-06,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match [epoch reducer=at_least_2; epochs=3]",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match [epoch reducer=at_least_2; epochs=3]",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.0,\n  \"ci_high\": 0.13797620467498012,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=at_least_2; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=at_least_2; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=at_least_2; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.0,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.75,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": -0.9367778333794793,\n  \"ci_high\": -0.5632221666205207,\n  \"p_value\": 2.23621031314774e-08,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 18,\n    \"n10\": 0,\n    \"p_value\": 7.62939453125e-06\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 7.62939453125e-06,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/at_least_2-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.0,\n      \"ci_high\": 0.13797620467498012,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.75,\n      \"p_value\": 2.23621031314774e-08,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 18,\n        \"p_value\": 7.62939453125e-06\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 7.62939453125e-06,\n      \"p_holm\": 7.62939453125e-06,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\"\n    ],\n    [\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=at_least_2; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=at_least_2; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/at_least_2-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "mean-max",
+      "native_reducer": "mean-max",
+      "expected_a": null,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": null,
+      "status": "refused",
+      "error": "studies/inspect-reducers/captures/mean-max-broad.eval: scorer 'match': multiple epoch reducers ['max', 'mean']; select one with inspect_reducer=... (--inspect-reducer)",
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: studies/inspect-reducers/captures/mean-max-broad.eval: scorer 'match': multiple epoch reducers ['max', 'mean']; select one with inspect_reducer=... (--inspect-reducer)\n"
+        },
+        {
+          "command": "compare",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: studies/inspect-reducers/captures/mean-max-broad.eval: scorer 'match': multiple epoch reducers ['max', 'mean']; select one with inspect_reducer=... (--inspect-reducer)\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: studies/inspect-reducers/captures/mean-max-broad.eval: scorer 'match': multiple epoch reducers ['max', 'mean']; select one with inspect_reducer=... (--inspect-reducer)\n"
+        },
+        {
+          "command": "import",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "error: studies/inspect-reducers/captures/mean-max-broad.eval: scorer 'match': multiple epoch reducers ['max', 'mean']; select one with inspect_reducer=... (--inspect-reducer)\n"
+        }
+      ]
+    },
+    {
+      "case": "mean-max-mean",
+      "native_reducer": "mean",
+      "expected_a": 0.3333333333333333,
+      "expected_b": 0.75,
+      "requested": "mean",
+      "score_key": null,
+      "status": "loaded",
+      "observations": 144,
+      "mean_a": 0.3333333333333333,
+      "mean_b": 0.75,
+      "difference": -0.4166666666666667,
+      "test": "paired_t",
+      "p": 0.00012157609355318612,
+      "ranking": [
+        "concentrated",
+        "broad"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 0.3333333333333333,\n  \"se\": 0.0,\n  \"ci_low\": 0.3333333333333333,\n  \"ci_high\": 0.3333333333333333,\n  \"n\": 24,\n  \"method\": \"clt\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": false,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 72,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ],\n  \"within_between\": {\n    \"var_within\": 0.3333333333333332,\n    \"var_between\": 0.0\n  }\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 0.3333333333333333,\n  \"mean_b\": 0.75,\n  \"mean_diff\": -0.4166666666666667,\n  \"se_paired\": 0.09028938981432692,\n  \"ci_low\": -0.603444500046146,\n  \"ci_high\": -0.22988883328718737,\n  \"p_value\": 0.00012157609355318612,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": -4.440892098500626e-16,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"inference\": {\n    \"test\": \"paired_t\",\n    \"p_value\": 0.00012157609355318612,\n    \"ci_low\": -0.603444500046146,\n    \"ci_high\": -0.22988883328718737,\n    \"confidence\": 0.95,\n    \"mcnemar_applicable\": false\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 72,\n  \"n_observations_b\": 72,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mean-max-mean-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.09028938981432691,\n      \"ci_low\": 0.5730360477778217,\n      \"ci_high\": 0.9269639522221783,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 72,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"broad\",\n      \"mean\": 0.3333333333333333,\n      \"se\": 0.0,\n      \"ci_low\": 0.3333333333333333,\n      \"ci_high\": 0.3333333333333333,\n      \"n\": 24,\n      \"method\": \"clt\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 72,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"concentrated\",\n      \"model_b\": \"broad\",\n      \"mean_diff\": 0.4166666666666667,\n      \"p_value\": 0.00012157609355318612,\n      \"p_value_clustered\": null,\n      \"mcnemar\": null,\n      \"test\": \"paired_t\",\n      \"p_value_used\": 0.00012157609355318612,\n      \"p_holm\": 0.00012157609355318612,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"concentrated\"\n    ],\n    [\n      \"broad\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 144 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mean-max-mean-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "mean-max-max",
+      "native_reducer": "max",
+      "expected_a": 1,
+      "expected_b": 0.75,
+      "requested": "max",
+      "score_key": null,
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 1.0,
+      "mean_b": 0.75,
+      "difference": 0.25,
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "ranking": [
+        "broad",
+        "concentrated"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_value": null
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:match [epoch reducer=max; epochs=3]",
+          "scorer_value": null
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 1.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.8620237953250198,\n  \"ci_high\": 1.0,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ],\n  \"mean_a\": 1.0,\n  \"mean_b\": 0.75,\n  \"mean_diff\": 0.25,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": 0.06322216662052071,\n  \"ci_high\": 0.4367778333794793,\n  \"p_value\": 0.010922496295950402,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 6,\n    \"p_value\": 0.03125\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 0.03125,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mean-max-max-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"broad\",\n      \"mean\": 1.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.8620237953250198,\n      \"ci_high\": 1.0,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"broad\",\n      \"model_b\": \"concentrated\",\n      \"mean_diff\": 0.25,\n      \"p_value\": 0.010922496295950402,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 6,\n        \"p_value\": 0.03125\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 0.03125,\n      \"p_holm\": 0.03125,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"broad\"\n    ],\n    [\n      \"concentrated\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:match [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": null\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/mean-max-max-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "named-max-correct",
+      "native_reducer": "max",
+      "expected_a": 1,
+      "expected_b": 0.75,
+      "requested": null,
+      "score_key": "correct",
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 1.0,
+      "mean_b": 0.75,
+      "difference": 0.25,
+      "test": "mcnemar_exact",
+      "p": 0.03125,
+      "ranking": [
+        "broad",
+        "concentrated"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:named_grade [epoch reducer=max; epochs=3]",
+          "scorer_value": "correct"
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:named_grade [epoch reducer=max; epochs=3]",
+          "scorer_value": "correct"
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 1.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.8620237953250198,\n  \"ci_high\": 1.0,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"correct\"\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"correct\"\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"correct\"\n    }\n  ],\n  \"mean_a\": 1.0,\n  \"mean_b\": 0.75,\n  \"mean_diff\": 0.25,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": 0.06322216662052071,\n  \"ci_high\": 0.4367778333794793,\n  \"p_value\": 0.010922496295950402,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 6,\n    \"p_value\": 0.03125\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 0.03125,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/named-max-correct-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"broad\",\n      \"mean\": 1.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.8620237953250198,\n      \"ci_high\": 1.0,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.75,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.55100555994846,\n      \"ci_high\": 0.8800063377140499,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"broad\",\n      \"model_b\": \"concentrated\",\n      \"mean_diff\": 0.25,\n      \"p_value\": 0.010922496295950402,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 6,\n        \"p_value\": 0.03125\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 0.03125,\n      \"p_holm\": 0.03125,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"broad\"\n    ],\n    [\n      \"concentrated\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"correct\"\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"correct\"\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/named-max-correct-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "case": "named-max-loss",
+      "native_reducer": "max",
+      "expected_a": 1,
+      "expected_b": 0.25,
+      "requested": null,
+      "score_key": "loss",
+      "status": "loaded",
+      "observations": 48,
+      "mean_a": 1.0,
+      "mean_b": 0.25,
+      "difference": 0.75,
+      "test": "mcnemar_exact",
+      "p": 7.62939453125e-06,
+      "ranking": [
+        "broad",
+        "concentrated"
+      ],
+      "score_values": [
+        {
+          "model": "broad",
+          "scorer": "inspect:named_grade [epoch reducer=max; epochs=3]",
+          "scorer_value": "loss"
+        },
+        {
+          "model": "concentrated",
+          "scorer": "inspect:named_grade [epoch reducer=max; epochs=3]",
+          "scorer_value": "loss"
+        }
+      ],
+      "cli": [
+        {
+          "command": "summarize",
+          "exit": 0,
+          "stdout": "{\n  \"mean\": 1.0,\n  \"se\": 0.04083258301125112,\n  \"ci_low\": 0.8620237953250198,\n  \"ci_high\": 1.0,\n  \"n\": 24,\n  \"method\": \"wilson\",\n  \"confidence\": 0.95,\n  \"interval_status\": \"available\",\n  \"n_clusters\": null,\n  \"dof_clustered\": null,\n  \"unclustered\": null,\n  \"warnings\": [],\n  \"model\": \"broad\",\n  \"is_binary\": true,\n  \"analysis_unit\": \"question\",\n  \"n_questions\": 24,\n  \"n_observations\": 24,\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"loss\"\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "compare",
+          "exit": 0,
+          "stdout": "{\n  \"model_a\": \"broad\",\n  \"model_b\": \"concentrated\",\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"loss\"\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"loss\"\n    }\n  ],\n  \"mean_a\": 1.0,\n  \"mean_b\": 0.25,\n  \"mean_diff\": 0.75,\n  \"se_paired\": 0.09028938981432691,\n  \"ci_low\": 0.5632221666205207,\n  \"ci_high\": 0.9367778333794793,\n  \"p_value\": 2.23621031314774e-08,\n  \"correlation\": null,\n  \"se_unpaired\": 0.09028938981432691,\n  \"variance_reduction\": 0.0,\n  \"n\": 24,\n  \"confidence\": 0.95,\n  \"warnings\": [\n    \"Correlation is unavailable because at least one score vector is constant.\"\n  ],\n  \"mcnemar\": {\n    \"n01\": 0,\n    \"n10\": 18,\n    \"p_value\": 7.62939453125e-06\n  },\n  \"inference\": {\n    \"test\": \"mcnemar_exact\",\n    \"p_value\": 7.62939453125e-06,\n    \"ci_low\": null,\n    \"ci_high\": null,\n    \"confidence\": null,\n    \"mcnemar_applicable\": true\n  },\n  \"n_only_a\": 0,\n  \"n_only_b\": 0,\n  \"analysis_unit\": \"question\",\n  \"n_observations_a\": 24,\n  \"n_observations_b\": 24,\n  \"question_identity\": {\n    \"matching\": 24,\n    \"partial\": 0,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  },\n  \"scoring_rules\": {\n    \"matching\": 24,\n    \"unavailable\": 0,\n    \"conflicting\": 0\n  }\n}\n",
+          "stderr": "wrote comparison evidence to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/named-max-loss-cli.html\n"
+        },
+        {
+          "command": "leaderboard",
+          "exit": 0,
+          "stdout": "{\n  \"entries\": [\n    {\n      \"model\": \"broad\",\n      \"mean\": 1.0,\n      \"se\": 0.04083258301125112,\n      \"ci_low\": 0.8620237953250198,\n      \"ci_high\": 1.0,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    },\n    {\n      \"model\": \"concentrated\",\n      \"mean\": 0.25,\n      \"se\": 0.08838834764831845,\n      \"ci_low\": 0.11999366228595001,\n      \"ci_high\": 0.44899444005154,\n      \"n\": 24,\n      \"method\": \"wilson\",\n      \"interval_status\": \"available\",\n      \"n_observations\": 24,\n      \"analysis_unit\": \"question\",\n      \"confidence\": 0.95,\n      \"n_clusters\": null,\n      \"dof_clustered\": null,\n      \"unclustered\": null,\n      \"warnings\": []\n    }\n  ],\n  \"pairwise\": [\n    {\n      \"model_a\": \"broad\",\n      \"model_b\": \"concentrated\",\n      \"mean_diff\": 0.75,\n      \"p_value\": 2.23621031314774e-08,\n      \"p_value_clustered\": null,\n      \"mcnemar\": {\n        \"n01\": 0,\n        \"n10\": 18,\n        \"p_value\": 7.62939453125e-06\n      },\n      \"test\": \"mcnemar_exact\",\n      \"p_value_used\": 7.62939453125e-06,\n      \"p_holm\": 7.62939453125e-06,\n      \"n_shared\": 24,\n      \"warnings\": [\n        \"Correlation is unavailable because at least one score vector is constant.\"\n      ]\n    }\n  ],\n  \"groups\": [\n    [\n      \"broad\"\n    ],\n    [\n      \"concentrated\"\n    ]\n  ],\n  \"group_status\": \"complete\",\n  \"alpha\": 0.05,\n  \"higher_is_better\": true,\n  \"direction_source\": \"default\",\n  \"rank_comparisons\": {\n    \"broad\": {\n      \"non_significant\": [],\n      \"significant\": [\n        2\n      ],\n      \"untested\": []\n    },\n    \"concentrated\": {\n      \"non_significant\": [],\n      \"significant\": [\n        1\n      ],\n      \"untested\": []\n    }\n  },\n  \"untested_pairs\": [],\n  \"warnings\": [\n    \"Scoring checks reject conflicting recorded names or configurations on shared questions. Missing declarations remain unchecked; matching declarations do not verify scorer code or unrecorded settings.\"\n  ],\n  \"score_values\": [\n    {\n      \"model\": \"broad\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"loss\"\n    },\n    {\n      \"model\": \"concentrated\",\n      \"scorer\": \"inspect:named_grade [epoch reducer=max; epochs=3]\",\n      \"scorer_value\": \"loss\"\n    }\n  ]\n}\n",
+          "stderr": ""
+        },
+        {
+          "command": "import",
+          "exit": 0,
+          "stdout": "wrote 48 rows (2 models) to /tmp/claude-1000/errorbars-epoch-reduction/after-artifacts/named-max-loss-cli.csv\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "checked": true
+}

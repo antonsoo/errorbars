@@ -339,9 +339,11 @@ This correction is unreleased.
   an explicit name; a nearby run cannot identify these samples. When a directory
   holds several runs of a task, the latest is used and a note says so. Question ids are
   `<task>-<doc_id>`, so several tasks of one model add up to one benchmark.
-- **Inspect AI**: `.eval` (or `.json`) logs; the model is the one in the log. Epochs (`--epochs N`,
-  repeated sampling of the same input) land in the `sample` column automatically. In this
-  checkout, imports require a successful run with all planned samples completed and recorded.
+- **Inspect AI**: `.eval` (or `.json`) logs; the model is the one in the log. Ordinary mean
+  epochs (`--epochs N`) retain their individual `sample` values. Non-mean epoch reducers
+  import the log's recorded score for every question. Multiple reducers require
+  `--inspect-reducer NAME`. Imports require a successful run with all planned samples
+  completed and recorded.
 - With exactly two models in the input, `compare` needs no `--model-a`/`--model-b`: A is the first
   one given. When the two cover different selected questions (such as different `--limit`
   values), the comparison uses the shared ones and reports how many were left out.
@@ -359,6 +361,22 @@ for a task that scores every question under several: `gsm8k_cot_self_consistency
 three times (`score-first`, `maj@8`, `maj@64`), and reading those as three times the questions would
 shrink every error bar, so the import stops and asks. `--scorer` (Inspect) picks one scorer for
 tasks with more than one.
+
+**Native Inspect epoch reducers are supported in this checkout (unreleased).**
+For `max`, `pass_at_2`, `median` and other recorded reducers, Errorbars reads
+Inspect's retained per-question scores instead of substituting a mean of the
+attempts. A log with several reducers requires an explicit choice:
+
+```sh
+errorbars compare broad=studies/inspect-reducers/captures/mean-max-broad.eval concentrated=studies/inspect-reducers/captures/mean-max-concentrated.eval --inspect-reducer max --html max.html
+```
+
+The reducer and attempt count remain part of the score definition in JSON,
+CSV and the report. Reduced-score source records identify the native
+`reductions[index].samples` array; individual attempts remain in the original
+log. Missing or duplicate reduced questions reject the import. Ordinary mean
+imports still retain all epochs and within/between-question diagnostics.
+[Native reversal, independent checks and limits](studies/inspect-reducers/README.md).
 
 **Named Inspect values are supported in this checkout (unreleased).** A single
 scorer can return, for example, correctness, brevity and word count for every

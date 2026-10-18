@@ -236,7 +236,7 @@ test('unequal cohorts, repeated generations, paging and filtered CSV stay separa
   expect(all.text.trim().split('\r\n')).toHaveLength(136); // All pages, not just forty DOM rows.
   await page.getByLabel('Search question or cluster').fill('q005');
   await page.getByRole('button', { name: 'Inspect question q005', exact: true }).click();
-  await expect(page.getByRole('region', { name: 'A observed generations' }).locator('tbody tr')).toHaveCount(25);
+  await expect(page.getByRole('region', { name: 'A observed scores' }).locator('tbody tr')).toHaveCount(25);
   await expect(page.locator('#draws-a')).toHaveText('1-25 of 151 draws');
   await page.getByRole('button', { name: 'Next A draws', exact: true }).click();
   await expect(page.locator('#draws-a')).toHaveText('26-50 of 151 draws');
@@ -299,9 +299,9 @@ test('scorer conflicts retain matching questions and export the changed grading 
   await expect(page.locator('#inspector')).toContainText('Conflicting scoring rules');
   await expect(page.locator('#inspector')).toContainText('Question identity: matching');
   await expect(page.locator('#inspector')).not.toContainText('Conflicting question content');
-  await page.getByRole('region', { name: 'A observed generations' })
+  await page.getByRole('region', { name: 'A observed scores' })
     .getByText('Scorer configuration fingerprint', { exact: true }).click();
-  await expect(page.getByRole('region', { name: 'A observed generations' })).toContainText('exact');
+  await expect(page.getByRole('region', { name: 'A observed scores' })).toContainText('exact');
   const data = JSON.parse((await download(page, 'Download evidence (JSON)')).text);
   expect(data.comparison).toBeNull(); expect(data.inference).toBeNull();
   expect(data.cohort.n_identity_matching).toBe(2);

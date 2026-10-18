@@ -50,7 +50,7 @@
           <button id="show-shared" type="button">Inspect shared questions</button>
           <button id="show-missing" type="button">Inspect excluded questions</button>
         </div>
-        <p class="caption">Each question has equal weight. Repeated generations are averaged within that question first.</p>
+        <p class="caption">Each question has equal weight. Repeated observations are averaged within the question. Recorded epoch reductions already supply one score per question; their scorer labels identify the reducer and attempt count.</p>
       </section>
     </div>
 
@@ -100,7 +100,7 @@
         </div>
         <aside id="inspector" class="inspector" aria-labelledby="inspector-heading">
           <h3 id="inspector-heading" tabindex="-1">Select a question</h3>
-          <p class="caption">Open a question id to see every observed generation and its source record.</p>
+          <p class="caption">Open a question id to see every observed score and its source record.</p>
         </aside>
       </div>
     </section>

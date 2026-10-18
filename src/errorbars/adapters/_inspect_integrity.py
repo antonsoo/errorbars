@@ -19,7 +19,10 @@ if TYPE_CHECKING:
     from inspect_ai.log import EvalLog, EvalSample
 
 
-def scoring_rule(log: EvalLog, key: str, path: str | Path, value_key: str | None = None) -> ScoringRule:
+def scoring_rule(
+    log: EvalLog, key: str, path: str | Path, value_key: str | None = None,
+    *, reducer: str = "mean",
+) -> ScoringRule:
     """Fingerprint the result's recorded scorer parameters, including re-scoring.
 
     The original eval.scorers declaration may predate `inspect score`. Results
@@ -33,6 +36,8 @@ def scoring_rule(log: EvalLog, key: str, path: str | Path, value_key: str | None
         if result.scorer != key:
             continue
         if value_key is not None and result.name != value_key:
+            continue
+        if (result.reducer or "mean") != reducer:
             continue
         for metric in result.metrics.values():
             if "to_float" in metric.params:

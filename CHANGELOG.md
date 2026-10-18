@@ -4,6 +4,24 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+### Native Inspect epoch reducers
+
+- Import retained per-question scores for non-mean epoch reducers. Averaging
+  their raw epochs previously substituted a different statistic and reversed
+  a retained max-score comparison. Read the native values without executing
+  reducer functions; require every original question exactly once.
+- Add `--inspect-reducer` / `inspect_reducer` to choose among multiple recorded
+  views. Use current results rather than stale initial eval configuration.
+  Ordinary means retain individual epochs and existing diagnostics.
+- Preserve reducer and attempt-count identity through scoring declarations,
+  normalized CSV, JSON and standalone reports. Label recorded scalar scorers
+  as well as named values. Reduction source records name their native array;
+  they do not masquerade as raw generations. Reject incompatible score
+  definitions before paired inference.
+- Retain 18 native, authored Inspect runs, closed-form and independent
+  inference checks, and actual installed CLI/offline report workflows in
+  `studies/inspect-reducers`.
+
 ### Recorded SWE-bench cohorts
 
 - Honor explicit evaluated-task masks in the study CSV converter. One retained

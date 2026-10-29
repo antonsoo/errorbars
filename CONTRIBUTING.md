@@ -56,9 +56,9 @@ The CI workflow installs a built wheel with NumPy only before these browser chec
 
 ## Community and private reports
 
-Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). Anton Soloviev
+Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). Anthony Mercer
 maintains this project and handles conduct reports at
-[anton@praviel.com](mailto:anton@praviel.com).
+[anthony@praviel.com](mailto:anthony@praviel.com).
 
 Use the bug or improvement forms for public issues. For a suspected security
 vulnerability or a conduct concern, email the maintainer privately with the

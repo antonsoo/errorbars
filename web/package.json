@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "How many eval questions do I need? A statistical power calculator for LLM evals, companion to the errorbars Python package.",
-  "author": "Anton Soloviev",
+  "author": "Anthony Mercer",
   "license": "MIT",
   "homepage": "https://antonsoo.github.io/errorbars/",
   "repository": {

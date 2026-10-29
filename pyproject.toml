@@ -40,7 +40,7 @@ version = "0.2.4"
 description = "Error bars for LLM evals: standard errors, clustering, paired comparisons, leaderboards, and power analysis."
 dynamic = ["readme"]
 license = "MIT"
-authors = [{ name = "Anton Soloviev", email = "anton@praviel.com" }]
+authors = [{ name = "Anthony Mercer", email = "anthony@praviel.com" }]
 requires-python = ">=3.10"
 keywords = [
   "llm-evals",

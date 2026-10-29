@@ -586,9 +586,9 @@ library, closed form, or Monte Carlo simulation) — see `tests/` for the patter
 
 ## License
 
-[MIT](LICENSE) © 2026 Anton Soloviev. The browser quantile adaptation and local
+[MIT](LICENSE) © 2026 Anthony Mercer. The browser quantile adaptation and local
 fonts retain their upstream licenses; see [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ---
 
-<sub>Part of [Officina](https://antonsoo.github.io/officina/), a set of small open-source tools by [Anton Soloviev](https://github.com/antonsoo).</sub>
+<sub>Part of [Officina](https://antonsoo.github.io/officina/), a set of small open-source tools by [Anthony Mercer](https://github.com/antonsoo).</sub>

@@ -151,3 +151,8 @@ including all changed files and 30 runtime files, match the pinned revision.
 A [fresh actual pip upgrade](results/public-install.json) replaced the older
 registry 0.2.4 with this source and checked every runtime file. No registry
 release, tag, hosted calculator update or Hugging Face deployment is implied.
+
+On 2026-11-25 this machine's home-directory paths in the retained results were
+replaced with `<workspace>/` (the showcases folder) or `~/`. Nothing else in
+those files changed. `results/public-source.json` still records the files as
+published at `70c12fe`, before that edit.

@@ -1,6 +1,6 @@
 {
   "python": "3.12.12 (main, Feb 12 2026, 00:42:14) [Clang 21.1.4 ]",
-  "package": "/home/antonsoloviev/work/projects/showcases/errorbars/src/errorbars/__init__.py",
+  "package": "<workspace>/errorbars/src/errorbars/__init__.py",
   "synthetic": true,
   "questions": 24,
   "epochs": 3,

@@ -73,19 +73,19 @@
     "file": "examples/inspect-values/logs/baseline.eval",
     "input_sha256": "e83ec85c059f3892b2f9f60270c870e8f6a13d74df5668dc0e56e0100005d4d9",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/examples/inspect-values/logs/baseline.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
+    "error": "<workspace>/errorbars/examples/inspect-values/logs/baseline.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
   },
   {
     "file": "examples/inspect-values/logs/candidate-epochs.eval",
     "input_sha256": "e27077a55e18a6600a138e9a34b878f86496f8d8a43759e283027d9088d47419",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/examples/inspect-values/logs/candidate-epochs.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
+    "error": "<workspace>/errorbars/examples/inspect-values/logs/candidate-epochs.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
   },
   {
     "file": "examples/inspect-values/logs/candidate.eval",
     "input_sha256": "eeecb4a10c96b8f2941e671341f0f2410b600bd8431ea138ebbd8b4ee6a158e1",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/examples/inspect-values/logs/candidate.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
+    "error": "<workspace>/errorbars/examples/inspect-values/logs/candidate.eval: sample 'q01': scorer 'answer_dimensions' returns dict values (keys: ['correct', 'concise', 'words']); select one with score_key=... (--score-key)"
   },
   {
     "file": "studies/inspect-converters/captures/default-perfect.eval",
@@ -105,25 +105,25 @@
     "file": "studies/inspect-converters/captures/named-perfect.eval",
     "input_sha256": "57a8835056b2718519edc92123e00d8ae4afadfedb0a9dae76592ea766d19cbe",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+    "error": "<workspace>/errorbars/studies/inspect-converters/captures/named-perfect.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
   },
   {
     "file": "studies/inspect-converters/captures/named-wrong.eval",
     "input_sha256": "36fbd8f3a8c104fab6b1e999ac7e6f2f0e8bd5552ff49dc237d09a493df4cf13",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/named-wrong.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+    "error": "<workspace>/errorbars/studies/inspect-converters/captures/named-wrong.eval: scorer 'named_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
   },
   {
     "file": "studies/inspect-converters/captures/reversed-perfect.eval",
     "input_sha256": "6cf8066262e3430988ce0b5c8e1e3908c3c4066146883c72e1e9151014aa24e3",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+    "error": "<workspace>/errorbars/studies/inspect-converters/captures/reversed-perfect.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
   },
   {
     "file": "studies/inspect-converters/captures/reversed-wrong.eval",
     "input_sha256": "3c96487909b5dc730caff6b0a144b450df6183758f203de84aa3a99894b0acbf",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/studies/inspect-converters/captures/reversed-wrong.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
+    "error": "<workspace>/errorbars/studies/inspect-converters/captures/reversed-wrong.eval: scorer 'reversed_grade': metric 'accuracy' records a custom score conversion (to_float). Its callable name does not establish the numeric meaning of raw grades; the default conversion may reverse the result. Export documented numeric per-question scores as CSV/JSONL instead."
   },
   {
     "file": "studies/repeated-means/fixtures/epochs-1.eval",
@@ -150,7 +150,7 @@
     "file": "tests/fixtures/inspect_tiny_named_values.eval",
     "input_sha256": "849d04149deba09164275e366327858017e33449a079dec637cf2a83750ade03",
     "status": "refused",
-    "error": "/home/antonsoloviev/work/projects/showcases/errorbars/tests/fixtures/inspect_tiny_named_values.eval: sample 'q1': scorer 'shape' returns dict values (keys: ['length', 'has_digit']); select one with score_key=... (--score-key)"
+    "error": "<workspace>/errorbars/tests/fixtures/inspect_tiny_named_values.eval: sample 'q1': scorer 'shape' returns dict values (keys: ['length', 'has_digit']); select one with score_key=... (--score-key)"
   },
   {
     "file": "tests/fixtures/inspect_tiny_qa.eval",

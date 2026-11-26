@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+- Report assets are joined one path part at a time. Python 3.10's resource
+  `Traversable.joinpath()` takes a single part, so a zip-imported install on 3.10
+  could not embed the fonts; mypy on 3.10 also reported it.
+
 ## [0.3.0] - 2026-11-26
 
 - Package metadata names Anthony Mercer (anthony@praviel.com) as the author.

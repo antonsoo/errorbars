@@ -55,12 +55,13 @@ def comparison_html(review: ComparisonReview) -> str:
         ("IBM Plex Sans", "ibm-plex-sans-latin.woff2", "100 900"),
         ("IBM Plex Mono", "ibm-plex-mono-400-latin.woff2", "400"),
     ]:
-        encoded = base64.b64encode(assets.joinpath("fonts", name).read_bytes()).decode("ascii")
+        # One part per joinpath: Traversable accepts several only from Python 3.11.
+        encoded = base64.b64encode(assets.joinpath("fonts").joinpath(name).read_bytes()).decode("ascii")
         css += (
             f'\n@font-face {{ font-family: "{family}"; font-style: normal; font-weight: {weight}; '
             f'font-display: swap; src: url(data:font/woff2;base64,{encoded}) format("woff2"); }}\n'
         )
-    license_text = assets.joinpath("fonts", "LICENSE.txt").read_text(encoding="utf-8")
+    license_text = assets.joinpath("fonts").joinpath("LICENSE.txt").read_text(encoding="utf-8")
     css += "\n/* Embedded font licenses:\n" + license_text.replace("*/", "* /") + "\n*/\n"
     script = assets.joinpath("report.js").read_text(encoding="utf-8")
     csp = (

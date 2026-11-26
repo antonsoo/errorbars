@@ -14,7 +14,7 @@ from errorbars.stats import (
     within_between_variance,
 )
 
-__version__ = "0.2.4"
+__version__ = "0.3.0"
 
 __all__ = [
     "__version__",

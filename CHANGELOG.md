@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## Unreleased
 
+## [0.3.0] - 2026-11-26
+
+- Package metadata names Anthony Mercer (anthony@praviel.com) as the author.
+
 ### Native Inspect epoch reducers
 
 - Import retained per-question scores for non-mean epoch reducers. Averaging
